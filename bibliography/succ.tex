@@ -1,0 +1,3310 @@
+\documentclass[times,envcountsame]{llncs}
+\usepackage{a4wide}
+\usepackage{times}
+\usepackage{amsmath,amssymb,eufrak,theorem}%mnsymbol}
+\usepackage{enumerate}
+\usepackage{complexity}
+\usepackage{gastex}
+
+\usepackage{xspace,tabularx,multicol}
+
+
+%\usepackage[thmmarks,standard,thref]{ntheorem}
+
+
+
+\iffalse
+
+\newtheorem{theorem}{{\bf Theorem}}[section]
+\newtheorem{corollary}[theorem]{{\bf Corollary}}
+\newtheorem{definition}[theorem]{{\bf Definition}}
+\newtheorem{example}[theorem]{{\bf Example}}
+\newtheorem{lemma}[theorem]{{\bf Lemma}}
+\newtheorem{proposition}[theorem]{{\bf Proposition}}
+\newtheorem{remark}[theorem]{{\bf Remark}}
+\newtheorem{fact}[theorem]{Fact}
+
+\fi
+
+\newtheorem{fact}[theorem]{Fact}
+
+\usepackage{stmaryrd,rotating,mathrsfs}
+
+
+%\usepackage[active]{srcltx}
+
+\iffalse
+\newcommand{\problemx}[3]{
+\par\noindent\underline{\sc#1}\par\nobreak\vskip.2\baselineskip
+\begingroup\clubpenalty10000\widowpenalty10000
+\setbox0\hbox{\bf INPUT: }\setbox1\hbox{\bf QUESTION: }
+\dimen0=\wd0\ifnum\wd1>\dimen0\dimen0=\wd1\fi
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box0\hfil}\hangindent\dimen0\hangafter1\ignorespaces#2\par
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box1\hfil}\hangindent\dimen0\hangafter1\ignorespaces#3\par
+\endgroup}
+
+\newcommand{\problemy}[3]{
+\par\noindent\underline{\sc#1}\par\nobreak\vskip.2\baselineskip
+\begingroup\clubpenalty10000\widowpenalty10000
+\setbox0\hbox{\bf INPUT: }\setbox1\hbox{\bf OUTPUT: }
+\dimen0=\wd0\ifnum\wd1>\dimen0\dimen0=\wd1\fi
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box0\hfil}\hangindent\dimen0\hangafter1\ignorespaces#2\par
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box1\hfil}\hangindent\dimen0\hangafter1\ignorespaces#3\par
+\endgroup}
+
+\fi
+
+
+\newcommand{\problemx}[3]{
+\par\noindent\underline{\sc#1}\par\nobreak\vskip.2\baselineskip
+\begingroup\clubpenalty10000\widowpenalty10000
+\setbox0\hbox{\bf INPUT:\ }\setbox1\hbox{\bf QUESTION:\ }
+\dimen0=\wd0\ifnum\wd1>\dimen0\dimen0=\wd1\fi
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box0\hfil}\hangindent\dimen0\hangafter1\ignorespaces#2\par
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box1\hfil}\hangindent\dimen0\hangafter1\ignorespaces#3\par
+\endgroup}
+
+
+\newcommand{\problemy}[3]{
+\par\noindent\underline{\sc#1}\par\nobreak\vskip.2\baselineskip
+\begingroup\clubpenalty10000\widowpenalty10000
+\setbox0\hbox{\bf INPUT:\ }\setbox1\hbox{\bf OUTPUT:\ }
+\dimen0=\wd0\ifnum\wd1>\dimen0\dimen0=\wd1\fi
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box0\hfil}\hangindent\dimen0\hangafter1\ignorespaces#2\par
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box1\hfil}\hangindent\dimen0\hangafter1\ignorespaces#3\par
+\endgroup}
+
+
+
+
+
+\renewcommand{\mod}{\text{mod }}
+\newcommand{\modulo}{\mod}
+
+
+%\renewcommand{\vec}{}
+
+\def\AC{{\mathrm{AC}}}
+\def\AG{{\mathsf{AG}}}
+\def\AND{{\mathrm{AND}}}
+\def\BIN{{\mathrm{BIN}}}
+\def\CRR{{\mathrm{CRR}}}
+\def\CTL{{\text{CTL}}}
+\def\div{{\mathrm{div}}}
+\def\dom{{\mathrm{dom}}}
+\def\EF{{\mathsf{EF}}}
+\def\AX{{\mathsf{AX}}}
+\def\EXPTIME{{\mathsf{EXPTIME}}}
+\def\inp{{\mathrm{in}}}
+\def\leaf{{\mathrm{leaf}}}
+\def\MAJ{{\mathrm{MAJ}}}
+\def\NC{{\mathrm{NC}}}
+\def\Omc{{\mathbb{O}}}
+\def\OR{{\mathrm{OR}}}
+\def\out{{\mathrm{out}}}
+\def\Pmc{{\mathcal{P}}}
+\def\PSPACE{{\mathsf{PSPACE}}}
+\def\TC{{\mathrm{TC}}}
+\def\U{{\mathsf{U}}}
+\def\WU{{\mathsf{WU}}}
+\def\X{{\mathsf{X}}}
+\def\EX{{\mathsf{EX}}}
+\def\E{{\mathsf{E}}}
+
+\newcommand{\prop}{\rho}
+
+\renewcommand{\L}{\mathsf{LOGSPACE}}
+
+%% \usepackage[thmmarks]{ntheorem}
+%% %%% Theorem environments
+%% \newtheorem{lemma}{Lemma}
+%% \newtheorem{theorem}{Theorem}
+%% \newtheorem{proposition}{Proposition}
+%% \newtheorem{corollary}{Corollary}
+
+%% \theoremstyle{definition}
+%% \theoremsymbol{\ensuremath{\lozenge}}
+%% \theorembodyfont{\normalfont}
+%% \newtheorem{definition}{Definition}
+
+%% \theoremstyle{nonumverplain}
+%% \theoremheaderfont{\normalfont\bf}
+%% \theorembodyfont{\normalfont}
+%% \theoremseparator{.}
+%% \theoremsymbol{\ensuremath{_\blacksquare}}
+%% \newtheorem{example}{Example}
+
+%% \theoremstyle{nonumberplain}
+%% \theoremheaderfont{\normalfont\itshape}
+%% \theorembodyfont{\normalfont}
+%% \theoremseparator{.}
+%% \theoremsymbol{\ensuremath{_\Box}}
+%% \newtheorem{proof}{Proof}
+
+% Symbols
+\newcommand{\naturals}{\ensuremath{\mathbf{N}}}
+\newcommand{\integers}{\ensuremath{\mathbf{Z}}}
+
+% Machines and their ingredients
+\newcommand{\automaton}{\ensuremath{A}}
+\newcommand{\clocations}{\ensuremath{Q}}
+\newcommand{\iclocation}{\ensuremath{q_{\mathit{in}}}}
+\newcommand{\fclocation}{\ensuremath{F}}
+\newcommand{\transitionrel}{\ensuremath{\Delta}}
+\newcommand{\transitionlabel}{\ensuremath{\lambda}}
+\newcommand{\clocationlabel}{\ensuremath{\xi}}
+\newcommand{\operations}{\ensuremath{Op}}
+\newcommand{\operation}{\ensuremath{op}}
+\newcommand{\add}[1]{\ensuremath{\mathsf{add}(#1)}}
+\newcommand{\zero}{\ensuremath{\mathsf{zero}}}
+\newcommand{\propositions}{\ensuremath{L}}
+\newcommand{\configuration}{\ensuremath{c}}
+\newcommand{\configurations}{\ensuremath{\mathcal{C}}}
+\newcommand{\run}{\ensuremath{\pi}}
+\newcommand{\trace}{\ensuremath{\tau}}
+\newcommand{\pocatuple}{\ensuremath{\langle \clocations,
+\iclocation, \fclocation, \transitionrel, \transitionlabel,
+\clocationlabel \rangle}}
+
+\newcommand{\circuit}{\ensuremath{\mathbb{C}}}
+
+\newcommand{\tm}{\ensuremath{\mathcal{M}}}
+
+%%% Names
+\newcommand{\oca}{\textsc{OCA} }
+\newcommand{\poca}{\textsc{POCA} }
+\newcommand{\Poca}{\mathbb{P}}
+\newcommand{\Soca}{\mathbb{S}}
+
+%%% Problems
+\newcommand{\stsat}{\textsc{Succinct 3-SAT} }
+\newcommand{\tsat}{\textsc{3-SAT} }
+\newcommand{\ltlpoca}{\textsc{LTL-POCA-MC} }
+
+%%% Complexity classes
+\newcommand{\nexptime}{\textsc{NExpTime} }
+\newcommand{\conexptime}{\textsc{co-NExpTime} }
+\newcommand{\pspace}{\textsc{PSpace} }
+
+%%% LTL
+\newcommand{\ltl}{\text{LTL}}
+\newcommand{\ctl}{\text{CTL}}
+%\newcommand{\until}{\ensuremath{\mathcal{~U~}}}
+\newcommand{\until}{\ensuremath{\U}}
+\newcommand{\eventually}{\ensuremath{\mathsf{F}}}
+\newcommand{\globally}{\ensuremath{\mathsf{G}}}
+\newcommand{\propalphabet}{\ensuremath{\Sigma}}
+\newcommand{\pastarred}{\ensuremath{(\mathcal{P}(\propalphabet))^{\omega}}}
+
+%%% Logic
+\newcommand{\true}{\ensuremath{\mathtt{tt}}}
+\newcommand{\false}{\ensuremath{\mathtt{ff}}}
+
+%%% Control commands
+\newcommand{\defemph}[1]{\emph{#1}}
+
+
+
+
+
+
+
+%\newtheorem{fact}{Fact}
+
+\newcommand{\LCM}{\text{LCM}}
+
+\begin{document}
+
+
+\title{Model Checking Succinct and Parametric One-Counter Automata}
+\author{Stefan G\"oller\inst{1} \and
+Christoph Haase\inst{2} \and
+Jo\"el Ouaknine\inst{2} \and
+James Worrell\inst{2}
+}
+
+
+\institute{
+Universit\"at
+Bremen, Institut f\"ur Informatik, Germany%\\
+%\email{goeller@informatik.uni-bremen.de}
+\and
+Oxford University Computing Laboratory, UK
+}
+
+\maketitle
+
+\begin{abstract}
+  We investigate the decidability and complexity of various model
+  checking problems over one-counter automata. More specifically, we
+  consider \emph{succinct} one-counter automata, in which additive
+  updates are encoded in binary, as well as \emph{parametric}
+  one-counter automata, in which additive updates may be given as
+  unspecified parameters. We fully determine the complexity of model
+  checking these automata against CTL, LTL, and modal $\mu$-calculus
+  specifications.
+\end{abstract}
+
+
+\section{Introduction}
+
+Counter automata, which comprise a finite-state controller together
+with a number of counter variables, are a fundamental and widely-studied
+computational model. One of the earliest results about counter
+automata, which appeared in a seminal paper of Minsky's five decades
+ago, is the fact that two counters suffice to achieve Turing
+completeness~\cite{Min61}.
+
+Following Minsky's work, much research has been directed towards
+studying restricted classes of counter automata and related
+formalisms. Among others, we note the use of restrictions to a single
+counter, on the kinds of allowable tests on the counters, on the
+underlying topology of the finite controller (such as
+flatness~\cite{CJ98-cav,LS08-atva}), and on the types of computations
+considered (such as reversal-boundedness~\cite{ID06-tcs}). Counter
+automata are also closely related to Petri nets and pushdown automata.
+
+In Minsky's original formulation, counters were represented as integer
+variables that could be incremented, decremented, or tested for
+equality with zero by the finite-state controller. More recently,
+driven by complexity-theoretic considerations on the one hand, and
+potential applications on the other, researchers have investigated
+additional primitive operations on counters, such as additive updates
+encoded in binary~\cite{BHIMV06,LS08-atva} or even
+in \emph{parametric} form, i.e., whose precise values depend on
+parameters~\cite{BIL06-icalp,IJTW93-icalp}. We refer to such counter automata as
+\emph{succinct} and \emph{parametric} respectively, the former being
+viewed as a subclass of the latter. Natural applications of such
+counter machines include the modeling of resource-bounded processes,
+programs with lists, recursive or multi-threaded programs, and XML
+query evaluation; see, e.g.,
+\cite{ID06-tcs,BHIMV06,CR04}.
+
+In most cases, investigations have centered around the decidability
+and complexity of the \emph{reachability} problem, i.e., whether a
+given control state can be reached starting from the initial
+configuration of the counter automaton. Various instances of the
+reachability problem for succinct and parametric counter automata are
+examined, for example, in~\cite{DG-jlc09,HKOW10,IJTW93-icalp}.
+
+The aim of the present paper is to study the decidability and
+complexity of \emph{model checking} for succinct and parametric
+one-counter automata. In view of Minsky's result, we restrict our
+attention to \emph{succinct one-counter automata (SOCA)} and
+\emph{parametric one-counter automata (POCA)}. On the specification
+side, we focus on the three most prominent formalisms in the
+literature, namely the temporal logics CTL and LTL, as well as the
+modal $\mu$-calculus. For a counter automaton $\mathbb{A}$ and a
+specification $\varphi$, we therefore consider the question of
+deciding whether $\mathbb{A} \models \varphi$,
+in case of POCA for all values of the parameters,
+%\footnote{In the case of
+%parametric automata, one asks whether the automaton satisfies the
+%formula \emph{for all} legal values of the parameters.}
+and investigate both the \emph{data} complexity (in which the formula
+$\varphi$ is fixed) as well as the \emph{combined} complexity of this
+problem. Our main results are summarized in Table \ref{T results}.
+\begin{table}
+\begin{center}
+\begin{tabular}{ >{\centering\arraybackslash}m{3cm}
+  >{\centering\arraybackslash}m{2cm} |
+  >{\centering\arraybackslash}m{3.3cm} |
+> {\centering\arraybackslash}m{3.3cm} |}\\
+  &  &{\bf SOCA}&{\bf POCA}\\ \hline
+{\raisebox{-2ex}[0ex]{{\bf CTL, $\mu$-calculus}}}&   {\bf data} &   & \\ \cline{2-2}
+{\raisebox{-2ex}[-5ex]{{$\phantom{\text{CTL}}$}}}&  {\bf combined}&
+{\raisebox{2ex}[0ex]{$\EXPSPACE$-complete}} &
+{\raisebox{2ex}[0ex]{ $\Pi^0_1$-complete}}\\ \cline{1-4}
+{\raisebox{-2ex}[0ex]{{\bf LTL}}}&  {\bf data} &
+\multicolumn{2}{c|} {\raisebox{0ex}[0ex]{$\coNP$-complete}}
+\\ \cline{2-4}
+{\raisebox{-2ex}[-5ex]{{$\phantom{\text{CTL}}$}}}&  {\bf combined}&
+$\PSPACE$-complete &
+$\coNEXP$-complete\\ \cline{1-4}
+\end{tabular}
+\ \\[0.4cm]
+\caption{The complexity of CTL, the modal $\mu$-calculus, and LTL on SOCA and
+POCA.}{\label{T results}}
+\end{center}
+\end{table}
+
+One of the motivations for our work was the recent discovery that
+reachability is decidable and in fact $\NP$-complete for both SOCA and
+POCA~\cite{HKOW10}. We were also influenced by the work of Demri and
+Gascon on model checking extensions of LTL over non-succinct,
+non-parametric one-counter automata~\cite{DG-jlc09}, as well as the
+recent result of G\"oller and Lohrey establishing that model checking
+CTL on such counter automata is $\PSPACE$-complete \cite{GoLo10}.
+
+We note some interesting differences between our results and
+corresponding questions regarding finite automata. For the latter, the
+(combined) model checking problems for CTL, the $\mu$-calculus, and
+LTL are respectively known to be $\mathsf{P}$-complete, in
+$\mathsf{NP} \cap \coNP$, and $\PSPACE$-complete. Somewhat
+surprisingly, for SOCA and POCA, the complexity ordering is reversed
+and LTL becomes easier to model check than either CTL or the
+$\mu$-calculus.
+
+On a technical level, the most intricate result is the
+$\EXPSPACE$-hardness of CTL model checking for SOCA, which requires
+several steps. We first show that $\mathsf{EXPSPACE}$ is `exponentially
+$\mathsf{LOGSPACE}$-serializable', adapting the known proof that
+$\PSPACE$ is $\mathsf{LOGSPACE}$-serializable. Unfortunately, and in
+contrast to~\cite{GoLo10}, this does not immediately provide
+an $\EXPSPACE$ lower bound. In a subsequent delicate stage of the
+proof, we show how to `split' the counter in order simultaneously to
+perform $\PSPACE$ computations in the counter and manipulate numbers
+of exponential size in a SOCA of polynomial size.
+
+
+
+Our paper is organized as follows. In Section \ref{S Prelim} we
+introduce general notations.
+Section \ref{S CTL} deals with CTL and the modal $\mu$-calculus.
+LTL model checking is content of Section \ref{S LTL}.
+Finally, in Section \ref{S Concl} we give conclusions.
+
+\section{Preliminaries}{\label{S Prelim}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\O}{\mathbb{O}}
+%\renewcommand{\P}{\mathcal{P}}
+
+\newcommand{\trans}[1]{\stackrel{#1}{\longrightarrow}}
+\newcommand{\hook}[1]{\stackrel{#1}{\hookrightarrow}}
+\renewcommand{\rule}[2]{\stackrel{#2}{\stackrel{#1}{\longrightarrow}}}
+
+\renewcommand{\M}{\mathcal{M}}
+
+\newcommand{\bit}{\text{bit}}
+\renewcommand{\succ}{\text{succ}}
+
+\newcommand{\Reach}{\text{Reach}}
+\newcommand{\Moves}{\text{Moves}}
+\newcommand{\bin}{\text{bin}}
+
+
+By $\Z$ we denote the {\em integers} and by $\N=\{0,1,2,\ldots\}$ the
+denote the {\em naturals}.  For each $i,j\in\Z$ we define
+$[i,j]=\{k\in\Z\mid i\leq k\leq j\}$ and $[j]=[1,j]$.  For each
+$i,n\in\N$, let $\bit_i(n)$ denote the $i^{\text{th}}$ least
+significant bit of the binary representation of $n$. Hence
+$n=\sum_{i\in\N}2^i\cdot\bit_i(n)$.  By $\bin_m(n)=\bit_0(n)\cdots
+\bit_{m-1}(n)$ we denote the first $m$ least significant bits written
+from {\em left to right}. When $m$ is not important we just write
+$\bin(n)$.
+%For any non-empty subset $M\subseteq\Z^+$, define $\gcd(M)$ to be the largest
+%$k\geq 1$ that divides every element of $M$.
+%We define $\gcd(\emptyset)=0$.
+Let $p_i$ denote the $i^{\text{th}}$ prime number for each $i\geq 1$, i.e. $p_1=2$,
+$p_2=3$ and so on. We define $\log(n)=\min\{i\geq 1\mid 2^i> n\}$, in other
+words $\log(n)$ denotes the number of bits that are needed to represent $n$ in
+binary.
+All polynomials $p:\N\rightarrow\N$ that occur in this paper are assumed to satisfy
+$p(n)\geq n$ for each $n\in\N$.
+For each word $v=a_1\cdots a_n\in\Sigma^n$ over some finite alphabet $\Sigma$
+and each $i,j\in[n]$ define $v[i,j]=a_i\cdots a_j$ and
+$v(i)=v[i,i]$.
+
+\bigskip
+
+\renewcommand{\l}{\triangleright}
+\renewcommand{\r}{\triangleleft}
+\newcommand{\move}{\vdash}
+\noindent
+{\bf Turing machines and complexity theory:} In the following, we
+introduce $f(n)$ space-bounded deterministic Turing machines (DTMs) in
+a suitable way for proving lower bounds. These contain precisely one
+input tape and one working tape.  In our setting, the working alphabet is
+ assumed to be $\{0,1,\l,\r\}$,
+where $\l$ is the {\em left marker}
+and $\r$ is the {\em right marker}.  The working tape of the initial
+configuration of such a DTM on an input $w\in\Sigma^n$ is
+assumed to be $\l0^{f(n)}\r$, whereas its input tape is $\l w\r$.
+Before we define DTMs, let $\Upsilon=\{-1,0,+1\}$ denote a set of
+directions.
+
+Formally, a {\em $f(n)$-space bounded deterministic Turing machine (DTM)} is a tuple
+$\M=(S,\Sigma,s_0,F,\mu)$, where $S$ is a finite set of {\em states},
+$\Sigma$ is a {\em finite input alphabet} with $\l,\r\not\in\Sigma$,
+$s_0\in S$ is an {\em initial state}, $F\subseteq S$ is a set of {\em final
+states}, and with $\Sigma_\M=\Sigma\uplus\{\l,\r\}$ we have that
+$$\mu\quad:\quad S\times\Sigma_\M\times\{0,1,\l,\r\}\ \rightarrow\
+S\times\Upsilon^2\times\{0,1,\l,\r\}$$
+is the {\em transition function}, where $\mu(s,b_1,b_2)=(s',\delta_1,\delta_2,b)$ means
+that $\M$ is currently in state $s$, its input head reads $b_1$, its
+working tape reads $b_2$, and $\M$ changes to state $s'$, moves its
+input head in direction $\delta_1$,
+moves its working head in direction $\delta_2$, and
+writes the bit $b$.
+%We require
+%moreover that whenever $\M$'s input (resp. working) head reads $\l$, then $\M$
+%must move its input (resp. working) head to the right, i.e. $+1$, and whenever
+%$\M$'s input (resp.
+%working) head reads $\r$, %it must hold that
+%$\M$ moves its
+%input (resp. working) head to the left, i.e. $-1$. Formally,
+%whenever $\delta(s,b_1,b_2)=(s',\delta_1,\delta_2,b)$, then
+%for each $i\in\{1,2\}$ we have that $b_i=\l$ implies $\delta_i=+1$ and $b_i=\r$
+%implies $\delta_i=-1$.
+Moreover, we require that $\M$ writes a marker precisely when it reads a marker,
+more formally: $b_2=m$ if and only if $b=m$ for each $m\in\{\l,\r\}$.
+As expected, a {\em configuration of $\M$} is a tuple $(s,\l w\r,\l w'\r,i,j)$,
+where $s\in S$ is the current state,
+$w\in\Sigma^n$ is an input,
+$w'\in\{0,1\}^{f(n)}$ is the content of the working tape of $\M$,
+$i\in[0,n+1]$ is the current input head position, and
+$j\in[0,f(n)+1]$ is the current working head position.
+%For configurations $C_1$ and $C_2$, we write $C_1\move_\M C_2$ whenever $\M$ can
+%move from $C_1$ to $C_2$ on one step.
+We define the {\em language $L(\M)$ of $\M$} to consist of all words
+$w\in\Sigma^*$ such that
+the {\em initial configuration}
+$(s_0,\l w\r,\l 0^{f(|w|)}\r,0,0)$ reaches a configuration
+$(s_0,\l w\r,\l w'\r,i,j)$ satisfying $s\in F$.
+
+By $\L$, $\PSPACE$, and $\EXPSPACE$ we denote the class of all
+problems that can be decided by DTM that
+is logarithmically, polynomially, exponentially space bounded,
+respectively. Recall that $\Sigma^0_1$ (resp. $\Pi^0_1$) is the class of
+all languages that are (resp. whose complements are) recursively enumerable.
+\newcommand{\Prop}{\mathcal{P}}
+\newcommand{\Op}{\text{Op}}
+%\newcommand{\add}{\mathsf{add}}
+\renewcommand{\A}{\mathbb{A}}
+%\newcommand{\EF}{\mathsf{EF}}
+%\newcommand{\CTL}{\mathsh{CTL}}
+\bigskip
+
+
+\noindent
+\textbf{Transition systems: }
+In the following, we fix a countable set of atomic propositions $\Prop$.
+A {\em transition system} is a tuple $T=(S,\{S_\prop\mid \prop\in\Prop\},\rightarrow)$, where
+$S$ is a set of {\em states}, $S_\prop\subseteq S$ for each $\prop\in\Prop$ and
+$S_\prop$ is
+non-empty for finitely many $\prop\in\Prop$, and finally
+$\rightarrow \subseteq S\times S$ is a set of {\em transitions}.
+We prefer to use the infix notation $s_1\rightarrow s_2$ to abbreviate
+$(s_1,s_2)\in\rightarrow$.
+%A {\em finite path} of length $n$ is sequence of transitions
+%$\pi=s_0\rightarrow s_1\cdots \rightarrow s_n$, where $n\in\N $.
+ An {\em infinite path} is an infinite sequence
+$\pi=s_0\rightarrow s_1\cdots$.
+% We denote
+%by $|\pi|$ the length of the path $\pi$, which we define to be $\omega$
+%if $\pi$ is infinite.
+For each infinite path
+$\pi= s_0\rightarrow s_1 \rightarrow \cdots$ and
+$i\in\N$, we denote by $\pi^i$ the path $s_i\rightarrow s_{i+1}\cdots$
+and by $\pi(i)$ the state $s_i$.
+Define the {\em trace of $\pi$} as $\trace(\pi):\N\rightarrow2^\Prop$ where
+$\trace(i)=\{\prop\in\Prop\mid s_i\in S_\prop\}$ for each $i\in\N$.
+\bigskip
+
+\noindent
+\textbf{Succinct and parametric one-counter automata: }
+A {\em succinct one-counter automaton (SOCA)} is a tuple
+ $\Soca=(Q,\{Q_\prop\mid \prop\in\Prop\},E,\lambda)$, where $Q$ is a finite set
+of {\em control states}, $Q_\prop\subseteq Q$ for each $\prop\in\Prop$ and
+$Q_\rho$ is non-empty for finitely many $\prop\in\Prop$,
+$E\subseteq Q\times Q$ is a finite set of {\em transitions}, and
+$\lambda:E\rightarrow \Z\cup\{\zero\}$ labels the edges with decrements,
+increments, and zero tests.
+A {\em parametric one-counter automaton (POCA)} is a tuple
+$\Poca(X)=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda)$, where the first
+three components are same as for a SOCA,
+where $X$ is a finite set of {\em parameters over the natural numbers},
+and where $\lambda:E\rightarrow
+(\Z\cup\{\zero\}\cup\{\circ x\mid\circ\in\{+,-\}, x\in X\})$.
+For each assignment $\sigma:X\rightarrow\N$  the
+{\em induced SOCA} is defined as $\Poca^\sigma=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda')$
+where $\lambda'(e)=\circ\sigma(x)$ whenever $\lambda(e)=\circ x$
+for some $\circ\in\{+,-\}$ and $\lambda'(e)=\lambda(e)$ otherwise.
+If $X=\{x\}$ is a singleton, then we also write $\Poca(x)$ for $\Poca(X)$.
+The {\em size} of a POCA is defined as
+$|\Poca|=|Q|+|X|+|E|\cdot\max\{\log(|a|)\mid a\in\lambda(E)\cap\Z\}$.
+Hence, we represent each appearing
+integer in binary.
+The size of a SOCA is defined analogously.
+A SOCA $\Soca=(Q,\{Q_\prop\mid \prop\in\Prop\},E,\lambda)$ describes a transition system $T(\Soca)=(Q\times\N,\{Q_\prop\times\N\mid
+\prop\in\Prop\}, \rightarrow)$, where for each $q_1,q_2\in Q$ and each
+$n_1,n_2\in\N$ we have $q_1(n_1)\rightarrow q_2(n_2)$ if and only
+if either $\lambda(q_1,q_2)=n_2-n_1$, or
+($n_1=n_2=0$ and $\lambda(q_1,q_2)=\zero)$.
+
+
+\section{CTL Model Checking}{\label{S CTL}}
+
+In Section \ref{S CTL syn} we introduce the syntax and semantics of $\ctl$.
+Since the upper bounds for the modal $\mu$-calculus follow from
+known results and since the lower bounds follow from CTL, we do not introduce
+the modal $\mu$-calculus formally.
+In Section \ref{S Upper} we state an $\EXPSPACE$ upper bound for the combined
+complexity of $\ctl$ and the modal $\mu$-calculus on SOCA and a $\Pi^0_1$ upper bound
+on POCA. In Section \ref{S Serial} we recall basic notions from complexity theory
+such as serializability and results on Chinese remainder representation.
+In Section \ref{S CTL hardness} we prove the main result of this section, namely
+that the data complexity of $\ctl$ on SOCA is $\EXPSPACE$-hard.
+Finally, we prove a $\Pi^0_1$ lower bound for the data complexity
+of $\ctl$ on POCA in Section \ref{S CTL und}.
+
+\subsection{$\ctl$: Syntax and Semantics}{\label{S CTL syn}}
+\noindent
+Formulas $\varphi$ of $\ctl$ are given by the following
+grammar, where $\prop$ ranges over $\Prop$:
+
+$$
+\varphi\quad ::=\quad \prop\ \mid \neg\varphi\ \mid\ \varphi\wedge\varphi\ \mid\
+\EX\varphi\ \mid \E (\varphi\U\varphi)\ \mid\
+\E(\varphi\WU\varphi)
+$$
+
+\noindent
+We have the following abbreviations:
+$\varphi_1\vee\varphi_2=\neg(\neg\varphi_1\wedge\neg\varphi_2)$,
+$\varphi_1\rightarrow\varphi_2=\neg\varphi_1\vee\varphi_2$,
+$\true=\prop\vee\neg\prop$ for some atomic proposition $\prop\in\Prop$,
+and $\EF\varphi=\E(\true\U\varphi)$.
+The {\em size} of a $\ctl$ formula is inductively defined as follows:
+$|\prop|=1$ for each $\prop\in\Prop$, $|\neg\varphi|=|\EX\varphi|=|\varphi|+1$,
+$|\varphi_1\wedge\varphi_2|=|\E(\varphi_1\U\varphi_2)|=|\E(\varphi_1\WU\varphi_2)|=
+|\varphi_1|+|\varphi_2|+1$.
+Given a transition system $T=(S,\{S_\prop\mid \prop\in\Prop\},\rightarrow)$, a state
+$s\in S$, and some $\CTL$ formula $\varphi$, define $(T,s)\models\varphi$ by
+induction on the structure of $\varphi$ as follows:
+
+\begin{eqnarray*}
+  (T,s)\models \prop &  \quad\iff\quad & s\in S_p\quad \text{ for each
+}\prop\in\Prop\\
+  (T,s)\models \varphi_1\wedge\varphi_2 &  \quad\iff\quad &
+(T,s)\models\varphi_1\text{ and }
+(T,s)\models \varphi_2 \\
+  (T,s)\models \neg\varphi &  \quad\iff\quad & (T,s)\not\models\varphi\\
+  (T,s)\models \EX\varphi &  \quad\iff\quad & (T,t)\models\varphi
+\text{ for some } t\in S \text{ with }s\rightarrow t\\
+  (T,s)\models \E(\varphi_1\U\varphi_2) &  \quad\iff\quad &
+\exists s_0,\cdots,s_n\in S, n\geq 0: s_0=s, (T,s_n)\models\varphi_2 \text{ such
+that}\\
+&& \forall i\in[0,n-1]: (T,s_i)\models\varphi_1\text{ and } s_i\rightarrow
+s_{i+1}\\
+  (T,s)\models \E(\varphi_1\WU\varphi_2) &  \quad\iff\quad &
+(T,s)\models\E(\varphi_1\U\varphi_2)\ \text{ or }\\
+&& \exists s_0,s_1,\ldots\in S:\forall i\geq 0: (T,s_{i})\models\varphi_1\text{ and }
+s_i\rightarrow s_{i+1}
+\end{eqnarray*}
+
+\noindent
+Let us define the {\em $\ctl$ model checking problem} on SOCA and POCA
+respectively.\\
+
+\problemx{$\ctl$ model checking on SOCA}
+{SOCA $\Soca=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda)$, $q\in Q$, $n\in\N$ in binary, and a $\ctl$ formula
+$\varphi$.}
+{$(T(\Soca),q(n))\models\varphi$?}
+\
+
+\problemx{$\ctl$ model checking on POCA}
+{POCA $\Poca(X)=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda)$, $q\in Q$, $n\in\N$ in binary, and a $\ctl$ formula
+$\varphi$.}
+{$(T(\Poca^\sigma),q(n))\models\varphi$ for every $\sigma:X\rightarrow\N$?}
+
+
+\subsection{Upper bounds}{\label{S Upper}}
+Let us first state upper bounds on model
+checking CTL and the modal $\mu$-calculus on SOCA.
+ {\em One-counter automata (OCA)} are SOCA in which
+ the numbers that occur in the transition labels are represented  in unary
+ instead in binary.
+%In this section we state the upper bounds on model checking $\ctl$ on SOCA and
+%POCA. They follow from known results or are immediate.
+The following theorem gives an upper bound on model checking the
+{\em modal $\mu$-calculus} on OCA.
+Consult \cite{ArnNiw01} for more details on the modal $\mu$-calculus.
+
+\begin{theorem}[\cite{Serr06}]
+The combined complexity of the modal $\mu$-calculus on OCA is in $\PSPACE$.
+\end{theorem}
+
+\noindent
+Since every SOCA can be transformed into an exponentially larger OCA
+ and since each $\ctl$ formula can be translated into an alternation-free
+$\mu$-calculus formula with a linear blowup, the following corollary is
+immediate.
+
+\begin{corollary}{\label{C CTL up}}
+The combined complexity of $\ctl$ and the modal $\mu$-calculus on SOCA is in $\EXPSPACE$.
+\end{corollary}
+
+\noindent
+The following upper bound for $\ctl$ on POCA is straightforward.
+
+\begin{corollary}
+The combined complexity of $\ctl$ and the modal $\mu$-calculus on POCA is in $\Pi^0_1$.
+\end{corollary}
+\begin{proof}
+Let $\Poca(X)=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda)$ be a POCA,
+ $q\in Q$, and $n\in\N$, and $\varphi$ be
+a formula.
+From Corollary \ref{C CTL up} it follows that
+for each given $\sigma:X\rightarrow\N$ the question
+$
+(T(\Poca^\sigma),q(n))\models\varphi
+$
+is a decidable predicate.
+Hence, the question if
+$
+(T(\Poca^\sigma),q(n))\models\varphi
+$
+for each $\sigma:X\rightarrow\N$ is a $\Pi^0_1$-predicate since
+we can encode the set of all such assignments into the naturals
+via G\"odel encoding.
+\qed
+\end{proof}
+
+
+\subsection{Serializability and Chinese remainder representation}{\label{S Serial}}
+For a language $L\subseteq\Sigma^*$ let $\chi_L:\Sigma^*\rightarrow\{0,1\}$
+denote the {\em characteristic function of $L$}, i.e.
+$\chi_L(x)=1$ if $x\in L$ and $\chi_L(x)=0$ otherwise, for each $x\in\Sigma^*$.
+We define the {\em lexicographic
+order on $n$-bit strings} as $\preceq_n\subseteq\{0,1\}^n\times\{0,1\}^n$, where
+$x\preceq y$ if and only if
+$\bin_n(x)\leq\bin_n(y)$, e.g. $101\preceq_3 011$.
+
+\renewcommand{\C}{\mathcal{C}}
+\begin{definition}
+Let $\C$ be a complexity class.
+We say a language $L$ is {\em $\C$-serializable via some language
+$R\subseteq\{0,1\}^*$} if there is some polynomial $p(n)$, and some language
+$U\in\C$ such that for all $x\in\{0,1\}^n$
+$$x\in L\qquad\!\!\iff\qquad\!\!
+\chi_U\left(x,0^{p(n)}\right)\quad \cdots\quad \chi_U\left(x,1^{p(n)}\right)\in
+R,$$ where with `$\cdots$'  we
+refer to $\preceq_{p(n)}$ in each of the second components.
+\end{definition}
+
+\noindent
+% it was shown that $\PSPACE$ is $\mathsf{P}$-serializable;
+%in \cite{HLSVW93} this result was sharpened to $\AC^0$-serializability,
+%see also \cite{Vol98}. It is not stated in \cite{HLSVW93,Vol98} but easy to
+%see from the proofs that \emph{logspace-uniform} $\AC^0$ suffices for serializing
+%$\PSPACE$, see the appendix for more details.
+The following theorem was proven in \cite{GoLo09}.
+
+\begin{theorem}[Theorem 22 in \cite{GoLo09}]{\label{T Serial}}
+For every $L$ in $\PSPACE$ there is some regular language $R$ such that $L$ is
+logspace-uniformly $\mathsf{AC}^0$-serializable via $R$.
+\end{theorem}
+
+\noindent
+As an immediate consequence, we obtain the following corollary.
+
+\begin{corollary}{\label{C Serial}}
+For every $L$ in $\PSPACE$ there is some regular language $R$ such that $L$ is
+$\L$-serializable via $R$.
+\end{corollary}
+
+\noindent
+We remark that our definition of serializability is adopted from \cite{GoLo09}
+and differs slightly from the standard
+notion as used in \cite{CaFu91,HLSVW93,Vol98}.
+We aim at lifting Corollary \ref{C Serial} via an appropriate notion of
+serializability to $\EXPSPACE$.
+
+\begin{definition}
+Let $\C$ be some complexity class.
+A language $L$ is {\em exponentially $\C$-serializable via some language
+$R\subseteq\{0,1\}^*$} if there is some polynomial $p(n)$ and some language
+$U\in\C$ such that for all $x\in\{0,1\}^n$
+$$x\in L\qquad\!\!\iff\qquad\!\!
+\chi_U\left(x,0^{2^{p(n)}}\right)\quad \cdots\quad \chi_U\left(x,1^{2^{p(n)}}\right)\in
+R,$$ where with `$\cdots$' we
+refer to $\preceq_{2^{p(n)}}$ in each of the second components.
+\end{definition}
+
+
+\noindent
+The following proposition is folklore and immediate.
+\begin{proposition}{\label{P Padding}}
+Let $L\subseteq\Sigma^*$ be in $\EXPSPACE$. Then there is some polynomial $q$
+such that the padded language
+$\{x\$^{2^{q(|x|)}}\mid x\in L\}\subseteq(\Sigma\uplus\{\$\})^*$ is in $\PSPACE$.
+\end{proposition}
+
+
+
+\begin{theorem}\label{T succ seri}
+For every language $L$ in $\EXPSPACE$ there is some regular language $R$ such
+that $L$ is exponentially $\L$-serializable via $R$.
+\end{theorem}
+\begin{proof}
+Let $L\subseteq\Sigma^*$ be some language in $\EXPSPACE$.
+Then by Proposition \ref{P Padding} for some polynomial $q$ the language
+$L'=\{x\$^{2^{q(|x|)}}\mid x\in L\}$ is in $\PSPACE$.
+Due to $\L$-serializability of $\PSPACE$ by Corollary \ref{C Serial}, there exists
+some polynomial $p'$, some regular language $R'$ and some $U'\in\L$
+ such that for each $y\in(\Sigma\uplus\{\$\})^*$ we have
+\begin{eqnarray}
+y\in L'\quad\iff\quad \chi_{U'}\left(y,0^{p'(|y|)}\right)\ \ \cdots\ \
+\chi_{U'}\left(y,1^{p'(|y|)}\right)\in R', \label{E Serial}
+\end{eqnarray}
+where `$\cdots$' refers to the lexicographic order $\preceq_{p'(|y|)}$.
+To prove the lemma we have to find some regular language $R$, some
+polynomial $p$ and some $U\in\L$
+such that for all $x\in\Sigma^*$ we have
+$$
+x\in L\quad \iff\quad \chi_U\left(x,0^{2^{p(|x|)}}\right)\ \cdots\
+\chi_U\left(x,1^{2^{p(|x|)}}\right)\in R,
+$$
+where here `$\cdots$' refers to the lexicographic order
+$\preceq_{2^{p(|x|)}}$.
+For now, we choose $p$ sufficiently fast growing,
+let us postpone this to the end of the proof.
+Let us describe the language $U$ and consider inputs $(x,w)$
+ with $x\in\Sigma^n$ and $w\in\{0,1\}^{2^{p(n)}}$;
+moreover let $y=x\$^{2^{q(|x|)}}$ be the padding of $x$.
+Our language $U$ consists of all such pairs $(x,w)$
+such that
+$w$ can be factorized as $w=bz0^l$ for some $b\in\{0,1\}$
+and some $l\geq 0$ such that
+$b=0$ or $(y,z)\in U'$.
+Roughly speaking, the goal of $U$ is to simulate $U'$
+on the corresponding padded word,
+however the length of the second component
+$w$ has to be a power of two, in other words the last $l$ bits of $w$
+ contain redundant information.
+We will be able to filter out this redundant information via
+the bit $b$.
+Let us make this more precise.
+Let
+\begin{eqnarray*}
+\gamma' &\quad=\quad&
+\chi_{U'}\left(y,0^{p'(|y|)}\right)\ \ \cdots\ \
+\chi_{U'}\left(y,1^{p'(|y|)}\right)\quad\text{and}\\
+\gamma &\quad=\quad& \chi_U\left(x,0^{2^{p(|x|)}}\right)\ \ \cdots\ \
+\chi_U\left(x,1^{2^{p(|x|)}}\right).
+\end{eqnarray*}
+
+\noindent
+Then by definition of $U$, the first $2\cdot p'(|y|)$ bits of $\gamma$ are
+$1\gamma'(1)1\gamma'(2)\cdots 1\gamma'(p'(|y|))$, where
+the remaining bits of $\gamma$ are all $0$.
+Hence, when reading $\gamma$ in {\em pairs of bits},
+precisely when the first of the two bits
+is set to $1$ we read some relevant information.
+
+We have to give some regular language $R$ such that $\gamma'\in R'$ if and only
+if $\gamma\in R$.
+Recall that regular languages are closed under shuffle product $|\!|$ and
+homomorphisms.
+We define $R=\varphi(R'|\!|\{a\}^*)$, where
+$\varphi:\{0,1,a\}\rightarrow\{0,1\}^*$ is the following homomorphism:
+$\varphi(a)=00$, $\varphi(0)=10$, and $\varphi(1)=11$.
+
+As expected, we choose $p$ to be an arbitrary polynomial satisfying
+$2^{p(n)}\geq 1+p'(2^{q(n)}+n)$ for all $n\geq0$.
+Finally, let us show that $U$ is in $\L$.
+Let $(x,w)$ be an input to $U$ and let again $y=x\$^{2^{q(|x|)}}$ be the padding
+of $x$.
+Then it is straightforward to decide in logarithmic space if $w$ can be factorized as
+$w=bzv$ such that $b\in\{0,1\}$, $|z|=p'(2^{q(|x|)}+|x|)$ and
+$v\in\{0\}^*$.
+The only thing that might remain to be verified in logarithmic space is whether
+$(y,z)\in U'$, which in turn boils down to simulating some logarithmic space bounded TM
+for $U$ on input $(y,z)$.
+But this is possible since $|y|+|z|\leq 2\cdot(|x|+|w|)$ as
+$$
+|y|+|z|=|x|+2^{q(|x|)}+p'(2^{q(|x|)+|x|})\leq 2\cdot p'(2^{q(|x|)}+|x|)\leq
+2\cdot 2^{p(|x|)}\leq 2\cdot (|x|+|w|).
+$$
+\qed
+\end{proof}
+
+\renewcommand{\M}{\mathcal{M}}
+
+\noindent
+\textbf{Chinese remainder representation: }
+ For every $m,M\in\N$ we denote by $\CRR_m(M)$ {\em the Chinese remainder
+representation} of $M$ as the Boolean tuple
+$(b_{i,c})_{i\in[m],0\leq c<p_i}$, where $b_{i,c}=1$ if $M\modulo p_i=c$
+and $b_{i,c}=0$ otherwise.
+The following theorem tells us that in logarithmic space we can
+compute the binary representation of a natural number that is given in Chinese
+remainder representation.
+It is a consequence of the result that division is in logspace-uniform
+$\mathsf{NC}^1$, proven in \cite{ChDaLi01}.
+
+
+\begin{theorem}[\cite{ChDaLi01} Theorem 3.3]{\label{T CRRBIN}}
+The following problem is in $\L$:
+
+INPUT: $\CRR_m(M),j\in[m]$, $b\in\{0,1\}$.
+
+QUESTION: $\bit_j(M\ \modulo 2^m)=b$?
+\end{theorem}
+
+
+\subsection{$\EXPSPACE$-hardness of the data complexity of $\ctl$ on SOCA}{\label{S CTL hardness}}
+
+
+
+In the rest of this section, we give the proof of $\EXPSPACE$-hardness
+of the data complexity of $\ctl$ on SOCA.  Let $L\subseteq\{0,1\}^*$ be an arbitrary
+language in $\EXPSPACE$. Then by Theorem \ref{T succ seri}, there is
+some regular language $R\subseteq\{0,1\}^*$ such that $L$ is
+exponentially $\L$-serializable via $R$. Hence there is some language $U\in\L$
+and some polynomial $p$ such that for all $x\in\{0,1\}^n$ we have
+
+\begin{eqnarray}{\label{E EXPSPACE char}}
+x\in L\qquad\iff\qquad \chi_{U}\left(x,0^{2^{p(n)}}\right)
+\quad \cdots\quad \chi_U\left(x,1^{2^{p(n)}}\right) \in R,
+\end{eqnarray}
+where '$\cdots$' refers to the lexicographic order $\preceq_{2^{p(n)}}$
+on the bit strings on the right-hand side.
+
+\noindent
+For the rest of this section, let us fix an input $x_0\in\{0,1\}^n$.
+Let $N=p(n)$ and let $A=(Q,\{0,1\},q_0,\delta,F)$ be some
+deterministic finite automaton with $L(A)=R$.  Let us briefly recall
+what $A$ consists of: $Q$ is a finite set of {\em states}, $\{0,1\}$
+is the {\em input alphabet}, $q_0\in Q$ is the {\em initial state},
+$\delta:Q\times\{0,1\}\rightarrow Q$ is the {\em transition function},
+and $F\subseteq Q$ is the set of {\em final states}.  Let us describe
+equivalence (\ref{E EXPSPACE char}) differently: We have $x_0\in L$ if
+and only if the program in Figure \ref{F U} returns $\mathtt{true}$.
+
+\begin{figure}
+\normalsize
+
+\ \hspace{5cm} $q\in Q$; $q:=q_0$;\\[-0.4cm]
+
+\ \hspace{5cm} $d\in\N$; $d:=0$;
+
+\ \hspace{5cm} $b\in\{0,1\}$;\\[-0.4cm]
+
+\ \hspace{5cm} $\mathtt{while }\  d\not=2^{2^N}$\ $\mathtt{ loop}$\\[-0.4cm]
+
+\ \hspace{6cm} $b:=\chi_U(x_0,\text{bin}_{2^N}(d))$;\\[-0.4cm]
+
+\ \hspace{6cm} $q:=\delta(q,b)$;\\[-0.4cm]
+
+\ \hspace{6cm} $d:=d+1$;\\[-0.4cm]
+
+\ \hspace{5cm} $\mathtt{end loop}$\\[-0.4cm]
+
+\ \hspace{5cm} $\mathtt{return}\ q\in F$;%\\[0.4cm]
+
+\caption{A program that returns $\mathtt{true}$ if and only if $x_0\in L$}{\label{F U}}
+\end{figure}
+
+\noindent
+Our goal is to mimic the execution of the program in Figure \ref{F U} by
+a fixed $\ctl$ formula and by a SOCA that depends on
+our input $x_0$.
+Before we start with the reduction, let us discuss the obstacles
+that arise:
+
+
+\begin{enumerate}[{\bf(A)}]
+\item We need some way of storing $d$ on the counter. Of course
+there are a lot of ways to do this, but since we want to access
+all bits of $d$ in the assignment $b:=\chi_U(x_0,\bin_{2^N}(d))$, the most
+natural way is probably to represent $d$ in binary.
+However, for this $2^N$ bits are required.
+ More problematically, we need to be able to check if $d$ is equal to
+$2^{2^N}$. This cannot be achieved by a transition in a SOCA
+ that subtracts $2^{2^N}$, since the representation of this number
+requires exponentially many bits in $n$.
+\item As in \cite{GoLo10}, a solution to obstacle {\bf (A)} is to store $d$ in
+Chinese remainder representation with the first $2^N$ prime numbers.
+A polynomial number of bits (in $n$) suffice
+to represent each of the occurring prime numbers, but
+we need exponentially many of them.
+Thus, we cannot equip a polynomial size SOCA with transitions for
+each prime number, simply because there are too many of them.
+\item
+The assignment $b:=\chi_U(x_0,\bin_{2^N}(d))$ implies that we need to simulate on
+the counter a logarithmically space bounded DTM for the language $U$
+on an exponentially
+large input (in $n$).
+Speaking in terms of the input size $n$, this means that we need to provide
+polynomially many bits on the counter that can be used to describe the
+working tape for this DTM. However, we need to provide
+some on-the-fly mechanism for reading the input.
+\end{enumerate}
+
+
+\iffalse
+
+\begin{enumerate}[(1)]
+\item For the representation of the variable $d$ we need $2^N+1$ bits
+  on our counter. More challenging, we need to check if $d$ is
+  equal to $2^{2^N}$. To check this, we cannot simply allow a
+  transition in our counter automaton that subtracts $2^{2^N}$,
+  since the representation of this number requires exponentially many
+  bits in $n$.
+\item As in \cite{GoLo10}, a solution to problem (1) is to store $d$
+  in Chinese remainder representation with the first $2^N+1$ primes.
+  Polynomially (in $n$) many bits suffice to represent each of the
+  occurring prime numbers, but we need exponentially many different
+  prime numbers, where each of the primes has up to exponentially many
+  residue classes that we cannot simply write down. So we cannot equip
+  the SOCA that we have to derive with transitions for each prime
+  number, simply since there are too many of them.
+
+\item The assignment $b:=\chi_U(x_0,\bin_{2^N}(d))$ means that we need to simulate on
+our counter a logarithmically space bounded DTM for $U$ on an exponential
+sized input (in $n$).
+Speaking in terms of our input size $n$, this means that we need to provide
+polynomially many bits on our counter that can be used to describe the
+working tape for this DTM. However, we need to provide
+some on-the-fly mechanism for reading the input.
+\end{enumerate}
+
+\fi
+\noindent
+To achieve this, let us give a high-level description of how we proceed.
+In a first step, we carefully design a data structure on the counter
+and describe the intuition behind it.
+In a second step, we give five queries which we aim at implementing
+via fixed CTL formulas and by SOCA that can be computed from $x_0$
+in logarithmic space.
+
+\bigskip
+
+\noindent
+{\bf The data structure and how to access it: }
+Let $K=n+2^N+1$ denote the number of bits that are required to store an input
+for $U$ plus one.
+Let $\alpha=\log K$ denote the number of bits that we require for
+storing a pointer to an input for $U$ and let $\beta$
+be the number of bits that suffice for storing the
+$K^{\text{th}}$ prime. Hence $\alpha=O(N)$ and by
+the Prime Number Theorem, it follows that
+$\beta\in O(\log(K\log(K)))=O(N)$.
+The number $\alpha$ and such a sufficiently large number $\beta$ can be computed
+ from $x_0$ in logarithmic space.
+
+
+Let us describe how we will interpret the counter in our reduction.
+Assume that the counter value is $v\in\N$.  Instead of
+treating $v$ as a natural number, we are interested only in the $l$
+least significant bits $V$ of the binary representation of $v$, where $l$
+is some number that is exponentially bounded in $n$; the precise value
+of $l$ will be made clear below.  Assume
+$V=\bit_0(v)\cdots\bit_{l-1}(v)$.  We read $V$ to be factorized into
+blocks of bits
+$$\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad V\quad=\quad I\ M\ C\ J\ X\ Y\ Z\ B,\qquad\qquad\qquad\qquad\qquad\qquad(\bigstar)$$ where
+\begin{itemize}
+\item $I\in\{0,1\}^{\alpha}$ represents a prime number index,
+\item $M\in\{0,1\}^\beta$ represents $I^{\text{th}}$
+prime number $p_I$,
+\item $C\in\{0,1\}^\beta$ represents some residue class modulo $M$,
+\item $J\in\{0,1\}^\alpha$ represents a pointer to some bit of $B$,
+\item
+each $X,Y$ and $Z$ consist of polynomially many bits (in $n$) and
+represent the working tape of three space bounded
+DTMs that we will comment on later in more detail, and
+\item $B\in\{0,1\}^{n+2^N+1}$ with $B=xB'$ for some
+$x\in\{0,1\}^n$ and some
+$B'\in\{0,1\}^{2^N+1}$,
+$B$ represents the current
+input for $U$, where
+$x$ is reserved to represent our input $x_0$
+and
+where $B'$ represents the counter $d$ from program in Figure \ref{F U} from above.
+The block $B'$ consists of $2^N+1$ bits since we want to be able to test
+ if $d=2^{2^{N}}$.
+\end{itemize}
+
+
+\renewcommand{\Re}{\Rightarrow}
+\newcommand{\Li}{\Leftarrow}
+\newcommand{\re}{\rightarrow}
+\newcommand{\li}{\leftarrow}
+
+
+
+\noindent
+Let us introduce some more notation for addressing
+leftmost (starting to count from $0$) and rightmost bit
+positions in each of the above sequences of bits in $V$.
+For each such sequence $\Theta$ let $\Theta_{\Li}$ and $\Theta_{\Re}$ denote the
+respective positions of the leftmost and rightmost bits of $\Theta$ within the bit
+string $V$, e.g. $I_\Re=\alpha-1$ and $C_\Li=\alpha+\beta$.
+
+
+\medskip
+
+\noindent
+{\bf Important remark: } Throughout the rest of this section $v$ will
+denote an arbitrary natural number, moreover $I,M,C,J,X,Y,Z$, and $B$
+will implicitly be coupled with $v$.  Note that all of the bit strings
+have polynomial length in $n$ except for $B$.  Moreover, we identify each
+of the blocks with the natural number they represent.
+
+\medskip
+
+\noindent
+A very simple but important gadget that we need is to decide, for each
+$b\in\{0,1\}$ if the $i^{\text{th}}$ bit of $v$ is $b$.
+
+\begin{lemma}{\label{L bit}}
+For each bit $b\in\{0,1\}$ there exists a fixed $\ctl$ formula $\varphi_{\bit,b}$
+such that the following is computable in logarithmic space:
+
+INPUT: $i\in\N$ in unary.% and our input $x_0$.
+
+OUTPUT: A SOCA $\Soca_{\bit,i}$ and some control state $q_{\bit,i}$ such that
+$$
+(T(\Soca_{\bit,i}),q_{\bit,i}(v))\models\varphi_{\bit,b}\quad\Longleftrightarrow\quad
+\bit_i(v)=b.
+$$
+\end{lemma}
+\begin{proof}
+The SOCA $\Soca_{\bit,i}$ has the two atomic propositions $\tau_1$ and $\tau_2$ and is
+depicted below:
+
+\begin{center}
+\begin{picture}(85,20)(-20,-5)
+%   \put(-20,-28){\framebox(85,33){}}
+  %\gasset{Nadjust=w,Nadjustdist=2,Nh=6,Nmr=1}
+ % \gasset{Nadjust=w,Nadjustdist=2,Nh=6}%$,Nmr=1}
+ % \node(A)(0,0){$q_0$}
+
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+
+\put(13,-2){\small $\tau_1$}
+\put(41,-2){\small $\tau_2$}
+  \node(A)(20,0){$q_{\bit,i}$}
+  \node(B)(40,0){$\bullet$}
+\drawloop(A){$-2^{i+1}$}
+\drawedge(A,B){$-2^i$}
+\end{picture}
+\end{center}
+The simple way to check if $\bit_i(v)=1$ (resp. $\bit_i(v)=0$) is to
+repeatedly subtract $2^{i+1}$ from $v$ until no longer possible
+and then to check if $2^i$ can (resp. cannot) be subtracted.
+Hence we put
+\begin{eqnarray*}
+\varphi_{\bit,1}&\quad=\quad&
+\tau_1\wedge
+\EF(\tau_1\wedge\neg\EX \tau_1\wedge\EX
+\tau_2)\qquad\text{ and}\\
+\varphi_{\bit,0}&=&
+\tau_1\wedge
+\EF(\tau_1\wedge\neg\EX \tau_1\wedge\neg\EX
+\tau_2).
+\end{eqnarray*}
+\qed
+\end{proof}
+
+
+
+\noindent
+{\bf Queries that we need to implement: }
+We will implement the following five queries Q1 to Q5 by instances
+of the model checking problem, where each query builds on top
+of its preceding queries.
+
+\begin{enumerate}[(Q1)]
+\item \fbox{When assuming $C<M$, does $B\equiv C\ \mod M$ hold?}
+\item \fbox{Is $M$ the $I^{\text{th}}$ prime number, i.e. $M=p_I$?}
+%\item Let $\CRR_{2^\alpha}(B)=(b_{i,r})_{i\in[2^\alpha],0\leq r<p_i}$.
+%What is $b_{I,R}$? %resp. $b_{I,R}=1$ hold?
+\item \fbox{What is $\bit_J(B)$?}
+\item \fbox{Does $(B[1,n],B[n+1,n+2^N])\in U$ hold?}
+%\item Does $B'=2^{2^N}$ hold?
+\item \fbox{Does $x_0\in L$ hold?}
+\end{enumerate}
+
+
+\noindent
+We implement each of the five queries by providing fixed CTL formulas
+and SOCA that can be computed from $x_0$ in logarithmic space.
+$\EXPSPACE$-hardness of the data complexity of CTL on SOCA will hence
+follow from the implementation of Q5.
+First, let us give an implementation of Q1.
+
+\begin{lemma}{\label{L mod}} There exists some fixed $\ctl$ formula $\varphi_\mod$ such that we
+can compute from $x_0$ in logarithmic space some SOCA $\Soca_\mod$ and some
+control state $q_\mod$ such that
+$(T(\Soca_{\mod}),q_\mod(v))\models\varphi_\mod$ if and only if $B\equiv C\ \mod M$.
+\end{lemma}
+\begin{proof}
+The SOCA $\Soca_{\mod}$ contains the three atomic propositions $\prop_0,\prop_1$, and
+$\prop_2$ and is depicted in Figure \ref{F Smod}.
+The $\ctl$ formula $\varphi_\mod$ expresses that we
+traverse the upper
+sequence of diamonds and thereby repeatedly subtract $M$ from $B$.
+The number of diamonds both in the first and the second row equals $\beta$,
+the number of bits of $M$ and of $C$.
+In the upper row, one diamond corresponds to one bit of $M$. In case bit the rightmost bit of $M$
+(in other words bit $M_\Re$ of the counter) is $1$,
+which we can verify by a transition to the initial control state of
+the SOCA $\Soca_{\bit,M_\Re}$,
+ we subtract $2^{B_\Li+\beta-1}$ from $B$, otherwise we do not modify the counter value.
+After that, we move on to the second diamond, which represents the second
+rightmost  bit of $M$, and so on.
+Hence, traversing a cycle that starts and ends
+in our initial control state $q_\mod $ will correspond to subtracting $M$ once.
+ Then we traverse
+the lower sequence of diamonds and similarly subtract $C$, but this
+this time only once.
+Finally, after having traversed the lower sequence of diamonds and seeing the atomic
+proposition $\prop_2$, we check if $B=0$ by trying to subtract $2^{B_\Li}$.
+\begin{figure}
+\begin{center}
+\begin{picture}(100,120)(5,-41)
+%   \put(-20,-28){\framebox(85,33){}}
+  %\gasset{Nadjust=w,Nadjustdist=2,Nh=6,Nmr=1}
+ % \gasset{Nadjust=w,Nadjustdist=2,Nh=6}%$,Nmr=1}
+ % \node(A)(0,0){$q_0$}
+%\put(15,-5){$q(M_{\abs,\r})$}
+%\put(43,-5){$p_2$}
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](5,20)(28,20)(28,40)(5,40)
+\put(10,25){\Large$\Soca_{\bit,M_\Re}$}
+
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](35,20)(58,20)(58,40)(35,40)
+\put(38,25){\Large$\Soca_{\bit,M_\Re-1}$}
+
+
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](85,20)(108,20)(108,40)(85,40)
+\put(90,25){\Large$\Soca_{\bit,M_\Li}$}
+
+
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+
+  \node(1)(0,60){$q_{\mod}$}
+  \node(2O)(15,70){$\bullet$}
+  \node(2U)(15,50){$\bullet$}
+  \put(17,72){\small$\prop_1$}
+  \put(17,48){\small$\prop_0$}
+
+  \node(1A)(15,35){$q_{\bit,M_\Re}$}
+  \node(4A)(45,35){$q_{\bit,M_\Re-1}$}
+
+  \node(4A)(45,35){$q_{\bit,M_\Re-1}$}
+
+  \node(7A)(95,35){$q_{\bit,M_\Li}$}
+
+
+  \node(3)(30,60){$\bullet$}
+  \node(4O)(45,70){$\bullet$}
+
+  \put(47,72){\small$\prop_1$}
+  \put(47,48){\small$\prop_0$}
+  \node(4U)(45,50){$\bullet$}
+  \node(5)(60,60){$\bullet$}
+
+  \node(6)(80,60){$\bullet$}
+  \node(7O)(95,70){$\bullet$}
+  \put(97,72){\small$\prop_1$}
+  \put(97,48){\small$\prop_0$}
+
+  \node(7U)(95,50){$\bullet$}
+  \node(8)(110,60){$\bullet$}
+
+
+
+  \put(65,58){\huge$\cdots$}
+
+
+%\drawedge[curvedepth=-70](8,1){$0$}
+
+\drawedge(1,2O){$0$}
+\drawedge[ELside=r](1,2U){$0$}
+\drawedge[ELside=l,ELpos=60](2O,3){$-2^{B_\Li+\beta-1}$}
+\drawedge(2U,3){$0$}
+
+\drawedge[curvedepth=-6,ELpos=70,ELside=r](2O,1A){$0$}
+\drawedge(2U,1A){$0$}
+
+\drawedge[curvedepth=-6,ELpos=70,ELside=r](4O,4A){$0$}
+\drawedge(4U,4A){$0$}
+
+\drawedge[curvedepth=-6,ELpos=70,ELside=r](7O,7A){$0$}
+\drawedge(7U,7A){$0$}
+
+
+
+\drawedge(3,4O){$0$}
+\drawedge[ELside=r](3,4U){$0$}
+\drawedge[ELside=l,ELpos=70](4O,5){$-2^{B_\Li+\beta-2}$}
+\drawedge(4U,5){$0$}
+
+\drawedge(6,7O){$0$}
+\drawedge[ELside=r](6,7U){$0$}
+\drawedge[ELside=l,ELpos=60](7O,8){$-2^{B_\Li}$}
+\drawedge(7U,8){$0$}
+
+\drawcurve(110,60)(112,70)(55,80)(0,70)(0,62)
+
+
+%\drawedge[ELpos=70,curvedepth=1.5](8,9A){$0$}
+%\drawedge[ELside=r,ELpos=60](8,9B){$0$}
+  \put(60,81){$0$}
+%\drawedge[ELpos=50](8,9C){$0$}
+%\drawedge[ELside=r,ELpos=50](8,9D){$-2^{B_L}$}
+
+
+%%%%COPY
+
+
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](5,-40)(28,-40)(28,-20)(5,-20)
+\put(10,-35){\Large$\Soca_{\bit,C_\Re}$}
+
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](35,-40)(58,-40)(58,-20)(35,-20)
+\put(38,-35){\Large$\Soca_{\bit,C_\Re-1}$}
+
+
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](85,-40)(108,-40)(108,-20)(85,-20)
+\put(90,-35){\Large$\Soca_{\bit,C_\Li}$}
+
+
+
+
+
+
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+
+  \node(1C)(0,0){$\bullet$}
+  \drawedge[ELside=r](1,1C){$0$}
+  \node(2OC)(15,10){$\bullet$}
+  \node(2UC)(15,-10){$\bullet$}
+  \put(17,12){\small$\prop_1$}
+  \put(17,-12){\small$\prop_0$}
+
+  \node(1AC)(15,-25){$q_{\bit,C_\Re}$}
+  \node(4AC)(45,-25){$q_{\bit,C_\Re-1}$}
+
+  \node(4AC)(45,-25){$q_{\bit,C_\Re-1}$}
+
+  \node(7AC)(95,-25){$q_{\bit,C_\Li}$}
+
+
+  \node(3C)(30,0){$\bullet$}
+  \node(4OC)(45,10){$\bullet$}
+
+  \put(47,12){\small$\prop_1$}
+  \put(47,-12){\small$\prop_0$}
+  \node(4UC)(45,-10){$\bullet$}
+  \node(5C)(60,0){$\bullet$}
+
+  \node(6C)(80,0){$\bullet$}
+  \node(7OC)(95,10){$\bullet$}
+  \put(97,12){\small$\prop_1$}
+  \put(97,-12){\small$\prop_0$}
+
+  \node(7UC)(95,-10){$\bullet$}
+  \node(8C)(110,0){$\bullet$}
+
+  \node(9C)(110,-20){$\bullet$}
+
+\drawedge(8C,9C){$-2^{B_\Li}$}
+
+  \put(112,-2){$\prop_2$}
+
+
+  \put(65,-2){\huge$\cdots$}
+
+
+%\drawedge[curvedepth=-70](8,1){$0$}
+
+\drawedge(1C,2OC){$0$}
+\drawedge[ELside=r](1C,2UC){$0$}
+\drawedge[ELside=l,ELpos=60](2OC,3C){$-2^{B_\Li+\beta-1}$}
+\drawedge(2UC,3C){$0$}
+
+\drawedge[curvedepth=-6,ELpos=70,ELside=r](2OC,1AC){$0$}
+\drawedge(2UC,1AC){$0$}
+
+\drawedge[curvedepth=-6,ELpos=70,ELside=r](4OC,4AC){$0$}
+\drawedge(4UC,4AC){$0$}
+
+\drawedge[curvedepth=-6,ELpos=70,ELside=r](7OC,7AC){$0$}
+\drawedge(7UC,7AC){$0$}
+
+
+
+\drawedge(3C,4OC){$0$}
+\drawedge[ELside=r](3C,4UC){$0$}
+\drawedge[ELside=l,ELpos=70](4OC,5C){$-2^{B_\Li+\beta-2}$}
+\drawedge(4UC,5C){$0$}
+
+\drawedge(6C,7OC){$0$}
+\drawedge[ELside=r](6C,7UC){$0$}
+\drawedge[ELside=l,ELpos=60](7OC,8C){$-2^{B_\Li}$}
+\drawedge(7UC,8C){$0$}
+
+
+
+\end{picture}
+\caption{The SOCA $\Soca_\mod$}{\label{F Smod}
+for checking if $B\equiv C\ \mod M$.}
+\end{center}
+\end{figure}
+Finally, let us give the formula $\varphi_\mod$:
+$$
+\varphi_\mod\quad=\quad\E \left(\bigwedge_{i\in\{0,1\}} \prop_i
+\rightarrow \EX \varphi_{\bit,i} \right) \U (\prop_2\wedge\neg\EX\true)
+$$
+\qed
+\end{proof}
+
+\noindent
+We need the following
+proposition for implementing Q2. Its proof is straightforward.
+
+\begin{proposition}{\label{P prime}}
+The following problem is in $\PSPACE$:
+
+INPUT: $\bin(i)\$\bin(m)$
+
+QUESTION: $m=p_i$?
+\end{proposition}
+
+
+%\renewcommand{\prime}{\text{prime}}
+\newcommand{\prim}{\text{prime}}
+
+\begin{lemma}{\label{L prim}} There is some fixed $\ctl$ formula $\varphi_\prim$ such that
+from  $x_0$ we can compute in logarithmic space some SOCA
+$\Soca_\prim$ and some control state $q_\prim$ such that
+$(T(\Soca_\prim),q_\prim(v))\models\varphi_\prim$ %\quad\Leftrightarrow\quad
+if and only if $M=p_I$.
+\end{lemma}
+\begin{proof}
+By Proposition \ref{P prime} there is some $q(n)$ space-bounded DTM
+$\M=(S,\Sigma,s_0,F,\mu)$
+over the alphabet $\Sigma=\{0,1,\$\}$ that decides,
+given $\bin(i)\$\bin(m)$, whether $m=p_i$, where $q$ is some polynomial.
+The idea is to simulate $\M$ on input $z=I\$M$ using $X$ from $(\bigstar)$ as a working tape.
+For this, we define our block $X$ to consist of
+$l=q(|I|+|M|+1)=q(\alpha+\beta+1)$ many bits.
+Moreover, we assume w.l.o.g. that $\M$'s behaviour on input $I\$M$ is
+independent of the content of its initial working tape: This can be
+achieved by adding extra states to $\M$ that first write $0^l$ onto
+the working tape.
+Hence, the initial configuration of $\M$ on input $z$ is
+$(s_0,\l z\r,\l w \r,0,0)$ for some $w\in\{0,1\}^l$.
+Before we give our SOCA $\Soca_\prim$, we describe the computation of
+$\M$ on input $I\$M$ as a pseudo program that terminates if and only if $M=p_I$:\\
+
+
+\ \hspace{2cm} $s\in S$; $s:=s_0$;\quad  (current state of $\M$)\\[-0.4cm]
+
+\ \hspace{2cm} $i\in[0,\alpha+\beta+2]$; $i:=0$;\quad (current input head position)
+
+\ \hspace{2cm} $h\in[0,l+1]$; $h:=0$;\quad (current working head position)
+
+\ \hspace{2cm} $a\in\{0,1,\$,\l,\r\}$; $a:=\l$;\quad (current input symbol)
+
+\ \hspace{2cm} $b\in\{0,1,\l,\r\}$; $b:=\l$;\quad (current working tape
+symbol)\\[0.05cm]
+
+\ \hspace{2cm} $\mathtt{while }\  s\not\in F$\ $\mathtt{ loop}$\\[-0.4cm]
+
+\ \hspace{3cm} $a:=\begin{cases} \l& \text{ if }i=0\\
+\r &\text{ if }i=\alpha+\beta+2\\
+\$ &\text{ if }i=\alpha+1\\
+\bit_i(I) &\text{ if }i\in[1,\alpha]\\
+\bit_{i-\alpha-1}(M) &\text{ otherwise }
+\end{cases}$
+
+\ \hspace{3cm} $b:=\begin{cases} \l& \text{ if }h=0\\
+\r &\text{ if }h=l+1\\
+\bit_{h}(X) &\text{ otherwise }
+\end{cases}$
+
+
+
+%\\[-0.4cm]
+
+\ \hspace{3cm} Let $\mu(s,a,b)=(s',\delta_1,\delta_2,b')$.\\[-0.4cm]
+
+\ \hspace{3cm} $\mathtt{if}\ h\in[1,l]\ \ \mathtt{then}\  \ \bit_h(X):=b';\ \ \mathtt{fi}$\\[-0.4cm]
+
+\ \hspace{3cm} $s:=s '$;\\[-0.4cm]
+
+
+\ \hspace{3cm} $i:=i+\delta_1$;\\[-0.4cm]
+
+\ \hspace{3cm} $h:=h+\delta_2$;\\[-0.4cm]
+
+\ \hspace{2cm} $\mathtt{end loop}$\\[-0.2cm]
+
+\newcommand{\inpu}{\text{input}}
+\newcommand{\inz}{\text{input}_0}
+\newcommand{\ino}{\text{input}_1}
+\newcommand{\work}{\text{work}}
+\newcommand{\workz}{\text{work}_0}
+\newcommand{\worko}{\text{work}_1}
+
+
+\noindent
+Let us describe our SOCA $\Soca_\prim$.
+The control states $Q$ of $\Soca_\prim$ will contain
+$$
+S\times[0,\alpha+\beta+2]\times[0,l+2]\times
+\{0,1,\$,\l,\r\}\times\{0,1,\l,\r\}, \qquad\text{where}
+$$
+the first component corresponds to the variable $s$,
+the second component corresponds to the variable $i$,
+the third component corresponds to the variable $h$,
+the fourth component corresponds to the variable $a$, and
+finally the fifth component corresponds to the variable $b$
+of the above program.
+Moreover, our SOCA will contain
+the SOCA $\Soca_{\bit,I_\Li},\Soca_{\bit,I_\Li+1}\ldots,\Soca_{\bit,I_\Re}$ and
+$\Soca_{\bit,X_\Li},\Soca_{\bit,X_\Li+1}\ldots,\Soca_{\bit,X_\Re}$ in order to test if
+certain bits
+in $I$ and $X$ are set correctly.
+Hence $Q$ contains the control states
+$q_{\bit,I_\Li},q_{\bit,I_\Li+1}\ldots,q_{\bit,I_\Re}$ and
+$q_{\bit,X_\Li},q_{\bit,X_\Li+1}\ldots,q_{\bit,X_\Re}$ as well.
+
+\noindent
+We will provide the atomic propositions
+$\Prop=\{F,\inpu,\work,\inz,\ino,\workz,\worko\}$,
+where
+\begin{eqnarray*}
+Q_F&\ =\ &\{(s,i,h,a,b)\in Q\mid s\in F\},\\
+Q_\inpu&\ =\ &\{q_{\bit,k}\mid k\in[I_\Li,I_\Re]\},\\
+Q_\work&\ =\ &\{q_{\bit,k}\mid k\in[X_\Li,X_\Re]\},\\
+Q_{\inz}&\ =\ &\{(s,i,h,a,b)\in Q\mid a=0\},\\
+Q_{\ino}&\ =\ &\{(s,i,h,a,b)\in Q\mid a=1\},\\
+Q_{\workz}&\ =\ &\{(s,i,h,a,b)\in Q\mid b=0\},\\
+Q_{\worko}&\ =\ &\{(s,i,h,a,b)\in Q\mid b=1\}.\\
+\end{eqnarray*}
+We do not give all transitions of $\Soca_\prim$, but illustrate
+some cases by way of example.
+Let us give the outgoing transitions of the control state
+$(s,i,h,0,1)$, where $i\in[I_\Li,I_\Re]$ and $h\in[X_\Li,X_\Re]$,
+i.e. we currently scan the $i^{\text{th}}$ bit
+of $I$ and do not read a marker on our working tape.
+Moreover, let us assume $\mu(s,0,1)=(s',+1,-1,0)$, i.e. we change to state $s'$,
+we move the input head to the right, the working head to the left,
+and modify the current content on the working tape from $1$ to $0$.
+We realize the latter by subtracting $2^{X_\Li+h}$ from the counter,
+ however we allow transitions
+to states $(s',i+1,h-1,a,b)$, {\em for each} $a,b\in\{0,1\}$, hence we guess
+the input tape symbol and the working tape symbol of the
+successor configuration.
+The $\ctl$ formula $\varphi_\prim$ will guarantee that our guessing was correct by
+accessing the control states $q_{\bit,k}$ where
+$k\in[I_\Li,I_\Re]\cup[M_\Li,M_\Re]$.
+
+\begin{center}
+\begin{picture}(85,73)(-20,4)
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+
+\put(-20,35){\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](5,20)(28,20)(28,40)(5,40)}
+
+\put(50,35){\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](5,20)(28,20)(28,40)(5,40)}
+
+
+\put(-12,68){\large$\Soca_{\bit,I_\Li+i}$}
+\node(I)(-3,60){$q_{\bit,I_\Li+i}$}
+  \put(-12,57){\tiny\bf$\inpu$}
+
+
+\put(58,68){\large$\Soca_{\bit,X_\Li+h}$}
+\node(X)(67,60){$q_{\bit,X_\Li+h}$}
+  \put(72,57){\tiny\bf$\work$}
+
+
+
+  \node(A)(30,40){$(s,i,h,0,1)$}
+  \put(39,40){\tiny\bf$\inz,\worko$}
+  \node(B1)(-35,10){$(s,i+1,h-1,0,0)$}
+  \put(-40,6){\tiny\bf$\inz,\workz$}
+
+  \put(0,6){\tiny\bf$\inz,\worko$}
+  \put(40,6){\tiny\bf$\ino,\workz$}
+  \put(80,6){\tiny\bf$\ino,\worko$}
+
+  \node(B2)(5,10){$(s,i+1,h-1,0,1)$}
+  \node(B3)(45,10){$(s,i+1,h-1,1,0)$}
+  \node(B4)(85,10){$(s,i+1,h-1,1,1)$}
+\drawedge[ELside=r](A,B1){$-2^{X_\Li+h}$}
+\drawedge[ELside=r,ELpos=70](A,B2){$-2^{X_\Li+h}$}
+\drawedge[ELside=r](A,B3){$-2^{X_\Li+h}$}
+\drawedge[ELside=l](A,B4){$-2^{X_\Li+h}$}
+
+\drawedge[ELside=l](A,I){$0$}
+\drawedge[ELside=l](A,X){$0$}
+
+\end{picture}
+\end{center}
+The other cases can be dealt with analogously.
+We put $q_\prim=(s_0,0,0,\l,\l)$.
+Our final formula is
+$$
+\varphi_\prim\quad=\quad\E
+\left(
+\bigwedge_{k\in\{0,1\}}
+\left(\text{input}_k\rightarrow\EX(\inpu\wedge\varphi_{\bit,k})\right)
+\wedge
+\left(\text{work}_k\rightarrow\EX(\work\wedge\varphi_{\bit,k})\right)
+\right)\U\ F.
+$$
+ Then
+$(T(\Soca_\prim),q_\prim(v))\models\varphi_\prim$
+if and only if
+$I\$M\in L(\M)$ if and only if
+$M=p_I$.
+\qed
+\end{proof}
+
+\newcommand{\BIT}{\text{BIT}}
+
+\noindent
+Let us now give an implementation of query Q3.
+
+\begin{lemma}{\label{L BIT}}
+For each bit $b\in\{0,1\}$ there exists a fixed $\ctl$ formula $\varphi_{\BIT,b}$
+such that from $x_0$
+we can compute in logarithmic space some SOCA $\Soca_{\BIT}$ and some
+control state $q_\BIT$ such that
+$(T(\Soca_\BIT),q_\BIT(v))\models\varphi_{\BIT,b}$
+if and only if $\bit_J(B)=b$.
+\end{lemma}
+\renewcommand{\C}{\mathcal{C}}
+\renewcommand{\R}{\mathcal{R}}
+\begin{proof}[Sketch]
+By Lemma \ref{L prim}, there is a fixed $\ctl$
+formula $\varphi_\prim$ such that we can compute from $x_0$ a
+SOCA $\Soca_\prim$ that allows to check if $M=p_I$.
+Moreover, by Lemma \ref{L mod} there is a fixed $\ctl$
+formula $\varphi_\mod$ and a SOCA $\Soca_\mod$ that allows
+to check whether $B\equiv C \mod\ M$.
+In other words, we can deal with the Chinese remainder representation
+of $B$, but our goal is to access the the $J^{\text{th}}$ bit in the
+binary representation of $B$.
+So let us assume that $\R=\CRR_{K}(B)=(b_{i,c})_{1\leq i\leq K,0\leq c<p_i}$
+is the Chinese remainder representation of $B$.
+Note that we do not have $\R$ stored anywhere on the counter.
+However, the bit strings $I$ and $C$ serve as pointers to access the
+bit $b_{I,C}$ of $\R$.
+By Theorem \ref{T CRRBIN}, given $\R$ (on-the-fly by our pointers $I$ and $C$), our
+bit string $J$, and the bit $b$,
+we can decide if $\bit_J(B)=b$ in logarithmic space.
+So let $\M=(S,\Sigma,s_0,F,\mu)$ be some $k\cdot\log(m)$ space-bounded
+Turing machine machine for this, where $k\geq 1$ is some constant.
+Hence, in order to decide if
+$\bit_J(B)=b$ we need to simulate $\M$ on input $\langle \R, J, b\rangle$.
+For this we store the space that $\M$ requires on our reserved
+sequence of bits $Y$ from $(\bigstar)$, hence $Y$ consists of
+$l=k\cdot\log(|\R Jb|)=O(\beta^2+\alpha+1)=O(N^2)$ many bits.
+The definition of SOCA $\Soca_{\BIT,b}$ works analogously to the construction
+of $\Soca_{\prim}$ in the proof of Lemma \ref{L prim}
+i.e. we introduce in $\Soca_{\BIT,b}$ control states
+that remember the current bit of the input head, the current bit of
+the working head, and the position of the working head.
+The only difference is that a pointer to the input head cannot be
+completely stored
+in the control states.
+As mentioned above, for this we employ the bit blocks $I$ and $C$,
+and also the sequence $M$ for storing the $I^{\text{th}}$ prime number.
+In order to obtain bit $b_{I,C}$, we allow transitions to our SOCA $\Soca_\mod$
+(which we can compute in logarithmic
+space from $x_0$ by Lemma \ref{L mod}) and checking
+(i) via the fixed formula $\varphi_\prim$ whether $M=p_I$, and
+then (ii) via the fixed formula $\varphi_{\mod}$
+whether $B\equiv C\ \mod M$.
+Pointers to the remaining parts of the input for $\M$, namely $J$ and $b$,
+can directly be handled by the control states of $\Soca_{\BIT,b}$,
+in analogy to the proof of Lemma \ref{L prim}.
+By way of example we explain the behavior of $\Soca_{\BIT}$ when the input head
+of $\M$ currently scans bit $b_{I,C}$ of $\R$ and when getting
+to the successor configuration requires moving the input head to the left.
+Then we simply decrement $C$ by $1$ which corresponds to subtracting $2^{C_\Li}$
+from the counter. If, however, $C$ currently equals $0$, we need to
+decrement $I$ by $1$, overwrite $M$ with prime $p_{I-1}$, and finally
+overwrite $C$ with $p_{I-1}-1$. Decrementing $I$ by $1$ can simply achieved by
+subtracting $2^{I_\Li}$ from the counter. Overwriting $M$ with prime $p_{I-1}$
+can be done by repeatedly subtracting $1$ from $M$ (i.e. subtracting $2^{M_\Li}$
+from the counter) until $M$ equals $p_{I-1}$;
+checking if $M=p_{I-1}$ can be done via the fixed $\ctl$ formula $\varphi_{\prim}$
+and the SOCA $\Soca_{\prim}$ by Lemma \ref{L prim}.
+The other cases work analogously.
+\qed
+\end{proof}
+
+\noindent
+The following lemma implements query Q4.
+
+\begin{lemma}{\label{L U}}
+For each $b\in\{0,1\}$ there is some fixed $\ctl$ formula $\varphi_{U,b}$ such that
+from $x_0$
+we can compute in logarithmic space some SOCA $\Soca_U$ and some
+control state $q_U$ such that $(T(\Soca_U),q_U(v))\models\varphi_{U,b}$
+if and only if $b=\chi_U(B[1,n],B[n+1,n+2^N])$.
+\end{lemma}
+\begin{proof}[sketch]
+The proof is similar to the proof of Lemma \ref{L BIT}.
+Since $U$ is in $\L$, there is some $k\cdot\log(m)$-space bounded
+Turing machine that decides $U$, where $k\geq 1$ is some constant.
+In order to decide if $b=\chi_U(B[1,n],B[n+1,n+2^N])$ we
+need to simulate $\M$ on input $\langle B[1,n],B[n+1,n+2^N]\rangle$.
+We store the space that $\M$ requires on its working tape
+in the sequence of bits $Z$ from $(\bigstar)$, hence $Z$ consists of
+$k\cdot\log(n+2^N+1)=O(N)$ many bits.
+We use the bit sequence $J$ as a pointer for accessing bits of $B$.
+For reading the $J^{\text{th}}$ bit of $B$ we make use of the $\ctl$ formula
+$\varphi_{\BIT,b}$ and use the SOCA $\Soca_\BIT$ from Lemma \ref{L BIT}.
+The rest of the proof follows along the same lines as the proof of
+Lemma \ref{L prim}.
+\qed
+\end{proof}
+
+
+
+\noindent
+The following lemma implements query Q5 and concludes the
+$\EXPSPACE$-hardness of the data complexity of $\ctl$ on SOCA.
+
+\begin{lemma}
+There is some fixed $\ctl$ formula $\varphi_L$ such that from $x_0$
+we can compute in logarithmic space some SOCA $\Soca_L$ and some
+control state $q_L$ such that $(T(\Soca_L),q_L(0))\models\varphi_L$
+if and only if $x_0\in L$.
+\end{lemma}
+\begin{proof}
+First note that our $\ctl$ formula $\varphi_L$ will be evaluated in state $q_L(0)$.
+Recall that our bit sequence $B$ has length $n+2^N+1$ where $B$ is factorized
+as $B=xB'$
+for some $x\in\{0,1\}^n$ and some $B'\in\{0,1\}^{2^N+1}$.
+The SOCA $\Soca_L$ and the $\ctl$ formula $\varphi_L$ will mimic the execution
+of the program from Figure \ref{F U}.
+In the bit string $x$ we store the value $x_0$.
+The bit string $B'$ represents
+the variable $d$ of the program, hence we will initialize
+$B'$ with $0$.
+Note that incrementing $B'$ by $1$ corresponds to adding $2^{B_\Li+n}$ to the counter.
+Thus, checking when $d$ becomes $2^{2^N}$ for the first time boils down to checking
+when the $n+2^N+1^{\text{st}}$ bit of $B$ becomes $1$ for the first time.
+ By Lemma
+\ref{L BIT} the $\ctl$ formula $\varphi_{\BIT,1}$ and the SOCA $\Soca_\BIT$ allow to test
+if the $J^{\text{th}}$ bit of $B$ equals $1$.
+Therefore we store in $J$ the number $n+2^N+1$.
+The following claim tells us that we can test whether we have
+initialized the counter correctly.
+Its proof is simple and therefore omitted.
+\newcommand{\init}{\text{init}}
+
+\medskip
+
+\noindent
+{\em Claim:} There is a fixed $\ctl$ formula $\varphi_\init$ such that from
+$x_0$ we can compute in logarithmic space some SOCA $\Soca_\init$ and
+some control state $q_\init$ such that
+$(T(\Soca_\init),q_\init(v))\models\varphi_\init$
+if and only if $J=n+2^N+1$ and $B=x_00^{2^N+1}$.\\
+
+\noindent
+Recall that $A=(Q,\{0,1\},q_0,\delta,F)$ is the deterministic finite automaton
+of the program in Figure \ref{F U} that needs to be simulated.
+Let us, before giving $\Soca_L$, define the auxiliary SOCA $\Soca_A$
+to be connected with the control state $q_U$ of $\Soca_U$ and with the control
+state $q_\BIT$ of $\Soca_\BIT$ along with the additional
+control states $S=Q\times\{0,1\}$ and
+the following transitions:
+$$
+(q,b)\xrightarrow{+2^{B_\Li+n}}(\delta(q,b),b'),\qquad
+(q,b)\xrightarrow{0}q_\BIT,\qquad\text{and}\qquad
+(q,b)\xrightarrow{0}q_U\qquad\text{for each }
+b,b'\in\{0,1\}.
+$$
+
+\noindent
+Moreover, $\Soca_A$ contains the atomic propositions
+$\{\bit_0,\bit_1,F\}$, where $S_{\bit_b}=Q\times\{b\}$ for each $b\in\{0,1\}$ and
+$S_F=F\times\{0,1\}$.
+Before giving $\varphi_L$, let us depict our SOCA $\Soca_L$ which has
+two additional labels $\rho$ and $\init$:
+
+\begin{center}
+\begin{picture}(85,53)(-40,-12)
+%   \put(-20,-28){\framebox(85,33){}}
+  %\gasset{Nadjust=w,Nadjustdist=2,Nh=6,Nmr=1}
+ % \gasset{Nadjust=w,Nadjustdist=2,Nh=6}%$,Nmr=1}
+ % \node(A)(0,0){$q_0$}
+
+
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+\put(-13,0){
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](35,20)(58,20)(58,40)(35,40)
+\put(48.5,28){\Large$\Soca_{\init}$}
+}
+
+\put(-51,-35){
+\drawpolygon[Nframe=n,Nfill=y,fillgray=.9](35,20)(68,20)(68,40)(35,40)
+\put(48.5,25){\Large$\Soca_A$}
+}
+
+
+
+\put(0,23){\small $\prop$}
+\put(25,33){\small $\init$}
+  \node(A)(-30,20){$q_L$}
+  \node(B)(0,20){$\bullet$}
+  \node(C)(30,30){$q_\init$}
+  \node(D1)(-10,0){$(q_0,0)$}
+  \node(D2)(10,0){$(q_0,1)$}
+\drawloop(A){$+1$}
+\drawedge(A,B){$0$}
+\drawedge(B,C){$0$}
+\drawedge[ELside=r](B,D1){$0$}
+\drawedge(B,D2){$0$}
+\end{picture}
+\end{center}
+Let us define the auxiliary formula $\chi=\EX\varphi_\BIT$ that allows
+to test if $B'=2^{2^N}$.
+Our final formula is
+$$
+\varphi_L\quad=\quad\EF\left(\rho\wedge \EX(\init\wedge\varphi_\init)\wedge
+\E\left(\neg\chi\wedge\bigwedge_{b\in\{0,1\}}\bit_b\rightarrow
+\EX\varphi_{U,b}\right)
+ \U\ (\chi\wedge F)
+\right)
+$$
+We have $x_0\in L$ if and only if
+the program from Figure \ref{F U} returns $\mathtt{true}$ if and only if
+$(T(\Soca_L),q_L(0))\models\varphi_L$.
+\qed
+\end{proof}
+
+
+
+\begin{theorem}
+The data and combined complexity of $\ctl$ and the modal $\mu$-calculus
+ on SOCA is $\EXPSPACE$-complete.
+\label{thm:ctl-poca}
+\end{theorem}
+
+
+\iffalse
+\section{$\EF$ model checking is in $\PSPACE$}
+
+
+For a finite and non-empty set of integers $S\subseteq \Z\setminus\{0\}$ not
+containing $0$, we denote by {\em $\gcd(S)$} the greatest natural number that
+divides all numbers $\{|a|: a\in S\}$.
+A {\em linear equation} over $\Z$ is given by
+$$
+x\quad =\quad a_1\cdot x_1 + \cdots\ + a_k\cdot x_n,
+$$
+where $a_i\in\Z$ is a {\em coefficient} and $x_i$ is a {\em variable}
+ranging over $\N$ for each $i\in[n]$.
+We call $b\in\Z$ a {\em solution} to the above linear equation if there exists a
+mapping $\sigma:\{x_1,\ldots,x_n\}\rightarrow\N$ such that
+$b=\sum_{i\in[n]} a_i\cdot\sigma(x_i)$.
+An {\em arithmetic progression} with {\em offset} $a\in\Z$ and {\em period
+$b\in\Z$} is the set $a+b\N=\{a+b\cdot\N\mid n\in\N\}$.
+The following lemma has been used in \cite{AnthonyIPL,Chrobak,Shallit}.
+
+\begin{lemma}[\cite{lookup citation}]\label{L NT}
+Let $N\in\N$ and let
+\begin{eqnarray}
+x\quad=\quad a_1\cdot x_1 + \cdots\ + a_n\cdot x_n,\label{L Eq}
+\end{eqnarray}
+be a linear equation such that $1<a_1<\cdots a_n\leq N$ and where
+$b=\gcd(a_1,\ldots,a_n)$.
+Then, the set of solutions to (\ref{L Eq}) is some set
+$U\cup\ a+b\N$,
+where $U\subseteq[1,N^2]$,
+and
+$a=\min\{y>N^2\mid y\equiv 0\textsl{ mod }g\}$.
+\end{lemma}
+
+
+\begin{lemma}
+Let $N\in\N$ be some natural and let
+\begin{eqnarray}
+x\quad=\quad a_1\cdot x_1 + \cdots\ + a_n\cdot x_n,\label{L Eq neg}
+\end{eqnarray}
+be a linear equation
+where $-N\leq a_1<a_2<\cdots <a_n\leq N$ and where $g=\gcd(a_1,\ldots,a_n)$.
+Let $b=\gcd(a_1,\ldots,a_n)$ and let
+$a=\min\{y>N^2\mid y\equiv 0\textsl{ mod }b\}$.
+Then, the set of positive solutions to (\ref{L Eq neg}) is a set
+$U\cup\  a+ b\N$, where $U\subseteq[1,N^2]$ and the
+set of negative solutions to (\ref{L Eq neg}) is a set
+$V\cup -a-b\N$, where $V\subseteq[-N^2,-1]$.
+\end{lemma}
+\begin{proof}
+We only prove the lemma for the negative solutions.
+Let $c<0$ be an arbitrary negative solution. Thus,
+$c=d+a_1'\cdot m_1+\ldots +a_h'\cdot m_h$, where
+$d\in[-N,0]$ and
+$\{a_1',\ldots,a_h'\}\subseteq\{a_1,\ldots,a_n\}\cap\Z^-$ is a subset of
+the negative coefficients.
+Hence $c$ is the solution
+to some linear equation $x=b_1\cdot x_1+\ldots +b_l\cdot x_l$, where
+$\{b_1,\ldots,b_l\}\subseteq[-N,-1]$. By application of Lemma
+\ref{L Eq} and switching from positive integers to negative integers, the lemma
+follows.
+\qed
+\end{proof}
+
+
+\begin{lemma}
+  \label{lem:bounded-coefficients}
+  Let $N,m$ be natural numbers and let $a_1,\ldots, a_n$ be integers
+  such that $-N\le a_1 \le \ldots \le a_n\le N$, $m>N^3$ and
+  \begin{equation*}
+    m = a_1 \cdot x_1 + \cdots + a_n \cdot x_n
+  \end{equation*}
+  for some natural numbers $x_1, \ldots, x_n$. Then there exist
+  natural numbers $y_1, \ldots, y_n$ such that
+  \begin{equation*}
+    m = a_1 \cdot y_1 + \cdots + a_n \cdot y_n
+  \end{equation*}
+  and $y_i\le N^2$ for $1\le i<n$.
+\end{lemma}
+\begin{proof}
+  Let $a_\ell\in\{a_1,a_n\}$ be the $a_i$ with the largest
+  \emph{absolute} value. Define $x_i' =x_i \text{ mod } a_\ell$ for
+  $1\le i\le n, i\neq \ell$, and let $m'= \sum_{1\le i\le n, i\neq
+    \ell} a_i\cdot m_i$. Clearly, we have $m'<N^3$ and $m'\equiv m
+  \text{ mod } a_\ell$. Let $h=m-m'=a_\ell \cdot x_\ell'$ for some
+  integer $x_\ell'$. In case $a_\ell=a_n$, the lemma follows by
+  setting $y_i=x_i'$ for $1\le i\le n$. Otherwise, let $x_n^*= \lceil
+  \frac{h}{|a_1a_n|} \rceil$. The lemma follows by setting $y_i=x_i'$
+  for $1<i<n$, $y_1=\frac{x_n^*|a_1a_n|-h}{|a_1|}$ and $y_n=x_n'+
+  x_n^*|a_1|$.
+\end{proof}
+\begin{remark}
+  \label{rem:maximum-valley}
+  It follows from the previous lemma that $\sum_{a_i<0} a_i\cdot
+  y_i>-N^3$.
+\end{remark}
+
+\section{Periodicity analysis}
+
+\newcommand{\cycles}{\textrm{cycles}}
+
+Let us fix a SOCA $\O=(Q,\{Q_p\mid p\in\Prop\},\delta_0,\delta_{>0})$ for
+ the rest of this section.
+
+In the following, we will treat $\O$ as a weighted directed graph $G(\O)$, where
+the weights are taken according to $\delta_{>0}$.
+More precisely, we define $G(\O)=(Q,\delta_{>0})$
+and write $q_1\stackrel{a}{\mapsto}q_2$ as an abbreviation for
+$(q_1,a,q_2)\in\delta_{0}$ and simply $q_1\mapsto q_2$ if
+$(q_1,a,q_2)\in\delta_{>0}$ for some $a\in\Z$.
+Note that every non-zero path in the transition system $T(\O)$ corresponds to a unique path in
+$G(\O)$.
+A {\em strongly connected component} of $G(\O)$ is an
+equivalence class of the equivalence relation $\mapsto^*$.
+For every finite path $\pi$ in $G(\O)$, let $w(\pi)$ denote the sum of all
+weights of edges of $\pi$.
+For every strongly connected component $C$ in $G(\O)$, let $\cycles(C)$ denote
+the set of chord-free cycles whose total weight does not summarize to $0$,
+more precisely
+the set of paths $\pi=q_0\stackrel{m_1}{\mapsto} q_2\cdots
+\stackrel{m_l}{\mapsto} q_l$, where $l\geq1$,
+$q_0=q_l$, such that $i\not= j$ implies $q_i\not=q_j$ for all
+$i,j\in[l]$ and moreover $\sum_{i\in[l]}m_i\not=0$.
+
+
+Let $M=\max\{|a|:\exists q_1,q_2\in Q. q_1\stackrel{a}{\mapsto}q_2\}$
+denote the maximal absolute value of a weight that appears in $G(\O)$.
+Moreover, let $g_C=\gcd(w(cycles(C)))$ denote the greatest common divisor
+of all non-zero weights of chord-free cycles in $C$.
+In the following define $$\Delta\ =\ \LCM\{g_C\mid C\text{ is a strongly
+connected component of } G(\O)\}.$$
+\noindent
+Note that $\Delta\in\exp(|\O|)$ since firstly $g_C\leq (k-1)\cdot M$ for each strongly
+connected component $C$ and secondly there are at most $|Q|$
+strongly connected components in $G(\O)$.
+Let $k=|Q|$.
+
+
+\begin{lemma}{\label{L Cycles}}
+Let $C$ be some strongly connected component of $G(\O)$, let $q\in Q$ be some
+control location, and let $n\geq k^2\cdot M$ be some natural.
+Then in $T(\O)$ there exists some non-zero path from $(q,n)$ of height $h$ with $h\equiv
+0\text{ mod }g_C$ and $|h|\leq k\cdot(k-1)\cdot M$  that visits each
+control location in $C$ at least once.
+\end{lemma}
+\begin{proof}
+Since $C$ is a strongly connected component and $n\geq k^2\cdot M$, there exists some
+non-zero path
+$$
+\pi\quad =\quad(q_1,n_1)\rightarrow(q_2,n_2)\ \cdots\ \rightarrow (q_l,n_l)
+$$
+in $T(\O)$ with $l\in[k(k-1)]$ that visits each control state in $C$ at least once
+(i.e. for all $p\in C$ there is some $i\in[l]$ such that $p=q_i$) such that
+moreover $q_1=q_l=q$ and $n_1=n$. Thus, it follows $|n_1-n_l|\leq k\cdot
+(k-1)\cdot M$.
+Observe that for every subpath $\pi[a,b]=(q_a,n_a)\cdots\rightarrow(q_b,n_b)$ of $\pi$ that is a chord-free
+cycle, we have $n_a\equiv n_b\text{ mod } g_C$ by definition of $g_C$.
+By successively cutting out subpaths of $\pi$ that correspond to chord-free
+cycles, it is apparent that $n_1\equiv n_l\text{ mod }g_C$.
+\qed
+\end{proof}
+
+Observe that Lemma \ref{L Cycles} implies that there is a non-zero path in
+$T(\O)$ that visits every
+control location in $C$ at least once from $(q,k^2\cdot M+\delta)$ with the
+desired properties with respect to the height.
+
+\begin{lemma}
+  Let $q\in Q$ be a state of some SCC $C$ and let $m,m'$ be natural
+  numbers such that $m-m'>k^2\cdot M+ k^3\cdot M^3$ and $m'>k\cdot
+  M$. Then $(q,m)\rightarrow^*(q,m')$ iff
+  $(q,m+\Delta)\rightarrow^*(q,m')$.
+\end{lemma}
+\begin{proof}
+  $(\Rightarrow)$ Let $q_1,\ldots,q_n\in C, 1\le n\le k$ be states on
+  loop-free cycles $\pi_{a_i}:q_i\rightarrow \ldots \rightarrow q_i$
+  with weights $a_i=w(\pi_{a_i})$ such that
+  $\text{gcd}(a_1,\ldots,a_n)=g_C$.  Let $\pi_i^1: q\rightarrow^* q_i$
+  and $\pi_i^2: q_i\rightarrow^* q$ be disjoint loop-free paths from
+  $q$ to $q_i$ respectively $q_i$ to $q$. Denote by
+  $\pi_i=\pi_i^1\cdot \pi_i^2$ a loop-free cycle from $q$ to itself
+  passing through $q_i, 1\le i\le n$.
+
+  Let $h=m-m'-\sum_{1\le i\le n}w(\pi_i)+\Delta$. Similarly to the
+  previous lemma, we find $g_C|m-m'$, $g_C|\sum_{1\le i\le n}w(\pi_i)$
+  and hence $g_C|h$. Moreover, $h>k^3\cdot M^3$ and thus we can derive
+  from Lemma \ref{lem:bounded-coefficients} that there are
+  $y_1,\ldots, y_n$ such that $\sum_{1\le i\le n}a_i\cdot y_i=h$ and
+  $y_i<k\cdot M$, $1\le i<n$.
+
+  Now define $\pi_i'=\pi_i^1\cdot (\pi_{a_i})^{y_i} \cdot \pi_i^2$ and
+  $\pi=\pi_1'\cdot\pi_2'\cdot\cdots\cdot\pi_n'$. Cleary,
+  $w(\pi)=m+\Delta-m'$. Moreover, $m'> k\cdot M$ ensures that is a
+  valid path. Hence $(q,m+\Delta)\rightarrow^*(q,m')$ is witnessed
+  by $\pi$.
+
+  $(\Leftarrow)$ The proof from the previous direction can directly
+  be adopted to show the statement.
+\end{proof}
+
+The following lemma is important for our periodicity analysis later.
+
+\begin{lemma}
+Let $q,q'\in Q$ and $n,n'\in\N$ such that
+$n-n'>4\cdot k^3\cdot M^2$ and
+$n'>k\cdot M$.
+If there is a path from $(q,n)$ to $(q',n')$ in $T(\O)$, then there
+is a path from $(q,n+\Delta)$ to $(q',n')$ in $T(\O)$.
+\end{lemma}
+\begin{proof}
+Let us fix some path
+$$
+\pi\quad=\quad(q_1,n_1)\rightarrow(q_2,n_2)\quad \cdots\quad \rightarrow (q_l,n_l),
+$$
+where $(q_1,n_1)=(q,n)$ and $(q_l,n_l)=(q',n')$.
+Since $n_1-n_l>4\cdot k^3\cdot M^2$ and since there are at most $k$ strongly connected components in $G(\O)$,  there
+exists a strongly connected component $C$ of $G(\O)$ and some subpath $\pi[s,t]$
+of $\pi$ such that the following holds
+\begin{enumerate}
+\item  $n_s-n_t>4\cdot k^2\cdot M^2$,
+\item $n_t\geq n'$, and
+\item $q_i\in C$ for each $i\in[s,t]$
+\end{enumerate}
+by the pigeonhole principle.
+Let $\delta=n_t-n_s<-4\cdot k^2\cdot M^2$ denote the height of the subpath $\pi[s,t]$.
+Let us treat the path $\pi[s,t]$ as a path in $G(\O)$. Now think of consecutively cutting out
+chord-free cycles in $\pi[s,t]$  until this is no longer possible, in a greedy
+manner from beginning to the end, say. Let us denote the resulting
+path (possibly empty) by $\rho$ and let  $h\in[-(k-1)\cdot M,(k-1)\cdot M]$ denote
+its weight.
+\begin{remark}{\label{R rho}}
+The path $\rho$ can be seen as a non-zero path in $T(\O)$ of length at most
+$k-1$ from $(q_s,n_s)$ to $(q_t,n_s+h)$.
+\end{remark}
+
+\noindent
+The following claim states that the height $\delta$ of $\pi[s,t]$ lies in some
+arithmetic progression of small offset and small period.
+
+
+\smallskip
+
+\noindent
+{\em Claim A.} We have $\delta\in (c+h)-g_C\N$,
+for some
+$c\in[-3\cdot k^2\cdot M^2-M,-3\cdot k^2\cdot M^2]$ with $c\equiv 0\text{ mod }g_C$.
+
+\medskip
+
+\noindent
+Let us postpone the proof of Claim A and finish the proof of the lemma.
+It remains to show that there is some non-zero path
+$(q,n+\Delta)\rightarrow^*(q',n')$ in $T(\O)$.
+Before doing this, we claim that the following paths exist in $T(\O)$:
+\begin{enumerate}[(1)]
+\item $(q,n+\Delta)\rightarrow^*(q_s,n_s+\Delta)$.
+\item $(q_t,n_t)\rightarrow^*(q',n')$.
+\item $(q_s,n_t-h)\rightarrow^*(q_t,n_t)$.
+\end{enumerate}
+Point (1) is clear since $\pi[1,s]+\Delta$ witnesses this.
+Point (2) holds by factorization of $\pi$.
+For Point (3), observe that $\rho$ is a non-zero path from $(q_s,n_s)$ to $(q_t,n_s+h)$
+of height $h$ and of length at most $k-1$
+by Remark \ref{R rho}.
+Since $n_t\geq n'>(k-1)\cdot M\geq h$, there is a non-zero path
+from $(q_t,n_t-h)$ to $(q_t,n_t)$, namely
+$\rho+(-n_s+n_t-h)=\rho+(\delta-h)$.
+ By combining Points (3) and (2) we obtain some non-zero path $(q_t,n-h)\rightarrow^*
+(q',n')$.
+Due to Point (1), it suffices to show that there is some
+non-zero path from $(q_s,n_s+\Delta)$ to $(q_s,n_t-h)$.
+In other words, we have to prove that in $G(\O)$ there is some path from
+$q_s$ to $q_s$ of weight
+\begin{eqnarray*}
+w\quad=\quad n_t-h-(n_s+\Delta)\quad=\quad n_t-n_s-h-\Delta\quad=\quad\delta-h-\Delta
+\end{eqnarray*}
+such that moreover the weight of any prefix of this path is strictly bigger
+than $-(n_s+\Delta)$.
+By Claim A we have $w=\delta-h-\Delta=(c+h)-r\cdot g_C-h-\Delta=c-r\cdot
+g_C-\Delta$ for
+some $r\in \N$ and some $c\in[-3\cdot k^2\cdot M^2-M,-3\cdot k^2\cdot M^2]$ with
+$c\equiv 0\text{ mod } g_C$.
+%Since too $\Delta\equiv 0\text{ mod } g_c$, there exists some  $d\in\N$ such
+%that
+Since moreover $\Delta\equiv 0\text{ mod }g_C$, we have $w\equiv 0\text{
+mod }g_C$.
+Furthermore, we have $w<-3\cdot k^2\cdot M^2$.
+Since $n_s+\Delta>BLA>k^2\cdot M$, there is some non-zero path $\sigma$ of height
+$h_\sigma$ with $|h_\sigma|\leq k\cdot(k-1)\cdot M$ and $h_\sigma\equiv 0\text{
+mod } g_C$
+from $(q_s,n_s+\Delta)$ that visits each control location in $C$ at
+least one by Lemma \ref{L Cycles} .
+When taking the path $\sigma\circ\sigma$, the remaining weight is congruent $0$
+modulo $g_C$ and can be estimated
+as $$w-2\cdot h_\sigma\ <\ -3\cdot k^2\cdot M^2-2\cdot h_\sigma\ <
+-3\cdot k^2\cdot M^2+2\cdot k\cdot (k-1)\cdot M<
+-k^2\cdot M^2.
+$$
+Hence by Lemma \ref{L Eq neg} there exist $m_1,\ldots, m_n\in\N$ such that the
+remaining weight equals $\sum_{i=1}^n a_i\cdot m_i$.
+To finally obtain a path from $q_s$ to $q_s$ of weight $w$ in $G(\O)$, we
+modify the first traversal of $\sigma$ by choosing for each positive $a_i$ some
+chord-free cycle of weight $a_i$ through which we loop precisely $m_i$ many times, followed by
+the modification of the second traversal of $\sigma$, where we choose for each
+negative $a_i$ some chord-free cycle of weight $a_i$ through which we loop
+precisely $m_i$ many times.
+This concludes the proof of the lemma.
+
+\smallskip
+
+\noindent
+{\em Proof of Claim A.}\\
+\noindent
+Observe that $\delta=h+r$, where $r$ is some solution
+of the linear equation
+$$
+x\ =\ a_1\cdot x_1+\ \ldots\ +a_m\cdot x_m,
+$$
+where $\{a_1,\ldots, a_m\}\subseteq w(cycles(C))$ are weights of the chord-free cycles that
+were cut out from $\pi[s,t]$ in order to obtain $\rho$. %\subseteq[-k\cdot M,k\cdot M]$.
+Let $d=\gcd(a_1,\ldots,a_m)$ which is a multiple of $g_C$ by definition.
+Since we know that $\delta<-4\cdot k^2\cdot M^2$ and $h\in[-(k-1)\cdot M,(k-1)\cdot M]$, we have
+$$
+r=\delta-h\quad<\quad-4\cdot k^2\cdot M^2+(k-1)\cdot M\quad\leq\quad -3\cdot k^2\cdot M^2.
+$$
+Moreover, we have obviously $-\sqrt{3}\cdot k\cdot M<-k\cdot M\leq a_i\leq
+k\cdot M<\sqrt{3}\cdot k\cdot M$ for each $i\in[m]$.
+Now let us define $c=\max\{y<-3\cdot k^2\cdot M^2\mid y\equiv 0\text{ mod }
+d\}$.
+As $d\in[M]$, it follows $c\in[-3\cdot k^2\cdot M^2-M,-3\cdot k^2\cdot M^2]$ as
+required.
+By applying Lemma \ref{L Eq neg} we have that $r\in c-d\N$ and hence
+$\delta\in (c+h)-d\N$.
+Since $d$ is a multiple of $g_C$
+it follows $\delta\in (c+h)-g_C\N$.
+\qed
+\end{proof}
+
+\begin{theorem}
+Model checking EF over SOCA is $\PSPACE$-complete.
+\end{theorem}
+
+\fi
+
+\newcommand{\Two}{\mathbb{A}}
+\renewcommand{\add}{\mathsf{add}}
+
+\subsection{$\Pi^0_1$-Hardness of the Data Complexity of $\CTL$ on POCA}{\label{S CTL und}}
+In this section we show that there already
+exists a fixed $\CTL$ formula for which model checking of
+$\poca$ is $\Pi^0_1$-hard.
+We reduce from the complement of the emptiness problem for
+\emph{two-counter automata}, which is $\Sigma^0_1$-complete \cite{Min61}.
+Similar to a
+SOCA, a {\em two-counter automaton} is a tuple $\Two=(Q, E, \lambda)$,
+where $Q$ is a finite set of {\em control states},
+$E\subseteq Q\times Q$ is a set of {\em edges},
+ however
+$\lambda: E \rightarrow \{\zero_1,\zero_2\}\cup \{\add_j(a)\mid j\in \{1,2\}, a\in
+\{-1,1\} \}$. The {\em configuration graph induced by $\Two$} is defined
+to be $G(\A)=(Q\times \N\times \N, \rightarrow)$, where
+$(p,i_1,i_2)\rightarrow (q,i_1+d_1,i_2+d_2)$ if and only if
+the following conditions are all satisfied:
+\begin{itemize}
+\item $(p,q)\in E$,
+%\item  $i_1,i_2,i_1+d_1,i_2+d_2\geq 0$,
+\item $\lambda(p,q)=\add_j(a)$ implies $d_j=a$ and $d_{3-j}=0$ for each
+$j\in\{1,2\}$, and
+\item $\lambda(p,q)=\zero_j$ implies $d_j=i_j=0$ and $d_{3-j}=0$ for each
+$j\in\{1,2\}$.
+\end{itemize}
+
+\noindent
+Let us define the following problem.
+\smallskip
+
+\problemx{Emptiness for two-counter automata}{Two-counter automaton $\Two=(Q,E,\lambda)$, control states
+$q_0,q_1\in Q$.}{Are there $m,n\in\N$ such that $(q_0,0,0)\rightarrow^*(q_1,m,n)$ in
+$G(\Two)$?}
+
+\medskip
+
+\noindent
+The idea of our reduction is as follows: Given a two-counter automaton
+$\Two$, we construct a $\poca$ $\Poca(x)$ with one parameter in such a way
+that the two counters from $\A$ are encoded into the single counter
+from $\Poca(x)$ as follows: for the counter value $n$ of $\Poca(x)$,
+we have that $n\ \mod x$ encodes the value of the first and $n\ \div\ x$ encodes the
+value of the second counter of $\Two$.
+Hence, testing the first counter for zero corresponds to checking
+whether $n\equiv 0\ \mod x$ while testing the second counter for
+zero corresponds to checking  whether $n\geq x$.
+Incrementation (resp. decrementation) on the first counter can be
+mimicked by adding (resp. subtracting) $1$, whereas on counter two this
+corresponds to adding (resp. subtracting) $x$.
+Of course, we need to ensure that we do not overflow.
+For example, if $n\equiv -1\ \mod x$ and we would simulate to increment the first counter
+in the above manner, this
+would correspond to setting the first counter to zero and simultaneously
+ incrementing the second counter. However, if the emptiness problem is
+solvable, then $x$ can be instantiated with a large enough
+value such that such an overflow does not occur.
+Our $\ctl$ formula will ensure that we do not overflow.
+\newcommand{\test}{\mathsf{test}}
+Before we give the reduction from the emptiness problem for two-counter
+automata, let us introduce some gadgets that we need in our reduction.
+\begin{lemma}{\label{L POCAs}}
+  There exists some fixed $\ctl$ formula $\varphi_\test$
+for which the following holds:
+\begin{enumerate}[(1)]
+\item
+There exists some fixed $\poca$ $\Poca_{\not\equiv 0}(x)$ with some control state
+$q_{\not\equiv 0}$ such that for each $\sigma:\{x\}\rightarrow\N$
+ $$(\Poca_{\not\equiv 0}^\sigma,q_{\not\equiv0}(n)) \models
+ \varphi_{\test} \quad\Longleftrightarrow\quad n\not
+  \equiv 0 \textsl{ mod } \sigma(x).$$
+\item There exists some fixed $\poca$ $\Poca_{\not\equiv-1}(x)$ with some control
+state $q_{\not\equiv -1}$ such that for each $\sigma:\{x\}\rightarrow\N$
+ $$(\Poca_{\not\equiv -1}^\sigma,q_{\not\equiv-1}(n)) \models
+ \varphi_\test \quad\Longleftrightarrow\quad n\not
+  \equiv -1 \textsl{ mod } \sigma(x).$$
+\item There exists some fixed $\poca$ $\Poca_{<x}(x)$ with some control
+state $q_{<x}$ such that for each $\sigma:\{x\}\rightarrow\N$
+ $$(\Poca_{< x}^\sigma,q_{<x}(n)) \models
+ \varphi_\test \quad\Longleftrightarrow\quad n< \sigma(x).$$
+
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+We choose $\varphi_\test=\neg\EF\prop$, where $\prop$ is an atomic
+proposition.
+Below we depict $\Poca_{\not\equiv0}(x)$,
+$\Poca_{\not\equiv-1}(x)$, and $\Poca_{<x}(x)$, respectively.
+\begin{center}
+\begin{picture}(85,20)(-20,-3.5)
+%   \put(-20,-28){\framebox(85,33){}}
+  %\gasset{Nadjust=w,Nadjustdist=2,Nh=6,Nmr=1}
+ % \gasset{Nadjust=w,Nadjustdist=2,Nh=6}%$,Nmr=1}
+ % \node(A)(0,0){$q_0$}
+
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+\put(-65,0){
+\put(41,-2){\small $\prop$}
+  \node(A)(20,0){$q_{\not\equiv0}$}
+  \node(B)(40,0){$\bullet$}
+\drawloop(A){$-x$}
+\drawedge(A,B){$\zero$}
+}
+%%% AUTOMATON 2
+
+\put(-27,0){
+\put(61,-2){\small $\prop$}
+  \node(A)(20,0){$q_{\not\equiv-1}$}
+  \node(B)(40,0){$\bullet$}
+  \node(C)(60,0){$\bullet$}
+\drawloop(B){$-x$}
+\drawedge(A,B){$+1$}
+\drawedge(B,C){$\zero$}
+}
+
+%%% AUTOMATON 3
+
+
+\put(32,0){
+\put(61,-2){\small $\prop$}
+  \node(A)(20,0){$q_{< x}$}
+  \node(C)(40,0){$\bullet$}
+  \node(D)(60,0){$\bullet$}
+\drawloop(A){$-1$}
+\drawedge(A,C){$-x$}
+\drawedge(C,D){$\zero$}
+%\drawedge[ELside=r](C,D){$\zero$}
+}
+
+\end{picture}
+\end{center}
+Correctness of the lemma is immediate.
+\qed
+\end{proof}
+
+\newcommand{\up}{\mathsf{up}}
+
+
+\noindent
+Let us fix some instance of the emptiness problem for
+ two-counter automata:
+Let $\langle\Two,q_0,q_1\rangle$ be an instance to the
+emptiness problem, where
+$\Two=(Q,E,\lambda)$ is some two-counter automaton.
+We will give a fixed $\ctl$ formula $\varphi$ such that from
+$\langle\Two,q_0,q_1\rangle$ we can construct some $\poca$ $\Poca(x)$ such that
+$(q_0,0,0)\rightarrow^*(q_1,m,n)$ for some $m,n\in\N$ if and only if
+$(\Poca^\sigma,q_0(0))\models\varphi$ for some $\sigma:\{x\}\rightarrow\N$.
+
+The control states and transitions will of $\Poca(x)$ can be described by the
+following graph transformation rule that maps each pair of control states
+$(p,q)\in E$ of $\Two$ with $\lambda(p,q)=l$
+ into corresponding control states in $\Poca(x)$, by
+possibly accessing the different $\poca$ of Lemma \ref{L POCAs}.
+\begin{center}
+\begin{picture}(85,30)(30,-10)
+%   \put(-20,-28){\framebox(85,33){}}
+  %\gasset{Nadjust=w,Nadjustdist=2,Nh=6,Nmr=1}
+ % \gasset{Nadjust=w,Nadjustdist=2,Nh=6}%$,Nmr=1}
+ % \node(A)(0,0){$q_0$}
+
+\gasset{Nframe=n,loopdiam=9,ELdist=.7}
+\gasset{Nadjust=wh,Nadjustdist=1}
+\gasset{curvedepth=0}
+
+\put(60,6){\Huge$\hookrightarrow$}
+
+
+%\put(41,-2){\small $\prop$}
+  \node(A)(20,10){$p$}
+  \node(B)(40,10){$q$}
+
+\drawedge(A,B){$l$}
+
+
+\put(109,12){\small$l$}
+
+
+  \node(C)(90,10){$p$}
+  \node(D)(110,10){$\bullet$}
+  \node(E)(130,10){$q$}
+  \node(F)(110,-10){$\test(l)$}
+
+
+%\drawloop(A){$-x$}
+\drawedge(C,D){$0$}
+\drawedge(D,E){$\up(l)$}
+\drawedge(D,F){$0$}
+\end{picture}
+\end{center}
+
+\noindent
+where
+$$
+\test(l)\quad =\quad \begin{cases} (\Poca_{\not\equiv 0}(x),q_{\not\equiv 0}) & \text{ if }\quad
+l\in\{ \add_1(-1),\zero_1\}\\
+(\Poca_{\not\equiv -1}(x),q_{\not\equiv -1})& \text{ if }\quad l=\add_1(+1)\\
+(\Poca_{<x}(x),q_{<x})& \text{ if }\quad l=\zero_2,
+\end{cases}
+$$
+
+\noindent
+and where
+$$
+\up(l)\quad =\quad \begin{cases}  a & \text{ if }\quad
+l=\add_1(a)\\
+\circ x& \text{ if }\quad l=\add_2(\circ 1)
+\text{ for some }\circ\in\{+,-\}\\
+0& \text{ otherwise.}
+\end{cases}
+$$
+
+\noindent
+Let us moreover ensure that every control state of the kind
+$q_{\tau}$ with $\tau\in\{\not\equiv 0,\not\equiv\! -1,\geq x\}$ has
+the label $\rho_\tau$.
+Before we give our final formula, let us introduce the following constraint
+formulas that guarantee that an overflow never occurs:
+\begin{eqnarray*}
+\psi_1&\quad=\quad& \add_1(+1)\longrightarrow \EX(\rho_{\not\equiv-1}
+\wedge\varphi_\test)\
+\\
+\psi_2&\quad=\quad&
+\add_1(-1)\longrightarrow\EX(\rho_{\not\equiv 0}\wedge\varphi_\test)\\
+\psi_3&\quad=\quad&
+\zero_2\longrightarrow\EX(\rho_{<x}\wedge\varphi_{\test})\\
+\psi_4&\quad=\quad&
+\zero_1\longrightarrow\EX(\rho_{\not\equiv 0}\wedge\neg\varphi_\test)
+\end{eqnarray*}
+
+\noindent
+Note that we do not need any constraint when changing the second counter.
+Let us introduce a label $f$ at control state $q_1$.
+Our final $\ctl$ formula $\varphi$ is
+$$
+\varphi\quad=\quad\E\left(\bigwedge_{i\in[4]}\psi_i\ \U\  f\right).
+$$
+\iffalse
+The correctness of the reduction follows from the following equivalences:
+\begin{itemize}
+\item $(T(\Poca),(q_0,0))\models \neg \varphi$
+\item for all $\sigma:\{x\}\rightarrow \N$ we have $(\Poca^\sigma(x),q_0(0))\not\models\varphi$
+\item for some $\sigma:\{x\}\rightarrow\N$ we have $(\Poca^\sigma(x),q_0(0))\models\varphi$
+\item for some $\exists\sigma:\{x\}\rightarrow\N$ there is some path
+$r_0(0)\rightarrow r_1(n_1)\cdots r_k(n_k)$ such that
+$r_0=q_0$, $r_k=q_1$, $r_k\in F$ and
+$(T(\Poca^\sigma(x)),r_i(n_i)
+
+
+
+%$(q_0,0)(q_1,n_1\mod\sigma(x),n_1\div\sigma(x))\cdots (q_k,n_k\mod\sigma(x),
+%n_k\div \sigma(x))$ in $T(\Poca^\sigma(x))$ such that
+
+
+\end{itemize}
+Then there is an assignment
+$\sigma$ such that $(T(\Poca^\sigma),(q_0,0))\models \varphi$. It is
+easily verified that the witnessing path $(q,0)(q_1,n_1)\ldots
+(q',n')$ in $T(\A'(\sigma))$ corresponds to the path
+$(q,0,0)(q_1,n_1\mod \sigma(x), n_1\div \sigma(x))\ldots (q',n'\mod
+\sigma(x), n'\div \sigma(x))$ in $T(\A)$. Conversely, if
+$(q,0,0)\rightarrow^* (q,n_1,n_2)$ in $T(\A)$, then the first counter
+of $\A$ does not exceed some value $u \in \naturals$. Consequently, by
+setting $\sigma(x):=u$, $(T(\A(\sigma)),(q,0))\models \varphi$.
+\fi
+We have that $(q_0,0,0)\rightarrow^*(q_1,m,n)$ for some $m,n\in\N$ in $G(\A)$  if and only
+if
+$(T(\Poca^\sigma(x)),q_0(0))\models\varphi$ for some
+$\sigma:\{x\}\rightarrow\N$.
+We obtain the following theorem.
+
+\begin{theorem}
+  The data and combined complexity of $\CTL$ and the modal $\mu$-calculus
+ on POCA is $\Pi^0_1$-complete.
+\end{theorem}
+
+
+
+
+\section{$\ltl$ Model Checking}{\label{S LTL}}
+
+%\subsection{Linear-time logic ($\ltl$)}
+Formulas of $\ltl$ are inductively defined according to the
+following grammar, where $\prop$ ranges over $\Prop$:
+\begin{equation*}
+  \varphi\quad ::=\quad \prop \mid \neg \varphi \mid \varphi \wedge \varphi \mid
+  \X \varphi \mid \varphi \until \varphi
+\end{equation*}
+The Boolean abbreviations and the formula $\true$ are defined in the same way as
+in CTL. The \emph{finally modality} $\eventually
+\varphi$ is an abbreviation for $\true \until \varphi$ and the
+\emph{globally modality} $\globally \varphi$ abbreviates $\neg
+\eventually \neg \varphi$.
+
+The semantics of LTL is given in terms of infinite paths in a
+transition system. Let $T=(S,\{S_\prop \mid \prop \in
+\Prop\},\rightarrow)$ be a transition system, let $\pi: s_0
+\rightarrow s_1 \rightarrow \cdots$ be an infinite path in $T$, and
+let $\varphi$ be an $\ltl$ formula, we define $(T,\pi)\models\varphi$
+by induction of the structure of $\varphi$, where $\prop$ ranges over
+$\Prop$:
+\begin{align*}
+  (T,\pi) \models  \prop &  \quad\iff\quad  \pi(0) \in S_\prop\\
+  (T,\pi) \models  \neg \varphi &\quad\iff\quad (T,\pi) \not \models \varphi\\
+  (T,\pi) \models \varphi_1 \wedge \varphi_2 &\quad\iff\quad (T,\pi)
+  \models \varphi_1 \text{ and } (T,\pi) \models \varphi_2\\
+  (T,\pi) \models \X \varphi & \quad\iff\quad (T,\pi^1) \models \varphi\\
+  (T,\pi) \models  \varphi_1 \until \varphi_2 & \quad\iff\quad
+  \exists j\ge 0: (T,\pi^j)\models \varphi_2
+  \text{ and } \forall 0\le i<j: (T,\pi^i)\models \varphi_1
+\end{align*}
+Let us now define the $\ltl$ model checking problem on SOCA
+and POCA.\\
+
+\problemx{$\ltl$ model checking on SOCA}
+{SOCA $\Soca=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda)$, $q\in Q$, $n\in\N$ in binary,
+  and an $\ltl$ formula $\varphi$.}
+{$(T(\Soca),\pi)\models\varphi$ for every infinite
+path $\pi$ with $\pi(0)=q(n)$?}
+\
+
+\problemx{$\ltl$ model checking on POCA}
+{POCA $\Poca(X)=(Q,\{Q_\prop\mid\prop\in\Prop\},E,\lambda)$, $q\in Q$, $n\in\N$ in binary, and an
+$\ltl$ formula $\varphi$.}
+{$(T(\Poca^\sigma),\pi)\models\varphi$ for every $\sigma:X\rightarrow\N$ and
+every infinite path $\pi$ with $\pi(0)=q(n)$?}
+
+
+
+
+\subsection{Upper bounds}
+
+A standard approach to $\ltl$ model checking is the automata-based
+approach, in which systems are modeled as non-deterministic B\"uchi
+automata (NBA). Given an NBA $\automaton$ and an $\ltl$ formula
+$\varphi$, the idea is to translate $\varphi$ into an NBA
+$\automaton_{\neg \varphi}$ such that $\automaton_{\neg \varphi}$
+accepts all words that violate $\varphi$.  Then, by checking for
+emptiness of the product automaton
+$\automaton'=\automaton\times\automaton_{\neg \varphi}$, it can be
+decided whether or not $\automaton$ generates traces that violate
+$\varphi$.  Emptiness can be decided by checking for recurrent
+reachability of a control state in the transition system induced by
+$\automaton'$, which can be performed non-deterministically in space logarithmically in the size of
+$\automaton'$. Vardi and Wolper showed in \cite{VW86} that the size of
+$\automaton_{\neg \varphi}$ is $2^{O(|\varphi|)}$, which yields that
+checking for emptiness of $\automaton'$ is in $\PSPACE$. The $\PSPACE$
+lower bound for finite state model checking was originally shown
+in \cite{LP85-popl} and hence carries over to SOCA.
+
+Constructing the product automaton of two NBA is a standard technique
+in model checking, see e.g.\ \cite{BK08} for a detailed treatment of
+this. Moreover, this construction can be adapted in a
+straight-forward way into the setting of POCA by equipping a POCA with
+a set of final states and defining emptiness with respect to B\"uchi
+acceptance condition in the standard way. For brevity, we do not give
+any further details. We then have that given a POCA $\Poca$, an $\ltl$
+formula $\varphi$, a state $q$ and $n\in\N$ we can construct a
+POCA $\Poca'$ as the product of $\Poca$ and $\automaton_{\neg\varphi}$
+such that for all assignments $\sigma$ we have that $\Poca'$ is empty
+with respect to B\"uchi acceptence condition if and only if
+$(T(\Poca^\sigma),q(n))\models \varphi$. Moreover, the size of
+$\Poca'$ is $2^{O(|\varphi|)}|\Poca|$.
+
+It has been shown in \cite{HKOW10} that checking emptiness with
+respect to B\"uchi acceptance condition is $\coNP$-complete for both
+SOCA and POCA, and in \cite{DG-jlc09} that it is $\NL$-complete for
+OCA. We use these results in order to establish upper bounds for our
+$\ltl$ model checking problems. Let us first consider the case of a
+fixed formula $\varphi$. In the terminology of the previous paragraph,
+$|\Poca'|=O(|\Poca|)$ and hence the data complexity of $\ltl$ on SOCA
+and POCA is in $\coNP$.  The matching $\coNP$ lower bound of the data
+complexity of LTL on SOCA follows from the $\NP$-hardness of the
+reachability problem for SOCA.
+%We obtain $\coNP$-hardness from the fact that
+%we can reduce deciding emptiness of some SOCA $\Soca$ with respect to
+%B\"uchi acceptance condition to $\ltl$ model checking of a slightly
+%altered SOCA $\Soca'$ against an easily constructed fixed $\ltl$
+%formula.
+
+\begin{proposition}
+The data complexity of $\ltl$ model checking on SOCA and POCA is
+  $\coNP$-complete.
+\end{proposition}
+As seen above, if both $\Poca$ and the formula $\varphi$ are part of
+the input then $|\Poca'|=2^{O(|\varphi)}\cdot|\Poca|$, and hence $\coNEXP$
+is an upper bound for the combined complexity of $\ltl$ model checking
+on both SOCA and POCA. However, we can improve this upper bound in the
+case of SOCA. Given a SOCA $\Soca$, let $m$ be the absolute value of
+the maximal increment or decrement performed on the transitions in
+$\Soca$ and let $\Soca'$ be the product automaton of $\Soca$ and
+$\automaton_{\neg \varphi}$. Let $\Soca''$ be obtained from $\Soca'$
+by replacing every transition labeled with $z$ with a sequence of
+fresh transitions and control locations of length $z$, where each
+transition is labeled with $+1$ respectively $-1$, depending on the
+sign of $z$. We conclude that
+$|\Soca''|=m\cdot|\Soca'|=m\cdot2^{O(|\varphi|)}\cdot|\Soca|$. Combining the result
+from \cite{DG-jlc09} together with the fact that $\ltl$ model checking
+of non-deterministic finite state automata is $\PSPACE$-hard
+\cite{LP85-popl}, we obtain the following proposition.
+
+\begin{proposition}
+The combined complexity of $\ltl$ on SOCA is $\PSPACE$-complete.
+\end{proposition}
+It remains to prove that the combined complexity of $\ltl$ model
+checking on POCA is $\coNEXP$-hard, which we will show in the next
+section.
+
+
+
+\subsection{Combined Complexity of $\ltl$ on POCA}
+
+We are now going to show $\coNEXP$-hardness of $\ltl$ model checking
+on POCA via a reduction from (the complement of) \textsf{Succinct
+  3-SAT}, which is a $\NEXP$-complete problem \cite{Papa94}. An input
+of \textsf{Succinct 3-SAT} is given by a Boolean circuit $\mathbb{C}$
+that encodes a Boolean formula $\psi_\circuit$ in 3-CNF,
+i.e.\ $\psi_\circuit=\bigwedge_{j\in [0,M]}(\ell^j_1\vee \ell^j_2\vee
+\ell^j_3)$ for some $M=O(2^{|\circuit|})$, and $\psi_\circuit$ is free
+over Boolean variables $y_1,\ldots,y_{N}$ for some
+$N=O(2^{|\circuit|})$. Let $j\in [0,M]$ be the index of a clause
+encoded in \emph{binary} and $k\in\{1,2,3\}$. On input $(j\cdot k)$,
+the output of $\circuit$ is $(i\cdot b)$, where $i\in [N]$ is the
+index of the Boolean variable that appears in literal $\ell_k^j$, and
+where $b=0$ when $\ell_k^j$ is negative and $b=1$ when $\ell_k^j$ is
+positive.
+\vspace*{0.25cm}
+\problemx{\textsf{Succinct 3-SAT}}
+{Boolean circuit $\circuit$}
+{Is $\psi_\circuit$ satisfiable?}
+\vspace*{0.25cm}
+
+%\medskip
+
+\noindent
+In order to establish $\coNEXP$-hardness for the combined complexity
+of $\ltl$ model checking, given an input $\circuit$ of
+$\textsf{Succinct 3-SAT}$, we construct a POCA $\Poca(x)$ and an
+$\ltl$ formula $\varphi$ such that $\psi_\circuit$ is satisfiable if
+and only if there is an assignment $\sigma$ such that
+$(T(\Poca^\sigma),q_{\mathsf{start}}(0))\models\varphi$ for some
+distinguished state $q_{\mathsf{start}}$ of $\Poca(x)$.
+%There are two key
+%ideas for the reduction.
+
+First, let us provide a suitable encoding of truth assignments by
+natural numbers. The encoding we use has also been employed for
+establishing lower bounds for model checking OCA~\cite{JKMZ04-ic}.
+Recall that $p_i$ denotes the $i^{\text{th}}$ prime number. Every
+natural number $x$ defines a truth assignment
+$\nu_x:\{y_1,\ldots,y_N\} \to \{ 0,1\}$ such that $\nu_x(y_i)=1$ iff
+$p_i$ divides $x$.  By the Prime Number Theorem, $p_N=O(N \log N)$ and
+hence $O(|\circuit|)$ bits are sufficient to represent $p_N$. Of
+course, since we need exponentially many prime numbers they cannot be
+hard-wired into $\Poca(x)$.
+
+%% Second, we employ $\ltl$ in order to perform arbitrary computations of
+%% space-bounded Turing machines on traces of runs of SOCA. However, we
+%% cannot make use of the approach we employed in $\ctl$. Intuitively
+%% speaking, $\ctl$ allows for performing tests on the counter value
+%% without destroying its value and this property has no correspondant in
+%% the $\ltl$ setting. We can however use atomic propositions to model
+%% computations along traces.
+
+\begin{figure}
+  \begin{center}
+    \begin{picture}(142,60)(0,0)
+      %   \put(-20,-28){\framebox(85,33){}}
+      %\gasset{Nadjust=w,Nadjustdist=2,Nh=6,Nmr=1}
+      % \gasset{Nadjust=w,Nadjustdist=2,Nh=6}%$,Nmr=1}
+      % \node(A)(0,0){$q_0$}
+
+      \gasset{Nframe=n,loopdiam=9,ELdist=.7}
+      \gasset{Nadjust=wh,Nadjustdist=1}
+      \gasset{curvedepth=0}
+
+      \put(0,25){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(6,7){$\Soca_{\mathsf{inc}}(j)$}
+      }
+
+      \put(35,25){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(3,8){$\Soca_{\circuit}(j\cdot 2)$}
+        \put(10,4){$=(i\cdot b)$ }
+      }
+      \put(35,45){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(3,8){$\Soca_{\circuit}(j\cdot 1)$}
+        \put(10,4){$=(i\cdot b)$ }
+      }
+      \put(35,5){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(3,8){$\Soca_{\circuit}(j\cdot 3)$}
+        \put(10,4){$=(i\cdot b)$ }
+      }
+
+      \put(70,25){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(3,6){$\Soca_{\mathsf{prime}}(i)=p_i$ }
+      }
+
+      \put(110,35){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(3,6){$\Soca_{\mathsf{divides}}(p_i,x)$ }
+        \put(8,11){$b=0?$}
+      }
+
+      \put(110,10){
+        \drawpolygon[Nframe=n,Nfill=y,fillgray=.9](0,0)(25,0)(25,15)(0,15)
+        \put(3,6){$\Soca_{\mathsf{not\_divides}}(p_i,x)$ }
+        \put(8,11){$b=1?$}
+      }
+
+      \node(A1)(12,29){}
+      \node(A2)(20,32){}
+
+      \node(B11)(40,8){}
+      \node(B12)(55,15){}
+
+      \node(B21)(40,28){}
+      \node(B22)(55,35){}
+
+      \node(B31)(40,48){}
+      \node(B32)(55,55){}
+
+      \node(C1)(73,36){}
+      \node(C2)(90,28){}
+
+      \node(D11)(115,39){}
+      \node(D12)(132,39){}
+
+      \node(D21)(113,13){}
+      \node(D22)(132,13){}
+
+      \node(E)(140,0){$\bullet$}
+      \node(F)(12,0){$q_{\mathsf{start}}$}
+
+      \drawedge(F,A1){$+x$}
+
+      \drawedge(A2,B11){$0$}
+      \drawedge(A2,B21){$0$}
+      \drawedge(A2,B31){$0$}
+
+      \drawedge(B12,C1){$0$}
+      \drawedge(B22,C1){$0$}
+      \drawedge(B32,C1){$0$}
+
+      \drawedge(C2,D11){$0$}
+      \drawedge(C2,D21){$0$}
+
+      \drawqbedge(D12,142,25,E){$0$}
+      \drawedge(D22,E){$0$}
+
+      \drawedge(E,F){$\mathsf{zero}$}
+    \end{picture}
+
+  \end{center}
+  \caption{High-level description of the automaton $\Poca(x)$ used for
+    the reduction.}
+  \label{fig:high-level}
+\end{figure}
+
+Let us now take a look at $\Poca(x)$, which is sketched in Figure
+\ref{fig:high-level}. It uses one parameter $x$ and employs several
+gadgets. The only gadgets manipulating the counter are
+$\Soca_{\mathsf{divides}}$ and $\Soca_{\mathsf{not\_divides}}$. The
+remaining gadgets are designed such that they communicate via
+designated propositional variables, and not as in Section \ref{S CTL
+  hardness} with the help of the counter. First, $\Poca(x)$ loads the
+value of the parameter $x$ on the counter.  Think of $x$ encoding a
+truth assignment of $\psi_\circuit$.  Next, $\Poca(x)$ traverses
+through $\Soca_{\mathsf{inc}}$, which initially chooses an arbitrary
+index $j$ identifying a clause of $\psi_\circuit$. Every time
+$\Soca_{\mathsf{inc}}$ is traversed afterwards, it increments $j$
+modulo $M+1$ and hereby moves on to the next clause.  Now $\Poca(x)$
+branches non-deterministically into a gadget $\Soca_\circuit$ in order
+to compute $(i\cdot b)$ from $\circuit$ on input $(j\cdot 1), (j\cdot
+2)$, resp.\ $(j\cdot 3)$. The index $i$ is then used as input to a
+gadget $\Soca_{\mathsf{prime}}$, which computes $p_i$. Then if $b=0$,
+it is checked in $\Soca_{\mathsf{not\_divides}}$ that $p_i$ does not
+divide the value of $x$, and likewise in $\Soca_{\mathsf{divides}}$
+that $p_i$ divides the value of $x$ if $b=1$. For checking the latter,
+the counter needs to be modified. After the checks have been finished,
+we restore the value $x$ on the counter and the process continues with
+clause $j+1~ \mod M+1$.
+
+It remains to show how the gadgets and the communication between them
+can be realized. The first observation is that the computations of
+$\Soca_{\mathsf{inc}}$, $\Soca_{\circuit}$ and
+$\Soca_{\mathsf{prime}}$ can be realized by space bounded DTM using no
+more than $p(|\circuit|)$ tape cells for their in- and output tape for
+some polynomial $p$ that is fixed once $\circuit$ is provided. Indeed,
+it is easily seen that incrementing modulo $M+1$, evaluating
+$\circuit$ and computing the $i^{\text{th}}$ prime number can be done
+by such a DTM. Thus, we now show how from a generic DTM $\M$, we can
+construct in logarithmic space a SOCA $\Soca_\M$ and some LTL formulas
+that mimic computations of $\M$ on traces of $\Soca_\M$.
+
+\begin{figure}
+  \begin{center}
+    \begin{picture}(140,100)(0,-52)
+      \gasset{Nframe=n,loopdiam=9,ELdist=.7}
+      \gasset{Nadjust=wh,Nadjustdist=1}
+      \gasset{curvedepth=0}
+
+      \node(DASH)(20,40){}
+%      \node(STATEIN)(-5,25){}
+      \node(START)(0,25){}
+      \node(A)(10,25){$\bullet$}
+      \node(B)(20,25){$q$}
+      \node(C1)(30,45){$\bullet$}
+      \node(C2)(30,35){$\bullet$}
+      \node(C3)(30,25){$\vdots$}
+      \node(C4)(30,15){$\bullet$}
+      \node(C5)(30,5){$\bullet$}
+      \node(D)(40,25){$\bullet$}
+%      \node(STATEOUT)(70,25){}
+
+%      \drawedge[dash={1.5}0](DASH,B){}
+%      \drawedge(STATEIN,A){}
+      \drawedge(START,A){}
+      \drawedge(A,B){}
+      \drawedge(B,C1){}
+      \drawedge[ELside=r](B,C2){}
+%     \drawedge(B,C3){$0$}
+      \drawedge(B,C4){}
+      \drawedge[ELside=r](B,C5){}
+      \drawedge(C1,D){}
+      \drawedge[ELside=r](C2,D){}
+%     \drawedge(C3,D){$0$}
+      \drawedge(C4,D){}
+      \drawedge[ELside=r](C5,D){}
+%      \drawedge(D,STATEOUT){}
+
+      \put(9,21){$\zeta$}
+      \put(18,21){$\alpha$}
+      \put(29,47){$\mathsf{s}_0$}
+      \put(29,37){$\mathsf{s}_1$}
+      \put(27,12){$\mathsf{s}_{k-1}$}
+      \put(29,2){$\mathsf{s}_k$}
+%      \put(60,21){$\mathsf{s}_\r$}
+
+
+%%%%%%%%%%%%%%%%%% ihead
+
+%      \node(DASH)(20,40){}
+%      \node(STATEIN)(-5,25){}
+%      \node(A)(5,25){$\bullet$}
+      \node(E)(50,25){$\bullet$}
+      \node(F1)(60,45){$\bullet$}
+      \node(F2)(60,35){$\bullet$}
+      \node(F3)(60,25){$\vdots$}
+      \node(F4)(60,15){$\bullet$}
+      \node(F5)(60,5){$\bullet$}
+      \node(G)(70,25){$\bullet$}
+%      \node(STATEOUT)(70,25){}
+
+      \drawedge(D,E){}
+
+%     \drawedge[dash={1.5}0](DASH,B){}
+%      \drawedge(STATEIN,A){}
+%      \drawedge(A,B){$0$}
+      \drawedge(E,F1){}
+      \drawedge[ELside=r](E,F2){}
+%     \drawedge(B,C3){$0$}
+      \drawedge(E,F4){}
+      \drawedge[ELside=r](E,F5){}
+      \drawedge(F1,G){}
+      \drawedge[ELside=r](F2,G){}
+%     \drawedge(C3,D){$0$}
+      \drawedge(F4,G){}
+      \drawedge[ELside=r](F5,G){}
+%      \drawedge(D,STATEOUT){}
+
+%      \put(18,21){$\alpha$}
+      \put(58,47){$\mathsf{ih}_0$}
+      \put(58,37){$\mathsf{ih}_1$}
+      \put(57,12){$\mathsf{ih}_{m}$}
+      \put(56,2){$\mathsf{ih}_{m+1}$}
+%      \put(60,21){$\mathsf{s}_\r$}
+
+
+%%%%%%%%%%%%%%%%%% whead
+
+%      \node(DASH)(20,40){}
+%      \node(STATEIN)(-5,25){}
+%      \node(A)(5,25){$\bullet$}
+      \node(E)(80,25){$\bullet$}
+      \drawedge(G,E){}
+      \node(F1)(90,45){$\bullet$}
+      \node(F2)(90,35){$\bullet$}
+      \node(F3)(90,25){$\vdots$}
+      \node(F4)(90,15){$\bullet$}
+      \node(F5)(90,5){$\bullet$}
+      \node(G)(100,25){$\bullet$}
+      \node(H)(100,0){$\bullet$}
+
+
+%     \drawedge[dash={1.5}0](DASH,B){}
+%      \drawedge(STATEIN,A){}
+%      \drawedge(A,B){$0$}
+      \drawedge(E,F1){}
+      \drawedge[ELside=r](E,F2){}
+%     \drawedge(B,C3){$0$}
+      \drawedge(E,F4){}
+      \drawedge[ELside=r](E,F5){}
+      \drawedge(F1,G){}
+      \drawedge[ELside=r](F2,G){}
+%     \drawedge(C3,D){$0$}
+      \drawedge(F4,G){}
+      \drawedge[ELside=r](F5,G){}
+      \drawedge(G,H){}
+
+%      \put(18,21){$\alpha$}
+      \put(88,47){$\mathsf{wh}_0$}
+      \put(88,37){$\mathsf{wh}_1$}
+      \put(87,12){$\mathsf{wh}_{n}$}
+      \put(86,2){$\mathsf{wh}_{n+1}$}
+%      \put(60,21){$\mathsf{s}_\r$}
+
+      \node(I)(0,0){$\bullet$}
+      \drawedge(H,I){}
+
+%%%%%%%%%%%%%%%% wtape
+
+%      \node(WORKIN)(0,45){}
+      \node(A)(0,-15){$\bullet$}
+      \drawedge(I,A){}
+      \node(B1)(15,-25){$\bullet$}
+      \node(B2)(15,-5){$\bullet$}
+      \node(C)(30,-15){$\bullet$}
+      \node(D1)(45,-25){$\bullet$}
+      \node(D2)(45,-5){$\bullet$}
+      \node(E)(60,-15){$\bullet$}
+      \node(F)(70,-15){$\ldots$}
+      \node(G)(80,-15){$\bullet$}
+      \node(H1)( 95,-25){$\bullet$}
+      \node(H2)(95,-5){$\bullet$}
+      \node(I)(110,-15){$\bullet$}
+
+      \node(J)(110,-30){$\bullet$}
+      \node(K)(0,-30){$\bullet$}
+      \drawedge(I,J){}
+      \drawedge(J,K){}
+%      \node(J)(135,-15){$\bullet$}
+%      \node(DASH)(120,-25){}
+%      \node(WORKOUT)(145,-15){}
+
+%      \drawedge(WORKIN,A){}
+      \drawedge(A,B1){}
+      \drawedge(A,B2){}
+      \drawedge(B1,C){}
+      \drawedge(B2,C){}
+      \drawedge(C,D1){}
+      \drawedge(C,D2){}
+      \drawedge(D1,E){}
+      \drawedge(D2,E){}
+      \drawedge(G,H1){}
+      \drawedge(G,H2){}
+      \drawedge(H1,I){}
+      \drawedge(H2,I){}
+%      \drawedge(I,J){}
+%      \drawedge[dash={1.5}0](I,DASH){}
+
+%      \put(4,42){$\mathsf{w}_\l$}
+      \put(13,-9){$\mathsf{i}_{1,1}$}
+      \put(13,-29){$\mathsf{i}_{1,0}$}
+      \put(43,-9){$\mathsf{i}_{2,1}$}
+      \put(43,-29){$\mathsf{i}_{2,0}$}
+      \put(93,-9){$\mathsf{i}_{m,1}$}
+      \put(93,-29){$\mathsf{i}_{m,0}$}
+%      \put(120,42){$\mathsf{w}_\r$}
+%      \put(133,42){$\mathsf{yield}$}
+
+%%%%%%%%%%%%%%% wtape
+      \node(A)(0,-45){$\bullet$}
+
+      \drawedge(K,A){}
+
+      \node(B1)(15,-55){$\bullet$}
+      \node(B2)(15,-35){$\bullet$}
+      \node(C)(30,-45){$\bullet$}
+      \node(D1)(45,-55){$\bullet$}
+      \node(D2)(45,-35){$\bullet$}
+      \node(E)(60,-45){$\bullet$}
+      \node(F)(70,-45){$\ldots$}
+      \node(G)(80,-45){$\bullet$}
+      \node(H1)( 95,-55){$\bullet$}
+      \node(H2)(95,-35){$\bullet$}
+      \node(I)(110,-45){$\bullet$}
+      \node(J)(120,-45){$\bullet$}
+      \node(K)(120,50){$\bullet$}
+      \node(L)(20,50){$\bullet$}
+      \node(M)(20,25){}
+      \node(N)(130,-45){$\bullet$}
+      \node(P)(140,-45){}
+
+      \drawedge(I,J){}
+      \drawedge(J,K){}
+      \drawedge(K,L){}
+      \drawedge(L,M){}
+
+      \drawedge(J,N){}
+      \drawedge(N,P){}
+
+
+%      \node(DASH)(120,-25){}
+%      \node(WORKOUT)(145,-15){}
+
+%      \drawedge(WORKIN,A){}
+      \drawedge(A,B1){}
+      \drawedge(A,B2){}
+      \drawedge(B1,C){}
+      \drawedge(B2,C){}
+      \drawedge(C,D1){}
+      \drawedge(C,D2){}
+      \drawedge(D1,E){}
+      \drawedge(D2,E){}
+      \drawedge(G,H1){}
+      \drawedge(G,H2){}
+      \drawedge(H1,I){}
+      \drawedge(H2,I){}
+%      \drawedge(I,J){}
+%      \drawedge[dash={1.5}0](I,DASH){}
+
+%      \put(4,42){$\mathsf{w}_\l$}
+      \put(12,-39){$\mathsf{w}_{1,1}$}
+      \put(12,-58){$\mathsf{w}_{1,0}$}
+      \put(42,-39){$\mathsf{w}_{2,1}$}
+      \put(42,-58){$\mathsf{w}_{2,0}$}
+      \put(92,-39){$\mathsf{w}_{n,1}$}
+      \put(93,-58){$\mathsf{w}_{n,0}$}
+
+      \put(119,-49){$\gamma$}
+      \put(129,-49){$\beta$}
+
+%      \put(120,42){$\mathsf{w}_\r$}
+%      \put(133,42){$\mathsf{yield}$}
+
+    \end{picture}
+  \end{center}
+  \caption{SOCA $\Soca_\M$ for the simulation of space bounded Turing
+    machines.}
+  \label{fig:tm}
+\end{figure}
+
+Let $\M=(S, \Sigma, s_0, F, \mu)$ be a DTM with a fixed input tape
+with $m$ tape cells, and $n$ working tape cells, and let
+$S=\{s_0,\ldots,s_k\}$. Figure \ref{fig:tm} shows the SOCA $\Soca_\M$
+that we use for the simulation of $\M$. All transitions of $\Soca_\M$
+are implicitly labelled with $0$.  A simulation starts when $\Soca_\M$
+is entered at the location labeled with $\zeta$ and is finished when
+the location labeled with $\beta$ is reached.
+
+The sequence of propositions occurring on a trace starting from and
+ending in $q$ encodes a configuration of $\M$.  In detail,
+$\mathsf{s}_i$ indicates that $\M$ is in state $s_i$; $\mathsf{ih}_i$
+that the input tape head scans cell $i$; $\mathsf{wh}_i$ that the
+working tape head scans cell $i$; $\mathsf{i}_{i,b}$ that the
+$i^{\text{th}}$ bit of the input tape is set to $b$; and
+$\mathsf{w}_{i,b}$ that the $i^{\text{th}}$ bit of the working tape is
+set to $b$, where $i$ is in the respective range and $b\in \{0,1\}$.
+
+\newcommand{\state}{\mathsf{state}}
+\newcommand{\work}{\mathsf{work}}
+\newcommand{\iNp}{\mathsf{input}}
+\newcommand{\inh}{\mathsf{inhead}}
+\newcommand{\woh}{\mathsf{wohead}}
+\renewcommand{\succ}{\mathsf{succ}}
+
+Let us introduce some LTL formulas that allow for testing properties
+of the current configuration. Think of all of them as being evaluated
+in $q$. The formula $\state_i=\X \mathsf{s}_i$ for each $i\in[0,k]$
+expresses that the current state is $s_i$.  By the formula
+$\inh_{i}=\X\X\X\X \mathsf{ih}_i$ we express that the input head is at
+position $i$, where $i\in[m]$. Similarly, define the formulas
+$\woh_i$, $\work_{j,b}$, and $\iNp_{i,b}$ for expressing that the
+working head is at position $i$, that the $i^{\text{th}}$ bit of the
+input tape is $b$, and that the $j^{\text{th}}$ bit of the working
+tape is $b$, respectively, where $i\in[m]$,$j\in[n]$, and
+$b\in\{0,1\}$.
+
+The LTL formula below, assumed to be evaluated in $\alpha$, ensures
+that the transition function is correctly encoded into traces of
+$\Soca_\M$ for states $s\in S\setminus F$ whenever the input
+respectively working tape head does not scan a start ($\l$)
+respectively end marker ($\r$):
+
+\begin{multline*}
+\bigwedge_{s_l\in S\setminus F}
+\bigwedge_{i\in[m]}
+\bigwedge_{j\in[n]}
+\bigwedge_{b_1,b_2\in\{0,1\}}
+\state_l\wedge\inh_i\wedge\iNp_{i,b_1}\wedge\woh_j\wedge
+\work_{j,b_2} \longrightarrow\\
+\longrightarrow
+\left(
+\left(\X(\neg\alpha \wedge \neg \beta)
+\U(\alpha\wedge \succ(s_l,i,j,b_1,b_2)\right)
+\wedge
+\bigwedge_{j'\not= j}\bigwedge_{b\in\{0,1\}}
+\left(\work_{j',b}\leftrightarrow
+(\X\neg\alpha\U(\alpha\wedge\work_{j',b}))\right)
+\right).
+\end{multline*}
+Here, whenever $\mu(s_l,b_1,b_2)=(s_h,d_1,d_2,b)$, the formula
+\begin{align*}
+\succ(s_l,i,j,b_1,b_2)\quad =\quad\state_h\wedge\inh_{i+d_1}\wedge\woh_{j+d_2}\wedge
+\work_{j,b}
+\end{align*}
+guarantees that the correct bit is ``written'' to the working tape and
+that the state, the input head position, and the working tape position
+of the next configuration seen indeed match the successor
+configuration. A similar formula can be constructed for the case when
+one or both of the input or working heads point to a start
+respectively end marker. Once we have reached a final state $s_i\in
+F$, we require that $\Soca_\M$ is left which is expressed by the
+following formula when evaluated in $q$:
+\begin{align*}
+   \bigwedge_{s_i\in F}\state_i \longrightarrow (\neg \alpha \until
+   \beta).
+\end{align*}
+It is now easily seen that we can construct a formula $\Phi$ that is
+derived from a conjunction of the formulas from above such that the
+formula $\globally (\alpha \rightarrow \Phi)$ constraints paths
+through $\Soca_\M$ in such a way that their traces yield the encoding
+of a valid computation of $\M$.
+
+Let us now address towards ensuring that once we enter $\Soca_\M$ we
+initially traverse it in such a way that the trace corresponds to an
+initial configuration of $\M$. The formula
+\begin{align*}
+  \globally\left(\zeta \longrightarrow \X(\state_0 \wedge \inh_1 \wedge
+  \woh_1\wedge \bigwedge_{1\le j\le n}\mathsf{work}_{j,0} ) \right)
+\end{align*}
+makes sure that the heads of the input and working tape point to the
+first tape cell, that the working tape is filled with $0$s and that we
+are in the initial state. In case the input tape can be initialized
+with an arbitrary content, we are done. Otherwise, suppose that we
+want to transfer the first $j$ bits of the output of a TM $\M'$ from
+its corresponding SOCA $\Soca_{\M'}$ to the input of $\Soca_\M$.  For
+$b\in \{0,1\}$, let $\bar{b}=0$ if $b=1$ and $\bar{b}=1$ otherwise,
+and suppose that all atomic propositions are primed in $\Soca_{\M'}$.
+The formula
+\begin{align*}
+  \bigwedge_{1\le i\le j\atop{b\in \{0,1\}}}
+  \globally
+   ((\mathsf{w}'_{i,b} \wedge (\neg \alpha' \until \beta'))
+  \longrightarrow (\neg \mathsf{i}_{i,\bar{b}}\until \gamma)
+  %\right)
+\end{align*}
+guarantees that we traverse through the first $j$ bits of the
+component of $\Soca_\M$ representing the input tape of $\M$ in the
+same way as we traverse the first $j$ bits of the working tape
+component of $\M'$ in $\Soca_{\M'}$ when a computation has finished.
+Coming back to Figure \ref{fig:high-level}, we have thus seen how the
+SOCA $\Soca_{\mathsf{inc}}, \Soca_{\circuit}$ and
+$\Soca_{\mathsf{prime}}$ and the communication between them can be
+realized. The only major question left open is how we can perform a
+divisibility respectively non-divisibility test of the counter value
+with a prime number computed in $\Soca_{\mathsf{prime}}$. For this,
+let us consider the SOCA $\Soca_{\mathsf{divides}}$ from Figure
+\ref{fig:soca-divisibility}.
+
+\begin{figure}[t]
+  \begin{center}
+    \begin{picture}(140,30)(0,0)
+      \gasset{Nframe=n,loopdiam=9,ELdist=.7}
+      \gasset{Nadjust=wh,Nadjustdist=1}
+      \gasset{curvedepth=0}
+
+      %% \node(WORKIN)(0,45){}
+      %% \node(A)(10,45){$\bullet$}
+      %% \node(B1)(25,55){$\bullet$}
+      %% \node(B2)(25,35){$\bullet$}
+      %% \node(C)(40,45){$\bullet$}
+      %% \node(D1)(55,55){$\bullet$}
+      %% \node(D2)(55,35){$\bullet$}
+      %% \node(E)(70,45){$\bullet$}
+      %% \node(F)(80,45){$\ldots$}
+      %% \node(G)(90,45){$\bullet$}
+      %% \node(H1)(105,55){$\bullet$}
+      %% \node(H2)(105,35){$\bullet$}
+      %% \node(I)(120,45){$\bullet$}
+      %% \node(J)(135,45){$\bullet$}
+      %% \node(DASH)(120,55){}
+      %% \node(WORKOUT)(145,45){}
+
+      %% \drawedge(WORKIN,A){}
+      %% \drawedge(A,B1){$0$}
+      %% \drawedge(A,B2){$0$}
+      %% \drawedge(B1,C){$0$}
+      %% \drawedge(B2,C){$0$}
+      %% \drawedge(C,D1){$0$}
+      %% \drawedge(C,D2){$0$}
+      %% \drawedge(D1,E){$0$}
+      %% \drawedge(D2,E){$0$}
+      %% \drawedge(G,H1){$0$}
+      %% \drawedge(G,H2){$0$}
+      %% \drawedge(H1,I){$0$}
+      %% \drawedge(H2,I){$0$}
+      %% \drawedge(I,J){$0$}
+      %% \drawedge[dash={1.5}0](I,DASH){}
+
+      %% \put(4,42){$\mathsf{work}_\l$}
+      %% \put(21,57){$\mathsf{work_{1,1}}$}
+      %% \put(21,32){$\mathsf{work_{1,0}}$}
+      %% \put(51,57){$\mathsf{work_{2,1}}$}
+      %% \put(51,32){$\mathsf{work_{2,0}}$}
+      %% \put(101,57){$\mathsf{work}_{N,1}$}
+      %% \put(101,32){$\mathsf{work}_{N,0}$}
+      %% \put(120,42){$\mathsf{work}_\r$}
+      %% \put(133,42){$\mathsf{yield}$}
+
+
+      \node(DIVIDESIN)(0,15){}
+      \node(A)(10,15){$\bullet$}
+      \node(B1)(25,25){$\bullet$}
+      \node(B2)(25,5){$\bullet$}
+      \node(C)(40,15){$\bullet$}
+      \node(D1)(55,25){$\bullet$}
+      \node(D2)(55,5){$\bullet$}
+      \node(E)(70,15){$\bullet$}
+      \node(F)(80,15){$\ldots$}
+      \node(G)(90,15){$\bullet$}
+      \node(H1)(105,25){$\bullet$}
+      \node(H2)(105,5){$\bullet$}
+      \node(I)(120,15){$\bullet$}
+      \node(J)(135,15){$\bullet$}
+      \node(DIVIDESOUT)(145,15){}
+
+      \drawedge(DIVIDESIN,A){}
+      \drawedge(A,B1){$0$}
+      \drawedge(A,B2){$0$}
+      \drawedge(B1,C){$-2^0$}
+      \drawedge(B2,C){$0$}
+      \drawedge(C,D1){$0$}
+      \drawedge(C,D2){$0$}
+      \drawedge(D1,E){$-2^1$}
+      \drawedge(D2,E){$0$}
+      \drawedge(G,H1){$0$}
+      \drawedge(G,H2){$0$}
+      \drawedge(H1,I){$-2^l$}
+      \drawedge(H2,I){$0$}
+      \drawedge(I,J){$\mathsf{\zero}$}
+      \drawbpedge[ELside=r](I,290,28,A,250,28){$0$}
+
+%      \put(4,12){$\mathsf{work}_\l$}
+      \put(22,27){$\prop_{0,1}$}
+      \put(22,2){$\prop_{0,0}$}
+      \put(52,27){$\prop_{1,1}$}
+      \put(52,2){$\prop_{1,0}$}
+      \put(102,27){$\prop_{l,1}$}
+      \put(102,2){$\prop_{l,0}$}
+%      \put(120,12){$\mathsf{work}_\r$}
+      \put(134,12){$\xi$}
+
+
+    \end{picture}
+  \end{center}
+  \caption{The SOCA $\Soca_{\mathsf{divides}}$  for testing the
+    counter for divisibility with some natural number of
+    bit length $l+1$.}
+  \label{fig:soca-divisibility}
+\end{figure}
+
+One cycle through $\Soca_{\mathsf{divides}}$ subtracts some natural
+number of bit length $l+1$ from the counter. However, in order to test
+for divisibility we need to make sure that we remain on the same path
+in every cycle. In the $\CTL$ setting, this problem was resolved by
+branching into the additional SOCA $\Soca_{\mathsf{bit}}$. In
+contrast, in $\ltl$ we cannot branch, but use the propositions
+$\prop_{j,b_j}, j\in [0,l], b\in \{0,1\}$ in order to stay on
+precisely one path in every cycle. Assuming that the number $p$ for
+which we want to test for divisibility with the current counter value
+is encoded as a sequence of propositions $\mathsf{w}_{j,b_j}$ of some
+SOCA $\Soca_\M$, the subsequent formula enforces that we always
+subtract $p$ in cycles of $\Soca_{\mathsf{divides}}$:
+\begin{align*}
+  \globally \left( \bigwedge_{0\le j\le l \atop{b_{j}\in \{0,1\}}}
+  ((\mathsf{w}_{j,b_j} \wedge (\neg \alpha \until \beta) ) \longrightarrow
+  ( \neg \prop_{j,\bar{b_j}} \until \xi)) \right).
+\end{align*}
+It is straight forward to derive a similar SOCA
+$\Soca_{\mathsf{not\_divides}}$ and an appropriate LTL formula for
+testing non-divisibility of the counter value with a previously
+computed prime number. Finally, we can also adopt these techniques in
+order to correctly handle the branching on $b$ performed in Figure
+\ref{fig:high-level}.
+
+In summary, by taking the disjoint union of all the gadgets from
+Figure \ref{fig:high-level}, their appendent $\ltl$ formula that we
+described in this section, connecting the gadgets correctly and taking
+the conjunction of the relevant $\ltl$ formulas, we can construct
+$\Poca(x)$ and an $\ltl$ formula $\varphi$ in logarithmic space such
+that there is an assignment $\sigma$ assigning a natural number to $x$
+such that $(T(\Poca^\sigma), q_{\mathsf{start}}(0))\not\models
+\varphi$ if and only if $\psi_\circuit$ given by an input $\circuit$
+of $\textsf{Succinct 3-SAT}$ is satisfiable.
+
+\begin{theorem}
+  The combined complexity of $\ltl$ model checking on POCA is
+  $\coNEXP$-complete.
+\end{theorem}
+
+\section{Conclusion}{\label{S Concl}}
+
+In this paper, we have settled the computational complexity of model
+checking CTL and LTL on SOCA and POCA with respect to data and
+combined complexity. Our proofs for providing lower bounds have
+introduced some involved concepts and techniques, which we believe may
+be of independent interest for providing lower bounds for decision
+problems in the verification of infinite state systems.
+
+An interesting aspect of future work could be the consideration of
+\emph{synthesis problems} for POCA. Given a POCA $\Poca(X)$ and an LTL
+formula $\varphi$, a natural question to pose is whether there
+\emph{exists an assignment} $\sigma$ such that $(T(\Poca^\sigma),
+\pi)\models \varphi$ for all infinite paths $\pi$ starting in some
+state of $T(\Poca^\sigma)$.  For CTL, such a problem is undecidable by
+Theorem \ref{thm:ctl-poca}, but we claim that it might be decidable
+for LTL. Moreover, the CTL fragment EF seems to be a good candidate of
+a branching-time logic for which model checking on POCA could be
+decidable, but this remains subject to further investigations.
+
+
+
+\bibliography{bib}
+\bibliographystyle{plain}
+
+
+%\thebibliography
+
+\iffalse
+
+\begin{thebibliography}{1}
+
+
+\bibitem{GoLo10}
+S.~G\"oller, M.~Lohrey.
+\newblock Branchning-time model checking of one-counter processes.
+\newblock In Proceedings of STACS 2010, to appear
+\newblock {\em Arxiv:0909.1102v1}
+
+\end{thebibliography}
+\fi
+
+\end{document}
+

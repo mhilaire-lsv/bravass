@@ -1,0 +1,154 @@
+
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipics-v2021}
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+
+\usepackage{mathtools}
+\usepackage{todonotes}
+\usepackage{microtype}
+
+\usepackage{complexity}
+\usepackage{amsmath}
+\usepackage{dsfont}
+
+\usepackage{stmaryrd}
+\usepackage{MnSymbol}
+\usepackage{graphicx}
+
+
+
+
+\newcommand{\problemx}[3]{
+	\vspace{0.2cm}
+\par\noindent\underline{\sc#1}\par\nobreak\vskip.2\baselineskip
+\begingroup\clubpenalty10000\widowpenalty10000
+\setbox0\hbox{\bf INPUT:\ }\setbox1\hbox{\bf QUESTION:\ }
+\dimen0=\wd0\ifnum\wd1>\dimen0\dimen0=\wd1\fi
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box0\hfil}\hangindent\dimen0\hangafter1\ignorespaces#2\par
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box1\hfil}\hangindent\dimen0\hangafter1\ignorespaces#3\par
+\endgroup
+	\vspace{-0.2cm}
+}
+
+\newcounter{claimcounter}
+\setcounter{claimcounter}{0}
+\newtheorem{subclaim}{Subclaim}{}
+\newtheorem*{theorem*}{Theorem}
+
+\makeatletter
+
+\usepackage{ textcomp } 
+
+\usepackage{stmaryrd}
+\usepackage{MnSymbol}
+\usepackage{graphicx}
+
+\usepackage{wrapfig}
+
+
+
+\renewcommand{\poly}{\mathrm{poly}}
+
+
+
+
+
+\title{Resiliency} 
+
+\titlerunning{Resiliency} 
+
+ \author{Alain Finkel}
+\author{Mathieu Hilaire}{Université Paris-Saclay\and
+CNRS\and
+ENS Paris-Saclay\and
+Laboratoire Méthodes Formelles (LMF)\and
+Gif-sur-Yvette, France
+}{hilaire@lsv.fr}{}{This work was partly done while the author was supported by the 
+Agence Nationale de la Recherche grant no. (numero de la grant BraVASS).}
+
+\authorrunning{M. Hilaire} 
+
+\Copyright{M. Hilaire} 
+
+
+\ccsdesc{Theory of computation~Automata over infinite objects}
+\ccsdesc[500]{Theory of computation~Automata extensions}
+
+\keywords{}
+
+
+
+\category{} 
+
+\relatedversion{}
+% \relatedversiondetails{Full Version}{}
+
+\acknowledgements{The author would like to thank.}
+
+
+\ArticleNo{70}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+	Here goes the abstract.
+\end{abstract}
+
+
+\newcommand{\LCM}{\mathsf{LCM}}
+\newcommand{\LOGSPACE}{\mathsf{LOGSPACE}}
+\renewcommand{\MSO}{\mathsf{MSO}}
+\newcommand{\SO}{\mathsf{SO}}
+
+
+
+
+
+%	\input{introduction}
+
+
+
+\input{definitions}
+
+
+% 	\input{conclusion}
+
+
+
+\bibliography{bibliography/bib}
+
+
+\appendix
+
+
+\section{Appendix thing if necessary}\label{appendix}
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
