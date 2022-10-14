@@ -5,19 +5,334 @@
 
 In this section, we introduce general notations and preliminary definitions.
 
+The model we are interested in is (S)WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
+
+
+\textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
+
+
+\subsection{Transition systems}
+
+
+\begin{definition}
+A {\em labeled transition system} (LTS for short) is a tuple $T=(S, \Lambda, \rightarrow)$ where 
+$S$ is a set of {\em configurations}, $ \Lambda$ is a set of {\em labels}, and 
+${\rightarrow} \subseteq S\times \Lambda \times S$ is a 
+ternary relation,
+denoted as the set of {\em labeled transitions}. 
+\end{definition}
+
+We
+ prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as
+       $s  \xrightarrow{a}  s'$
+to represent a transition from configuration $s$ to configuration $s'$ with label $a$. \\
+
+\noindent
+Labels can be used to represent the reading of an input, but also to represent an action performed during the transition or conditions that must hold in order to allow the use of the transition.
+
+
+A {\em path} in a labeled transition system from a {\em source configuration} $s_0$
+to a {\em target configuration} $s_n$ is a sequence 
+$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$. 
+We define the {\em concatenation} $ \pi_1 \pi_2$ of 
+two paths $\pi_1$ and $\pi_2$ when the source configuration of $\pi_2$ is equal to the target configuration of $\pi_1$
+as expected.
+The {\em length} of 
+$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$
+is defined as $|\pi|=n$. We say the path is {\em labeled} by $a_0 a_1 , \ldots a_{n-1}$.
+For all $w \in \Lambda^*$, all $s,s' \in S$, we will write $s \xrightarrow{w } s'$ if there exists a path from $s$ to $s'$ labeled by $w$. 
+
+An {\em infinite path} is an infinite sequence
+ $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots $.
+For each infinite (resp. finite) path  $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ 
+(resp. $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1}} s_n$)
+and $i,j \in \N$ (resp. $i,j \in [0,n]$) with $i<j$ we denote
+by $\pi[i,j]$ the path 
+$s_i  \xrightarrow{a_i } s_{i+1}  \xrightarrow{a_{i+1} } \cdots  \xrightarrow{a_{j-1} } s_j$
+ and by $\pi[i]$ the configuration $s_i$.
+As expected, a {\em prefix} of a finite or infinite path $\pi$ is a finite path of the form $\pi[0,j]$, and
+a  {\em suffix} of a finite path $\pi$ is a path of the form $\pi[i,n]$.  \\
+Given an infinite path $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ let
+$\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\}$.
+
+\newcommand{\pred}{\textsc{Pred}}
+\newcommand{\succ}{\textsc{Succ}}
+
+\noindent
+The set of {\em successors} of a configuration $s \in S$ is deﬁned as
+$\succ(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s \xrightarrow{a} s'\}$.
+A configuration without successors is called a {\em dead end}.  \\
+The set of {\em predecessor} of a configuration $s \in S$ is deﬁned as
+$\pred(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s' \xrightarrow{a} s\}$.
+
+
+
+A labeled transition system $(S, \Lambda, \rightarrow)$ is {\em deterministic} if for all configurations $s_1, s_2, s_3 \in S$ and all
+$a \in \Lambda$,
+ $ s_1  \xrightarrow{a} s_{2}$ and  
+ $s_1  \xrightarrow{a} s_{3} $ implies $s_2 = s_3 $. \\
+
+
+
+\begin{definition}
+An {\em (unlabeled) transition system} is a pair $T = (S,\rightarrow )$ where $S$ is a set of 
+{\em configurations} and  
+$ {\rightarrow} \subseteq S \times S$ is a
+binary relation 
+on
+the set of configurations, denoted as the set of {\em transitions}. 
+\end{definition}
+
+We again prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from configuration $s$ to configuration $s'$ (i.e., $ (s,s') \in  {\rightarrow} $). \newline
+Note 
+ that an unlabeled transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
+Determinism, (infinite) paths, their length, and concatenation in unlabeled transition systems are
+then defined as expected.
+
+\textcolor{red}{Thinking about whether or not it is pertinent to have LTS and not only TS. LTS can be usefull for TA because of the use of the guards/time as labels but it may be unecessary.}
+
+We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
+for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure). We use similar notation for $\succ$ and $\pred$...
+
+\textcolor{red}{This makes sense for TS but not so much for LTS ...}
+
+A transition system is {\em finitely branching} if all $\succ(s)$ are finite. 
+\textcolor{blue}{We restrict our attention to finitely branching TSs.}
+
+\textcolor{red}{Not sure that TS induced by TA are finitely branching. Actually I believe they are not, i.e. for instance for a TA with one clock $x$, from a state $q$ and clock $x$ set at $0$, if there is a transition e.g. $(q, x \geq 3, \emptyset, q')$ then the set of successors of 
+$(q,0)$ is $\{q'\} \times \{3, 4, 5, \ldots \}$. Need to check where finitely branching appears as an assumption/requirement.}
+
+
+\subsection{Well-quasi-orderings}
+
+A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$.
+
+We abbreviate $x \leq y \not\leq x$ by $x < y$.
+
+% A partial ordering (a po) is an antisymmetric qo
+
+Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).
+% and gives rise to a po between the equivalence classes ?
+% 	do we need po ?
+
+We now recall a few results from the theory of well-orderings (add reference [...]).
+
+
+\begin{definition}
+ A {\em well-quasi-ordering} (a wqo) is any quasi-ordering $\leq$ (over some set $X$ ) such that, for any infinite sequence $x_0 ; x_1 ; x_2 ; : : : $ in $X$, there exist indexes $i \leq j$ with
+$x_i \leq  x_j$.
+\end{definition}
+
+Notice that a wqo is well-founded, i.e. it admits no infinite strictly decreasing sequence
+$x_0 > x_1 > x_2 > \cdots$
+
+\textcolor{red}{Add lemma about infinite increasing subsequences ?}
+
+
+Given $\leq$ a quasi-ordering over some set $X$, an {\em upward-closed set} is any set $I \subseteq X$ such that if $y \geq x$ and $x \in I$ then $y \in I $.
+A {\em downward-closed set} is any set $I \subseteq X$ such that if $y \leq x$ and $x \in I$ then $y \in I $. 
+To any $A \subseteq X$ we associate
+the {\em upward-closure of $A$} 
+ $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
+ and the 
+ {\em downward-closure of $A$} 
+ $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
+We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
+as $\uparrow x$ (resp. $\downarrow x$).
+
+\begin{lemma}{(Higman [40])} 
+If $\leq$ is a wqo; then any upward-closed $I$ has a
+basis.
+\end{lemma}
+
+\textcolor{red}{Expliquer ce que c'est une base d'abords.}
+
+\begin{proof}
+The set of minimal elements of $I$ is a basis because $\leq$ is well-founded. It
+only contains a finite number of non-equivalent elements otherwise they would make
+an infinite sequence contradicting the wqo assumption.
+\end{proof}
+
+
+\textcolor{red}{Un lemme je pense c'est important de le noter, peut-être pas comme ça peut être noter différement faudra voir}
+
+\begin{lemma}  
+If $\leq$ is a wqo; any infinite increasing sequence $I_0 \subseteq I_1 \subseteq I_2 \subseteq \cdots$ of
+upward-closed sets eventually stabilizes; i.e. there is a $k \in N$ such that 
+$I_k = I_{k+1} = I_{k+2} = \cdots $.
+\end{lemma}
+
+\begin{proof}
+Assue we have a counter-example ...
+\end{proof}
+
+
+\textcolor{red}{Define WSTS}
+
+\textcolor{red}{Define SWSTS - may be necessary}
+
+\subsection{Well-structured transition systems}
+
+
+\begin{definition}
+A {\em (resp. strongly) well-structured transition systems} (abbreviated as WSTS resp. SWSTS) 
+is a TS
+$(S, \rightarrow, \leq)$
+equipped with a wqo ${\leq} \subseteq S \times S$ between states such that  
+%  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
+the wqo is (resp. strongly) compatible with the transition relation, i.e., for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 ≤ t_2$  and $s_1 \rightarrow s_2$ , there exists 
+	$t_2 \in S$ with 
+	$s_2 \leq t_2$ and $t_1 \rightarrow^{*} t_2$ 			
+				(resp. $t_1 \rightarrow^{1} t_2$ ).
+\end{definition}
+
+Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering.
+
+\textcolor{red}{For one-counter automata, in case the only tests are zero tests then 
+I supposed $\leq$ is $\leq$ for non-zero integers, and I'll have to look-up/think for what to do with the zero element for instance. For TA it seem kind of nontrivial (since they allow $<c$ tests).}
+
+
+
+\textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and
+'decidable $\leq$' being independant from the WSTS definition}
+
+
+\begin{definition}
+A WSTS has {\em effective pred-basis} if there exists an algorithm accepting
+any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
+\end{definition}
+
+\textcolor{red}{Define what an Ideal is. Actually an Ideal is just an upward-closed set, so maybe this just adds some confusion. Anti-ideal just downward closed so again just not that helpful a notation. Maybe have a }
+
+
+
+\begin{definition}
+An {\em bi-ideal} $I \subseteq S$ is an upward-closed and downward-closed set, i.e
+$\uparrow I = I = \downarrow I$.
+\end{definition}
+
+A downard-closed set $J$ is {\em decidable} if, given $s \in S$, it is decidable whether
+$s \in J$.
+
+
+"Bi-ideals often represent “control states” as in [cf \%]. "
+% Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+
+\textcolor{red}{Probably one can already 'deduce' from this that ideal $I$ and anti-ideal $J$ for resp. good and bad states, in the case of e.g. timed automata would be given by sets of states}
+
+
+Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.
+
+\textcolor{red}{Do we still demand this ?}
+
+\begin{claim}{(stability of ideals)}
+Let $I, J \subseteq S$ be upward-closed. Then the sets 
+$\pred(I)$, $I \cup J$, and $I \cap J$ are upward-closed.
+\end{claim}
+
+
+% \begin{claim}
+% Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
+% \end{claim}
 
 
 
 
+\subsection{Defining resilience}
 
-\problemx{$k$-Resilience problem}
-{A state $s$ of a WSTS $(S,,)$, an ideal $I$ with a given basis, a decidable anti-ideal $J$.}
+
+\subsubsection{TS resilience}
+
+\textcolor{red}{Ask the question why use a set of propositions for $SAFE$ and $BAD$ rather than use subsets of the set of configurations ? }
+
+We ask whether we can reach a state 
+%which satisfies
+in 
+%
+$SAFE$  in a reasonable amount of time whenever we reach a state 
+% which satisfies
+in
+%
+$BAD$. 
+From this we formulate two resilience problems. First consider the case where the recovery time
+is bound by a given natural number $k \geq 0$, i.e., the explicit resilience problem for TS.
+
+\problemx{TS $k$-resilience problem}
+{A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
+{$\forall s' \in BAD ~ (s \rightarrow^* s') \to \exists s'' \in SAFE ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+
+
+% If we assume that the transition system yields infinite sequences of transitions, we can express the property to be evaluated in CTL by s |= AG(BAD → 0≤ j≤k EX j SAFE). 
+
+We can also ask whether there exists such a bound $k$. We call this problem the bounded resilience problem for TS.
+
+
+\problemx{TS bounded resilience problem}
+{A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
+{$\exists k \geq 0 ~ \forall s' \in BAD ~ (s \rightarrow^* s') \to \exists s'' \in SAFE ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+
+
+
+\subsubsection{WSTS resilience}
+
+
+Properties in well-structured transition systems are often given as upward- or downward closed sets [references].
+%  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+%  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
+Transfering the abstract resilience problems into this framework,
+it is therefore reasonable to demand that both propositions, SAFE and BAD, are given by 
+upward-closed or 
+downward-closed sets.
+
+We assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set.
+
+\textcolor{red}{Seems like a reasonable assumption to me.}
+
+From these considerations, we formulate instances of the abstract resilience problems for well-
+structured transition systems.
+
+Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
+
+\problemx{WSTS $k$-resilience problem}
+{A state $s$ of a WSTS $(S,\rightarrow)$, an ideal $I$ with a given basis, a decidable anti-ideal $J$.}
 {$\forall s' \in J ~ (s \rightarrow^* s') \to \exists s'' \in I ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
 
+Analogously, we formulate the bounded resilience problem for WSTSs.
 
-\problemx{Bounded Resilience problem}
+\problemx{WSTS bounded resilience problem}
 {A state $s$ of a WSTS $(S,,)$, an ideal $I$ with a given basis, a decidable anti-ideal $J$.}
 {$\exists k \geq 0 ~ \forall s' \in J ~ (s \rightarrow^* s') \to \exists s'' \in I ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+
+
+\textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
+
+
+
+\subsection{Timed Automata}
+
+\textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
+
+
+
+\subsection{One-Counter Automata}
+
+\textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
+
+
+
+\subsection{Vector Addition System with States}
+
+\textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
+
+
+
+
+
+
+
+
 
 
 
