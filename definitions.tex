@@ -56,7 +56,7 @@ Given an infinite path $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdo
 $\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\}$.
 
 \newcommand{\pred}{\textsc{Pred}}
-\newcommand{\succ}{\textsc{Succ}}
+\renewcommand{\succ}{\textsc{Succ}}
 
 \noindent
 The set of {\em successors} of a configuration $s \in S$ is deﬁned as
@@ -182,7 +182,7 @@ equipped with a wqo ${\leq} \subseteq S \times S$ between states such that
 %  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
 the wqo is (resp. strongly) compatible with the transition relation, i.e., for all 
 $s_1, t_1 , s_2 \in S$
-	with $s_1 ≤ t_2$  and $s_1 \rightarrow s_2$ , there exists 
+	with $s_1 \leq t_2$  and $s_1 \rightarrow s_2$ , there exists 
 	$t_2 \in S$ with 
 	$s_2 \leq t_2$ and $t_1 \rightarrow^{*} t_2$ 			
 				(resp. $t_1 \rightarrow^{1} t_2$ ).
@@ -261,7 +261,7 @@ is bound by a given natural number $k \geq 0$, i.e., the explicit resilience pro
 
 \problemx{TS $k$-resilience problem}
 {A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
-{$\forall s' \in BAD ~ (s \rightarrow^* s') \to \exists s'' \in SAFE ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+{$\forall s' \in BAD ~ (s \rightarrow^* s') \to \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 % If we assume that the transition system yields infinite sequences of transitions, we can express the property to be evaluated in CTL by s |= AG(BAD → 0≤ j≤k EX j SAFE). 
@@ -271,7 +271,7 @@ We can also ask whether there exists such a bound $k$. We call this problem the 
 
 \problemx{TS bounded resilience problem}
 {A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
-{$\exists k \geq 0 ~ \forall s' \in BAD ~ (s \rightarrow^* s') \to \exists s'' \in SAFE ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+{$\exists k \geq 0 ~ \forall s' \in BAD ~ (s \rightarrow^* s') \to \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 
@@ -296,14 +296,14 @@ structured transition systems.
 Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
 \problemx{WSTS $k$-resilience problem}
-{A state $s$ of a WSTS $(S,\rightarrow)$, an ideal $I$ with a given basis, a decidable anti-ideal $J$.}
-{$\forall s' \in J ~ (s \rightarrow^* s') \to \exists s'' \in I ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
+{$\forall s' \in J ~ (s \rightarrow^* s') \to \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 Analogously, we formulate the bounded resilience problem for WSTSs.
 
 \problemx{WSTS bounded resilience problem}
-{A state $s$ of a WSTS $(S,,)$, an ideal $I$ with a given basis, a decidable anti-ideal $J$.}
-{$\exists k \geq 0 ~ \forall s' \in J ~ (s \rightarrow^* s') \to \exists s'' \in I ~ s' \rigtarrow^{\leq k} s''$ ?\newline}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
+{$\exists k \geq 0 ~ \forall s' \in J ~ (s \rightarrow^* s') \to \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
