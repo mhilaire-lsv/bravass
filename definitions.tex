@@ -46,7 +46,7 @@ An {\em infinite path} is an infinite sequence
  $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots $.
 For each infinite (resp. finite) path  $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ 
 (resp. $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1}} s_n$)
-and $i,j \in \N$ (resp. $i,j \in [0,n]$) with $i<j$ we denote
+and $i,j \in \N$ (resp. $i,j \in [0,n]$) with $i<j$ we denote
 by $\pi[i,j]$ the path 
 $s_i  \xrightarrow{a_i } s_{i+1}  \xrightarrow{a_{i+1} } \cdots  \xrightarrow{a_{j-1} } s_j$
  and by $\pi[i]$ the configuration $s_i$.
@@ -99,6 +99,7 @@ for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexi
 A transition system is {\em finitely branching} if all $\succ(s)$ are finite. 
 \textcolor{blue}{We restrict our attention to finitely branching TSs.}
 
+\textcolor{blue}{Alain: the forward coverability algorithm for infinitely branching TSs.; the backward cov algo may work for essentially finitely branching TSs.}
 \textcolor{red}{Not sure that TS induced by TA are finitely branching. Actually I believe they are not, i.e. for instance for a TA with one clock $x$, from a state $q$ and clock $x$ set at $0$, if there is a transition e.g. $(q, x \geq 3, \emptyset, q')$ then the set of successors of 
 $(q,0)$ is $\{q'\} \times \{3, 4, 5, \ldots \}$. Need to check where finitely branching appears as an assumption/requirement.}
 
@@ -119,7 +120,7 @@ We now recall a few results from the theory of well-orderings (add reference [..
 
 
 \begin{definition}
- A {\em well-quasi-ordering} (a wqo) is any quasi-ordering $\leq$ (over some set $X$ ) such that, for any infinite sequence $x_0 ; x_1 ; x_2 ; : : : $ in $X$, there exist indexes $i \leq j$ with
+ A {\em well-quasi-ordering} (a wqo) is any quasi-ordering $\leq$ (over some set $X$ ) such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with
 $x_i \leq  x_j$.
 \end{definition}
 
@@ -142,7 +143,7 @@ as $\uparrow x$ (resp. $\downarrow x$).
 
 \begin{lemma}{(Higman [40])} 
 If $\leq$ is a wqo; then any upward-closed $I$ has a
-basis.
+finite basis.
 \end{lemma}
 
 \textcolor{red}{Expliquer ce que c'est une base d'abords.}
@@ -152,7 +153,7 @@ The set of minimal elements of $I$ is a basis because $\leq$ is well-founded. It
 only contains a finite number of non-equivalent elements otherwise they would make
 an infinite sequence contradicting the wqo assumption.
 \end{proof}
-
+\textcolor{blue}{Alain: non ceci est vrai seulement si le quasi ordre est un ordre cad antisymétrique. Mais ce n'est pas un pb. Relis mon papier de 2016 sur les well abstracted...}
 
 \textcolor{red}{Un lemme je pense c'est important de le noter, peut-être pas comme ça peut être noter différement faudra voir}
 
@@ -323,12 +324,12 @@ Analogously, we formulate the bounded resilience problem for WSTSs.
 
 % \subsubsection{Guards, Clocks}
 
-A {\em guard} over a finite set of clocks $\Omega$ 
+A {\em guard} over a finite set of clocks $\Omega$ 
 is a comparison of the form
 $\omega \bowtie c$, where $ \omega \in \Omega$, $c \in \N$,
 and $\bowtie\in\{<,\leq,=,\geq,>\}$.
 %
-We denote by $\guards(\Omega)$ the {\em set of guards} over the set of 
+We denote by $\guards(\Omega)$ the {\em set of guards} over the set of 
 clocks $\Omega$.
 The {\em size} %$|g|$
  of a guard 
@@ -359,7 +360,7 @@ A timed automaton is a finite automaton extended with a finite set of clocks $\O
 $\Omega$  and by a set of clocks to be reset. \\
 
 \par\noindent\ignorespacesafterend
-Formally, a {\em timed automaton} ({\em TA} for short) is a tuple
+Formally, a {\em timed automaton} ({\em TA} for short) is a tuple
 $\A=(Q,\Omega,R,q_{init},F)$, where
 \begin{samepage}
 \begin{itemize}
@@ -452,7 +453,7 @@ But here you could also use a kinda special clock $x$ that is reset when you ent
 
 \textcolor{red}{... I guess if you use $0/1$-TA then the problems become closer one to another ? Also of note is that $0/1$-TA induces transition systems with bounded branching, so I guess it may be interesting to investigate these first ?}
 
-A {\em $0/1$ timed automaton } ({\em $0/1$-TA} for short) is a tuple
+A {\em $0/1$ timed automaton } ({\em $0/1$-TA} for short) is a tuple
 $$\B=(Q,X, \Delta_0, \Delta_1, q_{init}, F),$$
 \par\noindent\ignorespacesafterend
  where
