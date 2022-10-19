@@ -1,0 +1,75 @@
+
+\section{Decidability}
+
+\begin{proof}{sketch}
+
+
+Si on inverse les types de propriétés (downward closed pour $I = SAFE$, upward closed pour $J= BAD$) alors on peut écrire un lemme symmétrique du Lemme $4$:
+
+\begin{lemma}
+Let $A \subseteq S$ be a set, $J \subseteq S$ upward-closed and $I' \subseteq S$ downward-closed. 
+Then $A \cap J \subseteq I' \leftrightarrow (\downarrow  A) \cap J \subseteq I'$.
+\end{lemma}
+
+Et une fois que l'on a ça, on peut écrire
+$ post^*(s)\cap J \subseteq I' \leftrightarrow (\downarrow  post^*(s)) \cap J \subseteq I'$ 
+et travailler avec $\downarrow post^*(s)$ à la place de $\uparrow post^*(s)$.
+
+La question deviens: quel $k$ pour que
+$\downarrow post^*(s) \cap J \subseteq I^k$.
+Ou alors, à $k$ fixé, est-ce que
+$\downarrow post^*(s) \cap J \subseteq I^k$.
+
+Il faut aussi une condition pour s'assurer que $I^k$ soit bien downward-closed.
+
+Où
+$I^{k+1} = I \cup pre(I^k )$.
+
+On vas imaginer temporairement qu'on arriver à s'assurer $I^k$ downward-closed. 
+(Peut-être on doit faire la supposition de SWSTS strongly downward compatible à la place, pour avoir ça ?)
+
+On reviens sur $\downarrow post^*(s) \cap J \subseteq I^k$.
+
+C'est là peut être qu'on peut s'inspirer de l'algo forward.
+
+Enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. downward closed subsets $D_i \subseteq X$ such that $\downarrow Post(D_i ) \subseteq D_i$. [...]
+Every inductive invariant $D_i$ is an “over-approximation” of $post^*(x)$ if it contains $x$.
+
+On a un nombre fini de bornes supérieures pour $D_i$ on peut considèrer qu’elles consistent en une base de $D_i$ ? On énumère les $D_i$ en énumérant leurs bases directement ?
+
+Ensuite, si jamais	$Base(D_1)  \cap J \subseteq I^k$.
+
+alors
+
+$D_1  \cap J \subseteq I^k$	(par le lemme)
+
+et donc
+
+$\downarrow post*(s) \cap J \subseteq D_1  \cap J \subseteq I^k$
+
+(puisque $D_1$ est une sur-approximation).
+
+Ce qui voudrais dire que on a bien la propriété de résilience.
+
+
+Le problème évidement c'est que cette procédure ne termine peut être pas enfin on n'a aucune guarrantie à priori. À ce moment là il faudrait sans doute faire une autre procédure en parallèle, comme dans l'algo forward, et qui elle terminerais si on a {\em pas} la propriété de résilience.
+
+ La propriété de $k$-résilience peut être résumée par la formule: $post^*(s) \cap J \subseteq I^k$.
+
+Donc la question ce serait est-ce que, à $k$ fixé ($k$ fixé pour l'instant on vas dire) on aurais une procédure qui termine pour montrer que ce n'est pas le cas ?
+
+Ce serait une procédure qui pourrait par exemple calculer $post^m(s) \cap J $ jusqu'à trouver un élément pas dans $I^k$ ?
+
+Càd on calcule les éléments de $post^m(s)$ un à un, pour chacun on vérifie s’il est dans $J$ puis s’il y est on vérifie s’il est dans $I^k$ ?
+
+Il faut aussi une base de $J$ et que $I^k$ soit décidable, mais ça a l'air faisable j'ai l'impression...
+
+
+\textcolor{red}{Ça me perturbe un peu quand même de devoir inverser toutes les propriétés et avoir SWSTS downward-compatible, je pense ça doit être possible de faire les choses mieux...}
+
+
+
+\end{proof}
+
+
+

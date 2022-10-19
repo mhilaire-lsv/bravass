@@ -1,0 +1,210 @@
+
+
+\section{Applications section}
+
+
+
+\subsection{Timed Automata}
+
+\textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
+
+\renewcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\renewcommand{\C}{\mathcal{C}}
+\newcommand{\Const}{\mathsf{Consts}}
+\newcommand{\Conf}{\mathsf{Conf}}
+\newcommand{\guards}{{\textsc{Guards}}}
+
+% \subsubsection{Guards, Clocks}
+
+A {\em guard} over a finite set of clocks $\Omega$ 
+is a comparison of the form
+$\omega \bowtie c$, where $ \omega \in \Omega$, $c \in \N$,
+and $\bowtie\in\{<,\leq,=,\geq,>\}$.
+%
+We denote by $\guards(\Omega)$ the {\em set of guards} over the set of 
+clocks $\Omega$.
+The {\em size} %$|g|$
+ of a guard 
+$g=\omega \bowtie c$ is defined as %:
+$|g|=\log(c)$.
+A {\em clock valuation} is a function from $\Omega$ to $\N$;
+we write $\vec{0}$ to denote the clock valuation $\omega \mapsto 0$
+whenever the set $\Omega$ is clear from the context.
+For each clock valuation $v$ and each $t\in\N$ we denote
+by $v+t$ the clock valuation $\omega \mapsto v(\omega)+t$.
+%
+For each guard $g=\omega \bowtie c$ with $c\in\N$,
+we write $v\models g$ if $v(\omega)\bowtie c$.
+
+\iffalse
+We define an {\em empty guard} $g_\epsilon$ over a non-empty finite set of clocks
+$\Omega$ and to be of the form $\omega \geq 0$ for some 
+$\omega \in \Omega$. In particular, we
+defined $g_\epsilon$ such that for all $v \in \N^\Omega$ 
+we have
+$v \models g_\epsilon$, hence $g_\epsilon$ can be used as a guard that is always true. 
+\fi
+
+% \subsubsection{Timed automata}
+
+
+A timed automaton is a finite automaton extended with a finite set of clocks $\Omega$ that all progress at the same rate and that can individually be reset to zero. Moreover, every transition is labeled by a guard over 
+$\Omega$  and by a set of clocks to be reset. \\
+
+\par\noindent\ignorespacesafterend
+Formally, a {\em timed automaton} ({\em TA} for short) is a tuple
+$\A=(Q,\Omega,R,q_{init},F)$, where
+\begin{samepage}
+\begin{itemize}
+	\item $Q$ is a non-empty finite {\em set of states}, 
+	\item $\Omega$ is a non-empty finite {\em set of clocks},
+	\item $R \subseteq Q\times\G(\Omega)\times \mathscr{P}(\Omega) \times Q$
+	is a finite {\em set of  rules},
+	\item $q_{init}\in Q$ is an {\em initial  state}, and 
+	\item $F\subseteq Q$ is a {\em set of final states}.
+\end{itemize}
+\end{samepage}
+
+\par\noindent\ignorespacesafterend
+We also refer to $\A$ as an $n$-TA if $|\Omega| = n$. 
+The {\em size} of $\A$ is defined as%:
+$$
+|\A| \ = \ |Q|+|\Omega|+|R|+\sum_{(q,g,U,q')\in R}|g|.
+$$
+Let 
+$\Const(\A) = \{ c\in\N \mid \exists(q,g,U,q')\in R, \ \exists \omega \in \Omega, \bowtie\in\{<,\leq,=,\geq,>\} : g = \omega \bowtie c \}$ denote the 
+set of constants that appear in the guards of the rules of $\A$.
+
+By $\Conf(\A)=Q\times\N^\Omega$ we denote the set of
+{\em configurations} of $\A$. 
+%We prefer however to denote a configuration in $\Const(\A)$ by $q(v)$ instead of $(q,v)$.\\
+We prefer however to abbreviate a configuration	%	 in $\Conf(\A)$	
+$(q,v)$ by $q(v)$.
+
+
+\begin{samepage}
+%\begin{definition}
+A TA $\A=(Q,\Omega,R,q_{init},F)$ induces the labeled transition system 
+$T_{\A} =  (\Conf(\A), \Lambda_{\A}, \rightarrow_{\A})$
+where $ \Lambda_{\A} = R \times \N $
+and 
+where $ \rightarrow_{\A}$ is defined such that, 
+for all $(\delta,t)\in R\times\N$ with  	$\delta = (q,g,U,q')\in R$,
+for all $q(v), q'(v') \in \Conf(\A)$,
+$q(v)\xrightarrow{\delta,t}_{\A} q'(v')$ if
+	$v+t\models g$, 
+	 $v'(u)=0$ for all $u \in U$ and $v'(\omega)=v(\omega)+t$ for all 
+	$\omega \in \Omega \setminus U$.
+%\end{definition}
+\end{samepage}
+
+A {\em run} from $q_0(v_0)$ to $q_n(v_n)$ in $\A$ is a path in the transition system $T_{\A}$, that is,
+a sequence 
+$\pi = q_0(v_0)\xrightarrow{\delta_1,t_1}_{\A}q_1(v_1)\cdots\xrightarrow{\delta_n,t_n}_{\A}q_n(v_n)$;
+it is called {\em reset-free} if for all $i \in \{1,\ldots,n\}$,
+ $\delta_i = (g_i,\emptyset)$ for some guard $g_i$.
+
+
+We say $\pi$ is {\em accepting} if $q_0(v_0) = q_{init}(\vec{0})$ and $q_n \in F$. 
+\iffalse
+We say {\em reachability holds} for the TA $\A$ 
+if there exists an accepting run. %
+% if there is a run in $\A$ from $q_{init}(\vec{0})$   to some configuration $q(v)$ for some $q\in F$, and $v\in\N^\Omega$.
+%We refer to Figure~\ref{example pta} for an instance of a PTA for which reachability holds.
+\fi
+
+
+It is worth mentioning that there are further modes of time valuations and guards which exist in the literature, we refer
+to \cite{Andre19} for a recent overview. 
+%
+% \mh{Comment on difference between continuous and discrete time}
+Notably, we consider in this article only the case of timed automata over discrete time. It is worth mentioning that in
+the case of timed automata over continuous time (i.e. with clocks having values in $\R_{\geq 0}$),
+% However, for parametric timed automata with closed (i.e., non-strict) clock constraints and parameters restricted to ranging over integers, 1 standard digitisation techniques apply [HMP92, OW03], reducing the reachability problem over dense time to discrete (integer) time.
+techniques~\cite{HenzingerMP92,OuaknineW03} exist for reducing the reachability problem to discrete time in the case of closed (i.e. non-strict) clock constraints ranging over integers. \\
+
+
+
+
+\problemx{TA $k$-resilience problem}
+{A state $q$ of a TA $(Q, X, \Delta)$, a set $SAFE \subseteq Q$, a set $BAD \subseteq Q$.}
+{$\forall q' \in BAD \forall v,v' \in \N^X ~ (q(v) \rightarrow^* q'(v')) \implies \exists q'' \in SAFE \exists v'' \in \N^X ~ q'(v') \rightarrow^{\leq k} q''(v'')$ ?\newline}
+
+
+Analogously, we formulate the bounded resilience problem for WSTSs.
+
+
+\problemx{TA bounded resilience problem}
+{A state $q$ of a TA $(Q, X, \Delta)$, a set $SAFE \subseteq Q$, a set $BAD \subseteq Q$.}
+{$\exists k \geq 0 ~ \forall q' \in BAD \forall v,v' \in \N^X ~ (q(v) \rightarrow^* q'(v')) \implies \exists q'' \in SAFE \exists v'' \in \N^X ~ q'(v') \rightarrow^{\leq k} q''(v'')$ ?\newline}
+
+\textcolor{red}{I think there can be a discussion to be had here about how to quantify on the clock valuations}
+
+\textcolor{red}{Here one thing that could be interesting to try to formalize is: how to enforce that the time that passes is less than $k$, rather than the number of transitions. This is tricky to deal with I find but it should be more doable if for instance we use one counter automata, where the counter effect of the sequence can be quantified more explicitly I suppose ?
+But here you could also use a kinda special clock $x$ that is reset when you enter $BAD$ and is not reset between a state in $BAD$ and a state in $SAFE$, you could check that $x < k$.}
+
+\textcolor{red}{... I guess if you use $0/1$-TA then the problems become closer one to another ? Also of note is that $0/1$-TA induces transition systems with bounded branching, so I guess it may be interesting to investigate these first ?}
+
+A {\em $0/1$ timed automaton } ({\em $0/1$-TA} for short) is a tuple
+$$\B=(Q,X, \Delta_0, \Delta_1, q_{init}, F),$$
+\par\noindent\ignorespacesafterend
+ where
+$\B_i=(Q,X, R_i, q_{init}, F)$ is a TA for all $i \in \{0,1\}$.
+For simplicity we define its {\em size}
+as $|\B|=|\B_0|+|\B_1|$.
+We analogously denote the constants of $\B$ 
+by $\Const(\B)$ and its configurations by  $\Conf(\B)$.
+
+\begin{samepage}
+%\begin{definition}
+A $0/1$ timed automaton $\B=(Q,X,R_0,R_1,q_{init},F)$ 
+induces the labeled transition system 
+$T_{\B} = (\Conf(\B), \lambda_{\B}, \rightarrow_{\B}) $
+where $ \lambda_{\B} = (R_0 \cup R_1) \times \{ 0,1\}$
+	and where $ \rightarrow_{\B}$
+	is defined such that
+	for all $q(z), q'(z') \in \Conf(\B)$, 
+	for all $(\delta,i) \in \lambda_{\B}$
+	with $\delta  = (q,g,U,q')\in R_i$
+	$q(v)\xrightarrow{\delta,i}_{\B} q'(v')$ if
+	$v+i \models g$, 
+	$v'(u)=0$ for all $u \in U$ and $v'(\omega)=v(\omega)+ i$ for all $\omega \in \Omega
+	\setminus U$. 
+%\end{definition}
+\end{samepage}
+
+
+
+As expected, we write $q(v)\xrightarrow{\delta,i}_{\B}q'(v')$ if 
+$q(v)\xrightarrow{\delta,i}_{\B}q'(v')$ for some 
+$i\in\{0,1\}$, and some $\delta \in R_i$.
+
+
+
+
+\subsection{One-Counter Automata}
+
+\textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
+
+
+\problemx{OCA $k$-resilience problem}
+{A state $q$ of a OCA $(Q, \Delta)$, a set $SAFE \subseteq Q$, a set $BAD \subseteq Q$.}
+{$\forall q' \in BAD \forall n,n' \in \N ~ (q(n) \rightarrow^* q'(n')) \implies \exists q'' \in SAFE \exists n'' \in \N ~ q'(n') \rightarrow^{\leq k} q''(n'')$ ?\newline}
+
+
+
+\problemx{OCA bounded resilience problem}
+{A state $q$ of a OCA $(Q, \Delta)$, a set $SAFE \subseteq Q$, a set $BAD \subseteq Q$.}
+{$\exists k \geq 0 ~ \forall q' \in BAD \forall n,n' \in \N ~ (q(n) \rightarrow^* q'(n')) \implies \exists q'' \in SAFE \exists n'' \in \N ~ q'(n') \rightarrow^{\leq k} q''(n'')$ ?\newline}
+
+
+
+
+
+\subsection{Vector Addition System with States}
+
+\textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
+
+
+
