@@ -1,73 +1,120 @@
 
 \section{Decidability}
 
+\textcolor{red}{Pour l'instant je regarde la décidabilité du problème "symmétrique" c'est à dire que j'ai inversé toutes les propriétés et demandé à ce que SWSTS soit downward-compatible. Je pense ça doit être possible de faire les choses autrement ...}
+
+\begin{theorem}
+{\sc SWSTS $k$-resilience} is decidable.
+\end{theorem}
+
 \begin{proof}{sketch}
 
+Assume  $(S, \rightarrow, \leq)$ is a SWSTS with downward compatibility, $I$ is a decidable downward-closed subset of $S$, and $J$ is an upward-closed set with a given basis.
 
-Si on inverse les types de propriétés (downward closed pour $I = SAFE$, upward closed pour $J= BAD$) alors on peut écrire un lemme symmétrique du Lemme $4$:
+We define inductively
+$I^{k+1} = I \cup pre(I^k )$. Note that for all $k \in \N$, $I^k$ is downward-closed due to
+the strongly downward compatibility of $(S, \rightarrow, \leq)$.
+
+% Si on inverse les types de propriétés (downward closed pour $I = SAFE$, upward closed pour $J= BAD$) alors on peut écrire un lemme symmétrique du Lemme $4$:
+
+The $k$-resilience property can be expressed as the formula
+$ post^*(s) \cap J \subseteq I^k$. In order to decide whether the inclusion holds, we execute two procedures in parallel, one trying to prove $ post^*(s)\cap J \subseteq I^k$ 
+and one looking for a counter example.
+
+In order to certify inclusion in $I^k$, we need to work with finite representations.
+The next lemma uses that $I'$ and $J$ are downward- and upward-closed, respectively.
 
 \begin{lemma}
 Let $A \subseteq S$ be a set, $J \subseteq S$ upward-closed and $I' \subseteq S$ downward-closed. 
 Then $A \cap J \subseteq I' \leftrightarrow (\downarrow  A) \cap J \subseteq I'$.
 \end{lemma}
 
-Et une fois que l'on a ça, on peut écrire
-$ post^*(s)\cap J \subseteq I' \leftrightarrow (\downarrow  post^*(s)) \cap J \subseteq I'$ 
-et travailler avec $\downarrow post^*(s)$ à la place de $\uparrow post^*(s)$.
+% Et une fois que l'on a ça, on peut écrire
 
-La question deviens: quel $k$ pour que
-$\downarrow post^*(s) \cap J \subseteq I^k$.
-Ou alors, à $k$ fixé, est-ce que
-$\downarrow post^*(s) \cap J \subseteq I^k$.
+\begin{corollary}
+For all $k \in \N$,
+$ post^*(s)\cap J \subseteq I^k \leftrightarrow (\downarrow  post^*(s)) \cap J \subseteq I^k$. 
+% et travailler avec $\downarrow post^*(s)$ à la place de $\uparrow post^*(s)$.
+\end{corollary}
 
-Il faut aussi une condition pour s'assurer que $I^k$ soit bien downward-closed.
-
-Où
-$I^{k+1} = I \cup pre(I^k )$.
-
-On vas imaginer temporairement qu'on arriver à s'assurer $I^k$ downward-closed. 
-(Peut-être on doit faire la supposition de SWSTS strongly downward compatible à la place, pour avoir ça ?)
-
-On reviens sur $\downarrow post^*(s) \cap J \subseteq I^k$.
-
-C'est là peut être qu'on peut s'inspirer de l'algo forward.
-
-Enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. downward closed subsets $D_i \subseteq X$ such that $\downarrow Post(D_i ) \subseteq D_i$. [...]
-Every inductive invariant $D_i$ is an “over-approximation” of $post^*(x)$ if it contains $x$.
-
-On a un nombre fini de bornes supérieures pour $D_i$ on peut considèrer qu’elles consistent en une base de $D_i$ ? On énumère les $D_i$ en énumérant leurs bases directement ?
-
-Ensuite, si jamais	$Base(D_1)  \cap J \subseteq I^k$.
-
-alors
-
-$D_1  \cap J \subseteq I^k$	(par le lemme)
-
-et donc
-
-$\downarrow post*(s) \cap J \subseteq D_1  \cap J \subseteq I^k$
-
-(puisque $D_1$ est une sur-approximation).
-
-Ce qui voudrais dire que on a bien la propriété de résilience.
+% La question deviens: quel $k$ pour que
+% $\downarrow post^*(s) \cap J \subseteq I^k$.
+% Ou alors, à $k$ fixé, est-ce que
+% $\downarrow post^*(s) \cap J \subseteq I^k$.
 
 
-Le problème évidement c'est que cette procédure ne termine peut être pas enfin on n'a aucune guarrantie à priori. À ce moment là il faudrait sans doute faire une autre procédure en parallèle, comme dans l'algo forward, et qui elle terminerais si on a {\em pas} la propriété de résilience.
+Assume $k$ is fixed for now.
 
- La propriété de $k$-résilience peut être résumée par la formule: $post^*(s) \cap J \subseteq I^k$.
-
-Donc la question ce serait est-ce que, à $k$ fixé ($k$ fixé pour l'instant on vas dire) on aurais une procédure qui termine pour montrer que ce n'est pas le cas ?
-
-Ce serait une procédure qui pourrait par exemple calculer $post^m(s) \cap J $ jusqu'à trouver un élément pas dans $I^k$ ?
-
-Càd on calcule les éléments de $post^m(s)$ un à un, pour chacun on vérifie s’il est dans $J$ puis s’il y est on vérifie s’il est dans $I^k$ ?
-
-Il faut aussi une base de $J$ et que $I^k$ soit décidable, mais ça a l'air faisable j'ai l'impression...
+Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. downward closed subsets $D_i \subseteq S$ such that $\downarrow Post(D_i ) \subseteq D_i$. 
+Every inductive invariant $D_i$ is an “over-approximation” of $post^*(s)$ if it contains $s$.
+(on énumère des sur-approximations de la cloture par le bas de $post*(s)$ par leur bases finies).
+Each “over-approximation” $D_i$ is given by its basis $b(D_i)$. Notice that, by standard monotonicity, $\downarrow post^*(s)$ is such an inductive invariant and may
+eventually be found.
 
 
-\textcolor{red}{Ça me perturbe un peu quand même de devoir inverser toutes les propriétés et avoir SWSTS downward-compatible, je pense ça doit être possible de faire les choses mieux...}
+Procedure 1 stops when it finds a basis $b(D)$ of an invariant $D$ such that
+$b(D)  \cap J \subseteq I^k$.  Since $b(D)$ is finite and we know the basis for $J$, we can
+directly compute $b(D)  \cap J$.
+% We can compute a basis of $I^{k+1}$ if we have a basis of $I^k$.
+Due to the Lemma, 
+$b(D)  \cap J \subseteq I^k$ implies
+$D  \cap J \subseteq I^k$.
+Hence
+$b(D)  \cap J \subseteq I^k$ implies
+$\downarrow post^*(s) \cap J \subseteq D  \cap J \subseteq I^k$.
+(since $D$ contains $post^*(s)$).
 
 
+
+The second procedure iteratively computes
+$post^{\leq n}(s) \cap J$
+until it finds an element
+not in $ I^k$.
+
+% Ce serait une procédure qui pourrait par exemple calculer $post^m(s) \cap J $ jusqu'à trouver un élément pas dans $I^k$ ?
+
+% Càd on calcule les éléments de $post^m(s)$ un à un, pour chacun on vérifie s’il est dans $J$ puis s’il y est on vérifie s’il est dans $I^k$ ?
+
+% Il faut aussi une base de $J$ et que $I^k$ soit décidable, mais ça a l'air faisable j'ai l'impression...
+
+
+
+
+\begin{figure}
+\fbox{\parbox[t][3.cm][c]{6cm}{
+$\phantom{a}$\\
+(1)\phantom{aaaaa} $i \leftarrow 0$\\
+(2)\phantom{aaaaa}\textbf{while} $\neg( \downarrow post^*(D_i) \subseteq D_i $
+			 and $ s \in D_i$
+			 and $ b(D)  \cap J \subseteq I^k  )$ \textbf{loop} \newline
+	(3)\phantom{aaaaaa}$\phantom{aaaa} i \leftarrow i +1$ \newline
+(4)\phantom{aaaaa}\textbf{end loop} \newline
+(5)\phantom{aaaaa}\textbf{return} $\text{\textit{false}}$ \newline
+	}
+}
+	\caption{\textbf{Procedure 1:} enumerates inductive invariants to find an inclusion certificate.}\label{procedure1}
+\end{figure}
+
+
+
+
+\begin{figure}
+\fbox{\parbox[t][3.cm][c]{6cm}{
+$\phantom{a}$\\
+(1)\phantom{aaaaa} $D \leftarrow \{ s \} $\\
+(2)\phantom{aaaaa}\textbf{while} $D \cap J \subseteq I^k $ \textbf{loop} \newline
+	(3)\phantom{aaaaaa}$\phantom{aaaa} D \leftarrow D \cup post(D)$ \newline
+(4)\phantom{aaaaa}\textbf{end loop} \newline
+(5)\phantom{aaaaa}\textbf{return} $\text{\textit{false}}$ \newline
+	}
+}
+	\caption{\textbf{Procedure 2:} searches for a non-inclusion certificate.}\label{procedure2}
+\end{figure}
+
+\newpage
+
+
+We show that these two procedures are correct:
 
 \end{proof}
 
