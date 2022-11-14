@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.18)  17 OCT 2022 17:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.18)  14 NOV 2022 18:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1502,13 +1502,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--29
 
  []
 
-<example-image-plain.pdf, id=53, 321.2pt x 240.9pt>
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 4
+9.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/10'
+(microtype)             (new value: 10.0pt) on input line 49.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/7'
+(microtype)             (new value: 7.0pt) on input line 49.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/5'
+(microtype)             (new value: 5.0pt) on input line 49.
+<example-image-plain.pdf, id=61, 321.2pt x 240.9pt>
 File: example-image-plain.pdf Graphic file (type pdf)
 <use example-image-plain.pdf>
 Package pdftex.def Info: example-image-plain.pdf  used on input line 57.
 (pdftex.def)             Requested size: 39.99796pt x 13.99756pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
 7.
+
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1529,50 +1541,158 @@ Underfull \hbox (badness 10000) in paragraph at lines 70--74
  []
 
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 144.
+line 133.
 [2.2]
+Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
+input line 219.
+
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 205.
+(Font)              using `T1/lmr/m/scsl' instead on input line 219.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 228.
+
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 240.
 
 Package hyperref Info: bookmark level for unknown claim defaults to 0 on input 
-line 231.
+line 264.
+
+! LaTeX Error: Environment fact undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.273 \begin{fact}
+                  
+? 
+
+! LaTeX Error: \begin{document} ended by \end{fact}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 \end{fact}
+                
+? 
+
+! LaTeX Error: Environment fact undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.289 \begin{fact}
+                  
+? 
+
+! LaTeX Error: \begin{document} ended by \end{fact}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.293 \end{fact}
+                
+? 
 [3.3]
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--275
+Underfull \hbox (badness 10000) in paragraph at lines 348--348
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--301
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 307--307
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
 
  []
 
 [4.4]
-Underfull \hbox (badness 10000) in paragraph at lines 359--361
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 
  []
 
+) (./proof.tex
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
+t line 5.
+Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
+put line 33.
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+
+ []
+
+[5.5]
+Package microtype Info: Fixing zero \fontdimen 6 for font `OMX/MnSymbolE/b/n/10
+'
+(microtype)             (new value: 10.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `OMX/MnSymbolE/b/n/7'
+
+(microtype)             (new value: 7.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `OMX/MnSymbolE/b/n/5'
+
+(microtype)             (new value: 5.0pt) on input line 123.
+
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
+(Font)              using `U/stmry/m/n' instead on input line 123.
+
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolA/b/n/10'
+(microtype)             (new value: 10.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolA/b/n/7'
+(microtype)             (new value: 7.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolA/b/n/5'
+(microtype)             (new value: 5.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolB/b/n/10'
+(microtype)             (new value: 10.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolB/b/n/7'
+(microtype)             (new value: 7.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolB/b/n/5'
+(microtype)             (new value: 5.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolC/b/n/10'
+(microtype)             (new value: 10.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolC/b/n/7'
+(microtype)             (new value: 7.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolC/b/n/5'
+(microtype)             (new value: 5.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolD/b/n/10'
+(microtype)             (new value: 10.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolD/b/n/7'
+(microtype)             (new value: 7.0pt) on input line 123.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/MnSymbolD/b/n/5'
+(microtype)             (new value: 5.0pt) on input line 123.
+) (./application.tex
+Underfull \hbox (badness 10000) in paragraph at lines 52--54
+
+ []
+
+[6.6]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-369.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
+62.
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for U+eus on input line 369
-.
+LaTeX Font Info:    Freeze math alphabet allocation in version normal.
+(Font)              Allocated math groups: 14 (local: 2) on input line 62.
+LaTeX Font Info:    Trying to load font information for U+eus on input line 62.
+
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
@@ -1580,94 +1700,338 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-eus.cfg
 File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
 )
+LaTeX Font Info:    Undo math alphabet allocation in version normal on input li
+ne 62.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 64.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 65.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 70.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 70.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 70.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 71.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 74.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 76.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 77.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 79.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 80.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 83.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 83.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 88.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 89.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 90.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 92.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 93.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 93.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 94.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 95.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 95.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 95.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 95.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 95.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 96.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 97.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 97.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 97.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 98.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 102.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 102.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 102.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 102.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 104.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 105.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 106.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 106.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 109.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 109.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 109.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 123.
 
-LaTeX Warning: Citation `Andre19' on page 5 undefined on input line 426.
-
-
-LaTeX Warning: Citation `HenzingerMP92' on page 5 undefined on input line 432.
-
-
-LaTeX Warning: Citation `OuaknineW03' on page 5 undefined on input line 432.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 425--433
+Underfull \hbox (badness 10000) in paragraph at lines 118--126
 
  []
 
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 132.
 
-Overfull \hbox (12.96713pt too wide) in paragraph at lines 439--439
+Overfull \hbox (10.28168pt too wide) in paragraph at lines 132--132
 []$\U/MnSymbolC/m/n/10 ¦\OML/lmm/m/it/10 q[] \U/MnSymbolD/m/n/10 > \OML/lmm/m/i
-t/10 BAD\U/MnSymbolC/m/n/10 ¦\OML/lmm/m/it/10 v; v[] \U/MnSymbolD/m/n/10 > \OMS
-/MnSymbolS/m/n/10 N[] \OMX/MnSymbolE/m/n/10 ˆ\OML/lmm/m/it/10 q\OMX/MnSymbolE/m
-/n/10 ˆ\OML/lmm/m/it/10 v\OMX/MnSymbolE/m/n/10  \U/MnSymbolA/m/n/10 ^^@[] \OML
-/lmm/m/it/10 q[]\OMX/MnSymbolE/m/n/10 ˆ\OML/lmm/m/it/10 v[]\OMX/MnSymbolE/m/n/1
-0   \U/MnSymbolA/m/n/10 Ô[]^^H  \U/MnSymbolC/m/n/10 §\OML/lmm/m/it/10 q[] \U/
-MnSymbolD/m/n/10 > \OML/lmm/m/it/10 SAFE\U/MnSymbolC/m/n/10 §\OML/lmm/m/it/10 v
-[] \U/MnSymbolD/m/n/10 > \OMS/MnSymbolS/m/n/10 N[] \OML/lmm/m/it/10 q[]\OMX/MnS
-ymbolE/m/n/10 ˆ\OML/lmm/m/it/10 v[]\OMX/MnSymbolE/m/n/10  \U/MnSymbolA/m/n/10 
-^^@[]
+t/10 BAD\U/MnSymbolC/m/n/10 ¦\OML/lmm/m/it/10 v; v[] \U/MnSymbolD/m/n/10 > \U/d
+srom/m/n/10 N[] \OMX/MnSymbolE/m/n/10 ˆ\OML/lmm/m/it/10 q\OMX/MnSymbolE/m/n/10 
+ˆ\OML/lmm/m/it/10 v\OMX/MnSymbolE/m/n/10  \U/MnSymbolA/m/n/10 ^^@[] \OML/lmm/m
+/it/10 q[]\OMX/MnSymbolE/m/n/10 ˆ\OML/lmm/m/it/10 v[]\OMX/MnSymbolE/m/n/10   
+\U/MnSymbolA/m/n/10 Ô[]^^H  \U/MnSymbolC/m/n/10 §\OML/lmm/m/it/10 q[] \U/MnSymb
+olD/m/n/10 > \OML/lmm/m/it/10 SAFE\U/MnSymbolC/m/n/10 §\OML/lmm/m/it/10 v[] \U/
+MnSymbolD/m/n/10 > \U/dsrom/m/n/10 N[] \OML/lmm/m/it/10 q[]\OMX/MnSymbolE/m/n/1
+0 ˆ\OML/lmm/m/it/10 v[]\OMX/MnSymbolE/m/n/10  \U/MnSymbolA/m/n/10 ^^@[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 439--439
+Underfull \hbox (badness 10000) in paragraph at lines 132--132
 
  []
 
-[5.5]
-Underfull \hbox (badness 10000) in paragraph at lines 447--447
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 140.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 140.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 140.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 140.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 140.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 140.
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--140
 
  []
 
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 145.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 145.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 145.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 145.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 145.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 145.
+[7.7]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 147.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 147.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 149.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 149.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 150.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 153.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 153.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 155.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 156.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 157.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 157.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 161.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 161.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 163.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 164.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 165.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 167.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 168.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 169.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 170.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 170.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 170.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 170.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 170.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 171.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 172.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 172.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 172.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 173.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 179.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 179.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 179.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 179.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 179.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 180.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 180.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 180.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 180.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 180.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 181.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 181.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 193.
 
-Overfull \hbox (2.54095pt too wide) in paragraph at lines 500--500
-[]$\U/MnSymbolC/m/n/10 ¦\OML/lmm/m/it/10 q[] \U/MnSymbolD/m/n/10 > \OML/lmm/m/i
-t/10 BAD\U/MnSymbolC/m/n/10 ¦\OML/lmm/m/it/10 n; n[] \U/MnSymbolD/m/n/10 > \OMS
-/MnSymbolS/m/n/10 N \OMX/MnSymbolE/m/n/10 ˆ\OML/lmm/m/it/10 q\OMX/MnSymbolE/m/n
-/10 ˆ\OML/lmm/m/it/10 n\OMX/MnSymbolE/m/n/10  \U/MnSymbolA/m/n/10 ^^@[] \OML/l
-mm/m/it/10 q[]\OMX/MnSymbolE/m/n/10 ˆ\OML/lmm/m/it/10 n[]\OMX/MnSymbolE/m/n/10 
-  \U/MnSymbolA/m/n/10 Ô[]^^H  \U/MnSymbolC/m/n/10 §\OML/lmm/m/it/10 q[] \U/Mn
-SymbolD/m/n/10 > \OML/lmm/m/it/10 SAFE\U/MnSymbolC/m/n/10 §\OML/lmm/m/it/10 n[]
- \U/MnSymbolD/m/n/10 > \OMS/MnSymbolS/m/n/10 N \OML/lmm/m/it/10 q[]\OMX/MnSymbo
-lE/m/n/10 ˆ\OML/lmm/m/it/10 n[]\OMX/MnSymbolE/m/n/10  \U/MnSymbolA/m/n/10 ^^@[
-]
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
+
  []
 
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 199.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 199.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 199.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 199.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 199.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 199.
 
-Underfull \hbox (badness 10000) in paragraph at lines 500--500
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
 
  []
 
+) (./article.bbl
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 9
+.
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/9'
+(microtype)             (new value: 9.0pt) on input line 9.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/6'
+(microtype)             (new value: 6.0pt) on input line 9.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 506--506
-
- []
-
-[6.6])
-No file article.bbl.
+[8.8]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input l
+ine 28.
+)
 
 Package caption Warning: Unused \captionsetup[sub] on input line 9.
 See the caption package documentation for explanation.
 
-[7.7] (./article.aux)
+[9.9] (./article.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `article.out' has not changed.
-(rerunfilecheck)             Checksum: 5200F7703496EDDBF7AD8EB3AAFD1DAB;2045.
+(rerunfilecheck)             Checksum: 5C2BC553251364D90DB8351D61C39896;2322.
  ) 
 Here is how much of TeX's memory you used:
- 37849 strings out of 478268
- 701381 string characters out of 5846347
- 961754 words of memory out of 5000000
- 55078 multiletter control sequences out of 15000+600000
- 615334 words of font info for 253 fonts, out of 8000000 for 9000
+ 38121 strings out of 478268
+ 705699 string characters out of 5846347
+ 962118 words of memory out of 5000000
+ 55236 multiletter control sequences out of 15000+600000
+ 642121 words of font info for 307 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,10n,94p,1004b,514s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc}{/
-usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/
-local/texlive/2022/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/usr/loca
-l/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022
-/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fo
+ 99i,11n,94p,1004b,549s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
+texlive/2022/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolS.enc}{/usr/local/texl
+ive/2022/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/local/texlive/
+2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dis
+t/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/usr/local/texlive/2022/texmf-dist/fo
 nts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/local/texlive/2022/texmf-dist/fonts/
 enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/mns
 ymbol/MnSymbolC.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-m
@@ -1678,27 +2042,31 @@ esome5Free-Regular.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/m
 nsymbol/MnSymbol10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/m
 nsymbol/MnSymbol5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/mn
 symbol/MnSymbol7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/mns
-ymbol/MnSymbol9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsf
-onts/euler/eusm10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
-/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2022/texmf-dist/
-fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
-/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/
-lmr5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr7.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2022/texmf-dist/
-fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
-1/public/lm/lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
-/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/s
-ymbols/msam10.pfb>
-Output written on article.pdf (7 pages, 483156 bytes).
+ymbol/MnSymbol9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/doub
+lestroke/dsrom10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/ams
+fonts/euler/eusm10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/l
+m/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/lo
+cal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2022/texmf-dist
+/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
+1/public/lm/lmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
+/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr5.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist
+/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
+1/public/lm/lmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/l
+m/lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/l
+ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></u
+sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+>
+Output written on article.pdf (9 pages, 566250 bytes).
 PDF statistics:
- 285 PDF objects out of 1000 (max. 8388607)
- 214 compressed objects within 3 object streams
- 37 named destinations out of 1000 (max. 500000)
- 82026 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 355 PDF objects out of 1000 (max. 8388607)
+ 274 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 94842 words of extra memory for PDF output out of 106986 (max. 10000000)
 
