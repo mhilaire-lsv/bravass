@@ -157,8 +157,16 @@ there exists $b'' \leq b'$ such that $a \rightarrow b'' $. Therefore, $x \righta
 If Procedure 2 terminates, then
 $k$-resilience does not hold.
 It remains to show that Procedure 2 terminates whenever $k$-resilience does not hold.
-
-
+Assume $ post^*(s) \cap J \not\subseteq I^k$, then there exists $a \in post^*(s) \cap J$ such that $a \not\in I^k$. Since $post^*(s) = \bigcup_{n} post^{\leq n}(s)$, then 
+$a \in post^*(s)$
+implies
+there exists
+$n_a$
+such that
+$a \in post^{\leq n_a}(s)$.
+Hence,  $post^{\leq n_a}(s) \cap J$ contains an element not in 
+$I^k$,
+and Procedure 2 terminates.
 \end{enumerate}
 
 
