@@ -8,7 +8,7 @@ In this section, we introduce general notations and preliminary definitions.
 The model we are interested in is (S)WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
 
 
-\textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
+% \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
 
 
 \subsection{Transition systems}
@@ -127,7 +127,20 @@ $x_i \leq  x_j$.
 Notice that a wqo is well-founded, i.e. it admits no infinite strictly decreasing sequence
 $x_0 > x_1 > x_2 > \cdots$
 
-\textcolor{red}{Add lemma about infinite increasing subsequences ?}
+% \textcolor{red}{Add lemma about infinite increasing subsequences ?}
+
+\begin{lemma}
+(Erd\"os and Rado). Assume $\leq$ is a wqo. Then any infinite sequence contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$).
+\end{lemma}
+
+\iffalse
+\begin{proof}
+Consider an infinite sequence and the set $M = \{i \in N \mid \forall j > i ~ x_i \not\leq x_j \}$. $M$ cannot
+be infinite, otherwise it would lead to an infinite subsequence contradicting the wqo
+hypothesis. Thus, $M$ is bounded and any $x_i$ with $i$ beyond $M$ can start an infinite
+increasing subsequence.
+\end{proof}
+\fi
 
 
 Given $\leq$ a quasi-ordering over some set $X$, an {\em upward-closed set} is any set $I \subseteq X$ such that if $y \geq x$ and $x \in I$ then $y \in I $.
@@ -141,12 +154,17 @@ the {\em upward-closure of $A$}
 We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
 as $\uparrow x$ (resp. $\downarrow x$).
 
+
+A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \bigcup_{x \in I_b} \uparrow x$. 
+% Higman investigated ordered sets with the finite basis property.
+
+
 \begin{lemma}{(Higman [40])} 
 If $\leq$ is a wqo; then any upward-closed $I$ has a
 finite basis.
 \end{lemma}
 
-\textcolor{red}{Expliquer ce que c'est une base d'abords.}
+% \textcolor{red}{Expliquer ce que c'est une base d'abords.}
 
 \begin{proof}
 The set of minimal elements of $I$ is a basis because $\leq$ is well-founded. It
@@ -155,7 +173,7 @@ an infinite sequence contradicting the wqo assumption.
 \end{proof}
 \textcolor{blue}{Alain: non ceci est vrai seulement si le quasi ordre est un ordre cad antisymétrique. Mais ce n'est pas un pb. Relis mon papier de 2016 sur les well abstracted...}
 
-\textcolor{red}{Un lemme je pense c'est important de le noter, peut-être pas comme ça peut être noter différement faudra voir}
+
 
 \begin{lemma}  
 If $\leq$ is a wqo; any infinite increasing sequence $I_0 \subseteq I_1 \subseteq I_2 \subseteq \cdots$ of
@@ -164,13 +182,17 @@ $I_k = I_{k+1} = I_{k+2} = \cdots $.
 \end{lemma}
 
 \begin{proof}
-Assue we have a counter-example ...
+Assue we have a counter-example.
+We extract an infinite subsequence where
+inclusion is strict: $I_{n_0} \subsetneq I_{n_1} \subsetneq I_{n_2} \cdots$. Now, for any $i>0$, we can pick some $x_i \in I_{n_i} \setminus I_{n_{i-1}}$. The well-quasi-ordering hypothesis means that the infinite sequence of $x_i$'s
+contains an increasing pair $x_i \leq x_j$ for some $i<j$. Because $x_i$ belongs to an upward-
+closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n_{ j - 1}}$.
 \end{proof}
 
 
-\textcolor{red}{Define WSTS}
+% \textcolor{red}{Define WSTS}
 
-\textcolor{red}{Define SWSTS - may be necessary}
+% \textcolor{red}{Define SWSTS -  necessary}
 
 \subsection{Well-structured transition systems}
 
@@ -191,13 +213,27 @@ $s_1, t_1 , s_2 \in S$
 
 Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering.
 
-\textcolor{red}{For one-counter automata, in case the only tests are zero tests then 
-I supposed $\leq$ is $\leq$ for non-zero integers, and I'll have to look-up/think for what to do with the zero element for instance. For TA it seem kind of nontrivial (since they allow $<c$ tests).}
+
+% \textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and 'decidable $\leq$' being independant from the WSTS definition}
+
+\begin{proposition}
+If $S$ is an WSTS and $I \subseteq S$ is an upward-closed set of states, then $\pred^*(I )$ is upward-
+closed.
+\end{proposition}
+
+\iffalse
+Proof. Assume $s \in \pred^* (I )$. Then $s \rightarrow^* t$ for some $t \in I $. If now $s' \geq s$ then upward-compatibility entails that $s' \rightarrow^* t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred^*(I )$.
+\fi
+
+\begin{proposition}
+If $S$ is an SWSTS and $I \subseteq S$ is an upward-closed set of states, then $\pred(I )$ is upward-closed.
+\end{proposition}
+
+\iffalse
+Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
+\fi
 
 
-
-\textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and
-'decidable $\leq$' being independant from the WSTS definition}
 
 
 \begin{definition}
@@ -205,32 +241,29 @@ A WSTS has {\em effective pred-basis} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 \end{definition}
 
-\textcolor{red}{Define what an Ideal is. Actually an Ideal is just an upward-closed set, so maybe this just adds some confusion. Anti-ideal just downward closed so again just not that helpful a notation. Maybe have a }
+% \textcolor{red}{Define what an Ideal is. Actually an Ideal is just an upward-closed set, so maybe this just adds some confusion. Anti-ideal just downward closed so again just not that helpful a notation. Maybe have a }
 
 
-
+\iffalse
 \begin{definition}
 A {\em bi-ideal} $I \subseteq S$ is an upward-closed and downward-closed set, i.e
 $\uparrow I = I = \downarrow I$.
 \end{definition}
 
-A downard-closed set $J$ is {\em decidable} if, given $s \in S$, it is decidable whether
-$s \in J$.
-
-
 "Bi-ideals often represent “control states” as in [cf \%]. "
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 
-\textcolor{red}{Probably one can already 'deduce' from this that ideal $I$ and anti-ideal $J$ for resp. good and bad states, in the case of e.g. timed automata would be given by sets of states}
+% \textcolor{red}{Probably one can already 'deduce' from this that ideal $I$ and anti-ideal $J$ for resp. good and bad states, in the case of e.g. timed automata would be given by sets of states}
+\fi
 
-
+A downard-closed set $J$ is {\em decidable} if, given $s \in S$, it is decidable whether
+$s \in J$. 
 Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.
 
-\textcolor{red}{Do we still demand this ?}
+% \textcolor{red}{Do we still demand this ?}
 
 \begin{claim}{(stability of ideals)}
-Let $I, J \subseteq S$ be upward-closed. Then the sets 
-$\pred(I)$, $I \cup J$, and $I \cap J$ are upward-closed.
+Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J$ are upward-closed.
 \end{claim}
 
 
@@ -238,8 +271,49 @@ $\pred(I)$, $I \cup J$, and $I \cap J$ are upward-closed.
 % Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 % \end{claim}
 
+\begin{fact}
+% Fact 3 ([1]). 
+% Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+
+(i) For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
+
+(ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
+\end{fact}
 
 
+\begin{definition}{ (index)}. 
+For an upward-closed set $I \subseteq S$ and $k \geq 0$, let $I^k= \bigcup_{0 \leq j \leq k} pre^j(I)$.
+The {\em index} $k(I)$ is the
+smallest $k_0$ s.t. $I^k = I^{k_0}$ for all $k \geq k_0$.
+\end{definition}
+
+\begin{fact}
+% Fact 4 (stop condition). 
+Let $I \subseteq S$ be an upward-closed set and $k \geq 0$ s.t. $I^k = I^{k+1}$ , then $I^\ell = I^k$ for all $\ell \geq k$, i.e.,
+$k(I) \leq k$. This also implies that $pre^* (I) = I^k $.
+\end{fact}
+
+
+
+\begin{lemma}
+% Lemma 3 ([1]) 
+% Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+ Given a basis of an upward-closed set $I \subseteq S$, and a state $s$ of a strongly well-structured transition
+system, we can decide whether we can reach $I$ from $s$.
+\end{lemma}
+
+\begin{proof}
+We have to show that we can compute a basis of $I^{k+1}$ if we are given a basis of $I^k $. 
+Then the
+decidability of the stop condition follows directly. Let $B$ be a basis of $I^k$. 
+We have
+$$I^{k+1} = I \cup pre(I^k ) = I \cup
+\bigcup_{s' \in B}
+pre(\uparrow \{s' \}).$$
+
+Since $pre(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
+Fact 3, we can compute a basis of $I^{k+1}$.
+\end{proof}
 
 \subsection{Defining resilience}
 
@@ -289,7 +363,7 @@ downward-closed sets.
 
 We assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set.
 
-\textcolor{red}{Seems like a reasonable assumption to me.}
+% \textcolor{red}{Seems like a reasonable assumption to me.}
 
 From these considerations, we formulate instances of the abstract resilience problems for well-
 structured transition systems.
@@ -307,7 +381,7 @@ Analogously, we formulate the bounded resilience problem for WSTSs.
 {$\exists k \geq 0 ~ \forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
-\textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
+% \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
 
 
 
