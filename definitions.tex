@@ -197,14 +197,14 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 
 
 \begin{definition}
-A {\em (resp. strongly) well-structured transition systems} (abbreviated as WSTS resp. SWSTS) 
+A {\em (resp. strongly) well-structured transition systems} (abbreviated as WSTS resp. S-WSTS) 
 is a TS
 $(S, \rightarrow, \leq)$
 equipped with a wqo ${\leq} \subseteq S \times S$ between states such that  
 %  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
 the wqo is (resp. strongly) compatible with the transition relation, i.e., for all 
 $s_1, t_1 , s_2 \in S$
-	with $s_1 \leq t_2$  and $s_1 \rightarrow s_2$ , there exists 
+	with $s_1 \leq t_1$  and $s_1 \rightarrow s_2$ , there exists 
 	$t_2 \in S$ with 
 	$s_2 \leq t_2$ and $t_1 \rightarrow^{*} t_2$ 			
 				(resp. $t_1 \rightarrow^{1} t_2$ ).
@@ -227,7 +227,7 @@ Proof. Assume $s \in \pred^* (I )$. Then $s \rightarrow^* t$ for some $t \in I $
 \begin{proposition}
 If $S$ is an SWSTS and $I \subseteq S$ is an upward-closed set of states, then $\pred(I )$ is upward-closed.
 \end{proposition}
-
+\alain{étrange ces deux propositions}
 \iffalse
 Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
 \fi
@@ -277,6 +277,7 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 (i) For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
 
 (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
+\alain{A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
 \end{fact}
 
 
@@ -297,7 +298,7 @@ $k(I) \leq k$. This also implies that $pre^* (I) = I^k $.
 \begin{lemma}
 % Lemma 3 ([1]) 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
- Given a basis of an upward-closed set $I \subseteq S$, and a state $s$ of a strongly well-structured transition
+ Given a basis of an upward-closed set $I \subseteq S$, and a state $s$ of an effective strongly well-structured transition
 system, we can decide whether we can reach $I$ from $s$.
 \end{lemma}
 
@@ -309,7 +310,9 @@ We have
 $$I^{k+1} = I \cup pre(I^k ) = I \cup
 \bigcup_{s' \in B}
 pre(\uparrow \{s' \}).$$
-
+\alain{n'est-ce pas $I^{k+1} = I^k \cup pre(I^k ) = I^k \cup
+\bigcup_{s' \in B}
+pre(\uparrow \{s' \}).$ ?}
 Since $pre(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
 Fact 3, we can compute a basis of $I^{k+1}$.
 \end{proof}
@@ -317,7 +320,7 @@ Fact 3, we can compute a basis of $I^{k+1}$.
 \subsection{Defining resilience}
 
 
-\subsubsection{TS resilience}
+\subsubsection{Resilience}
 
 \textcolor{red}{Ask the question why use a set of propositions for $SAFE$ and $BAD$ rather than use subsets of the set of configurations ? }
 
@@ -333,7 +336,7 @@ $BAD$.
 From this we formulate two resilience problems. First consider the case where the recovery time
 is bound by a given natural number $k \geq 0$, i.e., the explicit resilience problem for TS.
 
-\problemx{TS $k$-resilience problem}
+\problemx{$k$-resilience problem}
 {A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
 {$\forall s' \in BAD ~ (s \rightarrow^* s') \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
@@ -343,13 +346,13 @@ is bound by a given natural number $k \geq 0$, i.e., the explicit resilience pro
 We can also ask whether there exists such a bound $k$. We call this problem the bounded resilience problem for TS.
 
 
-\problemx{TS bounded resilience problem}
+\problemx{Resilience problem}
 {A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
 {$\exists k \geq 0 ~ \forall s' \in BAD ~ (s \rightarrow^* s') \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 
-\subsubsection{WSTS resilience}
+\subsubsection{Resilience}
 
 
 Properties in well-structured transition systems are often given as upward- or downward closed sets [references].
@@ -369,15 +372,15 @@ structured transition systems.
 
 Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
-\problemx{WSTS $k$-resilience problem}
+\problemx{$k$-resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
 {$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
-Analogously, we formulate the bounded resilience problem for WSTSs.
+Analogously, we formulate the resilience problem for WSTSs.
 
-\problemx{WSTS bounded resilience problem}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
-{$\exists k \geq 0 ~ \forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+\problemx{Resilience problem for WSTS}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+{$\exists k \geq 0 ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 % \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
