@@ -227,7 +227,7 @@ Proof. Assume $s \in \pred^* (I )$. Then $s \rightarrow^* t$ for some $t \in I $
 \begin{proposition}
 If $S$ is an SWSTS and $I \subseteq S$ is an upward-closed set of states, then $\pred(I )$ is upward-closed.
 \end{proposition}
-\alain{étrange ces deux propositions}
+\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
 Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
 \fi
@@ -277,7 +277,7 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 (i) For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
 
 (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
-\alain{A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
+\alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
 \end{fact}
 
 
@@ -316,11 +316,11 @@ pre(\uparrow \{s' \}).$ ?}
 Since $pre(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
 Fact 3, we can compute a basis of $I^{k+1}$.
 \end{proof}
-
+\alain{pas de Fact 3}
 \subsection{Defining resilience}
 
 
-\subsubsection{Resilience}
+\subsubsection{Resilience for general transition systems}
 
 \textcolor{red}{Ask the question why use a set of propositions for $SAFE$ and $BAD$ rather than use subsets of the set of configurations ? }
 
@@ -337,22 +337,22 @@ From this we formulate two resilience problems. First consider the case where th
 is bound by a given natural number $k \geq 0$, i.e., the explicit resilience problem for TS.
 
 \problemx{$k$-resilience problem}
-{A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
+{a TS $(S,\rightarrow)$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
 {$\forall s' \in BAD ~ (s \rightarrow^* s') \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 % If we assume that the transition system yields infinite sequences of transitions, we can express the property to be evaluated in CTL by s |= AG(BAD → 0≤ j≤k EX j SAFE). 
 
-We can also ask whether there exists such a bound $k$. We call this problem the bounded resilience problem for TS.
+We can also ask whether there exists such a bound $k$. We call this problem the resilience problem.
 
 
 \problemx{Resilience problem}
-{A state $s$ of a TS $(S,\rightarrow)$, two disjoints subset of $S$ $SAFE$ and $BAD$.}
+{a TS $(S,\rightarrow)$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
 {$\exists k \geq 0 ~ \forall s' \in BAD ~ (s \rightarrow^* s') \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 
 
-\subsubsection{Resilience}
+\subsubsection{Resilience for WSTS}
 
 
 Properties in well-structured transition systems are often given as upward- or downward closed sets [references].
@@ -382,7 +382,9 @@ Analogously, we formulate the resilience problem for WSTSs.
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$\exists k \geq 0 ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
-
+\alain{dire juste que SAFE = upward closed et BAD = downward closed.
+envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
+4 resilience problem (U,D), (U,U), (D,U), (D,D)}
 % \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
 
 
