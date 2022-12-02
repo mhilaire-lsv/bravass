@@ -1,34 +1,13 @@
 
 \section{Decidability}
 
-\begin{theorem}
-{\sc $k$-resilience} is decidable for effective WSTS with strong monotony.
-\end{theorem}
 
-
-\begin{proof}
-
-Assume  $(S, \rightarrow, \leq)$ is a SWSTS with upward compatibility, $J$ is a decidable downward-closed subset of $S$, and $I$ is an upward-closed set with a given basis.
-
-We define inductively
-$I^{k} = \bigcup_{0 \leq j \leq k} pre^j(I)$. Note that for all $k \in \N$, $I^k$ is upward-closed due to
-the strongly upward compatibility of $(S, \rightarrow, \leq)$.
-
-% Si on inverse les types de propriétés (downward closed pour $I = SAFE$, upward closed pour $J= BAD$) alors on peut écrire un lemme symmétrique du Lemme $4$:
-
-The $k$-resilience property can be expressed as the formula
-$ post^*(s) \cap J \subseteq I^k$. In order to decide whether the inclusion holds, we execute two procedures in parallel, one trying to prove $ post^*(s)\cap J \subseteq I^k$ 
-and one looking for a counter example.
-
-In order to certify inclusion in $I^k$, we need to work with finite representations.
-The next lemma uses that $I$ and $J$ are upward- and downward-closed, respectively.
 
 \begin{lemma}
 Let $A \subseteq S$, $J \subseteq S$ downward-closed and $I \subseteq S$ upward-closed. 
 Then $A \cap J \subseteq I \leftrightarrow (\uparrow  A) \cap J \subseteq I$.
 \end{lemma}
 
-% Et une fois que l'on a ça, on peut écrire
 
 \begin{corollary}
 For all $k \in \N$,
@@ -72,6 +51,35 @@ The second procedure iteratively computes
 $post^{\leq n}(s) \cap J$
 until it finds an element
 not in $ I^k$.
+
+
+This result is not in xxx and don't use the problematic hypothsis on $post^*$.
+
+\begin{theorem}
+{\sc $k$-resilience} is decidable for effective WSTS with downward/upward compatibility.
+%	with strong monotony.
+\end{theorem}
+
+
+\begin{proof}
+
+Assume  $(S, \rightarrow, \leq)$ is a WSTS with downward/upward compatibility, $J$ is a decidable downward-closed subset of $S$, and $I$ is an upward-closed set with a given basis.
+
+We define inductively
+$I^{k} = \bigcup_{0 \leq j \leq k} pre^j(I)$. Note that for all $k \in \N$, $I^k$ is upward-closed due to
+the strongly upward compatibility of $(S, \rightarrow, \leq)$.
+
+% Si on inverse les types de propriétés (downward closed pour $I = SAFE$, upward closed pour $J= BAD$) alors on peut écrire un lemme symmétrique du Lemme $4$:
+
+The $k$-resilience property can be expressed as the formula
+$ post^*(s) \cap J \subseteq I^k$. In order to decide whether the inclusion holds, we execute two procedures in parallel, one trying to prove $ post^*(s)\cap J \subseteq I^k$ 
+and one looking for a counter example.
+
+In order to certify inclusion in $I^k$, we need to work with finite representations.
+The next lemma uses that $I$ and $J$ are upward- and downward-closed, respectively.
+
+
+% Et une fois que l'on a ça, on peut écrire
 
 % Ce serait une procédure qui pourrait par exemple calculer $post^m(s) \cap J $ jusqu'à trouver un élément pas dans $I^k$ ?
 
@@ -150,7 +158,7 @@ $b' \leq b$.
 % By monotonicity, there exists b'' ≥ b' such that a → b'' . Therefore, x → ∗ b'' and b' ≥ b, hence b ∈ ↓ Post ∗ (x).
 \textcolor{red}{By downward compatibility 
 there exists $b'' \leq b'$ such that $a \rightarrow b'' $. Therefore, $x \rightarrow^* b''$ and $b' \geq b$, hence $b \in \downarrow post^*(x)$.}
-\alain{où est cette hypothèse downward compatibility  ?}
+%\alain{où est cette hypothèse downward compatibility  ?}
 \item Procedure 2 computes
  $post^{\leq n}(s) \cap J$
  until it finds an element not in $ I^k$.
@@ -170,19 +178,12 @@ $I^k$,
 and Procedure 2 terminates.
 \end{enumerate}
 
-
-
-
-
 \end{proof}
 
 
-\begin{theorem}
-{\sc $k$-resilience} is undecidable for effective WSTS ???
-\end{theorem}
 
 \begin{theorem}
-{\sc resilience} is decidable for WSTS with strong monotony.
+{\sc resilience} is decidable for WSTS with downward/upward compatibility.
 \end{theorem}
 
 \begin{proof}{sketch}
@@ -194,5 +195,17 @@ continue.
 The stop condition is decidable
 and by Fact 4 also sufficient. 
 \alain{Fact 4 don't exist}
+\end{proof}
+
+{\sc resilience} is decidable for WSTS with strong upward compatibility and k-resilience.
+
+jouer avec les hypothèses downward/upward compatibility
+
+\begin{theorem}
+{\sc $k$-resilience} is undecidable for effective WSTS ???
+\end{theorem}
+
+\begin{proof}
+totot
 \end{proof}
 
