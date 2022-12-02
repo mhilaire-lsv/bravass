@@ -453,7 +453,7 @@ $\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^
 remarque si on enlève la strong monotony mais en gardant with effective basis of $post^*$:
 
 
-\begin{theorem}
+\begin{theorem}(à prouver)
 {\sc bounded resilience} is undecidable ??? for WSTS with upward compatibility and effective basis of $post^*$ ???
 \end{theorem}
 
@@ -463,7 +463,7 @@ leur algorithme termine mais ne marche pas car l'intersection de post et J car c
 
 si on garde strong mais on enlève effective basis of $post^*$:
 
-\begin{proposition}
+\begin{proposition}(à prouver)
 {\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility ????
 \end{proposition}
 
@@ -472,24 +472,21 @@ pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset
 \end{proof}
 
 
-
+Unfortunately, resilience is undecidable for general WSTS even with strong monotony.
 
 \begin{theorem}
-{\sc resilience} is undecidable for WSTS (with upward compatibility) ???
+{\sc resilience} is undecidable for WSTS with strong monotony.
 \end{theorem}
 
 
 \begin{proof}
-on choisit $J=Reach(S)$. resilience remains to {$\forall s \in S,  \exists s'' \in I ~ s' \rightarrow^{*} s''$ ?\newline}. il existe un chemin infini passant par inft par $q$, liveness undecidable LCS (Reach=$\downarrow Reach$), Reset, WSTS.
+Let $J=\downarrow Reach(S)$. Now resilience remains to the following property: $\forall s \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. This property is a liveness property that would allow to decide LTL but LTL has been proved undecidable for Lossy Channel Systems (LCS) for which Reach=$\downarrow Reach$.
+Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.
 \end{proof}
+
+Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets but $Reach \neq \downarrow Reach$.
 
 and with effective basis of $post^*$ ???
-
-
-
-\begin{proof}
-totot
-\end{proof}
 
 
 
