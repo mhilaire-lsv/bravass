@@ -424,11 +424,11 @@ citer
 {\sc bounded resilience} is decidable for WSTS with strong upward compatibility and effective basis of $post^*$.
 \end{theorem}
 
-We may generalyse thier result:
+We may generalyse thier result by weakiening the result
 
-\begin{theorem}(ref)
+\begin{corollary}
 {\sc resilience} is decidable for WSTS with strong upward compatibility and effective basis of $post^*$.
-\end{theorem}
+\end{corollary}
 
 
 \begin{proof}
@@ -450,13 +450,23 @@ remarque si on enlève la strong monotony:
 
 
 \begin{theorem}(ref)
+{\sc bounded resilience} is undecidable ??? for WSTS with upward compatibility and effective basis of $post^*$ ???
+\end{theorem}
+
+\begin{theorem}(ref)
 {\sc resilience} is undecidable ??? for WSTS with upward compatibility and effective basis of $post^*$ ???
 \end{theorem}
+
+
+\begin{proof}
+on choisit $J=S$ ou $Reach(S)$. {$\forall s  \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}. il existe un chemin infini passant par inft par $q$, liveness undecidable LCS, Reset, WSTS.
+\end{proof}
+
 
 si on enlève effective basis of $post^*$:
 
 \begin{proposition}
-{\sc $k$-resilience}, hence {\sc bounded resilience} and {\sc resilience}, is undecidable for effective WSTS with strong upward compatibility ?
+{\sc $k$-resilience}, hence {\sc bounded resilience} and {\sc resilience}, is undecidable for effective WSTS with strong upward compatibility ????
 \end{proposition}
 
 \begin{proof}
