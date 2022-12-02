@@ -386,13 +386,13 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 
 \problemx{$k$-resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
-{$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{$\forall s' ~ (s \rightarrow^* s') \wedge s' \in J  \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 Analogously, we formulate the resilience problem for WSTSs.
 
 \problemx{bounded Resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
-{$\exists k \geq 0 ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 \problemx{Resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
@@ -464,7 +464,7 @@ si on garde strong mais on enlève effective basis of $post^*$:
 \end{proposition}
 
 \begin{proof}
-pas de strong.
+pas de effective basis of $post^*$.
 \end{proof}
 
 \begin{theorem}
