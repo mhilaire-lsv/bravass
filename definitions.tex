@@ -370,6 +370,18 @@ We assume that the safety property is given by an upward-closed set and the bad 
 From these considerations, we formulate instances of the abstract resilience problems for well-
 structured transition systems.
 
+
+\problemx{$k$-resilience problem for WSTS}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
+{$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+
+max des I,J possibles \\
+
+J=tout \\
+\problemx{$k$-resilience problem for WSTS}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
+{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+
 Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
 \problemx{$k$-resilience problem for WSTS}
@@ -389,6 +401,13 @@ Analogously, we formulate the resilience problem for WSTSs.
 
 
 \alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
+
+\begin{remark}
+\begin{itemize}
+\item J=tout et I=$\uparrow x$ alors resilience = couverture.
+\item J=tout et I=$\downarrow x$ alors resilience = accessibilité.
+\end{itemize}
+\end{remark}
 
 \alain{dire juste que SAFE = upward closed et BAD = downward closed.
 envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
