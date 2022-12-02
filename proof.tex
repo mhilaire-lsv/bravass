@@ -9,6 +9,28 @@ Then $A \cap J \subseteq I$  iff $ (\uparrow  A) \cap J \subseteq I$.
 \end{lemma}
 
 
+\begin{proof}
+
+If 
+$A \cap J \subseteq I$,
+then
+${\uparrow (A \cap J)} \subseteq {\uparrow I} = I$.
+However
+$({\uparrow A}) \cap J \subseteq {\uparrow (A \cap J)}$.
+Indeed if $x$ in $({\uparrow A} \cap J)$,
+$x$ is in $\uparrow A$
+so there exists $a \in A$ such that $x \geq a$.
+However $x$ is also in $J$, meaning $a$ is in $J$.
+Meaning $a$ is in $(A \cap J)$
+and $x \in { \uparrow (A \cap J)}$.
+
+In the other direction,
+since $A \subseteq {\uparrow A}$,
+$({\uparrow  A}) \cap J \subseteq I$ implies
+$A \cap J \subseteq ({\uparrow  A}) \cap J \subseteq I$.
+\end{proof}
+
+
 \begin{corollary}
 For all $k \in \N$,
 $ post^*(s)\cap J \subseteq I^k $  iff $ (\uparrow  post^*(s)) \cap J \subseteq I^k$. 
