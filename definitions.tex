@@ -394,7 +394,6 @@ Analogously, we formulate the resilience problem for WSTSs.
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$\exists k \geq 0 ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
-
 \problemx{Resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
@@ -443,7 +442,8 @@ The hypothesis $post^*$ is undecidable for WSTS with strong upward compatibility
 
 
 \begin{proof}
-$post^*$ donne l'accessibilité or les resert sont WSTS with strong compatibility. et l'accessibilité est undecidable.
+$\uparrow post^*$ donne l'accessibilité de 0 sur les compteurs or les resert sont WSTS with strong compatibility. et l'accessibilité est undecidable.
+$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \end{proof}
 
 remarque si on enlève la strong monotony mais en gardant with effective basis of $post^*$:
@@ -453,29 +453,27 @@ remarque si on enlève la strong monotony mais en gardant with effective basis o
 {\sc bounded resilience} is undecidable ??? for WSTS with upward compatibility and effective basis of $post^*$ ???
 \end{theorem}
 
-
 \begin{proof}
-totot
+leur algorithme termine mais ne marche pas car l'intersection de post et J car ce n'est pas pertinent. et donc ???
 \end{proof}
 
 si on garde strong mais on enlève effective basis of $post^*$:
 
 \begin{proposition}
-({\sc $k$-resilience},) hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility ????
+{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility ????
 \end{proposition}
 
-
 \begin{proof}
-totot
+pas de strong.
 \end{proof}
 
 \begin{theorem}
-{\sc resilience} is undecidable for WSTS with upward compatibility ???
+{\sc resilience} is undecidable for WSTS (with upward compatibility) ???
 \end{theorem}
 
 
 \begin{proof}
-on choisit $J=S$ ou $Reach(S)$. {$\forall s  \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}. il existe un chemin infini passant par inft par $q$, liveness undecidable LCS, Reset, WSTS.
+on choisit $J=Reach(S)$. resilience remains to {$\forall s \in S,  \exists s'' \in I ~ s' \rightarrow^{*} s''$ ?\newline}. il existe un chemin infini passant par inft par $q$, liveness undecidable LCS (Reach=$\downarrow Reach$), Reset, WSTS.
 \end{proof}
 
 and with effective basis of $post^*$ ???
