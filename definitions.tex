@@ -480,7 +480,7 @@ Unfortunately, resilience is undecidable for general WSTS even with strong monot
 
 
 \begin{proof}
-Let $J=\downarrow Reach(S)$. Now resilience remains to the following property: $\forall s \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. This property is a liveness property that would allow to decide LTL but LTL has been proved undecidable for Lossy Channel Systems (LCS) for which Reach=$\downarrow Reach$.
+Let $J=\downarrow Reach(S)$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us translate this property for LCS for which Reach=$\downarrow Reach$: $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. This property can be used to express the liveness property that there is an infinite run passing infinitely often through control-state $q$; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
 Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.
 \end{proof}
 
