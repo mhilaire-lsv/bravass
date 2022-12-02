@@ -371,14 +371,14 @@ From these considerations, we formulate instances of the abstract resilience pro
 structured transition systems.
 
 
-\problemx{$k$-resilience problem for WSTS}
+\problemx{(I,J)-$k$-resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
 {$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 max des I,J possibles \\
 
 J=tout \\
-\problemx{$k$-resilience problem for WSTS}
+\problemx{general $k$-resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
 {$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
@@ -404,6 +404,7 @@ Analogously, we formulate the resilience problem for WSTSs.
 
 \begin{remark}
 \begin{itemize}
+\item expliquer toutes les variantes de la résilience
 \item J=tout et I=$\uparrow x$ alors resilience = couverture.
 \item J=tout et I=$\downarrow x$ alors resilience = accessibilité.
 \end{itemize}
