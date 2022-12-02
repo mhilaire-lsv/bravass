@@ -378,17 +378,24 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 
 Analogously, we formulate the resilience problem for WSTSs.
 
-\problemx{Resilience problem for WSTS}
+\problemx{bounded Resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$\exists k \geq 0 ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
-\alain{examiner les cas I,J un élement, cloture, tout, ...}
+
+\problemx{Resilience problem for WSTS}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+{$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
+
+
+\alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
 \alain{dire juste que SAFE = upward closed et BAD = downward closed.
 envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
 4 resilience problem (U,D), (U,U), (D,U), (D,D)}
 % \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
 
+\alain{regarder les modèles aut à pile...}
 
 citer 
 
@@ -410,7 +417,7 @@ $post^*$ donne l'accessibilité or les resert sont WSTS with strong compatibilit
 
 
 \begin{proposition}
-{\sc $k$-resilience}, hence {\sc resilience}, is undecidable for effective WSTS with strong upward compatibility.
+{\sc $k$-resilience}, hence {\sc resilience}, is undecidable for effective WSTS with strong upward compatibility ?
 \end{proposition}
 
 \begin{proof}
