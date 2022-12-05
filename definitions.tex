@@ -380,17 +380,14 @@ We assume that the safety property is given by an upward-closed set and the bad 
 From these considerations, we formulate instances of the abstract resilience problems for well-
 structured transition systems.
 
-
-\problemx{(I,J)-$k$-resilience problem for WSTS}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
-{$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-
-max des I,J possibles \\
-
-J=tout \\
-\problemx{general $k$-resilience problem for WSTS}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
-{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
+%\problemx{(I,J)-$k$-resilience problem for WSTS}
+%{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
+%{$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
+%\problemx{general $k$-resilience problem for WSTS}
+%{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
+%{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
 Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
@@ -398,7 +395,7 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
 {$\forall s' ~ (s \rightarrow^* s') \wedge s' \in J  \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
-Analogously, we formulate the resilience problem for WSTSs.
+%Analogously, we formulate the resilience problem for WSTSs.
 
 \problemx{bounded Resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
@@ -408,23 +405,33 @@ Analogously, we formulate the resilience problem for WSTSs.
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
 
-\alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow Pre(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
+compute the sets of $(I,J,k)$ st S is resilient.\\
+max des I,J possibles \\
+remark: $k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  AVERIFIER !!!
+
 \alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
-\begin{proposition}
-coverability, liveness and reachability reduce to resilience.
+\begin{proposition}\label{reductions}
+coverability, liveness, home state and reachability reduce to resilience.
 \end{proposition}
 
 
 \begin{proof}
 
 \begin{itemize}
-\item J=tout et I=$\uparrow x$ alors resilience = couverture.
-\item J=tout et I=$\downarrow x$ alors resilience = accessibilité.
-\item J=tout sauf  exemple des LCS....
+\item $J=\uparrow s$ et $I=\uparrow x$ then this particular resilience is coverability of $x$ from $s$.
+\item $J=\{s\}$ and $I=\{x\}$ this particular resilience is reachability of $x$ from $s$.
+\item $J=S = \downarrow S$
 \end{itemize}
 Let $J=\downarrow S = S$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s' \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us apply this property to LCS with $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. This property, $\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ expresses that there is an infinite run passing infinitely often through the control-state $q$; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
 Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.
+
+Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets.
+
+and with effective basis of $post^*$ ???
+
+
+\alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow Pre(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
 \end{proof}
 
 expliquer toutes les variantes de la résilience
@@ -434,41 +441,29 @@ envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutu
 4 resilience problem (U,D), (U,U), (D,U), (D,D)}
 % \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
 
-citer 
+Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $U$ is \emph{computable} if there is an algorithm that computes a finite basis of $U$.
 
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
-{\sc bounded resilience} is decidable for WSTS $S$ with strong upward compatibility and the existence of an algorithm to compute a finite basis of $\uparrow post^*(S)$.
+{\sc bounded resilience} is decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
 \end{theorem}
 
-\cite{DBLP:conf/gg/Ozkan22} deduced that resilience is decidable for VASS because VASS are a finite basis of  $\uparrow post^*$ can be computed.
+We may immediately generalyse this last result by strenghthenin to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
 
 \begin{corollary}
-{\sc resilience} is decidable for context-free grammars.
+{\sc resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
 \end{corollary}
 
-Context-free grammars are WSTS avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) is donc resilience calculable.
-
-We may generalyse this last result by strenghthenin to \emph{unbounded} resilience.
-
-\begin{corollary}
-{\sc resilience} is decidable for WSTS with strong upward compatibility and effective basis of $\uparrow post^*$.
-\end{corollary}
-
-
-\begin{proof}
-The proof is essentially the same than the previous one.
-\end{proof}
-
-Il y a des pbs
+However, the hypothesis that $\uparrow post^*$ is computable cannot be tested in the WSTS framework.
 
 \begin{proposition}
-Given a class of WSTS with strong upward compatibility, there don't exist an algorithm computing an effective basis of $\uparrow post^*$.
+There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing an effective basis of $\uparrow post^*$.
 \end{proposition}
 
 
 \begin{proof}
-$\uparrow post^*$ donne l'accessibilité de 0 sur les compteurs or les resert sont WSTS with strong compatibility. et l'accessibilité est undecidable.
+Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow post^*$ is computable.
+Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, on ewould be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 $\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \end{proof}
 
@@ -494,7 +489,7 @@ pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset
 \end{proof}
 
 
-Unfortunately, resilience is undecidable for general WSTS even with strong monotony.
+Unfortunately, resilience is undecidable for (general) WSTS even with strong monotony.
 
 \begin{theorem}
 {\sc resilience} is undecidable for WSTS with strong monotony.
@@ -502,12 +497,20 @@ Unfortunately, resilience is undecidable for general WSTS even with strong monot
 
 
 \begin{proof} \alain{à relire/refaire}
-
+Since reachability or liveness is undecidable for reset PN that are WSTS with strong monotony, from Proposition \ref{reductions}, we deduce that resilience is undecidable for WSTS with strong monotony.
 \end{proof}
 
-Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets. Another proof could be a reduction of liveness to resilience and since liveness is undecidable for many models like reset PN,...resilience is also undecidable for WSTS with strong monotony.
 
-and with effective basis of $post^*$ ???
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded resilience is decidable for VASS, hence resilience is decidable for VASS. \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
+
+We may consider context-free grammars.
+
+\begin{corollary}
+{\sc resilience} is decidable for context-free grammars.
+\end{corollary}
+
+Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+
 
 
 \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
