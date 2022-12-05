@@ -400,7 +400,7 @@ Analogously, we formulate the resilience problem for WSTSs.
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
 
-
+\alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow Pre(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
 \alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
 \begin{remark}
@@ -421,27 +421,33 @@ envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutu
 citer 
 
 
-\begin{theorem}(ref)
-{\sc bounded resilience} is decidable for WSTS with strong upward compatibility and effective basis of $post^*$.
+\begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
+{\sc bounded resilience} is decidable for WSTS $S$ with strong upward compatibility and the existence of an algorithm to compute a finite basis of $\uparrow post^*(S)$.
 \end{theorem}
 
-applications: PN, les automates a pile sont WSTS avec $post^*$ calculable donc resilience calculable. Mais pas ResetPN.
-
-We may generalyse thier result by weakiening the result
+\cite{DBLP:conf/gg/Ozkan22} deduced that resilience is decidable for VASS because a finite basis of  $\uparrow post^*$ can be computed.
 
 \begin{corollary}
-{\sc resilience} is decidable for WSTS with strong upward compatibility and effective basis of $post^*$.
+{\sc resilience} is decidable for context-free grammars and VASS.
+\end{corollary}
+
+Context-free grammars and VASS are WSTS avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) is donc resilience calculable.
+
+We may generalyse this last result by strenghthenin to \emph{unbounded} resilience.
+
+\begin{corollary}
+{\sc resilience} is decidable for WSTS with strong upward compatibility and effective basis of $\uparrow post^*$.
 \end{corollary}
 
 
 \begin{proof}
-totot
+The proof is essentially the same than the previous one.
 \end{proof}
 
 Il y a des pbs
 
 \begin{proposition}
-The hypothesis $post^*$ is undecidable for WSTS with strong upward compatibility.
+Given a WSTS with strong upward compatibility, an effective basis of $\uparrow post^*$ is not computable.
 \end{proposition}
 
 
@@ -484,7 +490,7 @@ Let $J=\downarrow Reach(S)$ and $I = \uparrow t$ where $t \in S$. Now resilience
 Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.
 \end{proof}
 
-Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets but $Reach \neq \downarrow Reach$.
+Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets but $Reach \neq \downarrow Reach$. Another proof could be a reduction of liveness to resilience and liveness is undecidable for many models like reset PN,...
 
 and with effective basis of $post^*$ ???
 
