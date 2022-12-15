@@ -405,6 +405,11 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
 
+
+justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
+
+et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
+
 compute the sets of $(I,J,k)$ st S is resilient.\\
 max des I,J possibles \\
 remark: $k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  AVERIFIER !!!
@@ -454,10 +459,16 @@ We may immediately generalyse this last result by strenghthenin to \emph{unbound
 {\sc resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
 \end{corollary}
 
+
+\begin{proof}
+\textcolor{red}{à faire Mathieu}
+\end{proof}
+
+
 However, the hypothesis that $\uparrow post^*$ is computable cannot be tested in the WSTS framework.
 
 \begin{proposition}
-There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing an effective basis of $\uparrow post^*$.
+There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow post^*$.
 \end{proposition}
 
 
@@ -465,27 +476,40 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, on ewould be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 $\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
+\textcolor{red}{à relire par Mathieu}
 \end{proof}
+
+il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
 
 remarque si on enlève la strong monotony mais en gardant with effective basis of $post^*$:
 
 
+\begin{proposition}(à prouver)
+ leur algorithme for {\sc bounded resilience} termine mais pas correct for WSTS with upward compatibility, not necessarly strong, and an effective basis of $post^*$ ?
+\end{proposition}
+
+\begin{proof}
+leur algorithme termine mais pas correct car l'intersection de post et J car alors le lemmme xxxx est faux (contre-exemple)
+ \textcolor{red}{à faire Mathieu}
+\end{proof}
+
 \begin{theorem}(à prouver)
-{\sc bounded resilience} is undecidable ??? for WSTS with upward compatibility and effective basis of $post^*$ ???
+{\sc bounded resilience} is undecidable ??? for WSTS with upward compatibility, not necessarly strong, and an effective basis of $post^*$ ???
 \end{theorem}
 
 \begin{proof}
-leur algorithme termine mais ne marche pas car l'intersection de post et J car ce n'est pas pertinent. et donc ???
+ \textcolor{red}{à faire Mathieu}
 \end{proof}
+
 
 si on garde strong mais on enlève effective basis of $post^*$:
 
 \begin{proposition}(à prouver)
-{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility ????
+{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility but without basis of post* ????
 \end{proposition}
 
 \begin{proof}
-pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?
+pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{à faire Mathieu}
 \end{proof}
 
 
@@ -497,20 +521,25 @@ Unfortunately, resilience is undecidable for (general) WSTS even with strong mon
 
 
 \begin{proof} \alain{à relire/refaire}
-Since reachability or liveness is undecidable for reset PN that are WSTS with strong monotony, from Proposition \ref{reductions}, we deduce that resilience is undecidable for WSTS with strong monotony.
+Since liveness is undecidable for reset PN that are WSTS with strong monotony, from Proposition \ref{reductions}, we deduce that resilience is undecidable for WSTS with strong monotony.
+  \textcolor{red}{à faire Mathieu}
 \end{proof}
 
+Let us deduce that effective basis of $post^*$ ex reset PN ?
 
 Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded resilience is decidable for VASS, hence resilience is decidable for VASS. \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
 
 We may consider context-free grammars.
 
 \begin{corollary}
-{\sc resilience} is decidable for context-free grammars.
+{\sc resilience} is decidable for finite automata and context-free grammars (seen as transition systems)
 \end{corollary}
 
-Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+\begin{proof}
 
+  \textcolor{red}{à faire Mathieu}
+Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+\end{proof}
 
 
 \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
