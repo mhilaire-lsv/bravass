@@ -285,7 +285,7 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 
 
 \begin{definition}{ (index)}. 
-If $S$ is a WSTS with strong monotony and $I \subseteq S$  is an upward-closed set and $k \geq 0$, let $I^k= \bigcup_{0 \leq j \leq k} pre^j(I)$.
+If $S$ is a WSTS with strong monotony and $I \subseteq S$  is an upward-closed set and $k \geq 0$, let $I^k= \bigcup_{0 \leq j \leq k} \pred^j(I)$.
 The {\em index} $k(I)$ is the
 smallest $k_0$ s.t. $I^k = I^{k_0}$ for all $k \geq k_0$.
 \end{definition}
@@ -317,14 +317,14 @@ We have to show that we can compute a basis of $I^{k+1}$ if we are given a basis
 Then the
 decidability of the stop condition follows directly. Let $B$ be a basis of $I^k$. 
 We have
-$$I^{k+1} = I \cup pre(I^k ) = I \cup
+$$I^{k+1} = I \cup \pred(I^k ) = I \cup
 \bigcup_{s' \in B}
-pre(\uparrow \{s' \}).$$
-\alain{n'est-ce pas $I^{k+1} = I^k \cup pre(I^k ) = I^k \cup
+\pred(\uparrow \{s' \}).$$
+\alain{n'est-ce pas $I^{k+1} = I^k \cup \pred(I^k ) = I^k \cup
 \bigcup_{s' \in B}
-pre(\uparrow \{s' \}).$ ?}
+\pred(\uparrow \{s' \}).$ ?}
 
-Since $pre(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
+Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
 \end{proof}
 \subsection{Defining resilience}
@@ -445,7 +445,7 @@ Since Reset Petri nets are also effective WSTS with strong monotony, we could th
 and with effective basis of $post^*$ ???
 
 
-\alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow Pre(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
+\alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow \pred(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
 \end{proof}
 
 expliquer toutes les variantes de la résilience
@@ -471,11 +471,11 @@ We may immediately generalyse this last result by strenghthenin to \emph{unbound
 
 \begin{proof}
 From Fact~\ref{stop condition}, there exists $k \in \N$ such that
-$pre^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
+$\pred^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
 $I^{k+1}$ from $I^k$, checking $I^{k+1}=I^k$, 
 returning $k_m$ if that is the case.
 Then, because $k_m$-resilience is decidable, 
-checking $\uparrow post^*(s) \cap J \subseteq I^k = pre^*(I)$ is,
+checking $\uparrow post^*(s) \cap J \subseteq I^k = \pred^*(I)$ is,
 and resilience is decidable.
 % \textcolor{red}{à faire Mathieu}
 \end{proof}
