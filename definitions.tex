@@ -174,7 +174,7 @@ an infinite sequence contradicting the wqo assumption.
 
 
 
-\begin{lemma}  
+\begin{lemma}  \label{upward-closed stablizes}
 If $\leq$ is a wqo then any infinite increasing sequence $I_0 \subseteq I_1 \subseteq I_2 \subseteq \cdots$ of
 upward-closed sets eventually stabilizes, i.e. there is a $k \in N$ such that 
 $I_k = I_{k+1} = I_{k+2} = \cdots $.
@@ -285,15 +285,22 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 
 
 \begin{definition}{ (index)}. 
-For an upward-closed set $I \subseteq S$ and $k \geq 0$, let $I^k= \bigcup_{0 \leq j \leq k} pre^j(I)$.
+If $S$ is a WSTS with strong monotony and $I \subseteq S$  is an upward-closed set and $k \geq 0$, let $I^k= \bigcup_{0 \leq j \leq k} pre^j(I)$.
 The {\em index} $k(I)$ is the
 smallest $k_0$ s.t. $I^k = I^{k_0}$ for all $k \geq k_0$.
 \end{definition}
 
+
+If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set, the sets $\pred(I )$, and $\pred^{\geq k}(I )$ for
+every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(I)$.
+Remark that $I^{k+1} = I \cup \pred(I^k)$, 
+%thus $I^{k+1} = I^k$ implies $k(I) \leq k$.
+which ensures the following.
+
 \begin{fact}\label{stop condition}
 % Fact 4 (stop condition). 
 If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $I^k = I^{k+1}$ , then $I^\ell = I^k$ for all $\ell \geq k$, i.e.,
-$k(I) \leq k$. This also implies that $pre^* (I) = I^k $.
+$k(I) \leq k$. This also implies that $\pred^*(I) = I^k$.
 \end{fact}
 
 
