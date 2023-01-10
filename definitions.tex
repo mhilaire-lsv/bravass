@@ -203,10 +203,10 @@ equipped with a wqo ${\leq} \subseteq S \times S$ between states such that
 %  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
 the transition relation $ \rightarrow$ is compatible (resp. strongly compatible) with the wqo, i.e., for all 
 $s_1, t_1 , s_2 \in S$
-	with $s_1 \leq t_1$  and $s_1 \rightarrow s_2$ , there exists 
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$ , there exists 
 	$t_2 \in S$ with 
-	$s_2 \leq t_2$ and $t_1 \rightarrow^{*} t_2$ 			
-				(resp. $t_1 \rightarrow t_2$ ).
+	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$ 			
+				(resp. $s_2 \rightarrow t_2$ ).
 \end{definition}
 
 A \emph{downward-WSTS} is ... \\
@@ -271,14 +271,16 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 % Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 % \end{claim}
 
-\begin{fact}
+\begin{fact}\label{fact basis}
 % Fact 3 ([1]). 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+
 
 (i) For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
 
 (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
+
 \end{fact}
 
 
@@ -288,7 +290,7 @@ The {\em index} $k(I)$ is the
 smallest $k_0$ s.t. $I^k = I^{k_0}$ for all $k \geq k_0$.
 \end{definition}
 
-\begin{fact}
+\begin{fact}\label{stop condition}
 % Fact 4 (stop condition). 
 Let $I \subseteq S$ be an upward-closed set and $k \geq 0$ s.t. $I^k = I^{k+1}$ , then $I^\ell = I^k$ for all $\ell \geq k$, i.e.,
 $k(I) \leq k$. This also implies that $pre^* (I) = I^k $.
@@ -314,10 +316,10 @@ pre(\uparrow \{s' \}).$$
 \alain{n'est-ce pas $I^{k+1} = I^k \cup pre(I^k ) = I^k \cup
 \bigcup_{s' \in B}
 pre(\uparrow \{s' \}).$ ?}
+
 Since $pre(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
-Fact 1, we can compute a basis of $I^{k+1}$.
+Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
 \end{proof}
-\alain{pas de Fact 3}
 \subsection{Defining resilience}
 
 
@@ -461,7 +463,14 @@ We may immediately generalyse this last result by strenghthenin to \emph{unbound
 
 
 \begin{proof}
-\textcolor{red}{à faire Mathieu}
+From Fact~\ref{stop condition}, there exists $k \in \N$ such that
+$pre^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
+$I^{k+1}$ from $I^k$, checking $I^{k+1}=I^k$, 
+returning $k_m$ if that is the case.
+Then, because $k_m$-resilience is decidable, 
+checking $\uparrow post^*(s) \cap J \subseteq I^k = pre^*(I)$ is,
+and resilience is decidable.
+% \textcolor{red}{à faire Mathieu}
 \end{proof}
 
 

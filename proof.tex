@@ -46,13 +46,13 @@ $ post^*(s)\cap J \subseteq I^k $  iff $ (\uparrow  post^*(s)) \cap J \subseteq 
 
 Assume $k$ is fixed for now.
 
-Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. downward closed subsets $D_i \subseteq S$ such that $\uparrow post(D_i ) \subseteq D_i$. 
+Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. upward closed subsets $D_i \subseteq S$ such that $\uparrow post(D_i ) \subseteq D_i$. 
 Every inductive invariant $D_i$ is an “over-approximation” of $\uparrow post^*(s)$ if it contains $s$.
 (on énumère des sur-approximations de la cloture par le haut de $post*(s)$ par leur bases finies).
-Each “over-approximation” $D_i$ is given by its basis $b(D_i)$. \textcolor{red}{Notice that, by standard monotonicity, $\uparrow post^*(s)$ is such an inductive invariant and may
-eventually be found.}
-\alain{attention D est clos par le bas et $\uparrow post^*(s)$ est clos par le haut, je ne vois pas pourquoi $\uparrow post^*(s) \subseteq D$}
-\mathieu{Oui effectivement les D devraient être clos par le haut, je corrige ça à la prochaine update.}
+Each “over-approximation” $D_i$ is given by its basis $b(D_i)$. Notice that, by standard monotonicity, $\uparrow post^*(s)$ is such an inductive invariant and may
+eventually be found.
+% \alain{attention D est clos par le bas et $\uparrow post^*(s)$ est clos par le haut, je ne vois pas pourquoi $\uparrow post^*(s) \subseteq D$}
+% \mathieu{Oui effectivement les D devraient être clos par le haut, je corrige ça à la prochaine update.}
 
 Procedure 1 stops when it finds a basis $b(D)$ of an invariant $D$ such that
 $b(D)  \cap J \subseteq I^k$.  Since $b(D)$ is finite and $J$ is decidable, we can
@@ -179,8 +179,8 @@ $a \rightarrow b'$,
 and
 $b' \leq b$.
 % By monotonicity, there exists b'' ≥ b' such that a → b'' . Therefore, x → ∗ b'' and b' ≥ b, hence b ∈ ↓ Post ∗ (x).
-\textcolor{red}{By downward compatibility 
-there exists $b'' \leq b'$ such that $a \rightarrow b'' $. Therefore, $x \rightarrow^* b''$ and $b' \geq b$, hence $b \in \downarrow post^*(x)$.}
+By downward compatibility 
+there exists $b'' \leq b'$ such that $a \rightarrow b'' $. Therefore, $x \rightarrow^* b''$ and $b' \geq b$, hence $b \in \downarrow post^*(x)$.
 %\alain{où est cette hypothèse downward compatibility  ?}
 \item Procedure 2 computes
  $post^{\leq n}(s) \cap J$
@@ -216,8 +216,7 @@ If this is the case, return $k_{min} = k$. Otherwise check whether
 $I^{k+1} = I^k$. If so, return $-1$ (false), otherwise
 continue.
 The stop condition is decidable
-and by Fact 2 also sufficient. 
-\alain{Fact 4 don't exist}
+and by Fact~\ref{stop condition} also sufficient. 
 \end{proof}
 
 {\sc resilience} is decidable for WSTS with strong upward compatibility and k-resilience.
