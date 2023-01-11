@@ -496,7 +496,7 @@ and resilience is decidable.
 \"Ozkan goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
 % in the regarded class 
 with strong monotonicity 
-and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). The characterization is used to show that Petri nets are $\post^*$ -effective. It is well-known that Petri nets constitute WSTS with storng monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS0}).
+and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). The characterization is used to show that Petri nets are $\post^*$ -effective. It is well-known that Petri nets constitute WSTS with storng monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}).
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the WSTS framework.
 
 \begin{proposition}
@@ -506,7 +506,7 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 \begin{proof}
 Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, on ewould be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. sont WSTS with strong compatibility. et l'accessibilité est undecidable.
+Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 $\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \textcolor{red}{à relire par Mathieu}
 \end{proof}
@@ -523,6 +523,9 @@ remarque si on enlève la strong monotony mais en gardant with effective basis o
 \begin{proof}
 leur algorithme termine mais pas correct car l'intersection de post et J car alors le lemmme xxxx est faux (contre-exemple)
  \textcolor{red}{à faire Mathieu}
+ 
+\mathieu{En train de chercher un contre exemple pour le Lemme~\ref{Lemma intersection}.} 
+ 
 \end{proof}
 
 \begin{theorem}(à prouver)
