@@ -55,12 +55,14 @@ a  {\em suffix} of a finite path $\pi$ is a path of the form $\pi[i,n]$.  \\
 Given an infinite path $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ let
 $\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\}$.
 
-\newcommand{\pred}{\textsc{Pred}}
-\renewcommand{\succ}{\textsc{Succ}}
+\newcommand{\pred}{\textsf{pred}}
+\newcommand{\post}{\textsf{post}}
+% \renewcommand{\succ}{\textsf{Succ}}
+
 
 \noindent
 The set of {\em successors} of a configuration $s \in S$ is deﬁned as
-$\succ(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s \xrightarrow{a} s'\}$.
+$\post(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s \xrightarrow{a} s'\}$.
 A configuration without successors is called a {\em dead end}.  \\
 The set of {\em predecessor} of a configuration $s \in S$ is deﬁned as
 $\pred(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s' \xrightarrow{a} s\}$.
@@ -92,11 +94,11 @@ then defined as expected.
 \textcolor{red}{Thinking about whether or not it is pertinent to have LTS and not only TS. LTS can be usefull for TA because of the use of the guards/time as labels but it may be unecessary.}
 
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
-for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure). We use similar notation for $\succ$ and $\pred$...
+for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure). We use similar notation for $\post$ and $\pred$...
 
 \textcolor{red}{This makes sense for TS but not so much for LTS ...}
 
-A transition system is {\em finitely branching} if all $\succ(s)$ are finite. 
+A transition system is {\em finitely branching} if all $\post(s)$ are finite. 
 \textcolor{blue}{We restrict our attention to finitely branching TSs.}
 
 \textcolor{blue}{Alain: the forward coverability algorithm for infinitely branching TSs.; the backward cov algo may work for essentially finitely branching TSs.}
@@ -293,9 +295,15 @@ smallest $k_0$ s.t. $I^k = I^{k_0}$ for all $k \geq k_0$.
 
 If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set, the sets $\pred(I )$, and $\pred^{\geq k}(I )$ for
 every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(I)$.
-Remark that $I^{k+1} = I \cup \pred(I^k)$, 
-%thus $I^{k+1} = I^k$ implies $k(I) \leq k$.
-which ensures the following.
+
+\begin{remark}
+$I^{k+1} $ can be rewritten $I^{k+1}= \bigcup_{0 \leq j \leq k+1} \pred^j(I) = 
+I \cup \bigcup_{1 \leq j \leq k+1} \pred^j(I) =
+I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
+=  I \cup \pred(I^k)$.
+\end{remark}
+
+This ensures the following.
 
 \begin{fact}\label{stop condition}
 % Fact 4 (stop condition). 
@@ -323,6 +331,10 @@ $$I^{k+1} = I \cup \pred(I^k ) = I \cup
 \alain{n'est-ce pas $I^{k+1} = I^k \cup \pred(I^k ) = I^k \cup
 \bigcup_{s' \in B}
 \pred(\uparrow \{s' \}).$ ?}
+\mathieu{À strictement parler, c'est  $I^{k+1} = \bigcup_{0 \leq j \leq k+1} \pred^j(I) = 
+I \cup \bigcup_{1 \leq j \leq k+1} \pred^j(I) =
+I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
+=  I \cup \pred(I^k)$. Je vais rajouter une remarque au dessus.}
 
 Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
@@ -471,7 +483,7 @@ We may immediately generalyse this last result by strenghthenin to \emph{unbound
 
 \begin{proof}
 From Fact~\ref{stop condition}, there exists $k \in \N$ such that
-$\pred^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
+$\post^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
 $I^{k+1}$ from $I^k$, checking $I^{k+1}=I^k$, 
 returning $k_m$ if that is the case.
 Then, because $k_m$-resilience is decidable, 
@@ -481,15 +493,19 @@ and resilience is decidable.
 \end{proof}
 
 
-However, the hypothesis that $\uparrow post^*$ is computable cannot be tested in the WSTS framework.
+\"Ozkan goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
+% in the regarded class 
+with strong monotonicity 
+and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). The characterization is used to show that Petri nets are $\post^*$ -effective. It is well-known that Petri nets constitute WSTS with storng monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS0}).
+However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the WSTS framework.
 
 \begin{proposition}
-There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow post^*$.
+There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow \post^*$.
 \end{proposition}
 
 
 \begin{proof}
-Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow post^*$ is computable.
+Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow \post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, on ewould be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 $\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \textcolor{red}{à relire par Mathieu}
