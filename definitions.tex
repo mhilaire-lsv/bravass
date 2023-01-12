@@ -344,7 +344,7 @@ Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
 
 \subsubsection{Resilience for general transition systems}
 
-\textcolor{red}{Ask the question why use a set of propositions for $SAFE$ and $BAD$ rather than use subsets of the set of configurations ? }
+% \textcolor{red}{Ask the question why use a set of propositions for $SAFE$ and $BAD$ rather than use subsets of the set of configurations ? }
 
 We ask whether we can reach a state 
 %which satisfies
@@ -386,7 +386,7 @@ pour $k,k'$ donnés, chercher si $SAFE_{max}$ et $BAD_{max}$ ont un sens ? on pe
 \subsubsection{Resilience for WSTS}
 
 
-Properties in well-structured transition systems are often given as upward- or downward closed sets [references].
+Properties in well-structured transition systems are often given as upward- or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}.
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
 Transfering the abstract resilience problems into this framework,
@@ -394,7 +394,7 @@ it is therefore reasonable to demand that both propositions, SAFE and BAD, are g
 upward-closed or 
 downward-closed sets.
 
-We assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set.
+We assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 
 
 % \textcolor{red}{Seems like a reasonable assumption to me.}
 
@@ -426,14 +426,19 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
 {$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
 
-
+\textcolor{blue}{
 justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
+}
 
+\textcolor{blue}{
 et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
+}
 
+\textcolor{blue}{
 compute the sets of $(I,J,k)$ st S is resilient.\\
 max des I,J possibles \\
 remark: $k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  AVERIFIER !!!
+}
 
 \alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
@@ -492,12 +497,14 @@ and resilience is decidable.
 % \textcolor{red}{à faire Mathieu}
 \end{proof}
 
-
-\"Ozkan goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
+The author in \cite{DBLP:conf/gg/Ozkan22}
+%\"Ozkan
+ goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
 % in the regarded class 
 with strong monotonicity 
-and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). The characterization is used to show that Petri nets are $\post^*$ -effective. It is well-known that Petri nets constitute WSTS with storng monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}).
-However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the WSTS framework.
+and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). 
+The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}).
+However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
 
 \begin{proposition}
 There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow \post^*$.
@@ -506,7 +513,8 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 \begin{proof}
 Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. sont WSTS with strong compatibility. et l'accessibilité est undecidable.
+Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. 
+% sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 $\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \textcolor{red}{à relire par Mathieu}
 \end{proof}
