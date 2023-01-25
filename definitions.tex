@@ -430,6 +430,10 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
 }
 
+\begin{remark} 
+We require $U$ to be upward-closed, as, in the general case if we lift restrictions on $U$ and $D$, then reachability reduces itself to resilience. Indeed, the particular resilience problem where we take $D = \{s\}$ and $U = \{x\}$ is reachability of $x$ from $s$, and thus generally undecidable for WSTS. 
+\end{remark}
+
 \textcolor{blue}{
 et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
 }
@@ -437,25 +441,34 @@ et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+b
 \textcolor{blue}{
 compute the sets of $(I,J,k)$ st S is resilient.\\
 max des I,J possibles \\
-remark: $k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  AVERIFIER !!!
 }
+
+\begin{remark} 
+$k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  \textcolor{red}{AVERIFIER !!}
+\end{remark}
 
 \alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
 \begin{proposition}\label{reductions}
-coverability, liveness, home state and reachability reduce to resilience.
+coverability, liveness, home state 
+%and reachability
+ reduce to resilience.
 \end{proposition}
 
 
 \begin{proof}
 
 \begin{itemize}
-\item $J=\uparrow s$ et $I=\uparrow x$ then this particular resilience is coverability of $x$ from $s$.
-\item $J=\{s\}$ and $I=\{x\}$ this particular resilience is reachability of $x$ from $s$.
-\item $J=S = \downarrow S$
+\item $J=S= \downarrow S$ et $I=\uparrow x$ then this particular resilience is coverability of $x$ from $s$.
+%\item $J=\{s\}$ and $I=\{x\}$ this particular resilience is reachability of $x$ from $s$.
+
+\item $t$-liveness c'est la résilience avec $J=S$ et $I = \uparrow \pred(t)$.
 \end{itemize}
-Let $J=\downarrow S = S$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s' \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us apply this property to LCS with $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. This property, $\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ expresses that there is an infinite run passing infinitely often through the control-state $q$; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
-Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.
+
+\textcolor{red}{  Let $J=\downarrow S = S$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s' \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us apply this property to LCS with $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. This property, $\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ expresses that there is an infinite run passing infinitely often through the control-state $q$; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
+Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.}
+\mathieu{À refaire}
+
 
 Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets.
 
@@ -463,6 +476,9 @@ and with effective basis of $post^*$ ???
 
 
 \alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow \pred(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
+
+
+
 \end{proof}
 
 expliquer toutes les variantes de la résilience
@@ -566,6 +582,53 @@ Unfortunately, resilience is undecidable for (general) WSTS even with strong mon
 \begin{proof} \alain{à relire/refaire}
 Since liveness is undecidable for reset PN that are WSTS with strong monotony, from Proposition \ref{reductions}, we deduce that resilience is undecidable for WSTS with strong monotony.
   \textcolor{red}{à faire Mathieu}
+  
+Let $J=\downarrow S = S$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s' \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us apply this property to LCS with $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. \textcolor{red}{This property, $\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ expresses that there is an infinite run passing infinitely often through the control-state $q$ (à prouver dans les deux sens!)}; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
+Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.
+
+\mathieu{(Sketch)
+$\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ 
+expresses that there is an infinite
+run passing infinitely often through the control-state $q$
+
+
+d'abords direction 1
+
+
+$\forall s' \in S,  \exists w \in \Sigma^* $ $ ~ s' \rightarrow^{*} (q,w)$      $\implies$   there is an infinite run passing infinitely often through ...
+
+$(q,w) \to s \to^* (q,w')$
+
+globalement
+
+sinon
+
+l'autre direction
+
+si il y a un run infini
+
+c'est là que ça bloquait si je me souviens bien quand on avait travaillé dessus au tableau.
+
+
+Sinon il faut prouver que si on n'a pas le truc alors on n'a pas le run infini
+
+Si on n'a pas le truc
+
+On a $s'$ tel que si on arrive en $s'$ alors on ne peut plus retourner en $q$.
+
+Et $s'$ est accessible
+
+MAIS ça veut pas dire qu’il n’y a pas de run infini
+
+Plutôt que le Recurrent State Problem (RSP) on peut se concentrer plutôt du coup sur la $t$-liveness telle que décrite plus haut
+
+$t$-liveness s'exprime par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow \pred(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$
+
+$t$-liveness c'est la résilience avec $J=S$ et $I = \uparrow \pred(t)$.
+
+Vérifier que la $t$-liveness c'est indécidable pour les LCS.
+}
+
 \end{proof}
 
 Let us deduce that effective basis of $post^*$ ex reset PN ?
