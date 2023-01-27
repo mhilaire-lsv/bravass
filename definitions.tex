@@ -337,6 +337,11 @@ I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
 Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
 \end{proof}
+
+%%%
+\iffalse
+%%%%
+%%%%
 \subsection{Defining resilience}
 
 
@@ -356,7 +361,7 @@ $BAD$.
 From this we formulate two resilience problems. First consider the case where the recovery time
 is bound by a given natural number $k \geq 0$, i.e., the \emph{explicit resilience problem} for TS.
 
-\problemx{$k$-Resilience problem or Explicit Resilience problem}
+\problemx{$k$-Resilience problem }
 {a transition system $(S,\rightarrow)$, an integer $k$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
 {$\forall s' \in BAD, ~ s \rightarrow^* s' \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
@@ -366,22 +371,25 @@ If a system $S$ satisfies the explicit resilience property for an integer $k$, w
 
 We can also ask whether there exists such a bound $k$ such that $S$ is $k$-resilient. We call this problem the \emph{bounded resilience problem}.
 
-
-\problemx{Bounded Resilience problem}
-{a transition system $(S,\rightarrow)$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
-{$\exists k \geq 0 ~ \forall s' \in BAD, ~ s \rightarrow^* s' \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-
-\alain{repetition...} plus court: equivaut à demander si $\exists k \geq 0$ tel que $S$ est $k$-resilient.
+%
+%\problemx{Bounded Resilience problem}
+%{a transition system $(S,\rightarrow)$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
+%{$\exists k \geq 0 ~ \forall s' \in BAD, ~ s \rightarrow^* s' \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
 
 
 \problemx{Bounded Resilience problem}
 {a transition system $(S,\rightarrow)$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
 {$\exists k \geq 0  S$ is $k$-resilient. ?\newline}
+%%
+\fi
+%%%
+
 
 pour $k,k'$ donnés, chercher si $SAFE_{max}$ et $BAD_{max}$ ont un sens ? on peut faire l'union des SAFE, SAFE' et des BAD, BAD' prendre le max des k. Fixer k, chercher et calculer $SAFE_{max}$ et $BAD_{max}$.
 
 
-\subsubsection{Resilience for WSTS}
+\section{Resilience for WSTS}
 
 
 Properties in well-structured transition systems are often given as upward- or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}.
@@ -411,14 +419,17 @@ structured transition systems.
 Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
 \problemx{$k$-resilience problem for WSTS}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $I$ with a given basis, a decidable downward-closed set $J$.}
-{$\forall s' ~ (s \rightarrow^* s') \wedge s' \in J  \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+{$\forall s' ~ (s \rightarrow^* s') \wedge s' \in D  \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
+plus simple : la $(D,U)$-resilience: $D \rightarrow^{\leq k} U$ ?  \alain{ça signifie pour tout $d \in D$ il existe un chemin de longueur $\leq k$ qui arrive dans un $u \in U$. c'est plus simple et plus général et ça ne demande moins de décider l'accessibilité....comment faire pour vérifier pour tous les (D,U) ? sinon ça dépend tjs de l'état intial $s$ et s'il faut vérifier pour tous les $s$....}
 
 %Analogously, we formulate the resilience problem for WSTSs.
 
 \problemx{bounded Resilience problem for WSTS}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
-{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{A state $s$ of a WSTS $W=(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+%{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{$\exists k \geq 0$ such that $W$ is $k$-resilient. ?\newline}
 
 \problemx{Resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
