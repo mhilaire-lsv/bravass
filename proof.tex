@@ -1,7 +1,33 @@
 
-\section{Decidability for WSTS with downward/strong upward compatibility}
+\section{Decidability of resilience for downward-WSTS}
 
+Let us recall the definition of downward-WSTS.
 
+\begin{definition} \cite{DBLP:journals/tcs/FinkelS01}
+A \emph{downward-WSTS} is an ordered transition system $(S, \rightarrow, \leq)$
+such that $\leq$ is a wqo and
+%  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
+the transition relation $ \rightarrow$ is downward-compatible with $\leq$, i.e., for all  transition $s_1 \rightarrow t_1$
+with $s_1, t_1 , s_2 \in S$
+	and $s_2 \leq s_1$, there exists a transition $s_2 \rightarrow^{*} t_2$ with $t_2 \leq t_1$. 		
+\end{definition}
+
+%		enlever l'hypothèse finitely branching ?
+A downward-WSTS has the \emph{reflexive} compatibility if for all transition  $s_1 \rightarrow t_1$ with
+$s_1, t_1 , s_2 \in S$ and $s_2 \leq s_1$, either $t_1 \leq s_2$ or there exists a transition $s_2 \rightarrow t_2$ with $t_2 \leq t_1$.
+
+Downward-WSTS enjoy a nice reachability property.
+
+\begin{theorem}[Proposition 5.4 in \cite{DBLP:journals/tcs/FinkelS01}]
+%	Since by Proposition 5.4 in \cite{DBLP:journals/tcs/FinkelS01}, we know that  
+For finitely branching downward-WSTS $(S, \rightarrow, \leq)$, with reflexive compatibility, decidable $\leq$ and effective $post$, a finite basis of $\uparrow post^*(s_0)$ is computable for any $s_0 \in S$.
+\end{theorem}
+
+%	Let us say that a downward-WSTS is \emph{effective}
+Using Corollary \ref{postcomputable}, we deduce that resilience is decidable for finitely branching downward-WSTS with reflexive compatibility and with strong upward compatibility, with a decidable $\leq$ and an effective $post$.
+
+%%%%%
+\alain{peut-on faire mieux ?}
 
 \begin{lemma}\label{Lemma intersection}
 Let $A \subseteq S$, $J \subseteq S$ downward-closed and $I \subseteq S$ upward-closed. 
@@ -77,6 +103,8 @@ not in $ I^k$.
 
 
 This result is not in xxx and don't use the problematic hypothsis on $post^*$.
+\alain{ben si car downward-WSTS + qqhypothèses (voir plus haut) ont un $ \uparrow post^*(s)$ calculable !
+peut-on faire sauter qq hypothèses ?  finitely branching ??? with reflexive compatibility ????}
 
 \begin{theorem}
 {\sc $k$-resilience} is decidable for effective WSTS with downward/strong upward compatibility.
@@ -206,7 +234,7 @@ and Procedure 2 terminates.
 
 
 \begin{theorem}
-{\sc bounded resilience} and {\sc resilience} is decidable for WSTS with downward/strong upward compatibility.
+{\sc bounded resilience} and {\sc resilience} are decidable for WSTS with downward/strong upward compatibility.
 \end{theorem}
 
 \begin{proof}{sketch}

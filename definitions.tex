@@ -7,7 +7,6 @@ In this section, we introduce general notations and preliminary definitions.
 
 The model we are interested in is (S)WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
 
-The paper \cite{DBLP:journals/corr/PrasadZ16} studied resilience for WSTS enjoying both with upward and downward monotonies.
 
 % \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
 
@@ -211,8 +210,6 @@ $s_1, t_1 , s_2 \in S$
 	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$ 			
 				(resp. $s_2 \rightarrow t_2$ ).
 \end{definition}
-
-A \emph{downward-WSTS} is ... \\
 
 Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering.
 
@@ -498,7 +495,7 @@ Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $
 
 We may immediately generalyse this last result by strenghthenin to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
 
-\begin{corollary}
+\begin{corollary}\label{postcomputable}
 {\sc resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
 \end{corollary}
 
