@@ -436,14 +436,19 @@ Again, we first consider the case where the recovery time is bounded by a $k \in
 
 \problemx{$k$-resilience problem for WSTS}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
-{$D \longrightarrow^{\leq k} U$ ?\newline}
+{$D \longrightarrow^{\leq k} U$ ?  ou $D \cap post^*(s) \longrightarrow^{\leq k} U$ ?  \newline}
 %
-{$\forall s' ~ (s \rightarrow^* s') \wedge s' \in D  \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%  		{$\forall s' ~ (s \rightarrow^* s') \wedge s' \in D  \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 %
+$D \longrightarrow^{\leq k} U$: $\forall s' \in D \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\\
+%
+$D \cap post^*(s) \longrightarrow^{\leq k} U$ ?
+%
+$\forall s' ~ (s \rightarrow^* s') \wedge s' \in D  \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?
  \alain{ça signifie pour tout $d \in D$ il existe un chemin de longueur $\leq k$ qui arrive dans un $u \in U$. c'est plus simple et plus général et ça ne demande moins de décider l'accessibilité....comment faire pour vérifier pour tous les (D,U) ? sinon ça dépend tjs de l'état intial $s$ et s'il faut vérifier pour tous les $s$....}
 
 
-ou plus simple : $D \rightarrow^{\leq k} U$ ? 
+%ou plus simple : $D \rightarrow^{\leq k} U$ ? 
 
 
 %Analogously, we formulate the resilience problem for WSTSs.
