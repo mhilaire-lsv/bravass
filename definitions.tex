@@ -91,19 +91,19 @@ Note
 Determinism, (infinite) paths, their length, and concatenation in unlabeled transition systems are
 then defined as expected.
 
-\textcolor{red}{Thinking about whether or not it is pertinent to have LTS and not only TS. LTS can be usefull for TA because of the use of the guards/time as labels but it may be unecessary.}
+%\textcolor{red}{Thinking about whether or not it is pertinent to have LTS and not only TS. LTS can be usefull for TA because of the use of the guards/time as labels but it may be unecessary.}
 
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure). We use similar notation for $\post$ and $\pred$...
 
-\textcolor{red}{This makes sense for TS but not so much for LTS ...}
+%\textcolor{red}{This makes sense for TS but not so much for LTS ...}
 
 A transition system is {\em finitely branching} if all $\post(s)$ are finite. 
 \textcolor{blue}{We restrict our attention to finitely branching TSs.}
 
-\textcolor{blue}{Alain: the forward coverability algorithm for infinitely branching TSs.; the backward cov algo may work for essentially finitely branching TSs.}
-\textcolor{red}{Not sure that TS induced by TA are finitely branching. Actually I believe they are not, i.e. for instance for a TA with one clock $x$, from a state $q$ and clock $x$ set at $0$, if there is a transition e.g. $(q, x \geq 3, \emptyset, q')$ then the set of successors of 
-$(q,0)$ is $\{q'\} \times \{3, 4, 5, \ldots \}$. Need to check where finitely branching appears as an assumption/requirement.}
+%\textcolor{blue}{Alain: the forward coverability algorithm for infinitely branching TSs.; the backward cov algo may work for essentially finitely branching TSs.}
+%\textcolor{red}{Not sure that TS induced by TA are finitely branching. Actually I believe they are not, i.e. for instance for a TA with one clock $x$, from a state $q$ and clock $x$ set at $0$, if there is a transition e.g. $(q, x \geq 3, \emptyset, q')$ then the set of successors of 
+%$(q,0)$ is $\{q'\} \times \{3, 4, 5, \ldots \}$. Need to check where finitely branching appears as an assumption/requirement.}
 
 
 \subsection{Well-quasi-orderings}
