@@ -15,8 +15,8 @@ The model we are interested in is (S)WSTS (and later some particular instances, 
 
 
 \begin{definition}
-A {\em labeled transition system} (LTS for short) is a tuple $T=(S, \Lambda, \rightarrow)$ where 
-$S$ is a set of {\em configurations}, $ \Lambda$ is a set of {\em labels}, and 
+A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Lambda, \rightarrow)$ where 
+$S$ is a set of {\em states}, $ \Lambda$ is a set of {\em labels}, and 
 ${\rightarrow} \subseteq S\times \Lambda \times S$ is a 
 ternary relation,
 denoted as the set of {\em labeled transitions}. 
@@ -78,14 +78,14 @@ $a \in \Lambda$,
 
 \begin{definition}
 An {\em (unlabeled) transition system} is a pair $T = (S,\rightarrow )$ where $S$ is a set of 
-{\em configurations} and  
+{\em states} and  
 $ {\rightarrow} \subseteq S \times S$ is a
 binary relation 
 on
-the set of configurations, denoted as the set of {\em transitions}. 
+the set of states, denoted as the set of {\em transitions}. 
 \end{definition}
 
-We again prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from configuration $s$ to configuration $s'$ (i.e., $ (s,s') \in  {\rightarrow} $). \newline
+We again prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $). \newline
 Note 
  that an unlabeled transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
 Determinism, (infinite) paths, their length, and concatenation in unlabeled transition systems are
@@ -95,6 +95,8 @@ then defined as expected.
 
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure). We use similar notation for $\post$ and $\pred$...
+
+Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
 
 %\textcolor{red}{This makes sense for TS but not so much for LTS ...}
 
@@ -217,16 +219,16 @@ Several families of formal models of processes give rise to WSTSs in a natural w
 % \textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and 'decidable $\leq$' being independant from the WSTS definition}
 
 \begin{proposition}\cite{DBLP:journals/tcs/FinkelS01}
-If $S$ is an WSTS and $I \subseteq S$ is an upward-closed set of states, then $\pred^*(I )$ is upward-
+If $\mathscr{S}$ is an WSTS and $U \subseteq S$ is an upward-closed set of states, then $\pred^*(U )$ is upward-
 closed.
 \end{proposition}
 
 \iffalse
-Proof. Assume $s \in \pred^* (I )$. Then $s \rightarrow^* t$ for some $t \in I $. If now $s' \geq s$ then upward-compatibility entails that $s' \rightarrow^* t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred^*(I )$.
+Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $. If now $s' \geq s$ then upward-compatibility entails that $s' \rightarrow^* t'$ for some $t' \geq t$. Then $t' \in U$ and $s' \in \pred^*(U )$.
 \fi
 
 \begin{proposition}\cite{DBLP:journals/tcs/FinkelS01}
-If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set of states, then $\pred(I )$ is upward-closed.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set of states, then $\pred(U )$ is upward-closed.
 \end{proposition}
 %\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
@@ -237,7 +239,7 @@ Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If
 
 
 \begin{definition}\cite{DBLP:journals/iandc/AbdullaCJT00}
-A WSTS has {\em effective pred-basis} if there exists an algorithm accepting
+A WSTS $\mathscr{S}$ has {\em effective pred-basis} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 \end{definition}
 
@@ -258,12 +260,12 @@ $\uparrow I = I = \downarrow I$.
 
 A downard-closed set $J$ is {\em decidable} if, given $s \in S$, it is decidable whether
 $s \in J$. 
-\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
+%\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
 % \textcolor{red}{Do we still demand this ?}
-\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
+%\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
 
 \begin{claim}{(stability of ideals)}
-Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J$ are upward-closed.
+Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V$ are upward-closed.
 \end{claim}
 
 
@@ -274,20 +276,20 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 \begin{fact}\label{fact basis}
 % Fact 3 ([1]). 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
-For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
+For every upward-closed set $U \subseteq S$, there exists a finite basis $B$ of $U$. 
 % (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 % \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
 \end{fact}
 
 
 \begin{definition}{ (index)}. 
-If $S$ is a WSTS with strong monotony and $I \subseteq S$  is an upward-closed set and $k \geq 0$, let $I^k= \bigcup_{0 \leq j \leq k} \pred^j(I)$.
-The {\em index} $k(I)$ is the
-smallest $k_0$ s.t. $I^k = I^{k_0}$ for all $k \geq k_0$.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$  is an upward-closed set and $k \geq 0$, let $U^k= \bigcup_{0 \leq j \leq k} \pred^j(U)$.
+The {\em index} $k(U)$ is the
+smallest $k_0$ s.t. $U^k = U^{k_0}$ for all $k \geq k_0$.
 \end{definition}
 
 
-If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set, the sets $\pred(I )$, and $\pred^{\geq k}(I )$ for
+If $\mathscr{S}$ is a WSTS with strong compatibility and $I \subseteq S$ is an upward-closed set, the sets $\pred(I )$, and $\pred^{\geq k}(I )$ for
 every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(I)$.
 
 \begin{remark}
@@ -301,7 +303,7 @@ This ensures the following.
 
 \begin{fact}\label{stop condition}
 % Fact 4 (stop condition). 
-If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $I^k = I^{k+1}$ , then $I^\ell = I^k$ for all $\ell \geq k$, i.e.,
+If $\mathscr{S}$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $I^k = I^{k+1}$ , then $I^\ell = I^k$ for all $\ell \geq k$, i.e.,
 $k(I) \leq k$. This also implies that $\pred^*(I) = I^k$.
 \end{fact}
 
@@ -335,7 +337,7 @@ Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
 \end{proof}
 
 \begin{theorem}
-A finite basis of $ \pred^*(U)$ is computable for any WSTS and any upward closed set $U$.
+A finite basis of $ \pred^*(U)$ is computable for any WSTS $\mathscr{S}$ and any upward closed set $U \subseteq S$.
 \end{theorem}
 
 %%%
@@ -380,7 +382,7 @@ We can also ask whether there exists such a bound $k$ such that $S$ is $k$-resil
 
 \problemx{Bounded Resilience problem}
 {a transition system $(S,\rightarrow)$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
-{$\exists k \geq 0  S$ is $k$-resilient. ?\newline}
+{$\exists k \geq 0  \mathscr{S}$ is $k$-resilient. ?\newline}
 %%
 \fi
 %%%
@@ -395,25 +397,39 @@ envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutu
 
 \section{Uniform resilience for WSTS}
 
-The $k$-resilience problem is to decide whether from a bad state, is it possible to find a path of length smaller than a given $k$ to reach a safe state. Let us define two sets BAD and SAFE. From all states $b \in BAD$ does there exist a path of length smaller than $k$ that reaches a state $s \in SAFE$ ?
 
-It can be formally stated as follows :
+The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a safe state. Let us formalize these properties.
 
-\problemx{uniform $k$-resilience problem}
-{A transition system $(S,\rightarrow)$, two sets $SAFE, BAD \subseteq S$.}
-{$BAD \longrightarrow^{\leq k} SAFE$ ?\newline}
+\problemx{uniform resilience problem}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $SAFE, BAD \subseteq S$.}
+{$BAD \longrightarrow^{*} SAFE$ ?\newline}
 %
 %\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
 
-For most of transition systems, this problem is decidable if both SAFE and BAD are finite. When one of the two sets is infinite, it generally becomes undecidable. So we restrict the framework to WSTS and sets SAFE and BAD will be upward or downward closed. In \cite{DBLP:conf/gg/Ozkan22} BAD is downward closed and SAFE is upward closed. But there are other possible cases: for instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $SAFE =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $BAD =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of SAFE.
+\problemx{uniform $k$-resilience problem}
+{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two sets $SAFE, BAD \subseteq S$.}
+{$BAD \longrightarrow^{\leq k} SAFE$ ?\newline}
+
+We add a third problem that decides whether there exists an $k$ such  that the system is $k$-resilient.
+%
+\problemx{uniform bounded resilience problem}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $SAFE, BAD \subseteq S$.}
+%{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-resilient ?\newline}
+
+
+These three reachability problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. 
+So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS are given as upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets SAFE and BAD.
+
+For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $SAFE =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $BAD =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of SAFE. In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that BAD is always downward closed and SAFE is always upward closed.
 %		
 
-Most decidable properties in well-structured transition systems are given as upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}.
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
-Transfering the abstract resilience problems into this framework,
-it is therefore reasonable to demand that both propositions, SAFE and BAD, are given by 
-upward-closed or downward-closed sets.
+
+%Transfering the abstract resilience problems into this framework,
+%it is therefore reasonable to demand that both propositions, SAFE and BAD, are given by 
+%upward-closed or downward-closed sets.
 
 \begin{tabular}{ l c r }
    BAD/SAFE & Up & Down \\
@@ -421,12 +437,15 @@ upward-closed or downward-closed sets.
    Down & dec & ? \\
  \end{tabular}
 
-We first assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 
-\alain{très discutable. pourquoi pas supposer des conditions plus gnérales ? perd-on la décidabilité ?}
+%We first assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 
 % \textcolor{red}{Seems like a reasonable assumption to me.}
 
 %From these considerations, we formulate instances of the abstract resilience problems for well-
 %structured transition systems.
+
+
+\section{Resilience for WSTS}
+
 
 %
 %\problemx{(I,J)-$k$-resilience problem for WSTS}
@@ -484,7 +503,6 @@ compute the sets of $(I,J,k)$ st S is resilient.\\
 max des I,J possibles \\
 }
 
-\section{Resilience for WSTS}
 
 
 \begin{remark} 
