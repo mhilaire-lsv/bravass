@@ -400,19 +400,19 @@ envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutu
 
 The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a safe state. Let us formalize these properties.
 
-\problemx{uniform resilience problem}
+\problemx{uniform resilience problem (URP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $SAFE, BAD \subseteq S$.}
 {$BAD \longrightarrow^{*} SAFE$ ?\newline}
 %
 %\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
 
-\problemx{uniform $k$-resilience problem}
+\problemx{uniform $k$-resilience problem (UkRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two sets $SAFE, BAD \subseteq S$.}
 {$BAD \longrightarrow^{\leq k} SAFE$ ?\newline}
 
 We add a third problem that decides whether there exists an $k$ such  that the system is $k$-resilient.
 %
-\problemx{uniform bounded resilience problem}
+\problemx{uniform bounded resilience problem (UBRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $SAFE, BAD \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 {$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-resilient ?\newline}
@@ -423,6 +423,7 @@ So we restrict our framework to the class of infinite-state WSTS. Since most of 
 
 For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $SAFE =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $BAD =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of SAFE. In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that BAD is always downward closed and SAFE is always upward closed.
 %		
+In what follows, we will always suppose that a downward closed set $D$ is given by its finite set of ideals $I(D)$ satisfying $D=\downarrow D =I(D) \cap S$and that an upward closed set $U$ is given by its finite set of minimal elements, $b(U)$.
 
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
@@ -430,6 +431,22 @@ For instance, the well-known mutual exclusion property is often modelized in a $
 %Transfering the abstract resilience problems into this framework,
 %it is therefore reasonable to demand that both propositions, SAFE and BAD, are given by 
 %upward-closed or downward-closed sets.
+
+
+\begin{proposition}\label{down-up}
+Let $\mathscr{S}$ be an effective WSTS with effective predbasis and let the two finite sets $I(BAD)$ and  $b(SAFE)$ representing $\downarrow BAD$ and $\uparrow SAFE$.
+The uniform resilience problem (URP), the uniform bounded resilience problem (UBRP) and the uniform $k$-resilience problem (UkRP) are decidable
+\end{proposition}
+
+\begin{proof}
+The uniform resilience problem (URP) reduces to decide coverability of the finite set $b(SAFE)$ from the infinite set $BAD$; but it is sufficient to decide coverability from the finite set of maximal elements of $BAD$ which are ideals but not elements in $S$. We use the fact that y is coverable from an $x \in BAD$ iff $y$ is coverable from $x' \in I(BAD)$.
+
+
+Hence it is decidable since
+uniform bounded resilience problem (UBRP) is equivalent to the uniform resilience problem (UBRP) for WSTS with...
+The uniform $k$-resilience problem (UkRP) is also decidable by computing the least $n$ such that $\pred^n(SAFE)=\pred^*(SAFE)$ and then to test whether $n \leq k$.
+\end{proof}
+
 
 \begin{tabular}{ l c r }
    BAD/SAFE & Up & Down \\
