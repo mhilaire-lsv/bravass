@@ -305,7 +305,14 @@ If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed se
 $k(I) \leq k$. This also implies that $\pred^*(I) = I^k$.
 \end{fact}
 
-
+\iffalse
+\begin{remark}
+$I^{k+1} = \bigcup_{0 \leq j \leq k+1} \pred^j(I) = 
+I \cup \bigcup_{1 \leq j \leq k+1} \pred^j(I) =
+I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
+=  I \cup \pred(I^k)$.
+\end{remark}
+\fi
 
 \begin{lemma}
 % Lemma 3 ([1]) 
@@ -322,13 +329,6 @@ We have
 $$I^{k+1} = I \cup \pred(I^k ) = I \cup
 \bigcup_{s' \in B}
 \pred(\uparrow \{s' \}).$$
-\alain{n'est-ce pas $I^{k+1} = I^k \cup \pred(I^k ) = I^k \cup
-\bigcup_{s' \in B}
-\pred(\uparrow \{s' \}).$ ?}
-\mathieu{À strictement parler, c'est  $I^{k+1} = \bigcup_{0 \leq j \leq k+1} \pred^j(I) = 
-I \cup \bigcup_{1 \leq j \leq k+1} \pred^j(I) =
-I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
-=  I \cup \pred(I^k)$. Je vais rajouter une remarque au dessus.}
 
 Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
