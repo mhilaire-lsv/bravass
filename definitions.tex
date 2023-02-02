@@ -403,7 +403,7 @@ It can be formally stated as follows :
 {A transition system $(S,\rightarrow)$, two sets $SAFE, BAD \subseteq S$.}
 {$BAD \longrightarrow^{\leq k} SAFE$ ?\newline}
 %
-\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
+%\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
 
 For most of transition systems, this problem is decidable if both SAFE and BAD are finite. When one of the two sets is infinite, it generally becomes undecidable. So we restrict the framework to WSTS and sets SAFE and BAD will be upward or downward closed. In \cite{DBLP:conf/gg/Ozkan22} BAD is downward closed and SAFE is upward closed. But there are other possible cases: for instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $SAFE =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $BAD =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of SAFE.
 %		
