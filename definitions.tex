@@ -385,6 +385,10 @@ We can also ask whether there exists such a bound $k$ such that $S$ is $k$-resil
 pour $k,k'$ donnés, chercher si $SAFE_{max}$ et $BAD_{max}$ ont un sens ? on peut faire l'union des SAFE, SAFE' et des BAD, BAD' prendre le max des k. Fixer k, chercher et calculer $SAFE_{max}$ et $BAD_{max}$.
 
 
+\alain{dire juste que SAFE = upward closed et BAD = downward closed.
+envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
+4 resilience problem (U,D), (U,U), (D,U), (D,D)}
+
 \section{Uniform resilience for WSTS}
 
 The $k$-resilience problem is to decide whether from a bad state, is it possible to find a path of length smaller than a given $k$ to reach a safe state. Let us define two sets BAD and SAFE. From all states $b \in BAD$ does there exist a path of length smaller than $k$ that reaches a state $s \in SAFE$ ?
@@ -480,13 +484,14 @@ max des I,J possibles \\
 
 
 \begin{remark} 
-$k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  \textcolor{red}{AVERIFIER !!}
+$k$-resilienc $\leq$ bounded Resilience 
+%	$\leq$ Resilience.  
+\textcolor{red}{oui si strong monootony, non ? sinon}
 \end{remark}
 
-\alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
 \begin{proposition}\label{reductions}
-coverability are $t$-liveness reduceable to resilience.
+coverability and $t$-liveness are reduceable to resilience.
 %	home state and reachability
 \end{proposition}
 
@@ -527,9 +532,6 @@ and with effective basis of $post^*$ ???
 
 expliquer toutes les variantes de la résilience
 
-\alain{dire juste que SAFE = upward closed et BAD = downward closed.
-envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
-4 resilience problem (U,D), (U,U), (D,U), (D,D)}
 % \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
 
 Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $U$ is \emph{computable} if there is an algorithm that computes a finite basis of $U$.
@@ -559,10 +561,13 @@ and resilience is decidable.
 
 The author in \cite{DBLP:conf/gg/Ozkan22}
 %\"Ozkan
- goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
+\begin{proposition}
+goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
 % in the regarded class 
 with strong monotonicity 
 and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). 
+\end{proposition}
+
 The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}).
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
 
@@ -572,14 +577,14 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 
 \begin{proof}
-Let us show that Reset VASS and LCS don't enjoy the property that $\uparrow \post^*$ is computable.
+Let us show that Reset VASS don't enjoy the property that $\uparrow \post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable in counter $i$ by examining if there is some vector $v$ in the basis such that $v(i)=0$. But reachability of $0$ in a counter $i$ is undecidable for Reset VASS. 
 % sont WSTS with strong compatibility. et l'accessibilité est undecidable.
-$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
+%	$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \textcolor{red}{à relire par Mathieu}
 \end{proof}
 
-il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
+%il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
 
 remarque si on enlève la strong monotony mais en gardant with effective basis of $post^*$:
 
