@@ -232,7 +232,7 @@ If $S$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed se
 \iffalse
 Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
 \fi
-
+\mathieu{On peut probablement enlever la Proposition $8$ alors. La proposition $9$ étant plus directement pertinente pour les lemmes/preuves (permet d'avoir itérativement $\pred^k(I)$ upward-closed if $I$ upward-closed - for all $k$).}
 
 
 
@@ -258,9 +258,10 @@ $\uparrow I = I = \downarrow I$.
 
 A downard-closed set $J$ is {\em decidable} if, given $s \in S$, it is decidable whether
 $s \in J$. 
-Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.
+\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
 \alain{remarque pas claire}
 % \textcolor{red}{Do we still demand this ?}
+\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
 
 \begin{claim}{(stability of ideals)}
 Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J$ are upward-closed.
@@ -274,13 +275,9 @@ Let $I, J \subseteq S$ be upward-closed. Then the sets $I \cup J$, and $I \cap J
 \begin{fact}\label{fact basis}
 % Fact 3 ([1]). 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
-
-
-(i) For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
-
-(ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
-\alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
-
+For every upward-closed set $I \subseteq S$, there exists a finite basis $B$ of $I$. 
+% (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
+% \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
 \end{fact}
 
 
