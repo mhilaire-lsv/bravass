@@ -486,16 +486,15 @@ $k$-resilienc $\leq$ bounded Resilience $\leq$ Resilience.  \textcolor{red}{AVER
 \alain{examiner les cas I,J un élement, cloture, tout, clos par le bas et par le haut,... ...}
 
 \begin{proposition}\label{reductions}
-coverability, $t$-liveness, home state 
-%and reachability
- reduce to resilience.
+coverability are $t$-liveness reduceable to resilience.
+%	home state and reachability
 \end{proposition}
 
 
 \begin{proof}
 
 \begin{itemize}
-\item $J=S= \downarrow S$ et $I=\uparrow x$ then this particular resilience is coverability of $x$ from $s$.
+\item Let us choose $J=S= \downarrow S$ and $I=\uparrow x$ then resilience is equivalent to coverability of $x$ from $s$.
 %\item $J=\{s\}$ and $I=\{x\}$ this particular resilience is reachability of $x$ from $s$.
 
 \item $t$-liveness  can be expressed as the following formula
@@ -506,7 +505,7 @@ is the upward closure of the preconditions to use transition $t$.
 The problem reduces itself to the resilience problem
 where $J=S$ and $I = \uparrow \pred(t)$.
 
-\item the home state problem can be expressed as $\ldots$
+%\item the home state problem can be expressed as $\ldots$
 \end{itemize}
 
 %	\mathieu{Ne marche pas (un des deux sens est invalide imho)}
