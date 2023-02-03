@@ -415,7 +415,7 @@ We add a third problem that decides whether there exists an $k$ such  that the s
 \problemx{uniform bounded resilience problem (UBRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $SAFE, BAD \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-resilient ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is uniformely $k$-resilient ?\newline}
 
 
 These three reachability problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. 
@@ -423,7 +423,7 @@ So we restrict our framework to the class of infinite-state WSTS. Since most of 
 
 For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $SAFE =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $BAD =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of SAFE. In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that BAD is always downward closed and SAFE is always upward closed.
 %		
-In what follows, we will always suppose that a downward closed set $D$ is given by its finite set of ideals $I(D)=\{J_1, J_2,...,J_n\}$ satisfying $D=\downarrow D = S \cap \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is given by its finite set of minimal elements, $b(U)$.
+In what follows, we will always suppose that a downward closed set $D$ is given by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D=\downarrow D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is given by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
 
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
@@ -432,27 +432,41 @@ In what follows, we will always suppose that a downward closed set $D$ is given 
 %it is therefore reasonable to demand that both propositions, SAFE and BAD, are given by 
 %upward-closed or downward-closed sets.
 
+The \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where states of $\hat{\mathscr{S}}$ are ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS (intuitively speaking, $(S,\leq)$ must not contain the Rado set). Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS.
+
+Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+
 
 \begin{proposition}\label{down-up}
-Let $\mathscr{S}$ be an effective WSTS with effective predbasis and let the two finite sets $I(BAD)$ and  $b(SAFE)$ representing $\downarrow BAD$ and $\uparrow SAFE$. Let us suppose that is completion-post-effective class of WSTS.
-The uniform resilience problem (URP), the uniform bounded resilience problem (UBRP) and the uniform $k$-resilience problem (UkRP) are decidable
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $I_{BAD}$ and $Min_{SAFE}$.
+The uniform resilience problem (URP) and the uniform bounded resilience problem (UBRP) are decidable.
+The uniform $k$-resilience problem (UkRP) is decidable if moreover $\mathscr{S}$ has the predbasis hypothesis.
 \end{proposition}
 
 \begin{proof}
-Let $I(BAD)=\{J_1, J_2,...,J_n\}$ representing $BAD$ and  $b(SAFE)=\{b_1,b_2,...,b_m\}$ representing $SAFE$.
-The uniform resilience problem (URP) reduces to decide infinite instances of the coverability problem : for all $x \in BAD$ does there exist an $j$ st $b_j$ is coverable from $x$. Let us reduce this infinite coverability questions by $n$ instances of the coverability problem from ideals but not elements in $S$: for all $i$, does there exist an $j$ st $b_j$ is coverable from $J_i$
+Let $I_{BAD}=\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $BAD$ and $B_{SAFE}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $SAFE$.
+The uniform resilience problem (URP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in BAD$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to $n$ instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$.
 
-We use the fact that y is coverable from an $x \in BAD$ iff $\downarrow y$ is coverable from $\downarrow x$ in $\hat{S}$
+%Proposition 30 in \cite{BFM-icalp14} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{*} y'$ in $\mathscr{S}$.
+
+Let us show that $b_j$ is coverable from $x$ in $\mathscr{S}$ iff $\downarrow b_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
+
+Suppose that $b_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq b_j$. From Proposition 30, there exist an ideal $J$ and a run $\downarrow x \xrightarrow{k} J$ where $J \supseteq \downarrow y \supseteq \downarrow b_j$ in $\hat{\mathscr{S}}$, hence $b_j$ is covered from $\downarrow x$.
+Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow b_j \subseteq J$ then 
+%	for every $y \in J$, 
+there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b_j$ in $\mathscr{S}$ and then $b_j$ is coverable from $x$ in $\mathscr{S}$.
+
+%
+% iff there is a run in $\hat{S}$ from an ideal I to J such that  $\downarrow x \subseteq I$ and $\downarrow b_j \subseteq J$. This is a consequence of  
+%Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(BAD)$.
-\alain{à prouver}
 
+To decide the (uniform) bounded resilience problem (UBRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ and we deduce that  $\mathscr{S}$ is uniformely $K$-resilient. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the uniform resilience problem (UBRP) and the uniform bounded resilience problem (UBRP) are decidable.
 
-Hence it is decidable since
-uniform bounded resilience problem (UBRP) is equivalent to the uniform resilience problem (UBRP) for WSTS with...
-The uniform $k$-resilience problem (UkRP) is also decidable by computing the least $n$ such that $\pred^n(SAFE)=\pred^*(SAFE)$ and then to test whether $n \leq k$.
+To decide the UkRP, we may compare the input $k$ with $K$. If $k \geq K$, we conclude that is uniformely $k$-resilient; if $k < K$ we cannot answer. if moreover $\mathscr{S}=(S,\rightarrow, \leq)$ has the predbasis hypothesis, we may compute the least $n$ such that $\pred^n(SAFE)=\pred^*(SAFE)$ and then to test whether $n \leq k$. S is uniformely $k$-resilient iff $n \leq k$ and then UkRP is decidable.
 \end{proof}
 
-URP is decidable for lossy counter machines (LCM) as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}.
+URP is decidable for lossy counter machines (LCM) with SAFE and BAD semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}.
 
 \begin{tabular}{ l c r }
    BAD/SAFE & Up & Down \\
