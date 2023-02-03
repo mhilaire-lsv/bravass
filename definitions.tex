@@ -430,6 +430,9 @@ URP is decidable for lossy counter machines (LCM) with SAFE and BAD semilinear s
 In what follows, we will always suppose that a downward closed set $D$ is given by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D=\downarrow D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is given by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
 
 Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable and sets are recursive.
+%
+\alain{on peut penser à des ensembles bad definis dans une logique booleennne sur les clos par le bas, haut, +...}
+
 
 \begin{proposition}\label{general}
 $\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,safe)-resilient iff $bad \subseteq \pred^*(safe)$.\\
@@ -446,7 +449,8 @@ Resilient means that
 
 
 \begin{theorem}\label{up-down}
-The three uniform resilience problems are decidable for WSTS with effective predbasis and $safe=\uparrow safe$ and bad is upward closed or downward closed.
+The three uniform resilience problems are decidable for WSTS with effective predbasis and $safe=\uparrow safe$.
+%	and bad is upward closed or downward closed.
 \end{theorem}
 
 
@@ -456,7 +460,7 @@ Let us first solve if $\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,safe
 if bad  is upward closed, $bad = \uparrow B_{bad}$ and $ \uparrow B_{bad} \subseteq \uparrow B_{\pred^*(safe)}$ iff for every $b \in B_{bad}$, there is a $s \in B_{\pred^*(safe)}$ such that $s \leq b$. similar reasonning for the other case.
 hence the two uniform resilience problems are decidable.
 
-Let us examine the uniform $k$-resilience problem (UkRP). we may compute the least $n$ such that $ \uparrow \pred^n(SAFE)=  \uparrow \pred^*(SAFE)$. S is uniformely $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}and then UkRP is decidable.
+Let us examine the uniform $k$-resilience problem (UkRP). we may compute the least $n$ such that $bad \subseteq \uparrow \pred^n(SAFE)=  \uparrow \pred^*(SAFE)$. S is uniformely $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}and then UkRP is decidable.
 \end{proof}
 
 %One begins to test whether $Bad \cap \pred^*(safe) = \emptyset$ then never resilient car une fois dans bad j'y reste sans pouvoir aller dans safe.\\
@@ -466,7 +470,9 @@ resilient iff $Bad \subseteq \pred^*(safe)$  (eq $Bad \cap \pred^*(safe) = Bad$)
 
 $Bad \cap \pred^*(safe) \neq Bad$ alors, on peut se limiter à $Bad' = Bad \cap \pred^*(safe)$ et c'est (Bad',safe)-resilient.
 
-\subsection{Case: $BAD=\downarrow BAD$ and $SAFE=\uparrow SAFE$.}
+Let us show that the predbasis hypothesis can be replaced by other hypotheses.
+
+\subsection{Case: $SAFE=\uparrow SAFE$ and $BAD=\downarrow BAD$.}
 
 %
 %		cas étudié par les deux articles sur les graphes
@@ -516,16 +522,16 @@ To decide the UkRP, we may compare the input $k$ with $K$. If $k \geq K$, we con
 
 %
 
-\subsection{Case: $BAD=\uparrow BAD$ and $SAFE=\uparrow SAFE$.}
+\subsection{Case: $SAFE=\uparrow SAFE$ and $BAD=\uparrow BAD$.}
 
 %%
 
 
 
-\subsection{Case: $BAD=\downarrow BAD$ and $SAFE=\downarrow SAFE$.}
+\subsection{Case: $SAFE=\downarrow SAFE$ and $BAD=\downarrow BAD$.}
 
 %%%%%%%%
-\subsection{Case: $BAD=\uparrow BAD$ and $SAFE=\downarrow SAFE$.}
+\subsection{Case: $SAFE=\downarrow SAFE$ and $BAD=\uparrow BAD$.}
 %
 %		cas exclusion mutuelle
 %
