@@ -612,11 +612,7 @@ max des I,J possibles \\
 
 
 
-\begin{remark} 
-$k$-resilienc $\leq$ bounded Resilience 
-%	$\leq$ Resilience.  
-\textcolor{red}{oui si strong monootony, non ? sinon}
-\end{remark}
+
 
 
 \begin{proposition}\label{reductions}
@@ -648,22 +644,16 @@ where $J=S$ and $I = \uparrow \pred(t)$.
 %	\mathieu{Ne marche pas (un des deux sens est invalide imho)}
 \end{proof}
 
-Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets.
-
-and with effective basis of $post^*$ ???
-
-
-% \alain{cette dernière propriété fait penser à la $t$-liveness dans un rdPetri ou n'importe quel modèle monotone..qui peut s'exprimer par $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ ? avec $U_t=\uparrow \pred(t)$=la clôture par le haut des préconditions pour déclencher la transition $t$}
 
 
 
+% Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets.
 
+% and with effective basis of $post^*$ ???
 
-expliquer toutes les variantes de la résilience
+% expliquer toutes les variantes de la résilience
 
-% \textcolor{red}{In the Özkan paper the input include a basis of $\uparrow post^*(s)$. Not $100$\% sure it is necessary, think we can try to do without this assumption in the input.}
-
-Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $U$ is \emph{computable} if there is an algorithm that computes a finite basis of $U$.
+% Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $U$ is \emph{computable} if there is an algorithm that computes a finite basis of $U$.
 
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
@@ -762,12 +752,23 @@ Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong
   
 \end{proof}
 
-\begin{theorem}
-In WSTS with strong monotony, 
-the {\sc bounded resilience} problem
-is equivalent to the
-{\sc resilience} problem.
-\end{theorem}
+
+
+\begin{proposition}
+In WSTS with strong monotony, the bounded resilience problem is
+reducible to the $k$-resilience problem.
+\end{proposition}
+
+\begin{proof}
+strong WSTS
+$\pred^*(I) = \pred^{k}(I)$
+Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
+\end{proof}
+
+\begin{proposition}
+In WSTS with strong monotony, the bounded resilience problem is
+equivalent to the resilience problem.
+\end{proposition}
 
 \begin{proof}
 strong WSTS
