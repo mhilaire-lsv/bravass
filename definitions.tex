@@ -719,36 +719,21 @@ remarque si on enlève la strong monotony mais en gardant with effective basis o
 leur algorithme termine mais pas correct car l'intersection de post et J car alors le lemmme xxxx est faux (contre-exemple)
  \textcolor{red}{à faire Mathieu}
  
-\mathieu{En train de chercher un contre exemple pour le Lemme~\ref{Lemma intersection}.} 
+\mathieu{En train de chercher un contre exemple pour le corollaire du Lemme~\ref{Lemma intersection}.} 
  
 \mathieu{
 
-On considère un LCS
+On considère un LCS, où on autorise à effacer des messages (lossyness) mais effacer un message prends une étape (contrairement à [ref], où ils font une sorte de cloture de effacer-transition-effacer). On n'a alors pas la strong compatibility: 
 
-On prends:
-
-$(q, baaaaaa)	\to \ldots $
-
-$(q, b) 	\to (q,bb)$
-
-
+On prends: $(q, b) 	\to (q,bb)$ par exemple et $(q, baaaaaa) \geq (q,b) $, alors
 $(s, baaaaaa) \to^* (s,b) \to (s,bb)$
-
 MAIS
 
 C'est pas "en une étape".
 
+(On considère -il faut le mentionner/vérifier- que on ne peut effaçer que d'un coté ? et pas au milieu?)
 
-
-Dans ce cas là, du coup, $pred( \{(q,bb)\} ) $ est pas clos par le haut.
-
-MAIS
-
-$\{(q,bb)\}$ c'est pas clos par le haut non plus.
-
-$\uparrow \{(q,bb)\}$ l'est.
-
-Et $pred(\uparrow \{(q,bb)\}$ n'est pas clos par le haut.
+Dans ce cas là, du coup, $pred(\uparrow \{(q,b)\}$ n'est pas clos par le haut. \\
 
 Revenons au Corollaire
 
@@ -758,22 +743,19 @@ $post^* (s) \cap J \subseteq I^k$
 
 MAIS pas
 
-$ (\uparrow post^* (s)) \cap J \subseteq I^k$
+$ (\uparrow post^* (s)) \cap J \subseteq I^k$ \\
 
-
-Ça serait un contre exemple de quoi ?
 
 Ça serait un cas où leurs algorithme vas dire 
 "On n'a pas $(\uparrow post^* (s)) \cap J \subseteq I^k$ donc on n'a pas la $k$-résilience "
 
 Alors qu'on aurait la $k$-résilience (i.e. $post^* (s) \cap J \subseteq I^k$)
 
-Pour $I^k$, le contre exemple prendrait du coup $pred(\uparrow \{ (q,bb)\})$ qui n'est pas clos par le haut.
+Pour $I^k$, le contre exemple prendrait du coup $pred(\uparrow \{ (q,b)\})$ qui n'est pas clos par le haut.
 
 On voudrait
 
-$post^*(s) \cap J \subseteq pred(\uparrow \{ (q,bb)\})$
-
+$post^*(s) \cap J \subseteq pred(\uparrow \{ (q,b)\})$
 
 
 Je propose de prendre $J$ = ensemble des configurations je pense le truc ici doit venir de
@@ -781,48 +763,26 @@ $\uparrow post^* (s)$ being too big
 donc autant pas se restreindre du tout sur $J$
 
 
-$post^*(s) \subseteq pred(\uparrow \{ (q,bb)\})$
+$post^*(s) \subseteq pred(\uparrow \{ (q,b)\})$
 
-si $s=(q,b)$ par exemple, et que on peut aller de $q$ vers $q$ en écrivant un 
-$b$ ? (et c'est tout, disons)
+Si $s=(q,b)$ par exemple, et que on peut aller de $q$ vers $q$ en écrivant un 
+$b$ ? et évidement en perdant le dernier message (parce qu'on est lossy). Et c'est tout, disons.
 
-Alors le problème, c'est que depuis $(q,b)$ on peut AUSSI perdre le $b$ (parce qu'on est lossy).
+Déjà par lossiness $(q,\epsilon)$ serait dans $post^*((q,b))$.
 
-Donc $(q,\epsilon)$ serait dans $post^*((q,b))$
+Et aussi dans $pred(\uparrow \{ (q,b)\})$ puisque $(q,\epsilon) \to (q,b)$.
 
-Mais pas dans $pred(\uparrow \{ (q,bb)\})$
-
-
-
-Et vu que dans $post^*((q,b)) \cap J$, $J$ est downward-closed alors on ne peut pas
-se servir de $J$ pour "enlever" $(q,\epsilon)$ 
-(sinon on enleve tout).
-
-Après, si je reprends mon exemple...
-
-Mais je change le $I$
-
-Disons, je prends $pred(\uparrow \{ (q,\epsilon)\})$
-
-Bon à ce moment là malheureusement on a transformé le set pour que il y ait tout les mots dedans quoi.
-
-Et si je prends $pred(\uparrow \{ (q,b)\})$ ?
-
-Il y a $(q,\epsilon)$ dedans parce que $(q,\epsilon) \to (q,b)$.
-
-Donc j'ai
+Donc on aurait:
 
 $post^*((q,b))  \subseteq pred(\uparrow \{ (q,b)\})$
 
-Ah mais à ce moment là ça deviens compliqué parce que on a rajouté tout les pred de $(q,baa \cdots a)$ aussi, alors qu'avant on avait que les pred de $(q,bbaa \cdots a)$ ...
-
-Mais c'est bon ... c'est bon parce que
-
-Parce que $(q,aaaaaa)$ est dans 
-$\uparrow post^* ((q,b))$ puisque $(q,\epsilon)$ est dans $post^* ((q,b))$
+Et on aurait $(q,aaaaaa)$ dans 
+$\uparrow post^* ((q,b))$ puisque $(q,\epsilon)$ est dans $post^* ((q,b))$.
 
 Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
-(même si il est dans $pred^*(\uparrow \{ (q,b)\})$)
+(même si il est dans $pred^*(\uparrow \{ (q,b)\})$).
+
+
 
 }
  
