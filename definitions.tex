@@ -679,14 +679,14 @@ and resilience is decidable.
 \end{proof}
 
 %\"Ozkan
-\begin{proposition} \cite{DBLP:conf/gg/Ozkan22}
-goes on to prove that for finite-branching WSTS with strong monotonicity, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
+\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]
+For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
 % in the regarded class 
-with strong monotonicity 
-and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$ (Proposition~1 in \cite{DBLP:conf/gg/Ozkan22}). 
+with strong upward compatibility 
+and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$. 
 \end{proposition}
 
-The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong monotonicity (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). Hence Resilience is decidable for Petri nets and VASS.
+The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). Hence Resilience is decidable for Petri nets and VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
 
 \begin{proposition}
