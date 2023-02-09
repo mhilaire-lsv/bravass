@@ -232,12 +232,12 @@ If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upwa
 %\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
 Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
-\fi
+
 \mathieu{On peut probablement enlever la Proposition $8$ alors. La proposition $9$ étant plus directement pertinente pour les lemmes/preuves (permet d'avoir itérativement $\pred^k(I)$ upward-closed if $I$ upward-closed - for all $k$).}
+\fi
 
 
-
-\begin{definition}\cite{DBLP:journals/iandc/AbdullaCJT00}
+\begin{definition}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
 A WSTS $\mathscr{S}$ has {\em effective pred-basis} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 \end{definition}
@@ -263,7 +263,7 @@ $s \in J$.
 % \textcolor{red}{Do we still demand this ?}
 %\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
 
-\begin{claim}{(stability of ideals)}
+\begin{claim}{(stability of upward-closed sets)}
 Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V$ are upward-closed.
 \end{claim}
 
@@ -282,7 +282,7 @@ For every upward-closed set $U \subseteq S$, there exists a finite basis $B$ of 
 
 
 \begin{definition}{ (index)}. 
-If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$  is an upward-closed set and $k \geq 0$, let $U^k= \bigcup_{0 \leq j \leq k} \pred^j(U)$.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$  is upward-closed and $k \geq 0$, let $U^k= \bigcup_{0 \leq j \leq k} \pred^j(U)$.
 The {\em index} $k(U)$ is the
 smallest $k_0$ s.t. $U^k = U^{k_0}$ for all $k \geq k_0$.
 \end{definition}
