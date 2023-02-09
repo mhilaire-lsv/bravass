@@ -200,7 +200,7 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 \subsection{Well-structured transition systems}
 
 
-\begin{definition}\cite{DBLP:journals/tcs/FinkelS01}
+\begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
 A {\em (resp. strongly) well-structured transition system} (abbreviated as WSTS)  $(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ between states such that  
@@ -217,18 +217,17 @@ Several families of formal models of processes give rise to WSTSs in a natural w
 
 
 % \textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and 'decidable $\leq$' being independant from the WSTS definition}
-
+\iffalse
 \begin{proposition}\cite{DBLP:journals/tcs/FinkelS01}
 If $\mathscr{S}$ is an WSTS and $U \subseteq S$ is an upward-closed set of states, then $\pred^*(U )$ is upward-
 closed.
 \end{proposition}
-
-\iffalse
+%
 Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $. If now $s' \geq s$ then upward-compatibility entails that $s' \rightarrow^* t'$ for some $t' \geq t$. Then $t' \in U$ and $s' \in \pred^*(U )$.
 \fi
 
 \begin{proposition}\cite{DBLP:journals/tcs/FinkelS01}
-If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set of states, then $\pred(U )$ is upward-closed.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ and $\pred^*(U )$ are upward-closed.
 \end{proposition}
 %\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
