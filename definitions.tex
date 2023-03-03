@@ -399,19 +399,19 @@ pour $k,k'$ donnés, chercher si $Safe_{max}$ et $Bad_{max}$ ont un sens ? on pe
 
 The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a Safe state. Let us formalize these properties.
 
-\problemx{uniform resilience problem (URP)}
+\problemx{resilience problem (URP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $Safe, Bad \subseteq S$.}
 {$Bad \longrightarrow^{*} Safe$ ?\newline}
 %
 %\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
 
-\problemx{uniform $k$-resilience problem (UkRP)}
+\problemx{$k$-resilience problem (UkRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two sets $Safe, Bad \subseteq S$.}
 {$Bad \longrightarrow^{\leq k} Safe$ ?\newline}
 
 We add a third problem that decides whether there exists an $k$ such  that the system is $k$-resilient.
 %
-\problemx{uniform bounded resilience problem (UBRP)}
+\problemx{bounded resilience problem (UBRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $Safe, Bad \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 {$\exists k \geq 0$ such that $\mathscr{S}$ is uniformely $k$-resilient ?\newline}
