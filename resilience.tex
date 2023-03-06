@@ -1,0 +1,216 @@
+
+%%%
+\iffalse
+%%%%
+%%%%
+\subsection{Defining resilience}
+
+
+\subsubsection{Resilience for general transition systems}
+
+% \textcolor{red}{Ask the question why use a set of propositions for $SAFE$ and $BAD$ rather than use subsets of the set of configurations ? }
+
+We ask whether we can reach a state 
+%which satisfies
+in 
+%
+$SAFE$  in a reasonable amount of time whenever we reach a state 
+% which satisfies
+in
+%
+$BAD$. 
+From this we formulate two resilience problems. First consider the case where the recovery time
+is bound by a given natural number $k \geq 0$, i.e., the \emph{explicit resilience problem} for TS.
+
+\problemx{$k$-Resilience problem }
+{a transition system $(S,\rightarrow)$, an integer $k$, a state $s \in S$, $SAFE, BAD \subseteq S$ and $SAFE \cap BAD = \emptyset$.}
+{$\forall s' \in BAD, ~ s \rightarrow^* s' \implies \exists s'' \in SAFE ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+
+If a system $S$ satisfies the explicit resilience property for an integer $k$, we say that $S$ is $k$-resilient.
+
+% If we assume that the transition system yields infinite sequences of transitions, we can express the property to be evaluated in CTL by s |= AG(BAD → 0≤ j≤k EX j SAFE). 
+
+We can also ask whether there exists such a bound $k$ such that $S$ is $k$-resilient. We call this problem the \emph{bounded resilience problem}.
+
+%
+%\problemx{Bounded Resilience problem}
+%{a transition system $(S,\rightarrow)$, a state $s \in S$, $Safe, BAD \subseteq S$ and $Safe \cap BAD = \emptyset$.}
+%{$\exists k \geq 0 ~ \forall s' \in BAD, ~ s \rightarrow^* s' \implies \exists s'' \in Safe ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
+
+
+\problemx{Bounded Resilience problem}
+{a transition system $(S,\rightarrow)$, a state $s \in S$, $Safe, Bad \subseteq S$ and $Safe \cap Bad = \emptyset$.}
+{$\exists k \geq 0  \mathscr{S}$ is $k$-resilient. ?\newline}
+%%
+
+%%%
+
+
+pour $k,k'$ donnés, chercher si $Safe_{max}$ et $Bad_{max}$ ont un sens ? on peut faire l'union des Safe, Safe' et des Bad, Bad' prendre le max des k. Fixer k, chercher et calculer $Safe_{max}$ et $Bad_{max}$.
+
+%
+%\alain{dire juste que Safe = upward closed et BAD = downward closed.
+%envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
+%4 resilience problem (U,D), (U,U), (D,U), (D,D)}
+
+\fi
+
+
+
+\section{Uniform resilience for WSTS}
+
+
+The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a Safe state. Let us formalize these properties.
+
+\problemx{resilience problem (URP)}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $Safe, Bad \subseteq S$.}
+{$Bad \longrightarrow^{*} Safe$ ?\newline}
+%
+%\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
+
+\problemx{$k$-resilience problem (UkRP)}
+{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two sets $Safe, Bad \subseteq S$.}
+{$Bad \longrightarrow^{\leq k} Safe$ ?\newline}
+
+We add a third problem that decides whether there exists an $k$ such  that the system is $k$-resilient.
+%
+\problemx{bounded resilience problem (UBRP)}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $Safe, Bad \subseteq S$.}
+%{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is uniformely $k$-resilient ?\newline}
+
+\alain{trouver les Bad et Safe maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ? on pourrait décider que Safe=complement de Bad et donc on aurait un seul ensemble (et son complement)}
+
+These three reachability problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. 
+So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS are given as effective upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets Safe and Bad.
+\alain{on peut penser à des ensembles Bad definis dans une logique booleennne sur les clos par le bas, haut, +...}
+
+For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $Safe =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $Bad =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of Safe. In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that Bad is always downward closed and Safe is always upward closed.
+%		
+URP is decidable for lossy counter machines (LCM) with Safe and Bad semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
+%
+In what follows, we will always suppose that a downward closed set $D$ is given by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D=\downarrow D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is given by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
+
+Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable and sets are recursive.
+%
+\alain{on peut penser à des ensembles bad definis dans une logique booleennne sur les clos par le bas, haut, +...}
+
+
+\begin{proposition}\label{general}
+$\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-resilient iff $bad \subseteq \pred^*(Safe)$.\\
+$\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-resilient.\\
+$\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-$k$-resilient iff $bad \subseteq \pred^k(Safe)$.
+\end{proposition}
+
+\begin{proof}
+Resilient means that 
+\end{proof}
+
+
+\subsection{Case: $Safe=\uparrow Safe$.}
+
+
+\begin{theorem}\label{up-down}
+The three uniform resilience problems are decidable for WSTS with effective predbasis and $Safe=\uparrow Safe$.
+%	and bad is upward closed or downward closed.
+\end{theorem}
+
+
+\begin{proof}
+Let us first solve if $\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-resilient. Since $Safe=\uparrow Safe$, and WSTS, $\pred^*(Safe)=\uparrow \pred^*(Safe)$, so $\pred^*(Safe)$ admits a finite basis $B_{\pred^*(Safe)}$. since WSTS  with effective predbasis, we may compute a finite basis of $\pred^*(Safe)$ with the backward coverability algorithm. 
+%Then if bad is upward closed or downward closed, we may decide the inclusion $Bad \subseteq \uparrow B_{\pred^*(Safe)}$ which remais to compare, in both cases, two finite sets. 
+if bad  is upward closed, $bad = \uparrow B_{bad}$ and $ \uparrow B_{bad} \subseteq \uparrow B_{\pred^*(Safe)}$ iff for every $b \in B_{bad}$, there is a $s \in B_{\pred^*(Safe)}$ such that $s \leq b$. similar reasonning for the other case.
+hence the two uniform resilience problems are decidable.
+
+Let us examine the uniform $k$-resilience problem (UkRP). we may compute the least $n$ such that $bad \subseteq \uparrow \pred^n(Safe)=  \uparrow \pred^*(Safe)$. S is uniformely $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}and then UkRP is decidable.
+\end{proof}
+
+%One begins to test whether $Bad \cap \pred^*(Safe) = \emptyset$ then never resilient car une fois dans bad j'y reste sans pouvoir aller dans Safe.\\
+
+If $Bad \cap \pred^*(Safe) \neq \emptyset$, One computes the minimal elements $A$ of $Bad \cap \pred^*(Safe)$.
+resilient iff $Bad \subseteq \pred^*(Safe)$  (eq $Bad \cap \pred^*(Safe) = Bad$)
+
+$Bad \cap \pred^*(Safe) \neq Bad$ alors, on peut se limiter à $Bad' = Bad \cap \pred^*(Safe)$ et c'est (Bad',Safe)-resilient.
+
+Let us show that the predbasis hypothesis can be replaced by other hypotheses.
+
+\subsection{Case: $Safe=\uparrow Safe$ and $BAD=\downarrow BAD$.}
+
+%
+%		cas étudié par les deux articles sur les graphes
+%
+
+
+%  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+%  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
+
+%Transfering the abstract resilience problems into this framework,
+%it is therefore reasonable to demand that both propositions, Safe and BAD, are given by 
+%upward-closed or downward-closed sets.
+
+The \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where states of $\hat{\mathscr{S}}$ are ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS (intuitively speaking, $(S,\leq)$ must not contain the Rado set). Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS.
+
+Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+
+
+\begin{proposition}\label{down-up}
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $I_{BAD}$ and $Min_{Safe}$.
+The uniform resilience problem (URP) and the uniform bounded resilience problem (UBRP) are decidable.
+The uniform $k$-resilience problem (UkRP) is decidable if moreover $\mathscr{S}$ has the predbasis hypothesis.
+\end{proposition}
+
+\begin{proof}
+Let $I_{BAD}=\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $BAD$ and $B_{Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $Safe$.
+The uniform resilience problem (URP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in BAD$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to $n$ instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$.
+
+%Proposition 30 in \cite{BFM-icalp14} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{*} y'$ in $\mathscr{S}$.
+
+Let us show that $b_j$ is coverable from $x$ in $\mathscr{S}$ iff $\downarrow b_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
+
+Suppose that $b_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq b_j$. From Proposition 30, there exist an ideal $J$ and a run $\downarrow x \xrightarrow{k} J$ where $J \supseteq \downarrow y \supseteq \downarrow b_j$ in $\hat{\mathscr{S}}$, hence $b_j$ is covered from $\downarrow x$.
+Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow b_j \subseteq J$ then 
+%	for every $y \in J$, 
+there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b_j$ in $\mathscr{S}$ and then $b_j$ is coverable from $x$ in $\mathscr{S}$.
+
+%
+% iff there is a run in $\hat{S}$ from an ideal I to J such that  $\downarrow x \subseteq I$ and $\downarrow b_j \subseteq J$. This is a consequence of  
+%Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
+%' \in I(BAD)$.
+
+To decide the (uniform) bounded resilience problem (UBRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ and we deduce that  $\mathscr{S}$ is uniformely $K$-resilient. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the uniform resilience problem (UBRP) and the uniform bounded resilience problem (UBRP) are decidable.
+
+To decide the UkRP, we may compare the input $k$ with $K$. If $k \geq K$, we conclude that is uniformely $k$-resilient; if $k < K$ we cannot answer. if moreover $\mathscr{S}=(S,\rightarrow, \leq)$ has the predbasis hypothesis, we may compute the least $n$ such that $ \uparrow \pred^n(Safe)=  \uparrow \pred^*(Safe)$. S is uniformely $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}and then UkRP is decidable.
+\end{proof}
+
+%
+
+\subsection{Case: $Safe=\uparrow Safe$ and $BAD=\uparrow BAD$.}
+
+%%
+
+
+
+\subsection{Case: $Safe=\downarrow Safe$ and $BAD=\downarrow BAD$.}
+
+%%%%%%%%
+\subsection{Case: $Safe=\downarrow Safe$ and $BAD=\uparrow BAD$.}
+%
+%		cas exclusion mutuelle
+%
+je prends les minimaux de bad et les idéaux de Safe, pas sur que ce soit decidable....$pred(Safe)$
+
+
+\begin{tabular}{ l c r }
+   BAD/Safe & Up & Down \\
+   Up & dec ? & dec ? \\
+   Down & dec & ? \\
+ \end{tabular}
+
+%We first assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 
+% \textcolor{red}{Seems like a reasonable assumption to me.}
+
+%From these considerations, we formulate instances of the abstract resilience problems for well-
+%structured transition systems.
+
+

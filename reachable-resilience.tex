@@ -1,0 +1,431 @@
+
+
+
+
+\section{Resilience for WSTS}
+
+
+Uniform resilience is a strong property since it implies that from bad there must exist a path to Safe. But, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $post^*(s_0) \cap Bad$, there must exist a path to Safe. However, this condition seems more difficult since one also must decide whether a state $s \in Bad$ is reachable from $s_0$.
+%
+%\problemx{(I,J)-$k$-resilience problem for WSTS}
+%{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
+%{$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
+%\problemx{general $k$-resilience problem for WSTS}
+%{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
+%{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+
+Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
+
+\problemx{$k$-resilience problem for WSTS}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+{$D \longrightarrow^{\leq k} U$ ?  ou $D \cap post^*(s) \longrightarrow^{\leq k} U$ ?  \newline}
+%
+%  		{$\forall s' ~ (s \rightarrow^* s') \wedge s' \in D  \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+%
+$D \longrightarrow^{\leq k} U$: $\forall s' \in D \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\\
+%
+$D \cap post^*(s) \longrightarrow^{\leq k} U$ ?
+%
+$\forall s' ~ (s \rightarrow^* s') \wedge s' \in D  \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?
+ \alain{ça signifie pour tout $d \in D$ il existe un chemin de longueur $\leq k$ qui arrive dans un $u \in U$. c'est plus simple et plus général et ça ne demande moins de décider l'accessibilité....comment faire pour vérifier pour tous les (D,U) ? sinon ça dépend tjs de l'état intial $s$ et s'il faut vérifier pour tous les $s$....}
+
+
+%ou plus simple : $D \rightarrow^{\leq k} U$ ? 
+
+
+%Analogously, we formulate the resilience problem for WSTSs.
+
+\problemx{bounded Resilience problem for WSTS}
+{A state $s$ of a WSTS $W=(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+%{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
+{$\exists k \geq 0$ such that $W$ is $k$-resilient. ?\newline}
+
+\problemx{Resilience problem for WSTS}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+{$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
+
+%\textcolor{blue}{
+%justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
+%}
+
+\begin{remark} 
+We require $U$ to be upward-closed, as, in the general case if we lift restrictions on $U$ and $D$, then reachability reduces itself to resilience. Indeed, the particular resilience problem where we take $D = \{s\}$ and $U = \{x\}$ is reachability of $x$ from $s$, and thus generally undecidable for WSTS. 
+\end{remark}
+
+\textcolor{blue}{
+et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
+}
+
+\textcolor{blue}{
+compute the sets of $(I,J,k)$ st S is resilient.\\
+max des I,J possibles \\
+}
+
+
+
+
+
+
+\begin{proposition}\label{reductions}
+coverability and $t$-liveness are reduceable to resilience.
+%	home state and reachability
+\end{proposition}
+
+
+\begin{proof}
+
+\begin{itemize}
+\item Let us choose $J=S= \downarrow S$ and $I=\uparrow x$ then resilience is equivalent to coverability of $x$ from $s$.
+%\item $J=\{s\}$ and $I=\{x\}$ this particular resilience is reachability of $x$ from $s$.
+
+\item $t$-liveness  can be expressed as the following formula
+$ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ 
+where
+$U_t=\uparrow \pred(t)$
+is the upward closure of the preconditions to use transition $t$.  
+The problem reduces itself to the resilience problem
+where $J=S$ and $I = \uparrow \pred(t)$.
+
+%\item the home state problem can be expressed as $\ldots$
+\end{itemize}
+
+%	\mathieu{Ne marche pas (un des deux sens est invalide imho)}
+%  \textcolor{red}{  Let $J=\downarrow S = S$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s' \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us apply this property to LCS with $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. This property, $\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ expresses that there is an infinite run passing infinitely often through the control-state $q$; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
+% Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.}
+%	\mathieu{Ne marche pas (un des deux sens est invalide imho)}
+\end{proof}
+
+
+
+
+% Since Reset Petri nets are also effective WSTS with strong monotony, we could think to use the undecidability of LTL for Reset Petri nets.
+
+% and with effective basis of $post^*$ ???
+
+% expliquer toutes les variantes de la résilience
+
+% Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $U$ is \emph{computable} if there is an algorithm that computes a finite basis of $U$.
+
+
+\begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
+{\sc bounded resilience} is decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
+\end{theorem}
+
+We may immediately generalyse this last result by strenghthenin to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
+
+\begin{corollary}\label{postcomputable}
+{\sc resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
+\end{corollary}
+
+
+\begin{proof}
+From Fact~\ref{stop condition}, there exists $k \in \N$ such that
+$\post^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
+$I^{k+1}$ from $I^k$, checking $I^{k+1}=I^k$, 
+returning $k_m$ if that is the case.
+Then, because $k_m$-resilience is decidable, 
+checking $\uparrow post^*(s) \cap J \subseteq I^k = \pred^*(I)$ is,
+and resilience is decidable.
+% \textcolor{red}{à faire Mathieu}
+\end{proof}
+
+%\"Ozkan
+\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]
+For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
+% in the regarded class 
+with strong upward compatibility 
+and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$. 
+\end{proposition}
+
+The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). Hence Resilience is decidable for Petri nets and VASS.
+However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
+
+\begin{proposition}
+There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow \post^*$.
+\end{proposition}
+
+
+\begin{proof}
+Let us show that Reset VASS don't enjoy the property that $\uparrow \post^*$ is computable.
+Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
+%in counter $i$ 
+by examining if there is %some vector $v$ in the basis such that $v(i)=0$
+$0$ in the basis%
+. But reachability of $0$  %in a counter $i$ 
+is undecidable for Reset VASS. 
+% sont WSTS with strong compatibility. et l'accessibilité est undecidable.
+%	$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
+\end{proof}
+
+%il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
+
+remarque si on enlève la strong monotony mais en gardant with effective basis of $\uparrow post^*$:
+
+
+\begin{proposition}(à prouver)
+ leur algorithme for {\sc bounded resilience} termine mais pas correct for WSTS with upward compatibility, not necessarly strong, and an effective basis of $\uparrow post^*$ ?
+\end{proposition}
+
+\begin{proof}
+leur algorithme termine mais pas correct car l'intersection de post et J car alors le lemmme xxxx est faux (contre-exemple)
+ \textcolor{red}{à faire Mathieu}
+ 
+\mathieu{En train de chercher un contre exemple pour le corollaire du Lemme~\ref{Lemma intersection}.} 
+ 
+\mathieu{
+
+On considère un LCS, où on autorise à effacer des messages (lossyness) mais effacer un message prends une étape (contrairement à [ref], où ils font une sorte de cloture de effacer-transition-effacer). On n'a alors pas la strong compatibility: 
+
+On prends: $(q, b) 	\to (q,bb)$ par exemple et $(q, baaaaaa) \geq (q,b) $, alors
+$(s, baaaaaa) \to^* (s,b) \to (s,bb)$
+MAIS
+
+C'est pas "en une étape".
+
+(On considère -il faut le mentionner/vérifier- que on ne peut effaçer que d'un coté ? et pas au milieu?)
+
+Dans ce cas là, du coup, $pred(\uparrow \{(q,b)\}$ n'est pas clos par le haut. \\
+
+Revenons au Corollaire
+
+On voudrais avoir
+
+$post^* (s) \cap J \subseteq I^k$
+
+MAIS pas
+
+$ (\uparrow post^* (s)) \cap J \subseteq I^k$ \\
+
+
+Ça serait un cas où leurs algorithme vas dire 
+"On n'a pas $(\uparrow post^* (s)) \cap J \subseteq I^k$ donc on n'a pas la $k$-résilience "
+
+Alors qu'on aurait la $k$-résilience (i.e. $post^* (s) \cap J \subseteq I^k$)
+
+Pour $I^k$, le contre exemple prendrait du coup $pred(\uparrow \{ (q,b)\})$ qui n'est pas clos par le haut.
+
+On voudrait
+
+$post^*(s) \cap J \subseteq pred(\uparrow \{ (q,b)\})$
+
+
+Je propose de prendre $J$ = ensemble des configurations je pense le truc ici doit venir de
+$\uparrow post^* (s)$ being too big
+donc autant pas se restreindre du tout sur $J$
+
+
+$post^*(s) \subseteq pred(\uparrow \{ (q,b)\})$
+
+Si $s=(q,b)$ par exemple, et que on peut aller de $q$ vers $q$ en écrivant un 
+$b$ ? et évidement en perdant le dernier message (parce qu'on est lossy). Et c'est tout, disons.
+
+Déjà par lossiness $(q,\epsilon)$ serait dans $post^*((q,b))$.
+
+Et aussi dans $pred(\uparrow \{ (q,b)\})$ puisque $(q,\epsilon) \to (q,b)$.
+
+Donc on aurait:
+
+$post^*((q,b))  \subseteq pred(\uparrow \{ (q,b)\})$
+
+Et on aurait $(q,aaaaaa)$ dans 
+$\uparrow post^* ((q,b))$ puisque $(q,\epsilon)$ est dans $post^* ((q,b))$.
+
+Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
+(même si il est dans $pred^*(\uparrow \{ (q,b)\})$).
+
+
+
+}
+ 
+ 
+ 
+ 
+\end{proof}
+
+\begin{proposition}(à prouver)
+{\sc bounded resilience} is undecidable for WSTS with upward compatibility withd an effective basis of $post^*$.
+\end{proposition}
+
+\begin{proof}
+ \textcolor{red}{pas certain ! à faire Mathieu}
+\end{proof}
+
+%
+%si on garde strong mais on enlève effective basis of $post^*$:
+%
+%\begin{proposition}(à prouver)
+%{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility.
+%\end{proposition}
+%
+%\begin{proof}
+%pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
+%\end{proof}
+
+
+\begin{theorem}
+{\sc Resilience} is decidable for (not necessarily strong) WSTS with effective $\uparrow$ $\post^*$ basis.
+\end{theorem}
+
+
+\begin{proof}
+Let $B_p$ be a basis of $\uparrow \post^*(s)$, $B_I$ a basis of $I$
+and $J$ decidable downward-closed.
+By applying Lemma~\ref{Lemma intersection} twice, we obtain
+
+$$ post^*(s) \cap J \subseteq \pred^*(I) \equiv B_p \cap J \subseteq \pred^*(I)$$
+
+
+Since $B_p$ is finite and $J$ is decidable, we can directly compute $ B_p \cap J$.
+% For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
+We can compute a basis of $\pred^*(I)$ from $B_I$, and hence check that $B_p \cap J \setminus \pred^*(I) = \emptyset$. 
+\end{proof}
+
+% In the proof of Thm. 1, it was crucial that we have strong compatibility. This approach does not work
+% for WSTSs in general. We loose precision when we only demand compatibility. Thus, we conjecture
+% that both resilience problems are undecidable for WSTSs in general, but this question remains still open.
+%
+% Well, maybe their version of resilience but resilience with * seems fine.
+%
+
+Unfortunately, resilience is undecidable for (general) WSTS even with strong monotony.
+This stems from the fact that $t$-liveness is undecidable for reset Petri-Nets.
+
+
+\begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]
+The  Reset Petri Net zero reachability problem can be reduced to the liveness problem.
+\end{theorem}
+
+\begin{proof}
+If we wish to determine if $0 \in R(C_1, \mu_1)$ in any
+reset Petri net $C_1 = (P_1, T_1, I_1, O_1, R_1 )$ (where $R_1(t) =$ places that are reset when t fires off), with initial marking $\mu_1$, we construct a
+reset petri net $C_2 = (P_2, T_2, I_2, O_2, R_2 )$ with initial marking
+$\mu_2$ which is live if and only if the zero marking is not reachable from $\mu_1$.
+
+The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$
+and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
+
+We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
+The initial marking $\mu_2$ will include a token in $r_1$. 
+
+
+The place $r_1$ is a 'run' place; as long as the token remains in $r_1$ the transitions of $T_1$ can fire normally.
+Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
+
+
+
+Transition $s$ is defined to have $r_1$ as an input and a null output.
+This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$
+and "freezing" the marking of $P_1$.
+
+Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
+
+The place $r_1$ and transition $s$ allow the net $C_1$ to reach any reachable marking and then for $s$ to fire and freeze the net at that marking.
+
+Now we need to see if that marking is zero.
+
+We introduce a new place $r_2$ and new transitions $s_p$ which have $p$ as input and $r_2$ as output.
+
+If $p$ can ever become zero, $s_p$ is not live. The entire net is dead if
+$s$ fires in the marking zero.
+
+If we can always have some $p_i$ not be zero, then we can always fire some $s_{p_i}$, putting a token in $r_2$.
+
+In this case we must put a token back in $r_1$ and assure that all transitions in $C_2$ are live.
+We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
+This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$.
+Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
+
+Now if $0$ is reachable
+in $R(C_1, \mu_1)$ 
+then the net $C_2$ can also reach this marking
+in the place of $P_1$ by executing the same sequence of transition firings.
+Then $s$ can fire, freezing the $C_1$ subset.
+Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
+Thus if $0$ is reachable then $C_2$ is not live.
+
+Conversey, if $C_2$ is not live, then a marking $\mu$ must be reachable in which 
+$\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token
+(in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.)
+% (Rappel: tant que il y a un token quelque part, on peut mettre un token en r_2
+% et r_2 commence sans token)
+If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
+Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
+
+
+\end{proof}
+
+\begin{corollary}
+Reset Petri Net liveness is undecidable 
+\end{corollary}
+
+\begin{corollary}
+Reset Petri Net $t$-liveness is undecidable 
+\end{corollary}
+
+
+Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong monotony, from Proposition \ref{reductions},  we deduce that resilience is undecidable for WSTS with strong monotony.
+
+\begin{theorem}
+{\sc resilience} is undecidable for WSTS with strong monotony.
+\end{theorem}
+
+
+
+
+
+
+\begin{proposition}
+In WSTS with strong monotony, the bounded resilience problem is
+reducible to the $k$-resilience problem.
+\end{proposition}
+
+\begin{proof}
+strong WSTS
+$\pred^*(I) = \pred^{k}(I)$
+Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
+\end{proof}
+
+\begin{proposition}
+In WSTS with strong monotony, the bounded resilience problem is
+equivalent to the resilience problem.
+\end{proposition}
+
+\begin{proof}
+strong WSTS
+
+$\pred^*(I) = \pred^{k}(I)$
+
+\end{proof}
+
+\begin{corollary}
+Bounded Resilience is undecidable for WSTS with strong monotony.
+\end{corollary}
+
+\begin{proof} 
+  From
+  cf
+the two  theorems above. 
+\end{proof}
+
+
+
+Let us deduce that effective basis of $post^*$ ex reset PN ?
+
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded resilience is decidable for VASS, hence resilience is decidable for VASS. \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
+
+We may consider context-free grammars.
+
+\begin{corollary}
+{\sc resilience} is decidable for finite automata and context-free grammars (seen as transition systems)
+\end{corollary}
+
+\begin{proof}
+
+  \textcolor{red}{à faire Mathieu}
+Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+\end{proof}
+
+
+\cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
+
