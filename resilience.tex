@@ -221,7 +221,7 @@ $k$-resilient; if $k < K$ we cannot answer. if moreover $\mathscr{S}=(S,\rightar
 
 If $Safe = \downarrow 0$ and $Bad = S$ . . . 
 
-
+$Bad$ still necessarily contains $0$, and $0 \rightarrow^* 0$.
 
 %%%%%%%%
 \subsection{Case: $Safe=\downarrow Safe$ and $BAD=\uparrow BAD$.}
@@ -229,6 +229,18 @@ If $Safe = \downarrow 0$ and $Bad = S$ . . .
 %		cas exclusion mutuelle
 %
 je prends les minimaux de bad et les idéaux de Safe, pas sur que ce soit decidable....$pred(Safe)$
+
+
+If $Safe = \downarrow 0$ and $Bad = \uparrow s$ . . . 
+
+Then resilience kinds of becomes "can we reach $0$ from $\uparrow s$?".
+
+In a reset petri-net, if $Bad = \uparrow q_0(\mu)$ for some $\mu \neq 0$,
+and $Safe = \downarrow q(0)$,
+then the resilience problem is basically the single-state zero-reachability problem, and is undecidable.
+
+
+
 
 
 \begin{tabular}{ l c r }
