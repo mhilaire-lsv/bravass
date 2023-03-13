@@ -221,7 +221,24 @@ $k$-resilient; if $k < K$ we cannot answer. if moreover $\mathscr{S}=(S,\rightar
 
 If $Safe = \downarrow 0$ and $Bad = S$ . . . 
 
-$Bad$ still necessarily contains $0$, and $0 \rightarrow^* 0$.
+% $Bad$ still necessarily contains $0$, and $0 \rightarrow^* 0$.
+
+$Bad = J_1 \cup J_2 \cup \ldots \cup J_m$
+
+$Safe = I_1 \cup I_2 \cup \ldots \cup I_n$
+
+Question is: can we reach one of the $I_i$ from one of the $J_j$ ?
+
+If the ideal reachability problem is decidable then of course the question here should be decidable as well.
+
+But it may be possible to do more i.e.
+
+If we can express $\downarrow Post( J_j)$ then the question become:
+is $Safe \cap \cup_{j} \downarrow Post( J_j) \neq \emptyset$ ?
+
+(we need to reach an element of $Safe$ but not every possible element)
+
+
 
 %%%%%%%%
 \subsection{Case: $Safe=\downarrow Safe$ and $BAD=\uparrow BAD$.}
@@ -237,7 +254,9 @@ Then resilience kinds of becomes "can we reach $0$ from $\uparrow s$?".
 
 In a reset petri-net, if $Bad = \uparrow q_0(\mu)$ for some $\mu \neq 0$,
 and $Safe = \downarrow q(0)$,
-then the resilience problem is basically the single-state zero-reachability problem, and is undecidable.
+then the resilience problem is basically \textcolor{red}{(is it?)} the single-state zero-reachability problem, and is undecidable.
+
+\mathieu{Ici}
 
 
 
