@@ -117,8 +117,8 @@ Resilient means that
 
 
 \begin{theorem}\label{up-up}
-The three %uniform 
-resilience problems are decidable for WSTS with effective predbasis, $Safe=\uparrow Safe$
+The % three %uniform 
+resilience problems is decidable for WSTS with effective predbasis, $Safe=\uparrow Safe$
 and $BAD=\uparrow BAD$.
 %	and bad is upward closed or downward closed.
 \end{theorem}
@@ -132,9 +132,25 @@ if bad  is upward closed, $bad = \uparrow B_{bad}$ and $ \uparrow B_{bad} \subse
 \iffalse
 similar reasonning for the other case.
 \fi
-hence the two %uniform
- resilience problems are decidable.
+hence the %two
+ %uniform
+ resilience problems is decidable.
+\end{proof}
 
+\begin{corollary}
+The bounded resilience problems is decidable for WSTS with effective predbasis, $Safe=\uparrow Safe$
+and $BAD=\uparrow BAD$.
+\end{corollary}
+
+
+\begin{theorem}\label{up-up}
+The % three %uniform 
+$k$-resilience problems is decidable for WSTS with effective predbasis, $Safe=\uparrow Safe$
+and $BAD=\uparrow BAD$.
+%	and bad is upward closed or downward closed.
+\end{theorem}
+
+\begin{proof}
 Let us examine the %uniform 
 $k$-resilience problem (kRP). We may compute the least $n$ such that $bad \subseteq \uparrow \pred^n(Safe)=  \uparrow \pred^*(Safe)$. $S$ is %uniformely 
 $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}
