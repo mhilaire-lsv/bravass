@@ -8,7 +8,6 @@
 
 \subsubsection{Resilience for general transition systems}
 
-% \textcolor{red}{Ask the question why use a set of propositions for $\Safe$ and $\Bad$ rather than use subsets of the set of configurations ? }
 
 We ask whether we can reach a state 
 %which satisfies
@@ -115,7 +114,8 @@ $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely
 \textcolor{red}{
 $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
 (\Bad,\Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-resilient}
+(\Bad,\Safe)-resilient (CONJECTURE FOR NOW)
+}
 \end{proposition}
 
 \begin{proof}
@@ -233,7 +233,7 @@ To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverabi
 
 \begin{theorem}\label{k-down-up}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and the predbasis hypothesis, and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$.
-The  $k$-resilience problem (kRP) is decidable.
+The  $k$-resilience problem (kRP) is decidable. \textcolor{red}{CONJECTURE for now}
  \end{theorem}
 
 \begin{proof}
@@ -252,17 +252,22 @@ $k$-resilient; if $k < K$ we cannot answer. if moreover $\mathscr{S}=(S,\rightar
 % In the case \Safe and \Bad are both downward closed, they can both be finite.
 
 \begin{theorem}\label{down-down}
-The resilience problem is undecidable for WSTS with \textcolor{red}{more than one minimal element}, $\Safe=\downarrow \Safe$
+The resilience problem is undecidable for WSTS with more than one minimal element, 
+$\Safe=\downarrow \Safe$
 and $\Bad=\downarrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-In the case of a WSTS with more than one minimal element $0_1$ and $0_2$, then the problem of whether $0_2$ is reachable from $0_1$ reduces itself to the resilience problem.  
+In the case of a WSTS with at least two minimal elements $0_1$ and $0_2$, the problem of whether $0_2$ is reachable from $0_1$ reduces itself to the resilience problem, hence its undecidability.  
 \end{proof}
 
 In the case of a WSTS with only one minimal element,  
 % (ex: Petri Nets and their «Zero») 
-then by downward closure the minimal element is present in both \Safe and \Bad and hence resilience always hold.
+then by downward closure the minimal element is present in both $\Safe$ and $\Bad$ and hence resilience always hold.
+
+
+
+
 
 
 %%%%%%%%
@@ -279,9 +284,15 @@ Then resilience kinds of becomes "can we reach $0$ from $\uparrow s$?".
 
 In a reset petri-net, if $\Bad = \uparrow \mu$ for some $\mu \neq 0$,
 and $\Safe = \downarrow 0$,
-then the resilience problem is basically \textcolor{red}{(is it?)} the single-state zero-reachability problem, and is undecidable.
+then the resilience problem is similar to the single-state zero-reachability problem, which is undecidable.
 
-\mathieu{So, the idea is that the question "is $0$ reachable from token assigment $\mu$" is undecidable, but here the question is slightly different because we start from $\uparrow \mu$ instead.} 
+So, the idea is that the question "is $0$ reachable from token assigment $\mu$" is undecidable, but here the question is slightly different because we start from $\uparrow \mu$ instead.
+
+
+
+\subsection{Case Synthesis}
+
+\mathieu{En rouge quand il s'agit de conjectures}
 
 
 
@@ -289,12 +300,12 @@ then the resilience problem is basically \textcolor{red}{(is it?)} the single-st
 \begin{tabular}{ | l | c | c | c | r |}
 \hline   \Safe~\Bad & $\uparrow$~ $\uparrow$~ & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~ \\ \hline
    RP & Decidable (Theorem~\ref{up-up}) & Decidable (Theorem~\ref{down-up}) & Undecidable (Theorem~\ref{down-down}) & \textcolor{red}{Undecidable} \\ \hline
-   BRP & Decidable (Corollary~\ref{B-up-up}) &  Decidable (Theorem~\ref{down-up}) & Undecidable & ?? \\ \hline
-      kRP & Decidable (Theorem~\ref{k-up-up}) & \textcolor{red}{Decidable} (Theorem~\ref{k-down-up}) & Undecidable & ?? \\ \hline
+   BRP & Decidable (Corollary~\ref{B-up-up}) &  Decidable (Theorem~\ref{down-up}) & ?? & ?? \\ \hline
+      kRP & Decidable (Theorem~\ref{k-up-up}) & \textcolor{red}{Decidable} (Theorem~\ref{k-down-up}) & ?? & ?? \\ \hline
  \end{tabular}
 \end{center}
 
-\mathieu{En rouge quand il s'agit de conjectures}
+
 
 
 %We first assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 
