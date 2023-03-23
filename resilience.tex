@@ -104,22 +104,29 @@ Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E
 \alain{on peut penser à des ensembles \Bad definis dans une logique booleennne sur les clos par le bas, haut, +...}
 
 
-\begin{proposition}\label{general}
+\begin{proposition}[Reformulation]\label{reformulation}
 $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
 (\Bad,\Safe)-resilient iff $\Bad \subseteq \pred^*(\Safe)$.\\
-$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-resilient.\\
 $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
 (\Bad,\Safe)-$k$-resilient iff $\Bad \subseteq \pred^k(\Safe)$.
 \end{proposition}
 
+\begin{proposition}\label{general}
+\textcolor{red}{
+$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
+(\Bad,\Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
+(\Bad,\Safe)-resilient}
+\end{proposition}
+
 \begin{proof}
-Resilient means that 
+Resilient means that ...
 \end{proof}
 
 
+
 \subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad=\uparrow \Bad$.}
+
+
 
 
 \begin{theorem}\label{up-up}
@@ -137,23 +144,42 @@ Since $\Bad$  is upward closed, there exists a finite basis $B_{\Bad}$ such that
 hence the resilience problem is decidable.
 \end{proof}
 
-\begin{corollary}
-The bounded resilience problem is decidable for WSTS with effective predbasis, $\Safe=\uparrow \Safe$
+\begin{proposition}
+In WSTS with strong compatibility and effective predbasis,  $\Safe=\uparrow \Safe$, the bounded resilience problem is equivalent to the resilience problem.
+\end{proposition}
+
+\begin{proof}
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^k(\Safe)= \uparrow~\pred^k(\Safe)$ for all $k \in \N$,
+and there exists $K \in \N$ such that 
+$\pred^k(\Safe) = \uparrow \pred^k(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+Hence the equivalence.
+\end{proof}
+
+\begin{corollary}\label{B-up-up}
+The bounded resilience problem is decidable for WSTS with effective predbasis,
+strong compatibility
+ $\Safe=\uparrow \Safe$
 and $\Bad=\uparrow \Bad$.
 \end{corollary}
 
 
 \begin{theorem}\label{k-up-up}
 The % three %uniform 
-$k$-resilience problem is decidable for WSTS with effective predbasis, strong upward-compatibility, $\Safe=\uparrow \Safe$
+$k$-resilience problem is decidable for WSTS with effective predbasis, strong %upward-
+compatibility, $\Safe=\uparrow \Safe$
 and $\Bad=\uparrow \Bad$.
 %	and \Bad is upward closed or downward closed.
 \end{theorem}
 
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong upward-compatibility,  $\pred^k(\Safe)=\uparrow \pred^k(\Safe)$ for all $k \in \N$, and $\pred^k(\Safe)$ admits a finite basis $B_{\pred^k(\Safe)}$.
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^k(\Safe)= \uparrow~\pred^k(\Safe)$ for all $k \in \N$, and $\pred^k(\Safe)$ admits a finite basis $B_{\pred^k(\Safe)}$. From a similar reasoning as above, the $k$-resilience problem is decidable.
 \end{proof}
+
+
 
 
 \subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad=\downarrow \Bad$.}
@@ -205,7 +231,7 @@ To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverabi
 \end{proof}
 
 
-\begin{theorem}
+\begin{theorem}\label{k-down-up}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and the predbasis hypothesis, and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$.
 The  $k$-resilience problem (kRP) is decidable.
  \end{theorem}
@@ -225,10 +251,10 @@ $k$-resilient; if $k < K$ we cannot answer. if moreover $\mathscr{S}=(S,\rightar
 
 % In the case \Safe and \Bad are both downward closed, they can both be finite.
 
-\begin{proposition}
+\begin{theorem}\label{down-down}
 The resilience problem is undecidable for WSTS with \textcolor{red}{more than one minimal element}, $\Safe=\downarrow \Safe$
 and $\Bad=\downarrow \Bad$.
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
 In the case of a WSTS with more than one minimal element $0_1$ and $0_2$, then the problem of whether $0_2$ is reachable from $0_1$ reduces itself to the resilience problem.  
@@ -259,16 +285,16 @@ then the resilience problem is basically \textcolor{red}{(is it?)} the single-st
 
 
 
-
+\begin{center}
 \begin{tabular}{ | l | c | c | c | r |}
-\hline   \Safe~\Bad & $\uparrow$~ $\uparrow$~ & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~ & $\downarrow$~ $\downarrow$~ \\ \hline
-   RP & Decidable (Theorem~\ref{up-up}) & Decidable (Theorem~\ref{down-up}) & ? Undecidable & Undecidable \\ \hline
-   BRP & Decidable & ? Decidable (Theorem~\ref{down-up}) & ? & Undecidable \\ \hline
-      kRP & Decidable (Theorem~\ref{k-up-up}) & Decidable & ? & Undecidable \\ \hline
+\hline   \Safe~\Bad & $\uparrow$~ $\uparrow$~ & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~ \\ \hline
+   RP & Decidable (Theorem~\ref{up-up}) & Decidable (Theorem~\ref{down-up}) & Undecidable (Theorem~\ref{down-down}) & \textcolor{red}{Undecidable} \\ \hline
+   BRP & Decidable (Corollary~\ref{B-up-up}) &  Decidable (Theorem~\ref{down-up}) & Undecidable & ?? \\ \hline
+      kRP & Decidable (Theorem~\ref{k-up-up}) & \textcolor{red}{Decidable} (Theorem~\ref{k-down-up}) & Undecidable & ?? \\ \hline
  \end{tabular}
+\end{center}
 
-
-
+\mathieu{En rouge quand il s'agit de conjectures}
 
 
 %We first assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 
