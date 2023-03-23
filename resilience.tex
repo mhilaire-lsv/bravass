@@ -67,7 +67,7 @@ pour $k,k'$ donnés, chercher si $\Safe_{max}$ et $\Bad_{max}$ ont un sens ? on 
 \section{Resilience for WSTS}
 
 
-The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a \Safe state. Let us formalize these properties.
+The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a safe state. Let us formalize these properties.
 
 \problemx{resilience problem (RP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
@@ -87,7 +87,7 @@ We add a third problem that decides whether there exists an $k$ such  that the s
 {$\exists k \geq 0$ such that $\mathscr{S}$ is %uniformely
  $k$-resilient ?\newline}
 
-\alain{trouver les \Bad et \Safe maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ? on pourrait décider que \Safe=complement de \Bad et donc on aurait un seul ensemble (et son complement)}
+\alain{trouver les \Bad~ et \Safe~ maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ? on pourrait décider que \Safe=complement de \Bad~ et donc on aurait un seul ensemble (et son complement)}
 
 These three reachability problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. 
 So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS are given as effective upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets \Safe and \Bad.
@@ -123,24 +123,18 @@ Resilient means that
 
 
 \begin{theorem}\label{up-up}
-The % three %uniform 
-resilience problem is decidable for WSTS with effective predbasis, $\Safe=\uparrow \Safe$
+The resilience problem is decidable for WSTS with effective predbasis, $\Safe=\uparrow \Safe$
 and $\Bad=\uparrow \Bad$.
-%	and \Bad is upward closed or downward closed.
+
 \end{theorem}
 
 
 \begin{proof}
-Let us first solve if $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-resilient. Since $\Safe=\uparrow \Safe$, and WSTS, $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$, so $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. since WSTS  with effective predbasis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
-%Then if \Bad is upward closed or downward closed, we may decide the inclusion $\Bad \subseteq \uparrow B_{\pred^*(\Safe)}$ which remais to compare, in both cases, two finite sets. 
-if \Bad  is upward closed, $\Bad = \uparrow B_{\Bad}$ and $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$. 
-\iffalse
-similar reasonning for the other case.
-\fi
-hence the %two
- %uniform
- resilience problem is decidable.
+% Let us first solve if $\mathscr{S}=(S,\rightarrow,\leq)$ is (\Bad,\Safe)-resilient. 
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective predbasis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
+Since $\Bad$  is upward closed, there exists a finite basis $B_{\Bad}$ such that $\Bad = \uparrow B_{\Bad}$. Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$,
+hence the resilience problem is decidable.
 \end{proof}
 
 \begin{corollary}
@@ -149,32 +143,18 @@ and $\Bad=\uparrow \Bad$.
 \end{corollary}
 
 
-\begin{theorem}\label{up-up}
+\begin{theorem}\label{k-up-up}
 The % three %uniform 
-$k$-resilience problem is decidable for WSTS with effective predbasis, $\Safe=\uparrow \Safe$
+$k$-resilience problem is decidable for WSTS with effective predbasis, strong upward-compatibility, $\Safe=\uparrow \Safe$
 and $\Bad=\uparrow \Bad$.
 %	and \Bad is upward closed or downward closed.
 \end{theorem}
 
 \begin{proof}
-Let us examine the %uniform 
-$k$-resilience problem (kRP). We may compute the least $n$ such that $\Bad \subseteq \uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$. $S$ is %uniformely 
-$k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}
-\mathieu{Si on a la résilience alors on a la $k$-résilience pour les $k$ plus grands que le $n$ minimal tel que $\uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$, mais il faut traiter aussi les $k$ plus petits.}
-\mathieu{Si on a $\uparrow \pred^k(\Safe) = \pred^k(\Safe)$ on résoud comme ci-dessus.}
-\mathieu{... mais pour les $k$ plus petits, on peut avoir $\uparrow \pred^k(\Safe) \neq \pred^k(\Safe)$.}
-\mathieu{... et alors, c'est plus compliqué.}
-\mathieu{L'important c'est d'avoir le $n$ minimal tel que $\Bad \subseteq \pred^n(\Safe)$, qui n'est pas forcément tel que $\uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$.}and then kRP is decidable.
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong upward-compatibility,  $\pred^k(\Safe)=\uparrow \pred^k(\Safe)$ for all $k \in \N$, and $\pred^k(\Safe)$ admits a finite basis $B_{\pred^k(\Safe)}$.
 \end{proof}
 
-%One begins to test whether $\Bad \cap \pred^*(\Safe) = \emptyset$ then never resilient car une fois dans \Bad j'y reste sans pouvoir aller dans \Safe.\\
-
-If $\Bad \cap \pred^*(\Safe) \neq \emptyset$, One computes the minimal elements $A$ of $\Bad \cap \pred^*(\Safe)$.
-resilient iff $\Bad \subseteq \pred^*(\Safe)$  (eq $\Bad \cap \pred^*(\Safe) = \Bad$)
-
-$\Bad \cap \pred^*(\Safe) \neq \Bad$ alors, on peut se limiter à $\Bad' = \Bad \cap \pred^*(\Safe)$ et c'est (\Bad',\Safe)-resilient.
-
-Let us show that the predbasis hypothesis can be replaced by other hypotheses.
 
 \subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad=\downarrow \Bad$.}
 
@@ -195,12 +175,10 @@ The \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \l
 Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 
 
-\begin{proposition}\label{down-up}
+\begin{theorem}\label{down-up}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$.
-The %uniform 
-resilience problem (RP) and the %uniform 
-bounded resilience problem (BRP) are decidable.
-\end{proposition}
+The resilience problem (RP) and the bounded resilience problem (BRP) are decidable.
+\end{theorem}
 
 \begin{proof}
 Let $I_{\Bad}=\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $B_{\Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $\Safe$.
@@ -221,19 +199,16 @@ there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 
-To decide the %(uniform)
- bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ and we deduce that  $\mathscr{S}$ is %uniformely
-  $K$-resilient. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the %uniform 
-  resilience problem (BRP) and the %uniform 
+To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ and we deduce that  $\mathscr{S}$ is   $K$-resilient. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the 
+  resilience problem (BRP) and the  
   bounded resilience problem (BRP) are decidable.
 \end{proof}
 
 
-\begin{proposition}
+\begin{theorem}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and the predbasis hypothesis, and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$.
-The %uniform
- $k$-resilience problem (kRP) is decidable.
- \end{proposition}
+The  $k$-resilience problem (kRP) is decidable.
+ \end{theorem}
 
 \begin{proof}
 To decide the kRP, we may compare the input $k$ with $K$. If $k \geq K$, we conclude that is %uniformely 
@@ -287,9 +262,9 @@ then the resilience problem is basically \textcolor{red}{(is it?)} the single-st
 
 \begin{tabular}{ | l | c | c | c | r |}
 \hline   \Safe~\Bad & $\uparrow$~ $\uparrow$~ & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~ & $\downarrow$~ $\downarrow$~ \\ \hline
-   RP & Decidable (Theorem~\ref{up-up}) & Decidable & ? Undecidable & Undecidable \\ \hline
-   BRP & Decidable & ? Decidable & ? & ? \\ \hline
-      kRP & Decidable & Decidable & ? & ? \\ \hline
+   RP & Decidable (Theorem~\ref{up-up}) & Decidable (Theorem~\ref{down-up}) & ? Undecidable & Undecidable \\ \hline
+   BRP & Decidable & ? Decidable (Theorem~\ref{down-up}) & ? & Undecidable \\ \hline
+      kRP & Decidable (Theorem~\ref{k-up-up}) & Decidable & ? & Undecidable \\ \hline
  \end{tabular}
 
 
