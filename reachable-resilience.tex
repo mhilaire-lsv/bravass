@@ -17,29 +17,27 @@ Resilience is a strong property since it implies that from every element of $\Ba
 
 Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
-\problemx{$k$-resilience problem for WSTS}
+\problemx{$k$-reachable-resilience problem for WSTS (kRRP)}
 {A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
 { $\Bad \cap \post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
 %
 
-%Analogously, we formulate the resilience problem for WSTSs.
+Analogously, we formulate bounded and general variations of the problem.
 
-\problemx{bounded Resilience problem for WSTS}
-{A state $s$ of a WSTS $W=(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
+\problemx{bounded-reachable-resilience problem for WSTS (BRRP)}
+{A state $s$ of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$, an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-{$\exists k \geq 0$ such that $W$ is $k$-resilient. ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-reachable-resilient. ?\newline}
 
-\problemx{Resilience problem for WSTS}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $U$ with a given basis, a decidable downward-closed set $D$.}
-{$ ~ \forall s' \in D ~ (s \rightarrow^* s') \implies \exists s'' \in U ~ s' \rightarrow^{*} s''$ ?\newline}
+\problemx{Rachable-resilience problem for WSTS (RRP)}
+{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
+{$ ~ \forall s' \in \Bad ~ (s \rightarrow^* s') \implies \exists s'' \in \Safe ~ s' \rightarrow^{*} s''$ ?\newline}
 
 %\textcolor{blue}{
 %justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
 %}
 
-\begin{remark} 
-We require $U$ to be upward-closed, as, in the general case if we lift restrictions on $U$ and $D$, then reachability reduces itself to resilience. Indeed, the particular resilience problem where we take $D = \{s\}$ and $U = \{x\}$ is reachability of $x$ from $s$, and thus generally undecidable for WSTS. 
-\end{remark}
+\iffalse
 
 \textcolor{blue}{
 et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
@@ -51,12 +49,12 @@ max des I,J possibles \\
 }
 
 
-
+\fi
 
 
 
 \begin{proposition}\label{reductions}
-coverability and $t$-liveness are reduceable to resilience.
+Coverability and $t$-liveness are reduceable to the reachable resilience problem.
 %	home state and reachability
 \end{proposition}
 
@@ -64,24 +62,19 @@ coverability and $t$-liveness are reduceable to resilience.
 \begin{proof}
 
 \begin{itemize}
-\item Let us choose $J=S= \downarrow S$ and $I=\uparrow x$ then resilience is equivalent to coverability of $x$ from $s$.
-%\item $J=\{s\}$ and $I=\{x\}$ this particular resilience is reachability of $x$ from $s$.
+\item Let us choose $\Bad=S= \downarrow S$ and $\Safe=\uparrow x$ then reachable resilience is equivalent to coverability of $x$ from $s$.
 
 \item $t$-liveness  can be expressed as the following formula
 $ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ 
 where
 $U_t=\uparrow \pred(t)$
 is the upward closure of the preconditions to use transition $t$.  
-The problem reduces itself to the resilience problem
-where $J=S$ and $I = \uparrow \pred(t)$.
+The problem reduces itself to the reachable resilience problem
+where $\Bad=S$ and $\Safe = \uparrow \pred(t)$.
 
 %\item the home state problem can be expressed as $\ldots$
 \end{itemize}
 
-%	\mathieu{Ne marche pas (un des deux sens est invalide imho)}
-%  \textcolor{red}{  Let $J=\downarrow S = S$ and $I = \uparrow t$ where $t \in S$. Now resilience remains to the following property: $\forall s' \in S,  \exists s'' \in I, ~ s' \rightarrow^{*} s''$. Let us apply this property to LCS with $I = \uparrow (q,\epsilon) = (q, \Sigma^*)$. This property, $\forall s' \in S,  \exists w \in \Sigma^* $ such that $ ~ s' \rightarrow^{*} (q,w)$ expresses that there is an infinite run passing infinitely often through the control-state $q$; this LTL-property has been proved undecidable for Lossy Channel Systems (LCS) \cite{DBLP:conf/icalp/AbdullaJ94}.
-% Since LCS are effective WSTS with strong monotony (with an adequate semantics), we conclude.}
-%	\mathieu{Ne marche pas (un des deux sens est invalide imho)}
 \end{proof}
 
 
@@ -97,25 +90,24 @@ where $J=S$ and $I = \uparrow \pred(t)$.
 
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
-{\sc bounded resilience} is decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
+{\sc bounded-reachable-resilience} and {\sc $k$-reachable-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow post^*$ is computable.
 \end{theorem}
 
-We may immediately generalyse this last result by strenghthenin to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
+We may immediately generalyse this last result by strengthening to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
 
 \begin{corollary}\label{postcomputable}
-{\sc resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*(S)$ is computable.
+{\sc reachable-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*$ is computable.
 \end{corollary}
 
 
 \begin{proof}
 From Fact~\ref{stop condition}, there exists $k \in \N$ such that
-$\post^*(I) = I^{k_m}$. We can compute this $k_m$ by iteratively computing
-$I^{k+1}$ from $I^k$, checking $I^{k+1}=I^k$, 
+$\pred^*(\Safe) =  \Safe^{k_m}$. We can compute this $k_m$ by iteratively computing
+$\Safe^{k+1}$ from $\Safe^k$, checking $\Safe^{k+1}=\Safe^k$, 
 returning $k_m$ if that is the case.
-Then, because $k_m$-resilience is decidable, 
-checking $\uparrow post^*(s) \cap J \subseteq I^k = \pred^*(I)$ is,
-and resilience is decidable.
-% \textcolor{red}{à faire Mathieu}
+Then, because $k_m$-reachable-resilience is decidable, 
+checking $\uparrow post^*(s) \cap \Bad \subseteq \Safe^k = \pred^*(\Safe)$ is,
+and reachable-resilience is decidable.
 \end{proof}
 
 %\"Ozkan
@@ -123,10 +115,10 @@ and resilience is decidable.
 For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
 % in the regarded class 
 with strong upward compatibility 
-and a decidable downward-closed set $J$, it can be decided whether $\exists s' \in J ~ s \to^* s'$. 
+and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. 
 \end{proposition}
 
-The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). Hence Resilience is decidable for Petri nets and VASS.
+The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). Hence reachable-resilience is decidable for Petri nets and VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
 
 \begin{proposition}
@@ -136,7 +128,7 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 \begin{proof}
 Let us show that Reset VASS don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
+Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
 $0$ in the basis%
@@ -148,7 +140,8 @@ is undecidable for Reset VASS.
 
 %il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
 
-remarque si on enlève la strong monotony mais en gardant with effective basis of $\uparrow post^*$:
+
+\mathieu{remarque si on enlève la strong monotony mais en gardant with effective basis of $\uparrow post^*$:}
 
 
 \begin{proposition}(à prouver)
@@ -157,10 +150,6 @@ remarque si on enlève la strong monotony mais en gardant with effective basis o
 
 \begin{proof}
 leur algorithme termine mais pas correct car l'intersection de post et J car alors le lemmme xxxx est faux (contre-exemple)
- \textcolor{red}{à faire Mathieu}
- 
-\mathieu{En train de chercher un contre exemple pour le corollaire du Lemme~\ref{Lemma intersection}.} 
- 
 \mathieu{
 
 On considère un LCS, où on autorise à effacer des messages (lossyness) mais effacer un message prends une étape (contrairement à [ref], où ils font une sorte de cloture de effacer-transition-effacer). On n'a alors pas la strong compatibility: 
@@ -231,13 +220,6 @@ Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
  
 \end{proof}
 
-\begin{proposition}(à prouver)
-{\sc bounded resilience} is undecidable for WSTS with upward compatibility withd an effective basis of $post^*$.
-\end{proposition}
-
-\begin{proof}
- \textcolor{red}{pas certain ! à faire Mathieu}
-\end{proof}
 
 %
 %si on garde strong mais on enlève effective basis of $post^*$:
@@ -250,23 +232,43 @@ Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
 %pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
 %\end{proof}
 
+\begin{lemma}\label{Lemma intersection}
+Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
+Then $A \cap D \subseteq U$  iff $ (\uparrow  A) \cap D \subseteq U$.
+\end{lemma}
+
+
+\begin{proof}
+Let us suppose that $A \cap D \subseteq U$. Then ${\uparrow (A \cap D)} \subseteq {\uparrow U} = U$.
+Let us show that $({\uparrow A}) \cap D \subseteq {\uparrow (A \cap D)}$.
+Let $x \in ({\uparrow A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
+Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
+Hence $a \in A \cap D$ and then $x \in { \uparrow (A \cap D)}$.
+In the other direction,
+since $A \subseteq {\uparrow A}$, the inclusion
+$({\uparrow  A}) \cap D \subseteq U$ implies
+$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
+\end{proof}
+
+
 
 \begin{theorem}
-{\sc Resilience} is decidable for (not necessarily strong) WSTS with effective $\uparrow$ $\post^*$ basis.
+{\sc Reachable-resilience} is decidable for (not necessarily strong) WSTS with effective 
+$\uparrow$ $\post^*$ basis.
 \end{theorem}
 
 
 \begin{proof}
-Let $B_p$ be a basis of $\uparrow \post^*(s)$, $B_I$ a basis of $I$
-and $J$ decidable downward-closed.
+Let $B_p$ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
+and $\Bad$ decidable downward-closed.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
 
-$$ post^*(s) \cap J \subseteq \pred^*(I) \equiv B_p \cap J \subseteq \pred^*(I)$$
+$$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_p \cap \Bad \subseteq \pred^*(\Safe)$$
 
 
-Since $B_p$ is finite and $J$ is decidable, we can directly compute $ B_p \cap J$.
+Since $B_p$ is finite and $\Bad$ is decidable, we can directly compute $ B_p \cap \Bad$.
 % For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
-We can compute a basis of $\pred^*(I)$ from $B_I$, and hence check that $B_p \cap J \setminus \pred^*(I) = \emptyset$. 
+We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_p \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
 \end{proof}
 
 % In the proof of Thm. 1, it was crucial that we have strong compatibility. This approach does not work
@@ -275,6 +277,18 @@ We can compute a basis of $\pred^*(I)$ from $B_I$, and hence check that $B_p \ca
 %
 % Well, maybe their version of resilience but resilience with * seems fine.
 %
+
+\begin{proposition}
+\textcolor{red}{
+{\sc bounded resilience} is undecidable for WSTS with upward compatibility with an effective basis of $post^*$.
+CONJECTURE
+}
+\end{proposition}
+
+\begin{proof}
+ \textcolor{red}{pas certain ! à faire Mathieu}
+\end{proof}
+
 
 Unfortunately, resilience is undecidable for (general) WSTS even with strong monotony.
 This stems from the fact that $t$-liveness is undecidable for reset Petri-Nets.
