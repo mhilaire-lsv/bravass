@@ -258,8 +258,8 @@ $\uparrow I = I = \downarrow I$.
 % \textcolor{red}{Probably one can already 'deduce' from this that ideal $I$ and anti-ideal $J$ for resp. good and bad states, in the case of e.g. timed automata would be given by sets of states}
 \fi
 
-A downard-closed set $J$ is {\em decidable} if, given $s \in S$, it is decidable whether
-$s \in J$. 
+A downard-closed set $D$ is {\em decidable} if, given $s \in S$, it is decidable whether
+$s \in D$. 
 %\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
 % \textcolor{red}{Do we still demand this ?}
 %\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
@@ -289,51 +289,43 @@ smallest $k_0$ s.t. $U^k = U^{k_0}$ for all $k \geq k_0$.
 \end{definition}
 
 
-If $\mathscr{S}$ is a WSTS with strong compatibility and $I \subseteq S$ is an upward-closed set, the sets $\pred(I )$, and $\pred^{\geq k}(I )$ for
-every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(I)$.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set, the sets $\pred(U )$, and $\pred^{\geq k}(U )$ for
+every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(U)$.
 
 \begin{remark}
-$I^{k+1} $ can be rewritten $I^{k+1}= \bigcup_{0 \leq j \leq k+1} \pred^j(I) = 
-I \cup \bigcup_{1 \leq j \leq k+1} \pred^j(I) =
-I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
-=  I \cup \pred(I^k)$.
+$U^{k+1} $ can be rewritten $U^{k+1}= \bigcup_{0 \leq j \leq k+1} \pred^j(U) = 
+U \cup \bigcup_{1 \leq j \leq k+1} \pred^j(U) =
+U \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(U))
+=  U \cup \pred(U^k)$.
 \end{remark}
 
 This ensures the following.
 
 \begin{fact}\label{stop condition}
 % Fact 4 (stop condition). 
-If $\mathscr{S}$ is a WSTS with strong monotony and $I \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $I^k = I^{k+1}$ , then $I^\ell = I^k$ for all $\ell \geq k$, i.e.,
-$k(I) \leq k$. This also implies that $\pred^*(I) = I^k$.
+If $\mathscr{S}$ is a WSTS with strong monotony and $U \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $U^k = U^{k+1}$ , then $U^\ell = U^k$ for all $\ell \geq k$, i.e.,
+$k(U) \leq k$. This also implies that $\pred^*(U) = U^k$.
 \end{fact}
 
-\iffalse
-\begin{remark}
-$I^{k+1} = \bigcup_{0 \leq j \leq k+1} \pred^j(I) = 
-I \cup \bigcup_{1 \leq j \leq k+1} \pred^j(I) =
-I \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(I))
-=  I \cup \pred(I^k)$.
-\end{remark}
-\fi
 
 \begin{lemma}
 % Lemma 3 ([1]) 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
- Given a basis of an upward-closed set $I \subseteq S$, and a state $s$ of an effective strongly well-structured transition
-system, we can decide whether we can reach $I$ from $s$.
+ Given a basis of an upward-closed set $U \subseteq S$, and a state $s$ of an effective strongly well-structured transition
+system, we can decide whether we can reach $U$ from $s$.
 \end{lemma}
 
 \begin{proof}
-We have to show that we can compute a basis of $I^{k+1}$ if we are given a basis of $I^k $. 
+We have to show that we can compute a basis of $U^{k+1}$ if we are given a basis of $U^k $. 
 Then the
-decidability of the stop condition follows directly. Let $B$ be a basis of $I^k$. 
+decidability of the stop condition follows directly. Let $B$ be a basis of $U^k$. 
 We have
-$$I^{k+1} = I \cup \pred(I^k ) = I \cup
+$$U^{k+1} = U \cup \pred(U^k ) = U \cup
 \bigcup_{s' \in B}
 \pred(\uparrow \{s' \}).$$
 
-Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $I^{k+1}$ . By
-Fact~\ref{fact basis}, we can compute a basis of $I^{k+1}$.
+Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $U^{k+1}$ . By
+Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \end{proof}
 
 \begin{theorem}
