@@ -285,10 +285,11 @@ then the resilience problem is basically \textcolor{red}{(is it?)} the single-st
 
 
 
-\begin{tabular}{ l c r }
-\hline   \Bad/\Safe & Up & Down \\ \hline
-   Up & dec ? & dec ? \\ \hline
-   Down & dec & ? \\ \hline
+\begin{tabular}{ | l | c | c | c | r |}
+\hline   \Safe~\Bad & $\uparrow$~ $\uparrow$~ & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~ & $\downarrow$~ $\downarrow$~ \\ \hline
+   RP & Decidable (Theorem~\ref{up-up}) & Decidable & ? Undecidable & Undecidable \\ \hline
+   BRP & Decidable & ? Decidable & ? & ? \\ \hline
+      kRP & Decidable & Decidable & ? & ? \\ \hline
  \end{tabular}
 
 
