@@ -394,7 +394,7 @@ pour $k,k'$ donnés, chercher si $Safe_{max}$ et $Bad_{max}$ ont un sens ? on pe
 %envisager les 3 autres cas. souvent BAD = upward closed (par ex l'exclusion mutuelle).
 %4 resilience problem (U,D), (U,U), (D,U), (D,D)}
 
-\section{Uniform resilience for WSTS}
+\section{Resilience for WSTS}
 
 
 The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a Safe state. Let us formalize these properties.
@@ -414,7 +414,7 @@ We add a third problem that decides whether there exists an $k$ such  that the s
 \problemx{bounded resilience problem (UBRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $Safe, Bad \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-{$\exists k \geq 0$ such that $\mathscr{S}$ is uniformely $k$-resilient ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-resilient ?\newline}
 
 \alain{trouver les Bad et Safe maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ? on pourrait décider que Safe=complement de Bad et donc on aurait un seul ensemble (et son complement)}
 
@@ -434,9 +434,9 @@ Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E
 
 
 \begin{proposition}\label{general}
-$\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-resilient iff $bad \subseteq \pred^*(Safe)$.\\
-$\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-resilient.\\
-$\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-$k$-resilient iff $bad \subseteq \pred^k(Safe)$.
+$\mathscr{S}=(S,\rightarrow,\leq)$ is (bad,Safe)-resilient iff $bad \subseteq \pred^*(Safe)$.\\
+$\mathscr{S}=(S,\rightarrow,\leq)$ is (bad,Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is (bad,Safe)-resilient.\\
+$\mathscr{S}=(S,\rightarrow,\leq)$ is  (bad,Safe)-$k$-resilient iff $bad \subseteq \pred^k(Safe)$.
 \end{proposition}
 
 \begin{proof}
@@ -444,22 +444,22 @@ Resilient means that
 \end{proof}
 
 
-\subsection{Case: $Safe=\uparrow Safe$.}
+\subsection{Case: $Safe=\uparrow Safe$ and $Bad=\uparrow Bad$.}
 
 
 \begin{theorem}\label{up-down}
-The three uniform resilience problems are decidable for WSTS with effective predbasis and $Safe=\uparrow Safe$.
+The three resilience problems are decidable for WSTS with effective predbasis and $Safe=\uparrow Safe$.
 %	and bad is upward closed or downward closed.
 \end{theorem}
 
 
 \begin{proof}
-Let us first solve if $\mathscr{S}=(S,\rightarrow,\leq)$ is uniformely (bad,Safe)-resilient. Since $Safe=\uparrow Safe$, and WSTS, $\pred^*(Safe)=\uparrow \pred^*(Safe)$, so $\pred^*(Safe)$ admits a finite basis $B_{\pred^*(Safe)}$. since WSTS  with effective predbasis, we may compute a finite basis of $\pred^*(Safe)$ with the backward coverability algorithm. 
+Let us first solve if $\mathscr{S}=(S,\rightarrow,\leq)$ is (bad,Safe)-resilient. Since $Safe=\uparrow Safe$, and WSTS, $\pred^*(Safe)=\uparrow \pred^*(Safe)$, so $\pred^*(Safe)$ admits a finite basis $B_{\pred^*(Safe)}$. since WSTS  with effective predbasis, we may compute a finite basis of $\pred^*(Safe)$ with the backward coverability algorithm. 
 %Then if bad is upward closed or downward closed, we may decide the inclusion $Bad \subseteq \uparrow B_{\pred^*(Safe)}$ which remais to compare, in both cases, two finite sets. 
 if bad  is upward closed, $bad = \uparrow B_{bad}$ and $ \uparrow B_{bad} \subseteq \uparrow B_{\pred^*(Safe)}$ iff for every $b \in B_{bad}$, there is a $s \in B_{\pred^*(Safe)}$ such that $s \leq b$. similar reasonning for the other case.
-hence the two uniform resilience problems are decidable.
+hence the two resilience problems are decidable.
 
-Let us examine the uniform $k$-resilience problem (UkRP). we may compute the least $n$ such that $bad \subseteq \uparrow \pred^n(Safe)=  \uparrow \pred^*(Safe)$. S is uniformely $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}and then UkRP is decidable.
+Let us examine the $k$-resilience problem (UkRP). we may compute the least $n$ such that $bad \subseteq \uparrow \pred^n(Safe)=  \uparrow \pred^*(Safe)$. S is $k$-resilient iff $n \leq k$ \alain{hum...mais il peut y avoir des chemins plus courts}and then UkRP is decidable.
 \end{proof}
 
 %One begins to test whether $Bad \cap \pred^*(Safe) = \emptyset$ then never resilient car une fois dans bad j'y reste sans pouvoir aller dans Safe.\\
