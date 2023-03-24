@@ -272,7 +272,8 @@ Now, if $k \geq min(K,n)$, we conclude that is $k$-resilient;
 % In the case \Safe and \Bad are both downward closed, they can both be finite.
 
 \begin{theorem}\label{down-down}
-The resilience problem is undecidable for WSTS with more than one minimal element, 
+The resilience problem is undecidable for WSTS with
+%	with more than one minimal element, 
 $\Safe=\downarrow \Safe$
 and $\Bad=\downarrow \Bad$.
 \end{theorem}
@@ -298,7 +299,8 @@ then by downward closure the minimal element is present in both $\Safe$ and $\Ba
 
 \begin{theorem}\label{up-down}
 \textcolor{red}{
-The resilience problem is undecidable for WSTS with more than one minimal element, 
+The resilience problem is undecidable for WSTS with 
+%	more than one minimal element, 
 $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$.
 }
@@ -320,7 +322,7 @@ TBD
 \hline   \Safe~\Bad & $\uparrow$~ $\uparrow$~ & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~ \\ \hline
    RP & Decidable (Theorem~\ref{up-up}) & Decidable (Theorem~\ref{down-up}) & Undecidable (Theorem~\ref{down-down}) & \textcolor{red}{Undecidable} \\ \hline
    BRP & Decidable (Corollary~\ref{B-up-up}) &  Decidable (Theorem~\ref{down-up}) & ?? & ?? \\ \hline
-      kRP & Decidable (Theorem~\ref{k-up-up}) & \textcolor{red}{Decidable} (Theorem~\ref{k-down-up}) & ?? & ?? \\ \hline
+      kRP & Decidable (Theorem~\ref{k-up-up}) & Decidable (Theorem~\ref{k-down-up}) & ?? & ?? \\ \hline
  \end{tabular}
 \end{center}
 
