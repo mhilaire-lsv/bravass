@@ -141,15 +141,94 @@ is undecidable for Reset VASS.
 %il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
 
 
-\mathieu{remarque si on enlève la strong monotony mais en gardant with effective basis of $\uparrow post^*$:}
+%
+%si on garde strong mais on enlève effective basis of $post^*$:
+%
+%\begin{proposition}(à prouver)
+%{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility.
+%\end{proposition}
+%
+%\begin{proof}
+%pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
+%\end{proof}
 
 
-\begin{proposition}(à prouver)
- leur algorithme for {\sc bounded resilience} termine mais pas correct for WSTS with upward compatibility, not necessarly strong, and an effective basis of $\uparrow post^*$ ?
-\end{proposition}
+
+Keeping the $\uparrow post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general reachable-resilience problem.
+
+
+\begin{lemma}\label{Lemma intersection}
+Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
+Then $A \cap D \subseteq U$  iff $ (\uparrow  A) \cap D \subseteq U$.
+\end{lemma}
+
 
 \begin{proof}
-leur algorithme termine mais pas correct car l'intersection de post et J car alors le lemmme xxxx est faux (contre-exemple)
+Let us suppose that $A \cap D \subseteq U$. Then ${\uparrow (A \cap D)} \subseteq {\uparrow U} = U$.
+Let us show that $({\uparrow A}) \cap D \subseteq {\uparrow (A \cap D)}$.
+Let $x \in ({\uparrow A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
+Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
+Hence $a \in A \cap D$ and then $x \in { \uparrow (A \cap D)}$.
+In the other direction,
+since $A \subseteq {\uparrow A}$, the inclusion
+$({\uparrow  A}) \cap D \subseteq U$ implies
+$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
+\end{proof}
+
+
+
+\begin{theorem}
+{\sc Reachable-resilience} is decidable for (not necessarily strong) WSTS with effective 
+$\uparrow$ $\post^*$ basis.
+\end{theorem}
+
+
+\begin{proof}
+Let $B_p$ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
+and $\Bad$ decidable downward-closed.
+By applying Lemma~\ref{Lemma intersection} twice, we obtain
+
+$$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_p \cap \Bad \subseteq \pred^*(\Safe)$$
+
+
+Since $B_p$ is finite and $\Bad$ is decidable, we can directly compute $ B_p \cap \Bad$.
+% For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
+We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_p \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
+\end{proof}
+
+% In the proof of Thm. 1, it was crucial that we have strong compatibility. This approach does not work
+% for WSTSs in general. We loose precision when we only demand compatibility. Thus, we conjecture
+% that both resilience problems are undecidable for WSTSs in general, but this question remains still open.
+%
+% Well, maybe their version of resilience but resilience with * seems fine.
+%
+
+However when removing strong compatibility, precision is lost and the algorithm do not work anymore.
+
+\begin{proposition}
+The algorithm from \cite{DBLP:conf/gg/Ozkan22} for {\sc $k$-reachable-resilience} terminate but is incorrect for WSTS with upward compatibility (not strong) and an effective basis of $\uparrow \post^*$.
+\end{proposition}
+
+\begin{proof}{Sketch}
+Let us consider a LCS where erasing a message take one step. Then the upward compatibility is not strong. 
+For instance with a rule $\delta(q,b) = \text{ add some }b $,
+we have $(q,b) \to (q,bb)$, $(q, baaa) \geq (q,b)$ and
+$(q, baaa) \to^* (q,bb)$ however it takes more than a single step.
+
+In this case then $\pred(\uparrow \{(q,b)\})$ is not upward-closed. Hence 
+$post^* (s) \cap D \subseteq \pred(\uparrow \{(q,b)\})$
+do not imply
+$\uparrow post^* (s) \cap D \subseteq \pred(\uparrow \{(q,b)\})$ for a downward-closed set $D$.
+In particular by lossiness $(q, \epsilon)$ would belong to
+$post^* (s)$,
+hence $(q,a)$, $(q,aa)$, etc. would belong to $\uparrow post^* (s)$ although not necessarily to
+$post^* (s)$. $(q,aaa)$ not being in $pred(\uparrow \{ (q,b)\})$ means the algorithm 
+from \cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold in this example when $\Safe=\uparrow \{(q,b)\}$ and $\Bad =S$,
+because $\uparrow post^* (s) \cap S \not\subseteq \pred(\uparrow \{(q,b)\})$,
+despite having 
+$post^* (s) \cap S \subseteq \pred(\uparrow \{(q,b)\})$.
+
+\iffalse
 \mathieu{
 
 On considère un LCS, où on autorise à effacer des messages (lossyness) mais effacer un message prends une étape (contrairement à [ref], où ils font une sorte de cloture de effacer-transition-effacer). On n'a alors pas la strong compatibility: 
@@ -211,72 +290,11 @@ $\uparrow post^* ((q,b))$ puisque $(q,\epsilon)$ est dans $post^* ((q,b))$.
 Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
 (même si il est dans $pred^*(\uparrow \{ (q,b)\})$).
 
-
-
 }
- 
- 
- 
+\fi 
  
 \end{proof}
 
-
-%
-%si on garde strong mais on enlève effective basis of $post^*$:
-%
-%\begin{proposition}(à prouver)
-%{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility.
-%\end{proposition}
-%
-%\begin{proof}
-%pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
-%\end{proof}
-
-\begin{lemma}\label{Lemma intersection}
-Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
-Then $A \cap D \subseteq U$  iff $ (\uparrow  A) \cap D \subseteq U$.
-\end{lemma}
-
-
-\begin{proof}
-Let us suppose that $A \cap D \subseteq U$. Then ${\uparrow (A \cap D)} \subseteq {\uparrow U} = U$.
-Let us show that $({\uparrow A}) \cap D \subseteq {\uparrow (A \cap D)}$.
-Let $x \in ({\uparrow A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
-Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
-Hence $a \in A \cap D$ and then $x \in { \uparrow (A \cap D)}$.
-In the other direction,
-since $A \subseteq {\uparrow A}$, the inclusion
-$({\uparrow  A}) \cap D \subseteq U$ implies
-$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
-\end{proof}
-
-
-
-\begin{theorem}
-{\sc Reachable-resilience} is decidable for (not necessarily strong) WSTS with effective 
-$\uparrow$ $\post^*$ basis.
-\end{theorem}
-
-
-\begin{proof}
-Let $B_p$ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
-and $\Bad$ decidable downward-closed.
-By applying Lemma~\ref{Lemma intersection} twice, we obtain
-
-$$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_p \cap \Bad \subseteq \pred^*(\Safe)$$
-
-
-Since $B_p$ is finite and $\Bad$ is decidable, we can directly compute $ B_p \cap \Bad$.
-% For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
-We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_p \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
-\end{proof}
-
-% In the proof of Thm. 1, it was crucial that we have strong compatibility. This approach does not work
-% for WSTSs in general. We loose precision when we only demand compatibility. Thus, we conjecture
-% that both resilience problems are undecidable for WSTSs in general, but this question remains still open.
-%
-% Well, maybe their version of resilience but resilience with * seems fine.
-%
 
 \begin{proposition}
 \textcolor{red}{

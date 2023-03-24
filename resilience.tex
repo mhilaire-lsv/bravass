@@ -89,18 +89,16 @@ We add a third problem that decides whether there exists an $k$ such  that the s
 \alain{trouver les \Bad~ et \Safe~ maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ? on pourrait décider que \Safe=complement de \Bad~ et donc on aurait un seul ensemble (et son complement)}
 
 These three reachability problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. 
-So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS are given as effective upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets \Safe and \Bad.
-\alain{on peut penser à des ensembles \Bad definis dans une logique booleennne sur les clos par le bas, haut, +...}
+So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS are given as effective upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets $\Safe$ and $\Bad$.
+\alain{on peut penser à des ensembles $\Bad$ definis dans une logique booleennne sur les clos par le bas, haut, +...}
 
-For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $\Safe =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $\Bad =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of \Safe. In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that \Bad is always downward closed and \Safe is always upward closed.
+For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $\Safe =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $\Bad =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of $\Safe$. In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that $\Bad$ is always downward closed and $\Safe$ is always upward closed.
 %		
-RP is decidable for lossy counter machines (LCM) with \Safe and \Bad semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
+RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
 %
 In what follows, we will always suppose that a downward closed set $D$ is given by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D=\downarrow D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is given by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
 
 Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable and sets are recursive.
-%
-\alain{on peut penser à des ensembles \Bad definis dans une logique booleennne sur les clos par le bas, haut, +...}
 
 
 \begin{proposition}[Reformulation]\label{reformulation}
@@ -275,19 +273,18 @@ then by downward closure the minimal element is present in both $\Safe$ and $\Ba
 %
 %		cas exclusion mutuelle
 %
-je prends les minimaux de $\Bad$ et les idéaux de $\Safe$, pas sur que ce soit decidable....$pred(\Safe)$
 
+\begin{theorem}\label{down-up}
+\textcolor{red}{
+The resilience problem is undecidable for WSTS with more than one minimal element, 
+$\Safe=\downarrow \Safe$
+and $\Bad=\uparrow \Bad$.
+}
+\end{theorem}
 
-If $\Safe = \downarrow 0$ and $\Bad = \uparrow s$ . . . 
-
-Then resilience kinds of becomes "can we reach $0$ from $\uparrow s$?".
-
-In a reset petri-net, if $\Bad = \uparrow \mu$ for some $\mu \neq 0$,
-and $\Safe = \downarrow 0$,
-then the resilience problem is similar to the single-state zero-reachability problem, which is undecidable.
-
-So, the idea is that the question "is $0$ reachable from token assigment $\mu$" is undecidable, but here the question is slightly different because we start from $\uparrow \mu$ instead.
-
+\begin{proof}
+TBD
+\end{proof}
 
 
 \subsection{Case Synthesis}
