@@ -231,7 +231,7 @@ This reduction to a finite number of questions implies that resilience and bound
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 
-To decide both the resilience and the bounded resilience, we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,m $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
+To decide the bounded resilience, we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,n $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
 \alain{peut-être definir $K_{ \mathscr{S}}(Safe,Bad)$ en dehors de la preuve puisqu'on l'utilise ailleurs (théorème suivant) comme suit: If all these $n \times m$ coverability questions are positive then  $K(Safe,Bad)=max(k_{i,j})$ else $K=\infty$}
  % \alain{comment trouver les $k_a$ ?} 
  by iteratively checking the different possibles values of every $k_{i,j}$ until we find the minimal one,
@@ -258,7 +258,7 @@ If $K=\infty$ then $\mathscr{S}$ is not resilient for Safe and Bad.
 Now, if $k \geq min(K,n)$, we conclude that is $k$-resilient; 
 %	if moreover $\mathscr{S}=(S,\rightarrow, \leq)$ has the predbasis hypothesis, 
 %	and then kRP is decidable.
-	If $k <  min(K,n)$, then we can answer the question by checking every paths of length smaller
+	If $k <  min(K,n)$, then we check every path of length smaller
 	than $min(K,n)$ from the ideals of the decomposition of $\Bad$ in the completion \alain{à expliquer mieux}.
 \end{proof}
 
