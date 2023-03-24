@@ -209,7 +209,8 @@ Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two 
 %finite \alain{non, confusion entre ensemble et base}
  sets $\Bad = \downarrow \Bad$ and $\Safe = \uparrow \Safe$.
-The resilience problem (RP) and the bounded resilience problem (BRP) are decidable.
+The resilience problem (RP), the bounded resilience problem (BRP)
+and the $k$-resilience problem (kRP) are decidable.
 \end{theorem}
 
 \begin{proof}
@@ -244,17 +245,22 @@ do not hold and bounded resilience do not hold either.
  Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the 
   resilience problem (RP) and the  
   bounded resilience problem (BRP) are decidable.
-\end{proof}
 
+\iffalse
+	\end{proof}
 
-\begin{theorem}\label{k-down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and the predbasis hypothesis, and two finite sets: $\Bad$ and $\Safe$.
-The  $k$-resilience problem (kRP) is decidable 
-%	for $k \geq min(K,n)$ where $n$ satisfies $ \uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$. 
-\textcolor{red}{CONJECTURE for now}
- \end{theorem}
+	\begin{theorem}\label{k-down-up}
+	Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS 
+	with strong compatibility and the predbasis hypothesis, and two finite sets: $\Bad$ 
+	and $\Safe$.
+	The  $k$-resilience problem (kRP) is decidable 
+	%	for $k \geq min(K,n)$ where $n$ satisfies $ \uparrow \pred^n(\Safe)=  \uparrow 	\pred^*(\Safe)$. 
+	\textcolor{red}{CONJECTURE for now}
+	 \end{theorem}
 
-\begin{proof}
+	\begin{proof}
+\fi
+
 We begin to compute $K$ and $n$ such that $ \uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$.
 If $K=\infty$ then $\mathscr{S}$ is not resilient for Safe and Bad.
 Now, if $k \geq min(K,n)$, we conclude that is $k$-resilient; 
@@ -283,7 +289,8 @@ and $\Bad=\downarrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-In the case of a WSTS with at least two minimal elements $0_1$ and $0_2$, the problem of whether $0_2$ is reachable from $0_1$ reduces itself to the resilience problem, hence its undecidability.  
+In the case of a WSTS with at least two minimal elements $m_1$ and $m_2$, the problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resilience problem, hence its undecidability.  
+\mathieu{dévellopper un peu la preuve, $m_2$ minimal de $\Safe$, $m_1$ minimal de $\Bad$...}
 \end{proof}
 
 In the case of a WSTS with only one minimal element,  
