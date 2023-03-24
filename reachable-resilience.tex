@@ -118,7 +118,9 @@ with strong upward compatibility
 and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. 
 \end{proposition}
 
-The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). Hence reachable-resilience is decidable for Petri nets and VASS.
+The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded reachable-resilience is decidable for VASS.
+Hence reachable-resilience is decidable for Petri nets and VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
 
 \begin{proposition}
@@ -433,7 +435,7 @@ the two  theorems above.
 
 % Let us deduce that effective basis of $post^*$ ex reset PN ?
 
-Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded reachable-resilience is decidable for VASS, hence reachable-resilience is decidable for VASS. \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
+ \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
 
 We may consider context-free grammars.
 
