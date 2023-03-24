@@ -311,8 +311,8 @@ $k(U) \leq k$. This also implies that $\pred^*(U) = U^k$.
 \begin{lemma}
 % Lemma 3 ([1]) 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
- Given a basis of an upward-closed set $U \subseteq S$, and a state $s$ of an effective strongly well-structured transition
-system, we can decide whether we can reach $U$ from $s$.
+ Given a basis of an upward-closed set $U \subseteq S$, and a state $s$ of an effective strongly WSTS, we can decide whether $U  \xrightarrow {*}{} s$.
+%	we can reach $U$ from $s$.
 \end{lemma}
 
 \begin{proof}
@@ -329,6 +329,6 @@ Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \end{proof}
 
 \begin{theorem}
-A finite basis of $ \pred^*(U)$ is computable for any WSTS $\mathscr{S}$ and any upward closed set $U \subseteq S$.
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward closed set $U \subseteq S$ given with its finite basis $B_U$.
 \end{theorem}
 
