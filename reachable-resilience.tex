@@ -308,7 +308,7 @@ CONJECTURE
 \end{proof}
 
 
-Unfortunately, resilience is undecidable for (general) WSTS even with strong monotony.
+Unfortunately, reachable-resilience is undecidable for (general) WSTS even with strong monotony.
 This stems from the fact that $t$-liveness is undecidable for reset Petri-Nets.
 
 
@@ -384,10 +384,10 @@ Reset Petri Net $t$-liveness is undecidable
 \end{corollary}
 
 
-Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong monotony, from Proposition \ref{reductions},  we deduce that resilience is undecidable for WSTS with strong monotony.
+Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong monotony, from Proposition \ref{reductions},  we deduce that reachable-resilience is undecidable for WSTS with strong monotony.
 
 \begin{theorem}
-{\sc resilience} is undecidable for WSTS with strong monotony.
+{\sc reachable-resilience} is undecidable for WSTS with strong monotony.
 \end{theorem}
 
 
@@ -396,8 +396,8 @@ Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong
 
 
 \begin{proposition}
-In WSTS with strong monotony, the bounded resilience problem is
-reducible to the $k$-resilience problem.
+In WSTS with strong monotony, the bounded reachable-resilience problem is
+reducible to the $k$-reachable-resilience problem.
 \end{proposition}
 
 \begin{proof}
@@ -407,8 +407,8 @@ Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
 \end{proof}
 
 \begin{proposition}
-In WSTS with strong monotony, the bounded resilience problem is
-equivalent to the resilience problem.
+In WSTS with strong monotony, the bounded reachable resilience problem is
+equivalent to the reachable-resilience problem.
 \end{proposition}
 
 \begin{proof}
@@ -419,7 +419,8 @@ $\pred^*(I) = \pred^{k}(I)$
 \end{proof}
 
 \begin{corollary}
-Bounded Resilience is undecidable for WSTS with strong monotony.
+Bounded reachable-resilience and 
+$k$ reachable-resilience are undecidable for WSTS with strong monotony.
 \end{corollary}
 
 \begin{proof} 
@@ -430,9 +431,9 @@ the two  theorems above.
 
 
 
-Let us deduce that effective basis of $post^*$ ex reset PN ?
+% Let us deduce that effective basis of $post^*$ ex reset PN ?
 
-Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded resilience is decidable for VASS, hence resilience is decidable for VASS. \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded reachable-resilience is decidable for VASS, hence reachable-resilience is decidable for VASS. \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
 
 We may consider context-free grammars.
 
