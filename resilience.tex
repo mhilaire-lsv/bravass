@@ -231,9 +231,9 @@ This proves that resilience and bounded resilience are equivalent since, here, r
 %' \in I(\Bad)$.
 
 To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,m $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
-\alain{peut-être definir $K_{ \mathscr{S}}(Safe,Bad)$ en dehors de la preuve comme suit: If all these $n \times m$ coverability questions are positive then  $K(Safe,Bad)=max(k_{i,j})$ else $K=\infty$}
+\alain{peut-être definir $K_{ \mathscr{S}}(Safe,Bad)$ en dehors de la preuve puisqu'on l'utilise ailleurs (théorème suivant) comme suit: If all these $n \times m$ coverability questions are positive then  $K(Safe,Bad)=max(k_{i,j})$ else $K=\infty$}
  % \alain{comment trouver les $k_a$ ?} 
- by iteratively checking the different possibles values of every $k_{i,j}$ until we find the right one,
+ by iteratively checking the different possibles values of every $k_{i,j}$ until we find the minimal one,
  and we deduce that  $\mathscr{S}$ is $K$-resilient,
 %  \alain{else $\mathscr{S}$ is not $K$-resilient...et alors qu'en déduit-on ? il pourrait exister un $K' \geq K$ pour lequel $\mathscr{S}$ est K'-resilient....}. 
 else if some of these $n \times m$ coverability questions are negative then resilience
@@ -245,18 +245,21 @@ do not hold and bounded resilience do not hold either.
 
 
 \begin{theorem}\label{k-down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility% and the predbasis hypothesis
-, and two finite sets: $\Bad$ and $\Safe$.
-The  $k$-resilience problem (kRP) is decidable for $k \geq K$. 
-% \textcolor{red}{CONJECTURE for now}
+<<<<<<< HEAD
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and the predbasis hypothesis, and two finite sets: $\Bad$ and $\Safe$.
+The  $k$-resilience problem (kRP) is decidable 
+%	for $k \geq min(K,n)$ where $n$ satisfies $ \uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$. 
+\textcolor{red}{CONJECTURE for now}
  \end{theorem}
 
 \begin{proof}
-To decide the kRP, we may compare the input $k$ with $K=max(k_a \mid a=1,..,m \times n)$.
-	If $k \geq K$, we conclude that 
-$k$-resilience holds.
-	If $k < K$, then we can answer the question by checking every paths of length smaller
-	than $K$ from the ideals of the decomposition of $\Bad$ in the completion.
+We begin to compute $K$ and $n$ such that $ \uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$.
+If $K=\infty$ then $\mathscr{S}$ is not resilient for Safe and Bad.
+Now, if $k \geq min(K,n)$, we conclude that is $k$-resilient; 
+%	if moreover $\mathscr{S}=(S,\rightarrow, \leq)$ has the predbasis hypothesis, 
+%	and then kRP is decidable.
+	If $k <  min(K,n)$, then we can answer the question by checking every paths of length smaller
+	than $min(K,n)$ from the ideals of the decomposition of $\Bad$ in the completion \alain{à expliquer mieux}.
 \end{proof}
 
 %
