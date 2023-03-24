@@ -221,7 +221,8 @@ Suppose that $b_j$ is coverable from $x$ then there exists a run $x \xrightarrow
 Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow b_j \subseteq J$ then 
 %	for every $y \in J$, 
 there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b_j$ in $\mathscr{S}$ and then $b_j$ is coverable from $x$ in $\mathscr{S}$.
-
+%
+This proves that resilience and bounded resilience are equivalent since, here, resilience implies bounded resilience (bounded resilience always implies resilience).
 %
 % iff there is a run in $\hat{S}$ from an ideal I to J such that  $\downarrow x \subseteq I$ and $\downarrow b_j \subseteq J$. This is a consequence of  
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
@@ -230,7 +231,7 @@ there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b
 To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,m $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
 \alain{peut-être definir $K_{ \mathscr{S}}(Safe,Bad)$ en dehors de la preuve comme suit: If all these $n \times m$ coverability questions are positive then  $K(Safe,Bad)=max(k_{i,j})$ else $K=\infty$}
  % \alain{comment trouver les $k_a$ ?} 
- by iteratively checking the different possibles values of every $k_a$ until we find the right one,
+ by iteratively checking the different possibles values of every $k_{i,j}$ until we find the right one,
  and we deduce that  $\mathscr{S}$ is $K$-resilient,
 %  \alain{else $\mathscr{S}$ is not $K$-resilient...et alors qu'en déduit-on ? il pourrait exister un $K' \geq K$ pour lequel $\mathscr{S}$ est K'-resilient....}. 
 else if some of these $n \times m$ coverability questions are negative then resilience
