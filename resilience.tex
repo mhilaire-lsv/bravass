@@ -66,7 +66,7 @@ pour $k,k'$ donnés, chercher si $\Safe_{max}$ et $\Bad_{max}$ ont un sens ? on 
 \section{Resilience for WSTS}
 
 
-The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a safe state. Let us formalize these properties.
+The resilience problem (resp. the $k$-resilience problem) in a transition system is to decide whether from a bad state, there exists a path (resp. a path of length smaller than $k$) that reaches a safe state. $\Safe, \Bad \subseteq S$ and $\Safe \cap  \Bad = \emptyset$. A usual case is $Safe = S \backslash Bad$ and then Safe is downward-closed iff Bad is upward-closed. Let us formalize these properties.
 
 \problemx{resilience problem (RP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
