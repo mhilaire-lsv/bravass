@@ -204,12 +204,12 @@ Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a
 
 
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$ \alain{Min ou B ?}.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $\Bad$ and $\Safe$.
 The resilience problem (RP) and the bounded resilience problem (BRP) are decidable.
 \end{theorem}
 
 \begin{proof}
-Let $I_{\Bad}=\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $B_{\Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $\Safe$.
+Let $\Bad=\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $B_{\Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $\Safe$.
 The %uniform 
 resilience problem (RP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to $n$ instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$.
 
@@ -227,7 +227,14 @@ there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 
-To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ \alain{comment trouver les $k_a$ ?} and we deduce that  $\mathscr{S}$ is $K$-resilient \alain{else $\mathscr{S}$ is not $K$-resilient...et alors qu'en déduit-on ? il pourrait exister un $K' \geq K$ pour lequel $\mathscr{S}$ est K'-resilient....}. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the 
+To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$
+ % \alain{comment trouver les $k_a$ ?} 
+ by iteratively checking the different possibles values of every $k_a$ until we find the right one,
+ and we deduce that  $\mathscr{S}$ is $K$-resilient,
+%  \alain{else $\mathscr{S}$ is not $K$-resilient...et alors qu'en déduit-on ? il pourrait exister un $K' \geq K$ pour lequel $\mathscr{S}$ est K'-resilient....}. 
+else if some of these $n \times m$ coverability questions are negative then resilience
+do not hold and bounded resilience do not hold either.
+ Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the 
   resilience problem (BRP) and the  
   bounded resilience problem (BRP) are decidable.
 \end{proof}
