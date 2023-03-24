@@ -204,14 +204,14 @@ Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a
 
 
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $\Bad$ and $\Safe$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite \alain{non, confusion entre ensemble et base} sets: $\Bad$ and $\Safe$.
 The resilience problem (RP) and the bounded resilience problem (BRP) are decidable.
 \end{theorem}
 
 \begin{proof}
-Let $\Bad=\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $B_{\Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $\Safe$.
+Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $B_{\Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $\Safe$.
 The %uniform 
-resilience problem (RP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to $n$ instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$.
+resilience problem (RP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to a finite number of instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$.
 
 %Proposition 30 in \cite{BFM-icalp14} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{*} y'$ in $\mathscr{S}$.
 
@@ -227,7 +227,8 @@ there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 
-To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$
+To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,m $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
+\alain{peut-être definir $K_{ \mathscr{S}}(Safe,Bad)$ en dehors de la preuve comme suit: If all these $n \times m$ coverability questions are positive then  $K(Safe,Bad)=max(k_{i,j})$ else $K=\infty$}
  % \alain{comment trouver les $k_a$ ?} 
  by iteratively checking the different possibles values of every $k_a$ until we find the right one,
  and we deduce that  $\mathscr{S}$ is $K$-resilient,
