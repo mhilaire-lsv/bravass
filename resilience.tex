@@ -213,24 +213,25 @@ The resilience problem (RP) and the bounded resilience problem (BRP) are decidab
 \begin{proof}
 Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $B_{\Safe}=\{b_1,b_2,...,b_m\}$ be the minimal basis of $\Safe$.
 The %uniform 
-resilience problem (RP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to a finite number of instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$.
+resilience problem (RP) is equivalent to an infinite number of instances of the coverability problem : for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. This infinite set of coverability questions can be reduced to a \emph{finite} number of instances of the coverability problem in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
 
 %Proposition 30 in \cite{BFM-icalp14} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{*} y'$ in $\mathscr{S}$.
 
-Let us show that $b_j$ is coverable from $x$ in $\mathscr{S}$ iff $\downarrow b_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
+Let us show that $b_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\downarrow b_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
 
 Suppose that $b_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq b_j$. From Proposition 30, there exist an ideal $J$ and a run $\downarrow x \xrightarrow{k} J$ where $J \supseteq \downarrow y \supseteq \downarrow b_j$ in $\hat{\mathscr{S}}$, hence $b_j$ is covered from $\downarrow x$.
 Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow b_j \subseteq J$ then 
 %	for every $y \in J$, 
 there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b_j$ in $\mathscr{S}$ and then $b_j$ is coverable from $x$ in $\mathscr{S}$.
 %
-This proves that resilience and bounded resilience are equivalent since, here, resilience implies bounded resilience (bounded resilience always implies resilience).
+
+This reduction to a finite number of questions implies that resilience and bounded resilience are equivalent since, here, resilience implies bounded resilience (bounded resilience always implies resilience): if it is resilient then it is $k$-resilient for $k$ the maximum of lengths of covering sequences.
 %
 % iff there is a run in $\hat{S}$ from an ideal I to J such that  $\downarrow x \subseteq I$ and $\downarrow b_j \subseteq J$. This is a consequence of  
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 
-To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,m $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
+To decide both the resilience and the bounded resilience, we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,m $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $b_j$ from $J_i$.
 \alain{peut-être definir $K_{ \mathscr{S}}(Safe,Bad)$ en dehors de la preuve puisqu'on l'utilise ailleurs (théorème suivant) comme suit: If all these $n \times m$ coverability questions are positive then  $K(Safe,Bad)=max(k_{i,j})$ else $K=\infty$}
  % \alain{comment trouver les $k_a$ ?} 
  by iteratively checking the different possibles values of every $k_{i,j}$ until we find the minimal one,
