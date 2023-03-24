@@ -153,8 +153,8 @@ In WSTS with strong compatibility and effective predbasis,  $\Safe=\uparrow \Saf
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^k(\Safe)= \uparrow~\pred^k(\Safe)$ for all $k \in \N$,
-and there exists $K \in \N$ such that 
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+and there exists $k \in \N$ \alain{K pas utilisé} such that 
 $\pred^k(\Safe) = \uparrow \pred^k(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 Hence the equivalence.
 \end{proof}
@@ -178,7 +178,7 @@ and $\Bad=\uparrow \Bad$.
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^k(\Safe)= \uparrow~\pred^k(\Safe)$ for all $k \in \N$, and $\pred^k(\Safe)$ admits a finite basis $B_{\pred^k(\Safe)}$. From a similar reasoning as above, the $k$-resilience problem is decidable.
+compatibility, then $\pred^k(\Safe)= \uparrow~\pred^k(\Safe)$ for all $k \in \N$, and $\pred^k(\Safe)$ admits a finite basis $B_{\pred^k(\Safe)}$. From a similar reasoning as above, the $k$-resilience problem is decidable.\alain{réserver k pour le k-résilience, il y a d'autres lettres...n, m, p,...}
 \end{proof}
 
 
@@ -204,7 +204,7 @@ Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a
 
 
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$ \alain{Min ou B ?}.
 The resilience problem (RP) and the bounded resilience problem (BRP) are decidable.
 \end{theorem}
 
@@ -227,7 +227,7 @@ there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 
-To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ and we deduce that  $\mathscr{S}$ is   $K$-resilient. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the 
+To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverability questions: is state $b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_a \mid a=1,..,m \times n)$ and we deduce that  $\mathscr{S}$ is $K$-resilient \alain{else $\mathscr{S}$ is not $K$-resilient...et alors qu'en déduit-on ?}. Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we have shown that both the 
   resilience problem (BRP) and the  
   bounded resilience problem (BRP) are decidable.
 \end{proof}
@@ -235,7 +235,7 @@ To decide the  bounded resilience problem (BRP), we decide $n \times m$ coverabi
 
 \begin{theorem}\label{k-down-up}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and the predbasis hypothesis, and two finite sets: $I_{\Bad}$ and $Min_{\Safe}$.
-The  $k$-resilience problem (kRP) is decidable. \textcolor{red}{CONJECTURE for now}
+The  $k$-resilience problem (kRP) is decidable for $k \geq K$. \textcolor{red}{CONJECTURE for now}
  \end{theorem}
 
 \begin{proof}
