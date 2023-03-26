@@ -303,7 +303,7 @@ This ensures the following.
 
 \begin{fact}\label{stop condition}
 % Fact 4 (stop condition). 
-If $\mathscr{S}$ is a WSTS with strong monotony and $U \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $U^k = U^{k+1}$ , then $U^\ell = U^k$ for all $\ell \geq k$, i.e.,
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $U^k = U^{k+1}$ , then $U^\ell = U^k$ for all $\ell \geq k$, i.e.,
 $k(U) \leq k$. This also implies that $\pred^*(U) = U^k$.
 \end{fact}
 
@@ -324,7 +324,7 @@ $$U^{k+1} = U \cup \pred(U^k ) = U \cup
 \bigcup_{s' \in B}
 \pred(\uparrow \{s' \}).$$
 
-Since $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $U^{k+1}$ . By
+Since a finite basis of $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $U^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \end{proof}
 
