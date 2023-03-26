@@ -98,11 +98,13 @@ For instance, the well-known mutual exclusion property is often modelized in a $
 
 In \cite{DBLP:conf/gg/Ozkan22}, the authors considered that $\Bad$ is downward closed and $\Safe$ is upward closed.
 %		
-RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
+RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. We deduce that the three resilience problems are decidable for all four pairs of sets $\Safe$ and $\Bad$ downward closed and upward closed sets.
+
+In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
 %
 In what follows, we will always suppose that a downward closed set $D=\downarrow D$ is given by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is given by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
 
-Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable and sets are recursive.
+Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable and sets are recursive \alain{???}.
 
 
 \begin{proposition}[Reformulation]\label{reformulation}
@@ -136,7 +138,7 @@ example: ?
 
 
 \begin{theorem}\label{up-up}
-The resilience problem is decidable for WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
+The resilience problem is decidable for effective WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
 and $\Bad=\uparrow \Bad$.
 
 \end{theorem}
