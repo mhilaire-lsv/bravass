@@ -54,9 +54,12 @@ and $\Bad=\uparrow \Bad$.
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$, and $\pred^n(\Safe)$ admits a finite basis $B_{\pred^n(\Safe)}$. From a similar reasoning as above, the $k$-resilience problem is decidable.
-\alain{écrire une preuve}
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$, and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. 
+% From a similar reasoning as above, the $k$-resilience problem is decidable.
+% \alain{écrire une preuve}
 %	\alain{réserver k pour le k-résilience, il y a d'autres lettres...n, m, p,...}
+Since $\Bad$  is upward closed, there exists a finite basis $B_{\Bad}$ such that $\Bad = \uparrow B_{\Bad}$. Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$,
+hence the resilience problem is decidable.
 \end{proof}
 
 
