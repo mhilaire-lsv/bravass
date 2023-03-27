@@ -1,0 +1,49 @@
+
+
+\subsection{Case: $\Safe=\downarrow \Safe$ and $\Bad=\downarrow \Bad$.}
+
+example: ?
+
+% In the case \Safe and \Bad are both downward closed, they can both be finite.
+
+\begin{theorem}\label{down-down}
+The resilience problem is undecidable for WSTS with
+%	with more than one minimal element, 
+$\Safe=\downarrow \Safe$
+and $\Bad=\downarrow \Bad$.
+\end{theorem}
+
+\begin{proof}
+In the case of a WSTS with at least two minimal elements $m_1$ and $m_2$, the problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resilience problem, hence its undecidability.  
+\mathieu{dévellopper un peu la preuve, $m_2$ minimal de $\Safe$, $m_1$ minimal de $\Bad$...}
+\end{proof}
+
+In the case of a WSTS with only one minimal element,  
+% (ex: Petri Nets and their «Zero») 
+then by downward closure the minimal element is present in both $\Safe$ and $\Bad$ and hence resilience always hold.
+
+
+
+
+
+
+%%%%%%%%
+\subsection{Case: $\Safe=\downarrow \Safe$ and $\Bad=\uparrow \Bad$.}
+%
+%		cas exclusion mutuelle
+%
+example: mutual exclusion.
+
+\begin{theorem}\label{up-down}
+\textcolor{red}{
+The resilience problem is undecidable for WSTS with 
+%	more than one minimal element, 
+$\Safe=\downarrow \Safe$
+and $\Bad=\uparrow \Bad$.
+}
+\end{theorem}
+
+\begin{proof}
+TBD
+\end{proof}
+
