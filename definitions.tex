@@ -1,4 +1,7 @@
 
+\newcommand{\pred}{\textsf{pred}}
+\newcommand{\post}{\textsf{post}}
+% \renewcommand{\succ}{\textsf{Succ}}
 
 \section{Definitions}\label{section definitions}
 
@@ -6,7 +9,7 @@
 
 In this section, we introduce general notations and preliminary definitions.
 
-The model we are interested in is (S)WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
+The model we are interested in is WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
 
 
 % \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
@@ -16,79 +19,26 @@ The model we are interested in is (S)WSTS (and later some particular instances, 
 
 
 \begin{definition}
-A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Lambda, \rightarrow)$ where 
-$S$ is a set of {\em states}, $ \Lambda$ is a set of {\em labels}, and 
-${\rightarrow} \subseteq S\times \Lambda \times S$ is a 
-ternary relation,
-denoted as the set of {\em labeled transitions}. 
-\end{definition}
-
-We
- prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as
-       $s  \xrightarrow{a}  s'$
-to represent a transition from configuration $s$ to configuration $s'$ with label $a$. \\
-
-\noindent
-Labels can be used to represent the reading of an input, but also to represent an action performed during the transition or conditions that must hold in order to allow the use of the transition.
-
-
-A {\em path} in a labeled transition system from a {\em source configuration} $s_0$
-to a {\em target configuration} $s_n$ is a sequence 
-$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$. 
-We define the {\em concatenation} $ \pi_1 \pi_2$ of 
-two paths $\pi_1$ and $\pi_2$ when the source configuration of $\pi_2$ is equal to the target configuration of $\pi_1$
-as expected.
-The {\em length} of 
-$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$
-is defined as $|\pi|=n$. We say the path is {\em labeled} by $a_0 a_1 , \ldots a_{n-1}$.
-For all $w \in \Lambda^*$, all $s,s' \in S$, we will write $s \xrightarrow{w } s'$ if there exists a path from $s$ to $s'$ labeled by $w$. 
-
-An {\em infinite path} is an infinite sequence
- $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots $.
-For each infinite (resp. finite) path  $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ 
-(resp. $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1}} s_n$)
-and $i,j \in \N$ (resp. $i,j \in [0,n]$) with $i<j$ we denote
-by $\pi[i,j]$ the path 
-$s_i  \xrightarrow{a_i } s_{i+1}  \xrightarrow{a_{i+1} } \cdots  \xrightarrow{a_{j-1} } s_j$
- and by $\pi[i]$ the configuration $s_i$.
-As expected, a {\em prefix} of a finite or infinite path $\pi$ is a finite path of the form $\pi[0,j]$, and
-a  {\em suffix} of a finite path $\pi$ is a path of the form $\pi[i,n]$.  \\
-Given an infinite path $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ let
-$\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\}$.
-
-\newcommand{\pred}{\textsf{pred}}
-\newcommand{\post}{\textsf{post}}
-% \renewcommand{\succ}{\textsf{Succ}}
-
-
-\noindent
-The set of {\em successors} of a configuration $s \in S$ is deﬁned as
-$\post(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s \xrightarrow{a} s'\}$.
-A configuration without successors is called a {\em dead end}.  \\
-The set of {\em predecessor} of a configuration $s \in S$ is deﬁned as
-$\pred(s) = \{ s' \in S \mid \exists a \in \Lambda ~ s' \xrightarrow{a} s\}$.
-
-
-
-A labeled transition system $(S, \Lambda, \rightarrow)$ is {\em deterministic} if for all configurations $s_1, s_2, s_3 \in S$ and all
-$a \in \Lambda$,
- $ s_1  \xrightarrow{a} s_{2}$ and  
- $s_1  \xrightarrow{a} s_{3} $ implies $s_2 = s_3 $. \\
-
-
-
-\begin{definition}
-An {\em (unlabeled) transition system} is a pair $T = (S,\rightarrow )$ where $S$ is a set of 
+An {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
 {\em states} and  
 $ {\rightarrow} \subseteq S \times S$ is a
 binary relation 
 on
-the set of states, denoted as the set of {\em transitions}. 
+the set of states, denoted as the set of {\em transitions}. A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
+$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
+${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
+ternary relation,
+denoted as the set of {\em labeled transitions}. 
 \end{definition}
 
-We again prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $). \newline
 Note 
- that an unlabeled transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
+ that an (unlabeled) transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
+
+We again prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $). \newline
+
+%
+\alain{enlever ce qui est inutile}
+%
 Determinism, (infinite) paths, their length, and concatenation in unlabeled transition systems are
 then defined as expected.
 
@@ -108,10 +58,73 @@ A transition system is {\em finitely branching} if all $\post(s)$ are finite.
 %\textcolor{red}{Not sure that TS induced by TA are finitely branching. Actually I believe they are not, i.e. for instance for a TA with one clock $x$, from a state $q$ and clock $x$ set at $0$, if there is a transition e.g. $(q, x \geq 3, \emptyset, q')$ then the set of successors of 
 %$(q,0)$ is $\{q'\} \times \{3, 4, 5, \ldots \}$. Need to check where finitely branching appears as an assumption/requirement.}
 
+%
+%\begin{definition}
+%A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
+%$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
+%${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
+%ternary relation,
+%denoted as the set of {\em labeled transitions}. 
+%\end{definition}
+
+We
+ prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as
+       $s  \xrightarrow{a}  s'$
+to represent a transition from configuration $s$ to configuration $s'$ with label $a$. \\
+
+\noindent
+%Labels can be used to represent the reading of an input, but also to represent an action performed during the transition or conditions that must hold in order to allow the use of the transition.
+
+
+A {\em path} in a labeled transition system from a {\em source configuration} $s_0$
+to a {\em target configuration} $s_n$ is a sequence 
+$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$.
+
+We define the {\em concatenation} $ \pi_1 \pi_2$ of 
+two paths $\pi_1$ and $\pi_2$ when the source configuration of $\pi_2$ is equal to the target configuration of $\pi_1$
+as expected.
+The {\em length} of 
+$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$
+is defined as $|\pi|=n$ and we say the path is {\em labeled} by $a_0 a_1 , \ldots a_{n-1}$.
+For all $w \in \Sigma^*$, all $s,s' \in S$, we will write $s \xrightarrow{w } s'$ if there exists a path from $s$ to $s'$ labeled by $w$. 
+
+An {\em infinite path} is an infinite sequence
+ $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots $.
+For each infinite (resp. finite) path  $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ 
+(resp. $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1}} s_n$)
+and $i,j \in \N$ (resp. $i,j \in [0,n]$) with $i<j$ we denote
+by $\pi[i,j]$ the path 
+$s_i  \xrightarrow{a_i } s_{i+1}  \xrightarrow{a_{i+1} } \cdots  \xrightarrow{a_{j-1} } s_j$
+ and by $\pi[i]$ the configuration $s_i$.
+As expected, a {\em prefix} of a finite or infinite path $\pi$ is a finite path of the form $\pi[0,j]$, and
+a  {\em suffix} of a finite path $\pi$ is a path of the form $\pi[i,n]$.  \\
+Given an infinite path $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ let
+$\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\}$.
+
+
+
+\noindent
+The set of {\em (immediate) successors} of a state $s \in S$ is deﬁned as
+$\post(s) = \{ s' \in S \mid \exists a \in \Sigma ~ s \xrightarrow{a} s'\}$.
+A state without successors is called a {\em dead end}.  \\
+The set of {\em (immediate) predecessor} of a state $s \in S$ is deﬁned as
+$\pred(s) = \{ s' \in S \mid \exists a \in \Sigma ~ s' \xrightarrow{a} s\}$.
+
+
+
+A labeled transition system $(S, \Sigma, \rightarrow)$ is {\em deterministic} if for all states $s_1, s_2, s_3 \in S$ and all
+$a \in \Sigma$,
+ $ s_1  \xrightarrow{a} s_{2}$ and  
+ $s_1  \xrightarrow{a} s_{3} $ implies $s_2 = s_3 $. \\
+
+%
+\alain{enlever ce qui est inutile}
+%
+
 
 \subsection{Well-quasi-orderings}
 
-A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$.
+A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$.
 
 We abbreviate $x \leq y \not\leq x$ by $x < y$.
 
@@ -125,44 +138,56 @@ We now recall a few results from the theory of well-orderings (add reference [..
 
 
 \begin{definition}
- A {\em well-quasi-ordering} (a wqo) is any quasi-ordering $\leq$ (over some set $X$ ) such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with
+ A {\em well-quasi-ordering} (a wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with
 $x_i \leq  x_j$.
 \end{definition}
 
-Notice that a wqo is well-founded, i.e. it admits no infinite strictly decreasing sequence
-$x_0 > x_1 > x_2 > \cdots$
+
+There exists a stronger formulation. $(X,\leq)$ is a wqo iff any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$).
 
 % \textcolor{red}{Add lemma about infinite increasing subsequences ?}
-
+%
+\iffalse
+%
 \begin{lemma}
 (Erd\"os and Rado). Assume $\leq$ is a wqo. Then any infinite sequence contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$).
 \end{lemma}
 
-\iffalse
+
 \begin{proof}
 Consider an infinite sequence and the set $M = \{i \in N \mid \forall j > i ~ x_i \not\leq x_j \}$. $M$ cannot
 be infinite, otherwise it would lead to an infinite subsequence contradicting the wqo
 hypothesis. Thus, $M$ is bounded and any $x_i$ with $i$ beyond $M$ can start an infinite
 increasing subsequence.
 \end{proof}
+%
 \fi
+%
 
-
-Given $\leq$ a quasi-ordering over some set $X$, an {\em upward-closed set} is any set $I \subseteq X$ such that if $y \geq x$ and $x \in I$ then $y \in I $.
-A {\em downward-closed set} is any set $I \subseteq X$ such that if $y \leq x$ and $x \in I$ then $y \in I $. 
-To any $A \subseteq X$ we associate
-the {\em upward-closure of $A$} 
+Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
+A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+To any subset $A \subseteq X$, we may associate
+its {\em upward-closure},
  $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
- and the 
- {\em downward-closure of $A$} 
+ and its 
+ {\em downward-closure},
  $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
 We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
 as $\uparrow x$ (resp. $\downarrow x$).
 
 
-A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \bigcup_{x \in I_b} \uparrow x$. 
+A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
 % Higman investigated ordered sets with the finite basis property.
 
+Wqo admits many other equivalent formulations. For instance: 
+$(X,\leq)$ is a wqo if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of
+upward-closed subsets in $X$ eventually stabilizes, 
+%      i.e. there is a $k \in N$ such that $U_k = U_{k+1} = U_{k+2} = \cdots $ 
+if and only if any upward-closed subset $U \subseteq X$ has a
+finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and without infinite antichains (i.e. there is no infinite subset in $X$ of mutually incomparable elements).
+%
+\iffalse
+%
 
 \begin{lemma}{(Higman [40])} 
 If $\leq$ is a wqo then any upward-closed $I$ has a
@@ -192,6 +217,9 @@ inclusion is strict: $I_{n_0} \subsetneq I_{n_1} \subsetneq I_{n_2} \cdots$. Now
 contains an increasing pair $x_i \leq x_j$ for some $i<j$. Because $x_i$ belongs to an upward-
 closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n_{ j - 1}}$.
 \end{proof}
+%
+\fi
+%
 
 In what follows, a downward closed set $D=\downarrow D$ is represented by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is represented by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
 
