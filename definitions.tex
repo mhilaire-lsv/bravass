@@ -221,11 +221,11 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 \fi
 %
 
-Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo. In such \emph{Finite Antichains} sets $(X,\leq)$, every downward closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_i$ (an ideal is a directed downward closed subset): $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
+Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo. In such \emph{Finite Antichains} sets $(X,\leq)$, every downward closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ (an ideal is a directed downward closed subset) such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
 
 In what follows, a downward closed set is represented by its finite set of ideals 
 %		$D=\downarrow D$   $I_D=\{J_1, J_2,...,J_n\}$ 		satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ 
-and an upward closed set $U$ is represented by its finite set minimal elements.
+and an upward closed set $U$ is represented by its finite set of minimal elements.
 % $M_U$ of its  satisfying $U=\uparrow M_U$.
 
 \alain{est-ce utile et correct ? Let $I,J$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable.}
@@ -238,17 +238,22 @@ and an upward closed set $U$ is represented by its finite set minimal elements.
 
 
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
-A {\em (resp. strongly) well-structured transition system} (abbreviated as WSTS)  $(S, \rightarrow, \leq)$
+A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
-equipped with a wqo ${\leq} \subseteq S \times S$ between states such that  
+equipped with a wqo ${\leq} \subseteq S \times S$ such that  
 %  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
-the transition relation $ \rightarrow$ is compatible (resp. strongly compatible) with the wqo, i.e., for all 
+the transition relation $ \rightarrow$ is compatible with $\leq$, i.e., for all 
 $s_1, t_1 , s_2 \in S$
-	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$ , there exists 
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
 	$t_2 \in S$ with 
-	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$ 			
-				(resp. $s_2 \rightarrow t_2$ ).
+	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
 \end{definition}
+
+We say that a WSTS $\mathscr{S}$ has the \emph{strong compatibility} when moreover for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
 
 Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering.
 
@@ -264,7 +269,7 @@ Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $
 \fi
 
 \begin{proposition}\cite{DBLP:journals/tcs/FinkelS01}
-If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ and $\pred^*(U )$ are upward-closed.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are upward-closed.
 \end{proposition}
 %\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
@@ -300,34 +305,44 @@ $s \in D$.
 % \textcolor{red}{Do we still demand this ?}
 %\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
 
+%
+\iffalse
+%
 \begin{claim}{(stability of upward-closed sets)}
 Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V$ are upward-closed.
 \end{claim}
-
+%
+\fi
+%
 
 % \begin{claim}
 % Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 % \end{claim}
 
-\begin{fact}\label{fact basis}
+%			\begin{fact}\label{fact basis}
 % Fact 3 ([1]). 
 % Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
-For every upward-closed set $U \subseteq S$, there exists a finite basis $B$ of $U$. 
+
+%For every upward-closed set $U \subseteq S$, there exists a finite basis $B$ of $U$. 
+
 % (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 % \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
-\end{fact}
+%			\end{fact}
 
+For a WSTS $\mathscr{S}$ and an upward closed set $U$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We then have:  $\pred^*(U) = U_{k_0}$.
 
+\alain{ me semble maintenant inutile
+%
 \begin{definition}{ (index)}. 
-If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$  is upward-closed and $k \geq 0$, let $U^k= \bigcup_{0 \leq j \leq k} \pred^j(U)$.
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$  is upward-closed and $k \geq 0$, let $U_k= \bigcup_{0 \leq n \leq k} \pred^n(U)$.
 The {\em index} $k(U)$ is the
-smallest $k_0$ s.t. $U^k = U^{k_0}$ for all $k \geq k_0$.
+smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$.
 \end{definition}
-
-
+%
+%
 If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set, the sets $\pred(U )$, and $\pred^{\geq k}(U )$ for
 every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(U)$.
-
+%
 \begin{remark}
 $U^{k+1} $ can be rewritten $U^{k+1}= \bigcup_{0 \leq j \leq k+1} \pred^j(U) = 
 U \cup \bigcup_{1 \leq j \leq k+1} \pred^j(U) =
@@ -362,9 +377,9 @@ $$U^{k+1} = U \cup \pred(U^k ) = U \cup
 
 Since a finite basis of $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $U^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
-\end{proof}
+\end{proof}}
 
-\begin{theorem}
-A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward closed set $U \subseteq S$ given with its finite basis $B_U$.
+\begin{theorem}(ref)
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward closed set $U \subseteq S$ given with its finite basis $pb(U)$.
 \end{theorem}
 
