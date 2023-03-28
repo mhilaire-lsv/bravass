@@ -3,7 +3,7 @@
 \newcommand{\post}{\textsf{post}}
 % \renewcommand{\succ}{\textsf{Succ}}
 
-\section{Definitions}\label{section definitions}
+\section{Well-structured transition systems}\label{section definitions}
 
 
 
@@ -24,30 +24,38 @@ An {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ 
 $ {\rightarrow} \subseteq S \times S$ is a
 binary relation 
 on
-the set of states, denoted as the set of {\em transitions}. A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
-$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
-${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
-ternary relation,
-denoted as the set of {\em labeled transitions}. 
+the set of states, denoted as the set of {\em transitions}. 
+
+%A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
+%$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
+%${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
+%ternary relation,
+%denoted as the set of {\em labeled transitions}. 
 \end{definition}
 
-Note 
- that an (unlabeled) transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
+%Note 
+% that an (unlabeled) transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
 
-We again prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $). \newline
+We prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $).
+We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
+for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
+Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
+\noindent
+The set of {\em (immediate) successors} of a state $s \in S$ is deﬁned as $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. A state without successors is called a {\em dead end}. The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
+$\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$.
+
+
 
 %
 \alain{enlever ce qui est inutile}
+%
+We use similar notation for $\post$ and $\pred$...
 %
 Determinism, (infinite) paths, their length, and concatenation in unlabeled transition systems are
 then defined as expected.
 
 %\textcolor{red}{Thinking about whether or not it is pertinent to have LTS and not only TS. LTS can be usefull for TA because of the use of the guards/time as labels but it may be unecessary.}
 
-We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
-for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure). We use similar notation for $\post$ and $\pred$...
-
-Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
 
 %\textcolor{red}{This makes sense for TS but not so much for LTS ...}
 
@@ -103,14 +111,6 @@ $\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\
 
 
 
-\noindent
-The set of {\em (immediate) successors} of a state $s \in S$ is deﬁned as
-$\post(s) = \{ s' \in S \mid \exists a \in \Sigma ~ s \xrightarrow{a} s'\}$.
-A state without successors is called a {\em dead end}.  \\
-The set of {\em (immediate) predecessor} of a state $s \in S$ is deﬁned as
-$\pred(s) = \{ s' \in S \mid \exists a \in \Sigma ~ s' \xrightarrow{a} s\}$.
-
-
 
 A labeled transition system $(S, \Sigma, \rightarrow)$ is {\em deterministic} if for all states $s_1, s_2, s_3 \in S$ and all
 $a \in \Sigma$,
@@ -127,10 +127,8 @@ $a \in \Sigma$,
 A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$.
 
 We abbreviate $x \leq y \not\leq x$ by $x < y$.
-
 % A partial ordering (a po) is an antisymmetric qo
-
-Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).
+\alain{Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).}
 % and gives rise to a po between the equivalence classes ?
 % 	do we need po ?
 
@@ -138,8 +136,7 @@ We now recall a few results from the theory of well-orderings (add reference [..
 
 
 \begin{definition}
- A {\em well-quasi-ordering} (a wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with
-$x_i \leq  x_j$.
+ A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
 \end{definition}
 
 
