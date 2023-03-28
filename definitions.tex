@@ -184,7 +184,7 @@ $(X,\leq)$ is a wqo if and only if any infinite increasing sequence $U_0 \subset
 upward-closed subsets in $X$ eventually stabilizes, 
 %      i.e. there is a $k \in N$ such that $U_k = U_{k+1} = U_{k+2} = \cdots $ 
 if and only if any upward-closed subset $U \subseteq X$ has a
-finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and without infinite antichains (i.e. there is no infinite subset in $X$ of mutually incomparable elements).
+finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and $X$ don't contain infinite subset of mutually incomparable elements (antichains).
 %
 \iffalse
 %
@@ -221,9 +221,14 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 \fi
 %
 
-In what follows, a downward closed set $D=\downarrow D$ is represented by its finite set of ideals $I_D=\{J_1, J_2,...,J_n\}$ satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ and that an upward closed set $U$ is represented by its finite set $Min_U$ of its minimal elements satisfying $U=\uparrow Min_U$.
+Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo. In such \emph{Finite Antichains} sets $(X,\leq)$, every downward closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_i$ (an ideal is a directed downward closed subset): $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
 
-Let $U,V$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable.
+In what follows, a downward closed set is represented by its finite set of ideals 
+%		$D=\downarrow D$   $I_D=\{J_1, J_2,...,J_n\}$ 		satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ 
+and an upward closed set $U$ is represented by its finite set minimal elements.
+% $M_U$ of its  satisfying $U=\uparrow M_U$.
+
+\alain{est-ce utile et correct ? Let $I,J$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable.}
 
 % \textcolor{red}{Define WSTS}
 
