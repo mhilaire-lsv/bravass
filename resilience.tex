@@ -67,7 +67,7 @@ pour $k,k'$ donnés, chercher si $\Safe_{max}$ et $\Bad_{max}$ ont un sens ? on 
 
 In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
-The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite basis. 
+The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
 %	If $\Safe = S \backslash \Bad$, then $\Safe$ is downward-closed iff $\Bad$ is upward-closed. 
 Let us formalize three resilience problems.
 
@@ -91,8 +91,15 @@ Let us formalize three resilience problems.
  $k$-resilient ?\newline}
 
 
-These three reachability problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. 
-So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS are given as effective upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets $\Safe$ and $\Bad$.
+\alain{dessous: à dire mais pas sous forme de proposition}
+\begin{proposition}[Reformulation]\label{reformulation}
+$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
+(\Bad,\Safe)-resilient iff $\Bad \subseteq \pred^*(\Safe)$.\\
+$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
+(\Bad,\Safe)-$k$-resilient iff $\Bad \subseteq \pred^k(\Safe)$.
+\end{proposition}
+
+These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets $\Safe$ and $\Bad$.
 
 For instance, the well-known mutual exclusion property is often modelized in a $d$-counters machine by the property that a counter $c_{mutex}$ must be bounded by (usually) one. Then, the set $\Safe =  \{c_{mutex} \leq 1\} \times \mathbb{N}^{d-1}$ is downward closed and $\Bad =\{c_{mutex} \geq 2\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of $\Safe$. 
 
@@ -107,12 +114,6 @@ In particular, the existing proofs of resilience use the decidability of reachab
 \alain{???}.
 
 
-\begin{proposition}[Reformulation]\label{reformulation}
-$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-resilient iff $\Bad \subseteq \pred^*(\Safe)$.\\
-$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-$k$-resilient iff $\Bad \subseteq \pred^k(\Safe)$.
-\end{proposition}
 
 
 \iffalse
