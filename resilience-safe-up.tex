@@ -15,9 +15,9 @@ and $\Bad=\uparrow \Bad \setminus \Safe$.
 
 
 \begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{\uparrow \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
+Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
 Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
-Since $\uparrow \Bad$  is upward closed, there exists a finite basis $B_{\uparrow \Bad}$ such that $\uparrow \Bad = \uparrow B_{\Bad}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
+Since $\uparrow \Bad$  is upward closed, there exists a finite basis $B_{\uparrow \Bad}$ such that $\uparrow \Bad = \uparrow B_{\uparrow \Bad}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
 Since $\Bad = \uparrow \Bad \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is either $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
 % si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
 hence the resilience problem is decidable.
