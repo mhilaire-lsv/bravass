@@ -48,18 +48,16 @@ and $\Bad=\uparrow \Bad$.
 The % three %uniform 
 $k$-resilience problem is decidable for WSTS with effective pred-basis, strong %upward-
 compatibility, $\Safe=\uparrow \Safe$
-and $\Bad=\uparrow \Bad$.
+and $\Bad=\uparrow \Bad \setminus \Safe$.
 %	and \Bad is upward closed or downward closed.
 \end{theorem}
 
 \begin{proof}
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$, and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. 
-% From a similar reasoning as above, the $k$-resilience problem is decidable.
-% \alain{écrire une preuve}
-%	\alain{réserver k pour le k-résilience, il y a d'autres lettres...n, m, p,...}
-Since $\Bad$  is upward closed, there exists a finite basis $B_{\Bad}$ such that $\Bad = \uparrow B_{\Bad}$. Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$,
+Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
+Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong upward compatibility,  $\pred^n(\Safe)=\uparrow \pred^n(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
+Since $\uparrow \Bad$  is upward closed, there exists a finite basis $B_{\uparrow \Bad}$ such that $\uparrow \Bad = \uparrow B_{\uparrow \Bad}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
+Since $\Bad = \uparrow \Bad \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is either $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
+% si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
 hence the resilience problem is decidable.
 \end{proof}
 
