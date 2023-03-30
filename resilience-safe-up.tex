@@ -101,16 +101,16 @@ Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=max(k'_{i,j} \mid i=1,..,n$ and 
 %
 
 
-\subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad = ... $.}
+\subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad = \uparrow U \setminus \Safe $.}
 
-\alain{2 clos par le haut ont une intersection non vide....}
+% \alain{2 clos par le haut ont une intersection non vide....}
 
 Since we impose $\Bad \cap \Safe = \emptyset$, we cannot have as an hypothesis
 both $\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$. To approximate a case
 of double upward closure, we consider a case where $\Bad$ is as upward-closed
 as it can be without intersecting with $\Safe$,
 i.e. 
-such that there exists an upward closed set $U$
+such that there exists an upward-closed set $U$
 such that $\Bad = U \setminus \Safe$.
 Morally speaking ... [].
 
@@ -121,7 +121,7 @@ example: ?
 
 \begin{theorem}\label{up-up}
 The resilience problem is decidable for effective WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
-and $\Bad= U \setminus \Safe$.
+and $\Bad= U \setminus \Safe$ with $U = \uparrow U$.
 
 \end{theorem}
 
@@ -152,7 +152,7 @@ Hence the equivalence.
 The bounded resilience problem is decidable for WSTS with effective pred-basis,
 strong compatibility
  $\Safe=\uparrow \Safe$
-and $\Bad=U \setminus \Safe$.
+and $\Bad=U \setminus \Safe$ with $U = \uparrow U$.
 \end{corollary}
 
 
@@ -160,7 +160,7 @@ and $\Bad=U \setminus \Safe$.
 The % three %uniform 
 $k$-resilience problem is decidable for WSTS with effective pred-basis, strong %upward-
 compatibility, $\Safe=\uparrow \Safe$
-and $\Bad=U \setminus \Safe$.
+and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
 %	and \Bad is upward closed or downward closed.
 \end{theorem}
 
