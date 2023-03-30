@@ -72,7 +72,7 @@ The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\m
 Let us formalize three resilience problems.
 
 \problemx{resilience problem (RP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and two finite encodings of sets $\Safe, \Bad \subseteq S$.}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
 {$\Bad \longrightarrow^{*} \Safe$ ?\newline}
 %
 %\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
@@ -81,11 +81,11 @@ Let us formalize three resilience problems.
 %
 
 \problemx{$k$-resilience problem (kRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two finite encodings of sets $\Safe, \Bad \subseteq S$.}
+{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two sets $\Safe, \Bad \subseteq S$.}
 {$\Bad \longrightarrow^{\leq k} \Safe$ ?\newline}
 
 \problemx{bounded resilience problem (BRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and two finite encodings of sets $\Safe, \Bad \subseteq S$.}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 {$\exists k \geq 0$ such that $\mathscr{S}$ is %uniformely
  $k$-resilient ?\newline}
