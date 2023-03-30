@@ -252,7 +252,7 @@ $s_1, t_1 , s_2 \in S$
 	$t_2 \in S$ with 
 	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
 
-Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering.
+Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering and lossy channel systems with the subword ordering.
 
 
 % \textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and 'decidable $\leq$' being independant from the WSTS definition}
@@ -275,11 +275,20 @@ Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If
 \mathieu{On peut probablement enlever la Proposition $8$ alors. La proposition $9$ étant plus directement pertinente pour les lemmes/preuves (permet d'avoir itérativement $\pred^k(I)$ upward-closed if $I$ upward-closed - for all $k$).}
 \fi
 
+There is a simple condition that insures that a finite basis of $\pred^*(U )$ is computable.
 
 \begin{definition}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
 A WSTS $\mathscr{S}$ has {\em effective pred-basis} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 \end{definition}
+
+
+
+\begin{theorem}(ref)
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward closed set $U \subseteq S$ given with its finite basis $B_U$.
+\end{theorem}
+
+
 
 % \textcolor{red}{Define what an Ideal is. Actually an Ideal is just an upward-closed set, so maybe this just adds some confusion. Anti-ideal just downward closed so again just not that helpful a notation. Maybe have a }
 
@@ -296,8 +305,9 @@ $\uparrow I = I = \downarrow I$.
 % \textcolor{red}{Probably one can already 'deduce' from this that ideal $I$ and anti-ideal $J$ for resp. good and bad states, in the case of e.g. timed automata would be given by sets of states}
 \fi
 
-A downard-closed set $D$ is {\em decidable} if, given $s \in S$, it is decidable whether
-$s \in D$. 
+%         A downard-closed set $D$ is {\em decidable} if, given $s \in S$, it is decidable whether
+%         $s \in D$. 
+
 %\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
 % \textcolor{red}{Do we still demand this ?}
 %\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
@@ -376,7 +386,4 @@ Since a finite basis of $\pred(\uparrow \{s' \}$) is computable for any $s'\in S
 Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \end{proof}}
 
-\begin{theorem}(ref)
-A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward closed set $U \subseteq S$ given with its finite basis $pb(U)$.
-\end{theorem}
 
