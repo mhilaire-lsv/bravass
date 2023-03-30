@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 \subsection{Case: $\Safe=\downarrow \Safe$ and $\Bad=\downarrow \Bad$.}
 
 example: ?
@@ -25,6 +26,8 @@ then by downward closure the minimal element is present in both $\Safe$ and $\Ba
 
 
 
+=======
+>>>>>>> a468d5e01579b82e912e9a91e80e1396439b895f
 
 
 %%%%%%%%
@@ -35,53 +38,123 @@ then by downward closure the minimal element is present in both $\Safe$ and $\Ba
 example: mutual exclusion.
 
 \begin{theorem}\label{up-down}
-\textcolor{red}{
-The resilience problem is undecidable for WSTS with 
-%	more than one minimal element, 
-$\Safe=\downarrow \Safe$
-and $\Bad=\uparrow \Bad$.
-}
-\end{theorem}
-
-\begin{proof}
-TBD
-\end{proof}
-
-
-
-\begin{theorem}
-The resilience problem is decidable for WSTS with 
-%	more than one minimal element, 
+The resilience problem is decidable for ideal-effective WSTS with 
 $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$
 and
+<<<<<<< HEAD
 \textcolor{red}{
 additional hypothesis such that 
 }
 \alain{est-ce que  $\pred(D)$ is downward closed avec D downward closed serait suffisant ? si l'ordre est omega2 alors closbas+inclusion est wqo donc il faudrait juste que la suite croissante $pred^n(D)+le reste$ converge...}
+=======
+the additional hypothesis that
+for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed.
+% \alain{est-ce que  $\pred(D)$ is downward closed avec D downward closed serait suffisant ? si l'ordre est omega2 alors closbas+inclusion est wqo donc il faudrait juste que la suite croissante $pred^n(D)+le reste$ converge...}
+>>>>>>> a468d5e01579b82e912e9a91e80e1396439b895f
 \end{theorem}
 
 \begin{proof}
-Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Safe$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
-
-Let's assume for now for simplicity's sake that $\Bad = \uparrow b$ 
-
-As an hypothesis, we assume that $\pred^*(\Safe)$ is downward closed as well.
-And let $\{J'_1, J'_2,...,J'_n\}$ be the ideal decomposition of $\pred^*(\Safe)$.
-
-Resilience asks whether 
-$ \uparrow b \subseteq J'_1 \cup J'_2 \cup ... \cup J'_n$.
-
-Of note is that $ \downarrow b \subseteq J'_1 \cup J'_2 \cup ... \cup J'_n$
-if and only if
-there exists some $i$ such that
-$\downarrow b \subseteq J'_i$.
-
-\mathieu{Try and find a condition under which "$ \uparrow \{b\} \subseteq J'_1 \cup J'_2 \cup ... \cup J'_n$?" is decidable and/or find an undecidable problem that reduce to a variation on 
-"$\uparrow \{b\} \subseteq J'_i$ ?"}
+By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
+%  Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\pred^*(\Safe)$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
+The resilience problem can be reformulated as 
+% $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
+$\Bad \subseteq  \pred^*(\Safe)$.
+Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of closed subsets.
+Hence we can compute the intersection of
+% $\uparrow \{b_1,b_2,...,b_m\}$
+$\Bad$
+and
+$S \setminus \pred^*(\Safe)$,
+which are both upward-closed.
+Since
+% $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$
+$\Bad \subseteq \pred^*(\Safe)$
+can be reformulated as
+$\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
+the resilience problem is decidable.
 \end{proof}
 
+\begin{corollary}
+The resilience problem is decidable for ideal-effective downward-compatible WSTS with 
+$\Safe=\downarrow \Safe$
+and $\Bad=\uparrow \Bad$.
+\end{corollary}
 
+\begin{proof}
+Downward compatibility of $\mathscr{S}=(S,\rightarrow, \leq)$ 
+means that
+for all $s_1, s_2, t_1 \in S$ with
+$s_2 \leq s_1$ and $s_1 \to t_1$
+there
+exists $t_2 \in S$ with
+$t_2 \leq t_1$ and $s_2 \to^* t_2$.
+
+Let $D$ be a downward-closed subset of $S$
+and let $x \in \downarrow \pred^*(D)$.
+By design there exists
+$y \in \pred^*(D)$ 
+such that $x \leq y$
+and $d \in D$ such that
+$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
+
+By downward compatibility $a_0 \to a_1$
+implies there exists $a'_1 \leq a_1$ with
+$x \to^* a'_1$.
+More generally $a_i \to a_{i+1}$ and
+$a'_i\leq a_i$ implies the existence of $a'_{i+1} \leq a_{i+1}$ such that
+$a'_i \to^* a'_{i+1}$,
+and, by induction,
+ $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* d'$
+where
+$d' \leq d$ belongs to $D$ by downward closure of $D$.
+Hence $x \in \pred^*(D)$.
+\end{proof}
+
+% \begin{proposition}
+In the case
+of a ideal-effective WSTS 
+where
+the additional hypothesis that
+for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed
+is not met,
+the above construction
+can provide a proof
+of non-resilience
+i.e. when
+$\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) \neq \emptyset$
+then
+$\Bad \not\subseteq \downarrow\pred^*(\Safe)$
+and hence
+$\Bad \not\subseteq \pred^*(\Safe)$.
+When $\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) = \emptyset$
+however
+it is not enough to conclude.
+
+
+
+
+
+\subsection{Case: $\Safe=\downarrow \Safe$ and $\Bad=\downarrow \Bad$.}
+
+example: ?
+
+% In the case \Safe and \Bad are both downward closed, they can both be finite.
+
+\begin{theorem}\label{down-down}
+The resilience problem is undecidable for strong effective WSTS with
+%	with more than one minimal element, 
+$\Safe=\downarrow \Safe$
+and $\Bad=\downarrow \Bad$.
+\end{theorem}
+
+\begin{proof}
+Let us consider the case of a WSTS with at least two minimal elements $m_1$ and $m_2$.
+The problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resilience problem by considering $\Safe=\downarrow m_2 = \{ m_2\}$ and $\Bad=\downarrow m_1 = \{ m_1\}$. By undecidability of the reachability problem we conclude.  
+\end{proof}
+
+In the case of a WSTS with only one minimal element,  
+then by downward closure the minimal element is present in both $\Safe$ and $\Bad$ which contradicts the assumption $\Safe \cap \Bad= \emptyset$.
 
 
 
