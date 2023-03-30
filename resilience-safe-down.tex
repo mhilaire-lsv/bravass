@@ -21,9 +21,9 @@ for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed.
 
 \begin{proof}
 By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
-Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\pred^*(\Safe)$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
+ Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\pred^*(\Safe)$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
 The resilience problem can be reformulated as 
-$\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
+ $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
 Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of closed subsets.
 Hence we can compute the intersection of
 $\uparrow \{b_1,b_2,...,b_m\}$
@@ -43,7 +43,50 @@ and $\Bad=\uparrow \Bad$.
 \end{corollary}
 
 \begin{proof}
+Downward compatibility of $\mathscr{S}=(S,\rightarrow, \leq)$ 
+means that
+for all $s_1, s_2, t_1 \in S$ with
+$s_2 \leq s_1$ and $s_1 \to t_1$
+there
+exists
+$t_2 \leq t_1$ such that $s_2 \to^* t_2$.
 
+Let $D$ be a downward-closed subset of $S$
+and let $x \in \downarrow \pred^*(D)$.
+By design there exists
+$y \in \pred^*(D)$ 
+such that $x \leq y$
+and $d \in D$ such that
+$y \to a_1 \to a_2 \to \cdots \to a_m \to d$.
+
+By downward compatibility
+
+$y \to a_1$
+
+implies
+
+$x \to^* a'_1$
+
+with 
+$a'_1 \leq a_1$.
+
+Then
+
+$a_i \to a_{i+1}$
+
+implies the existence of $a'_{i+1} \leq a_{i+1}$ such that
+
+$a'_i \to^* a'_{i+1}$,
+
+and by induction
+
+ $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* d'$
+
+where
+
+$d' \leq d$ belongs to $D$ by downward closure of $D$.
+
+Hence $x \in \pred^*(D)$.
 \end{proof}
 
 % \begin{proposition}
