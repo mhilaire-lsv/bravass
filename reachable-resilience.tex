@@ -2,10 +2,12 @@
 
 
 
-\section{Resilience from a single-state for WSTS}
+\section{State resilience}
 
 
-Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. But, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $post^*(s_0) \cap \Bad$, there must exist a path to $\Safe$. However, this condition seems more difficult since one also must decide whether a state $s \in \Bad$ is reachable from $s_0$.
+Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. But, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap post^*(s_0)$, there must exist a path to $\Safe$. 
+%
+%			However, this condition seems more difficult since one also must decide whether a state $s \in \Bad$ is reachable from $s_0$.
 %
 %\problemx{(I,J)-$k$-resilience problem for WSTS}
 %{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
@@ -15,46 +17,52 @@ Resilience is a strong property since it implies that from every element of $\Ba
 %{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
 %{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 
-Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
+%		Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
 
-\problemx{$k$-reachable-resilience problem for WSTS (kRRP)}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
+The three previous problems become:
+
+
+\problemx{State-resilience problem (SRP)}
+{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
+% 		an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
+% 		{$ ~ \forall s' \in \Bad, ~ s \rightarrow^* s' \implies \exists s'' \in \Safe, ~ s' \rightarrow^{*} s''$ ?\newline}
+{$\Bad \cap \post^*(s_0)  \rightarrow^{*} \Safe $ ? \newline}
+
+
+\problemx{$k$-state-resilience problem (kSRP)}
+{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
 { $\Bad \cap \post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
 %
 
-Analogously, we formulate bounded and general variations of the problem.
-
-\problemx{bounded-reachable-resilience problem for WSTS (BRRP)}
-{A state $s$ of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$, an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
+\problemx{bounded-state-resilience problem (BSRP)}
+{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-reachable-resilient. ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-state-resilient. ?\newline}
 
-\problemx{Reachable-resilience problem for WSTS (RRP)}
-{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
-{$ ~ \forall s' \in \Bad ~ (s \rightarrow^* s') \implies \exists s'' \in \Safe ~ s' \rightarrow^{*} s''$ ?\newline}
 
 %\textcolor{blue}{
 %justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
 %}
 
+%
 \iffalse
-
+%
 \textcolor{blue}{
 et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
 }
-
+%
 \textcolor{blue}{
 compute the sets of $(I,J,k)$ st S is resilient.\\
 max des I,J possibles \\
 }
-
-
+%
 \fi
 
+Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
 
-
+\alain{mal placé}
 \begin{proposition}\label{reductions}
-Coverability and $t$-liveness are reducible to the reachable resilience problem.
+In WSTS, coverability and $t$-liveness are reducible to the state resilience problem.
 %	home state and reachability
 \end{proposition}
 
@@ -65,7 +73,7 @@ Coverability and $t$-liveness are reducible to the reachable resilience problem.
 \item Let us choose $\Bad=S= \downarrow S$ and $\Safe=\uparrow x$ then reachable resilience is equivalent to coverability of $x$ from $s$.
 
 \item $t$-liveness  can be expressed as the following formula
-$ ~ \forall s' \in S ~ (s \rightarrow^* s') \implies \exists s'' \in U_t ~ s' \rightarrow^{*} s''$ 
+$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$ 
 where
 $U_t=\uparrow \pred(t)$
 is the upward closure of the preconditions to use transition $t$.  
@@ -80,24 +88,25 @@ where $\Bad=S$ and $\Safe = \uparrow \pred(t)$.
 
 
 
-\problemx{Downward reachability}
+\problemx{Downward reachability problem}
 {A state $s$, a downward-closed set $D$.}
 {$s \to^* D$? \newline}
 
 
 \begin{theorem}
-The downward reachability problem is reducible to the reachable resilience problem.
+The downward reachability problem is reducible to the state resilience problem.
 \end{theorem}
 
 \begin{proof}
+Let $s \in S$, and a downward-closed set $D$.
 Take $\Safe = \emptyset$ and $\Bad = D$.
-The reachable resilience problem then asks
-whether $post^*(s) \cap D \subseteq \emptyset$.
-If the answer is negative then $s \to^* D$,
-else $s \not\to^* D$.
+The state resilience problem on $\Safe,\Bad$ asks
+whether $\Bad \cap \post^*(s) \subseteq \emptyset$.
+If the answer is negative then $s \to^* \Bad$,
+else $s \not\to^* \Bad$.
 \end{proof}
 
-
+\alain{mal placé}
 
 
 
@@ -111,21 +120,28 @@ else $s \not\to^* D$.
 
 % Let $(X,\leq)$ be a wqo and $U$ be an upward closed subset of $X$. We say that $U$ is \emph{computable} if there is an algorithm that computes a finite basis of $U$.
 
+Let us recall a result about state-resilience (called resilieence in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
-{\sc bounded-reachable-resilience} and {\sc $k$-reachable-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow post^*$ is computable.
+{\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
 \end{theorem}
 
 We may immediately generalyse this last result by strengthening to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
 
 \begin{corollary}\label{postcomputable}
-{\sc reachable-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow post^*$ is computable.
+{\sc state-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
 \end{corollary}
+
+\alain{definir downward reachability problem.....
+downward-closed problem given a state $s$ of a WSTS
+% in the regarded class 
+with strong upward compatibility 
+and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. }
 
 
 \begin{proof}
 From Fact~\ref{stop condition}, there exists $k \in \N$ such that
-$\pred^*(\Safe) =  \Safe^{k_m}$. We can compute this $k_m$ by iteratively computing
+$\pred^*(\Safe) =  \Safe^{k_m}$. We can compute this $k_m$ by iteratively computing \alain{mauvaises notations: $k, k_m, Safe^k,...$ n'a aucun sens...}
 $\Safe^{k+1}$ from $\Safe^k$, checking $\Safe^{k+1}=\Safe^k$, 
 returning $k_m$ if that is the case.
 Then, because $k_m$-reachable-resilience is decidable, 
@@ -133,18 +149,21 @@ checking $\uparrow post^*(s) \cap \Bad \subseteq \Safe^k = \pred^*(\Safe)$ is,
 and reachable-resilience is decidable.
 \end{proof}
 
+What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
 %\"Ozkan
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]
-For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow \post^*(s)$ is computable for every given state $s$ iff the downward-closed problem is decidable, i.e. given a state $s$ of a WSTS
+For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
+%i 			.e. given a state $s$ of a WSTS
 % in the regarded class 
-with strong upward compatibility 
-and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. 
+%with strong upward compatibility 
+%and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. 
 \end{proposition}
+\alain{rappeler l'idée de la preuve}
 
-The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets constitute WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
-Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded reachable-resilience is decidable for VASS.
-Hence reachable-resilience is decidable for Petri nets and VASS.
-However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.
+The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
+Hence state-resilience is decidable for Petri nets and VASS.
+However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
 
 \begin{proposition}
 There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow \post^*$.
@@ -152,7 +171,7 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 
 \begin{proof}
-Let us show that Reset VASS don't enjoy the property that $\uparrow \post^*$ is computable.
+Let us show that Reset VASS, that are WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
