@@ -21,18 +21,22 @@ for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed.
 
 \begin{proof}
 By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
- Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\pred^*(\Safe)$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
+%  Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\pred^*(\Safe)$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
 The resilience problem can be reformulated as 
- $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
+% $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
+$\Bad \subseteq  \pred^*(\Safe)$.
 Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of closed subsets.
 Hence we can compute the intersection of
-$\uparrow \{b_1,b_2,...,b_m\}$
+% $\uparrow \{b_1,b_2,...,b_m\}$
+$\Bad$
 and
-$S \setminus \pred^*(\Safe)$.
+$S \setminus \pred^*(\Safe)$,
+which are both upward-closed.
 Since
-$\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$
+% $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$
+$\Bad \subseteq \pred^*(\Safe)$
 can be reformulated as
-$\uparrow \{b_1,b_2,...,b_m\} \cap (S \setminus \pred^*(\Safe)) = \emptyset$
+$\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
 the resilience problem is decidable.
 \end{proof}
 
@@ -57,44 +61,40 @@ By design there exists
 $y \in \pred^*(D)$ 
 such that $x \leq y$
 and $d \in D$ such that
-$y \to a_1 \to a_2 \to \cdots \to a_m \to d$.
+$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
 
-By downward compatibility
-
-$y \to a_1$
-
-implies
-
-$x \to^* a'_1$
-
-with 
-$a'_1 \leq a_1$.
-
-Then
-
-$a_i \to a_{i+1}$
-
-implies the existence of $a'_{i+1} \leq a_{i+1}$ such that
-
+By downward compatibility $a_0 \to a_1$
+implies there exists $a'_1 \leq a_1$ with
+$x \to^* a'_1$.
+More generally $a_i \to a_{i+1}$ and
+$a'_i\leq a_i$ implies the existence of $a'_{i+1} \leq a_{i+1}$ such that
 $a'_i \to^* a'_{i+1}$,
-
-and by induction
-
+and, by induction,
  $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* d'$
-
 where
-
 $d' \leq d$ belongs to $D$ by downward closure of $D$.
-
 Hence $x \in \pred^*(D)$.
 \end{proof}
 
 % \begin{proposition}
 In the case
-
-
-
-
+of a ideal-effective WSTS 
+where
+the additional hypothesis that
+for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed
+is not met,
+the above construction
+can provide a proof
+of non-resilience
+i.e. when
+$\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) \neq \emptyset$
+then
+$\Bad \not\subseteq \downarrow\pred^*(\Safe)$
+and hence
+$\Bad \not\subseteq \pred^*(\Safe)$.
+When $\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) = \emptyset$
+however
+it is not enough to conclude.
 
 
 
