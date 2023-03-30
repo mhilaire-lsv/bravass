@@ -65,7 +65,7 @@ pour $k,k'$ donnés, chercher si $\Safe_{max}$ et $\Bad_{max}$ ont un sens ? on 
 
 \section{Resilience for WSTS}
 
-In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$.
+In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$ and $\Safe ,  \Bad \neq \emptyset$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
 %	If $\Safe = S \backslash \Bad$, then $\Safe$ is downward-closed iff $\Bad$ is upward-closed. 
@@ -141,7 +141,7 @@ Resilient means that ...
 \input{resilience-safe-down}
 
 
-\subsection{Case Synthesis}\label{synthesis}
+{\bf Synthesis}\label{synthesis}
 
 % \mathieu{En rouge quand il s'agit de conjectures}
 
@@ -157,9 +157,6 @@ Resilient means that ...
 \end{center}
 
 
-\alain{trouver les \Bad~ et \Safe~ maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ?}
-%
-\alain{on peut penser à des ensembles $\Bad$ definis dans une logique booleennne sur les clos par le bas, haut, +...}
 
 
 %We first assume that the safety property is given by an upward-closed set and the bad condition by a decidable downward-closed set. 

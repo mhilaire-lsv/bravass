@@ -3,13 +3,36 @@
 
 
 
-\subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad=\downarrow \Bad$.}
+\subsection{Case: $\Bad=\downarrow \Bad$.}
 
-example: ?
 %
 %		cas étudié par les deux articles sur les graphes
 %
 
+
+\subsubsection{Subcase: $\Safe=\downarrow \Safe$}
+
+example: ?
+
+% In the case \Safe and \Bad are both downward closed, they can both be finite.
+
+\begin{theorem}\label{down-down}
+The resilience problem is undecidable for  effective WSTS with  strong  compatibility such that
+%	with more than one minimal element, 
+$\Safe=\downarrow \Safe$
+and $\Bad=\downarrow \Bad$.
+\end{theorem}
+
+\begin{proof}
+If the set $S$ of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ has an unique minimal element $m$, then $m$ belongs to both $\Safe$ and $\Bad$ which contradicts the assumption $\Safe \cap \Bad= \emptyset$. So let us consider the case of a set $S$ with at least two minimal elements $m_1$ and $m_2$.
+The problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resilience problem by considering $\Safe=\downarrow m_2 = \{ m_2\}$ and $\Bad=\downarrow m_1 = \{ m_1\}$. By undecidability of the reachability problem for effective WSTS with strong compatibility we conclude.  
+\end{proof}
+
+%%%%
+
+\subsubsection{Subcase: $\Safe=\uparrow \Safe$}
+
+example: ?
 
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
@@ -101,76 +124,6 @@ Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=max(k'_{i,j} \mid i=1,..,n$ and 
 %
 
 
-\subsection{Case: $\Safe=\uparrow \Safe$ and $\Bad = \uparrow U \setminus \Safe $.}
-
-% \alain{2 clos par le haut ont une intersection non vide....}
-
-Since we impose $\Bad \cap \Safe = \emptyset$, we cannot have as an hypothesis
-both $\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$. To approximate a case
-of double upward closure, we consider a case where $\Bad$ is as upward-closed
-as it can be without intersecting with $\Safe$,
-i.e. 
-such that there exists an upward-closed set $U$
-such that $\Bad = U \setminus \Safe$.
-Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.
-
-
-
-example: ?
-
-
-\begin{theorem}\label{up-up}
-The resilience problem is decidable for effective WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
-and $\Bad= U \setminus \Safe$ with $U = \uparrow U$.
-\end{theorem}
-
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
-Since $U$  is upward closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
-Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
-% si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
-hence the resilience problem is decidable.
-\end{proof}
-
-\begin{proposition}
-In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded resilience problem is equivalent to the resilience problem.
-\end{proposition}
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
-and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
-Hence the equivalence.
-\end{proof}
-
-\begin{corollary}\label{B-up-up}
-The bounded resilience problem is decidable for WSTS with effective pred-basis,
-strong compatibility
- $\Safe=\uparrow \Safe$
-and $\Bad=U \setminus \Safe$ with $U = \uparrow U$.
-\end{corollary}
-
-
-\begin{theorem}\label{k-up-up}
-The % three %uniform 
-$k$-resilience problem is decidable for WSTS with effective pred-basis, strong %upward-
-compatibility, $\Safe=\uparrow \Safe$
-and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
-%	and \Bad is upward closed or downward closed.
-\end{theorem}
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong upward compatibility,  $\pred^n(\Safe)=\uparrow \pred^n(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
-Since $U$  is upward closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
-Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
-% si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
-hence the resilience problem is decidable.
-\end{proof}
 
 
 
