@@ -160,6 +160,14 @@ For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow
 \end{proposition}
 \alain{rappeler l'idée de la preuve}
 
+The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, we check whether
+$B_{\post^*(s)} \cap D = \emptyset$, equivalent to $\post^*(s)\cap D = \emptyset$ by
+Lemma~\ref{Lemma intersection}. For the converse direction, we compute the sequence of upward-closed
+$U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary. 
+Decidability of downward reachability leads to the decidability of the following stop condition:
+asking whether $S \setminus U_n$ is reachable from $s$.
+
+
 The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
 Hence state-resilience is decidable for Petri nets and VASS.
@@ -221,7 +229,7 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
 
 
 
-\begin{theorem}
+\begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}
 {\sc Reachable-resilience} is decidable for (not necessarily strong) WSTS with effective 
 $\uparrow$ $\post^*$ basis.
 \end{theorem}
