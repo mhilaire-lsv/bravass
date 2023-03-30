@@ -89,7 +89,7 @@ where $\Bad=S$ and $\Safe = \uparrow \pred(t)$.
 
 
 \problemx{Downward reachability problem}
-{A state $s$, a downward-closed set $D$.}
+{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and a downward-closed set $D \subseteq S$.}
 {$s \to^* D$? \newline}
 
 
@@ -98,10 +98,10 @@ The downward reachability problem is reducible to the state resilience problem.
 \end{theorem}
 
 \begin{proof}
-Let $s \in S$, and a downward-closed set $D$.
+Let $s \in S$, and a downward-closed set $D$. \alain{je ne comprends pas cette "preuve"}
 Take $\Safe = \emptyset$ and $\Bad = D$.
 The state resilience problem on $\Safe,\Bad$ asks
-whether $\Bad \cap \post^*(s) \subseteq \emptyset$.
+whether $\Bad \cap \post^*(s) \rightarrow^* \Safe$  that is equivalent to $\Bad \cap \post^*(s) \subseteq \emptyset$.
 If the answer is negative then $s \to^* \Bad$,
 else $s \not\to^* \Bad$.
 \end{proof}
@@ -126,7 +126,7 @@ Let us recall a result about state-resilience (called resilieence in \cite{DBLP:
 {\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
 \end{theorem}
 
-We may immediately generalyse this last result by strengthening to \emph{unbounded} resilience. The proof is essentially the same than the previous one.
+We may immediately generalyse this last result by strengthening to \emph{unbounded} state-resilience. The proof is essentially the same than the previous one.
 
 \begin{corollary}\label{postcomputable}
 {\sc state-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
@@ -149,7 +149,7 @@ checking $\uparrow post^*(s) \cap \Bad \subseteq \Safe^k = \pred^*(\Safe)$ is,
 and reachable-resilience is decidable.
 \end{proof}
 
-What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
+The computability of $\uparrow \post^*(s)$ seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
 %\"Ozkan
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]
 For finite-branching WSTS with strong upward compatibility, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
