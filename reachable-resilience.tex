@@ -537,8 +537,14 @@ and $\Bad=\uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-Taking $\Safe = \{ 0 \}$, $\Bad = S \setminus 0$, it follows the state resilience problem is equivalent
-to reachability of $0$. Since reachability of $0$ is undecidable for Reset VASS, we conclude.
+Consider Reset VASS
+in the case $\Safe$ contains only the minimal element %$0$ 
+and $\Bad = S \setminus \Safe$, 
+it follows the state resilience problem is equivalent 
+to the problem of whether $0$ can be visited infinitely often. 
+%
+% Since reachability of $0$ is undecidable for Reset VASS, we conclude.
+Hence the undecidability.
 \end{proof}
 
 But what if we are in the case of $\uparrow \post^*$ effectiveness?
