@@ -6,9 +6,13 @@
 %		cas unbounded counters
 %
 
+let us choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is not bounded by $k$.
+%			at least one counter is unbounded. 
+This set is upward-closed by upward compatibility in VASS.
+
 \subsubsection{Subcase: $\Safe=\downarrow \Safe$}
 
-example: mutual exclusion.
+As an example, let us choose $\Safe=S-\Bad$ then $\Safe=\downarrow \Safe$.
 
 \begin{theorem}\label{up-down}
 The resilience problem is decidable for ideal-effective WSTS with 
@@ -16,7 +20,7 @@ $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$
 and
 the additional hypothesis that
-for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed.
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
 % \alain{est-ce que  $\pred(D)$ is downward closed avec D downward closed serait suffisant ? si l'ordre est omega2 alors closbas+inclusion est wqo donc il faudrait juste que la suite croissante $pred^n(D)+le reste$ converge...}
 \end{theorem}
 
