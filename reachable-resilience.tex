@@ -44,21 +44,12 @@ The three previous problems become:
 %justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
 %}
 
-%
-\iffalse
-%
-\textcolor{blue}{
-et encore: renforcer sur l'hypothèses sur I, J tous les deux clos par le haut+bas.
-}
-%
-\textcolor{blue}{
-compute the sets of $(I,J,k)$ st S is resilient.\\
-max des I,J possibles \\
-}
-%
-\fi
+
 
 Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
+
+As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downard closed and upward closed.
+
 
 \subsection{Case: $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$}
 
@@ -99,7 +90,7 @@ and a decidable downward-closed set $D$, it can be decided whether $\exists s' \
 
 
 The computability of $\uparrow \post^*(s)$ seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
-Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is the WSTS for which the following problem is decidable.
+Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
 \problemx{Downward reachability problem}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and a downward-closed set $D
@@ -162,6 +153,196 @@ is undecidable for Reset VASS.
 %\begin{proof}
 %pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
 %\end{proof}
+
+
+
+
+
+
+Unfortunately, state-resilience is undecidable for (general) WSTS even with strong monotony.
+This stems from the fact that $t$-liveness is undecidable for reset Petri-Nets.
+
+
+\begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]
+The  Reset Petri Net zero reachability problem can be reduced to the liveness problem.
+\end{theorem}
+
+\begin{proof}
+If we wish to determine if $0 \in R(C_1, \mu_1)$ in any
+reset Petri net $C_1 = (P_1, T_1, I_1, O_1, R_1 )$ (where $R_1(t) =$ places that are reset when t fires off), with initial marking $\mu_1$, we construct a
+reset petri net $C_2 = (P_2, T_2, I_2, O_2, R_2 )$ with initial marking
+$\mu_2$ which is live if and only if the zero marking is not reachable from $\mu_1$.
+
+The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$
+and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
+
+We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
+The initial marking $\mu_2$ will include a token in $r_1$. 
+
+
+The place $r_1$ is a 'run' place; as long as the token remains in $r_1$ the transitions of $T_1$ can fire normally.
+Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
+
+
+
+Transition $s$ is defined to have $r_1$ as an input and a null output.
+This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$
+and "freezing" the marking of $P_1$.
+
+Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
+
+The place $r_1$ and transition $s$ allow the net $C_1$ to reach any reachable marking and then for $s$ to fire and freeze the net at that marking.
+
+Now we need to see if that marking is zero.
+
+We introduce a new place $r_2$ and new transitions $s_p$ which have $p$ as input and $r_2$ as output.
+
+If $p$ can ever become zero, $s_p$ is not live. The entire net is dead if
+$s$ fires in the marking zero.
+
+If we can always have some $p_i$ not be zero, then we can always fire some $s_{p_i}$, putting a token in $r_2$.
+
+In this case we must put a token back in $r_1$ and assure that all transitions in $C_2$ are live.
+We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
+This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$.
+Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
+
+Now if $0$ is reachable
+in $R(C_1, \mu_1)$ 
+then the net $C_2$ can also reach this marking
+in the place of $P_1$ by executing the same sequence of transition firings.
+Then $s$ can fire, freezing the $C_1$ subset.
+Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
+Thus if $0$ is reachable then $C_2$ is not live.
+
+Conversey, if $C_2$ is not live, then a marking $\mu$ must be reachable in which 
+$\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token
+(in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.)
+% (Rappel: tant que il y a un token quelque part, on peut mettre un token en r_2
+% et r_2 commence sans token)
+If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
+Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
+
+
+\end{proof}
+
+\begin{corollary}
+Reset Petri Net liveness is undecidable 
+\end{corollary}
+
+\begin{corollary}
+Reset Petri Net $t$-liveness is undecidable 
+\end{corollary}
+
+
+\alain{mal placé}
+\begin{proposition}\label{reductions}
+In WSTS, coverability and $t$-liveness are reducible to the state resilience problem.
+%	home state and reachability
+\end{proposition}
+
+
+\begin{proof}
+
+\begin{itemize}
+\item Let us choose $\Bad=S= \downarrow S$ and $\Safe=\uparrow x$ then reachable resilience is equivalent to coverability of $x$ from $s$.
+
+\item $t$-liveness  can be expressed as the following formula
+$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$ 
+where
+$U_t=\uparrow \pred(t)$
+is the upward closure of the preconditions to use transition $t$.  
+The problem reduces itself to the reachable resilience problem
+where $\Bad=S$ and $\Safe = \uparrow \pred(t)$.
+
+%\item the home state problem can be expressed as $\ldots$
+\end{itemize}
+
+\end{proof}
+
+
+
+\iffalse
+
+\begin{theorem}
+The downward reachability problem is reducible to the state resilience problem.
+\end{theorem}
+
+\begin{proof}
+Let $s \in S$, and a downward-closed set $D$. \alain{je ne comprends pas cette "preuve"}
+Take $\Safe = \emptyset$ and $\Bad = D$.
+The state resilience problem on $\Safe,\Bad$ asks
+whether $\Bad \cap \post^*(s) \rightarrow^* \Safe$  that is equivalent to $\Bad \cap \post^*(s) \subseteq \emptyset$.
+If the answer is negative then $s \to^* \Bad$,
+else $s \not\to^* \Bad$.
+\end{proof}
+
+\fi
+
+\alain{mal placé}
+
+
+Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong monotony, from Proposition \ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong monotony.
+
+\begin{theorem}
+{\sc State-resilience} is undecidable for WSTS with strong monotony.
+\end{theorem}
+
+
+
+
+
+
+\begin{proposition}
+In WSTS with strong compatibility and effective pred-basis, the bounded state-resilience problem is
+reducible to the $k$-state-resilience problem.
+\end{proposition}
+
+\begin{proof}
+% strong WSTS
+% $\pred^*(I) = \pred^{k}(I)$
+% Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+and there exists $n_0 \in \N$ such that 
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+We
+\end{proof}
+
+
+
+\begin{proposition}
+In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded-state-resilience problem is equivalent to the state-resilience problem.
+\end{proposition}
+
+\begin{proof}
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+and there exists $n_0 \in \N$ such that 
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+Hence the equivalence.
+\end{proof}
+
+\begin{corollary}
+Bounded reachable-resilience and 
+$k$ reachable-resilience are undecidable for WSTS with strong monotony.
+\end{corollary}
+
+\begin{proof} 
+  From
+  cf
+the two  theorems above. 
+\end{proof}
+
+
+
+
+
+
+
+
 
 
 
@@ -319,176 +500,7 @@ CONJECTURE
 \end{proof}
 
 
-Unfortunately, reachable-resilience is undecidable for (general) WSTS even with strong monotony.
-This stems from the fact that $t$-liveness is undecidable for reset Petri-Nets.
 
-
-\begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]
-The  Reset Petri Net zero reachability problem can be reduced to the liveness problem.
-\end{theorem}
-
-\begin{proof}
-If we wish to determine if $0 \in R(C_1, \mu_1)$ in any
-reset Petri net $C_1 = (P_1, T_1, I_1, O_1, R_1 )$ (where $R_1(t) =$ places that are reset when t fires off), with initial marking $\mu_1$, we construct a
-reset petri net $C_2 = (P_2, T_2, I_2, O_2, R_2 )$ with initial marking
-$\mu_2$ which is live if and only if the zero marking is not reachable from $\mu_1$.
-
-The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$
-and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
-
-We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
-The initial marking $\mu_2$ will include a token in $r_1$. 
-
-
-The place $r_1$ is a 'run' place; as long as the token remains in $r_1$ the transitions of $T_1$ can fire normally.
-Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
-
-
-
-Transition $s$ is defined to have $r_1$ as an input and a null output.
-This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$
-and "freezing" the marking of $P_1$.
-
-Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
-
-The place $r_1$ and transition $s$ allow the net $C_1$ to reach any reachable marking and then for $s$ to fire and freeze the net at that marking.
-
-Now we need to see if that marking is zero.
-
-We introduce a new place $r_2$ and new transitions $s_p$ which have $p$ as input and $r_2$ as output.
-
-If $p$ can ever become zero, $s_p$ is not live. The entire net is dead if
-$s$ fires in the marking zero.
-
-If we can always have some $p_i$ not be zero, then we can always fire some $s_{p_i}$, putting a token in $r_2$.
-
-In this case we must put a token back in $r_1$ and assure that all transitions in $C_2$ are live.
-We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
-This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$.
-Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
-
-Now if $0$ is reachable
-in $R(C_1, \mu_1)$ 
-then the net $C_2$ can also reach this marking
-in the place of $P_1$ by executing the same sequence of transition firings.
-Then $s$ can fire, freezing the $C_1$ subset.
-Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
-Thus if $0$ is reachable then $C_2$ is not live.
-
-Conversey, if $C_2$ is not live, then a marking $\mu$ must be reachable in which 
-$\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token
-(in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.)
-% (Rappel: tant que il y a un token quelque part, on peut mettre un token en r_2
-% et r_2 commence sans token)
-If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
-Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
-
-
-\end{proof}
-
-\begin{corollary}
-Reset Petri Net liveness is undecidable 
-\end{corollary}
-
-\begin{corollary}
-Reset Petri Net $t$-liveness is undecidable 
-\end{corollary}
-
-
-\alain{mal placé}
-\begin{proposition}\label{reductions}
-In WSTS, coverability and $t$-liveness are reducible to the state resilience problem.
-%	home state and reachability
-\end{proposition}
-
-
-\begin{proof}
-
-\begin{itemize}
-\item Let us choose $\Bad=S= \downarrow S$ and $\Safe=\uparrow x$ then reachable resilience is equivalent to coverability of $x$ from $s$.
-
-\item $t$-liveness  can be expressed as the following formula
-$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$ 
-where
-$U_t=\uparrow \pred(t)$
-is the upward closure of the preconditions to use transition $t$.  
-The problem reduces itself to the reachable resilience problem
-where $\Bad=S$ and $\Safe = \uparrow \pred(t)$.
-
-%\item the home state problem can be expressed as $\ldots$
-\end{itemize}
-
-\end{proof}
-
-
-
-\iffalse
-
-\begin{theorem}
-The downward reachability problem is reducible to the state resilience problem.
-\end{theorem}
-
-\begin{proof}
-Let $s \in S$, and a downward-closed set $D$. \alain{je ne comprends pas cette "preuve"}
-Take $\Safe = \emptyset$ and $\Bad = D$.
-The state resilience problem on $\Safe,\Bad$ asks
-whether $\Bad \cap \post^*(s) \rightarrow^* \Safe$  that is equivalent to $\Bad \cap \post^*(s) \subseteq \emptyset$.
-If the answer is negative then $s \to^* \Bad$,
-else $s \not\to^* \Bad$.
-\end{proof}
-
-\fi
-
-\alain{mal placé}
-
-
-Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong monotony, from Proposition \ref{reductions},  we deduce that reachable-resilience is undecidable for WSTS with strong monotony.
-
-\begin{theorem}
-{\sc reachable-resilience} is undecidable for WSTS with strong monotony.
-\end{theorem}
-
-
-
-
-
-
-\begin{proposition}
-In WSTS with strong monotony, the bounded reachable-resilience problem is
-reducible to the $k$-reachable-resilience problem.
-\end{proposition}
-
-\begin{proof}
-strong WSTS
-$\pred^*(I) = \pred^{k}(I)$
-Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
-\end{proof}
-
-
-
-\begin{proposition}
-In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded-state-resilience problem is equivalent to the state-resilience problem.
-\end{proposition}
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
-and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
-Hence the equivalence.
-\end{proof}
-
-\begin{corollary}
-Bounded reachable-resilience and 
-$k$ reachable-resilience are undecidable for WSTS with strong monotony.
-\end{corollary}
-
-\begin{proof} 
-  From
-  cf
-the two  theorems above. 
-\end{proof}
 
 
 
