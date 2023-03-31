@@ -290,27 +290,7 @@ Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong
 \end{theorem}
 
 
-
-
-
-
-\begin{proposition}
-In WSTS with strong compatibility and effective pred-basis, the bounded state-resilience problem is
-reducible to the $k$-state-resilience problem.
-\end{proposition}
-
-\begin{proof}
-% strong WSTS
-% $\pred^*(I) = \pred^{k}(I)$
-% Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
-and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
-We
-\end{proof}
-
+This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{proposition}
@@ -326,15 +306,31 @@ $\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \p
 Hence the equivalence.
 \end{proof}
 
+\begin{proposition}
+In WSTS with strong compatibility and effective pred-basis, the bounded state-resilience problem is
+reducible to the $k$-state-resilience problem.
+\end{proposition}
+
+\begin{proof}
+% strong WSTS
+% $\pred^*(I) = \pred^{k}(I)$
+% Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+and there exists $n_0 \in \N$ such that 
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+We compute 
+$n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$ to $n_0$.  
+\end{proof}
+
 \begin{corollary}
-Bounded reachable-resilience and 
-$k$ reachable-resilience are undecidable for strongly compatible WSTS with effective pred-basis.
+Bounded state-resilience and 
+$k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis.
 \end{corollary}
 
 \begin{proof} 
-  From
-  cf
-the two  theorems above. 
+  From the two reductions above. 
 \end{proof}
 
 
@@ -502,8 +498,53 @@ CONJECTURE
 
 
 
+\subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
 
 
+The authors from \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
+have only been concerned with the case $\Safe = \uparrow \Safe$
+and $\Bad =\downarrow \Bad$, however as mentioned in Section~3
+the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
+Hence it makes sense to consider this symmetrical case as well. \\
+
+Undecidability in general: $\Safe = 0$, $\Bad = S \setminus 0$ ?
+
+LOREM IPSUM \\
+
+\begin{lemma}(Symmetrical from Lemma~\ref{Lemma intersection})\label{Lemma intersection 2}
+Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
+Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
+\end{lemma}
+
+
+\begin{proof}
+Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$.
+Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$.
+Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$.
+Since $x \in U$ and $U$ is downward-closed, we also have $a \in U$.
+Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$.
+In the other direction,
+since $A \subseteq {\downarrow A}$, the inclusion
+$({\downarrow  A}) \cap U \subseteq D$ implies
+$A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
+\end{proof}
+
+Lemma~\ref{Lemma intersection 2} can be used to show that
+$\post^*(s) \cap \Bad \subseteq D$  iff $ (\downarrow  \post^*(s)) \cap \Bad \subseteq D$.
+
+If, as in Section~XX, we have the \textcolor{red}{added hypothesis}
+that
+$\pred^*(\Safe)$ is downward closed this means that
+$\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) \cap \Bad \subseteq \pred^*(\Safe)$.
+
+And hence decidability follows.
+
+
+
+
+\subsection{Other}
+
+\mathieu{Everything below should be moved to the applications section no?}
 
 % Let us deduce that effective basis of $post^*$ ex reset PN ?
 
@@ -523,9 +564,6 @@ Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monoton
 
 
 \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
-
-
-\subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
 
 
 
