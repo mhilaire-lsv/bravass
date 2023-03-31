@@ -48,9 +48,12 @@ The three previous problems become:
 
 Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
 
-As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downard closed and upward closed.
+As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downard closed and upward closed. We will consider here the cases where 
+$\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$ 
+and where 
+$\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 
-\mathieu{Ici on s'intéresse seulement aux cas $\uparrow \downarrow$ et $\downarrow \uparrow$.}
+% \mathieu{Ici on s'intéresse seulement aux cas $\uparrow \downarrow$ et $\downarrow \uparrow$.}
 
 \subsection{Case: $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$}
 
@@ -59,13 +62,19 @@ As in the Section~3, we study decidability results for different pairs of sets $
 Let us recall a result about state-resilience (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
-{\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
+{\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
 \end{theorem}
 
 We may immediately generalyse this last result by strengthening to \emph{unbounded} state-resilience. The proof is essentially the same than the previous one.
 
 \begin{corollary}\label{postcomputable}
-{\sc state-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
+{\sc state-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
 \end{corollary}
 
 \begin{proof}
@@ -286,7 +295,10 @@ else $s \not\to^* \Bad$.
 Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong upward compatibility, from Proposition \ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility.
 
 \begin{theorem}\label{srp up down}
-{\sc State-resilience} is undecidable for strongly compatible WSTS with effective pred-basis.
+{\sc State-resilience} is undecidable for strongly compatible WSTS with effective pred-basis
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
 \end{theorem}
 
 
@@ -326,7 +338,10 @@ $n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$
 
 \begin{corollary}\label{bsrp up down}
 Bounded state-resilience and 
-$k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis.
+$k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
 \end{corollary}
 
 \begin{proof} 
@@ -368,7 +383,10 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
 
 \begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}\label{post srp}
 {\sc Reachable-resilience} is decidable for (not necessarily strong) WSTS with effective 
-$\uparrow$ $\post^*$ basis.
+$\uparrow$ $\post^*$ basis
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
 \end{theorem}
 
 
@@ -509,7 +527,19 @@ and $\Bad =\downarrow \Bad$, however as mentioned in Section~3
 the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 Hence it makes sense to consider this symmetrical case as well. \\
 
-Undecidability in general: $\Safe = 0$, $\Bad = S \setminus 0$ ?
+The problem is however unfortunately undecidable in general.
+
+\begin{theorem}
+The resilience problem is undecidable for effective WSTS with  strong  compatibility 
+when
+$\Safe=\downarrow \Safe$
+and $\Bad=\uparrow \Bad$.
+\end{theorem}
+
+\begin{proof}
+Taking $\Safe = 0$, $\Bad = S \setminus 0$, it follows the state resilience problem is equivalent
+to reachability of $0$.
+\end{proof}
 
 But what if we are in the case of $\uparrow \post^*$ effectiveness?
 
