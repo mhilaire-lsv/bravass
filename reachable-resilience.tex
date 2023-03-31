@@ -58,7 +58,7 @@ As in the Section~3, we study decidability results for different pairs of sets $
 
 Let us recall a result about state-resilience (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 
-\begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
+\begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
 {\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$.
 \end{theorem}
 
@@ -285,7 +285,7 @@ else $s \not\to^* \Bad$.
 
 Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong upward compatibility, from Proposition \ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility.
 
-\begin{theorem}
+\begin{theorem}\label{srp up down}
 {\sc State-resilience} is undecidable for strongly compatible WSTS with effective pred-basis.
 \end{theorem}
 
@@ -324,7 +324,7 @@ We compute
 $n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$ to $n_0$.  
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{bsrp up down}
 Bounded state-resilience and 
 $k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis.
 \end{corollary}
@@ -366,7 +366,7 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
 
 
 
-\begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}
+\begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}\label{post srp}
 {\sc Reachable-resilience} is decidable for (not necessarily strong) WSTS with effective 
 $\uparrow$ $\post^*$ basis.
 \end{theorem}
@@ -511,6 +511,8 @@ Hence it makes sense to consider this symmetrical case as well. \\
 
 Undecidability in general: $\Safe = 0$, $\Bad = S \setminus 0$ ?
 
+But what if we are in the case of $\uparrow \post^*$ effectiveness?
+
 LOREM IPSUM \\
 
 \begin{lemma}(Symmetrical from Lemma~\ref{Lemma intersection})\label{Lemma intersection 2}
@@ -549,14 +551,14 @@ And hence decidability follows.
 \mathieu{Should try to put all results in a single table}
 
 
-With strong compatibility hypothesis:
+With only strong compatibility hypothesis:
 
 \begin{center}
 \begin{tabular}{ | l | c | c | r |}
 \hline   \Safe~\Bad & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~  \\ \hline
-   SRP & Undecidable & Undecidable  \\ \hline
-   BSRP & Undecidable &  ??  \\ \hline
-      kSRP & Undecidable & ?? \\ \hline
+   SRP & Undecidable (Thm~\ref{srp up down}) & Undecidable  \\ \hline
+   BSRP & Undecidable (Corollary~\ref{bsrp up down}) &  ??  \\ \hline
+      kSRP & Undecidable (Corollary~\ref{bsrp up down}) & ?? \\ \hline
  \end{tabular}
 \end{center}
 
@@ -565,7 +567,7 @@ With $\uparrow \post^*$ effectiveness hypothesis:
 \begin{center}
 \begin{tabular}{ | l | c | c | r |}
 \hline   \Safe~\Bad & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~  \\ \hline
-   SRP & Decidable & ??  \\ \hline
+   SRP & Decidable (Thm~\ref{post srp}) & ??  \\ \hline
    BSRP & ?? &  ??  \\ \hline
       kSRP & ?? & ?? \\ \hline
  \end{tabular}
@@ -576,9 +578,9 @@ With $\uparrow \post^*$ effectiveness and strong compatibility hypothesis:
 \begin{center}
 \begin{tabular}{ | l | c | c | r |}
 \hline   \Safe~\Bad & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~  \\ \hline
-   SRP & Decidable & ??  \\ \hline
-   BSRP & Decidable &  ??  \\ \hline
-      kSRP & Decidable & ?? \\ \hline
+   SRP & Decidable (Thm~\ref{postcomputable})& ??  \\ \hline
+   BSRP & Decidable (Thm~\ref{ref ozkan})&  ??  \\ \hline
+      kSRP & Decidable (Thm~\ref{ref ozkan}) & ?? \\ \hline
  \end{tabular}
 \end{center}
 
