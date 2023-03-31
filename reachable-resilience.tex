@@ -527,7 +527,7 @@ and $\Bad =\downarrow \Bad$, however as mentioned in Section~3
 the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 Hence it makes sense to consider this symmetrical case as well. \\
 
-The problem is however unfortunately undecidable in general.
+Unfortunately however the problem is undecidable in general.
 
 \begin{theorem}
 The resilience problem is undecidable for effective WSTS with  strong  compatibility 
@@ -537,8 +537,8 @@ and $\Bad=\uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-Taking $\Safe = 0$, $\Bad = S \setminus 0$, it follows the state resilience problem is equivalent
-to reachability of $0$.
+Taking $\Safe = \{ 0 \}$, $\Bad = S \setminus 0$, it follows the state resilience problem is equivalent
+to reachability of $0$. Since reachability of $0$ is undecidable for Reset VASS, we conclude.
 \end{proof}
 
 But what if we are in the case of $\uparrow \post^*$ effectiveness?
