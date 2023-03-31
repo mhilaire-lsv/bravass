@@ -120,7 +120,7 @@ For finite-branching WSTS%with strong upward compatibility
 
 % \alain{rappeler l'idée de la preuve}
 The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, we check whether
-$B_{\post^*(s)} \cap D = \emptyset$, equivalent to $\post^*(s)\cap D = \emptyset$ by
+$B_{\uparrow \post^*(s)} \cap D = \emptyset$, equivalent to $\post^*(s)\cap D = \emptyset$ by
 Lemma~\ref{Lemma intersection}. For the converse direction, we compute the sequence of upward-closed
 $U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary. 
 Decidability of downward reachability leads to the decidability of the following stop condition:
@@ -464,16 +464,19 @@ $\pred^*(I) = \pred^{k}(I)$
 Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
 \end{proof}
 
+
+
 \begin{proposition}
-In WSTS with strong monotony, the bounded reachable resilience problem is
-equivalent to the reachable-resilience problem.
+In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded-state-resilience problem is equivalent to the state-resilience problem.
 \end{proposition}
 
 \begin{proof}
-strong WSTS
-
-$\pred^*(I) = \pred^{k}(I)$
-
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+and there exists $n_0 \in \N$ such that 
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+Hence the equivalence.
 \end{proof}
 
 \begin{corollary}
