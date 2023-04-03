@@ -423,11 +423,12 @@ The algorithm from \cite{DBLP:conf/gg/Ozkan22} for {\sc $k$-state-resilience} te
 \end{proposition}
 
 \begin{proof}[Sketch]
+\mathieu{ (Formalism should be made more explicit so that the proof can be really pertinent)}
+\textcolor{red}{
 Let us consider a LCS where erasing a message take one step. Then the upward compatibility is not strong. 
 For instance with a rule $\delta(q,b) = \text{ add some }b $,
 we have $(q,b) \to (q,bb)$, $(q, baaa) \geq (q,b)$ and
-$(q, baaa) \to^* (q,bb)$ however it takes more than a single step.
-
+$(q, baaa) \to^* (q,bb)$ however it takes more than a single step. 
 In this case then $\pred(\uparrow \{(q,b)\})$ is not upward-closed. Hence 
 $post^* (s) \cap D \subseteq \pred(\uparrow \{(q,b)\})$
 do not imply
@@ -440,6 +441,7 @@ from \cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does 
 because $\uparrow post^* (s) \cap S \not\subseteq \pred(\uparrow \{(q,b)\})$,
 despite having 
 $post^* (s) \cap S \subseteq \pred(\uparrow \{(q,b)\})$.
+}
 
 \iffalse
 \mathieu{
@@ -508,7 +510,9 @@ Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
  
 \end{proof}
 
+\mathieu{In case we have  effective basis of $post^*$ and upward compatibility (not strong) then we don't know the decidability status of k-state-resilience and bounded-state-resilience. Not necessarily a big deal, but should write a comment or two about this.}
 
+\iffalse
 \begin{proposition}
 \textcolor{red}{
 {\sc bounded resilience} is undecidable for WSTS with upward compatibility with an effective basis of $post^*$.
@@ -519,7 +523,7 @@ CONJECTURE
 \begin{proof}
  \textcolor{red}{pas certain ! à faire Mathieu}
 \end{proof}
-
+\fi
 
 
 \subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
