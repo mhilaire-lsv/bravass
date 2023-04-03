@@ -26,7 +26,7 @@ The three previous problems become:
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
 % 		an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
 % 		{$ ~ \forall s' \in \Bad, ~ s \rightarrow^* s' \implies \exists s'' \in \Safe, ~ s' \rightarrow^{*} s''$ ?\newline}
-{$\Bad \cap \post^*(s_0)  \rightarrow^{*} \Safe $ ? \newline}
+{$\Bad \cap \post^*(s)  \rightarrow^{*} \Safe $ ? \newline}
 
 
 \problemx{$k$-state-resilience problem (kSRP)}
@@ -59,7 +59,143 @@ $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 
 
 
-Let us recall a result about state-resilience (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
+
+Unfortunately, state-resilience is undecidable for (general) WSTS even with strong upward-compatibility.
+This stems from the fact that $t$-liveness is undecidable for WSTS and 
+is reducible to the state resilience problem.
+
+\begin{proposition}\label{reductions}
+In WSTS, $t$-liveness is reducible to the state resilience problem.
+%	home state and reachability
+\end{proposition}
+
+
+\begin{proof}
+We reformulate $t$-liveness as the following formula
+% $$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$$
+$$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$  
+where
+$U_t=\uparrow \pred(t)$
+is the upward closure of the preconditions to use transition $t$.  
+The problem reduces itself to the state resilience problem
+where $\Safe = U_t$ and $\Bad = S \setminus \Safe$.
+
+\end{proof}
+
+To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS.
+
+\begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]\label{liveness reset}
+The  Reset VASS zero reachability problem can be reduced to the $t$-liveness problem.
+\end{theorem}
+
+% \mathieu{I moved the proof to the appendix since it's a slight adjustment but takes a lot of room.}
+\begin{proof}
+See Appendix~\ref{appendix} for the complete proof.
+\end{proof}
+
+
+Since the Reset VASS zero reachability problem is undecidable, the reduction implies 
+% the following:
+%
+\iffalse
+\begin{corollary}
+Reset VASS liveness is undecidable.
+\end{corollary}
+
+Since moreover liveness can be reduced to 
+$t$-liveness, we deduce:
+\fi
+%
+%\begin{corollary}
+$t$-liveness is undecidable for Reset VASS.
+%\end{corollary}
+
+
+
+\iffalse
+
+\begin{theorem}
+The downward reachability problem is reducible to the state resilience problem.
+\end{theorem}
+
+\begin{proof}
+Let $s \in S$, and a downward-closed set $D$. \alain{je ne comprends pas cette "preuve"}
+Take $\Safe = \emptyset$ and $\Bad = D$.
+The state resilience problem on $\Safe,\Bad$ asks
+whether $\Bad \cap \post^*(s) \rightarrow^* \Safe$  that is equivalent to $\Bad \cap \post^*(s) \subseteq \emptyset$.
+If the answer is negative then $s \to^* \Bad$,
+else $s \not\to^* \Bad$.
+\end{proof}
+
+\fi
+
+
+Since $t$-liveness is undecidable for Reset VASS that are WSTS with strong upward compatibility, from Proposition~\ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+
+
+\begin{theorem}\label{srp up down}
+{\sc State-resilience},
+{\sc Bounded-state-resilience} and
+{\sc $k$-state-resilience}
+are undecidable for strongly compatible WSTS with effective pred-basis
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
+\end{theorem}
+
+
+\begin{proof}
+{\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since $t$-liveness is undecidable.
+
+% \begin{proposition}
+% \end{proof}
+
+% \begin{proposition}
+In WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
+reducible to {\sc $k$-state-resilience}.
+% \end{proposition}
+% 
+% \begin{proof}
+Since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+and there exists $n_0 \in \N$ such that 
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+We compute 
+$n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$ to $n_0$.  
+% \end{proof}
+Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded-state-resilience problem is equivalent to the state-resilience problem,
+% \end{proposition}
+%
+% \begin{proof}
+since 
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+Hence the %equivalence, and
+ undecidability of {\sc Bounded-state-resilience}
+and 
+ {\sc $k$-state-resilience}.
+
+
+\iffalse
+% \begin{corollary}\label{bsrp up down}
+Bounded state-resilience and 
+$k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$.
+% \end{corollary}
+\fi
+
+%\begin{proof} 
+%  From the two reductions above. 
+\end{proof}
+
+
+
+
+
+
+On the positive side, let us recall a result about state-resilience decidability (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
 {\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
@@ -128,11 +264,12 @@ Decidability of downward reachability leads to the decidability of the following
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-The characterization is used to show that Petri nets are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for Petri-nets, we deduce the following:
+The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS, we deduce the following:
 
 \begin{proposition}
-Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
-\end{proposition}\alain{mauvaises notations, la tradition est que P est l'ensemble des places...les états/markings en minuscules,....}
+Let $V= (Q,T)$ be a $d$-VASS and $v \in \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(v)$.
+\end{proposition}
+%\alain{mauvaises notations, la tradition est que P est l'ensemble des places...les états/markings en minuscules,....}
 
 \iffalse
 \begin{proof}
@@ -151,9 +288,12 @@ So downward-set reachability is decidable for PN.
 \end{proof}
 \fi
 
-It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
-Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
-Hence state-resilience is decidable for both Petri nets and VASS.
+It is well-known that 
+% Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
+% Since 
+VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
+Hence state-resilience is decidable for %both Petri nets and 
+VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
 
 \begin{proposition}
@@ -162,13 +302,10 @@ There exist classes of WSTSs with strong (upward) compatibility for which there 
 
 
 \begin{proof}
-<<<<<<< HEAD
 Let us show that Reset VASS, that are effective WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether an element $m \in Min(\uparrow \post^*)$ is reachable.
-=======
-Let us show that Reset VASS, that are WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one is able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
->>>>>>> 1599474820424e1d1b4958853e34d5d1c902849e
+Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. 
+\iffalse
+Then, one would be able to decide whether an element $m \in Min(\uparrow \post^*)$ is reachable.
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
 $0$ in the basis%
@@ -176,6 +313,8 @@ $0$ in the basis%
 is undecidable for Reset VASS. 
 % sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 %	$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
+\fi
+Then, state-resilience would be decidable for Reset VASS.
 \end{proof}
 
 %il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
@@ -191,194 +330,6 @@ is undecidable for Reset VASS.
 %\begin{proof}
 %pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
 %\end{proof}
-
-
-
-
-
-
-Unfortunately, state-resilience is undecidable for (general) WSTS even with strong upward-compatibility.
-This stems from the fact that $t$-liveness is undecidable for reset Petri-Nets.
-
-
-\begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]\label{liveness reset}
-The  Reset Petri Net zero reachability problem can be reduced to the liveness problem.
-\end{theorem}
-
-\iffalse
-\begin{proof}
-If we wish to determine if $0 \in R(C_1, \mu_1)$ in any
-reset Petri net $C_1 = (P_1, T_1, I_1, O_1, R_1 )$ (where $R_1(t) =$ places that are reset when t fires off), with initial marking $\mu_1$, we construct a
-reset petri net $C_2 = (P_2, T_2, I_2, O_2, R_2 )$ with initial marking
-$\mu_2$ which is live if and only if the zero marking is not reachable from $\mu_1$.
-
-The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$
-and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
-
-We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
-The initial marking $\mu_2$ will include a token in $r_1$. 
-
-
-The place $r_1$ is a 'run' place; as long as the token remains in $r_1$ the transitions of $T_1$ can fire normally.
-Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
-
-
-
-Transition $s$ is defined to have $r_1$ as an input and a null output.
-This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$
-and "freezing" the marking of $P_1$.
-
-Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
-
-The place $r_1$ and transition $s$ allow the net $C_1$ to reach any reachable marking and then for $s$ to fire and freeze the net at that marking.
-
-Now we need to see if that marking is zero.
-
-We introduce a new place $r_2$ and new transitions $s_p$ which have $p$ as input and $r_2$ as output.
-
-If $p$ can ever become zero, $s_p$ is not live. The entire net is dead if
-$s$ fires in the marking zero.
-
-If we can always have some $p_i$ not be zero, then we can always fire some $s_{p_i}$, putting a token in $r_2$.
-
-In this case we must put a token back in $r_1$ and assure that all transitions in $C_2$ are live.
-We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
-This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$.
-Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
-
-Now if $0$ is reachable
-in $R(C_1, \mu_1)$ 
-then the net $C_2$ can also reach this marking
-in the place of $P_1$ by executing the same sequence of transition firings.
-Then $s$ can fire, freezing the $C_1$ subset.
-Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
-Thus if $0$ is reachable then $C_2$ is not live.
-
-Conversey, if $C_2$ is not live, then a marking $\mu$ must be reachable in which 
-$\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token
-(in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.)
-% (Rappel: tant que il y a un token quelque part, on peut mettre un token en r_2
-% et r_2 commence sans token)
-If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
-Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
-
-\end{proof}
-\fi
-
-% \mathieu{I moved the proof to the appendix since it's a slight adjustment but takes a lot of room.}
-\begin{proof}
-See Appendix~\ref{appendix} for the complete proof.
-\end{proof}
-
-
-Since the Reset Petri Net zero reachability problem is undecidable in Reset Petri-Nets, the reduction implies the following:
-
-\begin{corollary}
-Reset Petri Net liveness is undecidable.
-\end{corollary}
-
-Since moreover liveness can be reduced to 
-$t$-liveness, we deduce:
-
-\begin{corollary}
-Reset Petri Net $t$-liveness is undecidable.
-\end{corollary}
-
-We now reduce $t$-liveness to the state resilience problem.
-
-\begin{proposition}\label{reductions}
-In WSTS, $t$-liveness is reducible to the state resilience problem.
-%	home state and reachability
-\end{proposition}
-
-
-\begin{proof}
-We reformulate $t$-liveness as the following formula
-% $$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$$
-$$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$  
-where
-$U_t=\uparrow \pred(t)$
-is the upward closure of the preconditions to use transition $t$.  
-The problem reduces itself to the state resilience problem
-where $\Safe = \uparrow \pred(t)$ and $\Bad = S \setminus \Safe$.
-
-\end{proof}
-
-
-
-\iffalse
-
-\begin{theorem}
-The downward reachability problem is reducible to the state resilience problem.
-\end{theorem}
-
-\begin{proof}
-Let $s \in S$, and a downward-closed set $D$. \alain{je ne comprends pas cette "preuve"}
-Take $\Safe = \emptyset$ and $\Bad = D$.
-The state resilience problem on $\Safe,\Bad$ asks
-whether $\Bad \cap \post^*(s) \rightarrow^* \Safe$  that is equivalent to $\Bad \cap \post^*(s) \subseteq \emptyset$.
-If the answer is negative then $s \to^* \Bad$,
-else $s \not\to^* \Bad$.
-\end{proof}
-
-\fi
-
-
-Since $t$-liveness is undecidable for reset Petri-Nets that are WSTS with strong upward compatibility, from Proposition \ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility.
-
-\begin{theorem}\label{srp up down}
-{\sc State-resilience} is undecidable for strongly compatible WSTS with effective pred-basis
-when
-$\Safe=\uparrow \Safe$
-and $\Bad=\downarrow \Bad$.
-\end{theorem}
-
-
-This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
-
-
-\begin{proposition}
-In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded-state-resilience problem is equivalent to the state-resilience problem.
-\end{proposition}
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
-and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
-Hence the equivalence.
-\end{proof}
-
-\begin{proposition}
-In WSTS with strong compatibility and effective pred-basis, the bounded state-resilience problem is
-reducible to the $k$-state-resilience problem.
-\end{proposition}
-
-\begin{proof}
-% strong WSTS
-% $\pred^*(I) = \pred^{k}(I)$
-% Check all $k$ until $\pred^*(I) = \pred^{k}(I)$.
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
-and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
-We compute 
-$n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$ to $n_0$.  
-\end{proof}
-
-\begin{corollary}\label{bsrp up down}
-Bounded state-resilience and 
-$k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis
-when
-$\Safe=\uparrow \Safe$
-and $\Bad=\downarrow \Bad$.
-\end{corollary}
-
-\begin{proof} 
-  From the two reductions above. 
-\end{proof}
 
 
 
