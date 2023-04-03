@@ -546,6 +546,25 @@ Hence it makes sense to consider this symmetrical case as well. \\
 
 \mathieu{rappeler résultats de \cite{DBLP:conf/gg/Ozkan22}}
 
+
+\begin{definition}{marked WSTS} 
+A {\em marked} WSTS is a tuple $(S, \leq, \to, INIT)$
+where $(S, \leq, \to)$ is a WSTS and $INIT \subseteq S$. 
+If $INIT$ is finite, we call it {\em fin-marked}.
+\end{definition}
+
+\begin{definition}
+A marked WSTS is
+\begin{itemize}
+\item lossy if $\downarrow \post^* (INIT) = \post^* (INIT)$,
+\item $\bot$-bounded (bottom-bounded) if there is a natural number 
+$\ell \geq 0$ s.t. $s_B \in \post^{\leq \ell} (s) $ for every $ s \in S$ and every element 
+$s_B$ of a basis of $S$ with $s \geq s_B$.
+\end{itemize}
+\end{definition}
+
+\mathieu{}
+
 \begin{theorem}{\cite{DBLP:conf/gg/Ozkan22}}
 The bounded-state-resilience problem is decidable for \textcolor{red}{fin-marked} 
 strongly compatible WSTS
