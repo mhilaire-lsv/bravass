@@ -128,18 +128,18 @@ Decidability of downward reachability leads to the decidability of the following
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-The characterization is used to show that Petri nets are $\uparrow \post^*$-effective. Since the downward reachability problem is decidable for Petri-nets, we deduce the following:
+The characterization is used to show that Petri nets are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for Petri-nets, we deduce the following:
 
 \begin{proposition}
 Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
-\end{proposition}
+\end{proposition}\alain{mauvaises notations, la tradition est que P est l'ensemble des places...les états/markings en minuscules,....}
 
 \iffalse
 \begin{proof}
 By Proposition~\ref{post*}, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 Let us now show that the downward-reachability problem is decidable for Petri nets.
 Let us consider a downward closed set $D$ in a Petri net.
-Let us consider $B$ a basis of the upward closed set $S \setminus D$.
+Let us consider $B$ a basis of the upward-closed set $S \setminus D$.
 
 $D$ is  defined by ... states where your number of counter is bounded by a constant (deduce this from ... having to be smaller than elements of the basis $B$), and others where it is unbounded. You have $m$ counters where it is bounded by $n$
 then you have $m \times n$ possibilities for the values in these counters
@@ -157,7 +157,7 @@ Hence state-resilience is decidable for both Petri nets and VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
 
 \begin{proposition}
-There exist classes of WSTSs with strong upward compatibility for which there don't exist an algorithm computing a basis of $\uparrow \post^*$.
+There exist classes of WSTSs with strong (upward) compatibility for which there don't exist an algorithm computing a basis of $\uparrow \post^*$.
 \end{proposition}
 
 
