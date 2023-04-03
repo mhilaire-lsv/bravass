@@ -110,7 +110,7 @@ Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which
 
 
 %\"Ozkan
-\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]
+\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
 For finite-branching WSTS%with strong upward compatibility
 , a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 %i 			.e. given a state $s$ of a WSTS
@@ -128,9 +128,32 @@ Decidability of downward reachability leads to the decidability of the following
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-The characterization is used to show that Petri nets are $\post^*$-effective. It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
-Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
-Hence state-resilience is decidable for Petri nets and VASS.
+The characterization is used to show that Petri nets are $\uparrow \post^*$-effective. Since the downward reachability problem is decidable for Petri-nets, we deduce the following:
+
+\begin{proposition}
+Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
+\end{proposition}
+
+\iffalse
+\begin{proof}
+By Proposition~\ref{post*}, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
+Let us now show that the downward-reachability problem is decidable for Petri nets.
+Let us consider a downward closed set $D$ in a Petri net.
+Let us consider $B$ a basis of the upward closed set $S \setminus D$.
+
+$D$ is  defined by ... states where your number of counter is bounded by a constant (deduce this from ... having to be smaller than elements of the basis $B$), and others where it is unbounded. You have $m$ counters where it is bounded by $n$
+then you have $m \times n$ possibilities for the values in these counters
+you have unlimited possibilities for the values of the other counters,
+but that is where the submarking problem comes in handy,
+i.e. you ask the submarking problem for all of the $m \times n$ possibilities.
+
+So downward-set reachability is decidable for PN.
+\end{proof}
+\fi
+
+It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
+Hence state-resilience is decidable for both Petri nets and VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
 
 \begin{proposition}
@@ -139,8 +162,13 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 
 \begin{proof}
+<<<<<<< HEAD
 Let us show that Reset VASS, that are effective WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether an element $m \in Min(\uparrow \post^*)$ is reachable.
+=======
+Let us show that Reset VASS, that are WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
+Suppose that one is able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
+>>>>>>> 1599474820424e1d1b4958853e34d5d1c902849e
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
 $0$ in the basis%
@@ -237,9 +265,13 @@ Thus if $C_2$ is not live then a marking is reachable in which the marking of ea
 \end{proof}
 \fi
 
-\mathieu{I moved the proof to the appendix since it's a slight adjustment but takes a lot of room.}
+% \mathieu{I moved the proof to the appendix since it's a slight adjustment but takes a lot of room.}
+\begin{proof}
+See Appendix~\ref{appendix} for the complete proof.
+\end{proof}
 
-Since reachability of $0$ is undecidable in Reset Petri-Nets, the reduction implies the following:
+
+Since the Reset Petri Net zero reachability problem is undecidable in Reset Petri-Nets, the reduction implies the following:
 
 \begin{corollary}
 Reset Petri Net liveness is undecidable.
@@ -358,7 +390,7 @@ and $\Bad=\downarrow \Bad$.
 
 
 
-Keeping the $\uparrow post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general reachable-resilience problem.
+Keeping the $\uparrow post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general state-resilience problem.
 
 
 \begin{lemma}\label{Lemma intersection}
@@ -419,11 +451,21 @@ The algorithm from \cite{DBLP:conf/gg/Ozkan22} for {\sc $k$-state-resilience} te
 \end{proposition}
 
 \begin{proof}[Sketch]
+Since $\pred(\uparrow \Safe)$ is not necessarily upward closed, it is possible to have 
+ $\uparrow post^* (s) \cap S \not\subseteq \pred(\Safe)$,
+despite having 
+$post^* (s) \cap S \subseteq \pred( \Safe)$.
+In such a case the algorithm from
+\cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold,
+which is incorrect.
+An example of this is ...
+\mathieu{ (Lossy counter machine whose Formalism should be made more explicit so that the proof can be really pertinent)}
+\iffalse
+\textcolor{red}{
 Let us consider a LCS where erasing a message take one step. Then the upward compatibility is not strong. 
 For instance with a rule $\delta(q,b) = \text{ add some }b $,
 we have $(q,b) \to (q,bb)$, $(q, baaa) \geq (q,b)$ and
-$(q, baaa) \to^* (q,bb)$ however it takes more than a single step.
-
+$(q, baaa) \to^* (q,bb)$ however it takes more than a single step. 
 In this case then $\pred(\uparrow \{(q,b)\})$ is not upward-closed. Hence 
 $post^* (s) \cap D \subseteq \pred(\uparrow \{(q,b)\})$
 do not imply
@@ -436,75 +478,13 @@ from \cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does 
 because $\uparrow post^* (s) \cap S \not\subseteq \pred(\uparrow \{(q,b)\})$,
 despite having 
 $post^* (s) \cap S \subseteq \pred(\uparrow \{(q,b)\})$.
-
-\iffalse
-\mathieu{
-
-On considère un LCS, où on autorise à effacer des messages (lossyness) mais effacer un message prends une étape (contrairement à [ref], où ils font une sorte de cloture de effacer-transition-effacer). On n'a alors pas la strong compatibility: 
-
-On prends: $(q, b) 	\to (q,bb)$ par exemple et $(q, baaaaaa) \geq (q,b) $, alors
-$(s, baaaaaa) \to^* (s,b) \to (s,bb)$
-MAIS
-
-C'est pas "en une étape".
-
-(On considère -il faut le mentionner/vérifier- que on ne peut effaçer que d'un coté ? et pas au milieu?)
-
-Dans ce cas là, du coup, $pred(\uparrow \{(q,b)\}$ n'est pas clos par le haut. \\
-
-Revenons au Corollaire
-
-On voudrais avoir
-
-$post^* (s) \cap J \subseteq I^k$
-
-MAIS pas
-
-$ (\uparrow post^* (s)) \cap J \subseteq I^k$ \\
-
-
-Ça serait un cas où leurs algorithme vas dire 
-"On n'a pas $(\uparrow post^* (s)) \cap J \subseteq I^k$ donc on n'a pas la $k$-résilience "
-
-Alors qu'on aurait la $k$-résilience (i.e. $post^* (s) \cap J \subseteq I^k$)
-
-Pour $I^k$, le contre exemple prendrait du coup $pred(\uparrow \{ (q,b)\})$ qui n'est pas clos par le haut.
-
-On voudrait
-
-$post^*(s) \cap J \subseteq pred(\uparrow \{ (q,b)\})$
-
-
-Je propose de prendre $J$ = ensemble des configurations je pense le truc ici doit venir de
-$\uparrow post^* (s)$ being too big
-donc autant pas se restreindre du tout sur $J$
-
-
-$post^*(s) \subseteq pred(\uparrow \{ (q,b)\})$
-
-Si $s=(q,b)$ par exemple, et que on peut aller de $q$ vers $q$ en écrivant un 
-$b$ ? et évidement en perdant le dernier message (parce qu'on est lossy). Et c'est tout, disons.
-
-Déjà par lossiness $(q,\epsilon)$ serait dans $post^*((q,b))$.
-
-Et aussi dans $pred(\uparrow \{ (q,b)\})$ puisque $(q,\epsilon) \to (q,b)$.
-
-Donc on aurait:
-
-$post^*((q,b))  \subseteq pred(\uparrow \{ (q,b)\})$
-
-Et on aurait $(q,aaaaaa)$ dans 
-$\uparrow post^* ((q,b))$ puisque $(q,\epsilon)$ est dans $post^* ((q,b))$.
-
-Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
-(même si il est dans $pred^*(\uparrow \{ (q,b)\})$).
-
 }
-\fi 
- 
+\fi
 \end{proof}
 
+\mathieu{In case we have  effective basis of $post^*$ and upward compatibility (not strong) then we don't know the decidability status of k-state-resilience and bounded-state-resilience. Not necessarily a big deal, but should write a comment or two about this.}
 
+\iffalse
 \begin{proposition}
 \textcolor{red}{
 {\sc bounded resilience} is undecidable for WSTS with upward compatibility with an effective basis of $post^*$.
@@ -515,7 +495,7 @@ CONJECTURE
 \begin{proof}
  \textcolor{red}{pas certain ! à faire Mathieu}
 \end{proof}
-
+\fi
 
 
 \subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
@@ -523,27 +503,69 @@ CONJECTURE
 
 The authors from \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
 have only been concerned with the case $\Safe = \uparrow \Safe$
-and $\Bad =\downarrow \Bad$, however as mentioned in Section~3
+and $\Bad =\downarrow \Bad$, 
+\mathieu{pas tout à fait vrai: dans le technical report \cite{DBLP:conf/gg/Ozkan22} il considère aussi le cas où Bad et Safe sont tous les deux clos par le haut mais aussi le cas Safe clos par le bas Bad clos par le haut.}
+ however as mentioned in Section~3
 the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 Hence it makes sense to consider this symmetrical case as well. \\
+
+
+\mathieu{rappeler résultats de \cite{DBLP:conf/gg/Ozkan22}}
+
+
+\begin{definition}{marked WSTS} 
+A {\em marked} WSTS is a tuple $(S, \leq, \to, INIT)$
+where $(S, \leq, \to)$ is a WSTS and $INIT \subseteq S$. 
+If $INIT$ is finite, we call it {\em fin-marked}.
+\end{definition}
+
+\begin{definition}
+A marked WSTS is
+\begin{itemize}
+\item lossy if $\downarrow \post^* (INIT) = \post^* (INIT)$,
+\item $\bot$-bounded (bottom-bounded) if there is a natural number 
+$\ell \geq 0$ s.t. $s_B \in \post^{\leq \ell} (s) $ for every $ s \in S$ and every element 
+$s_B$ of a basis of $S$ with $s \geq s_B$.
+\end{itemize}
+\end{definition}
+
+\mathieu{}
+
+\begin{theorem}{\cite{DBLP:conf/gg/Ozkan22}}
+The bounded-state-resilience problem is decidable for \textcolor{red}{fin-marked} 
+strongly compatible WSTS
+ which are 
+ {\em \textcolor{red}{lossy} } 
+ and 
+ {\em \textcolor{red}{$\bot$-bounded}  }
+ if $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$.
+\end{theorem}
+
+
 
 Unfortunately however the problem is undecidable in general.
 
 \begin{theorem}
-The resilience problem is undecidable for effective WSTS with  strong  compatibility 
+The state resilience problem is undecidable for effective WSTS with  strong  compatibility 
 when
 $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-Taking $\Safe = \{ 0 \}$, $\Bad = S \setminus 0$, it follows the state resilience problem is equivalent
-to reachability of $0$. Since reachability of $0$ is undecidable for Reset VASS, we conclude.
+Consider Reset VASS
+in the case $\Safe$ contains only the minimal element %$0$ 
+and $\Bad = S \setminus \Safe$, 
+it follows the state resilience problem is equivalent 
+to the problem of whether $0$ can be visited infinitely often. 
+%
+% Since reachability of $0$ is undecidable for Reset VASS, we conclude.
+Hence the undecidability.
 \end{proof}
 
-But what if we are in the case of $\uparrow \post^*$ effectiveness?
+\mathieu{But what if we are in the case of $\uparrow \post^*$ effectiveness?}
 
-LOREM IPSUM \\
+\mathieu{Écrire que c'est globalement symmétrique au cas d'avant - je pense pas nécessairement qu'on arrive à faire beaucoup mieux que de juste dire ça.}
 
 \begin{lemma}(Symmetrical from Lemma~\ref{Lemma intersection})\label{Lemma intersection 2}
 Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
@@ -576,8 +598,10 @@ And hence decidability follows.
 
 
 
-\subsection{Other}
+\subsection{Synthesis}
 
+
+\iffalse
 \mathieu{Should try to put all results in a single table}
 
 
@@ -614,34 +638,33 @@ With $\uparrow \post^*$ effectiveness and strong compatibility hypothesis:
  \end{tabular}
 \end{center}
 
-\mathieu{Everything below should be moved to the applications section no?}
+\fi
 
-% Let us deduce that effective basis of $post^*$ ex reset PN ?
-
- \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
-
-We may consider context-free grammars.
-
-\begin{corollary}
-{\sc resilience} is decidable for finite automata and context-free grammars (seen as transition systems)
-\end{corollary}
-
-\begin{proof}
-
-  \textcolor{red}{à faire Mathieu}
-Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
-\end{proof}
+Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
 
 
-\cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
+\begin{center}
+\begin{tabular}{ | l | c | c | c | c |}
+\hline  Hypothesis & strong upward compatibility ~ & $\uparrow post^*$ effective & both  \\ \hline
+   SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
+   BSRP & Undecidable (Corollary~\ref{bsrp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+      kSRP & Undecidable (Corollary~\ref{bsrp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+ \end{tabular}
+\end{center}
 
 
+Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
 
+\mathieu{by symmetry} for downward compatible WSTS:
 
+\begin{center}
+\begin{tabular}{ | l | c | c | c | c |}
+\hline  Hypothesis & strong downward compatibility ~ & $\downarrow post^*$ effective & both  \\ \hline
+   SRP & Undecidable  & Decidable   & Decidable \\ \hline
+   BSRP & Undecidable  &  ??  & Decidable \\ \hline
+      kSRP & Undecidable  & ?? & Decidable  \\ \hline
+ \end{tabular}
+\end{center}
 
-
-
-
-
-
+\mathieu{Montrer que leurs hypothèses Lossy + $\bot$-bounded + strong upward compatibility c'est plus fort que just strong downward compatibility et $\downarrow \post^*$ effective ?}
 

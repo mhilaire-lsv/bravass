@@ -18,6 +18,25 @@ Resilience is decidable for Regular Channel Systems when $\Safe$ and $\Bad$ are 
 open for VASS ???
 
 
+
+ \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
+
+We may consider context-free grammars.
+
+\begin{corollary}
+{\sc resilience} is decidable for finite automata and context-free grammars (seen as transition systems)
+\end{corollary}
+
+\begin{proof}
+
+  \textcolor{red}{à faire Mathieu}
+Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+\end{proof}
+
+
+\cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
+
+
 \subsection{Timed Automata}
 
 \textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
