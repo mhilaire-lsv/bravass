@@ -131,12 +131,12 @@ asking whether $S \setminus U_n$ is reachable from $s$.
 The characterization is used to show that Petri nets are $\post^*$-effective. 
 
 \begin{proposition}
-Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of the Petri net, then one can compute a basis of $\uparrow \post^*(s)$.
+Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
 \end{proposition}
 
 It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
-Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(S)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
-Hence state-resilience is decidable for Petri nets and VASS.
+Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
+Hence state-resilience is decidable for both Petri nets and VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
 
 \begin{proposition}
