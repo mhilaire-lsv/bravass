@@ -243,7 +243,7 @@ See Appendix~\ref{appendix} for the complete proof.
 \end{proof}
 
 
-Since reachability of $0$ is undecidable in Reset Petri-Nets, the reduction implies the following:
+Since the Reset Petri Net zero reachability problem is undecidable in Reset Petri-Nets, the reduction implies the following:
 
 \begin{corollary}
 Reset Petri Net liveness is undecidable.
@@ -586,8 +586,10 @@ And hence decidability follows.
 
 
 
-\subsection{Other}
+\subsection{Synthesis}
 
+
+\iffalse
 \mathieu{Should try to put all results in a single table}
 
 
@@ -624,11 +626,19 @@ With $\uparrow \post^*$ effectiveness and strong compatibility hypothesis:
  \end{tabular}
 \end{center}
 
+\fi
+
+Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
 
 
-
-
-
+\begin{center}
+\begin{tabular}{ | l | c | c | c | c |}
+\hline  Hypothesis & strong compatibility ~ & $\uparrow post^*$ effective & both  \\ \hline
+   SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
+   BSRP & Undecidable (Corollary~\ref{bsrp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+      kSRP & Undecidable (Corollary~\ref{bsrp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+ \end{tabular}
+\end{center}
 
 
 
