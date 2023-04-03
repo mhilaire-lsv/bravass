@@ -2,41 +2,53 @@
 
 \section{Applications section}
 
+\subsection{Pushdown automata}
 
-\subsection{VASS, 2-VASS, semilinear VASS, Lossy Channel Systems, Integer et Continuous VASS, Regular Channel Systems}
-
-\begin{theorem}{}
-Resilience is decidable for semilinear VASS, LCM, Integer et Continuous VASS when $\Safe$ and $\Bad$ are semilinear sets.
-\end{theorem}
-
-se déduit du papier Schnoebelen RP 2010, page 8
-
-\begin{theorem}{}
-Resilience is decidable for Regular Channel Systems when $\Safe$ and $\Bad$ are regular languages.
-\end{theorem} 
-
-open for VASS ???
-
-
-
- \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
-
-We may consider context-free grammars.
+%We may consider context-free grammars.
 
 \begin{corollary}
-{\sc resilience} is decidable for finite automata and context-free grammars (seen as transition systems)
+{\sc resilience} is decidable for pushdown automata.
 \end{corollary}
 
 \begin{proof}
+pushdown automata $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
 
   \textcolor{red}{à faire Mathieu}
 Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
 \end{proof}
+%
+%
+\subsection{LCM, VASS, semilinear VASS, Integer et Continuous VASS}
+
+
+\begin{theorem}{}
+Resilience is decidable for LCM, semilinear VASS, Integer et Continuous VASS when $\Safe$ and $\Bad$ are semilinear sets.
+\end{theorem}
+
+se déduit du papier Schnoebelen RP 2010, page 8. RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. 
+
+
+open for VASS ???
+
+ \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
 
 
 \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
 
 
+\subsection{Regular Channel Systems}
+
+
+\begin{theorem}{}
+Resilience is decidable for Regular Channel Systems when $\Safe$ and $\Bad$ are regular languages.
+\end{theorem} 
+
+corollary: Lossy Channel Systems.
+
+
+%
+\iffalse
+%
 \subsection{Timed Automata}
 
 \textcolor{red}{Should be defined in a later 'application section' once we start writing any proof, for now I leave it there} 
@@ -231,6 +243,9 @@ $i\in\{0,1\}$, and some $\delta \in R_i$.
 {A state $q$ of a OCA $(Q, \Delta)$, a set $SAFE \subseteq Q$, a set $BAD \subseteq Q$.}
 {$\exists k \geq 0 ~ \forall q' \in BAD \forall n,n' \in \N ~ (q(n) \rightarrow^* q'(n')) \implies \exists q'' \in SAFE \exists n'' \in \N ~ q'(n') \rightarrow^{\leq k} q''(n'')$ ?\newline}
 
+%
+\fi
+%
 
 \section{conclusion}
 
