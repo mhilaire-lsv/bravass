@@ -446,7 +446,16 @@ The algorithm from \cite{DBLP:conf/gg/Ozkan22} for {\sc $k$-state-resilience} te
 \end{proposition}
 
 \begin{proof}[Sketch]
-\mathieu{ (Formalism should be made more explicit so that the proof can be really pertinent)}
+Since $\pred(\uparrow \Safe)$ is not necessarily upward closed, it is possible to have 
+ $\uparrow post^* (s) \cap S \not\subseteq \pred(\Safe)$,
+despite having 
+$post^* (s) \cap S \subseteq \pred( \Safe)$.
+In such a case the algorithm from
+\cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold,
+which is incorrect.
+An example of this is ...
+\mathieu{ (Lossy counter machine whose Formalism should be made more explicit so that the proof can be really pertinent)}
+\iffalse
 \textcolor{red}{
 Let us consider a LCS where erasing a message take one step. Then the upward compatibility is not strong. 
 For instance with a rule $\delta(q,b) = \text{ add some }b $,
@@ -465,72 +474,7 @@ because $\uparrow post^* (s) \cap S \not\subseteq \pred(\uparrow \{(q,b)\})$,
 despite having 
 $post^* (s) \cap S \subseteq \pred(\uparrow \{(q,b)\})$.
 }
-
-\iffalse
-\mathieu{
-
-On considère un LCS, où on autorise à effacer des messages (lossyness) mais effacer un message prends une étape (contrairement à [ref], où ils font une sorte de cloture de effacer-transition-effacer). On n'a alors pas la strong compatibility: 
-
-On prends: $(q, b) 	\to (q,bb)$ par exemple et $(q, baaaaaa) \geq (q,b) $, alors
-$(s, baaaaaa) \to^* (s,b) \to (s,bb)$
-MAIS
-
-C'est pas "en une étape".
-
-(On considère -il faut le mentionner/vérifier- que on ne peut effaçer que d'un coté ? et pas au milieu?)
-
-Dans ce cas là, du coup, $pred(\uparrow \{(q,b)\}$ n'est pas clos par le haut. \\
-
-Revenons au Corollaire
-
-On voudrais avoir
-
-$post^* (s) \cap J \subseteq I^k$
-
-MAIS pas
-
-$ (\uparrow post^* (s)) \cap J \subseteq I^k$ \\
-
-
-Ça serait un cas où leurs algorithme vas dire 
-"On n'a pas $(\uparrow post^* (s)) \cap J \subseteq I^k$ donc on n'a pas la $k$-résilience "
-
-Alors qu'on aurait la $k$-résilience (i.e. $post^* (s) \cap J \subseteq I^k$)
-
-Pour $I^k$, le contre exemple prendrait du coup $pred(\uparrow \{ (q,b)\})$ qui n'est pas clos par le haut.
-
-On voudrait
-
-$post^*(s) \cap J \subseteq pred(\uparrow \{ (q,b)\})$
-
-
-Je propose de prendre $J$ = ensemble des configurations je pense le truc ici doit venir de
-$\uparrow post^* (s)$ being too big
-donc autant pas se restreindre du tout sur $J$
-
-
-$post^*(s) \subseteq pred(\uparrow \{ (q,b)\})$
-
-Si $s=(q,b)$ par exemple, et que on peut aller de $q$ vers $q$ en écrivant un 
-$b$ ? et évidement en perdant le dernier message (parce qu'on est lossy). Et c'est tout, disons.
-
-Déjà par lossiness $(q,\epsilon)$ serait dans $post^*((q,b))$.
-
-Et aussi dans $pred(\uparrow \{ (q,b)\})$ puisque $(q,\epsilon) \to (q,b)$.
-
-Donc on aurait:
-
-$post^*((q,b))  \subseteq pred(\uparrow \{ (q,b)\})$
-
-Et on aurait $(q,aaaaaa)$ dans 
-$\uparrow post^* ((q,b))$ puisque $(q,\epsilon)$ est dans $post^* ((q,b))$.
-
-Hors $(q,aaaaa)$ est pas dans $pred(\uparrow \{ (q,b)\})$
-(même si il est dans $pred^*(\uparrow \{ (q,b)\})$).
-
-}
-\fi 
- 
+\fi
 \end{proof}
 
 \mathieu{In case we have  effective basis of $post^*$ and upward compatibility (not strong) then we don't know the decidability status of k-state-resilience and bounded-state-resilience. Not necessarily a big deal, but should write a comment or two about this.}
