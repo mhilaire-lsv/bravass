@@ -130,7 +130,7 @@ else $s \not\to^* \Bad$.
 \fi
 
 
-Since $t$-liveness is undecidable for Reset VASS that are WSTS with strong upward compatibility, from Proposition~\ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+Since $t$-liveness is undecidable for Reset VASS that are WSTS with strong compatibility, from Proposition~\ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{theorem}\label{srp up down}
@@ -152,24 +152,24 @@ and $\Bad=\downarrow \Bad$.
 
 % \begin{proposition}
 In WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
-reducible to {\sc $k$-state-resilience}.
+reducible to {\sc $k$-state-resilience}:
 % \end{proposition}
 % 
 % \begin{proof}
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
+since $\Safe=\uparrow \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong %upward-
 compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
 and there exists $n_0 \in \N$ such that 
 $\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 We compute 
 $n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$ to $n_0$.  
 % \end{proof}
-Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded-state-resilience problem is equivalent to the state-resilience problem,
+Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
 % \end{proposition}
 %
 % \begin{proof}
 since 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = {\uparrow \pred^*(\Safe)} = \pred^*(\Safe)$.
 Hence the %equivalence, and
  undecidability of {\sc Bounded-state-resilience}
 and 
@@ -198,7 +198,7 @@ and $\Bad=\downarrow \Bad$.
 On the positive side, let us recall a result about state-resilience decidability (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
-{\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+{\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
 when
 $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$.
@@ -207,7 +207,7 @@ and $\Bad=\downarrow \Bad$.
 We may immediately generalyse this last result by strengthening to \emph{unbounded} state-resilience. The proof is essentially the same than the previous one.
 
 \begin{corollary}\label{postcomputable}
-{\sc state-resilience} is decidable for WSTS with strong upward compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+{\sc state-resilience} is decidable for WSTS with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
 when
 $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$.
@@ -230,7 +230,7 @@ and state-resilience is decidable.
 \alain{definir downward reachability problem.....
 downward-closed problem given a state $s$ of a WSTS
 % in the regarded class 
-with strong upward compatibility 
+with strong compatibility 
 and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. }
 \fi
 
@@ -247,11 +247,11 @@ Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which
 
 %\"Ozkan
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
-For finite-branching WSTS%with strong upward compatibility
+For finite-branching WSTS%with strong compatibility
 , a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 %i 			.e. given a state $s$ of a WSTS
 % in the regarded class 
-%with strong upward compatibility 
+%with strong compatibility 
 %and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. 
 \end{proposition}
 
@@ -289,9 +289,9 @@ So downward-set reachability is decidable for PN.
 \fi
 
 It is well-known that 
-% Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
+% Petri nets are WSTS with strong  compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 % Since 
-VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
+VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
 Hence state-resilience is decidable for %both Petri nets and 
 VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
@@ -302,7 +302,7 @@ There exist classes of WSTSs with strong (upward) compatibility for which there 
 
 
 \begin{proof}
-Let us show that Reset VASS, that are effective WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
+Let us show that Reset VASS, that are effective WSTSs with strong compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. 
 \iffalse
 Then, one would be able to decide whether an element $m \in Min(\uparrow \post^*)$ is reachable.
@@ -314,7 +314,7 @@ is undecidable for Reset VASS.
 % sont WSTS with strong compatibility. et l'accessibilité est undecidable.
 %	$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
 \fi
-Then, state-resilience would be decidable for Reset VASS.
+Then, state-resilience would be decidable for Reset VASS, which lead to a contradiction.
 \end{proof}
 
 %il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
@@ -324,7 +324,7 @@ Then, state-resilience would be decidable for Reset VASS.
 %si on garde strong mais on enlève effective basis of $post^*$:
 %
 %\begin{proposition}(à prouver)
-%{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong upward compatibility.
+%{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong compatibility.
 %\end{proposition}
 %
 %\begin{proof}
@@ -341,7 +341,7 @@ Then, state-resilience would be decidable for Reset VASS.
 
 
 
-Keeping the $\uparrow post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general state-resilience problem.
+Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general state-resilience problem.
 
 
 \begin{lemma}\label{Lemma intersection}
@@ -395,13 +395,7 @@ We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that 
 
 
 
-However when removing strong compatibility, precision is lost and the algorithm do not work anymore.
-
-\begin{proposition}
-The algorithm from \cite{DBLP:conf/gg/Ozkan22} for {\sc $k$-state-resilience} terminate but is incorrect for WSTS with upward compatibility (not strong) and an effective basis of $\uparrow \post^*$.
-\end{proposition}
-
-\begin{proof}[Sketch]
+However when removing strong compatibility, precision is lost.
 Since $\pred(\uparrow \Safe)$ is not necessarily upward closed, it is possible to have 
  $\uparrow post^* (s) \cap S \not\subseteq \pred(\Safe)$,
 despite having 
@@ -410,44 +404,10 @@ In such a case the algorithm from
 \cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold,
 which is incorrect.
 An example of this is ...
-\mathieu{ (Lossy counter machine whose Formalism should be made more explicit so that the proof can be really pertinent)}
-\iffalse
-\textcolor{red}{
-Let us consider a LCS where erasing a message take one step. Then the upward compatibility is not strong. 
-For instance with a rule $\delta(q,b) = \text{ add some }b $,
-we have $(q,b) \to (q,bb)$, $(q, baaa) \geq (q,b)$ and
-$(q, baaa) \to^* (q,bb)$ however it takes more than a single step. 
-In this case then $\pred(\uparrow \{(q,b)\})$ is not upward-closed. Hence 
-$post^* (s) \cap D \subseteq \pred(\uparrow \{(q,b)\})$
-do not imply
-$\uparrow post^* (s) \cap D \subseteq \pred(\uparrow \{(q,b)\})$ for a downward-closed set $D$.
-In particular by lossiness $(q, \epsilon)$ would belong to
-$post^* (s)$,
-hence $(q,a)$, $(q,aa)$, etc. would belong to $\uparrow post^* (s)$ although not necessarily to
-$post^* (s)$. $(q,aaa)$ not being in $pred(\uparrow \{ (q,b)\})$ means the algorithm 
-from \cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold in this example when $\Safe=\uparrow \{(q,b)\}$ and $\Bad =S$,
-because $\uparrow post^* (s) \cap S \not\subseteq \pred(\uparrow \{(q,b)\})$,
-despite having 
-$post^* (s) \cap S \subseteq \pred(\uparrow \{(q,b)\})$.
-}
-\fi
-\end{proof}
 
-\mathieu{In case we have  effective basis of $post^*$ and upward compatibility (not strong) then we don't know the decidability status of k-state-resilience and bounded-state-resilience. Not necessarily a big deal, but should write a comment or two about this.}
+Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not strong) compatibility, we don't know the decidability status of $k$-state-resilience and bounded-state-resilience. 
 
-\iffalse
-\begin{proposition}
-\textcolor{red}{
-{\sc bounded resilience} is undecidable for WSTS with upward compatibility with an effective basis of $post^*$.
-CONJECTURE
-}
-\end{proposition}
-
-\begin{proof}
- \textcolor{red}{pas certain ! à faire Mathieu}
-\end{proof}
-\fi
-
+\mathieu{Until here}
 
 \subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
 
