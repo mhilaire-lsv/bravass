@@ -134,6 +134,7 @@ The characterization is used to show that Petri nets are $\post^*$-effective. Si
 Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
 \end{proposition}
 
+\iffalse
 \begin{proof}
 By Proposition~\ref{post*}, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 Let us now show that the downward-reachability problem is decidable for Petri nets.
@@ -148,6 +149,7 @@ i.e. you ask the submarking problem for all of the $m \times n$ possibilities.
 
 So downward-set reachability is decidable for PN.
 \end{proof}
+\fi
 
 It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
