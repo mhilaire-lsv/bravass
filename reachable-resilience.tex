@@ -128,7 +128,7 @@ Decidability of downward reachability leads to the decidability of the following
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-The characterization is used to show that Petri nets are $\post^*$-effective. 
+The characterization is used to show that Petri nets are $\post^*$-effective. Since the downward reachability problem is decidable for Petri-nets, we deduce the following:
 
 \begin{proposition}
 Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
@@ -146,7 +146,7 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 \begin{proof}
 Let us show that Reset VASS, that are WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
+Suppose that one is able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
 $0$ in the basis%
@@ -537,9 +537,26 @@ CONJECTURE
 
 The authors from \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
 have only been concerned with the case $\Safe = \uparrow \Safe$
-and $\Bad =\downarrow \Bad$, however as mentioned in Section~3
+and $\Bad =\downarrow \Bad$, 
+\mathieu{pas tout à fait vrai: dans le technical report \cite{DBLP:conf/gg/Ozkan22} il considère aussi le cas où Bad et Safe sont tous les deux clos par le haut mais aussi le cas Safe clos par le bas Bad clos par le haut.}
+ however as mentioned in Section~3
 the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 Hence it makes sense to consider this symmetrical case as well. \\
+
+
+\mathieu{rappeler résultats de \cite{DBLP:conf/gg/Ozkan22}}
+
+\begin{theorem}{\cite{DBLP:conf/gg/Ozkan22}}
+The bounded-state-resilience problem is decidable for \textcolor{red}{fin-marked} 
+strongly compatible WSTS
+ which are 
+ {\em \textcolor{red}{lossy} } 
+ and 
+ {\em \textcolor{red}{$\bot$-bounded}  }
+ if $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$.
+\end{theorem}
+
+
 
 Unfortunately however the problem is undecidable in general.
 
