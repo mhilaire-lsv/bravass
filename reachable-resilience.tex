@@ -110,7 +110,7 @@ Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which
 
 
 %\"Ozkan
-\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]
+\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
 For finite-branching WSTS%with strong upward compatibility
 , a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 %i 			.e. given a state $s$ of a WSTS
@@ -133,6 +133,19 @@ The characterization is used to show that Petri nets are $\post^*$-effective. Si
 \begin{proposition}
 Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one can compute a basis of $\uparrow \post^*(s)$.
 \end{proposition}
+
+\begin{proof}
+By Proposition~\ref{post*}, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
+Let us now show that the downward-reachability problem is decidable for Petri nets.
+Let us consider a downward closed set $D$ in a Petri net.
+$D$ is  defined by ... states where your number of counter is bounded by a constant, and others where it is unbounded. You have $m$ counters where it is bounded by $n$
+then you have $m \times n$ possibilities for the values in these counters
+you have unlimited possibilities for the values of the other counters,
+but that is where the submarking problem comes in handy,
+i.e. you ask the submarking problem for all of the $m \times n$ possibilities.
+
+So downward-set reachability is decidable for PN.
+\end{proof}
 
 It is well-known that Petri nets are WSTS with strong upward compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 Since VASS are WSTS with strong upward compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
