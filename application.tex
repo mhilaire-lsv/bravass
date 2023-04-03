@@ -1,21 +1,32 @@
 
 
-\section{Applications section}
+\section{Resilience in counter and fifo channel machines}
 
 \subsection{Pushdown automata}
 
 %We may consider context-free grammars.
 
-\begin{corollary}
-{\sc resilience} is decidable for pushdown automata.
-\end{corollary}
+\begin{theorem}
+The three {\sc resilience} problems are decidable for pushdown automata with $\Safe$ and $\Bad$ regular languages.
+\end{theorem}
 
 \begin{proof}
-pushdown automata $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
-
-  \textcolor{red}{à faire Mathieu}
-Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For every pushdown automaton $A=(Q,\Sigma,...)$ and every regular language $L \subseteq Q \times \Sigma^*$, the set $\pred^*(L)$ is a computable regular language \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
+%
+%			Moreover, $post^*(\Bad)$ is also a computable regular language \alain{pourquoi ?}   $post^*(L)$ and
+so the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
+%
+BRP
+%
+kRP
+%
 \end{proof}
+%
+Let us remark that $\uparrow post^*(s)$ is also a computable regular language, but we cannot directly apply Theorem \ref{} since PA are not WSTS for the usual orderings.
+
+%  \textcolor{red}{à faire Mathieu}
+%Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
+
 %
 %
 \subsection{LCM, VASS, semilinear VASS, Integer et Continuous VASS}
@@ -25,15 +36,18 @@ Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monoton
 Resilience is decidable for LCM, semilinear VASS, Integer et Continuous VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
-se déduit du papier Schnoebelen RP 2010, page 8. RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}. 
+\begin{proof}
+LCM se déduit du papier de Pachl (1986) that uses a regular inductive invariant to obtain a witness of non-reachability.
 
+Schnoebelen RP 2010, page 8. RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}.
+
+semilinear VASS
+
+Integer et Continuous VASS
+\end{proof}
 
 open for VASS ???
 
- \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
-
-
-\cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
 
 
 \subsection{Regular Channel Systems}
@@ -43,8 +57,11 @@ open for VASS ???
 Resilience is decidable for Regular Channel Systems when $\Safe$ and $\Bad$ are regular languages.
 \end{theorem} 
 
+Another proof is possible for LCS which have a (non-computable) regular reachability set. LCS are WSTS with a computable $\uparrow post^*(S)$.
+
 corollary: Lossy Channel Systems.
 
+ \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
 
 %
 \iffalse

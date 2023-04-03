@@ -376,16 +376,16 @@ and $\Bad=\downarrow \Bad$.
 
 
 \begin{proof}
-Let $B_p$ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
-and $\Bad$ decidable downward-closed.
+Let $B_s$ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
+and $\Bad$ a downward-closed set given by its finite set of (maximal) ideals.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
 
-$$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_p \cap \Bad \subseteq \pred^*(\Safe)$$
+$$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_s \cap \Bad \subseteq \pred^*(\Safe)$$
 
 
-Since $B_p$ is finite and $\Bad$ is decidable, we can directly compute $ B_p \cap \Bad$.
+Since $B_s$ is finite and $\Bad$ is decidable, we can directly compute $ B_s \cap \Bad$.
 % For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
-We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_p \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
+We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_s \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
 \end{proof}
 
 % In the proof of Thm. 1, it was crucial that we have strong compatibility. This approach does not work
@@ -398,7 +398,7 @@ We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that 
 
 
 However when removing strong compatibility, precision is lost.
-Since $\pred(\uparrow \Safe)$ is not necessarily upward closed, it is possible to have 
+Since $\pred(\uparrow \Safe)$ is not necessarily upward-closed, it is possible to have 
  $\uparrow post^* (s) \cap S \not\subseteq \pred(\Safe)$,
 despite having 
 $post^* (s) \cap S \subseteq \pred( \Safe)$.
