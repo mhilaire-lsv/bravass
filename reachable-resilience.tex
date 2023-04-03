@@ -138,7 +138,9 @@ Let $P = (N,M,W)$ be a Petri net and $s \in M$ a configuration of $P$, then one 
 By Proposition~\ref{post*}, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 Let us now show that the downward-reachability problem is decidable for Petri nets.
 Let us consider a downward closed set $D$ in a Petri net.
-$D$ is  defined by ... states where your number of counter is bounded by a constant, and others where it is unbounded. You have $m$ counters where it is bounded by $n$
+Let us consider $B$ a basis of the upward closed set $S \setminus D$.
+
+$D$ is  defined by ... states where your number of counter is bounded by a constant (deduce this from ... having to be smaller than elements of the basis $B$), and others where it is unbounded. You have $m$ counters where it is bounded by $n$
 then you have $m \times n$ possibilities for the values in these counters
 you have unlimited possibilities for the values of the other counters,
 but that is where the submarking problem comes in handy,
@@ -593,7 +595,7 @@ strongly compatible WSTS
 Unfortunately however the problem is undecidable in general.
 
 \begin{theorem}
-The resilience problem is undecidable for effective WSTS with  strong  compatibility 
+The state resilience problem is undecidable for effective WSTS with  strong  compatibility 
 when
 $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$.
