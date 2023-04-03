@@ -102,7 +102,7 @@ and a decidable downward-closed set $D$, it can be decided whether $\exists s' \
 The computability of $\uparrow \post^*(s)$ seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
 Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
-\problemx{Downward reachability problem}
+\problemx{Downward-reachability problem}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and a downward-closed set $D
 \subseteq S$.}
 {$\exists s' \in D ~ s \to^* s'$? \newline}
@@ -121,8 +121,8 @@ For finite-branching WSTS%with strong upward compatibility
 
 % \alain{rappeler l'idée de la preuve}
 The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, we check whether
-$B_{\uparrow \post^*(s)} \cap D = \emptyset$, equivalent to $\post^*(s)\cap D = \emptyset$ by
-Lemma~\ref{Lemma intersection}. For the converse direction, we compute the sequence of upward-closed
+$B_{\uparrow \post^*(s)} \cap D = \emptyset$, that is equivalent to $\post^*(s)\cap D = \emptyset$ by
+Lemma~\ref{Lemma intersection}. For the converse direction, we compute the sequence of upward-closed sets
 $U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary. 
 Decidability of downward reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
@@ -139,8 +139,8 @@ There exist classes of WSTSs with strong upward compatibility for which there do
 
 
 \begin{proof}
-Let us show that Reset VASS, that are WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether $0$ is reachable 
+Let us show that Reset VASS, that are effective WSTSs with strong upward compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
+Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. Then, one would be able to decide whether an element $m \in Min(\uparrow \post^*)$ is reachable.
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
 $0$ in the basis%
