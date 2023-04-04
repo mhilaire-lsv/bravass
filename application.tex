@@ -50,17 +50,23 @@ open for VASS ???
 
 
 
-\subsection{Regular Channel Systems}
+\subsection{Regular Channel Machines}
+
+Fifo automata and systems of communicating finite-state machines (CFSMs) are essentially finite automata that communicate through fifo channels (or queues). In 1986, Pachl introduced in \cite{} the property for such systems to have a regular reachability set that gives a semi-algorithm to test non-reachability. As reachability is recursively enumerable, this provides an algorithm to solve reachability.
 
 
 \begin{theorem}{}
-Resilience is decidable for Regular Channel Systems when $\Safe$ and $\Bad$ are regular languages.
+Resilience is decidable for regular fifo automata and for systems of CFSMs when $\Safe$ and $\Bad$ are regular languages.
 \end{theorem} 
 
-Another proof is possible for LCS which have a (non-computable) regular reachability set. LCS are WSTS with a computable $\uparrow post^*(S)$.
+Since lossy channel systems have (non computable) regular reachability sets, we imediately deduce that.
 
-corollary: Lossy Channel Systems.
+\begin{corollary}
+Resilience is decidable for lossy channel systems.
+\end{corollary}
 
+Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow post^*(S)$.
+%
  \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
 
 %
