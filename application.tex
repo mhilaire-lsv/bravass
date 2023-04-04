@@ -11,10 +11,10 @@ The three {\sc resilience} problems are decidable for pushdown automata with $\S
 \end{theorem}
 
 \begin{proof}
-Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For every pushdown automaton $A=(Q,\Sigma,...)$ and every regular language $L \subseteq Q \times \Sigma^*$, the set $\pred^*(L)$ is a computable regular language \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}
+Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For every pushdown automaton $A=(Q,\Sigma,...)$ and every regular language $L \subseteq Q \times \Sigma^*$, the set $\pred^*(L)$ is a computable regular language \cite{DBLP:journals/ipl/BouajjaniEFMRWW00}. Since $\Bad$ and $\Safe$ are both regular, we deduce that
 %
 %			Moreover, $post^*(\Bad)$ is also a computable regular language \alain{pourquoi ?}   $post^*(L)$ and
-so the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
+ the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
 %
 BRP
 %
@@ -22,10 +22,10 @@ kRP
 %
 \end{proof}
 %
-Let us remark that $\uparrow post^*(s)$ is also a computable regular language, but we cannot directly apply Theorem \ref{} since PA are not WSTS for the usual orderings.
+Let us remark that $\uparrow post^*(q,w)$ is also a computable regular language, but we cannot directly apply Theorem \ref{} since PA are not WSTS for the usual orderings (subword, prefix).
+Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} for the subword ordering and $\uparrow post^*$ is computable but context-free grammars are not strongly compatible.
 
 %  \textcolor{red}{à faire Mathieu}
-%Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} \alain{monotony ne semble pas strong...}avec $\uparrow post^*$ calculable (because the reachability set of a pushdown machine is an effectively computable regular language) ???? resilience decidable.
 
 %
 %
