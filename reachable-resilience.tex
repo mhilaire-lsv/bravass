@@ -414,49 +414,8 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 \subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
 
 
-The authors from \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}
-have only been concerned with the case $\Safe = \uparrow \Safe$
-and $\Bad =\downarrow \Bad$, 
-\mathieu{pas tout à fait vrai: dans le technical report \cite{DBLP:conf/gg/Ozkan22} il considère aussi le cas où Bad et Safe sont tous les deux clos par le haut mais aussi le cas Safe clos par le bas Bad clos par le haut.}
- however as mentioned in Section~3
-the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
-Hence it makes sense to consider this symmetrical case as well. \\
 
-
-\mathieu{rappeler résultats de \cite{DBLP:conf/gg/Ozkan22}}
-
-
-\begin{definition}{marked WSTS} 
-A {\em marked} WSTS is a tuple $(S, \leq, \to, INIT)$
-where $(S, \leq, \to)$ is a WSTS and $INIT \subseteq S$. 
-If $INIT$ is finite, we call it {\em fin-marked}.
-\end{definition}
-
-\begin{definition}
-A marked WSTS is
-\begin{itemize}
-\item lossy if $\downarrow \post^* (INIT) = \post^* (INIT)$,
-\item $\bot$-bounded (bottom-bounded) if there is a natural number 
-$\ell \geq 0$ s.t. $s_B \in \post^{\leq \ell} (s) $ for every $ s \in S$ and every element 
-$s_B$ of a basis of $S$ with $s \geq s_B$.
-\end{itemize}
-\end{definition}
-
-\mathieu{}
-
-\begin{theorem}{\cite{DBLP:conf/gg/Ozkan22}}
-The bounded-state-resilience problem is decidable for \textcolor{red}{fin-marked} 
-strongly compatible WSTS
- which are 
- {\em \textcolor{red}{lossy} } 
- and 
- {\em \textcolor{red}{$\bot$-bounded}  }
- if $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$.
-\end{theorem}
-
-
-
-Unfortunately however the problem is undecidable in general.
+Unfortunately the problem is undecidable in general.
 
 \begin{theorem}
 The state resilience problem is undecidable for effective WSTS with  strong  compatibility 
@@ -476,9 +435,11 @@ to the problem of whether $0$ can be visited infinitely often.
 Hence the undecidability.
 \end{proof}
 
-\mathieu{But what if we are in the case of $\uparrow \post^*$ effectiveness?}
 
-\mathieu{Écrire que c'est globalement symmétrique au cas d'avant - je pense pas nécessairement qu'on arrive à faire beaucoup mieux que de juste dire ça.}
+Despite this, "there is still hope". Indeed, in many ways the case where $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
+is symmetrical to the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$.
+%
+For instance one can write the following lemma:
 
 \begin{lemma}(Symmetrical from Lemma~\ref{Lemma intersection})\label{Lemma intersection 2}
 Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
@@ -498,15 +459,90 @@ $({\downarrow  A}) \cap U \subseteq D$ implies
 $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
 \end{proof}
 
-Lemma~\ref{Lemma intersection 2} can be used to show that
-$\post^*(s) \cap \Bad \subseteq D$  iff $ (\downarrow  \post^*(s)) \cap \Bad \subseteq D$.
 
-If, as in Section~XX, we have the \textcolor{red}{added hypothesis}
-that
-$\pred^*(\Safe)$ is downward closed this means that
+In the case of a WSTS with downward compatiblitity, not necessarily strong,
+then $\Safe$ downward-closed implies $\pred^*(\Safe)$ downward-closed and
+Lemma~\ref{Lemma intersection 2} can be used to show that
+if $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$,
+then
 $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) \cap \Bad \subseteq \pred^*(\Safe)$.
 
-And hence decidability follows.
+
+\begin{theorem}
+{\sc state-resilience} is decidable for WSTS with downward compatibility,
+$\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
+\end{theorem}
+
+\mathieu{Maybe should discuss removing the assumption of upward compatibility and add a sort of 
+$\downarrow \post^*$ effectiveness hypothesis, but what would it even mean ?}
+
+\begin{proof}
+Enumerate the downard-closed sets that contain $s$ and are closed under $\post$.
+For ‘each of them’
+check
+intersection with $\Bad \subseteq \pred^*(\Safe)$.
+If $(\downarrow  \post^*(s)) \cap \Bad \subseteq \pred^*(\Safe)$
+then we know we will find some 
+member of the enumeration such that
+subseteq hold;
+Conversely
+compute
+
+$$ \post(s), ~ \downarrow \post(s), \downarrow \post^2(s) \ldots $$
+
+and ...
+
+check whether at one point we encounter some element in $\Bad$ but not in $\pred^*(\Safe)$.
+
+\end{proof}
+
+
+Strong downward compatibility implies furthermore the decidability
+of $k$-state-resilience and bounded-state-resilience.
+
+
+
+\iffalse	\mathieu{}
+
+ The result from \cite{DBLP:journals/corr/abs-2108-00889}
+only concerns with the case $\Safe = \uparrow \Safe$
+and $\Bad =\downarrow \Bad$, 
+ however as mentioned in Section~3
+the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
+Hence it makes sense to consider this symmetrical case as well. 
+ \cite{DBLP:conf/gg/Ozkan22} considers 
+ the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$ however the results are ...
+
+
+\begin{definition}[marked WSTS] 
+A {\em marked} WSTS is a tuple $(S, \leq, \to, s_0)$
+where $(S, \leq, \to)$ is a WSTS and $s_0 \in S$. 
+% If $INIT$ is finite, we call it {\em fin-marked}.
+\end{definition}
+
+\begin{definition}
+A marked WSTS is
+\begin{itemize}
+\item lossy if $\downarrow \post^* (s_0) = \post^* (s_0)$,
+\item $\bot$-bounded (bottom-bounded) if there is a natural number 
+$\ell \geq 0$ s.t. $s_B \in \post^{\leq \ell} (s) $ for every $ s \in S$ and every element 
+$s_B$ of a basis of $S$ with $s \geq s_B$.
+\end{itemize}
+\end{definition}
+
+
+\begin{theorem}{\cite{DBLP:conf/gg/Ozkan22}}
+The bounded-state-resilience problem is decidable for marked
+strongly compatible WSTS
+ which are 
+ {\em \textcolor{red}{lossy} } 
+ and 
+ {\em \textcolor{red}{$\bot$-bounded}  }
+ if $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$.
+\end{theorem}
+
+
+\mathieu{}	\fi
 
 
 
