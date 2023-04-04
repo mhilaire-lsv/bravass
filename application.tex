@@ -1,6 +1,6 @@
 
 
-\section{Resilience in counter and fifo channel machines}
+\section{Solving resilience with invariants}
 
 \subsection{Pushdown automata}
 
@@ -22,43 +22,29 @@ kRP
 %
 \end{proof}
 %
-Let us remark that $\uparrow post^*(q,w)$ is also a computable regular language, but we cannot directly apply Theorem \ref{} since PA are not WSTS for the usual orderings (subword, prefix).
+Let us remark that $\uparrow post^*(q,w)$ is also a computable regular language, but we cannot directly apply previous results on WSTS since pushdown automata are not WSTS for the usual orderings (subword, prefix).
 Context-free grammars are WSTS \cite{DBLP:journals/tcs/FinkelS01} for the subword ordering and $\uparrow post^*$ is computable but context-free grammars are not strongly compatible.
 
 %  \textcolor{red}{à faire Mathieu}
 
 %
 %
-\subsection{LCM, VASS, semilinear VASS, Integer et Continuous VASS}
-
-
-\begin{theorem}{}
-Resilience is decidable for LCM, semilinear VASS, Integer et Continuous VASS when $\Safe$ and $\Bad$ are semilinear sets.
-\end{theorem}
-
-\begin{proof}
-LCM se déduit du papier de Pachl (1986) that uses a regular inductive invariant to obtain a witness of non-reachability.
-
-Schnoebelen RP 2010, page 8. RP is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of results in Section 3.4 of \cite{DBLP:conf/rp/Schnoebelen10}.
-
-semilinear VASS
-
-Integer et Continuous VASS
-\end{proof}
-
-open for VASS ???
 
 
 
-\subsection{Regular Channel Machines}
+\subsection{Regular fifo automata}
 
-Fifo automata and systems of communicating finite-state machines (CFSMs) are essentially finite automata that communicate through fifo channels (or queues). In 1986, Pachl introduced in \cite{} the property for such systems to have a regular reachability set that gives a semi-algorithm to test non-reachability. As reachability is recursively enumerable, this provides an algorithm to solve reachability.
-
+Fifo automata and systems of communicating finite-state machines (CFSMs) are essentially finite automata that communicate through fifo channels (or queues). For the sake of simplicity, we consider automata with an unique fifo channel (that have the power of turing machines). In 1986, Pachl introduced in \cite{} the property for such systems to have a regular reachability set (or even a regular relation) and he showed that this gives a semi-algorithm to test non-reachability with a regular inductive invariant to obtain a witness of non-reachability Let $(q,w)$ be an initial state and $(q',w')$ be a state. Since $post^*(q,w)$ is known to be regular (even if we don't know how to compute it), we may enumerate all regular languages $L \subseteq Q \times \Sigma^*$ that contain $(q,w)$ and such that $post(L) \subseteq L$ (inductive invariant). We know that if $(q',w') \not\in post^*(q,w)$ then there exists, at least, a regular language $L$ such that $post^*(q,w) \subseteq L$ and $(q',w') \not\in L$, since $post^*(q,w)$ is such inductive invariant. This strategy provides a semi-algorithm for non-reachability.
+As reachability is recursively enumerable, this provides an algorithm to solve reachability.
 
 \begin{theorem}{}
-Resilience is decidable for regular fifo automata and for systems of CFSMs when $\Safe$ and $\Bad$ are regular languages.
+State-resilience is decidable for regular fifo automata and for systems of CFSMs when $\Safe$ and $\Bad$ are regular languages.
 \end{theorem} 
 
+\begin{proof}
+$\Bad \subseteq \pred^*(\Safe)$ is decidable because $\pred^*(\Safe)$ is a computable regular language.
+\end{proof}
+%
 Since lossy channel systems have (non computable) regular reachability sets, we imediately deduce that.
 
 \begin{corollary}
@@ -68,6 +54,43 @@ Resilience is decidable for lossy channel systems.
 Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow post^*(S)$.
 %
  \alain{resilience decidable for LCS ? LCS sont-ils strong (quelle sémantique ?) et $\uparrow post^*(S)$ is computable ?}
+
+
+%%%
+\subsection{LCM, VASS, semilinear VASS, Integer et Continuous VASS}
+
+
+\begin{theorem}{}
+Resilience is decidable for LCM, semilinear VASS, Integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
+\end{theorem}
+
+\begin{proof}
+Resilience is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that implies that $Pre^*(\Safe)$ is a computable semilinear set, hence the inclusion between the two semilinear sets  $\Bad \subseteq \pred^*(\Safe)$ is decidable.
+
+%		semilinear VASS.
+ \alain{le plus simple serait que $\pred^*(L)$ is semilinear because $post^*(s)$ is semilinear , peut-être en inversant le VASS V en V'on aurait pred*(V)=post*(V') hence $post^*(L)$ is also semilinear ? hence pred ????}
+
+%		Integer VASS
+Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
+
+\end{proof}
+
+We also deduce immediately that resilience is decidable for $2$-VASS that have a semilinear reachability relation.
+
+\begin{theorem}{}
+Resilience is decidable for continuous VASS when $\Safe$ and $\Bad$ are definable in the existential theory of
+the rationals with addition and order.
+\end{theorem}
+
+
+\begin{proof}
+The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
+the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also decidable in EXPSPACE. \alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
+\end{proof}
+
+
+open for VASS ???
+
 
 %
 \iffalse
