@@ -469,7 +469,7 @@ $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
 
 
 \begin{theorem}
-{\sc state-resilience} is decidable for WSTS with downward compatibility,
+{\sc state-resilience} is decidable for ideal effective WSTS with downward compatibility,
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{theorem}
 
@@ -477,23 +477,25 @@ $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 $\downarrow \post^*$ effectiveness hypothesis, but what would it even mean ?}
 
 \begin{proof}
-Enumerate the downard-closed sets that contain $s$ and are closed under $\post$.
-For ‘each of them’
-check
-intersection with $\Bad \subseteq \pred^*(\Safe)$.
-If $(\downarrow  \post^*(s)) \cap \Bad \subseteq \pred^*(\Safe)$
-then we know we will find some 
-member of the enumeration such that
-subseteq hold;
-Conversely
-compute
 
-$$ \post(s), ~ \downarrow \post(s), \downarrow \post^2(s) \ldots $$
+Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. downward closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
+Every inductive invariant $D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
+Notice that, by standard monotonicity, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
 
-and ...
 
-check whether at one point we encounter some element in $\Bad$ but not in $\pred^*(\Safe)$.
+Procedure 1 stops when it finds an invariant $D$ such that
+$D  \cap \Bad \subseteq \pred^*(\Safe)$. 
+Indeed
+$D  \cap \Bad \subseteq  \pred^*(\Safe)$ implies
+$\downarrow \post^*(s) \cap \Bad \subseteq  \pred^*(\Safe)$
+since $ \downarrow \post^*(s)  \subseteq D$.
 
+
+
+The second procedure iteratively computes
+$post^{\leq n}(s) \cap \Bad$
+until it finds an element
+not in $\pred^*(\Safe)$.
 \end{proof}
 
 
@@ -604,7 +606,7 @@ Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
 
 Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
 
-\mathieu{by symmetry} for downward compatible WSTS:
+\mathieu{by symmetry} for downward compatible WSTS (but not necessarily upward compatible):
 
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
@@ -616,4 +618,14 @@ Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
 \end{center}
 
 \mathieu{Montrer que leurs hypothèses Lossy + $\bot$-bounded + strong upward compatibility c'est plus fort que just strong downward compatibility et $\downarrow \post^*$ effective ?}
+
+
+\begin{center}
+\begin{tabular}{ | l | c | c | c | c |}
+\hline  Hypothesis & $\emptyset $ & downward compatible & strongly downward compatible  \\ \hline
+   SRP & Undecidable  & Decidable   & Decidable \\ \hline
+   BSRP & Undecidable  &  ??  & Decidable \\ \hline
+      kSRP & Undecidable  & ?? & Decidable  \\ \hline
+ \end{tabular}
+\end{center}
 
