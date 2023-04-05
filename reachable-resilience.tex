@@ -367,7 +367,9 @@ Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong
 
 
 \begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}\label{post srp}
-{\sc state-resilience} is decidable for (not necessarily strong) WSTS with effective 
+{\sc state-resilience} is decidable for 
+%(not necessarily strong)
+ WSTS with effective 
 $\uparrow$ $\post^*$ basis
 when
 $\Safe=\uparrow \Safe$
@@ -407,9 +409,9 @@ In such a case the algorithm from
 which is incorrect.
 % An example of this is ...
 
-Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not strong) compatibility, we don't know the decidability status of $k$-state-resilience and bounded-state-resilience. 
+Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not strong) compatibility, we don't know the decidability status of {\sc $k$-state-resilience} and 
+{\sc bounded-state-resilience}. 
 
-\mathieu{Until here}
 
 \subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
 
@@ -418,7 +420,7 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 Unfortunately the problem is undecidable in general.
 
 \begin{theorem}
-The state resilience problem is undecidable for effective WSTS with  strong  compatibility 
+{\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
 when
 $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$.
@@ -426,17 +428,16 @@ and $\Bad=\uparrow \Bad$.
 
 \begin{proof}
 Consider Reset VASS
-in the case $\Safe$ contains only the minimal element %$0$ 
+in the case $\Safe$ contains only the minimal element $Min(S) = 0$ %$0$ 
 and $\Bad = S \setminus \Safe$, 
 it follows the state resilience problem is equivalent 
 to the problem of whether $0$ can be visited infinitely often. 
-%
 % Since reachability of $0$ is undecidable for Reset VASS, we conclude.
 Hence the undecidability.
 \end{proof}
 
 
-Despite this, "there is still hope". Indeed, in many ways the case where $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
+Despite this, it is possible to yield positive results. Indeed, in many ways the case where $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
 is symmetrical to the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$.
 %
 For instance one can write the following lemma:
@@ -446,17 +447,8 @@ Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S
 Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
 \end{lemma}
 
-
 \begin{proof}
-Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$.
-Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$.
-Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$.
-Since $x \in U$ and $U$ is downward-closed, we also have $a \in U$.
-Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$.
-In the other direction,
-since $A \subseteq {\downarrow A}$, the inclusion
-$({\downarrow  A}) \cap U \subseteq D$ implies
-$A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
+Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is downward-closed, we also have $a \in U$. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
 \end{proof}
 
 
@@ -473,15 +465,12 @@ $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{theorem}
 
-\mathieu{Maybe should discuss removing the assumption of upward compatibility and add a sort of 
-$\downarrow \post^*$ effectiveness hypothesis, but what would it even mean ?}
-
 \begin{proof}
-
-Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. downward closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
+In order to decide whether state-resilience hold, we execute two procedures in parallel,
+one looking for a resilience certificate and one looking for a non-resilience certificate.
+Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
 Every inductive invariant $D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
 Notice that, by standard monotonicity, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
-
 
 Procedure 1 stops when it finds an invariant $D$ such that
 $D  \cap \Bad \subseteq \pred^*(\Safe)$. 
@@ -490,106 +479,25 @@ $D  \cap \Bad \subseteq  \pred^*(\Safe)$ implies
 $\downarrow \post^*(s) \cap \Bad \subseteq  \pred^*(\Safe)$
 since $ \downarrow \post^*(s)  \subseteq D$.
 
-
-
 The second procedure iteratively computes
 $post^{\leq n}(s) \cap \Bad$
 until it finds an element
 not in $\pred^*(\Safe)$.
 \end{proof}
 
+% \mathieu{Maybe should discuss removing the assumption of upward compatibility and add a sort of $\downarrow \post^*$ effectiveness hypothesis, but what would it even mean ?}
+
 
 Strong downward compatibility implies furthermore the decidability
-of $k$-state-resilience and bounded-state-resilience.
+of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 
-
-
-\iffalse	\mathieu{}
-
- The result from \cite{DBLP:journals/corr/abs-2108-00889}
-only concerns with the case $\Safe = \uparrow \Safe$
-and $\Bad =\downarrow \Bad$, 
- however as mentioned in Section~3
-the property for instance of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
-Hence it makes sense to consider this symmetrical case as well. 
- \cite{DBLP:conf/gg/Ozkan22} considers 
- the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$ however the results are ...
-
-
-\begin{definition}[marked WSTS] 
-A {\em marked} WSTS is a tuple $(S, \leq, \to, s_0)$
-where $(S, \leq, \to)$ is a WSTS and $s_0 \in S$. 
-% If $INIT$ is finite, we call it {\em fin-marked}.
-\end{definition}
-
-\begin{definition}
-A marked WSTS is
-\begin{itemize}
-\item lossy if $\downarrow \post^* (s_0) = \post^* (s_0)$,
-\item $\bot$-bounded (bottom-bounded) if there is a natural number 
-$\ell \geq 0$ s.t. $s_B \in \post^{\leq \ell} (s) $ for every $ s \in S$ and every element 
-$s_B$ of a basis of $S$ with $s \geq s_B$.
-\end{itemize}
-\end{definition}
-
-
-\begin{theorem}{\cite{DBLP:conf/gg/Ozkan22}}
-The bounded-state-resilience problem is decidable for marked
-strongly compatible WSTS
- which are 
- {\em \textcolor{red}{lossy} } 
- and 
- {\em \textcolor{red}{$\bot$-bounded}  }
- if $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$.
-\end{theorem}
-
-
-\mathieu{}	\fi
-
-
+\begin{proposition}
+{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal effective WSTS with strong downward compatibility,
+$\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
+\end{proposition}
 
 
 \subsection{Synthesis}
-
-
-\iffalse
-\mathieu{Should try to put all results in a single table}
-
-
-With only strong compatibility hypothesis:
-
-\begin{center}
-\begin{tabular}{ | l | c | c | r |}
-\hline   \Safe~\Bad & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~  \\ \hline
-   SRP & Undecidable (Thm~\ref{srp up down}) & Undecidable  \\ \hline
-   BSRP & Undecidable (Corollary~\ref{bsrp up down}) &  ??  \\ \hline
-      kSRP & Undecidable (Corollary~\ref{bsrp up down}) & ?? \\ \hline
- \end{tabular}
-\end{center}
-
-With $\uparrow \post^*$ effectiveness hypothesis:
-
-\begin{center}
-\begin{tabular}{ | l | c | c | r |}
-\hline   \Safe~\Bad & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~  \\ \hline
-   SRP & Decidable (Thm~\ref{post srp}) & ??  \\ \hline
-   BSRP & ?? &  ??  \\ \hline
-      kSRP & ?? & ?? \\ \hline
- \end{tabular}
-\end{center}
-
-With $\uparrow \post^*$ effectiveness and strong compatibility hypothesis:
-
-\begin{center}
-\begin{tabular}{ | l | c | c | r |}
-\hline   \Safe~\Bad & $\uparrow$~ $\downarrow$~ & $\downarrow$~ $\uparrow$~  \\ \hline
-   SRP & Decidable (Thm~\ref{postcomputable})& ??  \\ \hline
-   BSRP & Decidable (Thm~\ref{ref ozkan})&  ??  \\ \hline
-      kSRP & Decidable (Thm~\ref{ref ozkan}) & ?? \\ \hline
- \end{tabular}
-\end{center}
-
-\fi
 
 Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
 
@@ -603,10 +511,10 @@ Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
  \end{tabular}
 \end{center}
 
-
+\noindent
 Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
-
-\mathieu{by symmetry} for downward compatible WSTS (but not necessarily upward compatible):
+\iffalse
+(by symmetry) for downward compatible WSTS (but not necessarily upward compatible):
 
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
@@ -620,6 +528,7 @@ Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
 \mathieu{Montrer que leurs hypothèses Lossy + $\bot$-bounded + strong upward compatibility c'est plus fort que just strong downward compatibility et $\downarrow \post^*$ effective ?}
 
 Si on ne veut pas s'embêter avec les "downward compatible pas upward compatible" on peut se contenter d'écrire ça plutôt
+\fi
 
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
