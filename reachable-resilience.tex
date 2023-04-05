@@ -419,7 +419,7 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 
 Unfortunately the problem is undecidable in general.
 
-\begin{theorem}
+\begin{theorem}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
 when
 $\Safe=\downarrow \Safe$
@@ -506,8 +506,8 @@ Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis & strong upward compatibility ~ & $\uparrow post^*$ effective & both  \\ \hline
    SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
-   BSRP & Undecidable (Corollary~\ref{bsrp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
-      kSRP & Undecidable (Corollary~\ref{bsrp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+   BSRP & Undecidable (Thm~\ref{srp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+      kSRP & Undecidable (Thm~\ref{srp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
  \end{tabular}
 \end{center}
 
@@ -533,9 +533,9 @@ Si on ne veut pas s'embêter avec les "downward compatible pas upward compatible
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis & $\emptyset $ & downward compatible & strongly downward compatible  \\ \hline
-   SRP & Undecidable  & Decidable   & Decidable \\ \hline
-   BSRP & Undecidable  &  ??  & Decidable \\ \hline
-      kSRP & Undecidable  & ?? & Decidable  \\ \hline
+   SRP & Undecidable (Thm~\ref{srp down up})  & Decidable   & Decidable \\ \hline
+   BSRP & ??  &  ??  & Decidable \\ \hline
+      kSRP & ??  & ?? & Decidable  \\ \hline
  \end{tabular}
 \end{center}
 
