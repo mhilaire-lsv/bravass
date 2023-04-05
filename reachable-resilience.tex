@@ -79,20 +79,20 @@ $U_t=\uparrow \pred(t)$
 is the upward closure of the preconditions to use transition $t$.  
 The problem reduces itself to the state resilience problem
 where $\Safe = U_t$ and $\Bad = S \setminus \Safe$.
-
 \end{proof}
 
-To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS.
+To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. The following theorem is a adjustment ofTheorem~5.5 from \cite{peterson1981petri} whose proof can be seen in Appendix~\ref{appendix}.
 
 \begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]\label{liveness reset}
 The  Reset VASS zero reachability problem can be reduced to the $t$-liveness problem.
 \end{theorem}
 
+\iffalse
 % \mathieu{I moved the proof to the appendix since it's a slight adjustment but takes a lot of room.}
 \begin{proof}
 See Appendix~\ref{appendix} for the complete proof.
 \end{proof}
-
+\fi
 
 Since the Reset VASS zero reachability problem is undecidable, the reduction implies 
 % the following:
@@ -174,8 +174,8 @@ Hence the %equivalence, and
  undecidability of {\sc Bounded-state-resilience}
 and 
  {\sc $k$-state-resilience}.
-
-
+%
+%
 \iffalse
 % \begin{corollary}\label{bsrp up down}
 Bounded state-resilience and 
@@ -185,7 +185,7 @@ $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$.
 % \end{corollary}
 \fi
-
+%
 %\begin{proof} 
 %  From the two reductions above. 
 \end{proof}
@@ -226,6 +226,26 @@ checking $\uparrow post^*(s) \cap \Bad \subseteq \pred^{\leq n}(\Safe) = \pred^*
 and state-resilience is decidable.
 \end{proof}
 
+The proof of Theorem~\ref{ref ozkan} rely on the computability of $\uparrow \post^*(s)$ and on the following lemma.
+
+\begin{lemma}\label{Lemma intersection}
+Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
+Then $A \cap D \subseteq U$  iff $ (\uparrow  A) \cap D \subseteq U$.
+\end{lemma}
+
+
+\begin{proof}
+Let us suppose that $A \cap D \subseteq U$. Then ${\uparrow (A \cap D)} \subseteq {\uparrow U} = U$.
+Let us show that $({\uparrow A}) \cap D \subseteq {\uparrow (A \cap D)}$.
+Let $x \in ({\uparrow A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
+Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
+Hence $a \in A \cap D$ and then $x \in { \uparrow (A \cap D)}$.
+In the other direction,
+since $A \subseteq {\uparrow A}$, the inclusion
+$({\uparrow  A}) \cap D \subseteq U$ implies
+$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
+\end{proof}
+
 \iffalse
 \alain{definir downward reachability problem.....
 downward-closed problem given a state $s$ of a WSTS
@@ -235,7 +255,7 @@ and a decidable downward-closed set $D$, it can be decided whether $\exists s' \
 \fi
 
 
-The computability of $\uparrow \post^*(s)$ seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
+The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
 Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
 \problemx{Downward-reachability problem}
@@ -344,26 +364,6 @@ Then, {\sc State-resilience} would be decidable for Reset VASS, which leads to a
 
 
 Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general state-resilience problem.
-
-
-\begin{lemma}\label{Lemma intersection}
-Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
-Then $A \cap D \subseteq U$  iff $ (\uparrow  A) \cap D \subseteq U$.
-\end{lemma}
-
-
-\begin{proof}
-Let us suppose that $A \cap D \subseteq U$. Then ${\uparrow (A \cap D)} \subseteq {\uparrow U} = U$.
-Let us show that $({\uparrow A}) \cap D \subseteq {\uparrow (A \cap D)}$.
-Let $x \in ({\uparrow A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
-Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
-Hence $a \in A \cap D$ and then $x \in { \uparrow (A \cap D)}$.
-In the other direction,
-since $A \subseteq {\uparrow A}$, the inclusion
-$({\uparrow  A}) \cap D \subseteq U$ implies
-$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
-\end{proof}
-
 
 
 \begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}\label{post srp}
@@ -619,6 +619,7 @@ Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
 
 \mathieu{Montrer que leurs hypothèses Lossy + $\bot$-bounded + strong upward compatibility c'est plus fort que just strong downward compatibility et $\downarrow \post^*$ effective ?}
 
+Si on ne veut pas s'embêter avec les "downward compatible pas upward compatible" on peut se contenter d'écrire ça plutôt
 
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
