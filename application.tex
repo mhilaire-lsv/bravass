@@ -18,9 +18,7 @@ Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For ev
 %			Moreover, $post^*(\Bad)$ is also a computable regular language \alain{pourquoi ?}   $post^*(L)$ and
  the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
 %
-BRP
-%
-kRP
+The BRP and the kRP are also decidable. The algorithm that computes $ \pred^*(\Safe)$ is polynomial. If $\Bad \subseteq \pred^*(\Safe)$ then one computes an integer $k$ such that the maximum of all minimal pathes that go from $\Bad$ to $\Safe$ is equal to $k$.\alain{à prouver}
 %
 \end{proof}
 %
@@ -71,14 +69,14 @@ Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow
 
 
 \begin{theorem}{}
-Resilience is decidable for LCM, semilinear VASS, Integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
+Resilience is decidable for  lossy counter machines, semilinear VASS, Integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
-Resilience is decidable for lossy counter machines (LCM) with $\Safe$ and $\Bad$ semilinear sets as a consequence of Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that implies that $Pre^*(\Safe)$ is a computable semilinear set. Hence since the inclusion between two semilinear setsis decidable, we deduce that  $\Bad \subseteq \pred^*(\Safe)$ is decidable.
+Resilience is decidable for lossy counter machines with $\Safe$ and $\Bad$ semilinear sets as a consequence of Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that implies that $\pred^*(\Safe)$ is a computable semilinear set. Hence since the inclusion between two semilinear sets is decidable, we deduce that  $\Bad \subseteq \pred^*(\Safe)$ is decidable.
 
 %		semilinear VASS.
- \alain{le plus simple serait que $\pred^*(L)$ is semilinear because $post^*(s)$ is semilinear , peut-être en inversant le VASS V en V'on aurait pred*(V)=post*(V') hence $post^*(L)$ is also semilinear ? hence pred ????}
+ \alain{le plus simple serait que $\pred^*(L)$ is semilinear because $\post^*(s)$ is semilinear , peut-être en inversant le VASS V en V'on aurait pred*(V)=post*(V') hence $post^*(L)$ is also semilinear ? hence pred ????}
 
 %		Integer VASS
 Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
