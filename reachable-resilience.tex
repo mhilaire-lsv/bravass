@@ -460,7 +460,7 @@ then
 $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) \cap \Bad \subseteq \pred^*(\Safe)$.
 
 
-\begin{theorem}
+\begin{theorem}\label{downward srp}
 {\sc state-resilience} is decidable for ideal effective WSTS with downward compatibility,
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{theorem}
@@ -491,7 +491,7 @@ not in $\pred^*(\Safe)$.
 Strong downward compatibility implies furthermore the decidability
 of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 
-\begin{proposition}
+\begin{proposition}\label{downward brp}
 {\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal effective WSTS with strong downward compatibility,
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{proposition}
@@ -533,9 +533,9 @@ Si on ne veut pas s'embêter avec les "downward compatible pas upward compatible
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis & $\emptyset $ & downward compatible & strongly downward compatible  \\ \hline
-   SRP & Undecidable (Thm~\ref{srp down up})  & Decidable   & Decidable \\ \hline
-   BSRP & ??  &  ??  & Decidable \\ \hline
-      kSRP & ??  & ?? & Decidable  \\ \hline
+   SRP & Undecidable (Thm~\ref{srp down up})  & Decidable (Thm~\ref{downward srp})  & Decidable (Thm~\ref{downward srp}) \\ \hline
+   BSRP & ??  &  ??  & Decidable (Prop~\ref{downward brp}) \\ \hline
+      kSRP & ??  & ?? & Decidable (Prop~\ref{downward brp}) \\ \hline
  \end{tabular}
 \end{center}
 
