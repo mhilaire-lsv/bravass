@@ -261,9 +261,8 @@ Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which
 \problemx{Downward-reachability problem}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and a downward-closed set $D
 \subseteq S$.}
-{$\exists s' \in D ~ s \to^* s'$? \newline}\alain{ecrire $s  \to^* D$}
-
-
+% {$\exists s' \in D ~ s \to^* s'$? \newline}\alain{ecrire $s  \to^* D$}
+{$s  \to^* D$? \newline}
 
 %\"Ozkan
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
@@ -287,7 +286,7 @@ asking whether $S \setminus U_n$ is reachable from $s$.
 The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS, we deduce the following:
 
 \begin{proposition}
-Let $V= (Q,T)$ be a $d$-VASS and $v \in \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(v)$.
+Let $V= (Q,T)$ be a $d$-VASS and $q(\textbf{v}) \in Q \times \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(q(\textbf{v}))$.
 \end{proposition}
 %\alain{mauvaises notations, la tradition est que P est l'ensemble des places...les états/markings en minuscules,....}
 
