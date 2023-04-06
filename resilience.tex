@@ -1,68 +1,4 @@
 
-%%%
-\iffalse
-%%%%
-%%%%
-\subsection{Defining resilience}
-
-
-\subsubsection{Resilience for general transition systems}
-
-
-We ask whether we can reach a state 
-%which satisfies
-in 
-%
-$\Safe$  in a reasonable amount of time whenever we reach a state 
-% which satisfies
-in
-%
-$\Bad$. 
-From this we formulate two resilience problems. First consider the case where the recovery time
-is bound by a given natural number $k \geq 0$, i.e., the \emph{explicit resilience problem} for TS.
-
-\problemx{$k$-Resilience problem }
-{a transition system $(S,\rightarrow)$, an integer $k$, a state $s \in S$, $\Safe, \Bad \subseteq S$ and $\Safe \cap \Bad = \emptyset$.}
-{$\forall s' \in \Bad, ~ s \rightarrow^* s' \implies \exists s'' \in \Safe ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-
-If a system $S$ satisfies the explicit resilience property for an integer $k$, we say that $S$ is $k$-resilient.
-
-% If we assume that the transition system yields infinite sequences of transitions, we can express the property to be evaluated in CTL by s |= AG(\Bad → 0≤ j≤k EX j \Safe). 
-
-We can also ask whether there exists such a bound $k$ such that $S$ is $k$-resilient. We call this problem the \emph{bounded resilience problem}.
-
-%
-%\problemx{Bounded Resilience problem}
-%{a transition system $(S,\rightarrow)$, a state $s \in S$, $\Safe, \Bad \subseteq S$ and $\Safe \cap \Bad = \emptyset$.}
-%{$\exists k \geq 0 ~ \forall s' \in \Bad, ~ s \rightarrow^* s' \implies \exists s'' \in \Safe ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-%
-
-
-\problemx{Bounded Resilience problem}
-{a transition system $(S,\rightarrow)$, a state $s \in S$, $\Safe, \Bad \subseteq S$ and $\Safe \cap \Bad = \emptyset$.}
-{$\exists k \geq 0  \mathscr{S}$ is $k$-resilient. ?\newline}
-%%
-
-%%%
-
-
-pour $k,k'$ donnés, chercher si $\Safe_{max}$ et $\Bad_{max}$ ont un sens ? on peut faire l'union des \Safe, \Safe' et des \Bad, \Bad' prendre le max des k. Fixer k, chercher et calculer $\Safe_{max}$ et $\Bad_{max}$.
-
-%
-%\alain{dire juste que \Safe = upward closed et \Bad = downward closed.
-%envisager les 3 autres cas. souvent \Bad = upward closed (par ex l'exclusion mutuelle).
-%4 resilience problem (U,D), (U,U), (D,U), (D,D)}
-
-\fi
-
-
-
-
-\newcommand{\Bad}{\textsf{Bad}}
-\newcommand{\Safe}{\textsf{Safe}}
-
-
-
 \section{Resilience for WSTS}
 
 In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$ and $\Safe ,  \Bad \neq \emptyset$.
@@ -134,6 +70,35 @@ Resilient means that ...
 \end{proof}
 
 \fi
+
+\begin{example}
+% Avec Safe = up( q_1(3,0) ) et Bad = q_0 (N,N) on aurait la 1-résilience et donc la résilience par exemple
+% mais avec Safe = up(q_0(3,0)) et Bad = q_1(N,N) on ne l'aurait pas à cause de q_1(0,0) 
+Let $V = (\{q_0,q_1\}, \{ (q_0, (3,0), q_1), (q_1, (-1,1), q_0)\})$ be a vector addition system with states (VASS),
+and thus a WSTS.
+Case A) is $\Safe = \uparrow q_1(3,0)$ and $\Bad = \uparrow q_0(0,0)$, $1$-resilience holds.
+Case B) is $\Safe = \uparrow q_0(3,0)$ and $\Bad = \uparrow q_1(0,0)$, resilience do not hold because of $q_1(0,0) \in \Bad$.
+% (si on veut se rajouter une hypothèse comme pas de dead-end on peut rajouter un troisième état q_2 duquel on puisse partir depuis q_1 en faisant par exemple +1,+1 et qui loop sur lui-même) 
+\end{example}
+
+\begin{center}
+	\begin{figure}
+			\hspace{3.75cm}
+\includegraphics[width=0.2\textwidth]{FigureA}
+	\label{example_1}
+	\end{figure}
+\end{center}
+
+
+
+
+
+
+\begin{example}
+% Si on prends un Z-vass avec même seulement un compteur, Safe les entiers positifs, Bad le reste, avec juste une transition qui fait +1, alors on a la résilience (on reviens toujours dans les positifs) mais pas la bounded resilience.
+$\mathds{Z}$-VASS, one counter, $\Safe = \uparrow 0$, $\Bad = \downarrow -1$, transition: $+1$,
+then resilience hold but not bounded resilience. 
+\end{example}
 
 
 \input{resilience-safe-up}
