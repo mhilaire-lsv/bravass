@@ -97,7 +97,7 @@ On the other hand in the case $\Safe = \uparrow q_0(3,0)$ and $\Bad = \uparrow q
 
 \begin{example}
 % Si on prends un Z-vass avec même seulement un compteur, Safe les entiers positifs, Bad le reste, avec juste une transition qui fait +1, alors on a la résilience (on reviens toujours dans les positifs) mais pas la bounded resilience.
-Let us consider now a $\mathds{Z}$-VASS with only one state, one counter, and one transition that adds $+1$ to the counter, with $\Safe = \uparrow q(0)$, $\Bad = \downarrow q(-1)$,
+Let us consider now a $\mathds{Z}$-VASS with only one state $q$, one counter, and one transition that adds $+1$ to the counter, with $\Safe = \uparrow q(0)$, $\Bad = \downarrow q(-1)$,
 then resilience hold (one always ends up in the positive integers) but not bounded resilience
 (for every bound $b$ there is an element of $\Bad$ e.g. $q(-b-1)$ which necessitate at least $b+1$ steps before it can reach $\Safe$). 
 \end{example}
