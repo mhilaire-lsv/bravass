@@ -77,7 +77,7 @@ Resilient means that ...
 Let $V = (\{q_0,q_1\}, \{ (q_0, (3,0), q_1), (q_1, (-1,1), q_0)\})$ be a vector addition system with states (VASS),
 and thus a WSTS.
 Case A) is $\Safe = \uparrow q_1(3,0)$ and $\Bad = \uparrow q_0(0,0)$, $1$-resilience holds.
-Case B) is $\Safe = \uparrow q_0(3,0)$ and $\Bad = \uparrow q_1(0,0)$, resilience do not hold because of $q_1(0,0) \in \Bad$.
+Case B) is $\Safe = \uparrow q_0(3,0)$ and $\Bad = \uparrow q_1(0,0)$, resilience does not hold because of $q_1(0,0) \in \Bad$.
 % (si on veut se rajouter une hypothèse comme pas de dead-end on peut rajouter un troisième état q_2 duquel on puisse partir depuis q_1 en faisant par exemple +1,+1 et qui loop sur lui-même) 
 \end{example}
 
@@ -96,8 +96,9 @@ Case B) is $\Safe = \uparrow q_0(3,0)$ and $\Bad = \uparrow q_1(0,0)$, resilienc
 
 \begin{example}
 % Si on prends un Z-vass avec même seulement un compteur, Safe les entiers positifs, Bad le reste, avec juste une transition qui fait +1, alors on a la résilience (on reviens toujours dans les positifs) mais pas la bounded resilience.
-$\mathds{Z}$-VASS, one counter, $\Safe = \uparrow 0$, $\Bad = \downarrow -1$, transition: $+1$,
-then resilience hold but not bounded resilience. 
+Let us consider now a $\mathds{Z}$-VASS with only one state, one counter, and one transition that adds $+1$ to the counter, with $\Safe = \uparrow q(0)$, $\Bad = \downarrow q(-1)$,
+then resilience hold (one always ends up in the positive integers) but not bounded resilience
+(for every bound $b$ there is an element of $\Bad$ e.g. $q(-b-1)$ which necessitate at least $b+1$ steps before it can reach $\Safe$). 
 \end{example}
 
 
