@@ -1,4 +1,9 @@
 
+
+\newcommand{\Bad}{\textsf{Bad}}
+\newcommand{\Safe}{\textsf{Safe}}
+
+
 \newcommand{\pred}{\textsf{pred}}
 \newcommand{\post}{\textsf{post}}
 % \renewcommand{\succ}{\textsf{Succ}}
@@ -339,6 +344,8 @@ Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V
 
 For a WSTS $\mathscr{S}$ and an upward closed set $U$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We then have:  $\pred^*(U) = U_{k_0}$.
 
+
+\iffalse
 \alain{ me semble maintenant inutile
 %
 \begin{definition}{ (index)}. 
@@ -386,5 +393,13 @@ $$U^{k+1} = U \cup \pred(U^k ) = U \cup
 Since a finite basis of $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $U^{k+1}$ . By
 Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \end{proof}}
+
+
+\fi
+
+
+
+
+
 
 
