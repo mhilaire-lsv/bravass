@@ -24,7 +24,7 @@ The model we are interested in is WSTS (and later some particular instances, i.e
 
 
 \begin{definition}
-An {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
+A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
 {\em states} and  
 $ {\rightarrow} \subseteq S \times S$ is a
 binary relation 
@@ -47,83 +47,11 @@ for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexi
 Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
 \noindent
 The set of {\em (immediate) successors} of a state $s \in S$ is deﬁned as $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. A state without successors is called a {\em dead end}. The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
-$\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$.
-
-
-
-%
-\alain{enlever ce qui est inutile}
-%
-We use similar notation for $\post$ and $\pred$...
-%
-Determinism, (infinite) paths, their length, and concatenation in unlabeled transition systems are
-then defined as expected.
-
-%\textcolor{red}{Thinking about whether or not it is pertinent to have LTS and not only TS. LTS can be usefull for TA because of the use of the guards/time as labels but it may be unecessary.}
-
-
-%\textcolor{red}{This makes sense for TS but not so much for LTS ...}
-
-A transition system is {\em finitely branching} if all $\post(s)$ are finite. 
-%\textcolor{blue}{We restrict our attention to finitely branching TSs.}
-
-%\textcolor{blue}{Alain: the forward coverability algorithm for infinitely branching TSs.; the backward cov algo may work for essentially finitely branching TSs.}
-%\textcolor{red}{Not sure that TS induced by TA are finitely branching. Actually I believe they are not, i.e. for instance for a TA with one clock $x$, from a state $q$ and clock $x$ set at $0$, if there is a transition e.g. $(q, x \geq 3, \emptyset, q')$ then the set of successors of 
-%$(q,0)$ is $\{q'\} \times \{3, 4, 5, \ldots \}$. Need to check where finitely branching appears as an assumption/requirement.}
-
-%
-%\begin{definition}
-%A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
-%$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
-%${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
-%ternary relation,
-%denoted as the set of {\em labeled transitions}. 
-%\end{definition}
-
-We
- prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as
-       $s  \xrightarrow{a}  s'$
-to represent a transition from configuration $s$ to configuration $s'$ with label $a$. \\
-
-\noindent
-%Labels can be used to represent the reading of an input, but also to represent an action performed during the transition or conditions that must hold in order to allow the use of the transition.
-
-
-A {\em path} in a labeled transition system from a {\em source configuration} $s_0$
-to a {\em target configuration} $s_n$ is a sequence 
-$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$.
-
-We define the {\em concatenation} $ \pi_1 \pi_2$ of 
-two paths $\pi_1$ and $\pi_2$ when the source configuration of $\pi_2$ is equal to the target configuration of $\pi_1$
-as expected.
-The {\em length} of 
-$\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1} } s_n$
-is defined as $|\pi|=n$ and we say the path is {\em labeled} by $a_0 a_1 , \ldots a_{n-1}$.
-For all $w \in \Sigma^*$, all $s,s' \in S$, we will write $s \xrightarrow{w } s'$ if there exists a path from $s$ to $s'$ labeled by $w$. 
-
-An {\em infinite path} is an infinite sequence
- $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots $.
-For each infinite (resp. finite) path  $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ 
-(resp. $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots \xrightarrow{a_{n-1}} s_n$)
-and $i,j \in \N$ (resp. $i,j \in [0,n]$) with $i<j$ we denote
-by $\pi[i,j]$ the path 
-$s_i  \xrightarrow{a_i } s_{i+1}  \xrightarrow{a_{i+1} } \cdots  \xrightarrow{a_{j-1} } s_j$
- and by $\pi[i]$ the configuration $s_i$.
-As expected, a {\em prefix} of a finite or infinite path $\pi$ is a finite path of the form $\pi[0,j]$, and
-a  {\em suffix} of a finite path $\pi$ is a path of the form $\pi[i,n]$.  \\
-Given an infinite path $\pi = s_0 \xrightarrow{a_0 } s_1 \xrightarrow{a_1 } \cdots$ let
-$\text{\textit{Inf}}(\pi) = \{ s \in S \mid \forall i ~ \exists j > i ~ s_j = s\}$.
+$\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. \\
 
 
 
 
-A labeled transition system $(S, \Sigma, \rightarrow)$ is {\em deterministic} if for all states $s_1, s_2, s_3 \in S$ and all
-$a \in \Sigma$,
- $ s_1  \xrightarrow{a} s_{2}$ and  
- $s_1  \xrightarrow{a} s_{3} $ implies $s_2 = s_3 $. \\
-
-%
-\alain{enlever ce qui est inutile}
 %
 
 \noindent
