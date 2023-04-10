@@ -48,7 +48,7 @@ The three previous problems become:
 
 Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
 
-As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downard closed and upward closed. We will consider here the cases where 
+As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed. We will consider here the cases where 
 $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$ 
 and where 
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
@@ -62,7 +62,12 @@ $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 
 Unfortunately, state-resilience is undecidable for (general) WSTS even with strong upward-compatibility.
 This stems from the fact that $t$-liveness is undecidable for WSTS and 
-is reducible to the state resilience problem.
+is reducible to the state resilience problem.\alain{definir t-liveness, dire ce qu'est une transition $t$ dans un WSTS étiqueté ou pas ?...}
+
+Let us define $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such that $u \xrightarrow{t} u'$\} 
+
+\alain{ou alors $t=(u,u')$ such that $u \rightarrow u'$ mais alors c'est bizarre de nommer par la même lettre $t$ des couples différents $(u,u'), (v,v'),...$ dans un WSTS...ou alors on appelle transition un couple $(u,u')$ such that $u \rightarrow u'$ mais plus de lettre $t$...ou on définit un WSTS par un nombre fini de (shéma de ) transition $t_i$ qui sont compatibles par compatibilité mais ça contraint à un nombre fini (comme dans les VASS) ou alors on ne parle ici que des VASS et pas des WSTS mais ça suffira puisque state resilience pour VASS implique pour WSTS BREF il faut réfléchir à ce qu'est une transition...}
+
 
 \begin{proposition}\label{reductions}
 In WSTS, $t$-liveness is reducible to the state resilience problem.
@@ -71,20 +76,22 @@ In WSTS, $t$-liveness is reducible to the state resilience problem.
 
 
 \begin{proof}
-We reformulate $t$-liveness as the following formula
+We reformulate $t$-liveness in a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ as the following formula
 % $$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$$
 $$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$  
 where
-$U_t=\uparrow \pred(t)$
-is the upward closure of the preconditions to use transition $t$.  
+$U_t=\uparrow \pred(t)$ \alain{$\pred(t)$ n'est pas défini et $\pred$ est une mauvaise notation pour ça: plutôt: $pre(t)=\{ u \in S \mid \exists u' \in S$  such that $u \xrightarrow{t} u'$\} }
+is the upward closure of the preconditions to fire transition $t$.  
 The problem reduces itself to the state resilience problem
 where $\Safe = U_t$ and $\Bad = S \setminus \Safe$.
 \end{proof}
 
 To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. The following theorem is a adjustment ofTheorem~5.5 from \cite{peterson1981petri} whose proof can be seen in Appendix~\ref{appendix}.
 
+\alain{tu ne définis pas, même informellement et/ou rapidement, assez les objets que tu utilises: zero reachability problem, Reset VASS}
+
 \begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]\label{liveness reset}
-The  Reset VASS zero reachability problem can be reduced to the $t$-liveness problem.
+The  zero reachability problem can be reduced to the $t$-liveness problem in Reset VASS.
 \end{theorem}
 
 \iffalse
@@ -94,12 +101,12 @@ See Appendix~\ref{appendix} for the complete proof.
 \end{proof}
 \fi
 
-Since the Reset VASS zero reachability problem is undecidable, the reduction implies 
+Since the zero reachability problem is undecidable for Reset VASS, the reduction implies 
 % the following:
 %
 \iffalse
 \begin{corollary}
-Reset VASS liveness is undecidable.
+Liveness is undecidable in Reset VASS.
 \end{corollary}
 
 Since moreover liveness can be reduced to 
@@ -162,7 +169,8 @@ compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$
 and there exists $n_0 \in \N$ such that 
 $\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 We compute 
-$n_0$, then iteratively check whether $k$-state resilience hold for $k$ from $0$ to $n_0$.  
+$n_0$, then iteratively check whether $k$-state resilience \alain{$k$-state resilience ou $k$-state-resilience ?}
+hold for $k$ from $0$ to $n_0$.  
 % \end{proof}
 Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
 % \end{proposition}
@@ -276,17 +284,17 @@ For finite-branching WSTS%with strong compatibility
 
 % \alain{rappeler l'idée de la preuve}
 The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, we check whether
-$B_{\uparrow \post^*(s)} \cap D = \emptyset$, that is equivalent to $\post^*(s)\cap D = \emptyset$ by
+$B_{\uparrow \post^*(s)} \cap D = \emptyset$, \alain{rapeler $B_{\uparrow \post^*(s)}$}  that is equivalent to $\post^*(s)\cap D = \emptyset$ by
 Lemma~\ref{Lemma intersection}. For the converse direction, we compute the sequence of upward-closed sets
 $U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary. 
-Decidability of downward reachability leads to the decidability of the following stop condition:
+Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS, we deduce the following:
+The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS \alain{ref ?}, we \alain{we ou Ozkan ? qui a fait la preuve ?} deduce the following:
 
 \begin{proposition}
-Let $V= (Q,T)$ be a $d$-VASS and $q(\textbf{v}) \in Q \times \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(q(\textbf{v}))$.
+Let $V= (Q,T)$ be a $d$-VASS and $q(\textbf{v}) \in Q \times \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(q(\textbf{v}))$.\alain{où sont définis les d-VASS, $V= (Q,T)$, $q(\textbf{v}) \in Q \times \N^d$ ?}
 \end{proposition}
 %\alain{mauvaises notations, la tradition est que P est l'ensemble des places...les états/markings en minuscules,....}
 
@@ -377,12 +385,12 @@ and $\Bad=\downarrow \Bad$.
 
 
 \begin{proof}
-Let $B_s$ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
+Let $B_s$ \alain{notation fluctuante} be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
 and $\Bad$ a downward-closed set given by its finite set of (maximal) ideals.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
 
 $$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_s \cap \Bad \subseteq \pred^*(\Safe)$$
-
+\alain{$\equiv $  ???}
 
 Since $B_s$ is finite and $\Bad$ is decidable, we can directly compute $ B_s \cap \Bad$.
 % For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
@@ -400,9 +408,9 @@ We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that 
 
 However when removing strong compatibility, precision is lost.
 Since $\pred(\uparrow \Safe)$ is not necessarily upward-closed, it is possible to have 
- $\uparrow post^* (s) \cap S \not\subseteq \pred(\Safe)$,
+ $\uparrow \post^* (s) \cap S \not\subseteq \pred(\Safe)$,
 despite having 
-$post^* (s) \cap S \subseteq \pred( \Safe)$.
+$\post^* (s) \cap S \subseteq \pred( \Safe)$.
 In such a case the algorithm from
 \cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold,
 which is incorrect.
@@ -416,7 +424,7 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 
 
 
-Unfortunately the problem is undecidable in general.
+Unfortunately the {\sc State-resilience} problem is undecidable for WSTS.
 
 \begin{theorem}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
@@ -426,11 +434,13 @@ and $\Bad=\uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-Consider Reset VASS
-in the case $\Safe$ contains only the minimal element $Min(S) = 0$ %$0$ 
-and $\Bad = S \setminus \Safe$, 
-it follows the state resilience problem is equivalent 
-to the problem of whether $0$ can be visited infinitely often. 
+Consider Reset $d$-VASS
+in the case $\Safe=\{ \textbf{0} \}$ where  $ \textbf{0} \in \mathbb{N}^d$ 
+%			contains only the minimal element $Min(S) = 0$ %$0$ 
+\alain{tu n'as pas le doit d'écrire $0$ sans explication}
+and $\Bad = \mathbb{N}^d \setminus \Safe$, 
+it follows the state-resilience problem \alain{écris toujours pareil les expressions choisies comme state-resilience}is equivalent 
+to the problem of whether $0$ can be visited infinitely often. \alain{incompréhensible, explique}
 % Since reachability of $0$ is undecidable for Reset VASS, we conclude.
 Hence the undecidability.
 \end{proof}
@@ -447,11 +457,11 @@ Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
 \end{lemma}
 
 \begin{proof}
-Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is downward-closed, we also have $a \in U$. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
+Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is downward-closed, we also have $a \in U$ \alain{faux}. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
 \end{proof}
 
 
-In the case of a WSTS with downward compatiblitity, not necessarily strong,
+In the case of a WSTS with \emph{downward} compatibility, not necessarily strong,
 then $\Safe$ downward-closed implies $\pred^*(\Safe)$ downward-closed and
 Lemma~\ref{Lemma intersection 2} can be used to show that
 if $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$,
@@ -460,16 +470,16 @@ $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
 
 
 \begin{theorem}\label{downward srp}
-{\sc state-resilience} is decidable for ideal effective WSTS with downward compatibility,
+{\sc state-resilience} is decidable for ideal effective WSTS with downward compatibility,\alain{a-t-on aussi la upward compatibility ?}
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
 In order to decide whether state-resilience hold, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
-Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
+Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward-closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
 Every inductive invariant $D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
-Notice that, by standard monotonicity, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
+Notice that, by standard \alain{upward ? downward ?}compatibility, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
 
 Procedure 1 stops when it finds an invariant $D$ such that
 $D  \cap \Bad \subseteq \pred^*(\Safe)$. 
@@ -479,7 +489,7 @@ $\downarrow \post^*(s) \cap \Bad \subseteq  \pred^*(\Safe)$
 since $ \downarrow \post^*(s)  \subseteq D$.
 
 The second procedure iteratively computes
-$post^{\leq n}(s) \cap \Bad$
+$\post^{\leq n}(s) \cap \Bad$
 until it finds an element
 not in $\pred^*(\Safe)$.
 \end{proof}
@@ -528,7 +538,9 @@ Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
 
 Si on ne veut pas s'embêter avec les "downward compatible pas upward compatible" on peut se contenter d'écrire ça plutôt
 \fi
-
+%
+\alain{tableau trop vide. retirer le dernier tableau et mettre le 1er dans la section correspondate, supprimer section 4.3}
+%
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis &  none  & downward compatible & strongly downward compatible  \\ \hline

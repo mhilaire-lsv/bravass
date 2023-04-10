@@ -8,12 +8,14 @@
 
 let us choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is not bounded by $k$.
 %			at least one counter is unbounded. 
-This set is upward-closed by upward compatibility in VASS.
+This set is upward-closed by (upward) compatibility in VASS.
 
 \subsubsection{Subcase: $\Safe=\downarrow \Safe$}
 
-As an example, let us choose $\Safe=S-\Bad$ then $\Safe=\downarrow \Safe$.
-
+As an example, let us choose $\Safe=S-\Bad$ then since $\Bad=\uparrow \Bad$, we have: $\Safe=\downarrow \Safe$.
+%
+\alain{definir  ideal-effective WSTS}
+%
 \begin{theorem}\label{up-down}
 The resilience problem is decidable for ideal-effective WSTS with 
 $\Safe=\downarrow \Safe$
@@ -30,7 +32,7 @@ By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-clo
 The resilience problem can be reformulated as 
 % $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
 $\Bad \subseteq  \pred^*(\Safe)$.
-Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of closed subsets.
+Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of closed \alain{non définis} subsets.
 Hence we can compute the intersection of
 % $\uparrow \{b_1,b_2,...,b_m\}$
 $\Bad$
@@ -62,7 +64,7 @@ $t_2 \leq t_1$ and $s_2 \to^* t_2$.
 
 Let $D$ be a downward-closed subset of $S$
 and let $x \in \downarrow \pred^*(D)$.
-By design there exists
+By design \alain{?} there exists
 $y \in \pred^*(D)$ 
 such that $x \leq y$
 and $d \in D$ such that
@@ -77,7 +79,7 @@ $a'_i \to^* a'_{i+1}$,
 and, by induction,
  $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* d'$
 where
-$d' \leq d$ belongs to $D$ by downward closure of $D$.
+$d' \leq d$ \alain{qui appartient à qui ?}belongs to $D$ by downward closure of $D$.
 Hence $x \in \pred^*(D)$.
 \end{proof}
 
@@ -86,7 +88,7 @@ In the case
 of a ideal-effective WSTS 
 where
 the additional hypothesis that
-for all $D \subseteq S$ downward-closed, $\pred^*(D)$ is downward-closed
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed
 is not met,
 the above construction
 can provide a proof
@@ -142,7 +144,7 @@ In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Sa
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,\alain{$\pred^n$ ou $\pred^{\leq n}$ ? même question pour post. et où est-ce défini ?}
 and there exists $n_0 \in \N$ such that 
 $\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 Hence the equivalence.
