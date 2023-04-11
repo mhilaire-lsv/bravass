@@ -72,9 +72,9 @@ there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b
 
 Hence we obtain: $\mathscr{S}$ is resilient iff for all $i=1,..,n$ and $j= 1,..m$, $\downarrow b_j$ is coverable from ideal $J_i$ in $\hat{\mathscr{S}}$.
 %
-Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ and let $k_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. Let us now define $K_{\mathscr{S}}(\Safe,\Bad)=max(k_{i,j} \mid i=1,..,n$ and $j= 1,..m$).
+Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ and let $k_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. Let us now define $K_{\mathscr{S}}(\Safe,\Bad)=\max(k_{i,j} \mid i=1,..,n$ and $j= 1,..m$).
 %
-\alain{max ou Max ? idem pour min}
+
 %
 %	(if all $k_{i,j}$ are finite) else $K=\infty$.
 We now have $\mathscr{S}$ is resilient iff $K_{\mathscr{S}}(\Safe,\Bad)$ is finite iff $\mathscr{S}$ is $K_{\mathscr{S}}(\Safe,\Bad)$-resilient with $K_{\mathscr{S}}(\Safe,\Bad)$ finite.
@@ -85,7 +85,7 @@ This implies that resilience and bounded resilience are equivalent to coverabili
 %Propositions 29 and 30 in \cite{BFM-icalp14} that establish a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with its completion $\hat{S}$.
 %' \in I(\Bad)$.
 %
-%To decide the bounded resilience, we decide $n \times m$ coverability questions: is state $\downarrow b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=max(k_{i,j} \mid i=1,..,n $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $\downarrow b_j$ from $J_i$.
+%To decide the bounded resilience, we decide $n \times m$ coverability questions: is state $\downarrow b_j$ coverable from ideal $J_i$ ? If all these $n \times m$ coverability questions are positive then we compute $K=\max(k_{i,j} \mid i=1,..,n $ and $j= 1,..m)$ where $k_{i,j}$ is the least length of a sequence that covers  $\downarrow b_j$ from $J_i$.
 %
  % \alain{comment trouver les $k_a$ ?} 
 %
@@ -103,7 +103,7 @@ Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, w
 	with strong compatibility and the predbasis hypothesis, and two finite sets: $\Bad$ 
 	and $\Safe$.
 	The  $k$-resilience problem (kRP) is decidable 
-	%	for $k \geq min(K,n)$ where $n$ satisfies $ \uparrow \pred^n(\Safe)=  \uparrow 	\pred^*(\Safe)$. 
+	%	for $k \geq \min(K,n)$ where $n$ satisfies $ \uparrow \pred^n(\Safe)=  \uparrow 	\pred^*(\Safe)$. 
 	\textcolor{red}{CONJECTURE for now}
 	 \end{theorem}
 
@@ -120,10 +120,10 @@ Let us now show that the $k$-resilience problem (kRP), with $k \in \mathbb{N}$, 
 Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. 
 If $\downarrow b_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow b_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
-Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe,\Bad)$.
+Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe,\Bad)$.
 
-%	If $k <  min(K,n)$, then we check every path of length smaller
-%	than $min(K,n)$ from the ideals of the decomposition of $\Bad$ in the completion \alain{à expliquer mieux}.
+%	If $k <  \min(K,n)$, then we check every path of length smaller
+%	than $\min(K,n)$ from the ideals of the decomposition of $\Bad$ in the completion \alain{à expliquer mieux}.
 \end{proof}
 
 %

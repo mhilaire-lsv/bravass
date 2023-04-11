@@ -69,8 +69,16 @@ Let us define $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such t
 \alain{ou alors $t=(u,u')$ such that $u \rightarrow u'$ mais alors c'est bizarre de nommer par la même lettre $t$ des couples différents $(u,u'), (v,v'),...$ dans un WSTS...ou alors on appelle transition un couple $(u,u')$ such that $u \rightarrow u'$ mais plus de lettre $t$...ou on définit un WSTS par un nombre fini de (shéma de ) transition $t_i$ qui sont compatibles par compatibilité mais ça contraint à un nombre fini (comme dans les VASS) ou alors on ne parle ici que des VASS et pas des WSTS mais ça suffira puisque state resilience pour VASS implique pour WSTS BREF il faut réfléchir à ce qu'est une transition...}
 
 
+A transition $t$ is live in a configuration $s$ if for each $s' \in \post^*(s)$ there exists a sequence $s''$ with $s' \to^* s''$ such that $t$ is enabled in $s''$.
+
+\problemx{$t$-liveness}
+{Vass $V=(Q,T)$, $t \in T$}
+{Is $t$ live ?}
+
+
+
 \begin{proposition}\label{reductions}
-In WSTS, $t$-liveness is reducible to the state resilience problem.
+In WSTS, $t$-liveness is reducible to {\sc state-resilience}.
 %	home state and reachability
 \end{proposition}
 
@@ -89,6 +97,7 @@ where $\Safe = U_t$ and $\Bad = S \setminus \Safe$.
 To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. The following theorem is a adjustment ofTheorem~5.5 from \cite{peterson1981petri} whose proof can be seen in Appendix~\ref{appendix}.
 
 \alain{tu ne définis pas, même informellement et/ou rapidement, assez les objets que tu utilises: zero reachability problem, Reset VASS}
+
 
 \begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]\label{liveness reset}
 The  zero reachability problem can be reduced to the $t$-liveness problem in Reset VASS.
@@ -283,9 +292,12 @@ For finite-branching WSTS%with strong compatibility
 \end{proposition}
 
 % \alain{rappeler l'idée de la preuve}
-The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, we check whether
-$B_{\uparrow \post^*(s)} \cap D = \emptyset$, \alain{rapeler $B_{\uparrow \post^*(s)}$}  that is equivalent to $\post^*(s)\cap D = \emptyset$ by
-Lemma~\ref{Lemma intersection}. For the converse direction, we compute the sequence of upward-closed sets
+The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, one checks whether
+$B_{\uparrow \post^*(s)} \cap D = \emptyset$, 
+where $B_{\uparrow \post^*(s)}$ is a basis of $\uparrow \post^*(s)$,
+%\alain{rapeler $B_{\uparrow \post^*(s)}$} 
+ that is equivalent to $\post^*(s)\cap D = \emptyset$ by
+Lemma~\ref{Lemma intersection}. For the converse direction, one computes the sequence of upward-closed sets
 $U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary. 
 Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
@@ -334,7 +346,7 @@ There exist classes of WSTSs with strong
 Let us show that Reset VASS, that are effective WSTSs with strong compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
 Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. 
 \iffalse
-Then, one would be able to decide whether an element $m \in Min(\uparrow \post^*)$ is reachable.
+Then, one would be able to decide whether an element $m \in \min(\uparrow \post^*)$ is reachable.
 %in counter $i$ 
 by examining if there is %some vector $v$ in the basis such that $v(i)=0$
 $0$ in the basis%
@@ -385,16 +397,18 @@ and $\Bad=\downarrow \Bad$.
 
 
 \begin{proof}
-Let $B_s$ \alain{notation fluctuante} be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
+Let $B_{\uparrow \post^*(s)}$ 
+%\alain{notation fluctuante}
+ be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
 and $\Bad$ a downward-closed set given by its finite set of (maximal) ideals.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
 
-$$ post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \equiv B_s \cap \Bad \subseteq \pred^*(\Safe)$$
-\alain{$\equiv $  ???}
+$$ \post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)} \cap \Bad \subseteq \pred^*(\Safe)$$
+% \alain{$\equiv $  ???}
 
-Since $B_s$ is finite and $\Bad$ is decidable, we can directly compute $ B_s \cap \Bad$.
+Since $B_{\uparrow \post^*(s)}$ is finite and $\Bad$ is decidable, we can directly compute $ B_s \cap \Bad$.
 % For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
-We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_s \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
+We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_{\uparrow \post^*(s)} \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
 \end{proof}
 
 % In the proof of Thm. 1, it was crucial that we have strong compatibility. This approach does not work
@@ -420,6 +434,19 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 {\sc bounded-state-resilience}. 
 
 
+Results synthesis in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
+
+
+\begin{center}
+\begin{tabular}{ | l | c | c | c | c |}
+\hline  Hypothesis & strong upward compatibility ~ & $\uparrow post^*$ effective & both  \\ \hline
+   SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
+   BSRP & Undecidable (Thm~\ref{srp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+      kSRP & Undecidable (Thm~\ref{srp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
+ \end{tabular}
+\end{center}
+
+
 \subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
 
 
@@ -436,7 +463,7 @@ and $\Bad=\uparrow \Bad$.
 \begin{proof}
 Consider Reset $d$-VASS
 in the case $\Safe=\{ \textbf{0} \}$ where  $ \textbf{0} \in \mathbb{N}^d$ 
-%			contains only the minimal element $Min(S) = 0$ %$0$ 
+%			contains only the minimal element $\min(S) = 0$ %$0$ 
 \alain{tu n'as pas le doit d'écrire $0$ sans explication}
 and $\Bad = \mathbb{N}^d \setminus \Safe$, 
 it follows the state-resilience problem \alain{écris toujours pareil les expressions choisies comme state-resilience}is equivalent 
@@ -457,7 +484,7 @@ Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
 \end{lemma}
 
 \begin{proof}
-Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is downward-closed, we also have $a \in U$ \alain{faux}. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
+Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is upward-closed, we also have $a \in U$. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
 \end{proof}
 
 
@@ -506,49 +533,5 @@ $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{proposition}
 
 
-\subsection{Synthesis}
-
-Results in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
-
-
-\begin{center}
-\begin{tabular}{ | l | c | c | c | c |}
-\hline  Hypothesis & strong upward compatibility ~ & $\uparrow post^*$ effective & both  \\ \hline
-   SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
-   BSRP & Undecidable (Thm~\ref{srp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
-      kSRP & Undecidable (Thm~\ref{srp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
- \end{tabular}
-\end{center}
-
-\noindent
-Results in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$:
-\iffalse
-(by symmetry) for downward compatible WSTS (but not necessarily upward compatible):
-
-\begin{center}
-\begin{tabular}{ | l | c | c | c | c |}
-\hline  Hypothesis & strong downward compatibility ~ & $\downarrow post^*$ effective & both  \\ \hline
-   SRP & Undecidable  & Decidable   & Decidable \\ \hline
-   BSRP & Undecidable  &  ??  & Decidable \\ \hline
-      kSRP & Undecidable  & ?? & Decidable  \\ \hline
- \end{tabular}
-\end{center}
-
-\mathieu{Montrer que leurs hypothèses Lossy + $\bot$-bounded + strong upward compatibility c'est plus fort que just strong downward compatibility et $\downarrow \post^*$ effective ?}
-
-Si on ne veut pas s'embêter avec les "downward compatible pas upward compatible" on peut se contenter d'écrire ça plutôt
-\fi
-%
-\alain{tableau trop vide. retirer le dernier tableau et mettre le 1er dans la section correspondate, supprimer section 4.3}
-%
-\begin{center}
-\begin{tabular}{ | l | c | c | c | c |}
-\hline  Hypothesis &  none  & downward compatible & strongly downward compatible  \\ \hline
-   SRP & Undecidable (Thm~\ref{srp down up})  & Decidable (Thm~\ref{downward srp})  & Decidable (Thm~\ref{downward srp}) \\ \hline
-   BSRP & ??  &  ??  & Decidable (Prop~\ref{downward brp}) \\ \hline
-      kSRP & ??  & ?? & Decidable (Prop~\ref{downward brp}) \\ \hline
- \end{tabular}
-\end{center}
-% \alain{une hypothèse n'est pas l'ensemble vide}
 
 

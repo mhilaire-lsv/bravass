@@ -14,7 +14,7 @@
 
 In this section, we introduce general notations and preliminary definitions.
 
-The model we are interested in is WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
+The model we are interested in is labeled WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
 
 
 % \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
@@ -24,31 +24,42 @@ The model we are interested in is WSTS (and later some particular instances, i.e
 
 
 \begin{definition}
-A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
-{\em states} and  
-$ {\rightarrow} \subseteq S \times S$ is a
-binary relation 
-on
-the set of states, denoted as the set of {\em transitions}. 
+ A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
+ {\em states} and  
+ $ {\rightarrow} \subseteq S \times S$ is a
+ binary relation 
+ on
+ the set of states, denoted as the set of {\em transitions}. 
 
-%A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
-%$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
-%${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
-%ternary relation,
-%denoted as the set of {\em labeled transitions}. 
+\mathieu{ Maybe add this back ?
+A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
+$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
+${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
+ternary relation,
+denoted as the set of {\em labeled transitions}. }
 \end{definition}
 
-%Note 
-% that an (unlabeled) transition system can be seen as a labeled transition system where the set of labels consists of only one element. 
-
+% We prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as    $s  \xrightarrow{a}  s'$ to represent a transition from configuration $s$ to configuration $s'$ with label $a$. 
 We prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $).
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
 Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
 \noindent
-The set of {\em (immediate) successors} of a state $s \in S$ is deﬁned as $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. A state without successors is called a {\em dead end}. The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
-$\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. \\
-
+The set of {\em (immediate) successors} of a state $s \in S$ is defined as 
+ $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
+% $\post(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s \xrightarrow{a} s'\}$. 
+A state without successors is called a {\em dead end}. 
+The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
+ $\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
+% $\pred(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s' \xrightarrow{a} s\}$. 
+By iterating $\pred$ and $\post$ we obtain
+$\post^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$
+and
+$\pred^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$.
+However, we are generally more interested in
+$\post^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \post^i(s)$
+and
+$\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$. \\
 
 
 
@@ -61,7 +72,9 @@ A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ ov
 
 We abbreviate $x \leq y \not\leq x$ by $x < y$.
 % A partial ordering (a po) is an antisymmetric qo
-\alain{Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).}
+	% \alain{
+Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).
+	% }
 % and gives rise to a po between the equivalence classes ?
 % 	do we need po ?
 
@@ -155,10 +168,8 @@ Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite de
 
 In what follows, a downward closed set $D$ is represented by its finite set of ideals 
 %		$D=\downarrow D$   $I_D=\{J_1, J_2,...,J_n\}$ 		satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ 
-and an upward closed set $U$ is represented by its finite set of minimal elements.
+and an upward closed set $U$ is represented by its finite set of minimal elements. \\
 % $M_U$ of its  satisfying $U=\uparrow M_U$.
-
-\alain{est-ce utile et correct ? Let $I,J$ be two upward-closed sets given by its set of minimal element and $D,E$ be two downward-closed sets given by its ideal decomposition. All the four  inclusions $U \subseteq V$,  $U \subseteq D$, $D \subseteq U$ and $D \subseteq E$ are decidable provided that the ordering is decidable.}
 
 
 
@@ -265,10 +276,10 @@ Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V
 %For every upward-closed set $U \subseteq S$, there exists a finite basis $B$ of $U$. 
 
 % (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
-% \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $min(A)$ est la base minimale}
+% \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $\min(A)$ est la base minimale}
 %			\end{fact}
 
-For a WSTS $\mathscr{S}$ and an upward closed set $U$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We then have:  $\pred^*(U) = U_{k_0}$.
+For a WSTS $\mathscr{S}$ and an upward closed set $U$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We then have:  $\pred^*(U) = U_{k_0}$. \\
 
 
 \iffalse
@@ -324,6 +335,55 @@ Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \fi
 
 
+
+
+\noindent
+{\bf Vector addition system with states}
+
+% Définir VASS
+
+\begin{definition}
+A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\N^d$-labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em states} of $V$, and where $T \subseteq Q \times \N^d \times Q$ will be referred to as {\em transitions} of $V$. 
+% The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
+\end{definition}
+
+Subsetquently, $Q \times \N^d$ denotes the set of configurations of $V$.
+For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z}$. 
+
+\mathieu{Defining it like this makes it a LTS rather than a unlabeled TS - maybe talk about how we can 'forget' the labels to obtain an unlabeled TS ?}
+
+When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
+
+
+\problemx{$d$-VASS reachability}
+{A $d$-Vass $V=(Q,T)$, and configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$}
+{$s \to^* s'$ ? \\}
+
+
+\problemx{$d$-VASS zero reachability}
+{Vass $V=(Q,T)$, $q(\textbf{v}) \in Q \times \N^d$}
+{$\exists p \in Q ~ q(\textbf{v}) \to^* p(\textbf{0})$? \\} 
+
+
+
+
+\noindent
+{\bf Reset VASS}
+
+A {\em reset ... }
+Reset VASS are VASS extended with reset transitions.
+
+
+
+\problemx{Reset $d$-VASS reachability}
+{A reset $d$-Vass $d$-Vass $V=(Q,T)$, $s,s' \in Q \times \N^d$}
+{$s \to^* s'$ ? \\}
+
+
+\problemx{Reset $d$-VASS zero reachability}
+{A reset $d$-Vass $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
+{$\exists p \in Q ~ q(\textbf{u}) \to^* p(\textbf{0})$? \\}
 
 
 
