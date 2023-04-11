@@ -115,7 +115,7 @@ i.e.
 such that there exists an upward-closed set $U$
 such that $\Bad = U \setminus \Safe$.
 
-\alain{à quoi ça sert ici ?: Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.}
+\alain{à quoi ça sert ici ?: quelle signification ?Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.}
 
 and $\Bad = \uparrow U \setminus \Safe $
 
@@ -130,7 +130,7 @@ and $\Bad= U \setminus \Safe$ with $U = \uparrow U$.
 
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
+Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
 Since $U$  is upward closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
 Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
 % si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
@@ -167,9 +167,9 @@ and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
 \end{theorem}
 
 \begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong upward compatibility,  $\pred^n(\Safe)=\uparrow \pred^n(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
-Since $U$  is upward closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
+Since $\Safe=\uparrow \Safe$ is upward-closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
+Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong (upward) compatibility,  $\pred^n(\Safe)=\uparrow \pred^n(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
+Since $U$  is upward-closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
 Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
 % si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
 hence the resilience problem is decidable.
