@@ -68,11 +68,12 @@ Let us define $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such t
 
 \alain{ou alors $t=(u,u')$ such that $u \rightarrow u'$ mais alors c'est bizarre de nommer par la même lettre $t$ des couples différents $(u,u'), (v,v'),...$ dans un WSTS...ou alors on appelle transition un couple $(u,u')$ such that $u \rightarrow u'$ mais plus de lettre $t$...ou on définit un WSTS par un nombre fini de (shéma de ) transition $t_i$ qui sont compatibles par compatibilité mais ça contraint à un nombre fini (comme dans les VASS) ou alors on ne parle ici que des VASS et pas des WSTS mais ça suffira puisque state resilience pour VASS implique pour WSTS BREF il faut réfléchir à ce qu'est une transition...}
 
+\mathieu{En train de penser que le mieux serait de définir la $t$-liveness pas pour les WSTS mais pour les (Reset) VASS uniquement et ensuite dire SRP indécidable dans WSTS car indécidable pour les Reset VASS.}
 
 A transition $t$ is live in a configuration $s$ if for each $s' \in \post^*(s)$ there exists a sequence $s''$ with $s' \to^* s''$ such that $t$ is enabled in $s''$.
 
-\problemx{$t$-liveness}
-{Vass $V=(Q,T)$, $t \in T$}
+\problemx{(Reset) VASS $t$-liveness}
+{(Reset) VASS $V=(Q,T)$, $t \in T$}
 {Is $t$ live ?}
 
 
@@ -303,12 +304,18 @@ Decidability of downward-reachability leads to the decidability of the following
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS \alain{ref ?}, we \alain{we ou Ozkan ? qui a fait la preuve ?} deduce the following:
+The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS \alain{ref ?}, we \alain{we ou Ozkan ? qui a fait la preuve ?} 
+\mathieu{le papier d'Ozkan: 
+[Petri nets (equipped with any
+finite set of initial states) are $\uparrow \post^*$-effective by above Prop.: Reachability for Petri nets is decidable and recursively equivalent to submarking reachability.
+This corresponds to the anti-ideal reachability problem for Petri nets.]}
+deduce the following:
+
 
 \begin{proposition}
 Let $V= (Q,T)$ be a $d$-VASS and $q(\textbf{v}) \in Q \times \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(q(\textbf{v}))$.\alain{où sont définis les d-VASS, $V= (Q,T)$, $q(\textbf{v}) \in Q \times \N^d$ ?}
 \end{proposition}
-%\alain{mauvaises notations, la tradition est que P est l'ensemble des places...les états/markings en minuscules,....}
+
 
 \iffalse
 \begin{proof}
@@ -462,11 +469,13 @@ and $\Bad=\uparrow \Bad$.
 
 \begin{proof}
 Consider Reset $d$-VASS
-in the case $\Safe=\{ \textbf{0} \}$ where  $ \textbf{0} \in \mathbb{N}^d$ 
+in the case $\Safe=\{ \textbf{0} \}$ where  $ \textbf{0} = 0^d \in \mathbb{N}^d$ 
 %			contains only the minimal element $\min(S) = 0$ %$0$ 
 \alain{tu n'as pas le doit d'écrire $0$ sans explication}
 and $\Bad = \mathbb{N}^d \setminus \Safe$, 
-it follows the state-resilience problem \alain{écris toujours pareil les expressions choisies comme state-resilience}is equivalent 
+it follows the 
+state-resilience problem \alain{écris toujours pareil les expressions choisies comme state-resilience}
+is equivalent 
 to the problem of whether $0$ can be visited infinitely often. \alain{incompréhensible, explique}
 % Since reachability of $0$ is undecidable for Reset VASS, we conclude.
 Hence the undecidability.
@@ -498,6 +507,7 @@ $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
 
 \begin{theorem}\label{downward srp}
 {\sc state-resilience} is decidable for ideal effective WSTS with downward compatibility,\alain{a-t-on aussi la upward compatibility ?}
+\mathieu{oui}
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{theorem}
 
@@ -506,7 +516,9 @@ In order to decide whether state-resilience hold, we execute two procedures in p
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward-closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
 Every inductive invariant $D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
-Notice that, by standard \alain{upward ? downward ?}compatibility, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
+Notice that, by 
+%standard \alain{upward ? downward ?}
+upward compatibility, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
 
 Procedure 1 stops when it finds an invariant $D$ such that
 $D  \cap \Bad \subseteq \pred^*(\Safe)$. 

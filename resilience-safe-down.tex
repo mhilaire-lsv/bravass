@@ -32,7 +32,9 @@ By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-clo
 The resilience problem can be reformulated as 
 % $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
 $\Bad \subseteq  \pred^*(\Safe)$.
-Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of upward- or downward-closed \alain{non définis} subsets.
+Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of upward- or downward-closed 
+%\alain{non définis}
+ subsets.
 Hence we can compute the intersection of
 % $\uparrow \{b_1,b_2,...,b_m\}$
 $\Bad$
@@ -64,23 +66,26 @@ $t_2 \leq t_1$ and $s_2 \to^* t_2$.
 
 Let $D$ be a downward-closed subset of $S$
 and let $x \in \downarrow \pred^*(D)$.
-By design \alain{?} there exists
+By downward closure, there exists
 $y \in \pred^*(D)$ 
-such that $x \leq y$
-and $d \in D$ such that
+such that $x \leq y$.
+By definition of $\pred^*(D)$ then there exists 
+$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
 $y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
 
 By downward compatibility $a_0 \to a_1$
-implies there exists $a'_1 \leq a_1$ with
+implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
 $x \to^* a'_1$.
 More generally $a_i \to a_{i+1}$ and
-$a'_i\leq a_i$ implies the existence of $a'_{i+1} \leq a_{i+1}$ such that
+$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
 $a'_i \to^* a'_{i+1}$,
 and, by induction,
- $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* d'$
-where
-$d' \leq d$ \alain{qui appartient à qui ?}belongs to $D$ by downward closure of $D$.
-Hence $x \in \pred^*(D)$.
+ $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
+with $d' \leq d$.
+Since
+$d'$ 
+% \alain{qui appartient à qui ?}
+belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$.
 \end{proof}
 
 % \begin{proposition}
@@ -116,8 +121,8 @@ such that there exists an upward-closed set $U$
 such that $\Bad = U \setminus \Safe$.
 
 \alain{à quoi ça sert ici ?: quelle signification ?Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.}
+\mathieu{Pas convaincu que ça serve, je vais enlever}
 
-and $\Bad = \uparrow U \setminus \Safe $
 
 example: ?
 
@@ -143,10 +148,10 @@ In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Sa
 
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,\alain{$\pred^n$ ou $\pred^{\leq n}$ ? même question pour post. et où est-ce défini ?}
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong %upward-
+compatibility, then $\pred^{\leq n}(\Safe)= \uparrow~\pred^{\leq n}(\Safe)$ for all $n \in \N$,\alain{$\pred^n$ ou $\pred^{\leq n}$ ? même question pour post. et où est-ce défini ?}
 and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+$\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 Hence the equivalence.
 \end{proof}
 
@@ -168,7 +173,7 @@ and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
 
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ is upward-closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WTSTS with strong (upward) compatibility,  $\pred^n(\Safe)=\uparrow \pred^n(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
+Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong (upward) compatibility,  $\pred^{\leq n}(\Safe)=\uparrow \pred^{\leq n}(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
 Since $U$  is upward-closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
 Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
 % si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe

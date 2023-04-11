@@ -31,12 +31,14 @@ The model we are interested in is labeled WSTS (and later some particular instan
  on
  the set of states, denoted as the set of {\em transitions}. 
 
+\iffalse
 \mathieu{ Maybe add this back ?
 A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
 $S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
 ${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
 ternary relation,
 denoted as the set of {\em labeled transitions}. }
+\fi
 \end{definition}
 
 % We prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as    $s  \xrightarrow{a}  s'$ to represent a transition from configuration $s$ to configuration $s'$ with label $a$. 
@@ -52,7 +54,7 @@ A state without successors is called a {\em dead end}.
 The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
  $\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
 % $\pred(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s' \xrightarrow{a} s\}$. 
-By iterating $\pred$ and $\post$ we obtain
+By iterating $\pred$ and $\post$ we obtain  
 $\post^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$
 and
 $\pred^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$.
@@ -371,20 +373,18 @@ When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 \noindent
 {\bf Reset VASS}
 
-A {\em reset ... }
-Reset VASS are VASS extended with reset transitions.
+Reset VASS extend the basic VASS model with special “reset
+arcs” that resets (set to $0$) some coordinates in the vector. \\
+
+More Formally {\em reset ... }
 
 
 
-\problemx{Reset $d$-VASS reachability}
-{A reset $d$-Vass $d$-Vass $V=(Q,T)$, $s,s' \in Q \times \N^d$}
-{$s \to^* s'$ ? \\}
-
-
+\begin{samepage}
 \problemx{Reset $d$-VASS zero reachability}
 {A reset $d$-Vass $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
 {$\exists p \in Q ~ q(\textbf{u}) \to^* p(\textbf{0})$? \\}
-
+\end{samepage}
 
 
 
