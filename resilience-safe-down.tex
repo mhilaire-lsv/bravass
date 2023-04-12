@@ -14,7 +14,7 @@ This set is upward-closed by (upward) compatibility in VASS.
 
 As an example, let us choose $\Safe=S-\Bad$ then since $\Bad=\uparrow \Bad$, we have: $\Safe=\downarrow \Safe$.
 %
-\alain{definir  ideal-effective WSTS}
+% \alain{definir  ideal-effective WSTS}
 %
 \begin{theorem}\label{up-down}
 The resilience problem is decidable for ideal-effective WSTS with 
@@ -120,9 +120,11 @@ i.e.
 such that there exists an upward-closed set $U$
 such that $\Bad = U \setminus \Safe$.
 
+\iffalse
 \alain{à quoi ça sert ici ?: quelle signification ?Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.}
 \mathieu{Pas convaincu que ça serve, je vais enlever}
-
+% hop
+\fi
 
 example: ?
 
@@ -149,7 +151,8 @@ In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Sa
 \begin{proof}
 Since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong %upward-
-compatibility, then $\pred^{\leq n}(\Safe)= \uparrow~\pred^{\leq n}(\Safe)$ for all $n \in \N$,\alain{$\pred^n$ ou $\pred^{\leq n}$ ? même question pour post. et où est-ce défini ?}
+compatibility, then $\pred^{\leq n}(\Safe)= \uparrow~\pred^{\leq n}(\Safe)$ for all $n \in \N$,
+% \alain{$\pred^n$ ou $\pred^{\leq n}$ ? même question pour post. et où est-ce défini ?}
 and there exists $n_0 \in \N$ such that 
 $\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 Hence the equivalence.
