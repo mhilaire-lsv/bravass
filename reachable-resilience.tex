@@ -129,22 +129,7 @@ $t$-liveness is undecidable for Reset VASS.
 
 
 
-\iffalse
 
-\begin{theorem}
-The downward reachability problem is reducible to the state resilience problem.
-\end{theorem}
-
-\begin{proof}
-Let $s \in S$, and a downward-closed set $D$. \alain{je ne comprends pas cette "preuve"}
-Take $\Safe = \emptyset$ and $\Bad = D$.
-The state resilience problem on $\Safe,\Bad$ asks
-whether $\Bad \cap \post^*(s) \rightarrow^* \Safe$  that is equivalent to $\Bad \cap \post^*(s) \subseteq \emptyset$.
-If the answer is negative then $s \to^* \Bad$,
-else $s \not\to^* \Bad$.
-\end{proof}
-
-\fi
 
 
 Since $t$-liveness is undecidable for Reset VASS that are WSTS with strong compatibility, from Proposition~\ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
