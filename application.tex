@@ -18,7 +18,9 @@ Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For ev
 %			Moreover, $post^*(\Bad)$ is also a computable regular language \alain{pourquoi ?}   $post^*(L)$ and
  the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
 %
-The BRP and the kRP are also decidable. The algorithm that computes $ \pred^*(\Safe)$ is polynomial. If $\Bad \subseteq \pred^*(\Safe)$ then one computes an integer $k$ such that the maximum of all minimal pathes that go from $\Bad$ to $\Safe$ is equal to $k$.\alain{à prouver}
+The kRP is decidable: let us compute $ \pred^*(\Safe)$ (in polynomial time). If $\Bad \subseteq \pred^*(\Safe)$ then one computes the integer $k_0$ such that the maximum of all minimal pathes that go from $\Bad$ to $\Safe$ is equal to $k$. Then $A=(Q,\Sigma,...)$ is $p$-resilient for all $p \geq k_0$ and it is not $p$-resilient for all $p \leq k_0-1$.
+
+\alain{à prouver la BRP...}
 %
 \end{proof}
 %
@@ -98,21 +100,6 @@ the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad
 
 
 open for VASS ???
-
-\section{Computing the largest safe WSTS}
-
-Ici $\Safe$ clos haut. ici on veut rester toujours dans $\Safe$. on calcule les élements minimaux de $\pred^*(\Safe)=\{m_1,m_2,...,m_p\}$ puis on ajoute les préconditions $s' \geq m_1  	\wedge s' \geq m_2  	\wedge...	\wedge s' \geq m_p$ à toutes les transitions $s \rightarrow s'$ assurant que l'état atteint $s'$ est au dessus des minimaux de $\pred^*(\Safe)$, ainsi par (upward) compatibility on sera toujours dans $\Safe$. Il faut juste l'hypothèse raisonnable qu'on peut exprimer $s' \geq m_1  	\wedge s' \geq m_2  	\wedge...	\wedge s' \geq m_p$ comme une garde d'une transition dans les WSTS concernés (facile dans les VASS et modèles habituels).
-
-\begin{theorem}{}
-Given a WSTS and $\Safe$  upward-closed, the largest sub TS, that stays in $\Safe$ , is a computable WSTS.
-\end{theorem}
-
-Pour les VASS, je crois qu'on a une borne (2-exp) à la taille de $\pred^*(\Safe)$ et à la taille de ses éléments \cite{DBLP:conf/rp/BozzelliG11} et c'est directement implémentable, donc en particulier, pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $\Safe$ .
-Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les 3 premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, borné , T-continual.
-
-\begin{theorem}{}
-Given a VASS and $\Safe$ upward-closed, the largest sub TS, that  stays in $\Safe$, is a computable VASS of size 2-exp.
-\end{theorem}
 
 
 %		\section{Control of a WSTS to be resilient}
