@@ -121,13 +121,13 @@ A control transition $t$ of a $d$-dim Reset VASS is called {\em live} in a confi
 live. This leads to the following problem.
 
 \problemx{$d$-dim Reset VASS $t$-liveness}
-{$d$-dim Reset VASS $V=(Q,T)$, $t \in T$}
-{Is $t$ live ? \\}
+{$d$-dim Reset VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
+{Is $t$ live in $s_0$ ? \\}
 
 
-To better discuss $t$-liveness let us define 
+To better discuss $t$-liveness let us define more formally the set of configurations such that $t$ is enabled
 % $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such that $u \xrightarrow{t} u'$\} 
-$pre(t)=\{  \}$ in a $d$-dim Reset VASS such that .
+$pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
 
 \iffalse
 \alain{ou alors $t=(u,u')$ such that $u \rightarrow u'$ mais alors c'est bizarre de nommer par la même lettre $t$ des couples différents $(u,u'), (v,v'),...$ dans un WSTS...ou alors on appelle transition un couple $(u,u')$ such that $u \rightarrow u'$ mais plus de lettre $t$...ou on définit un WSTS par un nombre fini de (shéma de ) transition $t_i$ qui sont compatibles par compatibilité mais ça contraint à un nombre fini (comme dans les VASS) ou alors on ne parle ici que des VASS et pas des WSTS mais ça suffira puisque state resilience pour VASS implique pour WSTS BREF il faut réfléchir à ce qu'est une transition...}
@@ -138,25 +138,33 @@ $pre(t)=\{  \}$ in a $d$-dim Reset VASS such that .
 
 
 \begin{proposition}\label{reductions}
-In WSTS, $t$-liveness is reducible to {\sc state-resilience}.
-%	home state and reachability
+% In WSTS, $t$-liveness is reducible to {\sc state-resilience}.
+{\sc $d$-dim Reset VASS $t$-liveness} is reducible to {\sc state-resilience}.
 \end{proposition}
 
 
 \begin{proof}
-We reformulate $t$-liveness in a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ as the following formula
-% $$ ~ \forall s' \in S, ~ s \rightarrow^* s' \implies \exists s'' \in U_t, ~ s' \rightarrow^{*} s''$$
-$$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$  
+We reformulate $t$-liveness 
+in a 
+% WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ 
+$d$-dim Reset VASS $(Q,T)$ 
+with initial configuration $s_0$
+as the following formula
+% $$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$ 
+$$ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
+~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in U_t, ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})$$  
 where
-$U_t=\uparrow \pred(t)$ \alain{$\pred(t)$ n'est pas défini et $\pred$ est une mauvaise notation pour ça: plutôt: $pre(t)=\{ u \in S \mid \exists u' \in S$  such that $u \xrightarrow{t} u'$\} }
+$U_t=\uparrow pre(t)$ 
+% \alain{$\pred(t)$ n'est pas défini et $\pred$ est une mauvaise notation pour ça: plutôt: $pre(t)=\{ u \in S \mid \exists u' \in S$  such that $u \xrightarrow{t} u'$\} }
 is the upward closure of the preconditions to fire transition $t$.  
 The problem reduces itself to the state resilience problem
-where $\Safe = U_t$ and $\Bad = S \setminus \Safe$.
+where $\Safe = U_t$ and $\Bad = Q \times \N^d \setminus \Safe$.
 \end{proof}
 
-To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. The following theorem is a adjustment ofTheorem~5.5 from \cite{peterson1981petri} whose proof can be seen in Appendix~\ref{appendix}.
+% To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. 
+The following theorem is a adjustment of Theorem~5.5 from \cite{peterson1981petri} whose proof can be seen in Appendix~\ref{appendix}.
 
-\alain{tu ne définis pas, même informellement et/ou rapidement, assez les objets que tu utilises: zero reachability problem, Reset VASS}
+% \alain{tu ne définis pas, même informellement et/ou rapidement, assez les objets que tu utilises: zero reachability problem, Reset VASS}
 
 
 \begin{theorem}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]\label{liveness reset}
@@ -170,7 +178,7 @@ See Appendix~\ref{appendix} for the complete proof.
 \end{proof}
 \fi
 
-Since the zero reachability problem is undecidable for Reset VASS, the reduction implies 
+Since the {$d$-dim Reset VASS zero reachability} is undecidable, the reduction implies 
 % the following:
 %
 \iffalse
@@ -183,15 +191,14 @@ $t$-liveness, we deduce:
 \fi
 %
 %\begin{corollary}
-$t$-liveness is undecidable for Reset VASS.
+{$d$-dim Reset VASS $t$-liveness} is undecidable.
 %\end{corollary}
 
 
 
 
 
-
-Since $t$-liveness is undecidable for Reset VASS that are WSTS with strong compatibility, from Proposition~\ref{reductions},  we deduce that state-resilience is undecidable for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+Since {$d$-dim Reset VASS $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc state-resilience} is undecidable  for $d$-dim Reset VASS, which are WSTS with strong compatibility. Hence {\sc state-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{theorem}\label{srp up down}
@@ -206,7 +213,7 @@ and $\Bad=\downarrow \Bad$.
 
 
 \begin{proof}
-{\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since $t$-liveness is undecidable.
+{\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since {$d$-dim Reset VASS $t$-liveness} is undecidable.
 
 % \begin{proposition}
 % \end{proof}
@@ -219,11 +226,12 @@ reducible to {\sc $k$-state-resilience}:
 % \begin{proof}
 since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong %upward-
-compatibility, then $\pred^n(\Safe)= \uparrow~\pred^n(\Safe)$ for all $n \in \N$,
+compatibility, then $\pred^{\leq n}(\Safe)= \uparrow~\pred^{\leq n}(\Safe)$ for all $n \in \N$,
 and there exists $n_0 \in \N$ such that 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
+$\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 We compute 
-$n_0$, then iteratively check whether $k$-state resilience \alain{$k$-state resilience ou $k$-state-resilience ?}
+$n_0$, then iteratively check whether $k$-state-resilience 
+% \alain{$k$-state resilience ou $k$-state-resilience ?}
 hold for $k$ from $0$ to $n_0$.  
 % \end{proof}
 Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
@@ -231,7 +239,7 @@ Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe
 %
 % \begin{proof}
 since 
-$\pred^{n_0}(\Safe) = \uparrow \pred^{n_0}(\Safe) = {\uparrow \pred^*(\Safe)} = \pred^*(\Safe)$.
+$\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = {\uparrow \pred^*(\Safe)} = \pred^*(\Safe)$.
 Hence the %equivalence, and
  undecidability of {\sc Bounded-state-resilience}
 and 
