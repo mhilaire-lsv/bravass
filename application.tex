@@ -18,7 +18,9 @@ Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For ev
 %			Moreover, $post^*(\Bad)$ is also a computable regular language \alain{pourquoi ?}   $post^*(L)$ and
  the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
 %
-The BRP and the kRP are also decidable. The algorithm that computes $ \pred^*(\Safe)$ is polynomial. If $\Bad \subseteq \pred^*(\Safe)$ then one computes an integer $k$ such that the maximum of all minimal pathes that go from $\Bad$ to $\Safe$ is equal to $k$.\alain{à prouver}
+The kRP is decidable: let us compute $ \pred^*(\Safe)$ (in polynomial time). If $\Bad \subseteq \pred^*(\Safe)$ then one computes the integer $k_0$ such that the maximum of all minimal pathes that go from $\Bad$ to $\Safe$ is equal to $k$. Then $A=(Q,\Sigma,...)$ is $p$-resilient for all $p \geq k_0$ and it is not $p$-resilient for all $p \leq k_0-1$.
+
+\alain{à prouver la BRP...}
 %
 \end{proof}
 %
