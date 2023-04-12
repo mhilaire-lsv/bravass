@@ -111,6 +111,7 @@ increasing subsequence.
 
 Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
 A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
 To any subset $A \subseteq X$, we may associate
 its {\em upward-closure},
  $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
@@ -235,20 +236,7 @@ A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S
 
 
 
-% \textcolor{red}{Define what an Ideal is. Actually an Ideal is just an upward-closed set, so maybe this just adds some confusion. Anti-ideal just downward closed so again just not that helpful a notation. Maybe have a }
 
-
-\iffalse
-\begin{definition}
-A {\em bi-ideal} $I \subseteq S$ is an upward-closed and downward-closed set, i.e
-$\uparrow I = I = \downarrow I$.
-\end{definition}
-
-"Bi-ideals often represent “control states” as in [cf \%]. "
-% Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
-
-% \textcolor{red}{Probably one can already 'deduce' from this that ideal $I$ and anti-ideal $J$ for resp. good and bad states, in the case of e.g. timed automata would be given by sets of states}
-\fi
 
 %         A downard-closed set $D$ is {\em decidable} if, given $s \in S$, it is decidable whether
 %         $s \in D$. 
@@ -256,6 +244,7 @@ $\uparrow I = I = \downarrow I$.
 %\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
 % \textcolor{red}{Do we still demand this ?}
 %\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
+
 
 %
 \iffalse
@@ -337,7 +326,18 @@ Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \fi
 
 
+\begin{definition}{\cite{BFM-ic17}} 
+A class $C$ of WSTS is {\em ideally effective} if
+\begin{itemize}
+\item the function mapping the encoding of a configuration $s$ of an ordered transition system
+to the encoding of the ideal $\downarrow s$ is computable;
+\item inclusion of ideals is decidable;
+\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is com-
+putable from the ideal $I$.
+\end{itemize}
+\end{definition}
 
+\mathieu{I'm using the notion of ideally effective-ness for WBTS here}
 
 \noindent
 {\bf Vector addition system with states}
