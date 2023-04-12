@@ -370,54 +370,5 @@ When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
 
 
-\noindent
-{\bf Reset VASS}
-
-Reset VASS extend the basic VASS model with special “reset
-arcs” that resets (set to $0$) some coordinates in the vector. \\
-
-% More Formally {\em reset ... }
-
-% Op is the set of actions
-
-
-\begin{definition}
-A {\em Reset VASS} in dimension $d$ ($d$-dim Reset VASS for short) is a finite 
-% $\mathds{Z}^d$
-labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em control states} of $V$, and where 
-%$T \subseteq Q \times \mathds{Z}^d \times Q$
-$T \subseteq Q \times Op \times Q$
- will be referred to as the {\em control transitions} of $V$,
-where $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
-		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
-\end{definition}
-
-Again $Q \times \N^d$
- denotes the set of configurations of $V$.
-For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control transition $t$ we write
-$p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
-
-\begin{itemize}
-
-\item  $t = (q,add(\textbf{z}),q') \in T$
-% then for all $\textbf{u} \in \N^d$ such that  
-% $\textbf{u}+\textbf{z} \geq 0$
-% $q(\textbf{u}) \xrightarrow{\textbf{z}} q'(\textbf{u}+\textbf{z})$,
-and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
-
-\item $t = (q,reset(\gamma),q') \in T$ 
-% then for all $\textbf{u} \in \N^d$ 
-% $q(\textbf{u}) \xrightarrow{z} q'(\textbf{u}')$,  where 
-and
-$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
-\end{itemize}
-
-\begin{samepage}
-\problemx{$d$-dim Reset VASS zero reachability}
-{A $d$-dim Reset VASS $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
-{$\exists p \in Q ~ q(\textbf{u}) \to^* p(\textbf{0})$? \\}
-\end{samepage}
-
-
 
 

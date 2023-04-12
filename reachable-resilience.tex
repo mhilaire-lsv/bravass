@@ -59,23 +59,82 @@ $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 
 
 
-
 Unfortunately, state-resilience is undecidable for (general) WSTS even with strong upward-compatibility.
-This stems from the fact that $t$-liveness is undecidable for WSTS and 
-is reducible to the state resilience problem.\alain{definir t-liveness, dire ce qu'est une transition $t$ dans un WSTS étiqueté ou pas ?...}
+This stems from the fact that it is undecidable in the particular case of Reset VASS,
+where  $t$-liveness is both undecidable and 
+ reducible to the state resilience problem.
 
-Let us define $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such that $u \xrightarrow{t} u'$\} 
+% \noindent
+% {\bf Reset VASS}
 
+Reset VASS extend the basic VASS model with special “reset
+transitions” that resets (set to $0$) some coordinates in the vector. Let us recall their definition here.\\
+
+% More Formally {\em reset ... }
+
+
+
+\begin{definition}
+A {\em Reset VASS} in dimension $d$ ($d$-dim Reset VASS for short) is a finite 
+% $\mathds{Z}^d$
+labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em control states} of $V$, and where 
+%$T \subseteq Q \times \mathds{Z}^d \times Q$
+$T \subseteq Q \times Op \times Q$
+ will be referred to as the {\em control transitions} of $V$,
+where $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
+		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
+\end{definition}
+
+Again $Q \times \N^d$
+ denotes the set of configurations of $V$.
+For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control transition $t$ we write
+$p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
+
+\begin{itemize}
+
+\item  $t = (q,add(\textbf{z}),q') \in T$
+% then for all $\textbf{u} \in \N^d$ such that  
+% $\textbf{u}+\textbf{z} \geq 0$
+% $q(\textbf{u}) \xrightarrow{\textbf{z}} q'(\textbf{u}+\textbf{z})$,
+and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
+
+\item $t = (q,reset(\gamma),q') \in T$ 
+% then for all $\textbf{u} \in \N^d$ 
+% $q(\textbf{u}) \xrightarrow{z} q'(\textbf{u}')$,  where 
+and
+$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
+\end{itemize}
+
+It is well known that $d$-dim Reset VASS are WSTS [ref ? relire WSTS everywhere]. 
+Moreover, we are interested in the following undecidable [ref again] decision problem:
+
+\begin{samepage}
+\problemx{$d$-dim Reset VASS zero reachability}
+{A $d$-dim Reset VASS $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
+{$\exists p \in Q ~ q(\textbf{u}) \to^* p(\textbf{0})$? \\}
+\end{samepage}
+
+We reduce this problem to the problem of deciding whether a control transition is live, that is, whether it is always ,
+which we then reduce to the state-resilience problem.
+A control transition $t$ of a $d$-dim Reset VASS is called {\em live} in a configuration $s$ if for each $q(\textbf{v}) \in \post^*(s)$ there exists a 
+ $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole $d$-dim Reset VASS is live if all its control transitions are
+live. This leads to the following problem.
+
+\problemx{$d$-dim Reset VASS $t$-liveness}
+{$d$-dim Reset VASS $V=(Q,T)$, $t \in T$}
+{Is $t$ live ? \\}
+
+
+To better discuss $t$-liveness let us define 
+% $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such that $u \xrightarrow{t} u'$\} 
+$pre(t)=\{  \}$ in a $d$-dim Reset VASS such that .
+
+\iffalse
 \alain{ou alors $t=(u,u')$ such that $u \rightarrow u'$ mais alors c'est bizarre de nommer par la même lettre $t$ des couples différents $(u,u'), (v,v'),...$ dans un WSTS...ou alors on appelle transition un couple $(u,u')$ such that $u \rightarrow u'$ mais plus de lettre $t$...ou on définit un WSTS par un nombre fini de (shéma de ) transition $t_i$ qui sont compatibles par compatibilité mais ça contraint à un nombre fini (comme dans les VASS) ou alors on ne parle ici que des VASS et pas des WSTS mais ça suffira puisque state resilience pour VASS implique pour WSTS BREF il faut réfléchir à ce qu'est une transition...}
 
 \mathieu{En train de penser que le mieux serait de définir la $t$-liveness pas pour les WSTS mais pour les (Reset) VASS uniquement et ensuite dire SRP indécidable dans WSTS car indécidable pour les Reset VASS.}
 
-A transition $t$ is live in a configuration $s$ if for each $s' \in \post^*(s)$ there exists a sequence $s''$ with $s' \to^* s''$ such that $t$ is enabled in $s''$.
-
-\problemx{(Reset) VASS $t$-liveness}
-{(Reset) VASS $V=(Q,T)$, $t \in T$}
-{Is $t$ live ?}
-
+\fi
 
 
 \begin{proposition}\label{reductions}
