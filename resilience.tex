@@ -1,6 +1,7 @@
 
 \section{Resilience for WSTS}
 
+
 In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$ and $\Safe ,  \Bad \neq \emptyset$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
@@ -98,8 +99,7 @@ On the other hand in the case $\Safe = \uparrow q_0(3,0)$ and $\Bad = \uparrow q
 \begin{example}
 % Si on prends un Z-vass avec même seulement un compteur, Safe les entiers positifs, Bad le reste, avec juste une transition qui fait +1, alors on a la résilience (on reviens toujours dans les positifs) mais pas la bounded resilience.
 Let us consider now a $\mathds{Z}$-VASS with only one state $q$, one counter, and one transition that adds $+1$ to the counter, with $\Safe = \uparrow q(0)$, $\Bad = \downarrow q(-1)$,
-then resilience hold (one always ends up in the positive integers) but not bounded resilience
-(for every bound $b$ there is an element of $\Bad$ e.g. $q(-b-1)$ which necessitate at least $b+1$ steps before it can reach $\Safe$). 
+then resilience hold (one always ends up in the positive integers) but not bounded resilience: for every bound $b$ there is an element of $\Bad$ e.g. $q(-b-1)$ which necessitate at least $b+1$ steps before it can reach $\Safe$. 
 \end{example}
 
 

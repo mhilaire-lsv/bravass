@@ -42,6 +42,21 @@ example: in a VASS, we may choose $\Safe$ to be the set of states that are not d
 %it is therefore reasonable to demand that both propositions, \Safe and \Bad, are given by 
 %upward-closed or downward-closed sets.
 
+%
+
+\alain{pas ici}
+\begin{definition}{\cite{BFM-ic17}} 
+A class $C$ of WSTS is {\em ideally effective} if
+\begin{itemize}
+\item the function mapping the encoding of a configuration $s$ of a WSTS
+to the encoding of the ideal $\downarrow s$ is computable;
+\item inclusion of ideals is decidable;
+\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
+\end{itemize}
+\end{definition}
+
+\mathieu{I'm using the notion of ideally effective-ness for WBTS here}
+%
 Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where states of $\hat{\mathscr{S}}$ are ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS (intuitively speaking, $(S,\leq)$ must not contain the Rado set). Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS.
 
 Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
