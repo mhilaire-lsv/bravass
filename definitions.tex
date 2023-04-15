@@ -370,24 +370,41 @@ When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 {$\exists p \in Q ~ q(\textbf{v}) \to^* p(\textbf{0})$? \\} 
 
 
+\noindent
+{\bf Computing the maximal $X$-live system}
 
-\subsection{Computing the largest safe WSTS}
+Let $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ be an (ordered transition) system with initial state $s_0$ and $X \subseteq S$ be an upward-closed set given by its finite minimal basis $B_X$. We say that $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $X$-live if from any reachable state $s$ (from $s_0$), there exists (at least) a run that goes into $X$: $s \xrightarrow{*} X$.  We may verify that  $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $X$-live iff  $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $\pred^*(X)$-live. The \emph{maximal $X$-live subsystem} of $(S,\rightarrow,\leq,s_0)$ is ....
 
-Ici $\Safe$ clos haut. ici on veut rester toujours dans $\Safe$. on calcule les élements minimaux de $\pred^*(\Safe)=\{m_1,m_2,...,m_p\}$ puis on ajoute les préconditions $s' \geq m_1  	\vee s' \geq m_2  	\vee...	\vee s' \geq m_p$ à toutes les transitions $s \rightarrow s'$ assurant que l'état atteint $s'$ est au dessus des minimaux de $\pred^*(\Safe)$, ainsi par (upward) compatibility on sera toujours dans $\Safe$. Il faut juste l'hypothèse raisonnable qu'on peut exprimer $s' \geq m_1  	\lor s' \geq m_2  	\lor...	\lor s' \geq m_p$ comme une garde d'une transition dans les WSTS concernés (facile dans les VASS et modèles habituels).
-
-\begin{theorem}{}
-Given a WSTS and $\Safe$  upward-closed, the largest sub TS, that stays in $\Safe$ , is a computable WSTS.
-\end{theorem}
-
-Pour les VASS, je crois qu'on a une borne (2-exp) à la taille de $\pred^*(\Safe)$ et à la taille de ses éléments \cite{DBLP:conf/rp/BozzelliG11} et c'est directement implémentable, donc en particulier, pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $\Safe$ .
-Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les 3 premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, borné , T-continual.
+Let us remark that given a WSTS $\mathscr{S}=(S, \rightarrow, \leq,s_0)$, one may construct many \emph{guarded WSTSs} where every transition $s \rightarrow s'$ of $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is now guarded by a (monotone) formula $\phi$ defined by the grammar $\phi ::= s \geq u \mid s' \geq u \mid \phi \vee \phi \mid \phi \wedge \phi$ where $u \in S$. Since these formula are upward-compatible, the constructed transition system $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ is still a WSTS. 
+%
+For example, VASS allows such guards.
+  %	\lor s' \geq x_2  	\lor...	\lor s' \geq x_p$ (facile dans les VASS et modèles habituels).
 
 \begin{theorem}{}
-Given a VASS and $\Safe$ upward-closed, the largest sub TS, that  stays in $\Safe$, is a computable VASS of size 2-exp.
+Given an effective WSTS with effective pred-basis and an upward-closed set $X$, the maximal $X$-live subsystem is a computable WSTS.
 \end{theorem}
 
+\begin{proof}
+Since $X$ is upward-closed and $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is an effective WSTS, we compute the minimal basis of $\pred^*(X)=\{x_1,x_2,...,x_p\}$. 
+%
+%
+Then we add the following guards $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p$ to every transition $s \rightarrow s'$ of $\mathscr{S}$; this insures that the new (guarded) WSTS $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ satisfies the property to be $\pred^*(X)$-live and then it is the maximal $X$-live sub-WSTS of $\mathscr{S}=(S, \rightarrow, \leq,s_0)$.
 
+%		l'état atteint $s'$ est au dessus des minimaux de $\pred^*(X)$, ainsi par (upward) compatibility on sera toujours capable d'aller dans $X$. 
+\end{proof}
+%
+Pour les VASS, je crois qu'on a une borne (2-exp) à la taille de $\pred^*(X)$ et à la taille de ses éléments \cite{DBLP:conf/rp/BozzelliG11} et c'est directement implémentable, donc en particulier, pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $X$ .
+Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, T-continual ?.
 
+\begin{theorem}{}
+Given a VASS and $X$ upward-closed, the maximal $X$-live subsystem is a computable VASS of size 2-exp.
+\end{theorem}
+
+applications to many upward-closed sets $X$:
+$m$ is $\hat{T}$-blocked if no $t \in \hat{T}$ is fireable in $\post^*(m)$.
+$m$ is dead if the reachability tree from $m$ is finite.
+$m$ is bounded if the reachability set from $m$ is finite.
+$m$ is $\hat{T}$-continual if there is an unfinite run from $m$ such that all transitions in $\hat{T}$ appear infinitely often.
 
 
 
