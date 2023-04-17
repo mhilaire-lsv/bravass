@@ -12,7 +12,7 @@
 
 
 
-In this section, we introduce general notations and preliminary definitions.
+%   In this section, we introduce general notations and preliminary definitions.
 
 The model we are interested in is labeled WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
 
@@ -214,15 +214,13 @@ Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $
 
 
 The following property is very usefull: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
-
-
 %\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
 Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
 
 \mathieu{On peut probablement enlever la Proposition $8$ alors. La proposition $9$ étant plus directement pertinente pour les lemmes/preuves (permet d'avoir itérativement $\pred^k(I)$ upward-closed if $I$ upward-closed - for all $k$).}
 \fi
-
+%
 Now, we are interested to know a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 
 \begin{definition}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
@@ -233,7 +231,7 @@ any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\up
 
 
 \begin{theorem}(ref)
-A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward closed set $U \subseteq S$ given with its finite basis $B_U$.
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$.
 \end{theorem}
 
 
@@ -272,7 +270,61 @@ Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V
 % \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $\min(A)$ est la base minimale}
 %			\end{fact}
 
-For a WSTS $\mathscr{S}$ and an upward closed set $U$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We then have:  $\pred^*(U) = U_{k_0}$. \\
+For a WSTS $\mathscr{S}$ and an upward-closed set $U$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We then have:  $\pred^*(U) = U_{k_0}$. \\
+%
+
+\noindent
+\subsection{Computing the maximal $X$-live system}
+
+Let $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ be an (ordered transition) system with initial state $s_0$ and $X \subseteq S$ be an upward-closed set given by its finite minimal basis $B_X$. We say that $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $X$-live if from any reachable state $s$ (from $s_0$), there exists (at least) a run that goes into $X$: $s \xrightarrow{*} X$.  We may verify that  $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $X$-live iff  $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $\pred^*(X)$-live. The \emph{maximal $X$-live subsystem} of $(S,\rightarrow,\leq,s_0)$ is ....
+
+Let us remark that given a WSTS $\mathscr{S}=(S, \rightarrow, \leq,s_0)$, one may construct many \emph{guarded WSTSs} where every transition $s \rightarrow s'$ of $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is now guarded by a (monotone) formula $\phi$ defined by the grammar $\phi ::= s \geq u \mid s' \geq u \mid \phi \vee \phi \mid \phi \wedge \phi$ where $u \in S$. Since these formula are upward-compatible, the constructed transition system $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ is still a WSTS. 
+%
+For example, VASS allows such guards.
+  %	\lor s' \geq x_2  	\lor...	\lor s' \geq x_p$ (facile dans les VASS et modèles habituels).
+
+\begin{theorem}{}
+Given an effective WSTS with effective pred-basis and an upward-closed set $X$, the maximal $X$-live subsystem is a computable WSTS.
+\end{theorem}
+
+\begin{proof}
+Since $X$ is upward-closed and $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is an effective WSTS, we compute the minimal basis of $\pred^*(X)=\{x_1,x_2,...,x_p\}$. 
+%
+%
+Then we add the following guards $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p$ to every transition $s \rightarrow s'$ of $\mathscr{S}$; this insures that the new (guarded) WSTS $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ satisfies the property to be $\pred^*(X)$-live and then it is the maximal $X$-live sub-WSTS of $\mathscr{S}=(S, \rightarrow, \leq,s_0)$.
+
+%		l'état atteint $s'$ est au dessus des minimaux de $\pred^*(X)$, ainsi par (upward) compatibility on sera toujours capable d'aller dans $X$. 
+\end{proof}
+%
+%
+%\noindent
+%{\bf Vector addition system with states}
+
+% Définir VASS
+
+Let us recall that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and where $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+% The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
+
+Subsetquently, $Q \times \N^d$ is the set of configurations of $V$.
+For every configuration $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+
+\mathieu{Defining it like this makes it a LTS rather than a unlabeled TS - maybe talk about how we can 'forget' the labels to obtain an unlabeled TS ?}
+
+When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
+
+Pour les VASS, je crois qu'on a une borne (2-exp) à la taille de $\pred^*(X)$ et à la taille de ses éléments \cite{DBLP:conf/rp/BozzelliG11} et c'est directement implémentable, donc en particulier, pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $X$ .
+Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, T-continual ?.
+
+\begin{theorem}{}
+Given a VASS and $X$ upward-closed, the maximal $X$-live subsystem is a computable VASS of size 2-exp.
+\end{theorem}
+
+applications to many upward-closed sets $X$:
+$m$ is $\hat{T}$-blocked if no $t \in \hat{T}$ is fireable in $\post^*(m)$.
+$m$ is dead if the reachability tree from $m$ is finite.
+$m$ is bounded if the reachability set from $m$ is finite.
+$m$ is $\hat{T}$-continual if there is an unfinite run from $m$ such that all transitions in $\hat{T}$ appear infinitely often.
 
 
 \iffalse
@@ -328,66 +380,18 @@ Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 \fi
 
 
-\begin{definition}{\cite{BFM-ic17}} 
-A class $C$ of WSTS is {\em ideally effective} if
-\begin{itemize}
-\item the function mapping the encoding of a configuration $s$ of an ordered transition system
-to the encoding of the ideal $\downarrow s$ is computable;
-\item inclusion of ideals is decidable;
-\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
-\end{itemize}
-\end{definition}
 
-\mathieu{I'm using the notion of ideally effective-ness for WBTS here}
-
-
-\noindent
-{\bf Vector addition system with states}
-
-% Définir VASS
-
-\begin{definition}
-A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control states} of $V$, and where $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control transitions} of $V$. 
-% The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
-\end{definition}
-
-Subsetquently, $Q \times \N^d$ denotes the set of configurations of $V$.
-For every configuration $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
-
-\mathieu{Defining it like this makes it a LTS rather than a unlabeled TS - maybe talk about how we can 'forget' the labels to obtain an unlabeled TS ?}
-
-When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
-
-
-
+\alain{pas ici}
 \problemx{$d$-VASS reachability}
-{A $d$-VASS $V=(Q,T)$, and configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$}
-{$s \to^* s'$ ? \\}
+{A $d$-VASS $V=(Q,T)$, and two configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$}
+{$p(\textbf{u}) \to^* q(\textbf{v})$? \\}
 
 
-\problemx{$d$-VASS zero reachability}
-{VASS $V=(Q,T)$, $q(\textbf{v}) \in Q \times \N^d$}
-{$\exists p \in Q ~ q(\textbf{v}) \to^* p(\textbf{0})$? \\} 
+\problemx{$d$-VASS zero-reachability}
+{VASS $V=(Q,T)$, $p(\textbf{u}) \in Q \times \N^d$}
+{$\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$? \\} 
 
-
-
-\subsection{Computing the largest safe WSTS}
-
-Ici $\Safe$ clos haut. ici on veut rester toujours dans $\Safe$. on calcule les élements minimaux de $\pred^*(\Safe)=\{m_1,m_2,...,m_p\}$ puis on ajoute les préconditions $s' \geq m_1  	\vee s' \geq m_2  	\vee...	\vee s' \geq m_p$ à toutes les transitions $s \rightarrow s'$ assurant que l'état atteint $s'$ est au dessus des minimaux de $\pred^*(\Safe)$, ainsi par (upward) compatibility on sera toujours dans $\Safe$. Il faut juste l'hypothèse raisonnable qu'on peut exprimer $s' \geq m_1  	\lor s' \geq m_2  	\lor...	\lor s' \geq m_p$ comme une garde d'une transition dans les WSTS concernés (facile dans les VASS et modèles habituels).
-
-\begin{theorem}{}
-Given a WSTS and $\Safe$  upward-closed, the largest sub TS, that stays in $\Safe$ , is a computable WSTS.
-\end{theorem}
-
-Pour les VASS, je crois qu'on a une borne (2-exp) à la taille de $\pred^*(\Safe)$ et à la taille de ses éléments \cite{DBLP:conf/rp/BozzelliG11} et c'est directement implémentable, donc en particulier, pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $\Safe$ .
-Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les 3 premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, borné , T-continual.
-
-\begin{theorem}{}
-Given a VASS and $\Safe$ upward-closed, the largest sub TS, that  stays in $\Safe$, is a computable VASS of size 2-exp.
-\end{theorem}
-
-
-
+The two previous problems are well-known decidable.
 
 
 

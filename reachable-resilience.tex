@@ -2,7 +2,7 @@
 
 
 
-\section{State resilience}
+\section{State-resilience}
 
 
 Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. But, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap post^*(s_0)$, there must exist a path to $\Safe$. 
@@ -75,19 +75,19 @@ transitions” that resets (set to $0$) some coordinates in the vector. Let us r
 
 
 \begin{definition}
-A {\em Reset VASS} in dimension $d$ ($d$-dim Reset VASS for short) is a finite 
+A {\em Reset VASS} in dimension $d$ (Reset $d$-VASS for short) is a finite 
 % $\mathds{Z}^d$
-labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em control states} of $V$, and where 
+labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em control-states} of $V$, and where 
 %$T \subseteq Q \times \mathds{Z}^d \times Q$
 $T \subseteq Q \times Op \times Q$
- will be referred to as the {\em control transitions} of $V$,
+ will be referred to as the {\em control-transitions} of $V$,
 where $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
 		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
 \end{definition}
 
 Again $Q \times \N^d$
  denotes the set of configurations of $V$.
-For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control transition $t$ we write
+For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
 $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
 
 \begin{itemize}
@@ -108,20 +108,24 @@ $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for al
 It is well known that $d$-dim Reset VASS are WSTS [ref ? relire WSTS everywhere]. 
 Moreover, we are interested in the following undecidable [ref again] decision problem:
 
+\alain{ce qui suit est inutile}
+
 \begin{samepage}
-\problemx{$d$-dim Reset VASS zero reachability}
-{A $d$-dim Reset VASS $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
+\problemx{Zero-reachability}
+{A Reset $d$-VASS $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
 {$\exists p \in Q ~ q(\textbf{u}) \to^* p(\textbf{0})$? \\}
 \end{samepage}
-
-We reduce this problem to the problem of deciding whether a control transition is live, that is, whether it is always ,
+%
+\alain{ce qui précède est inutile}
+%
+We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
 which we then reduce to the state-resilience problem.
-A control transition $t$ of a $d$-dim Reset VASS is called {\em live} in a configuration $s$ if for each $q(\textbf{v}) \in \post^*(s)$ there exists a 
- $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole $d$-dim Reset VASS is live if all its control transitions are
+A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $s$ if for each $q(\textbf{v}) \in \post^*(s)$ there exists a \alain{mélange de s et (p,u)}
+ $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole Reset $d$-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
-\problemx{$d$-dim Reset VASS $t$-liveness}
-{$d$-dim Reset VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
+\problemx{$t$-liveness}
+{Reset $d$-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
 {Is $t$ live in $s_0$ ? \\}
 
 
@@ -139,7 +143,7 @@ $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf
 
 \begin{proposition}\label{reductions}
 % In WSTS, $t$-liveness is reducible to {\sc state-resilience}.
-{\sc $d$-dim Reset VASS $t$-liveness} is reducible to {\sc state-resilience}.
+{\sc $t$-liveness} is reducible to {\sc state-resilience} in Reset $d$-VASS.
 \end{proposition}
 
 
