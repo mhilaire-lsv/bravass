@@ -105,9 +105,11 @@ and
 $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
 \end{itemize}
 
-It is well known that $d$-dim Reset VASS are WSTS [ref ? relire WSTS everywhere]. 
-Moreover, we are interested in the following undecidable [ref again] decision problem:
-
+It is well known that Reset $d$-VASS are WSTS [ref ? relire WSTS everywhere]. 
+Moreover, we are interested in the 
+%following
+ undecidable [ref again] decision problem%:
+\iffalse
 \alain{ce qui suit est inutile}
 
 \begin{samepage}
@@ -117,10 +119,13 @@ Moreover, we are interested in the following undecidable [ref again] decision pr
 \end{samepage}
 %
 \alain{ce qui précède est inutile}
+\fi
+~ of zero-reachability in Reset $d$-VASS.
 %
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
 which we then reduce to the state-resilience problem.
-A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $s$ if for each $q(\textbf{v}) \in \post^*(s)$ there exists a \alain{mélange de s et (p,u)}
+A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
+%\alain{mélange de s et (p,u)}
  $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole Reset $d$-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
@@ -151,7 +156,7 @@ $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf
 We reformulate $t$-liveness 
 in a 
 % WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ 
-$d$-dim Reset VASS $(Q,T)$ 
+Reset $d$-VASS $(Q,T)$ 
 with initial configuration $s_0$
 as the following formula
 % $$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$ 
@@ -182,7 +187,7 @@ See Appendix~\ref{appendix} for the complete proof.
 \end{proof}
 \fi
 
-Since the {$d$-dim Reset VASS zero reachability} is undecidable, the reduction implies 
+Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduction implies 
 % the following:
 %
 \iffalse
@@ -195,14 +200,16 @@ $t$-liveness, we deduce:
 \fi
 %
 %\begin{corollary}
-{$d$-dim Reset VASS $t$-liveness} is undecidable.
+{\sc %$ Reset $d$-VASS 
+$t$-liveness} is undecidable.
 %\end{corollary}
 
 
 
 
 
-Since {$d$-dim Reset VASS $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc state-resilience} is undecidable  for $d$-dim Reset VASS, which are WSTS with strong compatibility. Hence {\sc state-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+Since {\sc %$Reset $d$-VASS 
+$t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc state-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc state-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{theorem}\label{srp up down}
@@ -217,7 +224,9 @@ and $\Bad=\downarrow \Bad$.
 
 
 \begin{proof}
-{\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since {$d$-dim Reset VASS $t$-liveness} is undecidable.
+{\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since 
+{\sc %Reset $d$-VASS 
+$t$-liveness} is undecidable.
 
 % \begin{proposition}
 % \end{proof}
@@ -525,7 +534,7 @@ and $\Bad=\uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-Consider $d$-dim Reset VASS
+Consider Reset $d$-VASS
 in the case $\Safe=\{ \textbf{0} \}$ where  $ \textbf{0} = 0^d \in \mathbb{N}^d$ 
 %			contains only the minimal element $\min(S) = 0$ %$0$ 
 \alain{tu n'as pas le doit d'écrire $0$ sans explication}
