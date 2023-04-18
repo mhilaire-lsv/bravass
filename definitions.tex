@@ -287,10 +287,10 @@ Given an effective WSTS with effective pred-basis and an upward-closed set $X$, 
 \end{theorem}
 
 \begin{proof}
-Since $X$ is upward-closed and $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is an effective WSTS, we compute the minimal basis of $\pred^*(X)=\{x_1,x_2,...,x_p\}$. 
+Since $X \subseteq S$ is upward-closed and $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is an effective WSTS with effective pred-basis, we compute the minimal basis of $\pred^*(X)=\{x_1,x_2,...,x_p\}$. 
 %
 %
-Then we add the following guards $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p$ to every transition $s \rightarrow s'$ of $\mathscr{S}$; this insures that the new (guarded) WSTS $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ satisfies the property to be $\pred^*(X)$-live and then it is the maximal $X$-live sub-WSTS of $\mathscr{S}=(S, \rightarrow, \leq,s_0)$.
+Then we add the following guard $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p$ to every transition $s \rightarrow s'$ of $\mathscr{S}$ and we define  $s \rightarrow' s'$ as $(s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p) \wedge s \rightarrow s'$ ; this insures that the new (guarded) WSTS $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ is $\pred^*(X)$-live and then it is also the maximal $X$-live sub-WSTS of $\mathscr{S}=(S, \rightarrow, \leq,s_0)$.
 
 %		l'état atteint $s'$ est au dessus des minimaux de $\pred^*(X)$, ainsi par (upward) compatibility on sera toujours capable d'aller dans $X$. 
 \end{proof}
@@ -308,7 +308,7 @@ Subsetquently, $Q \times \N^d$ is the set of configurations of $V$.
 For every configuration $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
 
 \mathieu{Defining it like this makes it a LTS rather than a unlabeled TS - maybe talk about how we can 'forget' the labels to obtain an unlabeled TS ?}
-
+\alain{les VASS ne sont pas vraiment étiquetés, sauf si on veut le faire, car on peut dire que les VASS sont définis à partir d'un nombre fini de control-transitions  $t = (p, \textbf{z}, q)$ générant une infinité de transtions notées $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ puisque pour tout s, $p(\textbf{u+s}) \xrightarrow{t} q(\textbf{v+s})$}
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
 
