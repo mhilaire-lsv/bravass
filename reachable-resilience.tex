@@ -59,10 +59,10 @@ $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 
 
 
-Unfortunately, state-resilience is undecidable for (general) WSTS even with strong upward-compatibility.
+Unfortunately, {\sc State-resilience} is undecidable for (general) WSTS even with strong upward-compatibility.
 This stems from the fact that it is undecidable in the particular case of Reset VASS,
 where  $t$-liveness is both undecidable and 
- reducible to the state resilience problem.
+ reducible to {\sc State-resilience}.
 
 % \noindent
 % {\bf Reset VASS}
@@ -123,7 +123,7 @@ Moreover, we are interested in the
 ~ of zero-reachability in Reset $d$-VASS.
 %
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
-which we then reduce to the state-resilience problem.
+which we then reduce to {\sc State-resilience}.
 A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
 %\alain{mélange de s et (p,u)}
  $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole Reset $d$-VASS is live if all its control-transitions are
@@ -148,7 +148,7 @@ $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf
 
 \begin{proposition}\label{reductions}
 % In WSTS, $t$-liveness is reducible to {\sc state-resilience}.
-{\sc $t$-liveness} is reducible to {\sc state-resilience} in Reset $d$-VASS.
+{\sc $t$-liveness} is reducible to {\sc State-resilience} in Reset $d$-VASS.
 \end{proposition}
 
 
@@ -166,7 +166,7 @@ where
 $U_t=\uparrow pre(t)$ 
 % \alain{$\pred(t)$ n'est pas défini et $\pred$ est une mauvaise notation pour ça: plutôt: $pre(t)=\{ u \in S \mid \exists u' \in S$  such that $u \xrightarrow{t} u'$\} }
 is the upward closure of the preconditions to fire transition $t$.  
-The problem reduces itself to the state resilience problem
+The problem reduces itself to {\sc State-resilience}
 where $\Safe = U_t$ and $\Bad = Q \times \N^d \setminus \Safe$.
 \end{proof}
 
@@ -209,7 +209,7 @@ $t$-liveness} is undecidable.
 
 
 Since {\sc %$Reset $d$-VASS 
-$t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc state-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc state-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+$t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{theorem}\label{srp up down}
@@ -278,19 +278,19 @@ and $\Bad=\downarrow \Bad$.
 
 
 
-On the positive side, let us recall a result about state-resilience decidability (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
+On the positive side, let us recall a result about {\sc Bounded-state-resilience} decidability (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
-{\sc bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+{\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
 when
 $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$.
 \end{theorem}
 
-We may immediately generalyse this last result by strengthening to \emph{unbounded} state-resilience. The proof is essentially the same than the previous one.
+We may immediately generalyse this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
 
 \begin{corollary}\label{postcomputable}
-{\sc state-resilience} is decidable for WSTS with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+{\sc State-resilience} is decidable for WSTS with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
 when
 $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$.
@@ -304,9 +304,9 @@ $\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute this $n_0$ by iterat
 $\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking 
 $\pred^{\leq n+1}(\Safe) = \pred^{\leq n}(\Safe)$, 
 returning $n$ if that is the case.
-Then, because $n_0$-state-resilience is decidable, 
+Then, because {\sc $n_0$-state-resilience} is decidable, 
 checking $\uparrow post^*(s) \cap \Bad \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
-and state-resilience is decidable.
+and {\sc State-resilience} is decidable.
 \end{proof}
 
 The proof of Theorem~\ref{ref ozkan} rely on the computability of $\uparrow \post^*(s)$ and on the following lemma.
@@ -403,8 +403,8 @@ So downward-set reachability is decidable for PN.
 It is well-known that 
 % Petri nets are WSTS with strong  compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 % Since 
-VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that bounded state-resilience is decidable for VASS.
-Hence state-resilience is decidable for %both Petri nets and 
+VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded state-resilience} is decidable for VASS.
+Hence {\sc State-resilience} is decidable for %both Petri nets and 
 VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
 
@@ -455,11 +455,11 @@ Then, {\sc State-resilience} would be decidable for Reset VASS, which leads to a
 
 
 
-Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general state-resilience problem.
+Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general {\sc State-resilience }.
 
 
 \begin{theorem}{(Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889})}\label{post srp}
-{\sc state-resilience} is decidable for 
+{\sc State-resilience} is decidable for 
 %(not necessarily strong)
  WSTS with effective 
 $\uparrow$ $\post^*$ basis
@@ -504,7 +504,7 @@ which is incorrect.
 % An example of this is ...
 
 Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not strong) compatibility, we don't know the decidability status of {\sc $k$-state-resilience} and 
-{\sc bounded-state-resilience}. 
+{\sc Bounded-state-resilience}. 
 
 
 Results synthesis in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
@@ -535,14 +535,24 @@ and $\Bad=\uparrow \Bad$.
 
 \begin{proof}
 Consider Reset $d$-VASS
-in the case $\Safe=\{ \textbf{0} \}$ where  $ \textbf{0} = 0^d \in \mathbb{N}^d$ 
-%			contains only the minimal element $\min(S) = 0$ %$0$ 
-\alain{tu n'as pas le doit d'écrire $0$ sans explication}
+with $\Safe$ % where  $ \textbf{0} = 0^d \in \mathbb{N}^d$ 
+	containing only the
+		configurations of the form $Q \times \{ \textbf{0} \}$
+	where $\textbf{0} = \min(\mathbb{N}^d)$ %$0$ 
+% \alain{tu n'as pas le doit d'écrire $0$ sans explication}
 and $\Bad = \mathbb{N}^d \setminus \Safe$, 
 it follows
-{\sc state-resilience} \alain{écris toujours pareil les expressions choisies comme state-resilience}
+{\sc State-resilience} 
+% \alain{écris toujours pareil les expressions choisies comme state-resilience}
 is equivalent 
-to the problem of whether $0$ can be visited infinitely often. \alain{incompréhensible, explique}
+to the problem of whether 
+% $0$  can be visited infinitely often. 
+it is possible to visit infinitely often configurations with every vector having its value equal to $0$.
+\alain{incompréhensible, explique}
+Indeed, from such a configuration, then the next step is either also such a configuration, either it is in $\Bad$, in which case, we know it is possible to reach such a configuration again. Hence we construct a sequence 
+$(q_i ({\textbf{v}_{i}}) )_{i\in\N}$ 
+such that for all $i\in\N$ 
+$\exists j \in \N$, $j>i$, s.t. ${\textbf{v}_j} = \textbf{0}$.
 % Since reachability of $0$ is undecidable for Reset VASS, we conclude.
 Hence the undecidability.
 \end{proof}
@@ -572,14 +582,14 @@ $\post^*(s) \cap \Bad \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
 
 
 \begin{theorem}\label{downward srp}
-{\sc state-resilience} is decidable for ideal effective WSTS with downward and upward compatibilities,
+{\sc State-resilience} is decidable for ideal effective WSTS with downward and upward compatibilities,
 %\alain{a-t-on aussi la upward compatibility ?}
 %\mathieu{oui}
 $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{theorem}
 
 \begin{proof}
-In order to decide whether state-resilience hold, we execute two procedures in parallel,
+In order to decide whether $\post^{\leq n}(s) \cap \Bad \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward-closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
 Every inductive invariant $D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
