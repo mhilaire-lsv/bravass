@@ -61,13 +61,17 @@ $\pred^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$.
 However, we are generally more interested in
 $\post^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \post^i(s)$, $\post^*(s)= \bigcup_{1 \leq i} \post^i(s)$
 and
-$\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$ and $\pred^*(s) = \bigcup_{1 \leq i} \pred^i(s)$. \\
+$\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$ and $\pred^*(s) = \bigcup_{1 \leq i} \pred^i(s)$. % \\
 
 
-\problemx{$d$-VASS reachability}
-{A $d$-VASS $V=(Q,T)$, and two configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$}
-{$p(\textbf{u}) \to^* q(\textbf{v})$? \\}
+The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S, \to)$, two configurations $s, t \in S$, whether $s \to^* t$. It can be reformulated as asking whether 
+$s \in \pred^*(t)$ or asking whether $t \in \post^*(s)$. \\
 
+	\iffalse
+\problemx{Reachability}
+{A transition system $\mathscr{S} = (S, \to)$, two configurations $s, t \in S$}
+{$s \to^* t$? \\}
+	\fi
 
 %
 
@@ -217,12 +221,50 @@ Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $
 
 
 
+
+
+A WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is {\em effective} if there exists a pair of Turing machines
+($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
+$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
+$M_\leq$ the ordering relation “$\leq$”. 
+We say that $\mathscr{S}$ is {\em post-effective} if it is effective, and if there
+exists an additional Turing machine that computes $|\post(x)| \in \N \cup \{\infty\}$ 
+on input $x$,
+with $x \in X_i $. 
+Such a Turing machine, in combination with $M_\rightarrow$, allows computing
+$\post(x)$ whenever the latter is finite. We say that $\mathscr{S}$ is {\em upward pre-effective} if it is effective,
+and if there exists an additional Turing machine that computes a finite basis of 
+$\uparrow \pred (\uparrow x)$
+on input $x$, where $x$ is a state of $\mathscr{S}$. 
+We say that $\mathscr{S}$
+is {\em ideally effective} if
+\begin{itemize}
+\item the function mapping the encoding of a configuration $s$
+to the encoding of the ideal $\downarrow s$ is computable;
+\item inclusion of ideals is decidable;
+\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
+\end{itemize}
+
+\iffalse
+\alain{pas ici}
+\begin{definition}{\cite{BFM-ic17}} 
+A class $C$ of WSTS is {\em ideally effective} if
+\begin{itemize}
+\item the function mapping the encoding of a configuration $s$ of a WSTS
+to the encoding of the ideal $\downarrow s$ is computable;
+\item inclusion of ideals is decidable;
+\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
+\end{itemize}
+\end{definition}
+
+\fi
+
+
+
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
 %\alain{étrange ces deux propositions, l'une suffirait}
 \iffalse
 Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
-
-\mathieu{On peut probablement enlever la Proposition $8$ alors. La proposition $9$ étant plus directement pertinente pour les lemmes/preuves (permet d'avoir itérativement $\pred^k(I)$ upward-closed if $I$ upward-closed - for all $k$).}
 \fi
 %
 Now, we recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.

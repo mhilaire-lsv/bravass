@@ -18,12 +18,16 @@ Recall that resilience is equivalent to  $\Bad \subseteq \pred^*(\Safe)$. For ev
 %			Moreover, $post^*(\Bad)$ is also a computable regular language \alain{pourquoi ?}   $post^*(L)$ and
  the inclusion $\Bad \subseteq \pred^*(\Safe)$ is decidable and resilience too.
 %
-The kRP is decidable: let us compute $ \pred^*(\Safe)$ (in polynomial time). If $\Bad \subseteq \pred^*(\Safe)$ then one computes the integer $k_0$ such that the maximum of all minimal pathes that go from $\Bad$ to $\Safe$ is equal to $k$. Then $A=(Q,\Sigma,...)$ is $p$-resilient for all $p \geq k_0$ and it is not $p$-resilient for all $p \leq k_0-1$.
-\mathieu{Pas convaincu qu'un tel $k_0$ existe systématiquement: par exemple $q \times a$ et 
-$q \times a b^*$ sont tout les deux réguliers et il n'y a pas de borne maximum sur la taille d'un chemin de $q \times a b^*$ vers $q \times a$.}
-% This also solves the BRP as $A=(Q,\Sigma,...)$ is $k_0$-resilient.
-% \alain{à prouver la BRP...}
-%
+%The kRP is decidable: % let us compute $ \pred^{\leq k}(\Safe)$ (in polynomial time). 
+Similarly, since $ \pred^{\leq k}(\Safe)$ is a computable regular language,
+we deduce 
+that the inclusion $\Bad \subseteq \pred^{\leq k}(\Safe)$ is decidable and $k$-resilience too.
+Since $k$-resilience is decidable, bounded-resilience also is;
+we can iteratively check whether $\Bad \subseteq \pred^{\leq k}(\Safe)$,
+if this is the case, $k$-resilience holds, and we stop with a positive,
+else we check whether $ \pred^{\leq k}(\Safe) =  \pred^{*}(\Safe)$,
+if this is the case, then bounded-resilience do not hold,
+else we continue.
 \end{proof}
 %
 Let us remark that $\uparrow \post^*(q,w)$ is also a computable regular language, but we cannot directly apply previous results on WSTS since pushdown automata are not WSTS for the usual orderings (subword, prefix).
@@ -106,6 +110,51 @@ open for VASS ???
 
 %		\section{Control of a WSTS to be resilient}
 
+
+
+\mathieu{Tableau résumé de la situation pour les VASS}
+
+\begin{center}
+\begin{tabular}{ | l | c | c | c | r |}
+\hline   \Safe~\Bad 
+		& $\uparrow$~ $\downarrow$~ 
+		 & $\downarrow$~ $\uparrow$~ 
+
+ \\ \hline
+   RP  
+   	& Decidable (Thm~\ref{down-up})  
+   		 & Decidable (Thm~\ref{up-down}) 
+
+    \\ \hline
+   BRP  
+   &  Decidable (Thm~\ref{down-up}) 
+   		 & ?? 
+
+    \\ \hline
+      kRP  
+      & Decidable (Thm~\ref{down-up}) 
+      		& ?? 
+
+       \\ \hline
+   sRP  
+   	& Decidable (Thm~\ref{post srp})
+   		 & Decidable (Thm~\ref{downward srp}) 
+
+
+    \\ \hline
+   BsRP  
+   &  Decidable (Thm~\ref{ref ozkan})
+   		 & ?? 
+
+    \\ \hline
+      ksRP   
+      & Decidable (Thm~\ref{ref ozkan})
+      		& ?? 
+
+       \\ \hline
+
+\end{tabular}
+\end{center}
 
 %
 \iffalse
