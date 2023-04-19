@@ -261,7 +261,7 @@ and
 %
 \iffalse
 % \begin{corollary}\label{bsrp up down}
-Bounded state-resilience and 
+Bounded-state-resilience and 
 $k$ state-resilience are undecidable for strongly compatible WSTS with effective pred-basis
 when
 $\Safe=\uparrow \Safe$
@@ -368,42 +368,23 @@ $U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary.
 Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
 
-
-The characterization is used to show that VASS are $\uparrow \post^*$-effective. Since the downward-reachability problem is decidable for VASS \alain{ref ?}, we \alain{we ou Ozkan ? qui a fait la preuve ?} 
-\mathieu{le papier d'Ozkan: 
-[Petri nets (equipped with any
-finite set of initial states) are $\uparrow \post^*$-effective by above Prop.: Reachability for Petri nets is decidable and recursively equivalent to submarking reachability.
-This corresponds to the anti-ideal reachability problem for Petri nets.]}
-deduce the following:
+\mathieu{Quelque chose de plus à dire sur la charactérisation?}
 
 
-\begin{proposition}
+VASS for instance are $\uparrow \post^*$-effective WSTS \cite{DBLP:journals/corr/abs-2108-00889}. 
+\iffalse
+
+\begin{proposition}\cite{DBLP:journals/corr/abs-2108-00889}
 Let $V= (Q,T)$ be a $d$-VASS and $q(\textbf{v}) \in Q \times \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(q(\textbf{v}))$.
 % \alain{où sont définis les d-VASS, $V= (Q,T)$, $q(\textbf{v}) \in Q \times \N^d$ ?}
 \end{proposition}
 
 
-\iffalse
-\begin{proof}
-By Proposition~\ref{post*}, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
-Let us now show that the downward-reachability problem is decidable for Petri nets.
-Let us consider a downward closed set $D$ in a Petri net.
-Let us consider $B$ a basis of the upward-closed set $S \setminus D$.
-
-$D$ is  defined by ... states where your number of counter is bounded by a constant (deduce this from ... having to be smaller than elements of the basis $B$), and others where it is unbounded. You have $m$ counters where it is bounded by $n$
-then you have $m \times n$ possibilities for the values in these counters
-you have unlimited possibilities for the values of the other counters,
-but that is where the submarking problem comes in handy,
-i.e. you ask the submarking problem for all of the $m \times n$ possibilities.
-
-So downward-set reachability is decidable for PN.
-\end{proof}
 \fi
-
 It is well-known that 
 % Petri nets are WSTS with strong  compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 % Since 
-VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded state-resilience} is decidable for VASS.
+VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded-state-resilience} is decidable for VASS.
 Hence {\sc State-resilience} is decidable for %both Petri nets and 
 VASS.
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
