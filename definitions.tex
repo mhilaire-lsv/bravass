@@ -322,7 +322,7 @@ For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \su
 \subsection{Computing the maximal $X$-live subsystem}
 
 Let $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ be WSTS with initial state $s_0$ and $X \subseteq S$ be an upward-closed set given by its finite minimal basis $B_X$. We say that $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $X$-live if from any reachable state $s \in \post^*(s_0)$, $s \xrightarrow{*} X$ is satisfied.  We may verify that  $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $X$-live iff  $\mathscr{S}=(S, \rightarrow, \leq,s_0)$ is $\pred^*(X)$-live. The \emph{maximal $X$-live subsystem} of $(S,\rightarrow,\leq,s_0)$ is ....
-
+\mathieu{ne pas oublier de mettre une définition ici}
 Let us remark that given a WSTS $\mathscr{S}=(S, \rightarrow, \leq,s_0)$, one may construct many \emph{guard} systems where every transition $s \rightarrow s'$ of $\mathscr{S}$ is guarded by a (monotone) formula $\phi$ defined by the grammar $\phi ::= s \geq u \mid s' \geq u \mid \phi \vee \phi \mid \phi \wedge \phi$ where $u \in S$. Since guards restrict the original runs but don't create new ones, every guarded transition system $\mathscr{S'}$ is a subsystem of $\mathscr{S}$. Since these formula are upward-compatible, the guarded transition systems $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ are still WSTS.
 %
 For example, VASS allows such guards.
