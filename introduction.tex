@@ -26,3 +26,22 @@ Surprinsingly, the general undecidability statements were not known neither prov
 \item safe clos haut : resilience indecidable for WSTS with strong.
 
 \end{itemize}
+
+
+\begin{center}
+	\begin{figure}
+			\hspace{0.75cm}
+				\label{air control}
+\includegraphics[width=0.85\textwidth]{FigureB}
+	\caption{A channel system with three automata and four channels. Leftmost and rightmost automata represents aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one represent the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing.}
+	\end{figure}
+\end{center}
+
+Consider the channel system in Figure~\ref{air control}. It models a scenario in which two aircrafts wants to land in an airport at the same time. Safety requires that only one aircraft at a time attempt to land. The role of the control tower is to ensure this;
+there are two possible choices: aircraft A waits for aircraft B to land
+or vice-versa. We want ...
+
+% contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
+
+
+
