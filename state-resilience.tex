@@ -376,9 +376,11 @@ $U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary.
 Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
 
-\mathieu{Quelque chose de plus à dire sur la charactérisation?}
+
+% \mathieu{Quelque chose de plus à dire sur la charactérisation?}
 
 
+More concretely,
 VASS for instance are $\uparrow \post^*$-effective WSTS \cite{DBLP:journals/corr/abs-2108-00889}. 
 \iffalse
 
@@ -527,7 +529,7 @@ Consider Reset $d$-VASS
 with $\Safe$ % where  $ \textbf{0} = 0^d \in \mathbb{N}^d$ 
 	containing only the
 		configurations in $Q \times \{ \textbf{0} \}$
-	where $\textbf{0} = \min(\mathbb{N}^d)$ %$0$ 
+	where $\textbf{0} = \min(\mathbb{N}^d)$, %$0$ 
 % \alain{tu n'as pas le doit d'écrire $0$ sans explication}
 and $\Bad = \mathbb{N}^d \setminus \Safe$.
 It follows in this case that
@@ -536,9 +538,9 @@ It follows in this case that
 is equivalent 
 to the problem of whether 
 % $0$  can be visited infinitely often. 
-it is possible to visit infinitely often configurations with every vector having its value equal to $0$.
-\alain{incompréhensible, explique}
-Indeed, from such a configuration, then the next step is either also such a configuration, either it is in $\Bad$, in which case, we know it is possible to reach such a configuration again. Hence we construct a sequence 
+it is possible to visit infinitely often configurations with every vector having all values equal to $0$.
+% \alain{incompréhensible, explique}
+Indeed, from such a configuration, then the next step is either also such a configuration, either it is in $\Bad$, in which case, we know it is possible to reach such a configuration again. From this we know there exists a sequence 
 $(q_i ({\textbf{v}_{i}}) )_{i\in\N}$ 
 such that for all $i\in\N$ 
 $\exists j \in \N$, $j>i$, s.t. ${\textbf{v}_j} = \textbf{0}$.
