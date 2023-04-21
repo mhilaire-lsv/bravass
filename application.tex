@@ -1,6 +1,122 @@
 
 
-\section{Solving resilience with invariants}
+\section{Solving resilience}
+
+
+\noindent
+\subsection{Computing the maximal resilient subsystem}
+
+Let $\mathscr{S}=(S, \rightarrow, \leq)$ be WSTS and $X \subseteq S$ be an upward-closed set given by its finite minimal basis $B_X$. We say that $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient (resp. $(s_0,X)$-resilient) if $S  \xrightarrow{*} X$ (resp. $\post^*(s_0) \xrightarrow{*} X$) is satisfied.  We may verify that  $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient iff  $\mathscr{S}=(S, \rightarrow, \leq)$ is $\pred^*(X)$-resilient. The \emph{maximal $X$-resilient subsystem} of $(S,\rightarrow,\leq)$ is ....
+\mathieu{ne pas oublier de mettre une définition ici}
+Let us remark that given a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$, one may construct many \emph{guard} systems where every transition $s \rightarrow s'$ of $\mathscr{S}$ is guarded by a (monotone) formula $\phi$ defined by the grammar $\phi ::= s \geq u \mid s' \geq u \mid \phi \vee \phi \mid \phi \wedge \phi$ where $u \in S$. Since guards restrict the original runs but don't create new ones, every guarded transition system $\mathscr{S'}$ is a subsystem of $\mathscr{S}$. Since these formula are upward-compatible, the guarded transition systems $\mathscr{S'}=(S, \rightarrow', \leq)$ are still WSTS.
+%
+For example, VASS allows such guards.
+  %	\lor s' \geq x_2  	\lor...	\lor s' \geq x_p$ (facile dans les VASS et modèles habituels).
+
+\begin{theorem}{}
+Given an effective WSTS with effective pred-basis and an upward-closed set $X$, the maximal resilient subsystem is a computable WSTS.
+\end{theorem}
+
+\begin{proof}
+Since $X \subseteq S$ is upward-closed and $\mathscr{S}=(S, \rightarrow, \leq)$ is an effective WSTS with effective pred-basis, we compute the minimal basis of $\pred^*(X)=\{x_1,x_2,...,x_p\}$. 
+%
+%
+Then we add the following guard $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p$ to every transition $s \rightarrow s'$ of $\mathscr{S}$ and we define  $s \rightarrow' s'$ as $(s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p) \wedge s \rightarrow s'$ ; this insures that the new (guarded) WSTS $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ is $\pred^*(X)$-resilient and then it is also the maximal resilient sub-WSTS of $\mathscr{S}=(S, \rightarrow, \leq)$.
+
+%		l'état atteint $s'$ est au dessus des minimaux de $\pred^*(X)$, ainsi par (upward) compatibility on sera toujours capable d'aller dans $X$. 
+\end{proof}
+%
+%
+%\noindent
+%{\bf Vector addition system with states}
+
+% Définir VASS
+
+Let us recall that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and where $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+% The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
+%
+Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with $V$.
+For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+%
+\iffalse \mathieu{Defining it like this makes it a LTS rather than a unlabeled TS - maybe talk about how we can 'forget' the labels to obtain an unlabeled TS ?}
+\alain{les VASS ne sont pas vraiment étiquetés, sauf si on veut le faire, car on peut dire que les VASS sont définis à partir d'un nombre fini de control-transitions  $t = (p, \textbf{z}, q)$ générant une infinité de transtions notées $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ puisque pour tout s, $p(\textbf{u+s}) \xrightarrow{t} q(\textbf{v+s})$} \fi
+When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
+
+Pour les VASS, je crois qu'on a une borne (2-exp) à la taille de $\pred^*(X)$ et à la taille de ses éléments \cite{DBLP:conf/rp/BozzelliG11} et c'est directement implémentable, donc en particulier, pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $X$ .
+Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, T-continual ?.
+
+\begin{theorem}{}
+Given a VASS and $X$ upward-closed, the maximal $X$-resilient subsystem is a computable VASS of size 2-exp.
+\end{theorem}
+
+applications to many upward-closed sets $X$:
+$m$ is $\hat{T}$-blocked if no $t \in \hat{T}$ is fireable in $\post^*(m)$.
+$m$ is dead if the reachability tree from $m$ is finite.
+$m$ is bounded if the reachability set from $m$ is finite.
+$m$ is $\hat{T}$-continual if there is an unfinite run from $m$ such that all transitions in $\hat{T}$ appear infinitely often.
+
+
+\iffalse
+\alain{ me semble maintenant inutile
+%
+\begin{definition}{ (index)}. 
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$  is upward-closed and $k \geq 0$, let $U_k= \bigcup_{0 \leq n \leq k} \pred^n(U)$.
+The {\em index} $k(U)$ is the
+smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$.
+\end{definition}
+%
+%
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set, the sets $\pred(U )$, and $\pred^{\geq k}(U )$ for
+every $k \geq 0$ are upward-closed, thus Lemma~\ref{upward-closed stablizes} ensures the existence of $k(U)$.
+%
+\begin{remark}
+$U^{k+1} $ can be rewritten $U^{k+1}= \bigcup_{0 \leq j \leq k+1} \pred^j(U) = 
+U \cup \bigcup_{1 \leq j \leq k+1} \pred^j(U) =
+U \cup \pred(\bigcup_{0 \leq j \leq k} \pred^j(U))
+=  U \cup \pred(U^k)$.
+\end{remark}
+
+This ensures the following.
+
+\begin{fact}\label{stop condition}
+% Fact 4 (stop condition). 
+If $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is an upward-closed set and $k \geq 0$ s.t. $U^k = U^{k+1}$ , then $U^\ell = U^k$ for all $\ell \geq k$, i.e.,
+$k(U) \leq k$. This also implies that $\pred^*(U) = U^k$.
+\end{fact}
+
+
+\begin{lemma}
+% Lemma 3 ([1]) 
+% Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
+ Given a basis of an upward-closed set $U \subseteq S$, and a state $s$ of an effective strongly WSTS, we can decide whether $U  \xrightarrow {*}{} s$.
+%	we can reach $U$ from $s$.
+\end{lemma}
+
+\begin{proof}
+We have to show that we can compute a basis of $U^{k+1}$ if we are given a basis of $U^k $. 
+Then the
+decidability of the stop condition follows directly. Let $B$ be a basis of $U^k$. 
+We have
+$$U^{k+1} = U \cup \pred(U^k ) = U \cup
+\bigcup_{s' \in B}
+\pred(\uparrow \{s' \}).$$
+
+Since a finite basis of $\pred(\uparrow \{s' \}$) is computable for any $s'\in S$ by definition, we obtain a finite generating set of $U^{k+1}$ . By
+Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
+\end{proof}}
+
+
+\fi
+
+
+
+
+
+
+The two previous problems are well-known decidable.
+
+\alain{probablement enlever toute la suite et garder seulement un point sur les VASS}
 
 In this section, we study the general resilience problem.
 
