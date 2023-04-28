@@ -244,12 +244,12 @@ open for VASS ???
     \\ \hline
    BRP  
    &  Decidable (Thm~\ref{down-up}) 
-   		 & Decidable (never hold ?)
+   		 & Decidable  ?
 
     \\ \hline
       kRP  
       & Decidable (Thm~\ref{down-up}) 
-      		& Decidable (never hold ?)
+      		& Decidable ?
 
        \\ \hline
    sRP  
@@ -296,7 +296,23 @@ Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not h
 \end{proof}
 
 \mathieu{
-En train d'essayer de réfléchir voir si ça s'adapte aussi aux VASS.}
+resilience never hold in the case of VAS. 
+What happens when you add states ? \\
+So you consider for instance $q_0(u_k)$ instead of just $u_k$. \\
+Everything reachable from $q_0(u_k)$ is still of the form $q(u)$ with u greater than $v_{\Bad}$
+(we'd have $v_{\Bad}$ sum of the coordinate of the elements from the basis of $\Bad$ when not considering states).
+So now, let us fix some state $q$.
+Either there is an element of the basis of $\Bad$ with state $q$.
+Then $q(u)$ is necessarily in $\Bad$ (If this hold for all $q \in Q$, then again $k$-resilience does not hold).
+Either there is none.
+If there is none, then $q(\omega)$ is in the complement of $\Bad$, i.e. $\Safe$.
+Then, of course there are probably other elements in $\Safe$ but from
+the perspective of $\Bad$ and the extremely high elements $q_i(u_k)$  these ‘smaller’ elements are all but unreachable. 
+And the question becomes rather `can we reach $q(\omega)$ from every element of $\Bad$ save from maybe the few smaller ones ?’
+Since $q(\omega)$ here is upward-closed this is decidable i.e. it is asking coverability questions. 
+It’s not 100\% the question «asking, for every element in the basis of $\Bad$, whether or not $q(0)$ is coverable from it», since you could have, for smaller elements in $\Bad$, other elements of $\Safe$ you can reach, but it seem close.
+This would lead to a decision scheme.
+Need to write this more formally/properly.}
 
 %
 \iffalse
