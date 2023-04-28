@@ -28,6 +28,12 @@ Surprinsingly, the general undecidability statements were not known neither prov
 \end{itemize}
 
 
+
+Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack [pushed it towards some kind of ‘error state’] and, if it can, whether it can perform the return in a satisfactory timeframe. In the exemple of air trafic control, an accident i.e. for instance a delay in the arrival of a plance can lead to conflicts of resolution (i.e. landing) which lead to prompting planes to remain on standby. Since their fuel quantity is limited it is hence pretty important to be able to know that trafic will return to its normal pace quickly enough. This is the resilience problem. 
+
+Resilience is a concept of growing interest [references]. Both Okzan and Würdemann [ref] and Prasad and Zuck [ref] have started to consider [casting the problem into] the framework of Well-Structured Transition Systems. 
+ 
+
 \begin{center}
 	\begin{figure}
 			\hspace{0.75cm}
@@ -39,7 +45,15 @@ Surprinsingly, the general undecidability statements were not known neither prov
 
 Consider the channel system in Figure~\ref{air control}. It models a scenario in which two aircrafts wants to land in an airport at the same time. Safety requires that only one aircraft at a time attempt to land. The role of the control tower is to ensure this;
 there are two possible choices: aircraft A waits for aircraft B to land
-or vice-versa. We want ...
+or vice-versa. 
+We assume that the channel are lossy, i.e. an arbitrary number of messages may be lost from the channels, but that they are still such that out of ten messages, at least one is not lost.
+In this example, the safe, desirable state would be one where the aircrafts have both landed. 
+Resilience here expresses that the aircrafts state will both land, while explicit resilience or $k$-resilience asks whether they will do so in at most $k$ steps. 
+Explicit resilience is of interest since in general we want to ensure the safe state will
+be reached in
+the least amount of step possible. 
+In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time.
+With one out of ten messages guarranteed to not be lost, $40$-resilience hold in the example.
 
 % contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
 
