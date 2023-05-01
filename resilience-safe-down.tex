@@ -1,7 +1,7 @@
 
 
 %%%%%%%%
-\subsection{Case: $\Bad=\uparrow \Bad$.}
+\subsection{Case: $\Bad=\uparrow \Bad$ and $\Safe=\downarrow \Safe$.}
 %
 %		cas unbounded counters
 %
@@ -10,7 +10,7 @@ let us choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is 
 %			at least one counter is unbounded. 
 This set is upward-closed by (upward) compatibility in VASS.
 
-\subsubsection{Subcase: $\Safe=\downarrow \Safe$}
+
 
 As an example, let us choose $\Safe=S-\Bad$ then since $\Bad=\uparrow \Bad$, we have: $\Safe=\downarrow \Safe$.
 %
@@ -107,82 +107,6 @@ $\Bad \not\subseteq \pred^*(\Safe)$.
 When $\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) = \emptyset$
 however
 it is not enough to conclude.
-
-
-
-\subsubsection{Case: $\Safe=\uparrow \Safe$.}
-
-% \alain{2 clos par le haut ont une intersection non vide....}
-
-Since $\Bad \cap \Safe = \emptyset$, the subcase $\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ leads to a contradiction since two upward closed sets have not an empty intersection. We then consider the case where $\Bad$ is as upward-closed
-as it can be without intersecting with $\Safe$,
-i.e. 
-such that there exists an upward-closed set $U$
-such that $\Bad = U \setminus \Safe$.
-
-\iffalse
-\alain{à quoi ça sert ici ?: quelle signification ?Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.}
-\mathieu{Pas convaincu que ça serve, je vais enlever}
-% hop
-\fi
-
-example: ?
-
-
-\begin{theorem}\label{up-up}
-The resilience problem is decidable for effective WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
-and $\Bad= U \setminus \Safe$ with $U = \uparrow U$.
-\end{theorem}
-
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
-Since $U$  is upward closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
-Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
-% si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
-hence the resilience problem is decidable.
-\end{proof}
-
-\begin{proposition}
-In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded resilience problem is equivalent to the resilience problem.
-\end{proposition}
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ and
-$\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong %upward-
-compatibility, then $\pred^{\leq n}(\Safe)= \uparrow~\pred^{\leq n}(\Safe)$ for all $n \in \N$,
-% \alain{$\pred^n$ ou $\pred^{\leq n}$ ? même question pour post. et où est-ce défini ?}
-and there exists $n_0 \in \N$ such that 
-$\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
-Hence the equivalence.
-\end{proof}
-
-\begin{corollary}\label{B-up-up}
-The bounded resilience problem is decidable for WSTS with effective pred-basis,
-strong compatibility
- $\Safe=\uparrow \Safe$
-and $\Bad=U \setminus \Safe$ with $U = \uparrow U$.
-\end{corollary}
-
-
-\begin{theorem}\label{k-up-up}
-The % three %uniform 
-$k$-resilience problem is decidable for WSTS with effective pred-basis, strong %upward-
-compatibility, $\Safe=\uparrow \Safe$
-and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
-%	and \Bad is upward closed or downward closed.
-\end{theorem}
-
-\begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward-closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
-Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong (upward) compatibility,  $\pred^{\leq n}(\Safe)=\uparrow \pred^{\leq n}(\Safe)$ for all $n\in \N$ and $\pred^{\leq k}(\Safe)$ admits a finite basis $B_{\pred^{\leq k}(\Safe)}$. % Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^{\leq k}(\Safe)$ with the backward coverability algorithm. 
-Since $U$  is upward-closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
-Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^{\leq k}(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^{\leq k}(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
-% si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
-hence the resilience problem is decidable.
-\end{proof}
-
 
 
 

@@ -3,35 +3,20 @@
 
 
 
-\subsection{Case: $\Bad=\downarrow \Bad$.}
+\subsection{Case: $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$.}
 
 %
 %		cas étudié par les deux articles sur les graphes
 %
 Let us choose $\Bad$ to be the set of states from which there is no infinite run. If we are in an upward compatible ordered transition system (like VASS, lossy channel systems,...), then $\Bad$ is downward closed.
 
-\subsubsection{Subcase: $\Safe=\downarrow \Safe$}
 
-The well-known mutual exclusion property can be modelized, in a $d$-VASS with $k$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward closed.
-%		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of $\Safe$. 
 
-% In the case \Safe and \Bad are both downward closed, they can both be finite.
 
-\begin{theorem}\label{down-down}
-The resilience problem is undecidable for  effective WSTS with  strong  compatibility such that
-%	with more than one minimal element, 
-$\Safe=\downarrow \Safe$
-and $\Bad=\downarrow \Bad$.
-\end{theorem}
-
-\begin{proof}
-If the set $S$ of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ has an unique minimal element $m$, then $m$ belongs to both $\Safe$ and $\Bad$ which contradicts the assumption $\Safe \cap \Bad= \emptyset$. So let us consider the case of a set $S$ with at least two minimal elements $m_1$ and $m_2$.
-The problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resilience problem by considering $\Safe=\downarrow m_2 = \{ m_2\}$ and $\Bad=\downarrow m_1 = \{ m_1\}$. By undecidability of the reachability problem for effective WSTS with strong compatibility we conclude.  
-\end{proof}
 
 %%%%
 
-\subsubsection{Subcase: $\Safe=\uparrow \Safe$}
+
 
 example: in a VASS, we may choose $\Safe$ to be the set of states that are not deadlocks, i.e. from which it is always possible to fire a transition. This set of states is upward closed and $\Safe=S-\Bad=\uparrow \Safe$.
 
