@@ -314,6 +314,49 @@ It’s not 100\% the question «asking, for every element in the basis of $\Bad$
 This would lead to a decision scheme.
 Need to write this more formally/properly.}
 
+
+\begin{proposition}
+{\sc $k$-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$ is decidable
+\end{proposition}
+
+
+\begin{proof}
+Consider a given $k \in \N$.
+Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
+% $\Safe \subseteq Q \times \N^d$
+$\Safe = S \setminus \Bad$
+ downward-closed.
+Consider a given Vector addition system with states, which has a finite number of transitions.
+Let us call $c_{\max}$ the maximal constant in a coordinate of a transition.
+
+$\Bad$ admits a finite basis 
+$B_\Bad = \{ q_{i_1}(\textbf{v}_{i_1}), q_{i_2}(\textbf{v}_{i_2}), \ldots,
+q_{i_m}(\textbf{v}_{i_m}) \}$.
+Consider $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
+and then consider 
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+For all $q \in Q$, all configurations reachable from $q(\textbf{u}_k)$ in $k$ or less steps are 
+of the form $q'(\textbf{v}')$ with $ \textbf{v}' > \textbf{v}_{\Bad}$.
+
+For all $q' \in Q$, either there is an element of the basis of $\Bad$ with state $q'$ \----
+then $q'(\textbf{v}')$ with $\textbf{v}' > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then $q'(\omega)$ is in the complement of $\Bad$, i.e. $\Safe$.
+
+Let us assume from now on $q_{j_1}(\omega), q_{j_2}(\omega), \ldots q_{j_\ell}(\omega)$ are
+all subsets of $\Safe$.
+Because these subsets are upward-closed, we can compute a basis of
+$\pred^{\leq k}(q_{j_1}(\omega))$, $\pred^{\leq k}(q_{j_2}(\omega))$, \ldots
+$\pred^{\leq k}(q_{j_\ell}(\omega))$.
+
+We now consider the set $\Bad \setminus (\pred^{\leq k}(q_{j_1}(\omega)) \cup \ldots \pred^{\leq k}(q_{j_\ell}(\omega)) )$.
+\mathieu{Is it actually possible to check whether or not it is finite ?}
+If it is finite then we can check for every element in it whether or not it is possible to reach from it $\Safe$ in $k$ or less steps.
+If it is infinite then
+$k$-resilience does not hold.
+\mathieu{... because it can only be infinite if there is some kind of unbounded $q(BIG)$ that is not in any of the $\pred^{\leq k}(q_{j_1}(\omega))$ and since from this $q(BIG)$ it's not possible to reach the `smaller' elements of $\Safe$ in $k$ or less steps then it's not possible at all to reach $\Safe$ in $k$ or less steps ergo $k$-resilience does not hold.}
+\end{proof}
+
+
+
 %
 \iffalse
 %
