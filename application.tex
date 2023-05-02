@@ -295,6 +295,7 @@ Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$
 Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold.
 \end{proof}
 
+\iffalse
 \mathieu{
 resilience never hold in the case of VAS. 
 What happens when you add states ? \\
@@ -313,7 +314,7 @@ Since $q(\omega)$ here is upward-closed this is decidable i.e. it is asking cove
 It’s not 100\% the question «asking, for every element in the basis of $\Bad$, whether or not $q(0)$ is coverable from it», since you could have, for smaller elements in $\Bad$, other elements of $\Safe$ you can reach, but it seem close.
 This would lead to a decision scheme.
 Need to write this more formally/properly.}
-
+\fi
 
 \begin{proposition}
 {\sc $k$-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$ is decidable
@@ -359,6 +360,20 @@ that is in $\Bad$ but not in any of the $\pred^{\leq k}(q_{j_i}(\omega))$
 for which it is not possible to reach the `smaller' elements of $\Safe$ in $k$ or less steps and thus it is not possible at all to reach $\Safe$ in $k$ or less steps.
 \end{proof}
 
+
+
+\mathieu{À priori on devrais avoir la bounded resilience aussi.
+En fait, comme on a strong monotony alors
+ $\Bad \setminus (\pred^{\leq k}(q_{j_1}(\omega)) \cup \ldots \pred^{\leq k}(q_{j_\ell}(\omega)) )$
+ converge vers
+  $\Bad \setminus (\pred^{*}(q_{j_1}(\omega)) \cup \ldots \pred^{*}(q_{j_\ell}(\omega)) )$.
+  Une fois que le set est stable alors, encore une fois, si il est infini on n'a pas la $k$-résilience
+(pour tout $k$ à partir de ce rang là, du coup)
+et si il est fini alors on peut vérifier, pour chaque élément, si il est possible d'atteindre
+$\Safe$. Si il est possible pour chaque élément alors on prends le maximum des chemins depuis chacun de ces éléments et on fait le max de ça et le $k$ qui permet d'atteindre $\pred^{\leq k} = \pred^*$ pour les $q(\omega)$ ci-dessus et ça nous donne un $k_{\max}$ pour lequel on a la $k_{\max}$-résilience.
+Si il est pas possible pour chaque élément alors ça veut dire il y a un élément qui atteindra jamais $\Safe$ et on n'a pas la bounded resilience ni la résilience d'ailleurs. 
+Il faut vérifier que c'est possible pour une configuration de vérifier qu'elle est capable d'atteindre $\Safe$ downward closed. 
+Normalement c'est le cas d'après Okzan (ils disent c'est équiv du submarking pb).}
 
 
 %
