@@ -282,7 +282,7 @@ open for VASS ???
 Consider a given $k \in \N$.
 Consider $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed.
 Consider a given vector addition system $V$, which has a finite number of transitions.
-Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition.
+Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
 
 The set $\Bad$ admits a finite basis $B_\Bad$.
 Consider $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider 
@@ -336,13 +336,13 @@ q_{i_m}(\textbf{v}_{i_m}) \}$.
 Consider $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
 and then consider 
 $\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
-For all $q \in Q$, all configurations reachable from $q(\textbf{u}_k)$ in $k$ or less steps are 
-of the form $q'(\textbf{v}')$ with $ \textbf{v}' > \textbf{v}_{\Bad}$.
+For all $p \in Q$, all configurations reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
+of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
 
-For all $q' \in Q$, either there is an element of the basis of $\Bad$ with state $q'$ \----
-then $q'(\textbf{v}')$ with $\textbf{v}' > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 % $q'(\omega)$
-$\uparrow q'(\textbf{0})$
+$\uparrow q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$.
 
 Let us assume from now on 
@@ -404,10 +404,10 @@ Normalement c'est le cas d'après Okzan (ils disent c'est équiv du submarking p
 $\Bad$ admits a finite basis 
 $B_\Bad = \{ q_{i_1}(\textbf{v}_{i_1}), q_{i_2}(\textbf{v}_{i_2}), \ldots,
 q_{i_m}(\textbf{v}_{i_m}) \}$.
-For all $q' \in Q$, either there is an element of the basis of $\Bad$ with state $q'$ \----
-then $q'(\textbf{v}')$ with $\textbf{v}' > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 % $q'(\omega)$
-$\uparrow q'(\textbf{0})$
+$\uparrow q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$.
 
 Let us assume from now on 
