@@ -467,7 +467,69 @@ $\Safe$ in $k$ or less steps.
 
 
 
-
+\mathieu{
+VASS donc la base de $\uparrow post^*(s_0)$ est calculable. 
+Intersection de $\Bad$ et $\uparrow \post^*(s_0)$ est upward closed donc ça se fait
+					de décider si c'est  $\subseteq \pred^{\leq k}(\Safe)$
+	(re: $k$-résilience décidable voir Prop. 34)
+Problème: on pourrait avoir $\uparrow post^*(s_0) \neq  post^*(s_0)$.
+Si $ \Bad \cap \uparrow \post^*(s_0) \subseteq  \pred^{\leq k}(\Safe)$ alors on a aussi
+$ \Bad \cap  \post^*(s_0) \subseteq  \pred^{\leq k}(\Safe)$.
+Si non, alors
+notre procédure décisionnelle pour vérifier
+ça
+donne un témoin.
+Le témoin, on peut vérifier si il est bien dans $\post^*(s_0)$
+(c'est juste la question de est-ce que on peut l'atteindre depuis $s_0$
+et l'accessibilité est décidable).
+Si il est effectivement dans $\post^*(s_0)$ alors c'est bon on a aussi un contre exemple
+qui prouve que
+$ \Bad \cap  \post^*(s_0) \nsubseteq  \pred^{\leq k}(\Safe)$.
+Si le témoin n'est pas dans $\post^*(s_0) \ldots$ alors
+$\ldots$
+j'imagine on peut reprendre la procédure décisionnelle sur 
+$ \Bad \cap \uparrow \post^*(s_0)$
+mais en excluant ce premier témoin,
+et ou bien on a que c'est bon si on enlève ce témoins alors on a bien 
+$\subseteq \pred^{\leq k}(\Safe)$
+ou bien ... on obtiens un nouveau témoin ... pour lui aussi on peut
+vérifier si il est effectivement dans $\post^*(s_0)$, et ainsi de suite.
+Si jamais la $k$-résilience n'est pas vérifiée, on vas bien finir par
+trouver un témoin que ça n'est pas vérifiée.
+Si jamais la $k$-résilience est vérifiée par contre ...
+$ \Bad \cap  \post^*(s_0)  \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$
+doit être fini, on a dit.
+Est-ce qu'il y aurais un moyen de calculer ça plutôt ?
+Par exemple,
+on regarde
+$ \Bad \cap \uparrow \post^*(s_0)  \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$,
+comme on a le $\uparrow$ 
+devant $\uparrow \post^*(s_0)$
+alors
+deux choses se produisent,
+d'abords les "trous" entre les éléments de $ \post^*(s_0)$ sont comblés.
+Sauf que si un "trou" est un contre exemple et qu'on a qu'un nombre fini de
+trou alors "on voit bien" que c'est un trou en testant que
+ça appartiens ou non à $ \post^*(s_0)$ et "ça va" on peut s'en débarasser.
+L'autre chose qui se produit, c'est que on a les droites qui vont vers plus l'infini...
+Ça c'est plus difficile à gèrer parce que si
+il y a qu'un nombre fini d'éléments dans $ \Bad \cap \uparrow \post^*(s_0)  \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$
+et pas dans
+$ \Bad \cap  \post^*(s_0)  \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$
+ça se fait,
+mais si il y a un nombre infini d'éléments dans
+$ \Bad \cap \uparrow \post^*(s_0)  \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$
+potentiellement pas dans le plus petit,
+alors c'est plus compliqué de faire notre procédure décisionnelle.
+Il nous faudrait pouvoir décider si $\post^*(s_0)$ est fini ou non.
+Décider si $\post^*(s_0)$ est borné ou non.
+Est-ce que ça peut se réduire à un submarking problem ?
+Il faudrait prendre le complémentaire peut-être ...}
 
 
 
