@@ -191,44 +191,44 @@ Resilience is decidable for lossy channel systems with $\Safe=\uparrow \Safe$ an
 Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow \post^*(S)$ \alain{à prouver et vérifier les autres hypothèses}
 %
 %%%
-\subsection{LCM, VASS, semilinear VASS, Integer et Continuous VASS}
+\subsection{VASS and variations of VASS}
 
 
 \begin{theorem}{}
-Resilience is decidable for  lossy counter machines, semilinear VASS, Integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
+Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
+\end{theorem}
+
+\begin{proof}
+\alain{faire d'abord la preuve pour les VASS.}
+\end{proof}
+
+
+\begin{theorem}{}
+Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
 Resilience is decidable for lossy counter machines with $\Safe$ and $\Bad$ semilinear sets as a consequence of Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that implies that $\pred^*(\Safe)$ is a computable semilinear set. Hence since the inclusion between two semilinear sets is decidable, we deduce that  $\Bad \subseteq \pred^*(\Safe)$ is decidable.
-
-%		semilinear VASS.
- \alain{le plus simple serait que $\pred^*(L)$ is semilinear because $\post^*(s)$ is semilinear , peut-être en inversant le VASS V en V'on aurait pred*(V)=post*(V') hence $post^*(L)$ is also semilinear ? hence pred ????}
-
-%		Integer VASS
-Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
-
 \end{proof}
 
-We also deduce immediately that resilience is decidable for $2$-VASS that have a semilinear reachability relation.
+
+\begin{theorem}{}
+Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
+\end{theorem}
+
+\begin{proof}
+		Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
+\end{proof}
 
 \begin{theorem}{}
 Resilience is decidable for continuous VASS when $\Safe$ and $\Bad$ are definable in the existential theory of
 the rationals with addition and order.
 \end{theorem}
 
-
 \begin{proof}
 The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
 the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also decidable in EXPSPACE. \alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
 \end{proof}
-
-
-open for VASS ???
-
-
-%		\section{Control of a WSTS to be resilient}
-
-
 
 \mathieu{Tableau résumé de la situation pour les VASS}
 
