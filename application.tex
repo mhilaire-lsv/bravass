@@ -1,10 +1,4 @@
-
-
-\section{Solving resilience}
-
-
-\noindent
-\subsection{Computing the maximal resilient subsystem}
+\section{Computing the maximal resilient subsystem}
 
 Let $\mathscr{S}=(S, \rightarrow, \leq)$ be WSTS and $X \subseteq S$ be an upward-closed set given by its finite minimal basis $B_X$. We say that $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient (resp. $(s_0,X)$-resilient) if $S  \xrightarrow{*} X$ (resp. $\post^*(s_0) \xrightarrow{*} X$) is satisfied.  We may verify that  $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient iff  $\mathscr{S}=(S, \rightarrow, \leq)$ is $\pred^*(X)$-resilient. The \emph{maximal $X$-resilient subsystem} of $(S,\rightarrow,\leq)$ is ....
 \mathieu{ne pas oublier de mettre une définition ici}
@@ -116,9 +110,8 @@ Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 
 The two previous problems are well-known decidable.
 
-\alain{probablement enlever toute la suite et garder seulement un point sur les VASS}
+\section{Deciding resilience for extended automata}
 
-In this section, we study the general resilience problem.
 
 \subsection{Pushdown automata}
 
@@ -182,7 +175,7 @@ Resilience is decidable for effective pred-regular fifo automata when $\Safe$ an
 %
 %			Since lossy channel systems have (non computable) regular reachability sets, we imediately deduce that.
 
-Since for  lossy channel systems $\pred^*(L)$ with $L=\uparrow L$ is a computable (upward-closed) regular language, we deduce :
+Since for lossy channel systems $(Q, \Sigma,d,...)$ with $d$ fifo channels and a set $L \subseteq Q \times (\Sigma^*)^d$, the set $\pred^*(\uparrow L)$ is a computable upward-closed regular language, we deduce :
 
 \begin{corollary}
 Resilience is decidable for lossy channel systems with $\Safe=\uparrow \Safe$ and any regular language $\Bad$.
@@ -199,7 +192,7 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
-\alain{faire d'abord la preuve pour les VASS.}
+\alain{faire la preuve pour les VASS.}
 \end{proof}
 
 
@@ -217,7 +210,7 @@ Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear 
 \end{theorem}
 
 \begin{proof}
-		Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
+	\alain{à faire}	Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
 \end{proof}
 
 \begin{theorem}{}
@@ -227,7 +220,8 @@ the rationals with addition and order.
 
 \begin{proof}
 The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
-the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also decidable in EXPSPACE. \alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
+the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also decidable in EXPSPACE \cite{ref}. 
+%			\alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
 \end{proof}
 
 \mathieu{Tableau résumé de la situation pour les VASS}
@@ -283,7 +277,7 @@ the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad
 \begin{proof}
 Consider a given $k \in \N$.
 Consider $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed.
-Consider a given vector addition system $V$, which has a finite number of transitions.
+Consider a given vector addition system $V$, \alain{bizarre de dire ça "which has a finite number of transitions."}
 Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
 
 The set $\Bad$ admits a finite basis $B_\Bad$.
@@ -320,16 +314,15 @@ Need to write this more formally/properly.}
 
 \begin{proposition}
 {\sc $k$-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is decidable.
-\end{proposition}
+\end{proposition}\alain{quelle complexité ?}
 
 
 \begin{proof}
-Consider a given $k \in \N$.
+Let a given $d$-VASS $V$ and consider a given $k \in \N$.
 Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
 % $\Safe \subseteq Q \times \N^d$
 $\Safe = S \setminus \Bad$
  downward-closed.
-Consider a given VASS $V$, which has a finite number of transitions.
 Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition.
 
 The set $\Bad$ admits a finite basis 
@@ -399,7 +392,7 @@ Normalement c'est le cas d'après Okzan (ils disent c'est équiv du submarking p
 
 
 \begin{proposition}
-{\sc Bounded-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is decidable.
+{\sc Bounded-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is decidable. \alain{quelle complexité ?}
 \end{proposition}
 
 \begin{proof}
