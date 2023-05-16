@@ -175,7 +175,7 @@ Resilience is decidable for effective pred-regular fifo automata when $\Safe$ an
 %
 %			Since lossy channel systems have (non computable) regular reachability sets, we imediately deduce that.
 
-Since for lossy channel systems $(Q, \Sigma,d,...)$ with $d$ fifo channels and a set $L \subseteq Q \times (\Sigma^*)^d$, the set $\pred^*(\uparrow L)$ is a computable upward-closed regular language, we deduce :
+Since for lossy channel systems $(Q, \Sigma,d,...)$ with $d$ fifo channels and a set of states $L \subseteq Q \times (\Sigma^*)^d$, the set $\pred^*(\uparrow L)$ is a computable upward-closed regular language, we deduce :
 
 \begin{corollary}
 Resilience is decidable for lossy channel systems with $\Safe=\uparrow \Safe$ and any regular language $\Bad$.
@@ -195,13 +195,14 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \alain{faire la preuve pour les VASS.}
 \end{proof}
 
+Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logics.
 
 \begin{theorem}{}
 Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
-Resilience is decidable for lossy counter machines with $\Safe$ and $\Bad$ semilinear sets as a consequence of Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that implies that $\pred^*(\Safe)$ is a computable semilinear set. Hence since the inclusion between two semilinear sets is decidable, we deduce that  $\Bad \subseteq \pred^*(\Safe)$ is decidable.
+We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear.
 \end{proof}
 
 
@@ -210,7 +211,7 @@ Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear 
 \end{theorem}
 
 \begin{proof}
-	\alain{à faire}	Recall that reachability is NP-complete for integer VASS. We consider semilinear sets in $\mathbb{Z}^d$.
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \alain{à faire}	Recall that reachability is NP-complete for integer VASS.
 \end{proof}
 
 \begin{theorem}{}
