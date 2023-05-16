@@ -209,6 +209,30 @@ Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow
 \subsection{VASS and variations of VASS}
 
 
+
+\begin{theorem}
+{\sc Resilience} is decidable for VASS when $\Safe$ is semilinear
+and $\Bad = S \setminus \Safe$.
+\end{theorem}
+
+\begin{proof}
+Hypothesis: $\Safe$ is semilinear, $\Bad = S \setminus \Safe$.
+Then $\Bad$ is semilinear too.
+{\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
+We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
+Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
+$$\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).$$
+Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
+$\Bad$ and $\Safe$ are both semilinear \cite{DBLP:journals/corr/abs-2207-02697}, 
+{\sc Resilience} is decidable.
+\end{proof}
+
+
+\begin{proposition}
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
+\end{proposition}
+
+
 \begin{theorem}{}
 Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
@@ -292,9 +316,6 @@ the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad
 \end{center}
 
 
-\begin{proposition}
-{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
-\end{proposition}
 
 
 \begin{proof}
