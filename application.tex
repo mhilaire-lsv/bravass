@@ -29,7 +29,7 @@ Then we add the following guard $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s
 %\noindent
 %{\bf Vector addition system with states}
 %
-Let us recall that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and where $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+Let us recall that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
 % The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
 %
 Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with $V$.
@@ -39,24 +39,47 @@ For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for 
 \alain{les VASS ne sont pas vraiment étiquetés, sauf si on veut le faire, car on peut dire que les VASS sont définis à partir d'un nombre fini de control-transitions  $t = (p, \textbf{z}, q)$ générant une infinité de transtions notées $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ puisque pour tout s, $p(\textbf{u+s}) \xrightarrow{t} q(\textbf{v+s})$} \fi
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
+\noindent
 
-Let $X \subseteq \mathds{N}^d$ be an upward-closed set and $B_X$ its minimal basis: $X=\uparrow B_X$. The number of elements of $min(\pred^*(\uparrow B_X))$ and the size of the minimal elements of $min(\pred^*(X))$ have been studied in
-\cite{DBLP:conf/rp/BozzelliG11}: both are bounded by $2^{2^n}$ where $n$ is the size of the VASS.
-
- pour tout VASS, il existe un autre VASS de taille 2-exp plus grand qui a le plus grand sous-comportement restant dans $X$ .
-Je crois que ça résoud aussi un pb résolu dans Valk et Jantzen 1985 \cite{DBLP:journals/acta/ValkJ85} mais en utilisant le graphe de karp et Miller donc avec complexité ackerman.... Dans ce cas, ça permettrait de résoudre autrement les premiers des 4 pbs dans \cite{DBLP:journals/acta/ValkJ85} avec une complexité 2-exp plutôt qu'ackerman. problèmes: marquage T-bloqué, dead, T-continual ?.
+Let  $V$ be a $d$-VASS, $X \subseteq \mathds{N}^d$ be an upward-closed set and $B_X$ its minimal basis: $X=\uparrow B_X$. The number of elements of $min(\pred^*(\uparrow B_X))$ and the size of the minimal elements in $min(\pred^*(X))$ have been studied in
+\cite{DBLP:conf/rp/BozzelliG11}: both sizes are bounded by $2^{2^n}$ where $n$ is the size of $V$.
 
 \begin{theorem}{}
-Given a VASS and $X$ upward-closed, the maximal $X$-resilient subsystem is a computable VASS of size 2-exp.
+Let $V$ be a VASS and $X$ be an upward-closed set. The maximal $X$-resilient subsystem of $V$ is a computable VASS of size $2^{2^n}$ where $n$ is the size of $V$.
 \end{theorem}
 
-applications to many upward-closed sets $X$:
-$m$ is $\hat{T}$-blocked if no $t \in \hat{T}$ is fireable in $\post^*(m)$.
-$m$ is dead if the reachability tree from $m$ is finite.
-$m$ is bounded if the reachability set from $m$ is finite.
-$m$ is $\hat{T}$-continual if there is an unfinite run from $m$ such that all transitions in $\hat{T}$ appear infinitely often.
+We may use the previous Theorem with different upward-closed sets $X$. Let us first recall the definition of 4 types of configurations used in \cite{DBLP:journals/acta/ValkJ85}.
+
+\begin{definition}
+Let $V = (Q,T)$ be a $d$-VASS, $\hat{T} \subseteq T$, and $m$ a configuration in $Q \times \N^d$.
+\begin{itemize}
+\item  $m$ is \em{$\hat{T}$-blocked} if no $t \in \hat{T}$ is fireable in $\post^*(m)$.
+\item $m$ is \em{dead} if the reachability tree from $m$ is finite.
+\item $m$ is \em{bounded} if the reachability set from $m$ is finite.
+\item $m$ is \em{$\hat{T}$-continual} if there is an unfinite run from $m$ such that all transitions in $\hat{T}$ appear infinitely often.
+\end{itemize}
+\end{definition}
+
+Each of these 4 questions is decidable: $m$ is $\hat{T}$-blocked iff the preconditions of each transition in $\hat{T}$ is not coverable from $m$.
+$m$ is dead iff $V$ with $m$ as initial configuration terminates. $m$ is bounded iff $V$ with $m$ as initial configuration is bounded.
+The first two problems reduce to coverability which is EXPSPACE. The third problem is also known in EXSPACE. The fourth problem can be decided by analysing circuits in the coverability graph \cite{DBLP:journals/acta/ValkJ85} but it can be shown in EXPSPACE.
+
+.
+Let us consider the following four associated upward-closed sets.
+
+\begin{itemize}
+\item  NotBlocked($\hat{T})= \{ m \in Q \times \N^d \mid m$ is not $\hat{T}$-blocked\}.
+\item NotDead = $\{ m \in Q \times \N^d \mid m$ is not dead\}.
+\item UnBounded = $\{ m \in Q \times \N^d \mid m$ is not bounded\}.
+\item Continual($\hat{T}$) = $\{ m \in Q \times \N^d \mid m$ is $\hat{T}$-continual\}.
+\end{itemize}
 
 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \iffalse
 \alain{ me semble maintenant inutile
 %
@@ -108,13 +131,7 @@ Fact~\ref{fact basis}, we can compute a basis of $U^{k+1}$.
 
 
 \fi
-
-
-
-
-
-
-The two previous problems are well-known decidable.
+%%%%%%%%%%%%%%%%%%%
 
 \section{Deciding resilience for extended automata}
 
