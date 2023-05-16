@@ -33,7 +33,9 @@ Some systems are subjects at frequent intervals to accidents, attacks or changes
 
 Resilience is a concept of growing interest [references]. Both Okzan and Würdemann [ref] and Prasad and Zuck [ref] have started to consider [casting the problem into] the framework of Well-Structured Transition Systems. 
  
-Resilience is an instance of the home state problem.
+Resilience is an instance of the home space problem: let $L_1,L_2$ be two sets of states, the home space for  $L_1,L_2$ is the following question:		
+	$\post^*(L_1)	\subseteq \pred^*(L_2)$
+\alain{ne trouve pas la macro pred et post}
 
 \begin{center}
 	\begin{figure}
@@ -55,6 +57,8 @@ be reached in
 the least amount of step possible. 
 In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time.
 With one out of ten messages guarranteed to not be lost, $40$-resilience hold in the example.
+
+\alain{il faut mieux expliquer le modèle, le rôle des 4 canaux, des messages, remarquer que 2 canaux sont des compteurs,....}
 
 % contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
 

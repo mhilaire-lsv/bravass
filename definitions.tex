@@ -1,12 +1,12 @@
 
+\newcommand{\pred}{\textsf{pred}}
+\newcommand{\post}{\textsf{post}}
+% \renewcommand{\succ}{\textsf{Succ}}
 
 \newcommand{\Bad}{\textsf{Bad}}
 \newcommand{\Safe}{\textsf{Safe}}
 
 
-\newcommand{\pred}{\textsf{pred}}
-\newcommand{\post}{\textsf{post}}
-% \renewcommand{\succ}{\textsf{Succ}}
 
 \section{Well-structured transition systems}\label{section definitions}
 
@@ -14,23 +14,20 @@
 
 %   In this section, we introduce general notations and preliminary definitions.
 
-The model we are interested in is labeled WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
+%The model we are interested in is labeled WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
 
 
 % \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
 
 \noindent
-{\bf Transition systems}
-
-
-\begin{definition}
+Let us recall thz well-known framework of transition systems. 
  A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
  {\em states} and  
  $ {\rightarrow} \subseteq S \times S$ is a
  binary relation 
  on
  the set of states, denoted as the set of {\em transitions}. 
-
+%
 \iffalse
 \mathieu{ Maybe add this back ?
 A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
@@ -39,10 +36,9 @@ ${\rightarrow} \subseteq S\times \Sigma \times S$ is a
 ternary relation,
 denoted as the set of {\em labeled transitions}. }
 \fi
-\end{definition}
-
+%
 % We prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as    $s  \xrightarrow{a}  s'$ to represent a transition from configuration $s$ to configuration $s'$ with label $a$. 
-We prefer to use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $).
+We use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $).
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
 Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
@@ -76,28 +72,31 @@ $s \in \pred^*(t)$ or asking whether $t \in \post^*(s)$. \\
 %
 
 \noindent
-{\bf Well-quasi-orderings}
-
-A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$.
-
-We abbreviate $x \leq y \not\leq x$ by $x < y$.
+A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. We abbreviate $x \leq y \not\leq x$ by $x < y$.
 % A partial ordering (a po) is an antisymmetric qo
 	% \alain{
 Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).
 	% }
 % and gives rise to a po between the equivalence classes ?
 % 	do we need po ?
-
-We now recall a few results from the theory of well-orderings (add reference [...]).
-
+Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
+A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+To any subset $A \subseteq X$, we may associate
+its {\em upward-closure},
+ $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
+ and its 
+ {\em downward-closure},
+ $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
+We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
+as $\uparrow x$ (resp. $\downarrow x$).
+%
+A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
 
 \begin{definition}
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
 \end{definition}
-
-
-There exists a stronger formulation. $(X,\leq)$ is a wqo iff any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$).
-
+%
 % \textcolor{red}{Add lemma about infinite increasing subsequences ?}
 %
 \iffalse
@@ -117,24 +116,12 @@ increasing subsequence.
 \fi
 %
 
-Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
-A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
-It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
-To any subset $A \subseteq X$, we may associate
-its {\em upward-closure},
- $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
- and its 
- {\em downward-closure},
- $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
-We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
-as $\uparrow x$ (resp. $\downarrow x$).
 
-
-A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
 % Higman investigated ordered sets with the finite basis property.
 
 Wqo admits many other equivalent formulations. For instance: 
-$(X,\leq)$ is a wqo if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of
+$(X,\leq)$ is a wqo f and only if any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$)
+if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of
 upward-closed subsets in $X$ eventually stabilizes, 
 %      i.e. there is a $k \in N$ such that $U_k = U_{k+1} = U_{k+2} = \cdots $ 
 if and only if any upward-closed subset $U \subseteq X$ has a
@@ -175,6 +162,7 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 \fi
 %
 
+\noindent
 Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo. In such \emph{Finite Antichains} sets $(X,\leq)$, every downward closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ (an ideal is a directed downward closed subset) such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
 
 In what follows, a downward closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement).
@@ -182,11 +170,8 @@ In what follows, a downward closed set $D$ is represented by its finite set of i
 and an upward closed set $U$ is represented by its finite set of minimal elements. \\
 % $M_U$ of its  satisfying $U=\uparrow M_U$.
 
-
-
 \noindent
-{\bf Well-structured transition systems}
-
+Let us now recall the most general definition of well-structured transition systems.
 
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
 A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
@@ -220,31 +205,49 @@ Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $
 \fi
 
 
-
-
-
 A WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is {\em effective} if there exists a pair of Turing machines
 ($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
 $ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
-$M_\leq$ the ordering relation “$\leq$”. 
+$M_\leq$ the ordering relation “$\leq$”.
+
 We say that $\mathscr{S}$ is {\em post-effective} if it is effective, and if there
 exists an additional Turing machine that computes $|\post(x)| \in \N \cup \{\infty\}$ 
-on input $x$,
-with $x \in X_i $. 
+on input $x$, with $x \in X_i $. 
 Such a Turing machine, in combination with $M_\rightarrow$, allows computing
-$\post(x)$ whenever the latter is finite. We say that $\mathscr{S}$ is {\em upward pre-effective} if it is effective,
-and if there exists an additional Turing machine that computes a finite basis of 
-$\uparrow \pred (\uparrow x)$
-on input $x$, where $x$ is a state of $\mathscr{S}$. 
-We say that $\mathscr{S}$
-is {\em ideally effective} if
-\begin{itemize}
-\item the function mapping the encoding of a configuration $s$
-to the encoding of the ideal $\downarrow s$ is computable;
-\item inclusion of ideals is decidable;
-\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
-\end{itemize}
+$\post(x)$ whenever the latter is finite. 
 
+We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
+%\alain{étrange ces deux propositions, l'une suffirait}
+
+\iffalse
+Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
+\fi
+%
+
+Now, we recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
+
+\begin{definition}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
+A WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ has {\em effective pred-basis} if there exists an algorithm accepting
+any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
+\end{definition}
+
+For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. \\
+
+With the effective pred-basis hypothese, we obtain:
+
+\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
+\end{theorem}
+
+%We say that $\mathscr{S}$ is {\em upward pre-effective} if it is effective,
+%and if there exists an additional Turing machine that computes a finite basis of 
+%$\uparrow \pred (\uparrow x)$
+%on input $x$, where $x$ is a state of $\mathscr{S}$. 
+
+We say that $\mathscr{S}$
+is {\em ideally effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
+to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
+%
 \iffalse
 \alain{pas ici}
 \begin{definition}{\cite{BFM-ic17}} 
@@ -256,29 +259,17 @@ to the encoding of the ideal $\downarrow s$ is computable;
 \item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
 \end{itemize}
 \end{definition}
-
-\fi
-
-
-
-We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
-%\alain{étrange ces deux propositions, l'une suffirait}
-\iffalse
-Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
+%
 \fi
 %
-Now, we recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
+%
+With the ideally effective hypothese, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
 
-\begin{definition}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
-A WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ has {\em effective pred-basis} if there exists an algorithm accepting
-any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
-\end{definition}
-
-With the effective pred-basis hypothese, we obtain:
-
-\begin{theorem}(ref)
-A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$.
+\begin{theorem}\cite{BFM-ic17}
+Coverability is decidable for any ideally effective ordered compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
 \end{theorem}
+
+
 
 
 
@@ -315,7 +306,6 @@ Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V
 % (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
 % \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $\min(A)$ est la base minimale}
 %			\end{fact}
-For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. \\
 %
 
 
