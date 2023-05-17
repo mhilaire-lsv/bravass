@@ -46,10 +46,16 @@ Resilience is an instance of the home space problem: let $L_1,L_2$ be two sets o
 	\end{figure}
 \end{center}
 
-Consider the channel system in Figure~\ref{air control}. It models a scenario in which two aircrafts wants to land in an airport at the same time. Safety requires that only one aircraft at a time attempt to land. The role of the control tower is to ensure this;
+Consider the channel system in Figure~\ref{air control}. It models a scenario in which two aircrafts wants to land in an airport at the same time. 
+
+The automata on the left and right represents the aircrafts attempting to land, while the middle one represent the control tower. The control tower can send messages to the aircrafts using channels $c_1$ and $c_2$, and these in turn can send messages to the control tower using respectively channel $c_3$ and $c_4$. Remark channels $c_3$ and $c_4$ have a unary alphabet
+in the exemple and therefore can be seen as counters. 
+
+Safety requires that only one aircraft at a time attempt to land. The role of the control tower is to ensure this;
 there are two possible choices: aircraft A waits for aircraft B to land
-or vice-versa. 
-We assume that the channel are lossy, i.e. an arbitrary number of messages may be lost from the channels, but that they are still such that out of ten messages, at least one is not lost.
+or vice-versa. To make its choice known to the aircrafts, the control tower will send them messages using the channels. 
+We assume that the channel are
+lossy \-- i.e. an arbitrary number of messages may be lost from the channels \--  but that they are still such that out of ten messages, at least one is not lost.
 In this example, the safe, desirable state would be one where the aircrafts have both landed. 
 Resilience here expresses that the aircrafts state will both land, while explicit resilience or $k$-resilience asks whether they will do so in at most $k$ steps. 
 Explicit resilience is of interest since in general we want to ensure the safe state will
