@@ -206,7 +206,7 @@ Resilience is decidable for lossy channel systems with $\Safe=\uparrow \Safe$ an
 Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow \post^*(S)$ \alain{à prouver et vérifier les autres hypothèses}
 %
 %%%
-\subsection{VASS and variations of VASS}
+\subsection{Resilience for VASS}
 
 
 
@@ -241,7 +241,7 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \alain{faire la preuve pour les VASS.} From \cite{DBLP:journals/corr/abs-2207-02697}...
 \end{proof}
 
-Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logics.
+Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logics. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
 
 \begin{theorem}{}
 Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are semilinear sets.
@@ -251,14 +251,18 @@ Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are s
 We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear.
 \end{proof}
 
+Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
 
 \begin{theorem}{}
 Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
-The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \alain{à faire}	Recall that reachability is NP-complete for integer VASS.
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \alain{à faire}	
+%		Recall that reachability is NP-complete for integer VASS.
 \end{proof}
+
+Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
 
 \begin{theorem}{}
 Resilience is decidable for continuous VASS when $\Safe$ and $\Bad$ are definable in the existential theory of
@@ -267,7 +271,7 @@ the rationals with addition and order.
 
 \begin{proof}
 The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
-the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also decidable in EXPSPACE \cite{ref}. 
+the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also in EXPSPACE. 
 %			\alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
 \end{proof}
 
@@ -317,7 +321,7 @@ the rationals with addition and order whose complexity is EXPSPACE. Hence, $\Bad
 
 
 
-
+\alain{c'est la preuve de quoi en dessous ?}
 \begin{proof}
 Consider a given $k \in \N$.
 Consider $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed.
