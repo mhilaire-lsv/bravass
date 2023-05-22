@@ -228,7 +228,7 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 When asking about resilience, in context, there are no true ``neutral'' configurations.
 Hence from a VASS $V$, $\Safe$ and $\Bad$ semilinear, one can build VASS $V'$, $\Safe'$ semilinear, and $\Bad'$ complement of $\Safe'$ such that {\sc Resilience} holds for
 $V$, $\Safe$ and $\Bad$ if and only if {\sc Resilience} holds for
-$V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of the control states of $V$; $Q_{A}$ and $Q_B}$, and will have two other VASS running in parallel checking whether or not the current configuration belong to $\Safe$ resp. $\Bad$. 
+$V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of the control states of $V$; $Q_{A}$ and $Q_{B}$, and will have two other VASS running in parallel checking whether or not the current configuration belong to $\Safe$ resp. $\Bad$. 
 From a configuration with state in $Q_{A}$ you go to $Q_B$ when you are in a $\Bad$ place
 and from a configuration with state in $Q_{B}$ you go to $Q_{A}$ when you are in a $\Safe$ place.
 $\Safe'$ is $Q_A \times \N^d$ and $\Bad'$ is $Q_B \times N^d$.
