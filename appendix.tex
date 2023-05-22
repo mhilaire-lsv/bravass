@@ -2,10 +2,10 @@
 
 \section{Case: $\Bad=\downarrow \Bad$ and $\Safe=\downarrow \Safe$}\label{case down down}
 
-The well-known mutual exclusion property can be modelized, in a $d$-VASS with $k$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward closed.
-%		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward closed complementary of $\Safe$. 
+The well-known mutual exclusion property can be modelized, in a $d$-VASS with $k$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed.
+%		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
 
-% In the case \Safe and \Bad are both downward closed, they can both be finite.
+% In the case \Safe and \Bad are both downward-closed, they can both be finite.
 
 \begin{theorem}\label{down-down}
 The resilience problem is undecidable for  effective WSTS with  strong  compatibility such that
@@ -25,7 +25,7 @@ The problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resil
 
 % \alain{2 clos par le haut ont une intersection non vide....}
 
-Since $\Bad \cap \Safe = \emptyset$, the subcase $\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ leads to a contradiction since two upward closed sets have not an empty intersection. We then consider the case where $\Bad$ is as upward-closed
+Since $\Bad \cap \Safe = \emptyset$, the subcase $\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ leads to a contradiction since two upward-closed sets have not an empty intersection. We then consider the case where $\Bad$ is as upward-closed
 as it can be without intersecting with $\Safe$,
 i.e. 
 such that there exists an upward-closed set $U$
@@ -47,9 +47,9 @@ and $\Bad= U \setminus \Safe$ with $U = \uparrow U$.
 
 
 \begin{proof}
-Since $\Safe=\uparrow \Safe$ is upward closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
+Since $\Safe=\uparrow \Safe$ is upward-closed, there exists a finite basis $B_{ \Safe}$ such that $\uparrow \Safe = \uparrow B_{\Safe}$. 
 Moreover since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS,  $\pred^*(\Safe)=\uparrow \pred^*(\Safe)$ and $\pred^*(\Safe)$ admits a finite basis $B_{\pred^*(\Safe)}$. Since $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS  with effective pred-basis, we may compute a finite basis of $\pred^*(\Safe)$ with the backward coverability algorithm. 
-Since $U$  is upward closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
+Since $U$  is upward-closed, there exists a finite basis $B_{U}$ such that $U = \uparrow B_{U}$. % Moreover $ \uparrow B_{\Bad} \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{\Bad}$, there is a $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$.
 Since $\Bad = U \setminus \Safe$, $\Bad \subseteq \uparrow B_{\pred^*(\Safe)}$ iff for every $b \in B_{U}$, there is either $s \in B_{\pred^*(\Safe)}$ such that $s \leq b$, either $t \in B_{\Safe}$ such that $t\leq b$,
 % si on est dans up Bad, il faut que ou bien on soit dans pred(Safe) ou bien on soit dans Safe
 hence the resilience problem is decidable.
@@ -82,7 +82,7 @@ The % three %uniform
 $k$-resilience problem is decidable for WSTS with effective pred-basis, strong %upward-
 compatibility, $\Safe=\uparrow \Safe$
 and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
-%	and \Bad is upward closed or downward closed.
+%	and \Bad is upward-closed or downward-closed.
 \end{theorem}
 
 \begin{proof}

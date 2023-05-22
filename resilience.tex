@@ -36,16 +36,16 @@ $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely
 (\Bad,\Safe)-$k$-resilient iff $\Bad \subseteq \pred^{\leq k}(\Safe)$.
 \end{remark}
 
-These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward closed or downward closed sets $\Safe$ and $\Bad$.
+These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$ and $\Bad$.
 
 Surprinsingly, we have not found decidability results about the resilience problems for WSTS.
 
-In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Bad$ is downward closed and $\Safe$ is upward closed.
+In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Bad$ is downward-closed and $\Safe$ is upward-closed.
 %		
 We deduce 
-% \textcolor{red}{that the three resilience problems are decidable for all four pairs of sets $\Safe$ and $\Bad$ downward closed and upward closed sets.}
+% \textcolor{red}{that the three resilience problems are decidable for all four pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed sets.}
 % \mathieu{changer ça}
-decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward closed and upward closed as seen in Section~\ref{synthesis}.
+decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed as seen in Section~\ref{synthesis}.
 
 In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
 %
@@ -115,10 +115,10 @@ Hence we will consider not only $\Bad$ and $\Safe$ disjoint but
 	also
 $\Bad$ complement of $\Safe$,
 in which case
-if $\Bad$ is downward closed then $\Safe$ is upward closed and vice-versa.
-Cases where $\Bad$ or $\Safe$ share closure properties i.e. they are both downward
-closed
-have also been studied, \textcolor{red}{but are less interesting}, 
+if $\Bad$ is downward-closed then $\Safe$ is upward-closed and vice-versa.
+Cases where $\Bad$ or $\Safe$ are not complements of each other, and share closure properties, i.e. they are both downward
+closed or both upward-closed,
+have also been studied, 
 see 
 Appendix~\ref{case down down}
 and
