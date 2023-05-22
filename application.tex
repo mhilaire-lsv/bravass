@@ -371,10 +371,10 @@ Need to write this more formally/properly.}
 \mathieu{Alors. On doit calculer $c_{max}$ ça ça se fait facilement c'est temps poly en la taille de l'entrée. Ensuite, on regarde la base de $\Bad$ et on regarde quels sont les états $q$ n'ayant pas de représentant dedans, ça se fait en la taille de la base de $\Bad$. 
 Ensuite, il faut calculer la base de
 $\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
-$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$. Ça c'est plus gourmant en temps.
-La complexité exacte de ce calcul est de ... 
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$.
+Ça se fait en appliquant $k$ fois l'algorithme de pred-basis.
 Calculer "petit à petit" $\Bad \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
-$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$. Aussi. 
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$, c'est plus gourmant en temps. 
 La complexité exacte de ce calcul est de ... 
 Ensuite, pour chaque élément il faut vérifier si on est capable d'atteindre 
 $\Safe$ en au plus $k$ étape, ça se fait en $\leq$ nombre de transition puissance $k$. }
