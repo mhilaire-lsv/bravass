@@ -210,22 +210,6 @@ Another proof is possible for LCS since LCS are WSTS with a computable $\uparrow
 
 
 
-\begin{theorem}
-{\sc Resilience} is decidable for VASS when $\Safe$ is semilinear
-and $\Bad = S \setminus \Safe$.
-\end{theorem}
-
-\begin{proof}
-Hypothesis: $\Safe$ is semilinear, $\Bad = S \setminus \Safe$.
-Then $\Bad$ is semilinear too.
-{\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
-We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
-Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
-$$\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).$$
-Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
-$\Bad$ and $\Safe$ are both semilinear \cite{DBLP:journals/corr/abs-2207-02697}, 
-{\sc Resilience} is decidable.
-\end{proof}
 
 
 \begin{proposition}
@@ -239,6 +223,19 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 
 \begin{proof}
 \alain{faire la preuve pour les VASS.} From \cite{DBLP:journals/corr/abs-2207-02697}...
+\mathieu{En train de penser que la meilleure stratégie ici est de réduire "w.l.o.g" au cas où ils sont complémentaires encore faut-il montrer que ce serait without loss of generality.
+}
+
+\mathieu{...}
+Without loss of generality hence let us consider only the case when $\Safe$ is semilinear
+and $\Bad = S \setminus \Safe$ is semilinear too.
+{\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
+We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
+Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
+$$\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).$$
+Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
+$\Bad$ and $\Safe$ are both semilinear \cite{DBLP:journals/corr/abs-2207-02697}, 
+{\sc Resilience} is decidable.
 \end{proof}
 
 Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logics. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
