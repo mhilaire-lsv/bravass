@@ -60,9 +60,9 @@ Let $V = (Q,T)$ be a $d$-VASS, $\hat{T} \subseteq T$, and $m$ a configuration in
 \end{itemize}
 \end{definition}
 
-Each of these 4 questions is decidable: $m$ is $\hat{T}$-blocked iff the preconditions of each transition in $\hat{T}$ is not coverable from $m$.
+These 4 questions are decidable: $m$ is $\hat{T}$-blocked iff the preconditions of each transition in $\hat{T}$ is not coverable from $m$.
 $m$ is dead iff $V$ with $m$ as initial configuration terminates. $m$ is bounded iff $V$ with $m$ as initial configuration is bounded.
-The first two problems reduce to coverability which is EXPSPACE. The third problem is also known in EXSPACE. The fourth problem can be decided by analysing circuits in the coverability graph \cite{DBLP:journals/acta/ValkJ85} but it can be shown in EXPSPACE.
+Hence, the first two problems reduce to coverability which is EXPSPACE. The third problem is also well-known in EXPSPACE. The fourth problem can be decided by analysing circuits in the coverability graph \cite{DBLP:journals/acta/ValkJ85} but it can be also shown in EXPSPACE following techniques exposed in \cite{DBLP:journals/jcss/Demri13}.
 
 Let us consider the following four associated upward-closed sets.
 
@@ -73,7 +73,7 @@ Let us consider the following four associated upward-closed sets.
 \item Continual($\hat{T}$) = $\{ m \in Q \times \N^d \mid m$ is $\hat{T}$-continual\}.
 \end{itemize}
 
-\cite{DBLP:journals/acta/ValkJ85} showed from a VASS $V$ and one of the 4 properties P, how to construct the maximal VASS $V'$ that has the property P which are exactly the maximal $X$-resilient VASS.
+Let a VASS $V$ and any of the 4 previous properties denoted $X$. Valk and Jantzen showed that the maximal subsystem of $V$ that has the property $X$ is a VASS $V_X$ that can be constructed with the Ackermanian coverability graph reaching a enormous complexity  \cite{DBLP:journals/acta/ValkJ85}. Let us remark that these VASS $V_X$ are the maximal $X$-resilient VASS of $V$. Morever, the basis of the four upward-closed sets $X$ are computable in $2^{2^n}$.
 
 
 
