@@ -378,6 +378,9 @@ $\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$, c'est plus gourmant en temps.
 La complexité exacte de ce calcul est de ... 
 Ensuite, pour chaque élément il faut vérifier si on est capable d'atteindre 
 $\Safe$ en au plus $k$ étape, ça se fait en $\leq$ nombre de transition puissance $k$. }
+\mathieu{En fait, on cherche à determiner la taille de notre recherche dans $\Bad \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$. Mais le set n'est pas nécessairement borné. Mais si il est ``trop grand'' c'est ``pas grave'' parce qu'on vas rapidement tomber sur un contre exemple, en fait, dont la composante vectorielle serait plus grande que $\textbf{u}_k$. En fait, ce $\textbf{u}_k$ nous donne une borne sur la taille du search-space dans lequel il est nécessaire de chercher un contre exemple. $c_{\max}$ et les vecteurs qu'on additionne pour faire $v_{\Bad}$ sont représentés par $n$ bits où $n$ et la taille de l'entrée et donc bornés par $2^n$ ... et globalement oui, du coup on a un search space exponentiel en la taille de l'entrée et on est en $\sf{EXPSPACE}$}
+
 
 \begin{proof}
 Let a given $d$-VASS $V$ and consider a given $k \in \N$.
