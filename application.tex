@@ -222,9 +222,6 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
-\alain{faire la preuve pour les VASS.} From \cite{DBLP:journals/corr/abs-2207-02697}...
-\mathieu{En train de penser que la meilleure stratégie ici est de réduire "w.l.o.g" au cas où ils sont complémentaires encore faut-il montrer que ce serait without loss of generality.
-}
 When asking about resilience, in context, there are no true ``neutral'' configurations.
 Hence from a VASS $V$, $\Safe$ and $\Bad$ semilinear, one can build VASS $V'$, $\Safe'$ semilinear, and $\Bad'$ complement of $\Safe'$ such that {\sc Resilience} holds for
 $V$, $\Safe$ and $\Bad$ if and only if {\sc Resilience} holds for
@@ -232,7 +229,7 @@ $V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of t
 From a configuration with state in $Q_{A}$ you go to $Q_B$ when you are in a $\Bad$ place
 and from a configuration with state in $Q_{B}$ you go to $Q_{A}$ when you are in a $\Safe$ place.
 $\Safe'$ is $Q_A \times \N^d$ and $\Bad'$ is $Q_B \times N^d$.
-\mathieu{...}
+
 Without loss of generality hence let us consider only the case when $\Safe$ is semilinear
 and $\Bad = S \setminus \Safe$ is semilinear too.
 {\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
@@ -429,7 +426,7 @@ that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf
 and hence from which it is not possible at all to reach
 $\Safe$ in $k$ or less steps. This also means that, even in the case where $\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$ is finite, we only need to check reachability of $\Safe$ in $k$ or less steps for the elements with vectorial component at most
 $ \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$. Binding the search space
-thus lead to the $\EXPSPACE$ upper bound.
+thus leads to the $\EXPSPACE$ upper bound.
 \end{proof}
 
 
@@ -450,7 +447,7 @@ Normalement c'est le cas d'après Okzan (ils disent c'est équiv du submarking p
 
 
 \begin{proposition}
-{\sc Bounded-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is decidable. \alain{quelle complexité ?}
+{\sc Bounded-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is in $\EXPSPACE$.
 \end{proposition}
 
 \begin{proof}
