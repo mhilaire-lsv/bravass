@@ -366,24 +366,15 @@ Need to write this more formally/properly.}
 \fi
 
 \begin{proposition}
-{\sc $k$-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is decidable.
-\end{proposition}\alain{quelle complexité ?}
-\mathieu{Alors. On doit calculer $c_{max}$ ça ça se fait facilement c'est temps poly en la taille de l'entrée. Ensuite, on regarde la base de $\Bad$ et on regarde quels sont les états $q$ n'ayant pas de représentant dedans, ça se fait en la taille de la base de $\Bad$. 
-Ensuite, il faut calculer la base de
-$\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
-$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$.
-Ça se fait en appliquant $k$ fois l'algorithme de pred-basis.
-Calculer "petit à petit" $\Bad \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
-$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$, c'est plus gourmant en temps. 
-La complexité exacte de ce calcul est de ... 
-Ensuite, pour chaque élément il faut vérifier si on est capable d'atteindre 
-$\Safe$ en au plus $k$ étape, ça se fait en $\leq$ nombre de transition puissance $k$. }
-\mathieu{En fait, on cherche à determiner la taille de notre recherche dans $\Bad \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
-$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$. Mais le set n'est pas nécessairement borné. Mais si il est ``trop grand'' c'est ``pas grave'' parce qu'on vas rapidement tomber sur un contre exemple, en fait, dont la composante vectorielle serait plus grande que $\textbf{u}_k$. En fait, ce $\textbf{u}_k$ nous donne une borne sur la taille du search-space dans lequel il est nécessaire de chercher un contre exemple. $c_{\max}$ et les vecteurs qu'on additionne pour faire $v_{\Bad}$ sont représentés par $n$ bits où $n$ et la taille de l'entrée et donc bornés par $2^n$ ... et globalement oui, du coup on a un search space exponentiel en la taille de l'entrée et on est en $\sf{EXPSPACE}$}
+{\sc $k$-resilience } in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ is in $\EXPSPACE$.
+\end{proposition}
+% \alain{quelle complexité ?}
+% \mathieu{Alors. On doit calculer $c_{max}$ ça ça se fait facilement c'est temps poly en la taille de l'entrée. Ensuite, on regarde la base de $\Bad$ et on regarde quels sont les états $q$ n'ayant pas de représentant dedans, ça se fait en la taille de la base de $\Bad$.  Ensuite, il faut calculer la base de $\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots $\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$. Ça se fait en appliquant $k$ fois l'algorithme de pred-basis. Calculer "petit à petit" $\Bad \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots $\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$, c'est plus gourmant en temps, mais on notera plus bas qu'il n'est pas nécessaire de tout calculer. Ensuite, pour chaque élément il faut vérifier si on est capable d'atteindre  $\Safe$ en au plus $k$ étape, ça se fait en $\leq$ nombre de transition puissance $k$. }
+% \mathieu{En fait, on cherche à determiner la taille de notre recherche dans $\Bad \setminus \pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots $\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$. Mais le set n'est pas nécessairement borné. Mais si il est ``trop grand'' c'est ``pas grave'' parce qu'on vas rapidement tomber sur un contre exemple, en fait, dont la composante vectorielle serait plus grande que $\textbf{u}_k$. En fait, ce $\textbf{u}_k$ nous donne une borne sur la taille du search-space dans lequel il est nécessaire de chercher un contre exemple. $c_{\max}$ et les vecteurs qu'on additionne pour faire $v_{\Bad}$ sont représentés par $n$ bits où $n$ et la taille de l'entrée et donc bornés par $2^n$ ... et globalement oui, du coup on a un search space exponentiel en la taille de l'entrée et on est en $\sf{EXPSPACE}$}
 
 
 \begin{proof}
-Let a given $d$-VASS $V$ and consider a given $k \in \N$.
+Let $V$ be a given $d$-VASS and consider a given $k \in \N$.
 Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
 % $\Safe \subseteq Q \times \N^d$
 $\Safe = S \setminus \Bad$
@@ -422,7 +413,7 @@ $\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \
 % \mathieu{Is it actually possible to check whether or not it is finite ?}
 % If it is finite then w
 We inductively check for any element in the set whether or not it is possible to reach from it the set $\Safe$ in $k$ or less steps.
-If the set is finite then we stop the procedure once we have checked for every element.
+If the set is finite then we stop the procedure once we have checked found a witness that $k$-resilience does not hold or once we have checked for every element, whichever comes first.
 If it is infinite then
 $k$-resilience does not hold 
 and we eventually find a witness that $k$-resilience does not hold.
@@ -436,7 +427,9 @@ there exists an element of the form $q(\textbf{u} )$
 with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
 that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf{0}))$,
 and hence from which it is not possible at all to reach
-$\Safe$ in $k$ or less steps.
+$\Safe$ in $k$ or less steps. This also means that, even in the case where $\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$ is finite, we only need to check reachability of $\Safe$ in $k$ or less steps for the elements with vectorial component at most
+$ \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$. Binding the search space
+thus lead to the $\EXPSPACE$ upper bound.
 \end{proof}
 
 
