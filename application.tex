@@ -237,7 +237,7 @@ We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Saf
 Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
 $$\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).$$
 Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
-$\Bad$ and $\Safe$ are both semilinear \cite{DBLP:journals/corr/abs-2207-02697}, 
+$\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
 {\sc Resilience} is decidable.
 \end{proof}
 
@@ -260,6 +260,10 @@ Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear 
 \begin{proof}
 The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \alain{à faire}	
 %		Recall that reachability is NP-complete for integer VASS. 
+\mathieu{Comparé à la preuve précédente, il faut vérifier que le Home space problem est décidable dans les $\mathbb{Z}$-VASS}
+\mathieu{Proposition 2, Proposition 3 dans [9] valent aussi bien pour les VASS que les 
+ $\mathbb{Z}$-VASS à mon sens}
+ \mathieu{Pour le Lemma 4, par contre, c'est peut-être moins évident. DC (can decrease the token) et NDC (cannot decrease the token) sont plus difficile à calculer (par exemple, MIN(DC) n'est pas calculable).}
 \end{proof}
 
 Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
