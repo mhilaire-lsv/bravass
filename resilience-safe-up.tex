@@ -10,7 +10,11 @@
 %
 Let us choose $\Bad$ to be the set of states from which there is no infinite run. If we are in an upward compatible ordered transition system (like VASS, lossy channel systems,...), then $\Bad$ is downward-closed.
 
-
+We say that $\mathscr{S}$ is {\em post-effective} if it is effective, and if there
+exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$ 
+on input $x$, with $x \in X_i $. 
+%Such a Turing machine, in combination with $M_\rightarrow$, allows computing
+%$\post(x)$ whenever the latter is finite. 
 
 
 
@@ -38,7 +42,7 @@ it is post-effective, and there exists a Turing Machine $M_\downarrow$ that comp
  $\downarrow s$, and some Turing Machine $M_{\uparrow^C}$ that computes, on input
  $\{s_1, s_2, \ldots, s_m\} \in S^m$, 
  the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$.
-Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS.
+Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS (we don't need the pred-basis hypothesis).
 
 Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
