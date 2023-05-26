@@ -203,7 +203,7 @@ Let a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$. We say that $\mathscr{S}$ is {\
 $ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
 $M_\leq$ the ordering relation “$\leq$”.
 
-We say that $\mathscr{S}=(S, \rightarrow, \leq)$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+We say that $\mathscr{S}$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 
 We say that $\mathscr{S}$
@@ -219,7 +219,7 @@ Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If
 \fi
 %%%%%%%%%%
 
-Now, we recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
+Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 
 
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
