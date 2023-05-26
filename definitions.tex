@@ -198,13 +198,17 @@ Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $
 \fi
 
 {\bf On effectivity}
-A WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is {\em effective} if there exists a pair of algorithms
+Let a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$. We say that $\mathscr{S}$ is {\em effective} if there exists a pair of algorithms
 ($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
 $ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
 $M_\leq$ the ordering relation “$\leq$”.
 
-A WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+We say that $\mathscr{S}=(S, \rightarrow, \leq)$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
+
+We say that $\mathscr{S}$
+is {\em ideally effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
+to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
 
 %\alain{étrange ces deux propositions, l'une suffirait}
 %%%%%%%%%%%%%%%%%
@@ -232,10 +236,6 @@ A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S
 %and if there exists an additional Turing machine that computes a finite basis of 
 %$\uparrow \pred (\uparrow x)$
 %on input $x$, where $x$ is a state of $\mathscr{S}$. 
-
-We say that $\mathscr{S}$
-is {\em ideally effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
-to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
 %
 \iffalse
 %%%%%%%%%
