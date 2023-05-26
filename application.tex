@@ -7,7 +7,7 @@ We say that $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient (resp. $(s_0,X
 \end{definition}
 
 We may verify that  $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient iff  $\mathscr{S}=(S, \rightarrow, \leq)$ is $\pred^*(X)$-resilient. The \emph{maximal $X$-resilient subsystem} of $\mathscr{S}=(S,\rightarrow,\leq)$ is defined as $\mathscr{S}_X=(S,\rightarrow_X,\leq)$ where $\rightarrow_X$ is the largest restriction of $\rightarrow$ that insures that $\mathscr{S}_X$ is $X$-resilient.
-
+\alain{vérifier que la plus grande existe}
 Let us remark that given a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$, one may construct many \emph{guard} systems where every transition $s \rightarrow s'$ of $\mathscr{S}$ is guarded by a (monotone) formula $\phi$ defined by the grammar $\phi ::= s \geq u \mid s' \geq u \mid \phi \vee \phi \mid \phi \wedge \phi$ where $u \in S$. Since guards restrict the original runs but don't create new ones, every guarded transition system $\mathscr{S'}$ is a subsystem of $\mathscr{S}$. Since these formula are upward-compatible, the guarded transition systems $\mathscr{S'}=(S, \rightarrow', \leq)$ are still WSTS.
 %
 For example, VASS allows such guards.
@@ -73,7 +73,7 @@ Let us consider the following four associated upward-closed sets.
 \item Continual($\hat{T}$) = $\{ m \in Q \times \N^d \mid m$ is $\hat{T}$-continual\}.
 \end{itemize}
 
-Let $V$ be a VASS and $X$ be any of the 4 previous sets. Valk and Jantzen showed that the maximal subsystem of $V$ such that its reachability set $\post^*(V)$ is included in $X$ is still a VASS $V_X$ that can be constructed with the coverability graph \cite{DBLP:journals/acta/ValkJ85} whose complexity is Ackermanian. Let us remark that these VASS $V_X$ are the maximal $X$-resilient VASS of $V$ and the basis of the four upward-closed sets $X$ are computable in $2^{2^n}$.
+Let $(V,v_0)$ be a VASS with an initial state and $X$ be any of the 4 previous sets. Valk and Jantzen showed that the maximal subsystem of $(V,v_0)$ such that its reachability set $\post^*(V,v_0)$ is included in $X$ is still a VASS $(V_X,v_0)$ that can be constructed with the coverability graph \cite{DBLP:journals/acta/ValkJ85} whose complexity is Ackermanian. Let us remark that the basis of the four upward-closed sets $X$ are computable in $2^{2^n}$, the maximal $X$-resilient VASS of $V$ is also a computable VASS $V_X$ and that $V_X$ is independant of the initial state $v_0$.
 
 
 
@@ -790,6 +790,7 @@ $i\in\{0,1\}$, and some $\delta \in R_i$.
 
 \section{conclusion}
 
+We will analyse in detail the complexities of the different resilience. resilience for other computable models like stack automata,...
 
 \alain{trouver les \Bad~ et \Safe~ maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ?}
 %
