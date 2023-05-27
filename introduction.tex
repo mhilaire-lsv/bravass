@@ -2,7 +2,7 @@
 
 
 {\bf Context.} 
-Resilience is a key notion for improving safety of systems. Resilience Engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety (\cite{challenges} analyse 472 contributions in this domain). Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack [pushed it towards some kind of ‘error state’] and, if it can, whether it can perform the return in a satisfactory timeframe. In the exemple of air trafic control, an accident i.e. for instance a delay in the arrival of a plance can lead to conflicts of resolution (i.e. landing) which lead to prompting planes to remain on standby. Since their fuel quantity is limited it is hence pretty important to be able to know that trafic will return to its normal pace quickly enough. This is the resilience problem. 
+Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety (\cite{challenges} analyse 472 contributions in this domain). Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack [pushed it towards some kind of ‘error state’] and, if it can, whether it can perform the return in a satisfactory timeframe. In the exemple of air trafic control, an accident i.e. for instance a delay in the arrival of a plance can lead to conflicts of resolution (i.e. landing) which lead to prompting planes to remain on standby. Since their fuel quantity is limited it is hence pretty important to be able to know that trafic will return to its normal pace quickly enough. This is the resilience problem. 
 Resilience is the capacity of a system that fall in a bad set of states to leave this set and to reach a safe set of states.
 
 %
@@ -19,19 +19,18 @@ Notification to authors: September 16, 2022}
 trop d'hypotheses trop fortes sur les WSTS
 
 {\bf Our contributions}
-We introduce  .
-Surprinsingly, the general undecidability statements were not known neither proved.
 
 \begin{itemize}
 
-\item We introduce a general definition of resilience extending the state-resilience \cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we define three decidability questions for each of type of resilience. The (general) resilience problem is the following: let $L_1,L_2 \subseteq S$ be two subsets of states, S is $(L_1,L_2)$-resilient if $\post^*(L_1)	\subseteq \pred^*(L_2)$. We remark that it is an instance of the home space problem defined in the framework of VASS in \cite{DBLP:journals/corr/abs-2207-02697}.
+\item We introduce a general definition of resilience extending the state-resilience \cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we define three decidability questions for each of type of resilience: The (state-)resilience problem (RP), the bounded (state-)resilience problem (BRP)
+and the $k$-(state-)resilience problem (kRP). The (general) resilience problem is the following: let $L_1,L_2 \subseteq S$ be two subsets of states, S is $(L_1,L_2)$-resilient if $\post^*(L_1)	\subseteq \pred^*(L_2)$. We remark that it is an instance of the home space problem defined in the framework of VASS in \cite{DBLP:journals/corr/abs-2207-02697}.
 State-resilience (called resilience in \cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}) is ...
 
-\item We show that resilience and state-resilience problems are both undecidable for WSTS with strong compatibility. 
+\item Surprinsingly, the general undecidability statements were not known neither proved. We show that resilience and state-resilience problems are both undecidable for WSTS with strong compatibility. 
 
-\item safe clos haut, bad clos par le bas: resilience = reachability d'un clos par le bas (anti-coverability)
+%\item safe clos haut, bad clos par le bas: resilience = reachability d'un clos par le bas (anti-coverability)
 
-\item The resilience problem (RP), the bounded resilience problem (BRP)
+\item We find classes of WSTS that have a \emph{decidable} resilience. The resilience problem (RP), the bounded resilience problem (BRP)
 and the $k$-resilience problem (kRP) are decidable for completion-post-effective $\omega^2$-WSTS with strong compatibility and two sets $\Bad = \downarrow \Bad$ and $\Safe = \uparrow \Safe$.
 
 \item The resilience problem is decidable for ideal-effective WSTS with 
@@ -44,7 +43,7 @@ for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-cl
 \item Unfortunately, {\sc State-resilience},
 {\sc Bounded-state-resilience} and
 {\sc $k$-state-resilience}
-are undecidable for strongly (upward) compatible WSTS with effective pred-basis
+are undecidable for strongly upward-compatible WSTS with effective pred-basis
 when
 $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$. We made a reduction of zero-reachability in reset-VASS to state-resilience in reset-VASS that are WSTS with strong upward-compatibility and with effective pred-basis.
@@ -57,12 +56,12 @@ $\Safe=\uparrow \Safe$
 and $\Bad=\downarrow \Bad$. However, we show that removing the effective 
 $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. But we found another effective hypothesis {\sc State-resilience} is decidable for ideal effective WSTS with downward and upward compatibilities. and {\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal effective WSTS with strong downward compatibility.
 
-\item VASS
+\item We study the resilience for VASS and most of problems are shown decidable.
 \end{itemize}
 
 
 {\bf Related works.} 
-In 2016, Prasad and Zuck introduced rather informally \cite{DBLP:journals/corr/PrasadZ16}, the state-resilience of a process to an adversary and they used the framework of WSTS enjoying \emph{both} upward and downward monotonies to give an idea of a proof of the decidability of two kinds of resilience. In 2021 and 2022, Okzan and Würdemann \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} modeled systems with graph transformation systems and they considered the state-resilience in the framework of WSTS with strong compatibility and the supplementary hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$. All these papers consider particular Safe and Bad: $\Bad$ is downward-closed and $\Safe$ is upward-closed.
+In 2016, Prasad and Zuck introduced rather informally \cite{DBLP:journals/corr/PrasadZ16}, the state-resilience of a process to an adversary and they used the framework of WSTS enjoying \emph{both} upward and downward compatibilities to shortly draw a proof of the decidability of two kinds of resilience. Remark that the downward compatibility of a WSTS implies  there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$. In 2021 and 2022, Okzan and Würdemann \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} studied graph transformation systems and they considered the state-resilience in the framework of WSTS with strong compatibility and with the supplementary hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$. All these papers consider particular Safe and Bad sets: $\Bad$ is downward-closed and $\Safe$ is upward-closed.
  
 
 

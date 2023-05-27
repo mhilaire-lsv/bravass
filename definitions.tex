@@ -13,7 +13,7 @@
 % \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
 
 \noindent
-Let us recall the well-known framework of transition systems. 
+%Let us recall the well-known framework of transition systems. 
  A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
  {\em states} and  
  $ {\rightarrow} \subseteq S \times S$ is a
@@ -31,7 +31,7 @@ denoted as the set of {\em labeled transitions}. }
 \fi
 %
 % We prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as    $s  \xrightarrow{a}  s'$ to represent a transition from configuration $s$ to configuration $s'$ with label $a$. 
-We use infix notation and write $s \rightarrow s'$ to denote a {\em transition} from state $s$ to state $s'$ (i.e., $ (s,s') \in  {\rightarrow} $).
+We write $s \rightarrow s'$ to denote $ (s,s') \in  {\rightarrow} $.
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
 Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
@@ -39,22 +39,23 @@ Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y
 The set of {\em (immediate) successors} of a state $s \in S$ is defined as 
  $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
 % $\post(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s \xrightarrow{a} s'\}$. 
-A state without successors is called a {\em dead end}. 
+%A state without successors is called a {\em dead end}. 
 The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
  $\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
 % $\pred(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s' \xrightarrow{a} s\}$. 
 By iterating $\pred$ and $\post$ we obtain  
-$\post^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$
+$\post^n(s) = \{ s' \in S \mid  ~ s \xrightarrow{}^n s'\}$
 and
 $\pred^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$.
 However, we are generally more interested in
 $\post^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \post^i(s)$, $\post^*(s)= \bigcup_{1 \leq i} \post^i(s)$
 and
 $\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$ and $\pred^*(s) = \bigcup_{1 \leq i} \pred^i(s)$. % \\
-
+\alain{supprimer ce qui est inutile}
 
 The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S, \to)$, two configurations $s, t \in S$, whether $s \to^* t$. It can be reformulated as asking whether 
-$s \in \pred^*(t)$ or asking whether $t \in \post^*(s)$. \\
+$s \in \pred^*(t)$ or asking whether $t \in \post^*(s)$. 
+\alain{où est-ce utilisé ?}
 
 	\iffalse
 \problemx{Reachability}
@@ -65,11 +66,13 @@ $s \in \pred^*(t)$ or asking whether $t \in \post^*(s)$. \\
 %
 
 \noindent
-A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. We abbreviate $x \leq y \not\leq x$ by $x < y$.
+A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
+%\alain{utilisé ? We abbreviate $x \leq y \not\leq x$ by $x < y$.}
 % A partial ordering (a po) is an antisymmetric qo
 	% \alain{
 Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).
-	% }
+ \alain{utilisé ?}
+%
 % and gives rise to a po between the equivalence classes ?
 % 	do we need po ?
 Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
@@ -156,7 +159,7 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 %
 
 \noindent
-Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo. In such \emph{Finite Antichains} sets $(X,\leq)$, every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ (an ideal is a directed downward-closed subset) such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
+Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ (an ideal is a directed downward-closed subset) such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
 
 In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement).
 %		$D=\downarrow D$   $I_D=\{J_1, J_2,...,J_n\}$ 		satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ 
@@ -164,7 +167,7 @@ and an upward-closed set $U$ is represented by its finite set of minimal element
 % $M_U$ of its  satisfying $U=\uparrow M_U$.
 
 \noindent
-Let us now recall the most general definition of well-structured transition systems.
+Let us now recall the (most general) definition of well-structured transition systems.
 
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
 A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
@@ -197,15 +200,18 @@ closed.
 Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $. If now $s' \geq s$ then upward-compatibility entails that $s' \rightarrow^* t'$ for some $t' \geq t$. Then $t' \in U$ and $s' \in \pred^*(U )$.
 \fi
 
+\noindent
 {\bf On effectivity}
 Let a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$. We say that $\mathscr{S}$ is {\em effective} if there exists a pair of algorithms
 ($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
 $ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
 $M_\leq$ the ordering relation “$\leq$”.
-
+We say that $\mathscr{S}$ is {\em post-effective} if it is effective, and if there
+exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$ 
+on input $x$, with $x \in X_i $. 
 We say that $\mathscr{S}$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
-
+%
 We say that $\mathscr{S}$
 is {\em ideally effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
 to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
@@ -261,7 +267,7 @@ to the encoding of the ideal $\downarrow s$ is computable;
 With the ideally effective hypothese, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
 
 \begin{theorem}\cite{BFM-ic17}
-Coverability is decidable for any ideally effective ordered compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
+Coverability is decidable for any ideally effective ordered upward-compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
 \end{theorem}
 
 
