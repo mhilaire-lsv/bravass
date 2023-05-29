@@ -131,12 +131,10 @@ Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear 
 \end{theorem}
 
 \begin{proof}
-The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \alain{à faire}	
-%		Recall that reachability is NP-complete for integer VASS. 
-\mathieu{Comparé à la preuve précédente, il faut vérifier que le Home space problem est décidable dans les $\mathbb{Z}$-VASS}
-\mathieu{Proposition 2, Proposition 3 dans [9] valent aussi bien pour les VASS que les 
- $\mathbb{Z}$-VASS à mon sens}
- \mathieu{Pour le Lemma 4, par contre, c'est peut-être moins évident. DC (can decrease the token) et NDC (cannot decrease the token) sont plus difficile à calculer (par exemple, MIN(DC) n'est pas calculable).}
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
+% For Z-VAS we observe that we are asking for inclusion between linear sets. 
+% Again let us without loss of generality hence let us consider only the case when $\Safe$ is semilinear and $\Bad = S \setminus \Safe$ is semilinear too.
+\mathieu{Expliciter davantage la preuve ? $\pred^*(\Safe)$ semilinéaire car définissable en Presburger ? Puis inclusion de semilinéaires décidables.}
 \end{proof}
 
 Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
