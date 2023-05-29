@@ -57,11 +57,6 @@ The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S
 $s \in \pred^*(t)$ or asking whether $t \in \post^*(s)$. 
 \alain{où est-ce utilisé ?}
 
-	\iffalse
-\problemx{Reachability}
-{A transition system $\mathscr{S} = (S, \to)$, two configurations $s, t \in S$}
-{$s \to^* t$? \\}
-	\fi
 
 %
 
@@ -238,32 +233,6 @@ With the effective pred-basis hypothese, we obtain:
 A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
-%We say that $\mathscr{S}$ is {\em upward pre-effective} if it is effective,
-%and if there exists an additional Turing machine that computes a finite basis of 
-%$\uparrow \pred (\uparrow x)$
-%on input $x$, where $x$ is a state of $\mathscr{S}$. 
-%
-\iffalse
-%%%%%%%%%
-
-
-
-%%%%%%%%%
-
-\alain{pas ici}
-\begin{definition}{\cite{BFM-ic17}} 
-A class $C$ of WSTS is {\em ideally effective} if
-\begin{itemize}
-\item the function mapping the encoding of a configuration $s$ of a WSTS
-to the encoding of the ideal $\downarrow s$ is computable;
-\item inclusion of ideals is decidable;
-\item the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
-\end{itemize}
-\end{definition}
-%
-\fi
-%
-%
 With the ideally effective hypothese, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
 
 \begin{theorem}\cite{BFM-ic17}
@@ -271,43 +240,6 @@ Coverability is decidable for any ideally effective ordered upward-compatible tr
 \end{theorem}
 
 
-
-
-
-
-
-%         A downard-closed set $D$ is {\em decidable} if, given $s \in S$, it is decidable whether
-%         $s \in D$. 
-
-%\textcolor{red}{Since a downward-closed set does not have an ``upward-basis'' in general, we will demand that membership is decidable.}
-% \textcolor{red}{Do we still demand this ?}
-%\mathieu{On peut enlever ce point de discussion ici et en discuter de manière plus complête au moment où on discute de SAFE et BAD plus en détail je pense.}
-
-
-%
-\iffalse
-%
-\begin{claim}{(stability of upward-closed sets)}
-Let $U, V \subseteq S$ be upward-closed. Then the sets $U \cup V$, and $U \cap V$ are upward-closed.
-\end{claim}
-%
-\fi
-%
-
-% \begin{claim}
-% Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
-% \end{claim}
-
-%			\begin{fact}\label{fact basis}
-% Fact 3 ([1]). 
-% Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
-
-%For every upward-closed set $U \subseteq S$, there exists a finite basis $B$ of $U$. 
-
-% (ii) Given a finite set $A \subseteq S$ with $I =\uparrow A$, we can compute a finite basis $B$ of $I$.
-% \alain{(ii) est bizarre car A est déjà une base finie de $\uparrow A$, et $\min(A)$ est la base minimale}
-%			\end{fact}
-%
 
 
 

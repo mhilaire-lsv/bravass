@@ -179,40 +179,20 @@ where $\Safe = U_t$ and $\Bad = Q \times \N^d \setminus \Safe$.
 \end{proof}
 
 % To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. 
-The following theorem is a adjustment of Theorem~5.5 from \cite{peterson1981petri} whose proof can be seen in Appendix~\ref{appendix}.
-
-% \alain{tu ne définis pas, même informellement et/ou rapidement, assez les objets que tu utilises: zero reachability problem, Reset VASS}
-
-Adjusting Theorem~5.5 from \cite{peterson1981petri}:
+The following theorem is a transposition of Theorem~5.5 from \cite{peterson1981petri} from Petri nets to Reset VASS, whose proof can be seen in Appendix~\ref{appendix}.
 
 \begin{proposition}\label{liveness reset}
 The  zero reachability problem can be reduced to the $t$-liveness problem in Reset VASS.
 \end{proposition}
 
-\iffalse
-% \mathieu{I moved the proof to the appendix since it's a slight adjustment but takes a lot of room.}
-\begin{proof}
-See Appendix~\ref{appendix} for the complete proof.
-\end{proof}
-\fi
+
 
 Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduction implies 
 % the following:
 %
-\iffalse
-\begin{corollary}
-Liveness is undecidable in Reset VASS.
-\end{corollary}
-
-Since moreover liveness can be reduced to 
-$t$-liveness, we deduce:
-\fi
 %
-%\begin{corollary}
 {\sc %$ Reset $d$-VASS 
 $t$-liveness} is undecidable.
-%\end{corollary}
-
 
 
 
