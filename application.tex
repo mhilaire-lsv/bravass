@@ -238,8 +238,8 @@ Need to write this more formally/properly.}
 \fi
 
 \begin{theorem}
-{\sc $k$-resilience }  and {\sc Bounded resilience} in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable, and moreover
-{\sc $k$-resilience } is in $\EXPSPACE$.
+{\sc $k$-resilience }  and {\sc Bounded resilience} in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable%, and moreover {\sc $k$-resilience } is in $\EXPSPACE$
+.
 \end{theorem}
 
 
@@ -299,7 +299,7 @@ that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf
 and hence from which it is not possible at all to reach
 $\Safe$ in $k$ or less steps. This also means that, even in the case where $\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$ is finite, we only need to check reachability of $\Safe$ in $k$ or less steps for the elements with vectorial component at most
 $ \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$. Binding the search space
-thus leads to the $\EXPSPACE$ upper bound.
+thus leads to an $\EXPSPACE$ upper bound for {\sc $k$-resilience }.
 
 
 In order to deal with {\sc Bounded resilience} now, remark that there exists some $k_0 \in \N$ for which
