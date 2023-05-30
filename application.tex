@@ -108,7 +108,7 @@ and $\Bad = S \setminus \Safe$ is semilinear too.
 {\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
 We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
 Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
-$$\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).$$
+\[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).\]
 Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
 $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
 {\sc Resilience} is decidable.
@@ -475,9 +475,9 @@ $\A=(Q,\Omega,R,q_{init},F)$, where
 \par\noindent\ignorespacesafterend
 We also refer to $\A$ as an $n$-TA if $|\Omega| = n$. 
 The {\em size} of $\A$ is defined as%:
-$$
+\[
 |\A| \ = \ |Q|+|\Omega|+|R|+\sum_{(q,g,U,q')\in R}|g|.
-$$
+\]
 Let 
 $\Const(\A) = \{ c\in\N \mid \exists(q,g,U,q')\in R, \ \exists \omega \in \Omega, \bowtie\in\{<,\leq,=,\geq,>\} : g = \omega \bowtie c \}$ denote the 
 set of constants that appear in the guards of the rules of $\A$.
@@ -553,7 +553,9 @@ But here you could also use a kinda special clock $x$ that is reset when you ent
 \textcolor{red}{... I guess if you use $0/1$-TA then the problems become closer one to another ? Also of note is that $0/1$-TA induces transition systems with bounded branching, so I guess it may be interesting to investigate these first ?}
 
 A {\em $0/1$ timed automaton } ({\em $0/1$-TA} for short) is a tuple
-$$\B=(Q,X, \Delta_0, \Delta_1, q_{init}, F),$$
+\[
+\B=(Q,X, \Delta_0, \Delta_1, q_{init}, F),
+\]
 \par\noindent\ignorespacesafterend
  where
 $\B_i=(Q,X, R_i, q_{init}, F)$ is a TA for all $i \in \{0,1\}$.
