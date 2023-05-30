@@ -164,9 +164,9 @@ in a
 Reset $d$-VASS $(Q,T)$ 
 with initial configuration $s_0$
 as the following formula
-% $$ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'$$ 
-$$ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
-~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in U_t, ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})$$  
+% \[ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'\]
+\[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
+~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in U_t, ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]  
 where
 $U_t=\uparrow pre(t)$ 
 % \alain{$\pred(t)$ n'est pas défini et $\pred$ est une mauvaise notation pour ça: plutôt: $pre(t)=\{ u \in S \mid \exists u' \in S$  such that $u \xrightarrow{t} u'$\} }
@@ -462,7 +462,7 @@ Let $B_{\uparrow \post^*(s)}$
 and $\Bad$ a downward-closed set given by its finite set of (maximal) ideals.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
 
-$$ \post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)} \cap \Bad \subseteq \pred^*(\Safe)$$
+\[ \post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)} \cap \Bad \subseteq \pred^*(\Safe)\]
 % \alain{$\equiv $  ???}
 
 Since $B_{\uparrow \post^*(s)}$ is finite and $\Bad$ is decidable, we can directly compute $ B_s \cap \Bad$.
