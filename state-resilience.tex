@@ -5,7 +5,7 @@
 \section{State-resilience}
 
 
-Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. But, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap post^*(s_0)$, there must exist a path to $\Safe$. 
+Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap \post^*(s_0)$, there must exist a path to $\Safe$. 
 %
 %			However, this condition seems more difficult since one also must decide whether a state $s \in \Bad$ is reachable from $s_0$.
 %
@@ -294,7 +294,7 @@ $\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking
 $\pred^{\leq n+1}(\Safe) = \pred^{\leq n}(\Safe)$, 
 returning $n$ if that is the case.
 Then, because {\sc $n_0$-state-resilience} is decidable, 
-checking $\uparrow post^*(s) \cap \Bad \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
+checking $\uparrow \post^*(s) \cap \Bad \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
 and {\sc State-resilience} is decidable.
 \end{proof}
 
@@ -353,7 +353,7 @@ where $B_{\uparrow \post^*(s)}$ is a basis of $\uparrow \post^*(s)$,
 %\alain{rapeler $B_{\uparrow \post^*(s)}$} 
  that is equivalent to $\post^*(s)\cap D = \emptyset$ by
 Lemma~\ref{Lemma intersection}. For the converse direction, one computes the sequence of upward-closed sets
-$U_n = \uparrow post^{\leq n}(s)$ until it becomes stationnary. 
+$U_n = \uparrow \post^{\leq n}(s)$ until it becomes stationnary. 
 Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
 
@@ -398,23 +398,23 @@ $0$ in the basis%
 . But reachability of $0$  %in a counter $i$ 
 is undecidable for Reset VASS. 
 % sont WSTS with strong compatibility. et l'accessibilité est undecidable.
-%	$\uparrow post^*$ n'est pas calculable pour les LCS non plus car $\uparrow post^*= \uparrow \downarrow post^*$ n'est pas calculable ???
+%	$\uparrow \post^*$ n'est pas calculable pour les LCS non plus car $\uparrow \post^*= \uparrow \downarrow \post^*$ n'est pas calculable ???
 \fi
 Then, {\sc State-resilience} would be decidable for Reset VASS, which leads to a contradiction.
 \end{proof}
 
-%il existe des modèles où on peut calculer $\uparrow post^*$: inserted channel systems: on sait calculer $post^*$ qui est rationnel donc on sait calculer $\uparrow post^*$.
+%il existe des modèles où on peut calculer $\uparrow \post^*$: inserted channel systems: on sait calculer $\post^*$ qui est rationnel donc on sait calculer $\uparrow \post^*$.
 
 
 %
-%si on garde strong mais on enlève effective basis of $post^*$:
+%si on garde strong mais on enlève effective basis of $\post^*$:
 %
 %\begin{proposition}(à prouver)
 %{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong compatibility.
 %\end{proposition}
 %
 %\begin{proof}
-%pas de effective basis of $post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
+%pas de effective basis of $\post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
 %\end{proof}
 
 
@@ -485,9 +485,9 @@ Results synthesis in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \B
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis & strong %upward 
-			compatibility ~ & $\uparrow post^*$ effective 
+			compatibility ~ & $\uparrow \post^*$ effective 
 			& strong %upward 
-					compatibility \textit{+} $\uparrow post^*$ effective \\ \hline
+					compatibility \textit{+} $\uparrow \post^*$ effective \\ \hline
    SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
    BSRP & Undecidable (Thm~\ref{srp up down}) &  ??  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
       kSRP & Undecidable (Thm~\ref{srp up down}) & ?? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
