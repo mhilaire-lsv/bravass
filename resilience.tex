@@ -5,10 +5,35 @@
 In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$ and $\Safe ,  \Bad \neq \emptyset$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
-%	If $\Safe = S \backslash \Bad$, then $\Safe$ is downward-closed iff $\Bad$ is upward-closed. 
-Let us formalize three resilience problems.
+
 
 \alain{faire le lien avec home space, et les formules dans Schnoebelen}
+
+Linked problems
+
+A set of configurations $H$ is an {\em home-space} for a set of configurations $X$ if every configuration reachable from $X$ can reach $H$. Resilience as introduced above essentially asks whether $\Safe$ is a home-space for $\Bad$, whereas $k$-resilience and bounded-resilience focus more on the length of the paths from $\Bad$ to $\Safe$. The home-space problem is decidable for
+Petri nets when $X$ and $H$ are both semilinear sets~\cite{DBLP:journals/corr/abs-2207-02697}.
+To these author's knowledge, there are no general results for home-space in WSTS.
+
+\mathieu{vérifier au passage que c'est vrai qu'il y a pas de résultats home-space WSTS}
+
+Resilience and the home-space problem are also linked to the 
+model-checking of the ``from-all'' formulae $\forall s \in X~ \exists t \in Y~ s \to^* t$
+which has been shown decidable for Lossy Counter Machine
+when $X$ and $Y$ are semi-linear sets~\cite{DBLP:conf/rp/Schnoebelen10}.
+Other decidable formulae include ``one-to-one'' ($\exists s \in  X ~ \exists t \in  Y ~ s \to^* 
+ t$), and ``all-to-same'' ($\exists t \in  Y ~ \forall s \in  X ~ s \to^*  t$),
+whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$), 
+``all-to-all'' ($\forall s \in  X ~ \forall t \in  Y ~ s \to^*  t$)
+  and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for Lossy Counter Machines). 
+  
+  
+% The Model-checking problem for LTL, CTL*, etc. is a natural generalization of the reachability problem. This problem is undecidable in general but there are simple formulae decidable 
+
+
+
+Let us formalize three resilience problems.
+
 
 \problemx{resilience problem (RP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
