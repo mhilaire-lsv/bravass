@@ -139,7 +139,7 @@ The reachability relation of integer $d$-VASS is definable by a sentence in Pres
 
 Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
 
-\begin{theorem}{}
+\begin{theorem}\label{RP VASS}
 Resilience is decidable for continuous VASS when $\Safe$ and $\Bad$ are definable in the existential theory of
 the rationals with addition and order.
 \end{theorem}
@@ -158,38 +158,18 @@ the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:jo
 \hline   \Safe~\Bad 
 		& $\uparrow$~ $\downarrow$~ 
 		 & $\downarrow$~ $\uparrow$~ 
-
  \\ \hline
-   RP  
-   	& Decidable (Thm~\ref{down-up})  
-   		 & ??
-
+   RP  & Decidable (Thm~\ref{down-up})   & Decidable (Thm~\ref{RP VASS})
     \\ \hline
-   BRP  
-   &  Decidable (Thm~\ref{down-up}) 
-   		 & Decidable  ?
-
+   BRP   &  Decidable (Thm~\ref{down-up})  & Decidable (Thm~\ref{brp VASS})
     \\ \hline
-      kRP  
-      & Decidable (Thm~\ref{down-up}) 
-      		& Decidable ?
-
+      kRP       & Decidable (Thm~\ref{down-up}) & Decidable (Thm~\ref{brp VASS})
        \\ \hline
-   sRP  
-   	& Decidable (Thm~\ref{post srp})
-   		 & ??
-
-
+   sRP    	& Decidable (Thm~\ref{post srp})	 & ??
     \\ \hline
-   BsRP  
-   &  Decidable (Thm~\ref{ref ozkan})
-   		 & ?? 
-
+   BsRP     &  Decidable (Thm~\ref{ref ozkan})	 & ?? 
     \\ \hline
-      ksRP   
-      & Decidable (Thm~\ref{ref ozkan})
-      		& ?? 
-
+      ksRP        & Decidable (Thm~\ref{ref ozkan}) & ?? 
        \\ \hline
 
 \end{tabular}
