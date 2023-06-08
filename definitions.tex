@@ -21,16 +21,6 @@
  on
  the set of states, denoted as the set of {\em transitions}. 
 %
-\iffalse
-\mathieu{ Maybe add this back ?
-A {\em labeled transition system} (LTS for short) is a tuple $\mathscr{S}=(S, \Sigma, \rightarrow)$ where 
-$S$ is a set of {\em states}, $\Sigma$ is a (finite) set of {\em labels}, and 
-${\rightarrow} \subseteq S\times \Sigma \times S$ is a 
-ternary relation,
-denoted as the set of {\em labeled transitions}. }
-\fi
-%
-% We prefer to use infix notation and $(s,a ,s')\in {\rightarrow} $ will be abbreviated as    $s  \xrightarrow{a}  s'$ to represent a transition from configuration $s$ to configuration $s'$ with label $a$. 
 We write $s \rightarrow s'$ to denote $ (s,s') \in  {\rightarrow} $.
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
@@ -51,23 +41,12 @@ However, we are generally more interested in
 $\post^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \post^i(s)$, $\post^*(s)= \bigcup_{1 \leq i} \post^i(s)$
 and
 $\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$ and $\pred^*(s) = \bigcup_{1 \leq i} \pred^i(s)$. % \\
-\alain{supprimer ce qui est inutile}
-
-The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S, \to)$, two configurations $s, t \in S$, whether $s \to^* t$. % It is equivalent to $s \in \pred^*(t)$ ? or $t \in \post^*(s)$ ?  \alain{où est-ce utilisé ?}
-
+The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S, \to)$, two states $s, t \in S$, whether $s \to^* t$. 
 
 %
 
 \noindent
 A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
-%\alain{utilisé ? We abbreviate $x \leq y \not\leq x$ by $x < y$.}
-% A partial ordering (a po) is an antisymmetric qo
-	% \alain{
-% Any qo induces an equivalence relation ($x \equiv y$ iff $x \leq y \leq x$).
-% \alain{utilisé ?}
-%
-% and gives rise to a po between the equivalence classes ?
-% 	do we need po ?
 Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
 A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
 It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
@@ -81,6 +60,7 @@ We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
 as $\uparrow x$ (resp. $\downarrow x$).
 %
 A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
+\alain{supprimer ce qui est inutile}
 
 \begin{definition}
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
