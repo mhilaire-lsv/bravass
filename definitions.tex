@@ -45,7 +45,7 @@ The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S
 
 %
 
-\noindent
+% \noindent
 A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
 Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
 A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
@@ -60,13 +60,11 @@ We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
 as $\uparrow x$ (resp. $\downarrow x$).
 %
 A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
-\alain{supprimer ce qui est inutile}
 
-\begin{definition}
+
+
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
-\end{definition}
 %
-% \textcolor{red}{Add lemma about infinite increasing subsequences ?}
 %
 \iffalse
 %
@@ -84,17 +82,8 @@ increasing subsequence.
 %
 \fi
 %
-
-
-% Higman investigated ordered sets with the finite basis property.
-
-Wqo admits many other equivalent formulations. For instance: 
-$(X,\leq)$ is a wqo f and only if any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$)
-if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of
-upward-closed subsets in $X$ eventually stabilizes, 
-%      i.e. there is a $k \in N$ such that $U_k = U_{k+1} = U_{k+2} = \cdots $ 
-if and only if any upward-closed subset $U \subseteq X$ has a
-finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and $X$ don't contain infinite subset of mutually incomparable elements (antichains).
+Wqo admits many other equivalent formulations. 
+% For instance:  $(X,\leq)$ is a wqo f and only if any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$) if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of upward-closed subsets in $X$ eventually stabilizes, if and only if any upward-closed subset $U \subseteq X$ has a finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and $X$ don't contain infinite subset of mutually incomparable elements (antichains).
 %
 \iffalse
 %
@@ -130,14 +119,14 @@ closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n
 %
 \fi
 %
+Quasi-orderings that have no 
+%infinite antichains
+infinite subset of mutually incomparable elements (antichains)
+ enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
 
-\noindent
-Quasi-orderings that have no infinite antichains enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ (an ideal is a directed downward-closed subset) such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
+In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement), and an upward-closed set $U$ is represented by its finite set of minimal elements. \\
 
-In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement).
-%		$D=\downarrow D$   $I_D=\{J_1, J_2,...,J_n\}$ 		satisfying $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$ 
-and an upward-closed set $U$ is represented by its finite set of minimal elements. \\
-% $M_U$ of its  satisfying $U=\uparrow M_U$.
+\alain{supprimer ce qui est inutile}
 
 \noindent
 Let us now recall the (most general) definition of well-structured transition systems.
