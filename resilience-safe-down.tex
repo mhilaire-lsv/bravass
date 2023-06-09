@@ -6,13 +6,14 @@
 %		cas unbounded counters
 %
 
-let us choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is not bounded by $k$.
+Let us choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is not bounded by $k$.
 %			at least one counter is unbounded. 
 This set is upward-closed by (upward) compatibility in VASS.
 
 
 
-As an example, let us choose $\Safe=S-\Bad$ then since $\Bad=\uparrow \Bad$, we have: $\Safe=\downarrow \Safe$.
+As an example, let us choose $\Safe=S \setminus \Bad$. Then, since $\Bad=\uparrow \Bad$, we have: $\Safe=\downarrow \Safe$.
+
 %
 % \alain{definir  ideal-effective WSTS}
 %

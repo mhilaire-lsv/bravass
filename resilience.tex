@@ -15,7 +15,7 @@ A set of configurations $H$ is an {\em home-space} for a set of configurations $
 Petri nets when $X$ and $H$ are both semilinear sets~\cite{DBLP:journals/corr/abs-2207-02697}.
 To these author's knowledge, there are no general results for home-space in WSTS.
 
-\mathieu{vérifier au passage que c'est vrai qu'il y a pas de résultats home-space WSTS}
+% \mathieu{vérifier au passage que c'est vrai qu'il y a pas de résultats home-space WSTS}
 
 Resilience and the home-space problem are also linked to the 
 model-checking of the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
@@ -56,7 +56,7 @@ Let us formalize three resilience problems.
 
 
 \begin{example}
-Let us consider a $\mathds{Z}$-VASS with only one state $q$, one counter, and one transition that adds $+1$ to the counter, with $\Safe = \uparrow q(0)$, $\Bad = \downarrow q(-1)$,
+Let us consider a VASS with only one state $q$, one counter, and one transition that substracts $-1$ from the counter, with $\Safe = \downarrow q(0)$, $\Bad = \uparrow q(1)$,
 then resilience hold (one always ends up in the positive integers) but not bounded resilience: for every bound $k$ there is an element of $\Bad$ e.g. $q(-k-1)$ which necessitate at least $k+1$ steps before it can reach $\Safe$. 
 \end{example}
 
@@ -80,36 +80,14 @@ decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward-clos
 
 In particular, the existing proofs of resilience use the decidability of reachability; but we wish to decide resilience for models with undecidable reachability.
 %
-\alain{il manque un résultat d'indecidabilité pour les 3 resilience pour les WSTS+...}
 %	 and ideals are recursive 
 Our result will rely on coverability instead of reachability. We moreover show undecidability when coverability is not decidable in the case $\Safe = \uparrow \Safe$. 
 
 
 
 
-\iffalse
-
-\begin{proposition}\label{general}
-\textcolor{red}{
-$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-bounded-resilient iff $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Bad,\Safe)-resilient (CONJECTURE FOR NOW)
-}
-\end{proposition}
-
-\begin{proof}
-Resilient means that ...
-\end{proof}
-
-\fi
 
 
-
-
-
-
-% \mathieu{En fait de plus en plus j'ai l'impression que on peut se passer des neutres: même dans une situation où on aurait des configurations neutre j'aurais tendance à dire qu'on peut se ramener à un cas safe complémentaire de bad en duplicants les neutres en deux parties, une avec "on a vu un very bad récement il faut aller vers safe" (et qui dans le nouveau modèle seraient donc bad) et une "on a pas vu de very bad tout vas bien" (et qui dans le nouveau modèle seraient donc safe)
-% $=>$ Rédiger ça plus proprement}
 While considering a sequence of configurations, every prefix is always 
 either in the case that the latest visited $\Bad$ configuration has already been followed by a $\Safe$ configuration
 or in the case that it still has to. 
