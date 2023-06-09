@@ -7,9 +7,6 @@ In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
 
 
-\alain{faire le lien avec home space, et les formules dans Schnoebelen}
-
-% Linked problems
 {\bf Related problems.} 
 A set of configurations $H$ is an {\em home-space} for a set of configurations $X$ if every configuration reachable from $X$ can reach $H$. Resilience as introduced above essentially asks whether $\Safe$ is a home-space for $\Bad$, whereas $k$-resilience and bounded-resilience focus more on the length of the paths from $\Bad$ to $\Safe$. The home-space problem is decidable for
 Petri nets when $X$ and $H$ are both semilinear sets~\cite{DBLP:journals/corr/abs-2207-02697}.
@@ -27,9 +24,6 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
 ``all-to-all'' ($\forall s \in  X ~ \forall t \in  Y ~ s \to^*  t$)
   and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for Lossy Counter Machines). 
   
-  
-% The Model-checking problem for LTL, CTL*, etc. is a natural generalization of the reachability problem. This problem is undecidable in general but there are simple formulae decidable 
-
 
 
 Let us formalize three resilience problems.
@@ -61,13 +55,15 @@ then resilience hold (one always ends up in the positive integers) but not bound
 \end{example}
 
 
-\begin{remark}[Reformulation]\label{reformulation}
-$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Safe, \Bad)-resilient iff $\Bad \subseteq \pred^*(\Safe)$.\\
-$\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
-(\Safe, \Bad)-$k$-resilient iff $\Bad \subseteq \pred^{\leq k}(\Safe)$.
-\end{remark}
+% \begin{remark}[Reformulation]\label{reformulation}
+% $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
+% (\Safe, \Bad)-resilient iff $\Bad \subseteq \pred^*(\Safe)$.\\
+% $\mathscr{S}=(S,\rightarrow,\leq)$ is %uniformely 
+% (\Safe, \Bad)-$k$-resilient iff $\Bad \subseteq \pred^{\leq k}(\Safe)$.
+% \end{remark}
 
+
+  
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$ and $\Bad$. In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Bad$ is downward-closed and $\Safe$ is upward-closed.
 
 Surprinsingly, we have not found decidability results about the resilience problems for WSTS.
