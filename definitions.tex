@@ -143,7 +143,7 @@ $s_1, t_1 , s_2 \in S$
 	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
 \end{definition}
 
-We say that a WSTS $\mathscr{S}$ has the \emph{strong (upward) compatibility} when moreover for all 
+We say that a WSTS $\mathscr{S}$ has \emph{strong (upward) compatibility} when moreover for all 
 $s_1, t_1 , s_2 \in S$
 	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
 	$t_2 \in S$ with 
@@ -188,19 +188,16 @@ Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If
 %%%%%%%%%%
 
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
-
-
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
+For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. \\
 
-For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has the strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. \\
-
-With the effective pred-basis hypothese, we obtain:
+With the effective pred-basis hypothesis, we obtain:
 
 \begin{theorem}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
 A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
-With the ideal-effective hypothese, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
+With the ideal-effective hypothesis, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
 
 \begin{theorem}\cite{BFM-ic17}
 Coverability is decidable for any ideal-effective ordered upward-compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
