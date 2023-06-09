@@ -112,7 +112,10 @@ it is not enough to conclude.
 
 \alain{indecidabilite en enlevant une ou des hypotheses: The resilience problem is undecidable for ideal-effective WSTS}
 
-
-
+\mathieu{
+Home-state indécidable pour les minsky machine
+(preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
+or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
+}
 
 
