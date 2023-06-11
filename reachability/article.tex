@@ -177,10 +177,10 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 
 
 We consider here a different approach to extending pushdown systems, by allowing them to test the stack content against precise values.
-Pushdown systems which can test the stack content against regular-expressions are
-equivalent to pushdown systems,
-so pushdown systems which can test the stack content against specific words are too.
-We consider instead checks against unspecified word values that can be instantiated one after the other,
+% Pushdown systems which can test the stack content against regular-expressions are equivalent to pushdown systems, so pushdown systems which can test the stack content against specific words are too.
+We consider 
+%instead
+here checks against unspecified word values that can be instantiated one after the other,
 providing the pushdown systems the ability to
 store information on some stack contents for later comparisons.
 
@@ -324,7 +324,7 @@ $\text{\textit{Inf}}(\pi) = \{ v \in V \mid \forall i, \exists j > i, ~ v_j = v 
 
 
 
-
+		\iffalse
 
 
 \subsection{Logics}
@@ -414,68 +414,371 @@ Concerning the logic $\MSO$, we are interested in the following decision problem
 
 
 
+		\fi
+
+
+
+\subsection{Games}
+
+
+% Games represent a model for interaction between decision makers. We study so-called turn-based games in extensive form with perfect information where the players have to make decisions again and again.
+\iffalse
+After its foundation by von Neumann and Morgenstern [vNM44] in the
+1940s, game theory has quickly become a valuable tool for modelling the
+interaction of several agents with individual and possibly conflicting objec-
+tives. It has applications in many scientific fields such as economy, sociology,
+biology, logic and computer science. Whereas the games used in the former
+three areas are usually finite in the sense that any play of these games ends
+after a finite number of steps (in fact often after only a single step), the
+games used in logic and computer science are in general infinite.
+
+@article{copeland1945john,
+  title={John von Neumann and Oskar Morgenstern, theory of games and economic behavior},
+  author={Copeland, Arthur H},
+  journal={Bulletin of the American Mathematical Society},
+  volume={51},
+  number={7},
+  pages={498--504},
+  year={1945},
+  publisher={American Mathematical Society}
+}
+
+
+
+More precisely, an infinite game is played for an infinite number of
+rounds. In each round, one player chooses an action depending on the se-
+quence of actions chosen in previous rounds. After infinitely many rounds,
+an infinite sequence of actions has emerged, called the outcome of the game.
+Each player receives a payoff determined by a payoff function mapping each
+possible outcome to a real number in the interval [0, 1]. We will concen-
+trate on games where the possible payoffs are just 0 and 1, in which case a
+winning condition, given as an abstract set of possible outcomes, is used to
+determine whether a player wins (payoff 0) or loses (payoff 1) an outcome.
+In logic, games are used to evaluate a logical formula in a mathematical
+structure and to compare mathematical structures with respect to their
+(in)distinguishability by a certain logic. Games of the former kind are called
+model checking games; games of the latter kind are called model comparison
+games. Whereas model checking and model comparison games for plain
+modal or first-order logic are finite games, infinite games arise as model
+checking games for fixed point logics and as model comparison games for
+infinitary logics.
+In computer science, games are used for the verification and synthesis
+of reactive systems, i.e. systems that interact with their environment. As
+soon as the systems under consideration do not necessarily terminate, these
+games become infinite. For example, the behaviour of an operating system
+can be understood as an infinite game between the system and its users.
+
+
+So far, the games used in logic and computer science have usually been
+two-player zero-sum games, i.e. games with only two players where one
+player wins if and only if the other player loses. For example, in a model
+checking game, one player wants to show that the given formula holds in the
+given structure whereas the other player wants to show that this is not the
+case. Analogously, in a game used for verification, one player wants to show
+that the given system is able to react against its environment in such a way
+that the resulting execution path of the system fulfils the given specification
+whereas the other player wants to show that this is not the case.
+
+
+
+The research on infinite games in theoretical computer science is based on a
+mixture of several motivations:
+1. The beautiful classical theory of infinite games, as developed in descriptive
+set theory, lacks an algorithmic content. Such an algorithmic orientation is
+provided by the automata theoretic approach to infinite games, originating
+in work of Church, B ̈uchi, McNaughton, and Rabin about fourty years ago.
+2. Determinacy results for infinite games are closely related to complementation
+results for logics and automata; thus, infinite games help to analyze logical
+theories (the most prominent being the monadic theory S2S of two successor
+functions, see e.g. [Th97]).
+3. Games are a natural model of reactive computation, and infinite games are
+thus a faithful representation of nonterminating reactive systems (for which
+control problems can be solved in terms of providing winning strategies).
+4. The model checking problem for logics like the μ-calculus can be formulated
+as the question to determine the winner of an infinite game.
+The purpose of this tutorial is to explain the core of the algorithmic (and
+automata theoretic) theory of infinite games. In the present extended abstract,
+only some key notions are explained, without technical details and proofs. In the
+tutorial, more will be said about topics of current research as listed in Section 6
+of this abstract.
+
+@incollection{thomas1997languages,
+  title={Languages, automata, and logic},
+  author={Thomas, Wolfgang},
+  booktitle={Handbook of formal languages},
+  pages={389--455},
+  year={1997},
+  publisher={Springer}
+}
+
+
+\fi
+
+
+A game is composed of an arena and a winning condition.
+\iffalse
+\mh{Two-player games oﬀer a very convenient framework to represent
+interaction of a program with some (possibly hostile) environment. In this approach, the ﬁrst player represents the program while the second player simulates
+the environment. A winning strategy expresses a property that must hold whatever the environment does, thus ﬁnding a winning strategy for the ﬁrst player
+allows to synthesize a controller that restricts the program and ensures that the
+property expressed by the winning condition always holds \cite{arnold2003games}.}
+\fi
+We will ﬁrst study
+arenas and
+ then introduce common winning conditions that will be of interest to us.
 
 
 
 
-\subsection{Parity Games}
+ \subsubsection{Arenas}
 
-We first recall the definition of  two  player parity  games.
-Two players, player $0$ and player $1$, move along an arena $\mathcal{G}=(V_0,V_1,E,\Omega)$ which is a labelled graph, composed of
-two  disjoint  sets of vertices, $V_0$ and $V_1$ respectively associated with player $0$ and player $1$, 
-a set of edges $E \subseteq V \times V$, where $V=V_0 \uplus V_1$,
-% We require that the out-degree of each vertex is at least one. This ensures that every finite path in (V, E) can be prolonged.
-and a mapping $\Omega:V \to \{0,1, \ldots, m\}$,
-$m < \omega$, which
-assigns a priority to each vertex. %Then the {\em initialized game} $(\mathcal{G}, v_I)$ is given with an initial vertex $v_I \in V$.
-
-
-
-A {\em partial play} of $\mathcal{G}$ is a sequence of vertices $v_0 v_1 \ldots \in V^\infty$ connected by the transition relation, i.e. such that $(v_i, v_{i+1}) \in E$.
-
-
-A {\em play} of $\mathcal{G}$ is a partial play that is {\em maximal} in the following sense: if it is finite, then the last vertex $v_k$ is such that for all $v' \in V$, $(v_k, v') \notin E$. Else, the play is an infinite sequence $ \pi  = v_0 v_1 \ldots \in  V^{\omega} $.
-
-
-We consider min-parity games: in order to find out who wins a play, we need to take a
-look at the positions which are reached infinitely often and compute their priorities using 
-$\Omega$.
-Player $0$ wins the play $\pi$  iff  $\min( \{ \Omega(v) \mid v \in \text{\textit{Inf}}( \pi) \})$ is even, else, player $1$ wins. The winner of a finite play is the player whose opponent is unable to move, i.e. the winner of a play such that the last vertex of the play is in $V_{0}$ (resp. $V_1$) is player $1$ (resp. player $0$). 
-
-
-
-A {\em strategy} $\sigma_i : V^* V_i \to V$ for player $i \in \{ 0,1\}$ is a function that, given a sequence of vertices $ w v$  with $w\in V^*$ and $v \in V_i$,
-provides, if possible, a successor $v'$ such that $(v,v') \in E$.
-A strategy is called {\em memoryless} if its output only depends on the final vertex of the sequence $v \in V_i$, i.e. if there exists a function $f_i : V_i \to V$ such
-that for all $w\in V^*$, $v \in V_i$, we have $\sigma_i(wv) = f_i(v)$.
-
-A partial play $\pi$ is {\em consistent} with a strategy $\sigma_i$ if sequences of vertices that end in $V_i$ along this play all have successors according to the strategy. Given a starting vertex $v_I$,   a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1$ for player $1$, the play
-starting with $v_I$ that is consistent with both strategies is unique and is called the {\em resulting play} of $\sigma_0$ and $\sigma_1$ starting from $v_I$. It is 
-denoted by $\pi(v_I, \sigma_0, \sigma_1)$.
-
-
-A strategy $\sigma_i$ for player $i$ from position $v_I \in V$ is a {\em winning strategy from $v_I$} if 
-no matter which
-strategy $\sigma_{1-i}$ the other player pursues,
-% the resulting play  starting from $v_I$  
-%  results in 
-% player $i$ winning.
-player $i$ wins the play $\pi(v_I, \sigma_0, \sigma_1)$.
-
-
-The above definitions are essentially the same for finite and infinite arenas.
-%
-%
-In this paper we are going to concern ourselves with parity games over potentially infinitely large arenas, \textcolor{black}{thus we define the following decision problem in a general abstract manner. In particular, we do not discuss representation of the input}. 
 
 \begin{samepage}
-\problemx{Solving parity game}
-{An arena $\mathcal{G}=(V_0,V_1,E,\Omega)$, an initial vertex $v_I \in V$.}
-{Does player $0$ have a winning strategy from $v_I$ in the parity game $\mathcal{G}$?\newline}
+An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of
+\begin{itemize}
+	\item two  disjoint  sets of configurations, $S_0$ and $S_1$, %respectively associated with player $0$ and $1$, 
+	whose disjoint union $S_0 \cup S_1$ we denote by $S$, and
+	\item a relation of %labeled 
+		transitions
+	 ${\rightarrow} \subseteq S \times %\Lambda \times 
+	 				S$. \\
+\end{itemize}
 \end{samepage}
 
-One important property of parity games is that of {\em memoryless determinacy}: for a parity game and an initial vertex $v_I \in V$, one of the players has a memoryless winning strategy from $v_I$ \cite{zielonka1998infinite}.
+\noindent
+Note that $(S,{\rightarrow})$, where $S=S_0 \uplus S_1$, forms
+a %labeled 
+transition system, and, in particular, given a 
+%labeled 
+transition system,
+one needs only to provide 
+a partition of the set of configurations $S$ into two sets $S_0$ and $S_1$ to obtain an arena. \\
+% We require that the out-degree of each configurations is at least one. This ensures that every finite path in (V, E) can be prolonged. 
 
+
+% \mh{I dont think I want to disallow dead-ends from the very beginning, means every time you define some arena you have to prove it has no dead-ends, seem tedious and unecessary.}
+
+\noindent
+The games we are interested in are played by two players, called {\em player $0$} and {\em player $1$}. We will often write player $i$ to denote a general player for $i \in \{0,1 \}$,
+and we will call player $1-i$ its {\em opponent}. 
+
+% Observe that there is no restriction on the number of the successors of a configuration in an arena. Also, we don’t require that (V, E) is a bipartite graph with corresponding partition {V 0 , V 1 }.
+
+\iffalse
+\noindent
+In the case where $\Lambda$ is a singleton $\{ a\}$, we will abuse notation
+and denote the arena by
+$(S_0, S_1,{\rightarrow},\Omega)$, and we will see $(S,{\rightarrow})$
+as an unlabeled transition system.
+\fi
+
+
+ \subsubsection{Plays}
+
+
+\noindent
+%
+%\noindent
+A {\em play} in an arena $A=(S_0,S_1,\rightarrow)$ is a path in $(S,{\rightarrow})$ that is {\em maximal} in the following sense: it is either infinite or finite and if it is finite, then the target configuration is a dead end. 
+A {\em partial play} in an arena $A=(S_0,S_1,\rightarrow)$ is a 
+% sequence of configurations $s_{init} = s_0 s_1 \ldots \in S^\infty$ connected by the transition relation, i.e. such that $(v_i, v_{i+1}) \in T$.
+prefix of a play in $A$.\\
+%finite path in $(S,{\rightarrow})$.\\
+
+\noindent
+Essentially plays can be seen as this: the two players, player $0$ and player $1$, move along the labeled transition system, taking turns either inﬁnitely often or until a dead end is reached.
+
+% \subsubsection{Strategies}
+\subsection{Strategies}
+
+% Before deﬁning formally what it means for a player to win a game, we need to introduce the notion of strategy.
+
+A {\em strategy} for player $i \in \{ 0,1\}$ is a function $\sigma_i : S^* S_i \to S$ such
+that $\sigma_i(ws)$ is a successor of $s$.
+%
+A strategy is called {\em memoryless} if its output only depends on the final configuration of the sequence $s \in S_i$, i.e. if $\sigma_i(ws) = \sigma_i(w's)$ for all $w,w' \in S^*$. Thus, a memoryless strategy for player $i$ can be written  as a function $\sigma_i: S_i \to S$.
+
+A partial play $\pi = s_0 \rightarrow s_1 \rightarrow \ldots \rightarrow s_n$ is {\em consistent} with a strategy $\sigma_i$ if sequences of configurations that end in $S_i$ along this play have all successors according to the strategy, i.e.
+if for all $j\in[0,n-1]$, for all element $v_j \in V_i$ in the sequence $\pi$,
+$v_{j+1} = \sigma_i(v_j)$.
+ Given a configuration $s$,   a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1$ for player $1$, the play starting with $s$ that is consistent with both strategies is unique and is called the {\em resulting play} of $\sigma_0$ and $\sigma_1$ starting from $s$. It is 
+denoted by $\pi(s, \sigma_0, \sigma_1)$.\\
+
+
+%\noindent
+%Note that the above definitions are essentially the same for finite and infinite arenas.
+
+
+
+
+ \subsubsection{Winning conditions}
+
+
+Once we have provided players with an arena, it remains to define  properly what the winning condition is in order to define a game. Given an arena $A = (S_0, S_1, \rightarrow)$, a {\em winning condition}
+%$\win \subseteq S^\infty$
+$\win$
+is a subset  
+of the set of maximal plays for $A$. A {\em game} is a pair $\mathcal{G}= (A, \win)$ which is composed of an arena $A$ and a winning condition $\win$.
+Although a winning condition is in general an infinite object we are interested in winning conditions 
+that can finitely be described.
+
+
+\iffalse
+We consider here several types of winning conditions. 
+Essentially the 
+ mapping $\Omega$ of an arena serves to colour the configurations of the labeled transition system.  Winning conditions then
+ consist in acceptance conditions on colour sequences.
+ \fi
+
+
+A strategy $\sigma_0$ for player $0$ from position $s \in S$ is a {\em winning strategy
+ from $s$} for player $0$ if 
+% no matter which
+% strategy $\sigma_{1}$ the other player pursues,
+% the play $\pi(s, \sigma_0, \sigma_1)$ is in $\win$.
+every maximal play starting from $s$ and consistent with $\sigma_0$ is in $\win$.
+On the other hand, a strategy $\sigma_1$ for player $1$ from position $s \in S$ is a {\em winning strategy
+ from $s$} for player $1$ if 
+% no matter which
+% strategy $\sigma_{0}$ the other player pursues,
+% the play $\pi(s, \sigma_0, \sigma_1)$ is not in $\win$.
+every maximal play starting from $s$ and consistent with $\sigma_1$ is not in $\win$.
+ 
+
+\iffalse
+This definition of winning strategies is independent from the winning condition itself, and will also apply to %B\"uchi games and min-
+parity games. To differentiate, we mention the winning conditions of a winning strategy from $s_{init}$.
+\fi
+
+% \paragraph{Reachability Games}
+\paragraph{Reachability Games}
+
+We first consider reachability games: 
+the winning condition $\win_F(S)$ is given by a set of final configurations
+$F \subseteq S$, and $\win_F(S)$ is the set of maximal plays in $S^* F S^\infty$. 
+We simply write
+$\win_F$ in case the set $S$ is obvious from context.
+To indicate that the winning condition of a game is a reachability winning condition, we will speak of {\em reachability games}. 
+
+
+With regards to reachability games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem. \newline
+
+
+\begin{samepage}
+\problemx{Reachability game}
+{A reachability game $\mathcal{G}= ((S_0, S_1,{\rightarrow}),\win_F)$, an initial configuration $s \in S_0 \cup S_1$.}
+{Does player $0$ have a winning strategy from $s$ in $\mathcal{G}$?}
+\end{samepage}
+
+
+
+
+
+% \paragraph{Parity Games}
+\paragraph{Parity Games}
+
+Secondly, we consider min-parity games: 
+the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
+ $\Omega : S \to  [0, m]$.
+An infinite path $ \pi = s_0 s_1 s_2 \ldots$ is in $\win_\Omega(S)$ if the smallest priority appearing infinitely often in
+%this path
+the sequence 
+ is even, i.e.
+ %$\min ~ \text{\textit{Inf}}( \Omega (r( \beta ))) $
+if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even. 
+% The winner of a finite play is the player whose opponent is unable to move, i.e. a play such that the last configuration of the play is in $S_{0}$ (resp. $S_1$) is player $1$ (resp. player $0$). 
+A finite play is in $\win_\Omega(S)$ if its target configuration is in $S_1$.
+We simply write
+$\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
+To indicate that the winning condition of a game is a parity winning condition, we will speak of
+ {\em parity games}. 
+
+
+With regards to parity games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem. \newline
+
+
+
+\begin{samepage}
+\problemx{Parity game}
+{A parity game $\mathcal{G}= ((S_0, S_1,{\rightarrow}),\win_\Omega)$, an initial configuration $s \in S_0 \cup S_1$.}
+{Does player $0$ have a winning strategy from $s$ in $\mathcal{G}$?}
+\end{samepage}
+
+
+%
+\iffalse
+Solving a parity game played on a finite graph means deciding, for a given starting position $v_{init}$, which of the two players has a winning strategy. It has been shown that this problem is in $\NP$ and 
+co-$\NP$, more precisely $\UP$ and co-$\UP$. 
+% Marcin Jurdziński (1998), "Deciding the winner in parity games is in UP∩ co-UP" (PDF), Information Processing Letters, Elsevier, 68 (3): 119–124, doi:10.1016/S0020-0190(98)00150-1
+% @article{jurdzinski1998deciding,
+%  title={Deciding the winner in parity games is in UP∩ co-UP},
+%  author={Jurdzi{\'n}ski, Marcin},
+%  journal={Information Processing Letters},
+%  volume={68},
+%  number={3},
+%  pages={119--124},
+%  year={1998},
+%  publisher={Elsevier}
+%}
+\fi
+%
+
+
+
+
+
+% Muller condition: Inf() \in F
+
+% Rabin condition :
+
+% Streett Condition
+
+% Rabin Chain condition
+
+% max parity condition
+
+% 1-winning  == reachability
+
+
+\begin{center}
+	\begin{figure}
+			\hspace{3.81cm}
+\includegraphics[width=0.4\textwidth]{figures/parity_game}
+	\caption{An example of an arena. Circles  belong to player $0$, whereas diamonds belong to player $1$. Arrows represent transitions from a configuration to the next. The priority assigned by the priority mapping to each configuration is a number in $\{0,1,2,3\}$, next to the configuration it is assigned to. Note that we do not have a dead end in our example.}
+	\label{example_parity_game}
+	\end{figure}
+\end{center}
+
+\begin{example}
+Let us consider the arena presented in  Figure~\ref{example_parity_game}. 
+Configurations are partitioned into two sets: the circles, belonging to player $0$, and the diamonds,
+belonging to player $1$. 
+The priorities are $\{ 0,1,2,3\}$.
+% The transitions and priority mappings may be derived from the picture.
+% Note that we don't have a dead end in our example. 
+Consider the game on the arena, where the winning condition is a parity condition.
+Plays $\pi_1 = q_0 q_1 q_2 (q_4 q_7)^\omega$ and 
+$\pi_2 = (q_0 q_1 q_2 q_4)^\omega$ are both winning for player $0$. Indeed, in $\pi_1$, 
+the minimal priority encountered infinitely often is %that of $q_7$, that is, 
+				$2$, 
+whereas in $\pi_2$, it is %that of $q_2$, that is, 
+			$0$. 
+In both cases, it is an even number. On the other hand,
+the plays $\pi_3 = (q_5 q_3 q_6)^\omega$ and $\pi_4=(q_5 q_6)^\omega$ are both winning for player $1$: the minimal priority encountered is odd, since it is $1$ for both.
+
+One can take matters further: on this arena, player $0$ has a winning strategy for the parity game from $q_0$, $q_1$, $q_2$, $q_4$ and $q_7$, but not from $q_5$, $q_3$ nor $q_6$, where player $1$ has a winning strategy. 
+\end{example}
+
+
+
+% \mh{Say something abut positional determinacy}
+One important property of parity games is that of {\em memoryless determinacy}: for a parity game
+$\mathcal{G}= ((S_0,S_1,\rightarrow),\win_\Omega) $ and an initial configuration $s \in S_0 \cup S_1$, one of the players has a memoryless winning strategy from $s$ \cite{zielonka1998infinite}.
+
+%\mh{
+Of note is that several model checking problems %for pushdown automata 
+can be expressed as decision problems for games: the most famous example is that the modal $\mu$-calculus model checking problem is polynomially equivalent to solving the parity game problem. 
+%}
 
 
 
