@@ -304,28 +304,24 @@ In Section~\ref{discuss ppda} we close the chapter with a discussion about the m
 \subsubsection*{Contributions}
 
 
-Our main result states that
-deciding
-the winner of a parity game on a graph of a pebble pushdown system
-is decidable but nonelementary.
-The contribution is two-fold. 
-
+Our main result consists in
+proving parametric pushdown reachability games
+and parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number of parameters
+$n$ is fixed,
+and providing a nonelementary lower bound for parametric pushdown reachability games in general.
 
 
 
 	For the nonelementary lower bound,
 we reduce the $\FO$ satisfiability problem on words, known to be nonelementary
 from \cite{Sto74}, to the
-problem of deciding whether a player has a winning strategy. 
+problem of deciding whether a player has a winning strategy for parametric pushdown reachability games. 
 
-	For the main contribution, we use pebble alternating two-way tree automata to solve pebble pushdown parity games.
-Alternating two-way tree automata with parity winning conditions have been used in the past to solve parity games on pushdown graphs \cite{cachat2002two}. We show that pebble alternating two-way tree automata can similarily be used to solve parity games on pebble pushdown graphs.
-We then prove  decidability 
-by 
-a reduction
- to the problem of model-checking $\MSO$ on a well chosen structure, whose decidability is
- guaranteed by
-Muchnik's Theorem~\cite{Wal96}.
+	For the upper bound, we start by replacing parameters by pebbles acting as registers, leading to a more general model, pebble pushdown automata.
+ We then show that higher-order pushdown automata parity games can be used to solve parity games on
+ the transition systems of pebble pushdown automata,
+using one additional stack level for each pebble.
+ Since solving parity games on higher-order pushdown automata with level $n$ stack is $n$-$\EXP$-complete \cite{ Cach03, cachat2007complexity}, this provides an $(n+1)$-$\EXP$ upper bound for solving parametric parity games on parametric pushdown automata with $n$ parameters.
 
 
 
