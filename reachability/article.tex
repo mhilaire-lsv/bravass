@@ -178,11 +178,50 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 
 We consider here a different approach to extending pushdown systems, by allowing them to test the stack content against precise values.
 % Pushdown systems which can test the stack content against regular-expressions are equivalent to pushdown systems, so pushdown systems which can test the stack content against specific words are too.
-We consider 
-%instead
-here checks against unspecified word values that can be instantiated one after the other,
-providing the pushdown systems the ability to
-store information on some stack contents for later comparisons.
+Perhaps a similar model consists in 
+Pushdown automata 
+%with regularity condition on the stack
+with transitions that are conditioned by regular conditions on their stack content, which
+can in particular
+test the
+stack content against
+specific words. 
+They can be used to ensure that some word over the stack alphabet appears in the configurations of a run, but only for a specific value (or, rather, specific regular languages),
+and have
+been used to establish that CTL$^*$ model checking remains decidable
+when the formulas are allowed to include regular predicates on the stack content,
+and to obtain 
+model checking algorithms for LTL and CTL$^*$ model checking
+for
+pushdown automata \cite{finkel1997direct}.
+Pushdown automata 
+%with regularity condition on the stack
+with transitions that are conditioned by regular conditions on their stack content
+can be viewed as
+a special case of stack automata as seen in \cite{hopcroft1969formal}.
+Instead
+of checking the stack content against regular conditions, or, in a more limited manner,
+against specified word values,
+we consider
+checks against unspecified word values that can be instantiated using parameters.
+This allows for instance to ensure equality between two stack contents appearing in two distincts configurations in a run.
+
+Extensions of pushdown automata with storage for later comparisons
+have been introduced for instance as register pushdown automata. 
+Such automata possess registers in addition to their stack, and can keep data values in both.
+Register pushdown automata have been shown to have applications for malware detection and XML schema checking \cite{senda2021forward, senda2021ltl}. 
+In theory, since registers can be unfilled and later be filled again an unbounded number of times, the number of different data values a pushdown register automata can store in its registers in a run is unbounded.  
+In \cite{murawski2017reachability} it was shown however that a register pushdown automaton can
+only really ``remember'' at most  $3r$ data values, where $r$ is the number of registers,
+% Even though pushdown register automata have no bound on the number of elements of the alphabet that they can store at any instant, over the course of a run they can really “remember” at most 3r of them, 
+i.e. for any run of a register pushdown automaton with $r$ registers there exists an equivalent run %, i.e.
+ with the same initial and final conﬁgurations, but in which every configuration contains register assignments drawn from only $3r$ elements. This 
+ %can 
+ leads to
+ the
+  question
+  of
+   how useful the ability to unfill and later refill registers really is compared to a model that would only specify valuations once.
 
 
 
@@ -242,7 +281,25 @@ the winner of a parity game on a graph of a pushdown system with
 pebbles.
 
 
+ \iffalse
+ 
+ 
+We provide formal definitions of parametric pushdown automata, parametric pushdown reachability games
+and parametric pushdown parity games in Section~\ref{section def ppda}. We give an overview of our contribution in Section~\ref{contribution ppda}. The contribution consists in
+proving parametric pushdown reachability games
+and parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number of parameters
+$n$ is fixed,
+and providing a nonelementary lower bound for parametric pushdown reachability games in general.
+We provide the proof of our result, which stretches along 
+Section~\ref{lower bound PDA},
+Section~\ref{pebbles},
+% Section~\ref{ATWA and PATWA}, and
+Section~\ref{section HPDA}.
+In Section~\ref{discuss ppda} we close the chapter with a discussion about the methods used, with some directions for future work.
 
+
+
+\fi
 
 \subsubsection*{Contributions}
 
