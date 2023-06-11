@@ -6,21 +6,19 @@
 \subsection{Case: $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$.}
 
 %
-%		cas étudié par les deux articles sur les graphes
-%
-Let us choose $\Bad$ to be the set of states from which there is no infinite run. If we are in an upward compatible ordered transition system (like VASS, lossy channel systems,...), then $\Bad$ is downward-closed.
-\alain{ce qui précède est faux et pas convaincant: un vass qui seulement décroit ses compteurs}
 
-%Such a Turing machine, in combination with $M_\rightarrow$, allows computing
-%$\post(x)$ whenever the latter is finite. 
+We start with the case $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$. 
+It can be viewed as a generalizeation/extension of coverability, namely,
+it asks whether for every element of $\Bad$ it is possible to cover an element of the basis of $\Safe$.
 
 
+% Let us choose $\Bad$ to be the set of states from which there is no infinite run. If we are in an upward compatible ordered transition system (like VASS, lossy channel systems,...), then $\Bad$ is downward-closed.
+% \alain{ce qui précède est faux et pas convaincant: un vass qui seulement décroit ses compteurs}
 
 %%%%
 
-
-
-example: in a VASS, we may choose $\Safe$ to be the set of states that are not deadlocks, i.e. from which it is always possible to fire a transition. This set of states is upward-closed and $\Safe=S-\Bad=\uparrow \Safe$.\alain{mal rédigé}
+As an
+example: in a VASS, we may choose $\Safe$ to be the set of states that are not deadlocks, i.e. from which it is always possible to fire a transition. This set of states is upward-closed and $\Safe=S \setminus \Bad=\uparrow \Safe$.\alain{mal rédigé}
 
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
