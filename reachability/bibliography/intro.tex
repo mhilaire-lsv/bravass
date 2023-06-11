@@ -1,0 +1,111 @@
+Counter automata, which comprise a finite-state controller together
+with a number of counter variables, are a fundamental and widely-studied
+computational model. One of the earliest results about counter
+automata, which appeared in a seminal paper of Minsky's five decades
+ago, is the fact that two counters suffice to achieve Turing
+completeness~\cite{Min61}.
+
+Following Minsky's work, much research has been directed towards
+studying restricted classes of counter automata and related
+formalisms. Among others, we note the use of restrictions to a single
+counter, on the kinds of allowable tests on the counters, on the
+underlying topology of the finite controller (such as
+flatness~\cite{CJ98-cav,LS08-atva}), and on the types of computations
+considered (such as reversal-boundedness~\cite{ID06-tcs}). Counter
+automata are also closely related to Petri nets and pushdown automata.
+
+In Minsky's original formulation, counters were represented as integer
+variables that could be incremented, decremented, or tested for
+equality with zero by the finite-state controller. More recently,
+driven by complexity-theoretic considerations on the one hand, and
+potential applications on the other, researchers have investigated
+additional primitive operations on counters, such as additive updates
+encoded in binary~\cite{BHIMV06,LS08-atva} or even
+in \emph{parametric} form, i.e., whose precise values depend on
+parameters~\cite{BIL06-icalp,IJTW93-icalp}. We refer to such counter automata as
+\emph{succinct} and \emph{parametric} resp., the former being
+viewed as a subclass of the latter. Natural applications of such
+counter machines include the modelling of resource-bounded processes,
+programs with lists, recursive or multi-threaded programs, and XML
+query evaluation; see, e.g.,
+\cite{BHIMV06,CR04,ID06-tcs}.
+
+In most cases, investigations have centered around the decidability
+and complexity of the \emph{reachability} problem, i.e., whether a
+given control state can be reached starting from the initial
+configuration of the counter automaton. Various instances of the
+reachability problem for succinct and parametric counter automata are
+examined, for example, in~\cite{DG-jlc09,HKOW10,IJTW93-icalp}.
+
+The aim of the present paper is to study the decidability and
+complexity of \emph{model checking} for succinct and parametric
+one-counter automata. In view of Minsky's result, we restrict our
+attention to \emph{succinct one-counter automata (SOCA)} and
+\emph{parametric one-counter automata (POCA)}. On the specification
+side, we focus on the three most prominent formalisms in the
+literature, namely the temporal logics CTL and LTL, as well as the
+modal $\mu$-calculus. For a counter automaton $\mathbb{A}$ and a
+specification $\varphi$, we therefore consider the question of
+deciding whether $\mathbb{A} \models \varphi$,
+in case of POCA for all values of the parameters,
+%\footnote{In the case of
+%parametric automata, one asks whether the automaton satisfies the
+%formula \emph{for all} legal values of the parameters.}
+and investigate both the \emph{data} complexity (in which the formula
+$\varphi$ is fixed) as well as the \emph{combined} complexity of this
+problem. Our main results are summarized in Table \ref{tab:results}.
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{ >{\centering\arraybackslash}m{3cm}
+  >{\centering\arraybackslash}m{2cm} |
+  >{\centering\arraybackslash}m{3.3cm} |
+> {\centering\arraybackslash}m{3.3cm} |}\\
+  &  &{\bf SOCA}&{\bf POCA}\\ \hline
+{\raisebox{-2ex}[0ex]{{\bf CTL, $\mu$-calculus}}}&   {\bf data} &   & \\ \cline{2-2}
+{\raisebox{-2ex}[-5ex]{{$\phantom{\text{CTL}}$}}}&  {\bf combined}&
+{\raisebox{2ex}[0ex]{$\EXPSPACE$-complete}} &
+{\raisebox{2ex}[0ex]{ $\Pi^0_1$-complete}}\\ \cline{1-4}
+{\raisebox{-2ex}[0ex]{{\bf LTL}}}&  {\bf data} &
+\multicolumn{2}{c|} {\raisebox{0ex}[0ex]{$\coNP$-complete}}
+\\ \cline{2-4}
+{\raisebox{-2ex}[-5ex]{{$\phantom{\text{CTL}}$}}}&  {\bf combined}&
+$\PSPACE$-complete &
+$\coNEXP$-complete\\ \cline{1-4}
+\end{tabular}
+\end{center}
+\label{tab:results}
+\caption{The complexity of CTL, the modal $\mu$-calculus, and LTL
+             on SOCA and POCA.}
+\end{table}
+
+One of the motivations for our work was the recent discovery that
+reachability is decidable and in fact $\NP$-complete for both SOCA and
+POCA~\cite{HKOW10}. We were also influenced by the work of Demri and
+Gascon on model checking extensions of LTL over non-succinct,
+non-parametric one-counter automata~\cite{DG-jlc09}, as well as the
+recent result of G\"oller and Lohrey establishing that model checking
+CTL on such counter automata is $\PSPACE$-complete \cite{GoLo10}.
+
+%% We note some interesting differences between our results and
+%% corresponding questions regarding finite automata. For the latter, the
+%% (combined) model checking problems for CTL, the $\mu$-calculus, and
+%% LTL are respectively known to be $\mathsf{P}$-complete, in
+%% $\mathsf{NP} \cap \coNP$, and $\PSPACE$-complete. Somewhat
+%% surprisingly, for SOCA and POCA, the complexity ordering is reversed
+%% and LTL becomes easier to model check than either CTL or the
+%% $\mu$-calculus.
+
+On a technical level, the most intricate result is the
+$\EXPSPACE$-hardness of CTL model checking for SOCA, which requires
+several steps. We first show that $\mathsf{EXPSPACE}$ is `exponentially
+$\mathsf{LOGSPACE}$-serializable', adapting the known proof that
+$\PSPACE$ is $\mathsf{LOGSPACE}$-serializable. Unfortunately, and in
+contrast to~\cite{GoLo10}, this does not immediately provide
+an $\EXPSPACE$ lower bound. In a subsequent delicate stage of the
+proof, we show how to partition the counter in order simultaneously to
+perform $\PSPACE$ computations in the counter and manipulate numbers
+of exponential size in a SOCA of polynomial size.
+
+%For reasons of space, we have had to abbreviate or omit a number of
+%proofs; full details can however be found in the technical
+%report~\cite{techrep}.

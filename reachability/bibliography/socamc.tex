@@ -1,0 +1,71 @@
+\documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{ifthen}
+
+\begin{document}
+\section{PSpace-hardness of CTL Model Checking of Succinct One-Counter
+Automata}
+
+\begin{figure}
+%\begin{center}
+%  \includegraphics[scale=0.4]{ctl-hardness.pdf}
+%\end{center}
+\caption{Gadget to check whether the $i$-th bit of the counter is
+set (assuming no counter values larger than $2^{n+1}-1$).}
+\label{fig:checker}
+\end{figure}
+Let $\mathcal{M}=\langle Q, \{0,1\}, \delta, q_0, F\rangle$ be a TM
+which does not use more than $n$ tape cells during a computation,
+where $n$ is polynomial in $|\mathcal{M}|$. Assume w.l.o.g.\ that
+$\mathcal{M}$ does not make any right move when the head reads the
+$n$-th tape cell and that it does not make any left-move when reading
+the first tape cell. We define a succinct one-counter automaton
+$\mathcal{A}=\langle P, \Delta \rangle$ and a CTL-formula $\varphi$
+such that $\mathcal{M}$ reaches a final state if and only if
+$\mathcal{A}\models \varphi$. The set of states $P$ of $\mathcal{A}$
+contains elements $q_{i,b}$, where $q\in Q$, $1\le i\le n$ and $b\in
+\{0,1\}$. Intuitively, when simulating a run of $\mathcal{M}$, we keep
+the tape content in the counter and store the head position in the
+states of $\mathcal{A}$. Thus, when $\mathcal{A}$ is in state
+$q_{i,b}$, we ``mean'' that $\mathcal{M}$ is in state $q$, with head
+in position $i$, reading $b$. Of course, we have to ensure that $b$ is
+actually set respectively unset in the current counter value, but let
+us postpone this problem for a moment. We define the transition
+relation for $q_{i,b}$ as follows: First, suppose $b=0$ and consider
+$\delta(q,0)=(q',b',d)$ ($q'$ is the next state, $b'$ is the content
+to be written at the current tape cell and $d\in\{-1,1\}$ is the
+direction the head moves). If $b'=0$, then $\Delta$ contains
+$\{(q_{i,0},+0,q_{i+d,0}), (q_{i,0},+0,q_{i+d,1})\}$ and if $b'=1$ the
+$\Delta$ contains $\{(q_{i,0},+2^i,q_{i+d,0}),
+(q_{i,0},+2^i,q_{i+d,1})\}$. Intuitively, we set the $i$-th bit of the
+counter accordingly, move the head and guess the content of the tape
+cell we move to. The case $b=1$ is now straight-forward: If $b'=0$
+then $\Delta$ contains $\{(q_{i,0},-2^i,q_{i+d,0}),
+(q_{i,0},-2^i,q_{i+d,1})\}$ and if $b'=1$ the $\Delta$ contains
+$\{(q_{i,0},+0,q_{i+d,0}), (q_{i,0},0,q_{i+d,1})\}$. Furthermore, each
+state $q_{i,b}$ is labelled with a propositional variable $M$, which
+indicates that those states come from $\mathcal{M}$. We now need a
+gadget that can check for us that we guess the tape contents
+correctly. But this is easy, consider the automaton shown in Figure
+\ref{fig:checker}. It can reach the rightmost state only if the $i$-th
+bit is set to one. Likewise, we can construct a similar automaton such
+that the rightmost state can only be reached if the $i$-th bit of the
+counter value is set to zero. Let $p_i^+$ respectively $p_i^-$ be the
+initial states of the gadgets that can test whether the $i$-th bit of
+the counter is set respectively not set. Then for each $q_{i,0}$ we
+have a transition $(q_{i,0}, 0,p_i^-)\in \Delta$, and for each
+$q_{i,1}$ we have $(q_{i,1}, 0, p_i^+)\in \Delta$. Finally, for each
+$q\in F$ we have a transition $(q_{i,b}, +0, p_f)\Delta$ to a special
+state $p_f\in P$ that is labelled with the proposition $F$.
+
+Let us define $\varphi=\mathbf{E}((M\wedge \mathbf{EX}(\neg M \wedge
+\mathbf{EX}^n \top)) \mathbf{U} F)$. It is now not difficult to check that
+$\mathcal{A}\models \varphi$ if, and only if, $\mathcal{M}$ reaches a
+final state.
+\end{document}
