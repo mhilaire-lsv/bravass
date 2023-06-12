@@ -886,22 +886,18 @@ a parametric automaton $\A$ with parameters $P$ taking values in $\Gamma^*$ and 
 \fi
 
 
-
+\iffalse
 Given a parametric automaton $\A$ with a set of parameters $P = P_0 \biguplus P_1$ that can take 
 values in the set $\Gamma^*$,
 a {\em parametric game} for $\A$ is a game played 
-on the %following  arena $A_{\A}$.
-%The 
+on the 
 arena $A_\A$
 that include both 
-% the configurations and transitions of
 the parameter valuation arena
 $A_{P_0, P_1,\Gamma}$
-and, % moreover contains 
+and, %   
 for all parameter valuations $\mu: P\rightarrow \Gamma^*$,
-%the configurations and transitions of
 the transition system %s 
-% induced by the concrete automata corresponding to $\A$ with parameter valuation $\mu$
  $T_\A^\mu$
 \---- albeit with configurations additionally indexed by $\mu$ %in the tuple
  to avoid confusion.
@@ -912,17 +908,13 @@ we add a transition
 from the configuration $\mu \in (\Gamma^*)^P$ to
 $T_\A^\mu$.
 % See Figure~\ref{parametric_arena} for an illustration of such an arena.
-Solving parametric games on an automaton with parameters then consists in answering whether there exists 
-a winning strategy for player $0$
-from the initial configuration of the parametric game.
-Remark that the parametric reachability problem for an automaton with parameters can be seen as solving the parametric reachability game where $P_1 = \emptyset$, and $Q_1 = \emptyset$. 
+\fi
+ 
 Recall that given a 
 %labeled 
 transition system,
 one needs only to provide %a mapping $\Omega$ and 
 a partition of the set of configuration $S$ into two sets $S_0$ and $S_1$ to obtain an arena. 
-
-
 Thus, for an  $n$-parametric pushdown automaton 
 $\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
 given a partition of
@@ -984,10 +976,6 @@ for all $\mu \in (\Gamma^* \cup \bot)^{P}$.
 
 
 
-We are interested in the following games and problems.
-
-
-
 \problemx{Parametric pushdown reachability game}
 {A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
 , and $ P = P_0 \biguplus P_1$.}
@@ -1009,41 +997,15 @@ $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$
 
 
 
-\iffalse
-\problemx{Parametric pushdown reachability game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, a disjoint
-union $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
-.}
-{Does player $0$ have a 
-strategy $\sigma_0$ for the parameter valuation game  such that
-for all player $1$ strategies $\sigma_1$ for the parameter valuation game,
-player $0$ has a
-winning strategy from $q_{init}(\gamma_{init})$ for the reachability condition on
-$\mathcal{G}_{(\mathcal{Z}, \mu_{\sigma_0, \sigma_1}, P_0, P_1, Q_0 , Q_1, \Omega)}$ ?\newline}
 
-
-
-
-\problemx{Parametric pushdown parity game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, a disjoint
-union $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
-, 
-a priority mapping $\Omega: Q \to \{0, \ldots m\}$%
-%which naturally lead to a mapping on $\Conf(\mathcal{Z})$
-%, and an initial state $q_{init} \in Q$% and initial stack symbol $w_{init} \in W$
-.}
-{Does player $0$ have a 
-strategy $\sigma_0$ for the parameter valuation game  such that
-for all player $1$ strategies $\sigma_1$ for the parameter valuation game, 
-player $0$ has a
-winning strategy from $q_{init}(\gamma_{init})$ for the parity condition on
-$\mathcal{G}_{(\mathcal{Z}, \mu_{\sigma_0, \sigma_1}, P_0, P_1, Q_0 , Q_1, \Omega)}$ ?\newline}
-\fi
 
 We write {\sc $n$-parametric reachability parity game}
 and
 {\sc $n$-parametric pushdown parity game} if 
  the number of parameters $n=|P|$ of $\mathcal{Z}$ is fixed by the problem.
+Remark that the parametric reachability problem for an automaton with parameters can be seen as solving the parametric reachability game where $P_1 = \emptyset$, and $Q_1 = \emptyset$.
+We are interested in the following games and problems.
+
 
 
 			
