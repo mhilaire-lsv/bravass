@@ -176,11 +176,26 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 
 
 
-We consider here a different approach to extending pushdown systems, by allowing them to test the stack content against precise values.
+ Parametric pushdown automata provide a  formalism to
+reason about 
+recursive programs
+making use of parametric constraints.
+% Here, the stack can additionally be compared against parameters that can take unspecified word values. 
+Recently, different variants of parametric pushdown automata have been introduced in the literature 
+% [Hague’11]=[20], [Esparza, Ganty, Majumdar’13]=[15]
+\cite{hague2011parameterised, esparza2016parameterized, fortin2017model} 
+% In this work, following [21,20,15,27,12], we consider parametric pushdown systems
+however as
+parameterized asynchronous shared-memory systems.
+These systems consist of a leader pushdown automaton
+and arbitrarily many identical contributor pushdown automata, communicating via a shared memory
+in the form of a register which can take finitely many values.
+This variant have been shown to have applications
+to the dataflow analysis of concurrent programs \cite{kahlon2008parameterization}. 
+We consider here a different approach to extending pushdown automata with parameters, by allowing them to test equality of the stack content against parameters.
 % Pushdown systems which can test the stack content against regular-expressions are equivalent to pushdown systems, so pushdown systems which can test the stack content against specific words are too.
 Perhaps a similar model consists in 
-Pushdown automata 
-%with regularity condition on the stack
+pushdown automata 
 with transitions that are conditioned by regular conditions on their stack content, which
 can in particular
 test the
@@ -204,7 +219,7 @@ of checking the stack content against regular conditions, or, in a more limited 
 against specified word values,
 we consider
 checks against unspecified word values that can be instantiated using parameters.
-This allows for instance to ensure equality between two stack contents appearing in two distincts configurations in a run.
+This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
 
 Extensions of pushdown automata with storage for later comparisons
 have been introduced for instance as register pushdown automata. 
@@ -225,60 +240,43 @@ i.e. for any run of a register pushdown automaton with $r$ registers there exist
 
 
 
-Hence we propose in this paper to extend pushdown systems with a set of pebbles.
-Compared to pebble word automata, instead of using pebbles
-as markings on their input, pebble pushdown systems have the ability to lift or drop pebbles
-on their universe of stack contents. Dropping a pebble records the current stack content with an available pebble until it is lifted. Lifting a pebble then makes it available again.
+Hence we propose in this paper to extend pushdown systems with a set of 
+parameters.
+%
+% Compared to pebble word automata, instead of using pebbles
+% as markings on their input, pebble pushdown systems have the ability to lift or drop pebbles
+% on their universe of stack contents. Dropping a pebble records the current stack content with an available pebble until it is lifted. Lifting a pebble then makes it available again.
 
 
-A pebble automaton is a two-way finite state automaton that uses a fixed, finite number of
-pebbles that it can drop on, and lift from 
-words, using them as markers.
-Pebble automata recognize regular languages only, provided the life times of the pebbles, i.e. the times between dropping a pebble and lifting it again, are properly nested
-\cite{globerman1996complexity, engelfriet1999tree}.
-Automata with nested pebbles were also introduced
-for tree-walking automata. 
-It is known that tree-walking automata do not recognize all regular tree languages \cite{bojanczyk2008tree}, the main trouble being that the tree-walking automata get lost rather easily.
-Using pebbles is a remedy against getting lost along a tree, but 
-the unrestricted use of pebbles leads to a class of tree languages much larger than the
-regular tree languages, in fact to all tree languages in $\NSPACE(log ~ n)$.
-Thus, in both pebble word automata and pebble tree-walking automata, the placement of the pebble follows a strict stack discipline, and our model will follow this strict stack discipline too.
-
-
-
-One motivation to the study of pebble pushdown systems is their ability to compare a stack content against some later stack content.
-Similar type of storage for later comparison has already been used for instance
-in register pushdown systems. Introduced in \cite{murawski2017reachability}
- as an extension of pushdown systems that 
- can keep data values in
- a set of registers and a stack,
-register pushdown systems
-enable
-manipulation of
-data values from an infinite domain,
-and have applications for instance for
-malware detection and XML schema
-checking \cite{senda2021forward, senda2021ltl}.
-
+% A pebble automaton is a two-way finite state automaton that uses a fixed, finite number of
+% pebbles that it can drop on, and lift from 
+% words, using them as markers.
+% Pebble automata recognize regular languages only, provided the life times of the pebbles, i.e. the times between dropping a pebble and lifting it again, are properly nested
+% \cite{globerman1996complexity, engelfriet1999tree}.
+% Automata with nested pebbles were also introduced for tree-walking automata. 
+% It is known that tree-walking automata do not recognize all regular tree languages \cite{bojanczyk2008tree}, the main trouble being that the tree-walking automata get lost rather easily.
+% Using pebbles is a remedy against getting lost along a tree, but  the unrestricted use of pebbles leads to a class of tree languages much larger than the regular tree languages, in fact to all tree languages in $\NSPACE(log ~ n)$.
+% Thus, in both pebble word automata and pebble tree-walking automata, the placement of the pebble follows a strict stack discipline, and our model will follow this strict stack discipline too.
+%
+%
+% One motivation to the study of pebble pushdown systems is their ability to compare a stack content against some later stack content.
+% Similar type of storage for later comparison has already been used for instance in register pushdown systems. Introduced in \cite{murawski2017reachability}  as an extension of pushdown systems that can keep data values in a set of registers and a stack, register pushdown systems enable manipulation of data values from an infinite domain, and have applications for instance for malware detection and XML schema checking \cite{senda2021forward, senda2021ltl}.
 
 
 
 
 Another closely related formalism is that of alternating tree automata with nested pebbles, as we 
 consider in more details in Section 4. The approach of extending tree automata with pebbles was used in \cite{milo2000typechecking} to show that the XML typechecking problem is decidable, and in \cite{karhumaki2012jewels} to recognize first-order logic on trees. In both cases however, the input trees considered are finite, while 
-simulation of plays in pebble pushdown graphs
+simulation of plays in parametric pushdown graphs
 requires the use of pebble alternating tree automata working on infinite trees
-since the stack of a pebble pushdown system is in general unbounded.
-
-
-
+since the stack of a pushdown system is in general unbounded.
 
 
 
 The aim of the present paper is to study the decidability and complexity of
 deciding
 the winner of a parity game on a graph of a pushdown system with  
-pebbles.
+parameters.
 
 
  \iffalse
@@ -296,9 +294,6 @@ Section~\ref{pebbles},
 % Section~\ref{ATWA and PATWA}, and
 Section~\ref{section HPDA}.
 In Section~\ref{discuss ppda} we close the chapter with a discussion about the methods used, with some directions for future work.
-
-
-
 \fi
 
 \subsubsection*{Contributions}
