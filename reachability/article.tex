@@ -936,6 +936,7 @@ instead of $\xrightarrow{%\lambda
 }_{\mathcal{Z},u}$). \\
 
 
+		\iffalse	
 
 \subsection{PPDA reachability}
 
@@ -949,6 +950,7 @@ the following decision problem.
 an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
  $\mathcal{Z}$?\newline}
 
+		\fi
 
 % \subsubsection{Parametric pshdown games}
 \subsection{PPDA games}
@@ -993,7 +995,7 @@ $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
 as
 the arena that contains both the configurations and transitions of
 the parameter valuation arena
-$A_{P_0,P_1,\Gamma^*}$, as see on page~\pageref{parametric arena},
+$A_{P_0,P_1,\Gamma^*}$, as seen on page~\pageref{parametric arena},
 and that moreover contains the configurations and transitions of
 $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$ 
 \---- albeit with configurations additionally including $\mu$ in the tuple to avoid confusion \----
@@ -1208,13 +1210,8 @@ where
 % \mh{remind the reader what a partial function is}
  
 \par\noindent\ignorespacesafterend 
-Recall that for \iffalse a partial function $f$ from a set $S$ to a set $X$ 
-%is a function defined on a subset $C$ of $S$ (possibly $S$ itself) with output values in $X$, and 
-that is defined on a subset $C \subseteq S$
-is denoted by
-$ f : S \rightharpoonup X $.
-
-For \fi a partial function $ f : S \rightharpoonup X $ (see page~\pageref{partial}), for notational purposes, we consider some element $\bot_X \not\in X$ and 
+Recall that for a partial function $ f : S \rightharpoonup X $% (see page~\pageref{partial})
+, for notational purposes, we consider some element $\bot_X \not\in X$ and 
  associate $f$ with the function returning the 
 bottom element $\bot_X$ when $f$ is undefined. Thus we write $(X \biguplus \{ \bot_X \})^S$ for the set of all partial functions from $S$ to $X$, which we here abbreviate as $(X \biguplus \{ \bot \})^S$. 
 
