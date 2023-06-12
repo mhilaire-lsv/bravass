@@ -87,9 +87,9 @@
 
 
 
-\title{Parity games in pushdown systems with pebbles} 
+\title{Parity games in pushdown systems with parameters} 
 
-\titlerunning{Parity games in pushdown systems with pebbles} 
+\titlerunning{Parity games in pushdown systems with parameters} 
 
 % \author{Stefan G\"oller}{University of Kassel \and School of Electrical Engineering and Computer Science \and Kassel, Germany }{stefan.goeller@uni-kassel.de}{}{The author was supported by the Agence Nationale de la Recherche grant no.  ANR-17-CE40-0010.}
 \author{Mathieu Hilaire}{Université Paris-Saclay\and
@@ -129,9 +129,9 @@ Agence Nationale de la Recherche grant no.  ANR-17-CE40-0010.}
 \begin{abstract}
 	We investigate the decidability and complexity of
 	parity games over an extension of pushdown systems.
-	More specifically, we consider pebble pushdown systems, in
-	which pebbles can be used to remember some stack content already visited,
-	and compared against.
+	More specifically, we consider parameters pushdown systems, in
+	which parameters can be instantiated to some word over a stack alphabet,
+	and compared against the current stack content.
 	We determine decidability of the problem, and provide a nonelementary lower bound. 
 \end{abstract}
 
@@ -321,10 +321,11 @@ using one additional stack level for each pebble.
 
 \subsubsection*{Overview}
 
-In Section 2, we provide general notations and preliminary definitions. Section 3 will deal with the introduction of 
-parametric pushdown games.
+In Section 2, we provide general notations and preliminary definitions. 
+Section 3 will deal with the introduction of  parametric pushdown games.
 % Section 4 is devoted to using pebble alternating tree automata with parity acceptance condition to solve parametric pushdown system parity games. We leave the proof of decidability itself  for Section 5.
-Section 6 at last shows a nonelementary lower bound for the problem.
+Section 4 is Reduction to higher-order pushdown automata
+Section 5 at last shows a nonelementary lower bound for the problem.
 
 
 
@@ -699,7 +700,7 @@ parity games. To differentiate, we mention the winning conditions of a winning s
 \fi
 
 % \paragraph{Reachability Games}
-\paragraph{Reachability Games}
+\subsection{Reachability Games}
 
 We first consider reachability games: 
 the winning condition $\win_F(S)$ is given by a set of final configurations
@@ -723,7 +724,7 @@ With regards to reachability games, we are going to concern ourselves with games
 
 
 % \paragraph{Parity Games}
-\paragraph{Parity Games}
+\subsection{Parity Games}
 
 Secondly, we consider min-parity games: 
 the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
@@ -829,726 +830,284 @@ can be expressed as decision problems for games: the most famous example is that
 %}
 
 
+\section{Parametric pushdown games}
 
-\section{Pebble pushdown games}
+\textcolor{black}{Parametric pushdown automata extend pushdown automata by allowing the stack to be compared against parameters that can be assigned values which are words over the stack alphabet.}
+A parametric pushdown automaton is then a finite automaton extended with a finite set of parameters $P$  and with a stack that can be manipulated by pushing or popping stack symbols and such that, moreover, the automaton can use the top of the stack, or check that the stack content corresponds to a parameter,  to decide which transition to take next.\\
 
-In this section, we extend pushdown systems with a set of pebbles. 
-Pebble pushdown systems will have the ability to lift or drop pebbles on their universe of stack contents according to a strict stack discipline. A \textit{drop} simply records the current stack content with a fresh pebble (such a pebble should be available) and a \textit{lift} pops the last dropped pebble. One can think of a pebble as a register that can store a stack content.
-
-
-
-
-\begin{definition}
-An $n$-pebble pushdown system ($n$-PPDS) is a tuple $\mathcal{Z} = (Q, \Gamma,  \Delta )$
-where:
+\par\noindent\ignorespacesafterend
+Formally, a {\em parametric pushdown automaton} ({\em PPDA} for short) 
+is a tuple 
+$\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
 \begin{itemize}
-\item $Q$ is a {\em finite set of control states},
-\item $\Gamma$ is a {\em finite stack alphabet},
-% \item $\$ \notin W$ is an {\em initial stack symbol},
-\item  $\Delta   \subseteq  Q  \times (\Gamma \biguplus \{ \$ \})  \times \{ 0, 1, \ldots, n\} \times \mathcal{P}(\{ 1, \ldots, n\}) \times Q  \times (\Gamma^* \cup \{ \! \! \text{\textit{lift}}, \text{\textit{drop}}\})$ is a {\em finite transition relation}, where ${\$ \notin \Gamma}$ is some bottom of stack symbol.
+\item $Q$ is a non-empty finite {\em set of  states},
+\item $\Gamma$ is a non-empty finite {\em  stack alphabet},
+\item $P$ is a finite {\em   set of parameters}, \textcolor{black}{with $\Gamma \cap P = \emptyset$},
+% \item  $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Gamma^*$ is finite {\em  set of rules},
+ \item  $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Op(\Gamma)$ is finite {\em  set of rules},
+\item $q_{init}\in Q$ is an {\em initial  state}, 
+\item $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}, and
+\item $F\subseteq Q$ is a {\em set of final  states}.
 \end{itemize}
-\end{definition}
 
-
-A transition in an $n$-pebble pushdown system works like a transition in a pushdown system that additionally manages the $n$ pebbles.
-The idea of a transtion $(q, a, i, S, q', \theta) \in \Delta$
-is that, if the automaton $\mathcal{Z}$ is in state $q$ with pebbles $1,\ldots, i$ dropped \---- or without pebble dropped if $i = 0$ \---- with top stack symbol $a$, and stack content which corresponds to the stack contents of the pebbles from $S$ and only these pebbles, then
-$\mathcal{Z}$ goes to state 
-$q'$ and makes modifications to the stack or the pebbles according to
-$\theta$.
-
-
-
-A {\em pebble set} of $\mathcal{Z}$ is a set $P \subseteq \{ 1, \ldots, n\}$. For a stack alphabet $\Gamma$, a 
-{\em $P$-pebble assignment} is a function which maps each $j \in P$ to a word in $\$\Gamma^*$.
-For $0 \leq i \leq n$, an {\em $i$-configuration} is a tuple $(q, w, f )$, where 
-$q$ is a state,
-$w \in \$\Gamma^*$, and
-$f$ a $\{ 1, \ldots , i \}$-pebble assignment \---- $f$ is the $\emptyset$-pebble assignment in case $i=0$. 
-We call  $q$ the current state, $w$ the current stack, and
-$f$ the current pebble assignment. 
-We also write $(q,w, w_{1} , \ldots , w_{i} )$ if 
-$f(j) = w_j$, for each
-$j \leq i$.
-
-
-The set of configurations is the union of all $i$-configurations for $0 \leq i \leq n$. The transition graph of $\mathcal{Z}$ is $(V,E)$, where $V$ is the set of configurations. %and $E$ is such that
-Moreover, 
-for all $(q, a, i, S, q', \theta) \in \Delta$, with $a \in \Gamma$ (respectively $ \! a = \$ $),
- for all words $w \in \$ \Gamma^*$, and for all $\{ 1, \ldots , i \}$-pebble assignments 
- 
- \begin{samepage}
-\noindent
- $f$ such that $f(j) = wa$ (respectively $f(j)= \$ $) for each
-$j \in S$ 	and
- $f(j) \neq wa$ (resp. $f(j) \neq \$ $) for each $j \in \{ 1, \ldots , i \} \setminus S$,
-%the following holds
-we include in $E$ the following transitions:
-\begin{itemize}
-\item if $\theta \in \Gamma^*$, 
-$((q,wa,f), (q',w\theta, f)) \in E $ \\
-(respectively, $((q,\$,f), (q',\$\theta, f)) \in E $),
-\item if $ \theta = \text{\textit{drop}}$, 
-$((q,wa,f), (q',wa, f')) \in E $  \\
-(respectively, $((q,\$,f), (q',\$, f')) \in E $),\\
-where $f'$ is the $\{ 1, \ldots , i, i+1 \}$-pebble assignment such that
-$f'(j) = f(j)$ for each
-$j \leq i$, and $f'(i+1) = wa$ (respectively, $f'(i+1) = \$$), and
-\item if $\theta = \text{\textit{lift}}$, and $ i \in S $%$i>0$
-, 
-$((q,wa,f), (q',wa, f')) \in E $ \\ 
-(respectively, $((q,\$,f), (q',\$, f')) \in E $),\\
-where $f'$ is the $\{ 1, \ldots , i - 1 \}$-pebble assignment such that
-$f'(j) = f(j)$ for each
-$j < i$.
-\end{itemize}
-\end{samepage}
-
-
-This defines a graph  $(V,E) $. 
-%
-To obtain
-a parity game, it remains to define the sets $V_0$ and $V_1$ associating the vertices
-to the two players, and the priorities of the configurations. One fixes a disjoint
-union
- $Q = Q_0  \biguplus Q_1 $. Then 
- $V_0$ is the set of configurations with current state in $Q_0$ and 
- $V_1$ is the set of configurations with current state in $Q_1$.
-The mapping  $\Omega$ is first
-defined on $Q$, then  $\Omega (q,w,f) =  \Omega (q)$,  for all words $ w  \in \$ \Gamma^*$, all pebble assignments $f$, and 
-$q  \in  Q$. So the player and the
-priority only depend on the control states of $\mathcal{Z}$. 
-This defines the {\em $n$-pebble pushdown game} $ \mathcal{G}_{\mathcal{Z}, Q_0,Q_1,\Omega}$.
-The starting configuration is defined if we also fix an initial state 
-$q_I  \in  Q$ as $v_I = (q_I, \$, f_I)$, where $f_I$ is the $\emptyset$-pebble assignment. \newline
-
-
-
-The main problem we are interested in in this article is the following decision problem.
-
-\problemx{Solving pebble pushdown parity game}
-{A pebble pushdown system $\mathcal{Z}= (Q,\Gamma, \Delta )$, a disjoint
-union $Q = Q_0  \biguplus Q_1 $, a priority mapping $\Omega$, an initial state $q_I \in Q$% and initial stack symbol $w_I \in W$
-.}
-{Does player $0$ have a winning strategy from $(q_I,\$, f_I)$ in the  parity game
-$ \mathcal{G}_{\mathcal{Z}, Q_0,Q_1,\Omega}$ ?}
-%$(\mathcal{G}_{\mathcal{Z}}, \Omega)$ ?\newline}
-
-
-
-
-
-
-
-
-
-\section{Tree Automata}
-
-In this section, we use pebble alternating two-way tree automata to solve pebble pushdown parity games. 
-We introduce first alternating two-way tree automata, then pebble alternating two-way tree automata,
-then explain the reduction. Decidability questions concerning pebble alternating two-way tree automata
-are dealt with in Section~\ref{section decidability}.
-
-
-
-\subsection{Alternating two-way tree automata}
-
-Given a finite set $\Gamma$ of directions, a $\Gamma$-tree is a prefix closed set 
-$T  \subseteq \Gamma^*$,
-i.e., if $x.d  \in  T$, where 
-$x  \in  \Gamma^*$ and $d  \in  \Gamma $, then $x  \in  T $. 
-We will sometimes forget the “.” of the concatenation. 
-The elements of $T$ are called {\em nodes}, the
- empty word  $\epsilon$
-% word $\$ $
-  is the {\em root} of $T $. For every $x.d  \in  T$, $d  \in  \Gamma$ the node $x$ is the
-unique {\em parent} of $x.d$, and $x.d$ is a {\em $d$-child} of $x$. The {\em direction} of a node $x.d$
-$( \neq   \epsilon )$ 
-%$(\neq \$ )$
-is $d$. 
-The full infinite tree is 
-$T = \Gamma^*$. A {\em path (branch)} of a tree $T$ is
-a sequence  $\beta   \in  T^{\infty}$  such that 
-$ \beta  = u_0 u_1 \ldots u_n$ or 
-$ \beta  = u_0 u_1 u_2 \ldots$, where
-$u_0 =  \epsilon$  and
- $\forall i < n,  \exists d  \in  \Gamma$, $u_{i+1} = u_i.d$. 
- A path can be finite or infinite.
-
-
-
-For a finite set $X$, $\mathcal{B}^+ (X)$ is the set of positive Boolean formulas
-over $X$ (i.e., Boolean formulas built from elements in $X$ using only $\wedge$ and $\vee$),
-where we also allow the formulas $\text{\textit{true}}$ and $\text{\textit{false}}$. For a set $Y  \subseteq  X$ and a
-formula $ \vartheta   \in  \mathcal{B}^+ (X)$, we say that $Y$ satisfies $ \vartheta$  iff assigning $\text{\textit{true}}$ to elements in
-$Y$ and $\text{\textit{false}}$ to elements in $X \setminus Y$ makes  $\vartheta $ true.
-
-The set $\text{\textit{types}}(\Gamma) = \{r \} \cup \Gamma$ 
-describes the possible types of a node in the full infinite tree $\Gamma^*$. 
-Here $r$ stands for the root, $\gamma \in \Gamma$ for a $\gamma$-child.
-
-To navigate through the tree let $ext(\Gamma ) := \Gamma \biguplus \{ \epsilon , \uparrow \}$ be the extended set of directions: The symbol $\uparrow$ means “go to parent node”, 
-and  $\epsilon$  means “stay on the present
-node”. Formally we define $ \forall u  \in \$ \Gamma^* , d  \in  \Gamma, u.\epsilon  = u$ and $u.d. \! \uparrow= u$, while the node 
-$ \epsilon . \! \uparrow $ is not defined.
-
-
-
-
-\begin{definition}
-An alternating two-way automaton over
- $\Gamma$-trees (ATWA) is a tuple
-$\mathcal{A} = (Q,  \delta , q_I , 
-\Omega)$ where
-\begin{itemize}
-\item $Q$ is a {\em finite set of states},
-\item $\delta  : Q  \times  
-%
-\text{\textit{types}}(\Gamma)
-%W \cup \$
-  \to  \mathcal{B}^+ (Q \times ext(\Gamma))$ is a {\em transition function},
-\item $q_I$ is an {\em initial control state}, and
-\item $\Omega: Q \to \{ 0, 1, \ldots, m\}$ is a {\em priority function}.
-\end{itemize}
-\end{definition}
-
-
-
-The idea of a transition $ \delta (q, a) = ( q',\uparrow ) \wedge (q'',d)$ with $a,d\in\Gamma$ is the following: 
-if the automaton
-$\mathcal{A}$ is in state $q$ on the node $x.a$ of the 
-tree $T$, it will send a “copy” of $\mathcal{A}$  in state $q'$ to the node $x$ and
-another “copy” in state $q''$ to $x.a.d$. 
-After that the two copies are
-running independently. They may come again to the same node with two different
-states.
-
-
-More precisely a run of an alternating two-way automaton $\mathcal{A}$ over a tree
-is
-a tree $T_r$ in which every node is labelled by an
-element of $Q \times \Gamma^*$. The latter tree is like the unfolding of the run, its structure
-is different from the tree $\Gamma^*$, and its set of directions range rather on the naturals smaller than $|Q|*|ext(\Gamma)|$; a node in $T_r$ labelled by $(q,x)$ describes a “copy”
-of the automaton that is in state $q$ and is situated at the node $x$ of $\Gamma^*$. 
-Note
-that many nodes of $T_r$ can correspond to the same node of $\Gamma^*$, because the
-automaton can come back to a previously visited node. 
-The label of a node
-and its successors have to satisfy the transition function,
-that is, for a node $y$ of $T_r$ labelled by $(q,x)$, and $\delta(q,t)= \vartheta$ where $t$ is the type of $x$, there is a (possibly empty) set 
- $Y = \{ (q_0,d_0),(q_1,d_1), \ldots (q_\ell, d_\ell) \}  \subseteq  Q \times ext(\Gamma)$, such that $Y$ satisfies  $\vartheta $, and for all
-$(q_i,d_i)  \in  Y$, the node $y$ has a corresponding son $y.i$ labelled by $(q_i,x.d_i)$. Finally, the root of $T_r$ is labelled by $(q_I,\epsilon)$.
-
-
-
-Remember that $x.d$ can be $x. \epsilon$  or $x. \! \uparrow$, and the latter is defined only if 
-%$x \neq \$ $.
-$x  \neq   \epsilon $.
-So the run cannot go up from the root of the input tree. Note that it cannot use a
-transition  $\delta (q, a) = \text{\textit{false}}$ since the formula $\text{\textit{false}}$ cannot be satisfied.
-A run $T_r$ is accepting if all its infinite paths satisfy the parity acceptance 
-condition
-given by the priority function. 
-% The finite paths of a run that end with a transition $ \vartheta $ equivalent to  $true$, which is viewed as successful termination. 
-An infinite path $ \beta   \in  T_r^{\omega}$  satisfies the acceptance condition iff the smallest priority appearing infinitely often in
-%this path
-the sequence $\gamma$ of corresponding labels
- is even, i.e.
-%$\min ~ \text{\textit{Inf}}( \Omega (r( \beta ))) $
- $\min(\{ \Omega(q) \mid (q,x) \in \text{\textit{Inf}}(\gamma) \} $ is even. 
-Such
-a path in the run consists of following only one “copy” of the automaton. 
-
-
-% The generalization of twa with nested pebbles came recently, by two independent motivations: On the one hand, with the advancement of XML theory, finite state recognizers (with name n-pebble tree automata) were used in [21] to show that the XML typechecking problem is decidable. On the other hand, the concept of n-pebble tree-walking automata (n-ptwa) were defined in [9] to recognize first-orderlogic on trees.  Later, in [10]n-ptwa were extended with a more general pebble handling.
-
-
-\subsection{Alternating two-way tree automata with pebbles}
-
-Informally an $n$-pebble alternating two-way tree automaton works much like an alternating two-way tree automaton, but extended with a fixed set of pebbles, numbered from $1$ to $n$ that it can place on the tree. 
-% At each time, pebbles $1,\ldots, i$ are placed on some nodes of the tree, for some $i \in \{1, 2, \ldots , n \}$, or no pebble are placed on the tree. 
-To navigate through the tree the automaton can stay at the current node, move to its parent, to its 
- children, it can lift a pebble or place a pebble on the current node.
- Which of these transitions can be applied depends on the current state, the set
- of pebbles at the current node, 
-and the type of the current node (root, $\gamma$-child for $\gamma \in \Gamma$). 
-Operations $\text{\textit{lift}}$ and $\text{\textit{drop}}$ manage the
-pebbles much like in pebble pushdown systems.
-We indicate the possible kinds of moves of a pebble automaton by elements of the set 
-$ext_2(\Gamma) = ext(\Gamma) \biguplus \{ \text{\textit{lift}}, \text{\textit{drop}}\}$.
-% Clearly $\text{\textit{drop}}$ refers to dropping a pebble and $\text{\textit{lift}}$ to lifting a pebble. Note that the notation is  unambiguous by virtue of the stack discipline. 
-% Finally recall that if $S$ is a set then $\mathcal{P}(S)$ denotes the powerset of $S$.
+\par\noindent\ignorespacesafterend
+The {\em size} of $\mathcal{Z}$ is defined as
+$|\mathcal{Z}| = |Q| + |\Gamma| + |P| + |R| $.
+We also refer to $\mathcal{Z}$ as an $n$-parametric pushdown automaton if $|P| = n$.
+A {\em stack content} is a word from $ \Gamma^*$. 
+As before we write the top
+of the stack at the right of the word%(we are considering suffix rewriting as in Chapter 15)
+. 
+% A configuration is a  state and a stack content: $(q, w)$,
+% which we rather write $q(w)$, where $w  \in  W^*$, $q  \in Q$. 
+By $\Conf(\mathcal{Z})=Q\times  \Gamma^*$ we denote the set of
+{\em configurations} of $\mathcal{Z}$. As usual we rather write $q(w)$ instead of $(q, w)$.
+A {\em parameter valuation} is a function $\mu$ from $P$ to $\Gamma^*$.
 
 \begin{samepage}
-\begin{definition}
-For $n\geq 0$, an $n$-pebble alternating two-way automaton ($n$-PATWA) over  
-$\Gamma$-trees is a tuple
-$\mathcal{A} = (Q,   
-\delta , q_I , 
-\Omega)$ where
+%\begin{definition}
+A parametric pushdown automaton  $\mathcal{Z}= (Q, \Gamma, P,u R, q_{init}, \gamma_{init},F)$ 
+and a parameter valuation $\mu: P\rightarrow \Gamma^*$ induce the 
+%labeled 
+transition system  
+$T_{\mathcal{Z}}^{\mu} = (\Conf(\mathcal{Z}), 
+%\Lambda_{\mathcal{Z}}, 
+\rightarrow_{\mathcal{Z},\mu})$ where
+% $\Lambda_{\mathcal{Z}} = \Gamma \cup P$ and
+for all $ q, q'  \in  Q$, 
+for all $ w,w' \in \Gamma^* $, and 
+for all $ a  \in  \Gamma$, 
+\iffalse
+\begin{eqnarray*}
+q(wa) \xrightarrow{%a
+}_{\mathcal{Z},\mu} q'(w') & \text{if} &  (q, a, q' , op)  \in  R, \\
+q(\mu(p) ) \xrightarrow{%p
+}_{\mathcal{Z},\mu} q'(\mu(p) %\textcolor{red}{\cdot} 
+w) & \text{if} &  (q, p , q' , w)  \in  R.
+\end{eqnarray*}
+% \end{definition}
+\fi
+$q(wa) \xrightarrow{%a
+}_{\mathcal{Z},\mu} q'(w')$
+if there exists a rule in $R$
+ of the form $(q,a,q', op)$ or $(q,p,q', op)$ with $\mu(p)=wa$,
+such that
+		% $\text{\textit{top}}(w) = a$
+		% and 
+% $w' = \theta(w)$.
+either of the following holds
 \begin{itemize}
-\item $Q$ is a {\em finite set of states},
-\item $\delta  : Q  \times \{ 0, 1, \ldots, n\} \times \mathcal{P}(\{ 1, \ldots, n\}) \times 
-\text{\textit{types}}(\Gamma)
-  \to  \mathcal{B}^+ (Q \times ext_2(\Gamma))$ is a {\em transition function},
-\item $q_I$ is an {\em initial control state}, and
-\item $\Omega : Q \to \{ 0, 1, \ldots, m\}$ is a {\em priority function}.
+\item $ op = \text{\textit{push}}^\gamma$ and $w' = wa\gamma$,
+
+\item $ op = \text{\textit{pop}}$ and $w' = w$, or
+
+\item $ op = \text{\textit{skip}}$ and $w' = wa$.
 \end{itemize}
-\end{definition}
-\end{samepage}
- 
- 
-The idea of a transition in a $n$-pebble alternating two-way tree automaton works like a transition in an alternating two-way tree automaton,
-except the transition has additional conditions on the pebble assignment, and additional moves for taking care of the pebble.
-Consider for instance 
-that the automaton
- $\mathcal{A}$ is on the node $x.a$, in state $q$, pebbles $1, 2$ are on the tree, and exactly pebble $1$ is placed on the node $x.a$.
-Then a transition
-$\delta(q, 2, \{ 1\}, a) =  (q',\uparrow) \wedge (q'',\text{\textit{drop}})$
- will send a “copy” of $\mathcal{A}$  in state $q'$ to the node $x$ and
-another “copy” in state $q''$ to $x.a$ with both pebble $1$ and pebble $3$ placed on the node. 
-After that the two copies are
-running independently.
-
-
-
-
-
-
-%A {\em pebble set} of $\mathcal{A}$ is a set $P \subseteq \{ 1, \ldots, n\}$. 
-For a tree structure $T$, a 
-{\em $P$-pebble assignment} for a pebble set $P$ is a function which maps each $j \in P$ to a node in $T$.
-For $0 \leq i \leq n$, an {\em $i$-configuration} is a tuple $(q, x, f )$, where $x$ is a node, $q$ a state and
-$f$ a $\{ 1, \ldots , i \}$-pebble assignment \---- $f$ is the $\emptyset$-pebble assignment in case $i=0$. 
-We call $q$ the current state, $x$ the current node, and
-$f$ the current pebble assignment. 
-We also write $(q, x, x_{1} , \ldots , x_{i} )$ if 
-$f(j) = x_j$, for each
-$j \leq i$.
-
-
-
-
-
-
-Then, formally, a run of an $n$-pebble alternating two-way automaton $\mathcal{A}$
-over a tree is a tree $T_r$ in which every node is labelled by 
-an $i$-configuration,
-for some $i \in \{0, 1, \ldots, n\}$. A node in $T_r$ labelled by $(q, x, x_{1}, x_{2}, \ldots, x_{i})$ describes a “copy” of the automaton that is in state $q$, and is situated on the node $x$ of $\Gamma^*$, with the pebbles up to $i$ already dropped, with the $j$-th pebble for $j \leq i$ dropped on the node $x_{j}$.
-
-The label of a
-node and its successors have to satisfy the transition function. % However, recall there are restrictions on the drop-operation and the lift-operation : only
-% the pebble with the number $i$ can be lifted and only the pebble with number $i - 1$ can be
-% placed.
-Formally, this works much the same way as for alternating two-way tree automata; 
-that is, the root of $T_r$ is
-labelled by $(q_I,\epsilon, f_I )$, and, for a node $y$ of $T_r$ labelled by an $i$-configuration $(q, x, f)$, and 
-for
-$\delta(q, i, S, t) = \vartheta$ where $t$ is
-the type of $x$, 
-and $f(j) = x$ for each $j \in S$, and $f(j) \neq x$ for each $j \in \{1,\ldots,i \} \setminus S$,
-there is a (possibly empty) set 
-$Y \subseteq Q \times ext_2(\Gamma )$, such that $Y$ satisfies $\vartheta$,
-and for all $(q',d) \in Y$, the node $y$ has a corresponding son
-labelled with %$(x.d, q', f')$, where
-\begin{itemize}
-\item if $d \in ext(\Gamma)$,
-the $i$-configuration $(q ', x.d , f)$,
-%
-\item if $d = \text{\textit{drop}}$, the $(i+1)$-configuration  $ (q', x, f')$, where the domain of $f'$ is $\{ 1, \ldots, i, i+1\}$, $f'$ is equal to $f$ on the domain of $f$, and $f'(i+1) =x$, and
-%
-\item if $d = \text{\textit{lift}}$
-and $f(i) = x$, i.e. if the pebble $i$ is on the current node%
-, the $(i-1)$-configuration $(q', x, f')$, where $f'$ is the restriction of $f$ to $\{1, \ldots, i-1 \}$.
-\end{itemize}
-
-
-
-
-
-
-
-
-A run $T_r$ is {\em accepting} if all its infinite paths satisfy the parity acceptance 
-condition 
-given by the priority function $\Omega$.
-% Again finite paths end with a transition with formula $ \vartheta $ equivalent to $\text{\textit{true}}$, which is viewed as successful termination. 
-An infinite path $ \beta   \in  T_r^{\omega}$  satisfies the acceptance condition iff the smallest priority appearing infinitely often in
-%this path
-the sequence $\gamma$ of corresponding labels
- is even, i.e.
-%$\min ~ \text{\textit{Inf}}( \Omega (r( \beta ))) $
- $\min(\{ \Omega(q) \mid (q,x,f) \in \text{\textit{Inf}}(\gamma) \} $ is even. 
-
-
-
-By a pebble alternating tree-walking automaton (PATWA) we mean an $n$-PATWA for some $n$. 
-%Note that a $n$-pebble automaton without pebbles is just an alternating tree-walking automaton.
-
-
-
-
-
-\subsection{Reduction details}
-
-
-Alternating two-way tree automata with parity winning conditions have already been used to solve parity games on pushdown graphs in \cite{cachat2002two}, with a technique first developed to solve the model-checking problem in \cite{kupferman2000automata}. The main
-idea was to reduce a model-checking problem to an emptiness problem for the class of alternating two-way parity tree automata, and was then adapted to work on pushdown parity games.
-%
-%
-This leads to the following reduction: given a 
-parity game on pushdown graph $\mathcal{G}$ and a starting configuration $v_I$, we can
-effectively construct an ATWA $\mathcal{A}$
-such that
-player $0$ has a winning strategy from $v_I$ in $\mathcal{G}$ iff $\mathcal{A}$ accepts the full
-infinite tree $\Gamma^*$. The main idea of our reduction is that, when pushdown systems and ATWA are extended with a set of pebbles to manage, the technique used %is conserved.
-still works.
-We refer the reader to Appendix~\ref{appendix tree reduction} for more details on the proof.
-
-
-
-
-\begin{theorem}~\label{theorem reduction PATWA}
-For every $n$-PPDS $\mathcal{Z} = (Q_0 \biguplus Q_1, \Gamma,\Delta)$, 
-priority mapping $\Omega$, and state $q_I \in Q_0 \biguplus Q_1$,
-we can construct 
-effectively
-an $n$-PATWA $\mathcal{A}$ 
-such that
-player $0$ has a winning strategy from $(q_I, \$, f_I)$ in the parity game 
-$\mathcal{G}_{\mathcal{Z},Q_0,Q_1,\Omega}$
-iff
-$\mathcal{A}$ accepts the full infinite tree $\Gamma^*$.
-\end{theorem}
-
-
-% Decidability of checking that the $n$-PATWA $\mathcal{A}$ accepts the full infinite tree $\Gamma^*$ is then dealt with later in the subsequent section.
-
-\section{Decidability}\label{section decidability}
-
-
-
-
-
-
-
-
-\section{Lower bound}
-
-The aim of this section is to show a nonelementary lower bound for the 
-problem of deciding whether player $0$ has a winning strategy from some starting configuration in
-a pebble pushdown parity game.
-% problem of deciding winning configuration for pebble pushdown parity games.
-
-We reduce the satisfiability problem for first-order logic on words
-to the problem of {\sc Solving pebble pushdown parity game}. 
-We know from \cite{Sto74}
-that satisfiability is nonelementary. 
-%
-
-% Here a function is in {\sf elementary} if it is  $O(h_k (n))$ for one of the $k$-fold exponential functions $h_k$ with $h_0 (n) = n$ and $h_{k+1} (n) = 2^{h_k (n)}$.
-
-We define the tower function $T : \N \times \R \to \R$ by $T(0,r) =r$ and
-$T(h+1,r)= 2^{T(h,r)}$ for all $h \in \N, r \in \R$. Thus $T(h,r)$ is a tower of $2$s of height $h$ with an $r$ sitting on top.
-Observe that for all $n,h \in \N$ with $n\geq 1$, we have
-$T(h, log^{(h)}(n)) = n$.
-%
-% 
-Here a problem is in ${\sf ELEMENTARY}$ if it can be solved in time $O ( T(n, 0) )$.
-
-For a finite alphabet $\Sigma$,  let $\tau (\Sigma )$ be the vocabulary consisting of a binary relational symbol $\leq$,  and a unary relational symbol $P_a$ for every $a \in \Sigma$. 
-A word $w \in \Sigma^*$ can be seen as a $\tau (\Sigma )$-structure where the set of elements consists of a finite interval of $\N$. Elements are seen as positions in the word and for every element $i$, there exists precisely one $a \in \Sigma$ such that $i$ is in the interpretation of $P_a$. Lastly $\leq$ is interpreted as the linear order of $\N$.\\
-
-
-It is well-known that if we are interested in the complexity of first-order or monadic
-second-order model-checking on words, the alphabet can be assumed to be $\{0,1\}$ without loss of generality.
-Thus the satisfiability problem is concerned with the following question.
-\begin{samepage}
-\problemx{$\FO$ satisfiability on words}
-{A  
-$\FO[\tau(\{0,1\})]$-sentence $\phi$.}
-{Does there exists a word $w\in \{0, 1\}^*$, such that $w \models \phi$ ?\newline}
 \end{samepage}
 
 
-
-The result that is previously known and motivates the upcoming reduction consists in the following.
-
-
-\begin{theorem}[\cite{Sto74}]\label{FOnonelementary}
-
-%  Assume that $FPT \neq AW[*]$, and let $f$ be an elementary function and let $p$ be a polynomial.
-%  There is no model-checking algorithm for first-order logic on the class of words 
-%  whose running time is bounded by
-%  $$ f(k) \cdot p(n)$$ 
-
-% where $k$ denotes the size of the input sentence of the model-checking problem and $n$ the
-% size of the input word.
-
-The {\sc $\FO$ satisfiability on words} problem is not in {\sc ELEMENTARY}.
-	% SAT(N,<) is not elementary-recursive
-	% and in fact SAT(N,<) \not\in NSPACE(g(log_b(n),0)) for all b > 3.
-\end{theorem}
-
-
-
-
-
-\subsection{Reduction from FO SAT on words}
-
-The following theorem states a polynomial time reduction from
-{\sc $\FO$ satisfiability on words}
-%We consider reduction 
-towards the problem of %following problem.
-{\sc Solving pebble pushdown parity game}.
-
-
-
-
-\begin{samepage}
-\begin{theorem}
-{\sc FO satisfiability on words} is polynomial time reducible to {\sc Solving pebble pushdown parity game}.
-\end{theorem}
-\end{samepage}
-
-
-
-\begin{proof}
-
-\noindent
-We start with
-% a $\tau(\{0,1\})$-structure $w$ and
- a 
- $\FO[\tau(\{0,1\})]$%%
-% $\FO$%
--formula $\phi$.
+A {\em $\mu$-run} from $q_0(a_0)$ to $q_n(a_n)$ in $\mathcal{Z}$ is a corresponding
+path in the transition system 
+$T_{\mathcal{Z}}^\mu$ 
+induced by $\mathcal{Z}$ and $\mu$.
 %
-% Note that $w$ corresponds to a word $w \in \{0,1\}^*$ of size $n$.\\
+%and will be noted
+%$q_0(z_0) \xrightarrow{\lambda_0}_{\mathcal{Z},\mu} q_1(z_1) \xrightarrow{\lambda_1}_{\mathcal{Z},\mu} \cdots \xrightarrow{\lambda_{n-1}}_{\mathcal{Z},\mu} q_n(z_n)$.
 %
-% \noindent
-We construct
-a pebble pushdown system $\mathcal{Z}_\phi = (Q_\phi,W_\phi, \Delta_\phi )$, with a disjoint
-union $Q_\phi = Q_0  \biguplus Q_1 $, a priority mapping $\Omega_\phi$, and an initial state $q_I \in Q_\phi$
-such that
-player $0$ has a winning strategy from $(q_I, \$, f_I)$ in the  parity game
-$\mathcal{G}_{\mathcal{Z_\phi}, Q_0,Q_1, \Omega_\phi}$
-if and only if
-there exists a word $w \in \{0,1\}^*$ such that
-$w  \models \phi $. \\
-
-\noindent
-We assume without loss of generality that $\phi$ is written in the prenex normal form
-$\phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k ~ \psi$, where 
-an even number $k$ of quantifiers alternate between existential and universal ones, and 
-$\psi$ is quantifier-free and in disjunctive normal form.
+As with PDA, we say $\pi$ is {\em accepting} if $q_0 = q_{init}$, $a_0=\gamma_{init}$,
+and $q_n\in F$.
+%
+% We say {\em reachability holds} for $\mathcal{Z}$ if there is a $\mu$ such that there is a $\mu$-run in $\mathcal{Z}$ from $q_{init}(\gamma_{init})$   to some configuration $q(w)$ for some $q\in F$ and some $w \in \Gamma^*$.
+% We refer to Figure~\ref{example_pda} for an instance of a PDA for which reachability holds.
 
 
 
 
-
-
-Player $0$ starts by pushing a word $w$ onto the stack, then places the first pebble at the current position. The goal of this first pebble is to remember the word $\$w$, which corresponds to the 
-word “guessed” by player $0$. This pebble is meant to enforce that the stack remain a prefix of $\$w$, with each stack content of the play corresponding to a position in the word. To enforce this, once pebble $1$ is placed, we allow in $\mathcal{Z}_\phi$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position on the word. A player thus challenged only has the ability to add things onto the stack, and win if and only if able to find a way back to pebble $1$. 
-
-Then players alternate placing pebbles on prefixes of $\$w$. Universal variables correspond to pebbles placed by player $1$ and existential variables to pebbles placed by player $0$. 
-Once players have chosen values for their respective variables, the pebble assignment $f$ is fixed. It is then time
-for player $0$ to ensure that
-$w$ satisfies $\psi$ if the variables $x_1, \ldots, x_k$ are interpreted by 
-$ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
-
-
-
-Player $0$, being the existential player, choses one of the conjunctive clause in $\psi$, essentially claiming to be able to prove it. Then player $1$, the universal player, chooses one of the atomic formula in the clause to test. 
-%The process can be seen in Figure~\ref{DNF}. 
-Testing the atomic formula is the purpose of a gadget 
-%$ \C_{\psi_{i,j}}$ built such that
-in which
- player $0$ has a winning strategy 
- %in $ \C_{\psi_{i,j}}$
-  if and only if 
-$w$ satisfies %$\psi_{i,j}$
-the atomic formula
- if the variables $x_1, \ldots, x_k$ are interpreted by 
-$ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
+In the particular case where $P=\{p\}$ is a singleton for some parameter $p$ and $\mu(p)=u \in \Gamma^*$,
+we prefer to write $q(w)\xrightarrow{%\lambda
+}_{\mathcal{Z}, u}q'(w')$
+to denote $q(w)\xrightarrow{%\lambda
+}_{\mathcal{Z}, \mu}q'(w')$ and
+will call the $\mu$-run an {\em $u$-run}. In case the automaton $\mathcal{Z}$ is obvious from context, we write $\xrightarrow{%\lambda
+}_{\mu}$ (resp. $\xrightarrow{%\lambda
+}_{u}$)
+instead of $\xrightarrow{%\lambda
+}_{\mathcal{Z}, \mu}$ (resp. $\xrightarrow{%\lambda
+}_{\mathcal{Z},u}$). \\
 
 
 
-The gadget depends on the type of the atomic formula. For a formula checking the letter at the position of a variable $x$, player $0$ goes to the position corresponding to $x$, then check that the the top of the stack
-$x$ is the right letter. For one checking that $x = x'$ where $x$ and $x'$ are both variables,
-player $0$ goes to the position corresponding to $x$ and check against the presence of the pebble corresponding to $x'$ as well. If the formula is a negation, players exchange their roles.
-\end{proof}
+\subsection{PPDA reachability}
 
-Then, the nonelementary lower bound follows from Theorem~\ref{FOnonelementary}. 
+Note that the reachability problem for parametric pushdown automata consists in
+the following decision problem.
 
-
-
-\begin{theorem}
-
-The problem of {\sc Solving pebble pushdown parity game} is not in {\sc ELEMENTARY}.
-
-\end{theorem}
+\problemx{$n$-PPDA reachability}
+{An $n$-PPDA $\mathcal{Z}$.}
+{Does 
+%reachability hold for
+an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
+ $\mathcal{Z}$?\newline}
 
 
+% \subsubsection{Parametric pshdown games}
+\subsection{PPDA games}
+
+We are moreover interested in games played on parametric pushdown automata's  
+ transition systems.
+Recall that given a 
+%labeled 
+transition system,
+one needs only to provide %a mapping $\Omega$ and 
+a partition of the set of configuration $S$ into two sets $S_0$ and $S_1$ to obtain an arena. \\
 
 
-
-\section{Conclusion}
-
-In this paper we have shown that
-deciding
-the winner of a parity game on a graph of a pebble pushdown system 
-is nonelementary.
-
-	For the nonelementary lower bound
-we reduced the $\FO$ satisfiability problem on words \---- known to be nonelementary
-from \cite{Sto74} \---- to the
-problem of deciding whether player $0$ has a winning strategy from some starting configuration in 
-a pebble pushdown parity game.
-
-	For the decidability upper bound, we  used pebble alternating two-way tree automata to solve pebble pushdown parity games.
-Alternating two-way tree automata (ATWA) with parity winning conditions have been used to solve parity games on pushdown graphs \cite{cachat2002two}. The technique was first developped to solve model-checking problem for pushdown graphs in \cite{kupferman2000automata}. 
-We showed that, when pushdown graphs and ATWA are extended with a set of pebbles to manage, the technique
-also works.
-We then proved decidability 
-% for checking that an $n$-PATWA $\mathcal{A}$ accepts the full infinite tree $\{0,1\}^*$ 
-by %reducing it
-a reduction
- to the problem of model-checking $\MSO$ on a well chosen structure. To ensure decidability of model-checking $\MSO$ on the chosen structure, we made use of 
-Muchnik's Theorem: the structure is constructed by applying a successive number of times Muchnik's iteration to a structure $\mathfrak{A}_0$ for which model-checking $\MSO$ is decidable.
-%  After providing this structure, we will show that  checking that an $n$-PATWA $\mathcal{A}$ accepts the full binary tree $\{0,1\}^*$ reduces itself to the problem of model-checking $\MSO$ on it.
-
-
-
-\bibliography{bibliography/bib}
-
-
-
-
-
-
-
-
-
-\appendix
-
-
-
-
-\section{Reduction from PPDS to PATWA}\label{appendix tree reduction}
-% \subsection{Construction}
-
-We provide in this appendix more details on Theorem~\ref{theorem reduction PATWA}. Let us first recall the theorem.
-
-\begin{theorem*}
-For every $n$-PPDS $\mathcal{Z} = (Q_0 \biguplus Q_1, \Gamma,\Delta)$, 
-a state $q_I \in Q = Q_0 \biguplus Q_1$,
-and priority mapping $\Omega: Q \to \{1, \ldots, m\}$,
-we can construct 
-effectively
-an $n$-PATWA $\mathcal{A}$ 
-such that
-player $0$ has a winning strategy from $(q_I, \$, f_I)$ in the parity game 
-$\mathcal{G}_{\mathcal{Z},Q_0,Q_1,\Omega}$
-iff
-$\mathcal{A}$ accepts the full infinite tree $\Gamma^*$.
-\end{theorem*}
-
-
-
-We construct a pebble alternating two-way tree automaton $\mathcal{A}$ that determines if player
-$0$ has a winning strategy from $(q_I, \$, f_I)$ in $\mathcal{G}_{\mathcal{Z},Q_0,Q_1,\Omega}$, i.e., wins every play, whatever player $1$ does. 
-The
-automaton $\mathcal{A}$ will simulate the transitions of the pebble pushdown system $\mathcal{Z}$ on the full
-$\Gamma$-tree, guess nondeterministically the best moves of player $0$ and follow each
-possible move of player $1$ using alternation.
-This tree automaton can
-go either up or down the tree: it goes down to simulate a rule that pushes
-some new symbol, and it goes up to simulate a popping rule, and it drops or lifts a pebble to represent the dropping or lifting of a pebble. For each possible move, the control state has to
-be updated in accordance with the pushdown transition rules. As we aim to
-simulate a game, the tree automaton needs to be alternating: states
- associated to player $0$ states will have disjonctive booleans formulas
-  while states associated to
-player $1$ states will have conjonctive ones.
-Finally, the priority mapping is inherited from $\Omega$.
-
-As an example, the stack effect of a transition $(q, a, 0, \emptyset, q' , cb)  \in \Delta_{\mathcal{Z}} $ from a configuration $q(wa, \mu)$
-of
-the PPDS can be simulated by a $n$-PATWA over the full
-$\Gamma$-tree from the node $ua$ by the following sequence of moves: 
-$\uparrow, c, b$. Indeed
-$wa \! \uparrow cb = wcb$. We have chosen suffix rewriting rather than prefix to conform with
-the notation of the tree. 
-The control states of $\mathcal{A}$ serve to store the control states of $\mathcal{Z}$.
-In order to be able to simulate with many steps a transition of $\mathcal{Z}$, the control states of $\mathcal{A}$ are also used to remember the letters it has to write (see Figure~\ref{stack simulation} for an illustration).
-
-
-\begin{center}
-	\begin{figure}
-		\hspace{2.1cm}
-\includegraphics[width=0.66\textwidth]{figures/stack_simulation}
-	\caption{Transition $(p, a, \emptyset, q, cb)$ of the RPDS
-	%(long arrow)
-	 simulated by the PATWA.}
-	 \label{stack simulation}
-	\end{figure}
-\end{center}
-
-
-Moving up or down the tree structure is enough in order to simulate the modifications of the stack
-performed by transitions of $\mathcal{Z}$. Additionally, dropping or lifting pebble is enough to simulate the dropping or lifting of pebbles in the PPDS. As an example, we simulate
-$(q, a, 0, \emptyset, q', \text{\textit{drop}})  \in   \Delta_{\mathcal{Z}} $ by the single move $\text{\textit{drop}}$, and
-$(q, a, i, \{i\}, q', \text{\textit{lift}})  \in   \Delta_{\mathcal{Z}} $ by the single move 
-$\text{\textit{lift}}$. Additionally, we simulate checks against pebble sets in $\mathcal{Z}$ by similar checks in the PATWA.
-
-
-More formally now, the control states of $\mathcal{A}$ are tuples
-from $( Q \times ext_2(\Gamma) )^*$  
-composed of a control state of  $\mathcal{Z}$, and
-a sequence of elements of $ ext_2(\Gamma)$.
-
-The sequence of letters is used to remember the letters the automaton has to write. 
-Each sequence of letters has at worst the length of a corresponding output of the transition relation of $\mathcal{Z}$, hence the sequences of letters of $\Gamma$ are more precisely elements of $\Gamma^{ \leq |\Delta_{\mathcal{Z}}|}$.  
-
-
-From a state $(q, \epsilon)$, for a transition
-$(q, a, i, S, q', x) \in \Delta_{\mathcal{Z}}$,
-the automaton's first move simulating the transition, be it the dropping of a pebble, the lifting of a pebble, or going up the tree, is accompanied by 
-checks that the pebbles $1, \ldots, i$ are placed on the tree \---- or that no pebble is on the tree if $i=0$ \---- and checks against the presence of the pebbles of $S$.
-
-From a state $(q , bx)$ ($bx \neq \epsilon$ because $b  \in  \Gamma$) the automaton goes down
-in direction $b$, that is to say writes $b$, whatever it reads, and remembers the
-(sub)word $x$ it still has to write and the state $q$ of the pushdown system. 
-
-
-If $q  \in  Q_1$ then $ (q,w)  \in  V_1$ for all $w \in \Gamma^{ \leq |\Delta_{\mathcal{Z}}|}$
+Thus, for an  $n$-parametric pushdown automaton 
+$\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
+given a partition of
+$Q$ into $Q_0$ and $Q_1$, 
+we naturally partition the configurations of
+%the transition system of 
+ $\mathcal{Z}$
+% $T^\mu_{\mathcal{Z}}$
+into
+$\Conf_{\mathcal{Z},0}=Q_0\times \Gamma^*$
 and
-$\mathcal{A}$
-executes from $(q,\epsilon)$ all the possible moves of player $1$, to ensure that player $0$ can win after
-each of these moves. But if $q  \in  Q_0$, $\mathcal{A}$ in $(q,\epsilon)$ chooses nondeterministically a move of
-player $0$ and tries to make player $0$ win. \newline
+$\Conf_{\mathcal{Z},1}=Q_1\times \Gamma^*$. 
 
 
-The priority mapping of $\mathcal{A}$ is almost the same as the one of 
-$\mathcal{G}_{\mathcal{Z},Q_0,Q_1,\Omega}$: 
-$\Omega_\A(q, x) =
-\Omega (q)$. 
-The initial state of $\mathcal{A}$ causes it to go deterministically to the starting
-configuration of the game.
-
+With these notations in mind one can define the arena
+$$
+A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
+=
+(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})$$
+induced by a PPDA $\mathcal{Z}$, a partition of its set of states, and a
+parameter valuation $\mu: P\rightarrow \Gamma^*$.
 
 
 
-\begin{lemma}~\label{lemma reduction PATWA}
-Player $0$ has a winning strategy from $(q_I, \$, f_I)$ in $\mathcal{G}_{\mathcal{Z},Q_0,Q_1,\Omega}$ iff $\mathcal{A}$ accepts the full
-infinite tree $\Gamma^* $.
+Given additionally a partition of
+$P$ into $P_0$ and $P_1$, 
+we define 
+$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
+as
+the arena that contains both the configurations and transitions of
+the parameter valuation arena
+$A_{P_0,P_1,\Gamma^*}$, as see on page~\pageref{parametric arena},
+and that moreover contains the configurations and transitions of
+$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$ 
+\---- albeit with configurations additionally including $\mu$ in the tuple to avoid confusion \----
+for
+all parameter valuations $\mu: P\rightarrow \Gamma^*$.
+Moreover, for every configuration $\mu$ in $A_{P_0,P_1,\Gamma^*}$,
+we add a transition
+from $\mu$ towards 
+$q_{init}(\gamma_{init}, \mu)$ in $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$. \label{PPDA reachability game}
 
-\end{lemma}
-
-
-This concludes our construction for the proof of Theorem~\ref{theorem reduction PATWA}.
 
 
 
+Given a 
+priority function $\Omega: Q \to [0, m]$,
+we consider the function
+$\widehat{\Omega}: \Conf(\mathcal{Z}) \cup (\Gamma^* \cup \bot)^{[0,n]} \to [0, m]$
+where we set
+$\widehat{\Omega}(q, w, \mu) = \Omega(q)$
+for all
+$w \in \Gamma^*$
+and
+for all $\mu \in (\Gamma^*)^{P}$,
+and
+$\widehat{\Omega}(\mu) = 0$
+for all $\mu \in (\Gamma^* \cup \bot)^{P}$.
+
+
+
+
+% $T_{\mathcal{Z}} = (\Conf(\mathcal{Z}), \rightarrow_{\mathcal{Z},\mu})$
+
+\iffalse
+\textcolor{red}{
+Reachability %, B\"uchi
+ and parity games on $\mathcal{G}_{(\mathcal{Z}, \mu,P_0, P_1, Q_0 , Q_1, \Omega)}$
+are then clearly defined. They have the flaw however of not taking into account the
+way the values assigned to the parameters is chosen. How values are assigned to
+the parameters is the subject of the next Section.
+}
+\fi
+
+
+
+
+
+
+We are interested in the following games and problems.
+
+
+
+\problemx{Parametric pushdown reachability game}
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
+, and $ P = P_0 \biguplus P_1$.}
+{Does player $0$ have a winning strategy from $\mu_\bot$ in the reachability game \\
+$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{F \times \Gamma^* \times (\Gamma^*)^P})$ ?\newline}
+
+
+
+
+\problemx{Parametric pushdown parity game}
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
+, and $ P = P_0 \biguplus P_1$, 
+and a priority function $\Omega: Q \to [0, m]$%
+%which naturally lead to a mapping on $\Conf(\mathcal{Z})$
+%, and an initial state $q_{init} \in Q$% and initial stack symbol $w_{init} \in W$
+.}
+{Does player $0$ have a winning strategy from $\mu_\bot$ in the parity game \\
+$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$ ?\newline}
+
+
+
+\iffalse
+\problemx{Parametric pushdown reachability game}
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, a disjoint
+union $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
+.}
+{Does player $0$ have a 
+strategy $\sigma_0$ for the parameter valuation game  such that
+for all player $1$ strategies $\sigma_1$ for the parameter valuation game,
+player $0$ has a
+winning strategy from $q_{init}(\gamma_{init})$ for the reachability condition on
+$\mathcal{G}_{(\mathcal{Z}, \mu_{\sigma_0, \sigma_1}, P_0, P_1, Q_0 , Q_1, \Omega)}$ ?\newline}
+
+
+
+
+\problemx{Parametric pushdown parity game}
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, a disjoint
+union $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
+, 
+a priority mapping $\Omega: Q \to \{0, \ldots m\}$%
+%which naturally lead to a mapping on $\Conf(\mathcal{Z})$
+%, and an initial state $q_{init} \in Q$% and initial stack symbol $w_{init} \in W$
+.}
+{Does player $0$ have a 
+strategy $\sigma_0$ for the parameter valuation game  such that
+for all player $1$ strategies $\sigma_1$ for the parameter valuation game, 
+player $0$ has a
+winning strategy from $q_{init}(\gamma_{init})$ for the parity condition on
+$\mathcal{G}_{(\mathcal{Z}, \mu_{\sigma_0, \sigma_1}, P_0, P_1, Q_0 , Q_1, \Omega)}$ ?\newline}
+\fi
+
+We write {\sc $n$-parametric reachability parity game}
+and
+{\sc $n$-parametric pushdown parity game} if 
+ the number of parameters $n=|P|$ of $\mathcal{Z}$ is fixed by the problem.
+
+
+			
+			
+				
+				
+				
 
 
 %\subsection{A decidability result from reduction to parity games on automata with pebbles}\label{pebbles}
@@ -2518,6 +2077,217 @@ Finally, the following complexity result is due the above and Theorem~\ref{PPDA 
 \begin{corollary}
 {\sc $n$-parametric pushdown automata parity game} is in $(n+1)$-$\EXP$.
 \end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Lower bound}
+
+The aim of this section is to show a nonelementary lower bound for the 
+problem of deciding whether player $0$ has a winning strategy from some starting configuration in
+a pebble pushdown parity game.
+% problem of deciding winning configuration for pebble pushdown parity games.
+
+We reduce the satisfiability problem for first-order logic on words
+to the problem of {\sc Solving pebble pushdown parity game}. 
+We know from \cite{Sto74}
+that satisfiability is nonelementary. 
+%
+
+% Here a function is in {\sf elementary} if it is  $O(h_k (n))$ for one of the $k$-fold exponential functions $h_k$ with $h_0 (n) = n$ and $h_{k+1} (n) = 2^{h_k (n)}$.
+
+We define the tower function $T : \N \times \R \to \R$ by $T(0,r) =r$ and
+$T(h+1,r)= 2^{T(h,r)}$ for all $h \in \N, r \in \R$. Thus $T(h,r)$ is a tower of $2$s of height $h$ with an $r$ sitting on top.
+Observe that for all $n,h \in \N$ with $n\geq 1$, we have
+$T(h, log^{(h)}(n)) = n$.
+%
+% 
+Here a problem is in ${\sf ELEMENTARY}$ if it can be solved in time $O ( T(n, 0) )$.
+
+For a finite alphabet $\Sigma$,  let $\tau (\Sigma )$ be the vocabulary consisting of a binary relational symbol $\leq$,  and a unary relational symbol $P_a$ for every $a \in \Sigma$. 
+A word $w \in \Sigma^*$ can be seen as a $\tau (\Sigma )$-structure where the set of elements consists of a finite interval of $\N$. Elements are seen as positions in the word and for every element $i$, there exists precisely one $a \in \Sigma$ such that $i$ is in the interpretation of $P_a$. Lastly $\leq$ is interpreted as the linear order of $\N$.\\
+
+
+It is well-known that if we are interested in the complexity of first-order or monadic
+second-order model-checking on words, the alphabet can be assumed to be $\{0,1\}$ without loss of generality.
+Thus the satisfiability problem is concerned with the following question.
+\begin{samepage}
+\problemx{$\FO$ satisfiability on words}
+{A  
+$\FO[\tau(\{0,1\})]$-sentence $\phi$.}
+{Does there exists a word $w\in \{0, 1\}^*$, such that $w \models \phi$ ?\newline}
+\end{samepage}
+
+
+
+The result that is previously known and motivates the upcoming reduction consists in the following.
+
+
+\begin{theorem}[\cite{Sto74}]\label{FOnonelementary}
+
+%  Assume that $FPT \neq AW[*]$, and let $f$ be an elementary function and let $p$ be a polynomial.
+%  There is no model-checking algorithm for first-order logic on the class of words 
+%  whose running time is bounded by
+%  $$ f(k) \cdot p(n)$$ 
+
+% where $k$ denotes the size of the input sentence of the model-checking problem and $n$ the
+% size of the input word.
+
+The {\sc $\FO$ satisfiability on words} problem is not in {\sc ELEMENTARY}.
+	% SAT(N,<) is not elementary-recursive
+	% and in fact SAT(N,<) \not\in NSPACE(g(log_b(n),0)) for all b > 3.
+\end{theorem}
+
+
+
+
+
+\subsection{Reduction from FO SAT on words}
+
+The following theorem states a polynomial time reduction from
+{\sc $\FO$ satisfiability on words}
+%We consider reduction 
+towards the problem of %following problem.
+{\sc Solving pebble pushdown parity game}.
+
+
+
+
+\begin{samepage}
+\begin{theorem}
+{\sc FO satisfiability on words} is polynomial time reducible to {\sc Solving pebble pushdown parity game}.
+\end{theorem}
+\end{samepage}
+
+
+
+\begin{proof}
+
+\noindent
+We start with
+% a $\tau(\{0,1\})$-structure $w$ and
+ a 
+ $\FO[\tau(\{0,1\})]$%%
+% $\FO$%
+-formula $\phi$.
+%
+% Note that $w$ corresponds to a word $w \in \{0,1\}^*$ of size $n$.\\
+%
+% \noindent
+We construct
+a pebble pushdown system $\mathcal{Z}_\phi = (Q_\phi,W_\phi, \Delta_\phi )$, with a disjoint
+union $Q_\phi = Q_0  \biguplus Q_1 $, a priority mapping $\Omega_\phi$, and an initial state $q_I \in Q_\phi$
+such that
+player $0$ has a winning strategy from $(q_I, \$, f_I)$ in the  parity game
+$\mathcal{G}_{\mathcal{Z_\phi}, Q_0,Q_1, \Omega_\phi}$
+if and only if
+there exists a word $w \in \{0,1\}^*$ such that
+$w  \models \phi $. \\
+
+\noindent
+We assume without loss of generality that $\phi$ is written in the prenex normal form
+$\phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k ~ \psi$, where 
+an even number $k$ of quantifiers alternate between existential and universal ones, and 
+$\psi$ is quantifier-free and in disjunctive normal form.
+
+
+
+
+
+
+Player $0$ starts by pushing a word $w$ onto the stack, then places the first pebble at the current position. The goal of this first pebble is to remember the word $\$w$, which corresponds to the 
+word “guessed” by player $0$. This pebble is meant to enforce that the stack remain a prefix of $\$w$, with each stack content of the play corresponding to a position in the word. To enforce this, once pebble $1$ is placed, we allow in $\mathcal{Z}_\phi$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position on the word. A player thus challenged only has the ability to add things onto the stack, and win if and only if able to find a way back to pebble $1$. 
+
+Then players alternate placing pebbles on prefixes of $\$w$. Universal variables correspond to pebbles placed by player $1$ and existential variables to pebbles placed by player $0$. 
+Once players have chosen values for their respective variables, the pebble assignment $f$ is fixed. It is then time
+for player $0$ to ensure that
+$w$ satisfies $\psi$ if the variables $x_1, \ldots, x_k$ are interpreted by 
+$ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
+
+
+
+Player $0$, being the existential player, choses one of the conjunctive clause in $\psi$, essentially claiming to be able to prove it. Then player $1$, the universal player, chooses one of the atomic formula in the clause to test. 
+%The process can be seen in Figure~\ref{DNF}. 
+Testing the atomic formula is the purpose of a gadget 
+%$ \C_{\psi_{i,j}}$ built such that
+in which
+ player $0$ has a winning strategy 
+ %in $ \C_{\psi_{i,j}}$
+  if and only if 
+$w$ satisfies %$\psi_{i,j}$
+the atomic formula
+ if the variables $x_1, \ldots, x_k$ are interpreted by 
+$ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
+
+
+
+The gadget depends on the type of the atomic formula. For a formula checking the letter at the position of a variable $x$, player $0$ goes to the position corresponding to $x$, then check that the the top of the stack
+$x$ is the right letter. For one checking that $x = x'$ where $x$ and $x'$ are both variables,
+player $0$ goes to the position corresponding to $x$ and check against the presence of the pebble corresponding to $x'$ as well. If the formula is a negation, players exchange their roles.
+\end{proof}
+
+Then, the nonelementary lower bound follows from Theorem~\ref{FOnonelementary}. 
+
+
+
+\begin{theorem}
+
+The problem of {\sc Solving pebble pushdown parity game} is not in {\sc ELEMENTARY}.
+
+\end{theorem}
+
+
+
+
+
+\section{Conclusion}
+
+In this paper we have shown that
+deciding
+the winner of a parity game on a graph of a pebble pushdown system 
+is nonelementary.
+
+	For the nonelementary lower bound
+we reduced the $\FO$ satisfiability problem on words \---- known to be nonelementary
+from \cite{Sto74} \---- to the
+problem of deciding whether player $0$ has a winning strategy from some starting configuration in 
+a pebble pushdown parity game.
+
+	For the decidability upper bound, we  used pebble alternating two-way tree automata to solve pebble pushdown parity games.
+Alternating two-way tree automata (ATWA) with parity winning conditions have been used to solve parity games on pushdown graphs \cite{cachat2002two}. The technique was first developped to solve model-checking problem for pushdown graphs in \cite{kupferman2000automata}. 
+We showed that, when pushdown graphs and ATWA are extended with a set of pebbles to manage, the technique
+also works.
+We then proved decidability 
+% for checking that an $n$-PATWA $\mathcal{A}$ accepts the full infinite tree $\{0,1\}^*$ 
+by %reducing it
+a reduction
+ to the problem of model-checking $\MSO$ on a well chosen structure. To ensure decidability of model-checking $\MSO$ on the chosen structure, we made use of 
+Muchnik's Theorem: the structure is constructed by applying a successive number of times Muchnik's iteration to a structure $\mathfrak{A}_0$ for which model-checking $\MSO$ is decidable.
+%  After providing this structure, we will show that  checking that an $n$-PATWA $\mathcal{A}$ accepts the full binary tree $\{0,1\}^*$ reduces itself to the problem of model-checking $\MSO$ on it.
+
+
+
+\bibliography{bibliography/bib}
+
+
+
+
+
+
+
+
+
+\appendix
+
 
 
 
