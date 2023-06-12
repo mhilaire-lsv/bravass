@@ -467,120 +467,15 @@ Concerning the logic $\MSO$, we are interested in the following decision problem
 
 
 
-\subsection{Games}
+%ù \subsection{Games}
 
 
-% Games represent a model for interaction between decision makers. We study so-called turn-based games in extensive form with perfect information where the players have to make decisions again and again.
-\iffalse
-After its foundation by von Neumann and Morgenstern [vNM44] in the
-1940s, game theory has quickly become a valuable tool for modelling the
-interaction of several agents with individual and possibly conflicting objec-
-tives. It has applications in many scientific fields such as economy, sociology,
-biology, logic and computer science. Whereas the games used in the former
-three areas are usually finite in the sense that any play of these games ends
-after a finite number of steps (in fact often after only a single step), the
-games used in logic and computer science are in general infinite.
-
-@article{copeland1945john,
-  title={John von Neumann and Oskar Morgenstern, theory of games and economic behavior},
-  author={Copeland, Arthur H},
-  journal={Bulletin of the American Mathematical Society},
-  volume={51},
-  number={7},
-  pages={498--504},
-  year={1945},
-  publisher={American Mathematical Society}
-}
-
-
-
-More precisely, an infinite game is played for an infinite number of
-rounds. In each round, one player chooses an action depending on the se-
-quence of actions chosen in previous rounds. After infinitely many rounds,
-an infinite sequence of actions has emerged, called the outcome of the game.
-Each player receives a payoff determined by a payoff function mapping each
-possible outcome to a real number in the interval [0, 1]. We will concen-
-trate on games where the possible payoffs are just 0 and 1, in which case a
-winning condition, given as an abstract set of possible outcomes, is used to
-determine whether a player wins (payoff 0) or loses (payoff 1) an outcome.
-In logic, games are used to evaluate a logical formula in a mathematical
-structure and to compare mathematical structures with respect to their
-(in)distinguishability by a certain logic. Games of the former kind are called
-model checking games; games of the latter kind are called model comparison
-games. Whereas model checking and model comparison games for plain
-modal or first-order logic are finite games, infinite games arise as model
-checking games for fixed point logics and as model comparison games for
-infinitary logics.
-In computer science, games are used for the verification and synthesis
-of reactive systems, i.e. systems that interact with their environment. As
-soon as the systems under consideration do not necessarily terminate, these
-games become infinite. For example, the behaviour of an operating system
-can be understood as an infinite game between the system and its users.
-
-
-So far, the games used in logic and computer science have usually been
-two-player zero-sum games, i.e. games with only two players where one
-player wins if and only if the other player loses. For example, in a model
-checking game, one player wants to show that the given formula holds in the
-given structure whereas the other player wants to show that this is not the
-case. Analogously, in a game used for verification, one player wants to show
-that the given system is able to react against its environment in such a way
-that the resulting execution path of the system fulfils the given specification
-whereas the other player wants to show that this is not the case.
-
-
-
-The research on infinite games in theoretical computer science is based on a
-mixture of several motivations:
-1. The beautiful classical theory of infinite games, as developed in descriptive
-set theory, lacks an algorithmic content. Such an algorithmic orientation is
-provided by the automata theoretic approach to infinite games, originating
-in work of Church, B ̈uchi, McNaughton, and Rabin about fourty years ago.
-2. Determinacy results for infinite games are closely related to complementation
-results for logics and automata; thus, infinite games help to analyze logical
-theories (the most prominent being the monadic theory S2S of two successor
-functions, see e.g. [Th97]).
-3. Games are a natural model of reactive computation, and infinite games are
-thus a faithful representation of nonterminating reactive systems (for which
-control problems can be solved in terms of providing winning strategies).
-4. The model checking problem for logics like the μ-calculus can be formulated
-as the question to determine the winner of an infinite game.
-The purpose of this tutorial is to explain the core of the algorithmic (and
-automata theoretic) theory of infinite games. In the present extended abstract,
-only some key notions are explained, without technical details and proofs. In the
-tutorial, more will be said about topics of current research as listed in Section 6
-of this abstract.
-
-@incollection{thomas1997languages,
-  title={Languages, automata, and logic},
-  author={Thomas, Wolfgang},
-  booktitle={Handbook of formal languages},
-  pages={389--455},
-  year={1997},
-  publisher={Springer}
-}
-
-
-\fi
-
-
-A game is composed of an arena and a winning condition.
-\iffalse
-\mh{Two-player games oﬀer a very convenient framework to represent
-interaction of a program with some (possibly hostile) environment. In this approach, the ﬁrst player represents the program while the second player simulates
-the environment. A winning strategy expresses a property that must hold whatever the environment does, thus ﬁnding a winning strategy for the ﬁrst player
-allows to synthesize a controller that restricts the program and ensures that the
-property expressed by the winning condition always holds \cite{arnold2003games}.}
-\fi
+A {\em game} is composed of an arena and a winning condition.
 We will ﬁrst study
 arenas and
  then introduce common winning conditions that will be of interest to us.
 
-
-
-
- \subsubsection{Arenas}
-
+% \subsubsection{Arenas}
 
 \begin{samepage}
 An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of
@@ -590,7 +485,7 @@ An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of
 	\item a relation of %labeled 
 		transitions
 	 ${\rightarrow} \subseteq S \times %\Lambda \times 
-	 				S$. \\
+	 				S$. 
 \end{itemize}
 \end{samepage}
 
@@ -622,12 +517,10 @@ as an unlabeled transition system.
 \fi
 
 
- \subsubsection{Plays}
+%  \subsubsection{Plays}
 
 
 \noindent
-%
-%\noindent
 A {\em play} in an arena $A=(S_0,S_1,\rightarrow)$ is a path in $(S,{\rightarrow})$ that is {\em maximal} in the following sense: it is either infinite or finite and if it is finite, then the target configuration is a dead end. 
 A {\em partial play} in an arena $A=(S_0,S_1,\rightarrow)$ is a 
 % sequence of configurations $s_{init} = s_0 s_1 \ldots \in S^\infty$ connected by the transition relation, i.e. such that $(v_i, v_{i+1}) \in T$.
@@ -637,10 +530,9 @@ prefix of a play in $A$.\\
 \noindent
 Essentially plays can be seen as this: the two players, player $0$ and player $1$, move along the labeled transition system, taking turns either inﬁnitely often or until a dead end is reached.
 
-% \subsubsection{Strategies}
-\subsection{Strategies}
 
-% Before deﬁning formally what it means for a player to win a game, we need to introduce the notion of strategy.
+% \subsection{Strategies}
+
 
 A {\em strategy} for player $i \in \{ 0,1\}$ is a function $\sigma_i : S^* S_i \to S$ such
 that $\sigma_i(ws)$ is a successor of $s$.
@@ -653,15 +545,7 @@ $v_{j+1} = \sigma_i(v_j)$.
  Given a configuration $s$,   a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1$ for player $1$, the play starting with $s$ that is consistent with both strategies is unique and is called the {\em resulting play} of $\sigma_0$ and $\sigma_1$ starting from $s$. It is 
 denoted by $\pi(s, \sigma_0, \sigma_1)$.\\
 
-
-%\noindent
-%Note that the above definitions are essentially the same for finite and infinite arenas.
-
-
-
-
- \subsubsection{Winning conditions}
-
+%  \subsubsection{Winning conditions}
 
 Once we have provided players with an arena, it remains to define  properly what the winning condition is in order to define a game. Given an arena $A = (S_0, S_1, \rightarrow)$, a {\em winning condition}
 %$\win \subseteq S^\infty$
@@ -699,8 +583,8 @@ This definition of winning strategies is independent from the winning condition 
 parity games. To differentiate, we mention the winning conditions of a winning strategy from $s_{init}$.
 \fi
 
-% \paragraph{Reachability Games}
-\subsection{Reachability Games}
+
+% \subsection{Reachability Games}
 
 We first consider reachability games: 
 the winning condition $\win_F(S)$ is given by a set of final configurations
@@ -710,8 +594,7 @@ $\win_F$ in case the set $S$ is obvious from context.
 To indicate that the winning condition of a game is a reachability winning condition, we will speak of {\em reachability games}. 
 
 
-With regards to reachability games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem. \newline
-
+With regards to reachability games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem.
 
 \begin{samepage}
 \problemx{Reachability game}
@@ -722,9 +605,7 @@ With regards to reachability games, we are going to concern ourselves with games
 
 
 
-
-% \paragraph{Parity Games}
-\subsection{Parity Games}
+% \subsection{Parity Games}
 
 Secondly, we consider min-parity games: 
 the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
@@ -743,7 +624,7 @@ To indicate that the winning condition of a game is a parity winning condition, 
  {\em parity games}. 
 
 
-With regards to parity games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem. \newline
+With regards to parity games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem. 
 
 
 
@@ -1470,8 +1351,7 @@ parameter assignment)
  of the pushdown automaton with $n$ parameters by using pebbles to represent the parameters. 
 The $n$-pebble pushdown automaton will first simulate the 
 parameter valuation arena.
-Players take turns chosing particular stack contents on which to place pebbles,
-using a gadget similar as the one from Figure~\ref{quantifiers}. 
+Players take turns chosing particular stack contents on which to place pebbles. 
 Once every parameter has been assigned with the dropping of a corresponding pebble, 
 the pebble assignment $\mu$ is fixed.
 %%
@@ -1711,7 +1591,6 @@ $s \in \mathscr{S}_n(\Gamma)$.
 
 
 Concerning higher-order pushdown automata, we are interested in the following decision problem. 
-% \newpage
 
 \begin{samepage}
 \problemx{$n$-HPDA parity game}
