@@ -2102,11 +2102,11 @@ Finally, the following complexity result is due the above and Theorem~\ref{PPDA 
 
 The aim of this section is to show a nonelementary lower bound for the 
 problem of deciding whether player $0$ has a winning strategy from some starting configuration in
-a pebble pushdown parity game.
+a parametric pushdown parity game.
 % problem of deciding winning configuration for pebble pushdown parity games.
 
 We reduce the satisfiability problem for first-order logic on words
-to the problem of {\sc Solving pebble pushdown parity game}. 
+to the problem of {\sc Parametric pushdown parity game}. 
 We know from \cite{Sto74}
 that satisfiability is nonelementary. 
 %
@@ -2165,14 +2165,14 @@ The following theorem states a polynomial time reduction from
 {\sc $\FO$ satisfiability on words}
 %We consider reduction 
 towards the problem of %following problem.
-{\sc Solving pebble pushdown parity game}.
+{\sc Parametric pushdown parity game}.
 
 
 
 
 \begin{samepage}
 \begin{theorem}
-{\sc FO satisfiability on words} is polynomial time reducible to {\sc Solving pebble pushdown parity game}.
+{\sc FO satisfiability on words} is polynomial time reducible to {\sc Parametric pushdown parity game}.
 \end{theorem}
 \end{samepage}
 
@@ -2192,7 +2192,7 @@ We start with
 %
 % \noindent
 We construct
-a pebble pushdown system $\mathcal{Z}_\phi = (Q_\phi,W_\phi, \Delta_\phi )$, with a disjoint
+a parametric pushdown system $\mathcal{Z}_\phi = (Q_\phi,W_\phi, \Delta_\phi )$, with a disjoint
 union $Q_\phi = Q_0  \biguplus Q_1 $, a priority mapping $\Omega_\phi$, and an initial state $q_I \in Q_\phi$
 such that
 player $0$ has a winning strategy from $(q_I, \$, f_I)$ in the  parity game
@@ -2212,15 +2212,29 @@ $\psi$ is quantifier-free and in disjunctive normal form.
 
 
 
-Player $0$ starts by pushing a word $w$ onto the stack, then places the first pebble at the current position. The goal of this first pebble is to remember the word $\$w$, which corresponds to the 
-word “guessed” by player $0$. This pebble is meant to enforce that the stack remain a prefix of $\$w$, with each stack content of the play corresponding to a position in the word. To enforce this, once pebble $1$ is placed, we allow in $\mathcal{Z}_\phi$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position on the word. A player thus challenged only has the ability to add things onto the stack, and win if and only if able to find a way back to pebble $1$. 
+Player $0$ starts by chosing a valuation $w$ for the first parameter (parameter $p_0$). The goal of this first parameter is to remember
+the word $w$, which corresponds to the word ``guessed" by player $0$. 
+This parameter is meant in part to enforce that 
+the stack remains a prefix of $w$, with each stack content of the play corresponding to a position in the word.
+ To enforce this, we allow in $\mathcal{Z}$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position in the word.
+  A player thus challenged only has the ability to add things onto the stack, and win if and only if able to find a way back to the value of parameter $p_0$. 
+ The gadgets for these intermediary potential challenges will be excluded from the illustrations to preserve clarity of representation.
+The other parameters are meant to correspond to the variables, with player $1$ parameters corresponding to universal variables and player $0$ parameters corresponding to existential variables.
 
-Then players alternate placing pebbles on prefixes of $\$w$. Universal variables correspond to pebbles placed by player $1$ and existential variables to pebbles placed by player $0$. 
-Once players have chosen values for their respective variables, the pebble assignment $f$ is fixed. It is then time
+Once players have chosen values for their respective variables, the parameter assignment
+$\mu$ is fixed. It is then time
 for player $0$ to ensure that
-$w$ satisfies $\psi$ if the variables $x_1, \ldots, x_k$ are interpreted by 
-$ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
+%$\mathfrak{W}$ 
+$w$
+satisfies $\psi$ if the variables $x_1, \ldots, x_k$ are interpreted by 
+$ |\mu(p_1)|-1, \ldots, |\mu(p_k)|-1$ respectively. This is the goal of the reachability game.
 
+
+
+The first step of the game is to check that the values assigned to the parameters correspond indeed to possible variables, that is, that the values of the parameters are prefixes of $w$. 
+
+Recall $\psi$ is quantifier-free and in disjunctive normal form, i.e.
+ $$\phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k \bigvee_{i=1}^l(\bigwedge_{j=1}^{h_i} \psi_{i,j}(x_1, \ldots, x_k)).$$
 
 
 Player $0$, being the existential player, choses one of the conjunctive clause in $\psi$, essentially claiming to be able to prove it. Then player $1$, the universal player, chooses one of the atomic formula in the clause to test. 
@@ -2237,10 +2251,10 @@ the atomic formula
 $ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
 
 
-
-The gadget depends on the type of the atomic formula. For a formula checking the letter at the position of a variable $x$, player $0$ goes to the position corresponding to $x$, then check that the the top of the stack
+Now we need only to describe the gadgets $ \C_{\psi_{i,j}}$. 
+The gadget depends on the type of the atomic formula. For a formula checking the letter at the position of a variable $x$, player $0$ goes to the position corresponding to $x$, then checks that the top of the stack
 $x$ is the right letter. For one checking that $x = x'$ where $x$ and $x'$ are both variables,
-player $0$ goes to the position corresponding to $x$ and check against the presence of the pebble corresponding to $x'$ as well. If the formula is a negation, players exchange their roles.
+player $0$ goes to the position corresponding to $x$ and checks against the parameter corresponding to $x'$ as well. If the formula is a negation, players exchange their roles. 
 \end{proof}
 
 Then, the nonelementary lower bound follows from Theorem~\ref{FOnonelementary}. 
@@ -2248,9 +2262,7 @@ Then, the nonelementary lower bound follows from Theorem~\ref{FOnonelementary}.
 
 
 \begin{theorem}
-
-The problem of {\sc Solving pebble pushdown parity game} is not in {\sc ELEMENTARY}.
-
+{\sc Parametric pushdown parity game} is not in {\sc ELEMENTARY}.
 \end{theorem}
 
 
