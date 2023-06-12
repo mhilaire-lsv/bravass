@@ -793,22 +793,15 @@ an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
 \subsection{PPDA games}
 
 
-As noted precedently, 
-several model checking problems can be
+Several model checking problems can be
 expressed as decision problems for games.
 For instance 
-\textcolor{black}{
-as mentioned 
 in the case of pushdown automata, 
-}
 the modal $\mu$-calculus
 model checking problem is polynomially equivalent to solving the parity game problem.
 % \textcolor{red}{Since the model checking problem has a more varied range of applications than the reachability problem (mb have a source for that or smtg)},
-S%ince model checking is typically more involved than simply solving the reachability problem, and s
-ince we are interested in parametric model checking and specification,
+Since we are interested in parametric model checking and specification,
 we are naturally interested in parametric variants of reachability games and parity games.
-
-% finding constraints on the parameters defining the set of all possible values for which the system satisfies a safety or liveness property, or verifying that the model satisfies some safety or liveness property for all possible values of the parameters.
 
 One goal may be to characterize the set of all possible parameter valuations for which a player has a winning strategy in a 
 reachability game or a parity game
@@ -823,49 +816,33 @@ For simplicity's sake, the values are assigned to the parameters one by one, alt
 
 A winning strategy for player $0$ allows to synthesize a controller that restricts the environment and ensures that {the property expressed by the winning condition always holds.}
 
-\paragraph{Parameter valuation arenas}
+% \subsection{Parameter valuation arenas}
 
-We introduce here arenas over the set of partial $\M$-parameter valuations for a set of parameters
+We introduce here arenas over the set of partial parameter valuations for a set of parameters
 $P = P_0 \biguplus P_1$. The values are assigned to the parameters one by one, alternating between values assigned by player $0$ (corresponding to parameters in $P_0$) and by player $1$ (corresponding to parameters in $P_1$). Other options could have been considered: for instance, we could consider a fully existential approach 
 (i.e. all parameters have their values assigned by player $0$), 
 or a fully universal approach
 (i.e. all parameters have their values assigned by player $1$). 
-\iffalse
-Note however that the alternating approach considered here encompasses both of the latter approaches: it suffices to include in the set $P$ parameters which do not appear in the rules of an automaton \---- or that appear only in rules that do not have any effect on whether or not a player has a winning strategy in reachability games or parity games played on resulting concrete automata \---- and to have a player assign values only to these ``unused'' parameters.  \\
-\fi
 Note however that the approach considered here encompasses both of the latter approaches:
 the fully existential approach consists in the case where $P_1 = \emptyset$ and
 the fully universal one, the case $P_0 = \emptyset$.
 
 
-\iffalse
-Given an ordering of the parameters $P = \{p_0, p_1, \ldots, p_k \}$ for some 
-%\textcolor{red}{even}
- $k \in \N$, we partition the set of parameters into parameters with even numerotation, assigned to player $0$, and parameters with odd numerotation, assigned to player $1$.  
-\fi
 
 Assume an ordering of the parameters $P_0 \biguplus P_1 = \{p_0, p_1, \ldots, p_k \}$ for some 
 %\textcolor{red}{even}
  $k \in \N$.
 %
-Then given a set $\M$, a {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\M} = (S_0, S_1, \rightarrow_P)$ where
+Then given a alphabet $\Gamma$, a {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\Gamma} = (S_0, S_1, \rightarrow_P)$ where
 \begin{itemize}
 
-\item $S_0$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_0$,
+\item $S_0$ is the set of all partial parameter valuations with images in $\Gamma^*$ and domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_0$,
 
-\item $S_1$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_1$,
-
-
-\iffalse
-\item $S_0$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{2i+1}\}$ 
-for some $i \in [0, \lceil k/2 \rceil - 1]$, plus the partial parameter valuation with domain $\emptyset$,
-\item $S_1$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{2i}\}$
-for some $i \in [0, \lfloor k/2 \rfloor]$, and
-\fi
+\item $S_1$ is the set of all partial $\M$-parameter valuations  with images in $\Gamma^*$ and  domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_1$,
 
 \item
 $ \mu \rightarrow_P \mu'$,
-if $\mu' \in (\M)^{\{p_0, \ldots, p_j\}}$ for some $j \in [0,k]$,
+if $\mu' \in (\Gamma^*)^{\{p_0, \ldots, p_j\}}$ for some $j \in [0,k]$,
 $\text{Dom}(\mu) = \text{Dom}(\mu') \setminus \{p_j\}$
 and
  $\mu'(p) = \mu(p)$ for $p \in \text{Dom}(\mu)$. \label{parametric arena}
@@ -879,43 +856,15 @@ is called {\em the resulting parameter valuation}
  and is denoted by $\mu_{\sigma_0, \sigma_1}$, where 
  $\mu_\bot$ is the partial parameter valuation with domain $\emptyset$. 
  %We do not really consider winning conditions for parameter valuation games. Rather, once the resulting parameter valuation is produced, it serves to instantiate the parametric transition system for the next game.
-
-
-Parametric valuation arenas are used as prefixes in parametric games. Once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
+Parametric valuation arenas can then be used as prefixes in parametric games. Once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
 %
 %
 Indeed, where a concrete automaton induces a transition system, a parametric automaton induces one transition system for every possible parameter valuation.
 We use $T^\mu_\A$ to denote the transition system induced by the concrete automaton corresponding to
-a parametric automaton $\A$ with parameters $P$ taking values in $\M$ and a parameter valuation $\mu: P \to \M$.
+a parametric automaton $\A$ with parameters $P$ taking values in $\Gamma^*$ and a parameter valuation $\mu: P \to \Gamma^*$.
 
 
 \iffalse
-Then for a parametric automaton, and given a partition of its states,
-
-Thus, for an  $n$-parametric pushdown automaton 
-$\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
-given a partition of
-$Q$ into $Q_0$ and $Q_1$, 
-we naturally partition the configurations of
-%the transition system of 
- $\mathcal{Z}$
-% $T^\mu_{\mathcal{Z}}$
-into
-$\Conf_{\mathcal{Z},0}=Q_0\times \Gamma^*$
-and
-$\Conf_{\mathcal{Z},1}=Q_1\times \Gamma^*$. 
-
-
-With these notations in mind one can define the arena
-$$
-A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
-=
-(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})$$
-induced by a PPDA $\mathcal{Z}$, a partition of its set of states, and a
-parameter valuation $\mu: P\rightarrow \Gamma^*$. 
-
-\fi
-
 \begin{center}
 	\begin{figure}
 		\hspace{2cm}
@@ -934,12 +883,12 @@ parameter valuation $\mu: P\rightarrow \Gamma^*$.
 	\label{parametric_arena}
 	\end{figure}
 \end{center}
-
+\fi
 
 
 
 Given a parametric automaton $\A$ with a set of parameters $P = P_0 \biguplus P_1$ that can take 
-values in the set $\M$,
+values in the set $\Gamma^*$,
 a {\em parametric game} for $\A$ is a game played 
 on the %following  arena $A_{\A}$.
 %The 
@@ -947,9 +896,9 @@ arena $A_\A$
 that include both 
 % the configurations and transitions of
 the parameter valuation arena
-$A_{P_0, P_1,\M}$
+$A_{P_0, P_1,\Gamma}$
 and, % moreover contains 
-for all parameter valuations $\mu: P\rightarrow \M$,
+for all parameter valuations $\mu: P\rightarrow \Gamma^*$,
 %the configurations and transitions of
 the transition system %s 
 % induced by the concrete automata corresponding to $\A$ with parameter valuation $\mu$
@@ -958,26 +907,20 @@ the transition system %s
  to avoid confusion.
 Moreover, for every 
 dead end $\mu$
- in $A_{P_0,P_1,\M}$,
+ in $A_{P_0,P_1,\Gamma}$,
 we add a transition
-from the configuration $\mu \in \M^P$ to
+from the configuration $\mu \in (\Gamma^*)^P$ to
 $T_\A^\mu$.
-See Figure~\ref{parametric_arena} for an illustration of such an arena.
-Solving parametric games on an automaton with parameters (e.g. a POCA) then consists in answering whether there exists 
+% See Figure~\ref{parametric_arena} for an illustration of such an arena.
+Solving parametric games on an automaton with parameters then consists in answering whether there exists 
 a winning strategy for player $0$
 from the initial configuration of the parametric game.
 Remark that the parametric reachability problem for an automaton with parameters can be seen as solving the parametric reachability game where $P_1 = \emptyset$, and $Q_1 = \emptyset$. 
-
-
-
-
-We are moreover interested in games played on parametric pushdown automata's  
- transition systems.
 Recall that given a 
 %labeled 
 transition system,
 one needs only to provide %a mapping $\Omega$ and 
-a partition of the set of configuration $S$ into two sets $S_0$ and $S_1$ to obtain an arena. \\
+a partition of the set of configuration $S$ into two sets $S_0$ and $S_1$ to obtain an arena. 
 
 
 Thus, for an  $n$-parametric pushdown automaton 
@@ -995,23 +938,23 @@ $\Conf_{\mathcal{Z},1}=Q_1\times \Gamma^*$.
 
 
 With these notations in mind one can define the arena
-$$
+\[
 A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
 =
-(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})$$
+(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})\]
 induced by a PPDA $\mathcal{Z}$, a partition of its set of states, and a
 parameter valuation $\mu: P\rightarrow \Gamma^*$.
 
 
 
-Given additionally a partition of
+From a partition of
 $P$ into $P_0$ and $P_1$, 
-we define 
+we thus define 
 $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
 as
 the arena that contains both the configurations and transitions of
 the parameter valuation arena
-$A_{P_0,P_1,\Gamma^*}$, as seen on page~\pageref{parametric arena},
+$A_{P_0,P_1,\Gamma}$,
 and that moreover contains the configurations and transitions of
 $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$ 
 \---- albeit with configurations additionally including $\mu$ in the tuple to avoid confusion \----
@@ -1038,24 +981,6 @@ for all $\mu \in (\Gamma^*)^{P}$,
 and
 $\widehat{\Omega}(\mu) = 0$
 for all $\mu \in (\Gamma^* \cup \bot)^{P}$.
-
-
-
-
-% $T_{\mathcal{Z}} = (\Conf(\mathcal{Z}), \rightarrow_{\mathcal{Z},\mu})$
-
-\iffalse
-\textcolor{red}{
-Reachability %, B\"uchi
- and parity games on $\mathcal{G}_{(\mathcal{Z}, \mu,P_0, P_1, Q_0 , Q_1, \Omega)}$
-are then clearly defined. They have the flaw however of not taking into account the
-way the values assigned to the parameters is chosen. How values are assigned to
-the parameters is the subject of the next Section.
-}
-\fi
-
-
-
 
 
 
