@@ -524,10 +524,7 @@ as an unlabeled transition system.
 A {\em play} in an arena $A=(S_0,S_1,\rightarrow)$ is a path in $(S,{\rightarrow})$ that is {\em maximal} in the following sense: it is either infinite or finite and if it is finite, then the target configuration is a dead end. 
 A {\em partial play} in an arena $A=(S_0,S_1,\rightarrow)$ is a 
 % sequence of configurations $s_{init} = s_0 s_1 \ldots \in S^\infty$ connected by the transition relation, i.e. such that $(v_i, v_{i+1}) \in T$.
-prefix of a play in $A$.\\
-%finite path in $(S,{\rightarrow})$.\\
-
-\noindent
+prefix of a play in $A$.
 Essentially plays can be seen as this: the two players, player $0$ and player $1$, move along the labeled transition system, taking turns either inﬁnitely often or until a dead end is reached.
 
 
@@ -556,12 +553,7 @@ Although a winning condition is in general an infinite object we are interested 
 that can finitely be described.
 
 
-\iffalse
-We consider here several types of winning conditions. 
-Essentially the 
- mapping $\Omega$ of an arena serves to colour the configurations of the labeled transition system.  Winning conditions then
- consist in acceptance conditions on colour sequences.
- \fi
+
 
 
 A strategy $\sigma_0$ for player $0$ from position $s \in S$ is a {\em winning strategy
@@ -578,10 +570,7 @@ On the other hand, a strategy $\sigma_1$ for player $1$ from position $s \in S$ 
 every maximal play starting from $s$ and consistent with $\sigma_1$ is not in $\win$.
  
 
-\iffalse
-This definition of winning strategies is independent from the winning condition itself, and will also apply to %B\"uchi games and min-
-parity games. To differentiate, we mention the winning conditions of a winning strategy from $s_{init}$.
-\fi
+
 
 
 % \subsection{Reachability Games}
@@ -635,39 +624,6 @@ With regards to parity games, we are going to concern ourselves with games over 
 \end{samepage}
 
 
-%
-\iffalse
-Solving a parity game played on a finite graph means deciding, for a given starting position $v_{init}$, which of the two players has a winning strategy. It has been shown that this problem is in $\NP$ and 
-co-$\NP$, more precisely $\UP$ and co-$\UP$. 
-% Marcin Jurdziński (1998), "Deciding the winner in parity games is in UP∩ co-UP" (PDF), Information Processing Letters, Elsevier, 68 (3): 119–124, doi:10.1016/S0020-0190(98)00150-1
-% @article{jurdzinski1998deciding,
-%  title={Deciding the winner in parity games is in UP∩ co-UP},
-%  author={Jurdzi{\'n}ski, Marcin},
-%  journal={Information Processing Letters},
-%  volume={68},
-%  number={3},
-%  pages={119--124},
-%  year={1998},
-%  publisher={Elsevier}
-%}
-\fi
-%
-
-
-
-
-
-% Muller condition: Inf() \in F
-
-% Rabin condition :
-
-% Streett Condition
-
-% Rabin Chain condition
-
-% max parity condition
-
-% 1-winning  == reachability
 
 
 \begin{center}
@@ -701,7 +657,6 @@ One can take matters further: on this arena, player $0$ has a winning strategy f
 
 
 
-% \mh{Say something abut positional determinacy}
 One important property of parity games is that of {\em memoryless determinacy}: for a parity game
 $\mathcal{G}= ((S_0,S_1,\rightarrow),\win_\Omega) $ and an initial configuration $s \in S_0 \cup S_1$, one of the players has a memoryless winning strategy from $s$ \cite{zielonka1998infinite}.
 
@@ -713,12 +668,16 @@ can be expressed as decision problems for games: the most famous example is that
 
 \section{Parametric pushdown games}
 
+
+
+
+
 \textcolor{black}{Parametric pushdown automata extend pushdown automata by allowing the stack to be compared against parameters that can be assigned values which are words over the stack alphabet.}
 A parametric pushdown automaton is then a finite automaton extended with a finite set of parameters $P$  and with a stack that can be manipulated by pushing or popping stack symbols and such that, moreover, the automaton can use the top of the stack, or check that the stack content corresponds to a parameter,  to decide which transition to take next.\\
 
 \par\noindent\ignorespacesafterend
 Formally, a {\em parametric pushdown automaton} ({\em PPDA} for short) 
-is a tuple 
+is a tuple \\
 $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
 \begin{itemize}
 \item $Q$ is a non-empty finite {\em set of  states},
@@ -835,6 +794,185 @@ an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
 
 % \subsubsection{Parametric pshdown games}
 \subsection{PPDA games}
+
+
+As noted precedently, 
+several model checking problems can be
+expressed as decision problems for games.
+For instance 
+\textcolor{black}{
+as mentioned 
+in the case of pushdown automata, 
+}
+the modal $\mu$-calculus
+model checking problem is polynomially equivalent to solving the parity game problem.
+% \textcolor{red}{Since the model checking problem has a more varied range of applications than the reachability problem (mb have a source for that or smtg)},
+S%ince model checking is typically more involved than simply solving the reachability problem, and s
+ince we are interested in parametric model checking and specification,
+we are naturally interested in parametric variants of reachability games and parity games.
+
+% finding constraints on the parameters defining the set of all possible values for which the system satisfies a safety or liveness property, or verifying that the model satisfies some safety or liveness property for all possible values of the parameters.
+
+One goal may be to characterize the set of all possible parameter valuations for which a player has a winning strategy in a 
+reachability game or a parity game
+played on the arena induced by the
+resulting concrete automaton
+and some partition of its set of states. 
+For determining such a set of parameter valuations, we incorporate the choice of the parameter valuation to the game. Each player then wants the parameter valuation to lead to an arena where it has a winning strategy.
+
+In keeping with the spirit of alternation between players choosing successors in the arena, we consider here games where players
+alternate choosing values for the parameters before alternating choosing successor configurations in the game on the induced arena.
+For simplicity's sake, the values are assigned to the parameters one by one, alternating between values assigned by player $0$ and by player $1$.
+
+A winning strategy for player $0$ allows to synthesize a controller that restricts the environment and ensures that {the property expressed by the winning condition always holds.}
+
+\paragraph{Parameter valuation arenas}
+
+We introduce here arenas over the set of partial $\M$-parameter valuations for a set of parameters
+$P = P_0 \biguplus P_1$. The values are assigned to the parameters one by one, alternating between values assigned by player $0$ (corresponding to parameters in $P_0$) and by player $1$ (corresponding to parameters in $P_1$). Other options could have been considered: for instance, we could consider a fully existential approach 
+(i.e. all parameters have their values assigned by player $0$), 
+or a fully universal approach
+(i.e. all parameters have their values assigned by player $1$). 
+\iffalse
+Note however that the alternating approach considered here encompasses both of the latter approaches: it suffices to include in the set $P$ parameters which do not appear in the rules of an automaton \---- or that appear only in rules that do not have any effect on whether or not a player has a winning strategy in reachability games or parity games played on resulting concrete automata \---- and to have a player assign values only to these ``unused'' parameters.  \\
+\fi
+Note however that the approach considered here encompasses both of the latter approaches:
+the fully existential approach consists in the case where $P_1 = \emptyset$ and
+the fully universal one, the case $P_0 = \emptyset$.
+
+
+\iffalse
+Given an ordering of the parameters $P = \{p_0, p_1, \ldots, p_k \}$ for some 
+%\textcolor{red}{even}
+ $k \in \N$, we partition the set of parameters into parameters with even numerotation, assigned to player $0$, and parameters with odd numerotation, assigned to player $1$.  
+\fi
+
+Assume an ordering of the parameters $P_0 \biguplus P_1 = \{p_0, p_1, \ldots, p_k \}$ for some 
+%\textcolor{red}{even}
+ $k \in \N$.
+%
+Then given a set $\M$, a {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\M} = (S_0, S_1, \rightarrow_P)$ where
+\begin{itemize}
+
+\item $S_0$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_0$,
+
+\item $S_1$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_1$,
+
+
+\iffalse
+\item $S_0$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{2i+1}\}$ 
+for some $i \in [0, \lceil k/2 \rceil - 1]$, plus the partial parameter valuation with domain $\emptyset$,
+\item $S_1$ is the set of all partial $\M$-parameter valuations with domain $\{p_0, p_1, \ldots, p_{2i}\}$
+for some $i \in [0, \lfloor k/2 \rfloor]$, and
+\fi
+
+\item
+$ \mu \rightarrow_P \mu'$,
+if $\mu' \in (\M)^{\{p_0, \ldots, p_j\}}$ for some $j \in [0,k]$,
+$\text{Dom}(\mu) = \text{Dom}(\mu') \setminus \{p_j\}$
+and
+ $\mu'(p) = \mu(p)$ for $p \in \text{Dom}(\mu)$. \label{parametric arena}
+\end{itemize}
+
+
+Note that the arena has dead ends, and that these are the configurations that correspond to parameter valuations.
+Given a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1 $ for player $1$,
+the last configuration of the resulting play $\pi(\mu_\bot,\sigma_0, \sigma_1)$
+is called {\em the resulting parameter valuation}
+ and is denoted by $\mu_{\sigma_0, \sigma_1}$, where 
+ $\mu_\bot$ is the partial parameter valuation with domain $\emptyset$. 
+ %We do not really consider winning conditions for parameter valuation games. Rather, once the resulting parameter valuation is produced, it serves to instantiate the parametric transition system for the next game.
+
+
+Parametric valuation arenas are used as prefixes in parametric games. Once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
+%
+%
+Indeed, where a concrete automaton induces a transition system, a parametric automaton induces one transition system for every possible parameter valuation.
+We use $T^\mu_\A$ to denote the transition system induced by the concrete automaton corresponding to
+a parametric automaton $\A$ with parameters $P$ taking values in $\M$ and a parameter valuation $\mu: P \to \M$.
+
+
+\iffalse
+Then for a parametric automaton, and given a partition of its states,
+
+Thus, for an  $n$-parametric pushdown automaton 
+$\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
+given a partition of
+$Q$ into $Q_0$ and $Q_1$, 
+we naturally partition the configurations of
+%the transition system of 
+ $\mathcal{Z}$
+% $T^\mu_{\mathcal{Z}}$
+into
+$\Conf_{\mathcal{Z},0}=Q_0\times \Gamma^*$
+and
+$\Conf_{\mathcal{Z},1}=Q_1\times \Gamma^*$. 
+
+
+With these notations in mind one can define the arena
+$$
+A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
+=
+(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})$$
+induced by a PPDA $\mathcal{Z}$, a partition of its set of states, and a
+parameter valuation $\mu: P\rightarrow \Gamma^*$. 
+
+\fi
+
+\begin{center}
+	\begin{figure}
+		\hspace{2cm}
+\includegraphics[width=0.7\textwidth]{figures/parameter_arena}
+	\caption{An illustration of the arena for a parametric automaton $\A$ with 
+%	two parameters, $p_0$ and $p_1$,	
+	$P_0 = \{p_0\}$, $P_1 = \{p_1\}$ and
+%	 that can take values in $[0,N]$ for some $N \in \N$. 
+	$\M = [0,N]$ for some $N\in \N$.
+	 Here $\mu_\bot$ is 
+	%the partial parameter assignment with domain $\emptyset$,
+	the totally undefined function and can be viewed rather as 
+	the function that assigns $\bot$ to both parameters. For $i,j \in [0,N]$, $\mu_i$ is the partial parameter assignment with domain $\{p_0\}$ that maps $p_0$ to $i$ and $\mu_{i,j}$ is the parameter assignment that maps $p_0$ to $i$ and $p_1$ to $j$.
+	 %Lastly $T^\mu_\A$ denotes the transition system induced by the concrete automaton corresponding to $\A$ with parameter valuation $\mu$.
+	  As before, the circles belong to player $0$ and the diamonds to player $1$.} 
+	\label{parametric_arena}
+	\end{figure}
+\end{center}
+
+
+
+
+Given a parametric automaton $\A$ with a set of parameters $P = P_0 \biguplus P_1$ that can take 
+values in the set $\M$,
+a {\em parametric game} for $\A$ is a game played 
+on the %following  arena $A_{\A}$.
+%The 
+arena $A_\A$
+that include both 
+% the configurations and transitions of
+the parameter valuation arena
+$A_{P_0, P_1,\M}$
+and, % moreover contains 
+for all parameter valuations $\mu: P\rightarrow \M$,
+%the configurations and transitions of
+the transition system %s 
+% induced by the concrete automata corresponding to $\A$ with parameter valuation $\mu$
+ $T_\A^\mu$
+\---- albeit with configurations additionally indexed by $\mu$ %in the tuple
+ to avoid confusion.
+Moreover, for every 
+dead end $\mu$
+ in $A_{P_0,P_1,\M}$,
+we add a transition
+from the configuration $\mu \in \M^P$ to
+$T_\A^\mu$.
+See Figure~\ref{parametric_arena} for an illustration of such an arena.
+Solving parametric games on an automaton with parameters (e.g. a POCA) then consists in answering whether there exists 
+a winning strategy for player $0$
+from the initial configuration of the parametric game.
+Remark that the parametric reachability problem for an automaton with parameters can be seen as solving the parametric reachability game where $P_1 = \emptyset$, and $Q_1 = \emptyset$. 
+
+
+
 
 We are moreover interested in games played on parametric pushdown automata's  
  transition systems.
