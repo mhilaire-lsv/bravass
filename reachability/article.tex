@@ -676,21 +676,18 @@ can be expressed as decision problems for games: the most famous example is that
 A parametric pushdown automaton is then a finite automaton extended with a finite set of parameters $P$  and with a stack that can be manipulated by pushing or popping stack symbols and such that, moreover, the automaton can use the top of the stack, or check that the stack content corresponds to a parameter,  to decide which transition to take next.\\
 
 \par\noindent\ignorespacesafterend
-Formally, a {\em parametric pushdown automaton} ({\em PPDA} for short) 
-is a tuple \\
-$\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
-\begin{itemize}
-\item $Q$ is a non-empty finite {\em set of  states},
-\item $\Gamma$ is a non-empty finite {\em  stack alphabet},
-\item $P$ is a finite {\em   set of parameters}, \textcolor{black}{with $\Gamma \cap P = \emptyset$},
+A {\em parametric pushdown automaton} ({\em PPDA} for short) 
+is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
+ $Q$ is a non-empty finite {\em set of  states};
+ $\Gamma$ is a non-empty finite {\em  stack alphabet};
+ $P$ is a finite {\em   set of parameters}, \textcolor{black}{with $\Gamma \cap P = \emptyset$};
 % \item  $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Gamma^*$ is finite {\em  set of rules},
- \item  $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Op(\Gamma)$ is finite {\em  set of rules},
-\item $q_{init}\in Q$ is an {\em initial  state}, 
-\item $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}, and
-\item $F\subseteq Q$ is a {\em set of final  states}.
-\end{itemize}
+  $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Op(\Gamma)$ is finite {\em  set of rules};
+ $q_{init}\in Q$ is an {\em initial  state};
+ $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}; and
+ $F\subseteq Q$ is a {\em set of final  states}.
 
-\par\noindent\ignorespacesafterend
+
 The {\em size} of $\mathcal{Z}$ is defined as
 $|\mathcal{Z}| = |Q| + |\Gamma| + |P| + |R| $.
 We also refer to $\mathcal{Z}$ as an $n$-parametric pushdown automaton if $|P| = n$.
@@ -1208,21 +1205,18 @@ We first define more formally our pebble pushdown automaton framework, and then 
 An {\em $n$-pebble pushdown automaton} 
 is a tuple 
 $\ppda = (Q, \Gamma,  R, q_{init}, \gamma_{init}, F)$
-where
-\begin{itemize}
-\item $Q$ is a {\em finite set of  states},
-\item $\Gamma$ is a {\em finite stack alphabet},
-\item  $R  \subseteq  Q  \times \Gamma \times
+where $Q$ is a {\em finite set of  states}; $\Gamma$ is a {\em finite stack alphabet};
+  $R  \subseteq  Q  \times \Gamma \times
 		 \{ 0, 1, \ldots n\} \times \mathcal{P}(\{1,\ldots,n\})
 		 \times Q  \times (\Op(\Gamma) \cup \{\text{\textit{drop}}, \text{\textit{lift}}\})$ is a {\em finite set of rules},
 		 where the fourth element $S$ of a rule $r$ is a subset of 
 		$\mathcal{P}(\{1,\ldots,i\})$ where $i$ is the third element of $r$,
 		and if the last element is
-		$\text{\textit{lift}}$ then we additionally require $i \in S$,
-\item $q_{init} \in Q$ is an {\em initial  state}, 
-\item $\gamma_{init} \in \Gamma$ is an {\em initial stack symbol}, and
-\item $F \subseteq Q$ is a {\em set of final  states}.
-\end{itemize}
+		$\text{\textit{lift}}$ then we additionally require $i \in S$;
+ $q_{init} \in Q$ is an {\em initial  state};
+ $\gamma_{init} \in \Gamma$ is an {\em initial stack symbol}; and
+ $F \subseteq Q$ is a {\em set of final  states}.
+
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
