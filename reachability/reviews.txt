@@ -1,0 +1,93 @@
+
+
+
+SUBMISSION: 70
+TITLE: Parity games in pushdown systems with pebbles
+
+
+----------------------- REVIEW 1 ---------------------
+SUBMISSION: 70
+TITLE: Parity games in pushdown systems with pebbles
+AUTHORS: Mathieu Hilaire
+
+----------- Overall evaluation -----------
+The author considers parity games over configuration graphs of pushdown systems with pebbles. The name "with pebbles" is a bit confusing, at least to me. The model is the following: the pushdown system can store the current stack content in one of n registers (called pebbles), with the requirement that we can store our stack in the register number k (or clean the register number k) only if registers of number >k are empty. Moreover, in every moment it is possible to compare the current stack with the stack stored in any register. The maximal number of registers, n, is fixed.
+
+It is shown that parity games over these configuration graphs are decidable, and that the complexity of this problem is nonelementary.
+
+EVALUATION:
+
+On the positive side: 
+* This is a very natural model; it is good to know that it is decidable.
+* The paper is well-written and easy to understand.
+
+On the negative side:
+* The result is quite standard, and a proof can be seen as an exercise for someone knowing the literature on higher-order pushdown automata. Indeed, it is known that higher-order pushdown automata can be extended by the following test operation: are the two topmost order-k stacks identical (this does not increase the expressive power, i.e., can be simulated using other operations, by storing additional data on the stack). This is written in the Carayol & Wöhrle FSTTCS 2003 paper, and a proof is given in Carayol's PhD thesis. Having this extension, the k-pebble pushdown automata can be easily implemented using order-k pushdown automata: to store something in register number k, we perform a push of order k. Then, the current stack is the same as the stack stored in register number k if and only if the two topmost order-k stacks are identical. (Actually, the proof in the paper under review goes via a similar line, but uses Muchnik's iteration instead of the mentioned version of
+ higher-order pushdown automata.)
+* I would expect more precise complexity results, which should be easy to derive by the aforementioned relation to higher-order pushdown automata. Namely, I suspect that solving parity games for pushdown systems with n pebbles is (n+1)-EXPTIME-complete. But this does not follow from the paper under review, neither for the lower bound nor for the upper bound.
+
+Minor comments:
+* Maybe the definitions in Sections 4.1 and 4.2 can be merged into a single definition? They are almost identical.
+* Section 4.3 is called "Reduction details", but there no details at all in this section.
+* Line 480: T(n,0) is a tower of height n, so it is not elementary (conversely to what is written).
+
+
+
+----------------------- REVIEW 2 ---------------------
+SUBMISSION: 70
+TITLE: Parity games in pushdown systems with pebbles
+AUTHORS: Mathieu Hilaire
+
+----------- Overall evaluation -----------
+A pushdown system defines a parity game on an infinite graph: the positions are
+configurations of the automaton, and moves are given by transitions of the
+automaton. A state in a configuration determines which player chooses a move.
+This model is quite well studied. 
+
+The novelty of the present paper is to consider pushdown automata with pebbles. 
+The main result is that for this extension determining the winner in the
+associated game is decidable, but has non-elementary complexity.
+
+The decidability proof is an extension of the method proposed by Cachat for
+pushdown games. It also goes through Muchnik's theorem: each Muchnik iteration
+handles one pebble. 
+
+This is a competently written paper. The constructions are presented in a
+sufficient detail. 
+
+I miss motivations behind this model. In the introduction some related models
+are mentioned but I do not find this sufficient. The studied model has a
+strange future that pebbles "stay" even when the stack gets emptied, they
+remember the "phantom stack".
+
+In conclusion, even though the paper presents a clear result, I am not convinced
+that the result is interesting enough to be accepted at the conference.
+
+
+
+----------------------- REVIEW 3 ---------------------
+SUBMISSION: 70
+TITLE: Parity games in pushdown systems with pebbles
+AUTHORS: Mathieu Hilaire
+
+----------- Overall evaluation -----------
+This paper considers parity games played on pebble pushdown systems, an extension of PDS where a finite number of pebbles/registers are used to store previous stack contents.
+
+The main claims are decidability and a non-elementary lower bound (which contrasts the EXPTIME-completeness of solving parity games on ordinary pushdown graphs).
+The decidability argument follows existing techniques, reducing the problem to emptiness of an alternating two-way tree automaton (with parity acceptance and suitably extended with a pebble mechanism); This problem is then shown to remain decidable using machinery from MSO model checking. The non-elementary lower bound is shown by reduction from the satisfiability problem of FO on finite words.
+
+
+The topic of this paper is in scope for FSTTCS and the results improve our knowledge of games on infinite graphs.
+The proposed model is natural and in line with previous "pebble versions" of finite-state tree walking automata [10,12]. The techniques seem to be not new in itself and rather adoptions of previous ones that happen to work here as well.
+
+In my opinion the presentation is extremely technical and at times overly precise at the expense of brevity and readability, and should be significantly improved for final publication. 
+For example, the crucial definition of the operational semantics of PPDS on top of page 6,
+is obscured by the many "respectively, empty stack" clauses and the important assumption that the current stack content equals that of the pebbles to be lifted is easy to overlook.
+
+Images to convey intuitions would be much appreciated, for example to depict the drop/lift mechanism, and for example 8.
+
+Why would one ever "drop" the same stack to more than one pebble over the course of a run?
+Regardless of the fact that this model is used here to define the arena of a parity game,
+I'd like to see an example why the model is more expressive than normal PDS, perhaps in terms of recognised languages. Are they more expressive or just more succinct?
+
+259: "a run is ... a tree T_r. The latter tree is like the unfolding of the run." This is cyclic if I read it correctly.
