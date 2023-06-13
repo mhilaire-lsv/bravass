@@ -8,7 +8,8 @@
 %
 
 We start with the case $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$. 
-It can be viewed as a generalizeation/extension of coverability, namely,
+It can be viewed as a generalizeation
+ of coverability, namely,
 it asks whether for every element of $\Bad$ it is possible to cover an element of the basis of $\Safe$.
 
 
@@ -17,8 +18,10 @@ it asks whether for every element of $\Bad$ it is possible to cover an element o
 
 %%%%
 
-As an
+\iffalse
+As a
 example: in a VASS, we may choose $\Safe$ to be the set of states that are not deadlocks, i.e. from which it is always possible to fire a transition. This set of states is upward-closed and $\Safe=S \setminus \Bad=\uparrow \Safe$.\alain{mal rédigé}
+\fi
 
 %  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
 %  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
@@ -121,7 +124,6 @@ Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence tha
 If $\downarrow b_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow b_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
 Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe,\Bad)$.
-
 %	If $k <  \min(K,n)$, then we check every path of length smaller
 %	than $\min(K,n)$ from the ideals of the decomposition of $\Bad$ in the completion \alain{à expliquer mieux}.
 \end{proof}
@@ -132,13 +134,12 @@ Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=\max(k'_{i,j} \mid i=1,..,n$ and
 
 Without the completion-post-effective hypothesis or the pred-basis hypothesis, coverability 
 becomes undecidable. For instance the coverability problem for strongly increasing well-structured nets is undecidable~\cite{FMP-ic04}. 
-
 Coverability reduce
-to resilience when $\Bad = \downarrow \Bad$ and  $\Safe = \uparrow \Safe$.
-Indeed $s \to^* \uparrow t$ 
+to resilience when $\Bad = \downarrow \Bad$ and  $\Safe = \uparrow \Safe$,
+as $s \to^* \uparrow t$ 
 reduces to $(\Safe,\Bad)$-resilience for $\Bad = \downarrow s$ and $\Safe = \uparrow t$.
 Hence, without the completion-post-effective hypothesis, 
-{\sc Resilience} is undecidable.
+{\sc Resilience} itself is undecidable.
 
 
 
