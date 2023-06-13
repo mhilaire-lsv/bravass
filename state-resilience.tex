@@ -16,9 +16,7 @@ Resilience is a strong property since it implies that from every element of $\Ba
 %\problemx{general $k$-resilience problem for WSTS}
 %{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
 %{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-
 %		Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
-
 The three previous problems become:
 
 
@@ -47,7 +45,6 @@ The three previous problems become:
 
 
 Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
-
 As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed. We will consider here the cases where 
 $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$ 
 and where 
@@ -68,12 +65,7 @@ where  $t$-liveness is both undecidable and
 % {\bf Reset VASS}
 
 Reset VASS extend the basic VASS model with special “reset
-transitions” that resets (set to $0$) some coordinates in the vector. Let us recall their definition here.\\
-
-% More Formally {\em reset ... }
-
-
-
+transitions” that resets (set to $0$) some coordinates in the vector. Let us recall their definition here.
 \begin{definition}
 A {\em Reset VASS} in dimension $d$ (Reset $d$-VASS for short) is a finite 
 % $\mathds{Z}^d$
@@ -89,27 +81,18 @@ Again $Q \times \N^d$
  denotes the set of configurations of $V$.
 For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
 $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
-
-\begin{itemize}
-
+\begin{samepage}\begin{itemize}
 \item  $t = (q,add(\textbf{z}),q') \in T$
 % then for all $\textbf{u} \in \N^d$ such that  
 % $\textbf{u}+\textbf{z} \geq 0$
 % $q(\textbf{u}) \xrightarrow{\textbf{z}} q'(\textbf{u}+\textbf{z})$,
 and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
-
 \item $t = (q,reset(\gamma),q') \in T$ 
 % then for all $\textbf{u} \in \N^d$ 
 % $q(\textbf{u}) \xrightarrow{z} q'(\textbf{u}')$,  where 
 and
 $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
-\end{itemize}
-
-\iffalse
-\problemx{$d$-VASS zero-reachability}
-{VASS $V=(Q,T)$, $p(\textbf{u}) \in Q \times \N^d$}
-{$\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$? \\} 
-\fi
+\end{itemize} \end{samepage}
 
 It is well known that Reset $d$-VASS are WSTS [ref ? relire WSTS everywhere]. 
 Moreover, we are interested in the 
@@ -318,13 +301,7 @@ $({\uparrow  A}) \cap D \subseteq U$ implies
 $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
 \end{proof}
 
-\iffalse
-\alain{definir downward reachability problem.....
-downward-closed problem given a state $s$ of a WSTS
-% in the regarded class 
-with strong compatibility 
-and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. }
-\fi
+
 
 
 The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
