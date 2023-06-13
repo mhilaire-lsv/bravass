@@ -1,0 +1,37 @@
+
+
+We investigate and expand upon the notion of resilience as defined in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}, which asks whether a system can reach a safe state in a bounded number of steps whenever it reached a bad state. We introduce a more general definition of resilience and we define three decidability questions for each of type of resilience: The (state-)resilience problem (RP), the bounded (state-)resilience problem (BRP)
+and the $k$-(state-)resilience problem (kRP). The (general) resilience problem 
+% is the following: let $L_1,L_2 \subseteq S$ be two subsets of states, S is $(L_1,L_2)$-resilient if $\post^*(L_1)	\subseteq \pred^*(L_2)$. 
+asks whether a set of safe elements $\Safe$ is reachable for all elements in a set of bad elements $\Bad$. 
+We remark that it is an instance of the home space problem defined in the framework of VASS.
+State resilience only consider bad elements that are reachable from an initial state, while bounded-resilience and $k$-resilience ask whether safe is reachable in a bounded number of step and $k$ or less steps respectively.
+
+In a well-structured framework we show that resilience and state-resilience problems are both undecidable for WSTS with strong compatibility. Moreover, state-resilience,
+bounded-state-resilience and
+ $k$-state-resilience
+are undecidable for strongly upward-compatible WSTS with effective pred-basis. 
+
+On the positive side, we find classes of WSTS that have a \emph{decidable} resilience. The resilience problem (RP), the bounded resilience problem (BRP)
+and the $k$-resilience problem (kRP) are decidable for completion-post-effective $\omega^2$-WSTS with strong compatibility and two sets $\Bad = \downarrow \Bad$ and $\Safe = \uparrow \Safe$, and moreover the resilience problem is decidable for ideal-effective WSTS with 
+$\Safe=\downarrow \Safe$
+and $\Bad=\uparrow \Bad$
+and
+the additional hypothesis that
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
+
+We then generalize the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} by relaxing the strong compatibility hypothesis: {\sc State-resilience} is decidable for 
+ WSTS with effective 
+$\uparrow$ $\post^*$ basis
+when
+$\Safe=\uparrow \Safe$
+and $\Bad=\downarrow \Bad$. However, we show that removing the effective 
+$\uparrow$ $\post^*$ basis hypothesis leads to undecidability. But we found another effective hypothesis {\sc State-resilience} is decidable for ideal-effective WSTS with downward and upward compatibilities, and {\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility.
+
+Finally, we study the resilience for VASS, where most problems are shown decidable.
+
+
+
+
+
+
