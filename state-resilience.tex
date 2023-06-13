@@ -94,29 +94,16 @@ and
 $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
 \end{itemize} \end{samepage}
 
-It is well known that Reset $d$-VASS are WSTS \cite{dufourd1998reset}. 
+It is well known that Reset $d$-VASS are WSTS~\cite{dufourd1998reset}. 
 Moreover, we are interested in the 
 %following
- undecidable \cite{araki1976PN} decision problem%:
-\iffalse
-\alain{ce qui suit est inutile}
-
-\begin{samepage}
-\problemx{Zero-reachability}
-{A Reset $d$-VASS $V=(Q,T)$, $q(\textbf{u}) \in Q \times \N^d$}
-{$\exists p \in Q ~ q(\textbf{u}) \to^* p(\textbf{0})$? \\}
-\end{samepage}
-%
-\alain{ce qui précède est inutile}
-\fi
-~ of {\em zero-reachability} in Reset $d$-VASS, which consists in, given a
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in Reset $d$-VASS, which consists in, given a
 Reset $d$-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
 deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 %
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
 which we then reduce to {\sc State-resilience}.
 A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
-%\alain{mélange de s et (p,u)}
  $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole Reset $d$-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
@@ -126,7 +113,6 @@ live. This leads to the following problem.
 
 
 To better discuss $t$-liveness let us define more formally the set of configurations such that $t$ is enabled
-% $pre(t)=\{ u \in S \mid \exists u' \in S$ in a labeled WSTS such that $u \xrightarrow{t} u'$\} 
 $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
 
 \iffalse
@@ -150,7 +136,6 @@ in a
 Reset $d$-VASS $(Q,T)$ 
 with initial configuration $s_0$
 as the following formula
-% \[ ~ \forall s \in S, ~ s_0 \rightarrow^* s \implies \exists s' \in U_t, ~ s \rightarrow^{*} s'\] 
 \[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
 ~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in U_t, ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]
 where
@@ -163,12 +148,9 @@ where $\Safe = U_t$ and $\Bad = Q \times \N^d \setminus \Safe$.
 
 % To convince ourselves that $t$-liveness is undecidable in general for WSTS, we consider the case of Reset VASS. 
 The following theorem is a transposition of Theorem~5.5 from \cite{peterson1981petri} from Petri nets to Reset VASS, whose proof can be seen in Appendix~\ref{appendix}.
-
 \begin{proposition}\label{liveness reset}
 The  zero reachability problem can be reduced to the $t$-liveness problem in Reset VASS.
 \end{proposition}
-
-
 
 Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduction implies 
 % the following:
@@ -176,10 +158,6 @@ Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduc
 %
 {\sc %$ Reset $d$-VASS 
 $t$-liveness} is undecidable.
-
-
-
-
 Since {\sc %$Reset $d$-VASS 
 $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
@@ -199,10 +177,8 @@ and $\Bad=\downarrow \Bad$.
 {\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since 
 {\sc %Reset $d$-VASS 
 $t$-liveness} is undecidable.
-
 % \begin{proposition}
 % \end{proof}
-
 % \begin{proposition}
 In WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
 reducible to {\sc $k$-state-resilience}:
@@ -424,10 +400,7 @@ Let $B_{\uparrow \post^*(s)}$
  be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$
 and $\Bad$ a downward-closed set given by its finite set of (maximal) ideals.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
-
 \[ \post^*(s) \cap \Bad \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)} \cap \Bad \subseteq \pred^*(\Safe)\]
-% \alain{$\equiv $  ???}
-
 Since $B_{\uparrow \post^*(s)}$ is finite and $\Bad$ is decidable, we can directly compute $ B_s \cap \Bad$.
 % For every element of $ B_p \cap J$, checking that it is in $\pred^*(I)$ is the same as checking coverability of I, and thus decidable.
 We can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, and hence check that $B_{\uparrow \post^*(s)} \cap \Bad \setminus \pred^*(\Safe) = \emptyset$. 
@@ -457,8 +430,6 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 
 
 Results synthesis in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$:
-
-
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis & strong %upward 
@@ -476,7 +447,7 @@ Results synthesis in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \B
 
 
 
-Unfortunately the {\sc State-resilience} problem is undecidable for WSTS.
+Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. As for resilience in WSTS when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by Reset-VASS, as seen in Appendix~\ref{HS-Minsk}. 
 
 \begin{theorem}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
@@ -485,9 +456,9 @@ $\Safe=\downarrow \Safe$
 and $\Bad=\uparrow \Bad$.
 \end{theorem}
 
-\begin{proof}
-\mathieu{Refaire la preuve en utilisant les Minsky machines, i.e. si on pet résoudre la question dans les reset alors on peut la résoudre dans les Minsky machine ... et ça y est indécidable.}
-\end{proof}
+% \begin{proof}
+% \mathieu{Refaire la preuve en utilisant les Minsky machines, i.e. si on pet résoudre la question dans les reset alors on peut la résoudre dans les Minsky machine ... et ça y est indécidable.}
+% \end{proof}
 
 
 Despite this, it is possible to yield positive results. Indeed, in many ways the case where $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
