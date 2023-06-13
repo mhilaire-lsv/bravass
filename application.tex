@@ -7,7 +7,7 @@ We say that $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient (resp. $(s_0,X
 \end{definition}
 
 We may verify that  $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient iff  $\mathscr{S}=(S, \rightarrow, \leq)$ is $\pred^*(X)$-resilient. The \emph{maximal $X$-resilient subsystem} of $\mathscr{S}=(S,\rightarrow,\leq)$ is defined as $\mathscr{S}_X=(S,\rightarrow_X,\leq)$ where $\rightarrow_X$ is the largest restriction of $\rightarrow$ that insures that $\mathscr{S}_X$ is $X$-resilient.
-\alain{vérifier que la plus grande existe}
+%\alain{vérifier que la plus grande existe}
 Let us remark that given a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$, one may construct many \emph{guard} systems where every transition $s \rightarrow s'$ of $\mathscr{S}$ is guarded by a (monotone) formula $\phi$ defined by the grammar $\phi ::= s \geq u \mid s' \geq u \mid \phi \vee \phi \mid \phi \wedge \phi$ where $u \in S$. Since guards restrict the original runs but don't create new ones, every guarded transition system $\mathscr{S'}$ is a subsystem of $\mathscr{S}$. Since these formula are upward-compatible, the guarded transition systems $\mathscr{S'}=(S, \rightarrow', \leq)$ are still WSTS.
 %
 For example, VASS allows such guards.
@@ -117,7 +117,7 @@ $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697},
 Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logics. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
 
 \begin{theorem}{}
-Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are semilinear sets.
+Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are semilinear.
 \end{theorem}
 
 \begin{proof}
@@ -127,14 +127,14 @@ We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\S
 Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
 
 \begin{theorem}{}
-Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear sets.
+Resilience is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear.
 \end{theorem}
 
 \begin{proof}
 The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
 % For Z-VAS we observe that we are asking for inclusion between linear sets. 
 % Again let us without loss of generality hence let us consider only the case when $\Safe$ is semilinear and $\Bad = S \setminus \Safe$ is semilinear too.
-\mathieu{Expliciter davantage la preuve ? $\pred^*(\Safe)$ semilinéaire car définissable en Presburger ? Puis inclusion de semilinéaires décidables.}
+% \mathieu{Expliciter davantage la preuve ? $\pred^*(\Safe)$ semilinéaire car définissable en Presburger ? Puis inclusion de semilinéaires décidables.}
 \end{proof}
 
 Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
@@ -151,8 +151,8 @@ the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:jo
 \end{proof}
 
 
+\iffalse
 \begin{figure}
-
 \begin{center}
 \begin{tabular}{ | l | c | c | c | r |}
 \hline   \Safe~\Bad 
@@ -176,9 +176,10 @@ the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:jo
 \end{center}
 	\caption{Decidability results for VASS.}
 \end{figure}
+\fi
 
 \begin{proposition}
-{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{proposition}
 
 
@@ -187,38 +188,22 @@ Consider a given $k \in \N$,
  $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed, and
 consider a given vector addition system $V$.
 Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
-
 The set $\Bad$ admits a finite basis $B_\Bad$.
 Consider $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider 
 $\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
 
 All configurations reachable from $\textbf{u}_k$ in $k$ or less steps are above $ \textbf{v}_{\Bad} $
 and thus, are in $\Bad$, by upward-closedness.
-
 Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$k$-resilience} does not hold.
 Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold either.
 \end{proof}
 
-\iffalse
-\mathieu{
-resilience never hold in the case of VAS. 
-What happens when you add states ? \\
-So you consider for instance $q_0(u_k)$ instead of just $u_k$. \\
-Everything reachable from $q_0(u_k)$ is still of the form $q(u)$ with u greater than $v_{\Bad}$
-(we'd have $v_{\Bad}$ sum of the coordinate of the elements from the basis of $\Bad$ when not considering states).
-So now, let us fix some state $q$.
-Either there is an element of the basis of $\Bad$ with state $q$.
-Then $q(u)$ is necessarily in $\Bad$ (If this hold for all $q \in Q$, then again $k$-resilience does not hold).
-Either there is none.
-If there is none, then $q(\omega)$ is in the complement of $\Bad$, i.e. $\Safe$.
-Then, of course there are probably other elements in $\Safe$ but from
-the perspective of $\Bad$ and the extremely high elements $q_i(u_k)$  these ‘smaller’ elements are all but unreachable. 
-And the question becomes rather `can we reach $q(\omega)$ from every element of $\Bad$ save from maybe the few smaller ones ?’
-Since $q(\omega)$ here is upward-closed this is decidable i.e. it is asking coverability questions. 
-It’s not 100\% the question «asking, for every element in the basis of $\Bad$, whether or not $q(0)$ is coverable from it», since you could have, for smaller elements in $\Bad$, other elements of $\Safe$ you can reach, but it seem close.
-This would lead to a decision scheme.
-Need to write this more formally/properly.}
-\fi
+This all changes when you add control states. For a VASS with control states in $Q$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+$\uparrow q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
+ $\Safe$ and compute basis for the sets of elements from which they are reachable in at most $k$ steps. 
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure, written in detail in Appendix~\ref{appendix brp VASS}, which lead to the following decidability result:
 
 \begin{theorem}\label{brp VASS}
 {\sc $k$-resilience }  and {\sc Bounded resilience} in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable%, and moreover {\sc $k$-resilience } is in $\EXPSPACE$
@@ -226,9 +211,9 @@ Need to write this more formally/properly.}
 \end{theorem}
 
 
-\begin{proof}
-\mathieu{Donner l'idée et se référencer à l'appendix~\ref{appendix brp VASS} pour la preuve complête.}
-\end{proof}
+% \begin{proof}
+% \mathieu{Donner l'idée et se référencer à l' pour la preuve complête.}
+% \end{proof}
 
 
 
