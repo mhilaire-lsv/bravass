@@ -66,7 +66,7 @@ Let us formalize three resilience problems.
 
 \begin{example}
 Let us consider a VASS with only one state $q$, one counter, and one transition that substracts $-1$ from the counter, with $\Safe = \downarrow q(0)$, $\Bad = \uparrow q(1)$,
-then resilience hold (one always ends up in the positive integers) but not bounded resilience: for every bound $k$ there is an element of $\Bad$ e.g. $q(-k-1)$ which necessitate at least $k+1$ steps before it can reach $\Safe$. 
+then resilience hold but not bounded resilience: for every bound $k$ there is an element of $\Bad$ e.g. $q(k+1)$ which necessitate at least $k+1$ steps before it can reach $\Safe$. 
 \end{example}
 
 
