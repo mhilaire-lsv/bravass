@@ -3,14 +3,7 @@
 
 \section{Well-structured transition systems}\label{section definitions}
 
-
-
 %   In this section, we introduce general notations and preliminary definitions.
-
-%The model we are interested in is labeled WSTS (and later some particular instances, i.e. Timed/Counter Automata for instance).
-
-
-% \textcolor{red}{Before defining WSTS, need a definition of TS and WQO}
 
 \noindent
 %Let us recall the well-known framework of transition systems. 
@@ -61,63 +54,15 @@ as $\uparrow x$ (resp. $\downarrow x$).
 %
 A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
 
-
+\mathieu{Mentionner le qo utilisé dans l'example~\ref{Example}}
 
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
 %
 %
-\iffalse
-%
-\begin{lemma}
-(Erd\"os and Rado). Assume $\leq$ is a wqo. Then any infinite sequence contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$).
-\end{lemma}
-
-
-\begin{proof}
-Consider an infinite sequence and the set $M = \{i \in N \mid \forall j > i ~ x_i \not\leq x_j \}$. $M$ cannot
-be infinite, otherwise it would lead to an infinite subsequence contradicting the wqo
-hypothesis. Thus, $M$ is bounded and any $x_i$ with $i$ beyond $M$ can start an infinite
-increasing subsequence.
-\end{proof}
-%
-\fi
 %
 Wqo admits many other equivalent formulations. 
 % For instance:  $(X,\leq)$ is a wqo f and only if any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$) if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of upward-closed subsets in $X$ eventually stabilizes, if and only if any upward-closed subset $U \subseteq X$ has a finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and $X$ don't contain infinite subset of mutually incomparable elements (antichains).
 %
-\iffalse
-%
-
-\begin{lemma}{(Higman [40])} 
-If $\leq$ is a wqo then any upward-closed $I$ has a
-finite basis.
-\end{lemma}
-
-% \textcolor{red}{Expliquer ce que c'est une base d'abords.}
-
-\begin{proof}
-The set of minimal elements of $I$ is a basis because $\leq$ is well-founded. It
-only contains a finite number of non-equivalent elements otherwise they would make
-an infinite sequence contradicting the wqo assumption.
-\end{proof}
-
-
-
-\begin{lemma}  \label{upward-closed stablizes}
-If $\leq$ is a wqo then any infinite increasing sequence $I_0 \subseteq I_1 \subseteq I_2 \subseteq \cdots$ of
-upward-closed sets eventually stabilizes, i.e. there is a $k \in N$ such that 
-$I_k = I_{k+1} = I_{k+2} = \cdots $.
-\end{lemma}
-
-\begin{proof}
-Assue we have a counter-example.
-We extract an infinite subsequence where
-inclusion is strict: $I_{n_0} \subsetneq I_{n_1} \subsetneq I_{n_2} \cdots$. Now, for any $i>0$, we can pick some $x_i \in I_{n_i} \setminus I_{n_{i-1}}$. The well-quasi-ordering hypothesis means that the infinite sequence of $x_i$'s
-contains an increasing pair $x_i \leq x_j$ for some $i<j$. Because $x_i$ belongs to an upward-
-closed set $I_{n_i}$ we have $x_j \in I_{n_i} $, contradicting $x_j \not\in I_{n_{ j - 1}}$.
-\end{proof}
-%
-\fi
 %
 Quasi-orderings that have no 
 %infinite antichains
@@ -132,8 +77,7 @@ Let us now recall the (most general) definition of well-structured transition sy
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
 A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
-equipped with a wqo ${\leq} \subseteq S \times S$ such that  
-%  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
+equipped with a wqo ${\leq} \subseteq S \times S$ such that   
 the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
 $s_1, t_1 , s_2 \in S$
 	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
@@ -147,18 +91,11 @@ $s_1, t_1 , s_2 \in S$
 	$t_2 \in S$ with 
 	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
 
+\mathieu{Mentionner que le Lossy VASS de l'example~\ref{Example} est un WSTS}
+
 Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering and lossy channel systems with the subword ordering.
 
 
-% \textcolor{red}{Define 'has effective pred-basis'. Maybe it should be included in WSTS definition, maybe it can be another def. I kind of like the idea of 'effective pred-basis' and 'decidable $\leq$' being independant from the WSTS definition}
-\iffalse
-\begin{proposition}\cite{DBLP:journals/tcs/FinkelS01}
-If $\mathscr{S}$ is an WSTS and $U \subseteq S$ is an upward-closed set of states, then $\pred^*(U )$ is upward-
-closed.
-\end{proposition}
-%
-Proof. Assume $s \in \pred^* (U )$. Then $s \rightarrow^* t$ for some $t \in U $. If now $s' \geq s$ then upward-compatibility entails that $s' \rightarrow^* t'$ for some $t' \geq t$. Then $t' \in U$ and $s' \in \pred^*(U )$.
-\fi
 
 \noindent
 {\bf On effectivity}
@@ -176,14 +113,7 @@ We say that $\mathscr{S}$
 is {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
 to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
 
-%\alain{étrange ces deux propositions, l'une suffirait}
-%%%%%%%%%%%%%%%%%
-\iffalse
-%%%%%%%%%%%%%
-Proof. Assume $s \in \pred (I )$. Then $s \rightarrow t$ for some $t \in I $. If now $s' \geq s$ then strong upward-compatibility entails that $s' \rightarrow t'$ for some $t' \geq t$. Then $t' \in I$ and $s' \in \pred(I )$.
-%%%%%%%%%%%
-\fi
-%%%%%%%%%%
+\mathieu{Mentionner que le Lossy VASS de l'example~\ref{Example} est effectif}
 
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
