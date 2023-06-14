@@ -66,27 +66,35 @@ even though \cite{DBLP:conf/gg/Ozkan22} also discuss (albeit briefly) the other 
 	\begin{figure}
 			\hspace{0.74cm}
 \includegraphics[width=0.87\textwidth]{FigureB}
-	\caption{A channel system with three automata and four channels. Leftmost and rightmost automata represents aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one represent the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing.}
+	\caption{A lossy VASS with three subsystems and four counters. Leftmost and rightmost systems $A$ and $B$ represents aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $M$ represent the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing.}
 					\label{air control}
 	\end{figure}
 \end{center}
 
-Consider the channel system in Figure~\ref{air control}. It models a scenario in which two aircrafts wants to land in an airport at the same time. 
-The automata on the left and right represents the aircrafts attempting to land, while the middle one represent the control tower. The control tower can send messages to the aircrafts using channels $c_1$ and $c_2$, and these in turn can send messages to the control tower using respectively channel $c_3$ and $c_4$. Remark channels $c_3$ and $c_4$ have a unary alphabet
-in the exemple and therefore can be seen as counters. 
+\begin{example}\label{Example}
+Consider the vector addition system in Figure~\ref{air control}. It models a scenario in which two aircrafts wants to land in an airport at the same time. 
+The automata $A$ on the left and $B$ on the right represent the aircrafts attempting to land, while the middle one $M$ represents the control tower. The control tower can communicate information to the aircrafts using 
+% channels $c_1$ and $c_2$, and these in turn can send messages to the control tower using 
+the first two shared counters, and these in turn can send messages to the control tower
+using the last two shared counters. 
+% respectively channel $c_3$ and $c_4$. 
+% Remark channels $c_3$ and $c_4$ have a unary alphabet in the exemple and therefore can be seen as counters. 
 
 Safety requires that only one aircraft at a time attempt to land. The role of the control tower is to ensure this;
-there are two possible choices: aircraft A waits for aircraft B to land
-or vice-versa. To make its choice known to the aircrafts, the control tower will send them messages using the channels. 
-We assume that the channel are
-lossy \-- i.e. an arbitrary number of messages may be lost from the channels \--  but that they are still such that out of ten messages, at least one is not lost.
-In this example, the safe, desirable state would be one where the aircrafts have both landed. 
-Resilience here expresses that the aircrafts state will both land, while explicit resilience or $k$-resilience asks whether they will do so in at most $k$ steps. 
-Explicit resilience is of interest since in general we want to ensure the safe state will
+there are two possible choices: aircraft $A$ waits for aircraft $B$ to land
+or vice-versa. To make its choice known to the aircrafts, the control tower will use the counters. 
+We assume that the VASS is
+lossy \-- i.e. [...] \--  but that they are still such that [out of ten messages, at least one is not lost].
+In this example, the safe, desirable state would be one where the aircrafts have both landed, i.e.
+$\Safe = \{(q_{A,1}, q_{M,5}, q_{B,1})(v) \mid v \in \N^4\}$, and $\Bad$ is the complement of $\Safe$. 
+% We remark that $\Safe$ and $\Bad$ are here both upward and downward closed.
+Resilience here expresses that the aircrafts will both land, while explicit resilience or $k$-resilience asks whether they will do so in at most $k$ steps. 
+Explicit resilience is of interest since in general we want to ensure the safe space will
 be reached in
-the least amount of step possible. 
+the least amount of steps possible. 
 In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time.
-With one out of ten messages guarranteed to not be lost, $40$-resilience hold in the example.
+With [one out of ten messages guarranteed to not be lost], $40$-resilience hold in the example.
+\end{example}
 
 %\alain{il faut mieux expliquer le modèle, le rôle des 4 canaux, des messages, remarquer que 2 canaux sont des compteurs,....}
 
