@@ -62,6 +62,8 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. Nevertheless, we 
 {\bf Related works.} 
 In 2016, Prasad and Zuck introduced rather informally \cite{DBLP:journals/corr/PrasadZ16}, the state-resilience of a process to an adversary and they used the framework of WSTS enjoying \emph{both} upward and downward compatibilities to shortly draw a proof of the decidability of two kinds of resilience. Remark that the downward compatibility of a WSTS implies  there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$. In 2021 and 2022, Okzan and Würdemann \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} studied graph transformation systems and they considered the state-resilience in the framework of WSTS with strong compatibility and with the supplementary hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$. All these papers are concerned particular Safe and Bad sets: $\Bad$ is downward-closed and $\Safe$ is upward-closed,
 even though \cite{DBLP:conf/gg/Ozkan22} also discuss (albeit briefly) the other possible cases.
+A set $X$ is an \emph{home space} for a system $(S,s_0)$ \cite{DBLP:conf/ac/MemmiV86} if from all reachable states from $s_0$, it is always possible to reach $X$; recently Memmi extended this definition as follows: A set $X$ is an \emph{$A$-home space} for a system $S$ \cite{memmi2023invariants} if from all states in $A$, it is always possible to reach $X$.
+ 
 \begin{center}
 	\begin{figure}
 			\hspace{0.74cm}
