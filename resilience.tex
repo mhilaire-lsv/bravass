@@ -86,15 +86,15 @@ and in the general case when $\Safe = \downarrow \Safe$.
 
 
 
-
-While considering a sequence of configurations, every prefix is always 
-either in the case that the latest visited $\Bad$ configuration has already been followed by a $\Safe$ configuration
+Given a set of states $S$, with two subsets $\Bad$ and $\Safe$, it is useful to note that in a sequence of states of $S$, every prefix is always 
+either in the case that the latest visited $\Bad$ state has already been followed by a 
+$\Safe$ state
 or in the case that it still has to. 
-Thus, in context, there are no true ``neutral'' configurations: either a neutral configuration is contextually ``$\Safe$'' because it follows a visit in a $\Safe$ configuration, either it is contextually ``$\Bad$'' because it follows a visit in a $\Bad$ configuration and has, accordingly, to reach a $\Safe$ one.
-Hence we will consider not only $\Bad$ and $\Safe$ disjoint but
+Thus, \emph{in context}, there are no true ``neutral'' state: either a neutral state is contextually ``$\Safe$'' because it follows a visit in a $\Safe$ state, either it is contextually ``$\Bad$'' because it follows a visit in a $\Bad$ state and has, accordingly, to reach a $\Safe$ one.
+Hence we will consider in the following not only that $\Bad$ and $\Safe$ are disjoint but
 % w.l.o.g.
 	also
-$\Bad$ complement of $\Safe$,
+that $\Bad$ is the complement of $\Safe$,
 in which case
 if $\Bad$ is downward-closed then $\Safe$ is upward-closed and vice-versa.
 Cases where $\Bad$ or $\Safe$ are not complements of each other, and share closure properties, i.e. are both downward-closed or both upward-closed,
@@ -103,8 +103,6 @@ see
 Appendix~\ref{case down down}
 and
 Appendix~\ref{case up up} for results.
-
-\mathieu{Beaucoup plus dévellopper le paragraphe ci-dessus et expliciter qu'à partir de maintenant, on considère $\Bad$ complémentaire de $\Safe$ par défaut.}
 
 \input{resilience-safe-up}
 
