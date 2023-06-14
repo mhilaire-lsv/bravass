@@ -20,10 +20,10 @@ Resilience is a strong property since it implies that from every element of $\Ba
 The three previous problems become:
 
 
+\iffalse
+
 \problemx{State-resilience problem (SRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
-% 		an upward-closed set $\Safe$ with a given basis, a decidable downward-closed set $\Bad$.}
-% 		{$ ~ \forall s' \in \Bad, ~ s \rightarrow^* s' \implies \exists s'' \in \Safe, ~ s' \rightarrow^{*} s''$ ?\newline}
 {$\Bad \cap \post^*(s)  \rightarrow^{*} \Safe $ ? \newline}
 
 
@@ -34,13 +34,17 @@ The three previous problems become:
 
 \problemx{bounded-state-resilience problem (BSRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
-%{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
 {$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-state-resilient. ?\newline}
 
+\fi
 
-%\textcolor{blue}{
-%justification des definitions: si on enlève la condition  an upward-closed set $U$ (extended resilience $U$ qq) reachability reduces to resilience (avec $U=\{x\}$ donc indecidable pour les modèles à reachability indécidable.
-%}
+
+\problemx{State resilience problems}
+{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$, two sets $\Safe, \Bad \subseteq S$, $k \in \mathbb{N}$.}
+{ ({\sc state-resilience problem (SRP)}) $\post^*(s) \longrightarrow^{*} \Safe$ ?\newline  
+({\sc $k$-state-resilience problem (kSRP)})		$\post^*(s) \longrightarrow^{\leq k} \Safe$ ?\newline
+({\sc bounded-state-resilience problem (BSRP)})	$\exists k \geq 0$ such that $\mathscr{S}$ is 
+ $k$-resilient ?\newline}
 
 
 
