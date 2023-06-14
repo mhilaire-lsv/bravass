@@ -6,17 +6,7 @@
 
 
 Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap \post^*(s_0)$, there must exist a path to $\Safe$. 
-%
-%			However, this condition seems more difficult since one also must decide whether a state $s \in \Bad$ is reachable from $s_0$.
-%
-%\problemx{(I,J)-$k$-resilience problem for WSTS}
-%{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis), a set $J$.}
-%{$\forall s' \in J ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-%
-%\problemx{general $k$-resilience problem for WSTS}
-%{A state $s$ of a WSTS $(S,\rightarrow, \leq)$, an effective set $I$ (with a given basis).}
-%{$\forall s'  ~ (s \rightarrow^* s') \implies \exists s'' \in I ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-%		Again, we first consider the case where the recovery time is bounded by a $k \in \N$.
+Since we still consider $\Bad$ and $\Safe$ complement of each others, this is akin to asking whether from $\post^*(s_0)$ there must exist a path to $\Safe$. 
 The three previous problems become:
 
 
@@ -50,13 +40,14 @@ The three previous problems become:
 
 Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
 As in the Section~3, we study decidability results for different pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed. We will consider here the cases where 
-$\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$ 
+$\Safe = \uparrow \Safe$ (and $\Bad = \downarrow \Bad$) 
 and where 
-$\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
+$\Safe = \downarrow \Safe$ (and $\Bad = \uparrow \Bad$).
 
-% \mathieu{Ici on s'intéresse seulement aux cas $\uparrow \downarrow$ et $\downarrow \uparrow$.}
 
-\subsection{Case: $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$}
+
+\subsection{Case: $\Safe = \uparrow \Safe$% and $\Bad = \downarrow \Bad$
+}
 
 
 
@@ -65,8 +56,6 @@ This stems from the fact that it is undecidable in the particular case of Reset 
 where  $t$-liveness is both undecidable and 
  reducible to {\sc State-resilience}.
 
-% \noindent
-% {\bf Reset VASS}
 
 Reset VASS extend the basic VASS model with special “reset
 transitions” that resets (set to $0$) some coordinates in the vector. Let us recall their definition here.
@@ -119,12 +108,6 @@ live. This leads to the following problem.
 To better discuss $t$-liveness let us define more formally the set of configurations such that $t$ is enabled
 $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
 
-\iffalse
-\alain{ou alors $t=(u,u')$ such that $u \rightarrow u'$ mais alors c'est bizarre de nommer par la même lettre $t$ des couples différents $(u,u'), (v,v'),...$ dans un WSTS...ou alors on appelle transition un couple $(u,u')$ such that $u \rightarrow u'$ mais plus de lettre $t$...ou on définit un WSTS par un nombre fini de (shéma de ) transition $t_i$ qui sont compatibles par compatibilité mais ça contraint à un nombre fini (comme dans les VASS) ou alors on ne parle ici que des VASS et pas des WSTS mais ça suffira puisque state resilience pour VASS implique pour WSTS BREF il faut réfléchir à ce qu'est une transition...}
-
-\mathieu{En train de penser que le mieux serait de définir la $t$-liveness pas pour les WSTS mais pour les (Reset) VASS uniquement et ensuite dire SRP indécidable dans WSTS car indécidable pour les Reset VASS.}
-
-\fi
 
 
 \begin{proposition}\label{reductions}
@@ -320,15 +303,6 @@ asking whether $S \setminus U_n$ is reachable from $s$.
 
 More concretely,
 VASS for instance are $\uparrow \post^*$-effective WSTS \cite{DBLP:journals/corr/abs-2108-00889}. 
-\iffalse
-
-\begin{proposition}\cite{DBLP:journals/corr/abs-2108-00889}
-Let $V= (Q,T)$ be a $d$-VASS and $q(\textbf{v}) \in Q \times \N^d$ a configuration, then one can compute a basis of $\uparrow \post^*(q(\textbf{v}))$.
-% \alain{où sont définis les d-VASS, $V= (Q,T)$, $q(\textbf{v}) \in Q \times \N^d$ ?}
-\end{proposition}
-
-
-\fi
 It is well-known that 
 % Petri nets are WSTS with strong  compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
 % Since 
@@ -359,23 +333,6 @@ is undecidable for Reset VASS.
 \fi
 Then, {\sc State-resilience} would be decidable for Reset VASS, which leads to a contradiction.
 \end{proof}
-
-%il existe des modèles où on peut calculer $\uparrow \post^*$: inserted channel systems: on sait calculer $\post^*$ qui est rationnel donc on sait calculer $\uparrow \post^*$.
-
-
-%
-%si on garde strong mais on enlève effective basis of $\post^*$:
-%
-%\begin{proposition}(à prouver)
-%{\sc $k$-resilience}, hence {\sc bounded resilience}, is undecidable for effective WSTS with strong compatibility.
-%\end{proposition}
-%
-%\begin{proof}
-%pas de effective basis of $\post^*$. leur algorithme n'est plus un algo. ex reset PN ?  \textcolor{red}{pas certain ! à faire Mathieu}
-%\end{proof}
-
-
-
 
 
 
@@ -447,7 +404,8 @@ Results synthesis in the case $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \B
 \end{center}
 
 
-\subsection{Case: $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$}
+\subsection{Case: $\Safe = \downarrow \Safe$% and $\Bad = \uparrow \Bad$
+}
 
 
 
