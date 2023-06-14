@@ -54,7 +54,6 @@ as $\uparrow x$ (resp. $\downarrow x$).
 %
 A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
 
-\mathieu{Mentionner le qo utilisé dans l'example~\ref{Example}}
 
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
 %
@@ -64,10 +63,16 @@ Wqo admits many other equivalent formulations.
 % For instance:  $(X,\leq)$ is a wqo f and only if any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$) if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of upward-closed subsets in $X$ eventually stabilizes, if and only if any upward-closed subset $U \subseteq X$ has a finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and $X$ don't contain infinite subset of mutually incomparable elements (antichains).
 %
 %
+% \mathieu{Mentionner le qo utilisé dans l'example~\ref{Example}}
+% As an illustration, Example~\ref{Example} uses a quasi order based on the  canonical order of $\N^4$
+As an example, $(\N^d, \leq)$, the set of vectors of $d$ natural numbers (where $d$ is finite) with component-wise order is a wqo.
+%
 Quasi-orderings that have no 
 %infinite antichains
 infinite subset of mutually incomparable elements (antichains)
  enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
+
+
 
 In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement), and an upward-closed set $U$ is represented by its finite set of minimal elements. \\
 
@@ -91,10 +96,8 @@ $s_1, t_1 , s_2 \in S$
 	$t_2 \in S$ with 
 	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
 
-\mathieu{Mentionner que le Lossy VASS de l'example~\ref{Example} est un WSTS}
-
-Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering and lossy channel systems with the subword ordering.
-
+Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering and lossy channel systems with the subword ordering. The Lossy VASS given in Example~\ref{Example}, for instance, is a WSTS.
+% \mathieu{Mentionner que le Lossy VASS de l'example~\ref{Example} est un WSTS}
 
 
 \noindent
@@ -112,8 +115,11 @@ any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\up
 We say that $\mathscr{S}$
 is {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
 to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
-
-\mathieu{Mentionner que le Lossy VASS de l'example~\ref{Example} est effectif}
+%
+% \mathieu{Mentionner que le Lossy VASS de l'example~\ref{Example} est effectif}
+As an illustration, the Lossy VASS given in Example~\ref{Example} is post-effective,
+ideal-effective, and
+has effective pred-basis.
 
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
