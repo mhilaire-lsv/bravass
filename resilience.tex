@@ -35,12 +35,12 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
 
 Let us formalize three resilience problems.
 
-\iffalse
+
 \problemx{resilience problem (RP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
 {$\Bad \longrightarrow^{*} \Safe$ ?\newline}
 
-\alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
+% \alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
 
 
 \problemx{$k$-resilience problem (kRP)}
@@ -53,8 +53,8 @@ Let us formalize three resilience problems.
 {$\exists k \geq 0$ such that $\mathscr{S}$ is %uniformely
  $k$-resilient ?\newline}
 
-\fi
 
+\iffalse
 
 \problemx{Resilience problems}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, two sets $\Safe, \Bad \subseteq S$, $k \in \mathbb{N}$.}
@@ -63,6 +63,7 @@ Let us formalize three resilience problems.
 ({\sc bounded resilience problem (BRP)})	$\exists k \geq 0$ such that $\mathscr{S}$ is 
  $k$-resilient ?\newline}
 
+\fi
 
 \begin{example}
 Let us consider a VASS with only one state $q$, one counter, and one transition that substracts $-1$ from the counter, with $\Safe = \downarrow q(0)$, $\Bad = \uparrow q(1)$,
