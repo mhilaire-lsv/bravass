@@ -89,7 +89,7 @@ Resilience is decidable for VASS when $\Safe$ and $\Bad$ are semilinear sets.
 \end{theorem}
 
 \begin{proof}
-When asking about {\sc Resilience}, in context, there are no true ``neutral'' configurations.
+\iffalse When asking about {\sc Resilience}, in context, there are no true ``neutral'' configurations.
 Indeed, from a VASS $V$, $\Safe$ and $\Bad$ semilinear, one can build VASS $V'$, $\Safe'$ semilinear, and $\Bad'$ complement of $\Safe'$ such that {\sc Resilience} holds for
 $V$, $\Safe$ and $\Bad$ if and only if {\sc Resilience} holds for
 $V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of the control states of $V$; $Q_{A}$ and $Q_{B}$, and will have two other VASS running in parallel checking whether or not the current configuration belong to $\Safe$ resp. $\Bad$. 
@@ -97,7 +97,8 @@ From a configuration with state in $Q_{A}$ you go to $Q_B$ when you are in a $\B
 and from a configuration with state in $Q_{B}$ you go to $Q_{A}$ when you are in a $\Safe$ place.
 $\Safe'$ is $Q_A \times \N^d$ and $\Bad'$ is $Q_B \times N^d$.
 
-Without loss of generality hence let us consider only the case when $\Safe$ is semilinear
+Without loss of generality hence let us consider only \fi
+We consider the case when $\Safe$ is semilinear
 and $\Bad = S \setminus \Safe$ is semilinear too.
 {\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
 We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
@@ -108,7 +109,7 @@ $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697},
 {\sc Resilience} is decidable.
 \end{proof}
 
-Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logics. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
+Resilience is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
 
 \begin{theorem}{}
 Resilience is decidable for lossy counter machines when $\Safe$ and $\Bad$ are semilinear.
