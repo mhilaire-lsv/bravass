@@ -251,20 +251,15 @@ Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which
 \problemx{Downward-reachability problem}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and a downward-closed set $D
 \subseteq S$.}
-% {$\exists s' \in D ~ s \to^* s'$? \newline}\alain{ecrire $s  \to^* D$}
 {$s  \to^* D$? \newline}
 
 %\"Ozkan
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
 For finite-branching WSTS%with strong compatibility
 , a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
-%i 			.e. given a state $s$ of a WSTS
-% in the regarded class 
-%with strong compatibility 
-%and a decidable downward-closed set $D$, it can be decided whether $\exists s' \in D ~ s \to^* s'$. 
 \end{proposition}
 
-% \alain{rappeler l'idée de la preuve}
+
 The idea behind the proof is the following. For deciding whether a downward-closed set $D$ is reachable from $s$, one checks whether
 $B_{\uparrow \post^*(s)} \cap D = \emptyset$, 
 where $B_{\uparrow \post^*(s)}$ is a basis of $\uparrow \post^*(s)$,
@@ -276,14 +271,12 @@ Decidability of downward-reachability leads to the decidability of the following
 asking whether $S \setminus U_n$ is reachable from $s$.
 
 
-% \mathieu{Quelque chose de plus à dire sur la charactérisation?}
+
 
 
 More concretely,
 VASS for instance are $\uparrow \post^*$-effective WSTS \cite{DBLP:journals/corr/abs-2108-00889}. 
 It is well-known that 
-% Petri nets are WSTS with strong  compatibility (Thm.~6.1 in \cite{DBLP:journals/tcs/FinkelS01}). 
-% Since 
 VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded-state-resilience} is decidable for VASS.
 Hence {\sc State-resilience} is decidable for %both Petri nets and 
 VASS.
@@ -291,7 +284,6 @@ However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested i
 
 \begin{proposition}
 There exist classes of WSTSs with strong 
-%(upward)
  compatibility for which there doesn't exist an algorithm computing a basis of $\uparrow \post^*$.
 \end{proposition}
 
@@ -350,7 +342,7 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 {\sc Bounded-state-resilience}. 
 
 
-Results synthesis in the case $\Safe = \uparrow \Safe$:
+{\bf Results synthesis in the case $\Safe = \uparrow \Safe$}
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
 \hline  Hypothesis & strong %upward 
