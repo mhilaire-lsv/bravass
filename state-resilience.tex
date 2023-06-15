@@ -6,7 +6,7 @@
 
 
 Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap \post^*(s_0)$, there must exist a path to $\Safe$. 
-Since we still consider $\Bad$ and $\Safe$ complement of each others, this is akin to asking whether from $\post^*(s_0)$ there must exist a path to $\Safe$. 
+Since we still consider $\Bad$ and $\Safe$ complement of each others, this is akin to asking whether from $\post^*(s_0)$ there always exists a path to $\Safe$. 
 The three previous problems become:
 
 
@@ -14,17 +14,17 @@ The three previous problems become:
 
 \problemx{State-resilience problem (SRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
-{$\Bad \cap \post^*(s)  \rightarrow^{*} \Safe $ ? \newline}
-
+% {$\Bad \cap \post^*(s)  \rightarrow^{*} \Safe $ ? \newline}
+{$\post^*(s)  \rightarrow^{*} \Safe $ ? \newline}
 
 \problemx{$k$-state-resilience problem (kSRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
-{ $\Bad \cap \post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
-%
+% { $\Bad \cap \post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
+{ $\post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
 
 \problemx{bounded-state-resilience problem (BSRP)}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and two sets $\Safe, \Bad \subseteq S$.}
-{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-state-resilient. ?\newline}
+{$\exists k \geq 0$ such that $\mathscr{S}$ is $k$-state-resilient ?\newline}
 
 
 
