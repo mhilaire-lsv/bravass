@@ -102,15 +102,97 @@ hence the resilience problem is decidable.
 Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
 
-\section{Proof of Theorem~\ref{liveness reset}}\label{appendix}
 
-Recall Theorem~\ref{liveness reset}.
+Reset VASS extend the basic VASS model with special “reset
+transitions” that resets (set to $0$) some coordinates in the vector. Let us recall their definition here.
+\begin{definition}
+A {\em Reset VASS} in dimension $d$ (Reset $d$-VASS for short) is a finite 
+% $\mathds{Z}^d$
+labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em control-states} of $V$, and where 
+%$T \subseteq Q \times \mathds{Z}^d \times Q$
+$T \subseteq Q \times Op \times Q$
+ will be referred to as the {\em control-transitions} of $V$,
+where $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
+		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
+\end{definition}
+
+Again $Q \times \N^d$
+ denotes the set of configurations of $V$.
+For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
+$p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
+\begin{samepage}\begin{itemize}
+\item  $t = (q,add(\textbf{z}),q') \in T$
+% then for all $\textbf{u} \in \N^d$ such that  
+% $\textbf{u}+\textbf{z} \geq 0$
+% $q(\textbf{u}) \xrightarrow{\textbf{z}} q'(\textbf{u}+\textbf{z})$,
+and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
+\item $t = (q,reset(\gamma),q') \in T$ 
+% then for all $\textbf{u} \in \N^d$ 
+% $q(\textbf{u}) \xrightarrow{z} q'(\textbf{u}')$,  where 
+and
+$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
+\end{itemize} \end{samepage}
+
+It is well known that Reset $d$-VASS are WSTS~\cite{dufourd1998reset}. 
+Moreover, we are interested in the 
+%following
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in Reset $d$-VASS, which consists in, given a
+Reset $d$-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
+deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
+%
+We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
+which we then reduce to {\sc State-resilience}.
+A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
+ $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole Reset $d$-VASS is live if all its control-transitions are
+live. This leads to the following problem.
+
+\problemx{$t$-liveness}
+{Reset $d$-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
+{Is $t$ live in $s_0$ ? \\}
+
+
+To better discuss $t$-liveness let us define more formally the set of configurations such that $t$ is enabled
+$pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
+
+
+
+\begin{proposition}\label{reductions}
+{\sc $t$-liveness} is reducible to {\sc State-resilience} in Reset $d$-VASS.
+\end{proposition}
+
+
+\begin{proof}
+We reformulate $t$-liveness 
+in a 
+% WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ 
+Reset $d$-VASS $(Q,T)$ 
+with initial configuration $s_0$
+as the following formula
+\[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
+~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in U_t, ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]
+where
+$U_t=\uparrow pre(t)$ 
+is the upward closure of the preconditions to fire transition $t$.  
+The problem reduces itself to {\sc State-resilience}
+where $\Safe = U_t$.
+\end{proof}
+
+
+The following theorem is a transposition of Theorem~5.5 from \cite{peterson1981petri} from Petri nets to Reset VASS%, whose proof can be seen in Appendix~\ref{appendix}%
+.
+\begin{proposition}\label{liveness reset}
+The  zero reachability problem can be reduced to the $t$-liveness problem in Reset VASS.
+\end{proposition}
+
+% \section{Proof of Theorem~\ref{liveness reset}}\label{appendix}
+
+% Recall Theorem~\ref{liveness reset}.
 
 \mathieu{À refaire avec des Reset VASS}
 
-\begin{theorem*}[Adjusting Theorem~5.5 from \cite{peterson1981petri}]
-The  Reset Petri Net zero reachability problem can be reduced to the liveness problem.
-\end{theorem*}
+%\begin{proposition}\label{liveness reset}
+% The  zero reachability problem can be reduced to the $t$-liveness problem in Reset VASS.
+%\end{proposition}
 
 Let us describe therein how to adjust Theorem~5.5 from \cite{peterson1981petri}.
 
@@ -169,9 +251,15 @@ $\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token
 % et r_2 commence sans token)
 If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
 Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
-
 \end{proof}
 
+
+Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduction implies 
+% the following:
+%
+%
+{\sc %$ Reset $d$-VASS 
+$t$-liveness} is undecidable.
 
 \section{More Appendix thing if necessary}\label{appendix brp VASS}
 
