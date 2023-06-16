@@ -48,7 +48,7 @@ As in the Section~3, we study decidability results for $\Safe$ downward-closed a
 We start with the case $\Safe = \uparrow \Safe$.
 %
 Unfortunately, in this case {\sc State-resilience} is undecidable for (general) WSTS even with strong upward-compatibility.
-This stems from the fact that it is undecidable in the particular case of Reset VASS,
+This stems from the fact that it is undecidable in the particular case of reset-VASS,
 where  $t$-liveness is both undecidable and 
  reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
@@ -66,7 +66,7 @@ $\Safe=\uparrow \Safe$.
 \begin{proof}
 {\sc State-resilience} itself is undecidable % from Proposition~\ref{reductions} 
 since 
-{\sc $t$-liveness} is undecidable in Reset VASS
+{\sc $t$-liveness} is undecidable in reset-VASS
 and reducible to {\sc State-resilience}.
 Additionally, in WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
 reducible to {\sc $k$-state-resilience}:
@@ -178,7 +178,7 @@ It is well-known that
 VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded-state-resilience} is decidable for VASS.
 Hence {\sc State-resilience} is decidable for %both Petri nets and 
 VASS.
-However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework. Moreover, we may show:
+However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.  \iffalse Moreover, we may show:
 
 \begin{proposition}
 There exist classes of WSTSs with strong 
@@ -187,19 +187,14 @@ There exist classes of WSTSs with strong
 
 
 \begin{proof}
-Let us show that Reset VASS, that are effective WSTSs with strong compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for Reset VASS. 
-Then, {\sc State-resilience} would be decidable for Reset VASS, which leads to a contradiction.
-\end{proof}
+Let us show that reset-VASS, that are effective WSTSs with strong compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
+Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for reset-VASS. 
+Then, {\sc State-resilience} would be decidable for reset-VASS, which leads to a contradiction.
+\end{proof} \fi
+Moreover there exist classes of WSTSs with strong 
+ compatibility for which there doesn't exist an algorithm computing a basis of $\uparrow \post^*$, such as reset-VASS.
 
-
-
-
-
-
-
-
-Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general {\sc State-resilience }. Adjusting Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889}:
+Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
 
 
 \begin{theorem}\label{post srp}
@@ -258,8 +253,9 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 }
 
 
-
-Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by Reset-VASS, as seen in Appendix~\ref{HS-Minsk}. 
+We now consider the case $\Safe = \downarrow \Safe$.
+%
+Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in Appendix~\ref{HS-Minsk}. 
 
 \begin{theorem}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
