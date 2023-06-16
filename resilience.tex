@@ -101,9 +101,11 @@ Petri nets when $X$ and $H$ are both semilinear sets~\cite{DBLP:journals/corr/ab
 To these author's knowledge, there are no general results for home space in WSTS.
 
 Resilience and the home space problem are also linked to the 
-model-checking of the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
-which has been shown decidable for Lossy Counter Machine (LCM)
-when $X$ and $Y$ are semi-linear sets~\cite{DBLP:conf/rp/Schnoebelen10}.
+model-checking of basic reachability and safety formulae. 
+In particular~\cite{DBLP:conf/rp/Schnoebelen10} shows that the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
+% which has been shown
+is decidable for Lossy Counter Machine (LCM)
+when $X$ and $Y$ are semi-linear sets.
 Other decidable formulae include ``one-to-one'' ($\exists s \in  X ~ \exists t \in  Y ~ s \to^* 
  t$), and ``all-to-same'' ($\exists t \in  Y ~ \forall s \in  X ~ s \to^*  t$),
 whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$), 
