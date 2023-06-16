@@ -1,14 +1,19 @@
 
 
-\section{Case: $\Bad=\downarrow \Bad$ and $\Safe=\downarrow \Safe$}\label{case down down}
+\section{Resilience when $\Safe$ and $\Bad$ have the same closure properties}
 
-We relax for now the hypothesis that $\Bad$ is the complement of $\Safe$, thus it is possible for $\Safe$ and $\Bad$ to share closure properties, i.e. for them to be both downward-closed.
+We relax for now the hypothesis that $\Bad$ is the complement of $\Safe$, thus it is possible for $\Safe$ and $\Bad$ to share closure properties, i.e. for them to be both downward-closed or upward-closed, and we explore both possiblities.
 
+
+\subsection{Case: $\Bad=\downarrow \Bad$ and $\Safe=\downarrow \Safe$}\label{case down down}
 
 % In the case \Safe and \Bad are both downward-closed, they can both be finite.
+We start with the case $\Safe = \downarrow \Safe$ and $\Bad = \downarrow \Bad$.
+%
+Unfortunately, in this case the resilience problem is undecidable.
 
 \begin{theorem}\label{down-down}
-The resilience problem is undecidable for  effective WSTS with  strong  compatibility such that
+The {\sc Resilience problem} is undecidable for  effective WSTS with  strong  compatibility such that
 %	with more than one minimal element, 
 $\Safe=\downarrow \Safe$
 and $\Bad=\downarrow \Bad$.
@@ -20,24 +25,20 @@ The problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resil
 \end{proof}
 
 
-\section{Case: $\Bad=\uparrow \Bad$ and $\Safe=\uparrow \Safe$.}\label{case up up}
+\subsection{Case: $\Bad=\uparrow \Bad$ and $\Safe=\uparrow \Safe$.}\label{case up up}
 
 
 % \alain{2 clos par le haut ont une intersection non vide....}
 
-Since $\Bad \cap \Safe = \emptyset$, the subcase $\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ leads to a contradiction since two upward-closed sets have not an empty intersection. We then consider the case where $\Bad$ is as upward-closed
+We now consider the case where $\Safe = \uparrow \Safe$ and $\Bad$ is not the complement of 
+$\Safe$ and we'd want $\Bad$ to have the same closure properties as $\Safe$.
+We still however maintain the hypothesis that $\Bad \cap \Safe = \emptyset$, thus the subcase 
+$\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ leads to a contradiction, since two upward-closed sets have not an empty intersection. We thus consider instead the case where $\Bad$ is as upward-closed
 as it can be without intersecting with $\Safe$,
 i.e. 
 such that there exists an upward-closed set $U$
 such that $\Bad = U \setminus \Safe$.
 
-\iffalse
-\alain{à quoi ça sert ici ?: quelle signification ?Decidability of $U$ and $\Safe$ imply the decidability of $\Bad$.}
-\mathieu{Pas convaincu que ça serve, je vais enlever}
-% hop
-\fi
-
-example: ?
 
 
 \begin{theorem}\label{up-up}
