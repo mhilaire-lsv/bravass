@@ -2,8 +2,8 @@
 
 \section{Case: $\Bad=\downarrow \Bad$ and $\Safe=\downarrow \Safe$}\label{case down down}
 
-The well-known mutual exclusion property can be modelized, in a $d$-VASS with $k$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed.
-%		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
+We relax for now the hypothesis that $\Bad$ is the complement of $\Safe$, thus it is possible for $\Safe$ and $\Bad$ to share closure properties, i.e. for them to be both downward-closed.
+
 
 % In the case \Safe and \Bad are both downward-closed, they can both be finite.
 
@@ -134,7 +134,11 @@ $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for al
 \end{itemize} \end{samepage}
 
 It is well known that Reset $d$-VASS are WSTS~\cite{dufourd1998reset}. 
-Moreover, we are interested in the 
+
+
+\section{Reset VASS and state-resilience}\label{appendix}
+
+We are now interested in the 
 %following
  undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in Reset $d$-VASS, which consists in, given a
 Reset $d$-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
@@ -260,6 +264,10 @@ Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduc
 %
 {\sc %$ Reset $d$-VASS 
 $t$-liveness} is undecidable.
+
+Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. %This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+
+
 
 \section{More Appendix thing if necessary}\label{appendix brp VASS}
 

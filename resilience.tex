@@ -2,11 +2,11 @@
 \section{Resilience for WSTS}
 
 
-In this section we introduce the concept of resilience, bounded-resilience and $k$-resilience for well structured transition systems. We show that the resilience problems are decidable
+In this section we introduce the concepts of resilience, bounded-resilience and $k$-resilience for well structured transition systems. We show that the resilience problems are decidable
 for  completion-post-effective $\omega^2$-WSTS with strong compatibility
-in the case $\Bad$ is downward-closed and $\Safe $ is upward-closed,
+in the case of an upward-closed safe set,
 and that resilience is decidable for downward-compatible ideal-effective WSTS
-when $\Safe$ is downward-closed and $\Bad $ is upward-closed. 
+when the set of safe spaces is downward-closed. 
 We show that the three resilience problems are however undecidable for WSTS with
 strong compatibility in general.
 
@@ -51,11 +51,13 @@ Let us formalize three resilience problems.
 
 \fi
 
+
+\iffalse
 \begin{example}
 Let us consider a VASS with only one state $q$, one counter, and one transition that substracts $-1$ from the counter, with $\Safe = \downarrow q(0)$, $\Bad = \uparrow q(1)$,
 then resilience hold but not bounded resilience: for every bound $k$ there is an element of $\Bad$ e.g. $q(k+1)$ which necessitate at least $k+1$ steps before it can reach $\Safe$. 
 \end{example}
-
+\fi
 
 
   
@@ -64,7 +66,8 @@ Remark that in Example~\ref{Example}, $\Safe$ and $\Bad$ are both upward-closed 
 
 Surprinsingly, we have not found decidability results about the resilience problems for WSTS.	
 % We deduce decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed as seen in Section~\ref{synthesis}.
-In particular, the existing proofs of resilience use the decidability of reachability~\cite{DBLP:journals/corr/abs-2207-02697}; but we wish to decide resilience for models with undecidable reachability.
+In particular, the existing proofs of resilience use the decidability of reachability;
+\mathieu{quelles preuves ? pour quelle notion de résilience ?} but we wish to decide resilience for models with undecidable reachability.
 Our result will rely on coverability instead of reachability. We moreover show undecidability when coverability is not decidable in the case $\Safe = \uparrow \Safe$
 and in the general case when $\Safe = \downarrow \Safe$.
  
@@ -77,7 +80,7 @@ Given a set of states $S$, with two subsets $\Bad$ and $\Safe$, it is useful to 
 either in the case that the latest visited $\Bad$ state has already been followed by a 
 $\Safe$ state
 or in the case that it still has to. 
-Thus, \emph{in context}, there are no true ``neutral'' state: either a neutral state is contextually ``$\Safe$'' because it follows a visit in a $\Safe$ state, either it is contextually ``$\Bad$'' because it follows a visit in a $\Bad$ state and has, accordingly, to reach a $\Safe$ one.
+Thus, \emph{in context}, there is no true ``neutral'' state: either a neutral state is contextually ``$\Safe$'' because it follows a visit in a $\Safe$ state, either it is contextually ``$\Bad$'' because it follows a visit in a $\Bad$ state and has, accordingly, to reach a $\Safe$ one.
 Hence we will consider in the following not only that $\Bad$ and $\Safe$ are disjoint but
 % w.l.o.g.
 	also
