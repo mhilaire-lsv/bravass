@@ -82,6 +82,11 @@ Let $(V,v_0)$ be a VASS with an initial state and $X$ be any of the 4 previous s
 
 \section{Resilience for VASS}
 
+In this section we continue to study VASS. Since they are completion-post-effective WSTS, they inherit the decidability results for WSTS in the case 
+$\Safe$ is upward-closed. Lacking downward compatibility or a more relaxed hypothesis that
+for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
+VASS do not inherit the decidability results for WSTS in the case $\Safe$ is downward-closed.
+In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
 
 
 \begin{theorem}{}
@@ -172,6 +177,11 @@ the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:jo
 	\caption{Decidability results for VASS.}
 \end{figure}
 \fi
+
+The above results concern only unbounded resilience. We consider now 
+{\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of
+the path from $\Bad$ to $\Safe$
+when $\Safe$ is downward-closed. Unfortunately, we have the following:
 
 \begin{proposition}
 {\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
