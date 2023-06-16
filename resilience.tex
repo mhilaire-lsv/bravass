@@ -151,7 +151,7 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
 Let $\mathscr{S}=(S, \rightarrow, \leq)$ be WSTS and $X \subseteq S$ be an upward-closed set given by its finite minimal basis $B_X$. 
 
 \begin{definition}
-We say that $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient (resp. $(s_0,X)$-resilient) if $S  \xrightarrow{*} X$ (resp. $\post^*(s_0) \xrightarrow{*} X$) is satisfied.  
+We say that $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient if $S  \xrightarrow{*} X$ is satisfied.  
 \end{definition}
 
 We may verify that  $\mathscr{S}=(S, \rightarrow, \leq)$ is $X$-resilient iff  $\mathscr{S}=(S, \rightarrow, \leq)$ is $\pred^*(X)$-resilient. The \emph{maximal $X$-resilient subsystem} of $\mathscr{S}=(S,\rightarrow,\leq)$ is defined as $\mathscr{S}_X=(S,\rightarrow_X,\leq)$ where $\rightarrow_X$ is the largest restriction of $\rightarrow$ that insures that $\mathscr{S}_X$ is $X$-resilient.
@@ -171,6 +171,7 @@ Since $X \subseteq S$ is upward-closed and $\mathscr{S}=(S, \rightarrow, \leq)$ 
 %
 Then we add the following guard $s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p$ to every transition $s \rightarrow s'$ of $\mathscr{S}$ and we define  $s \rightarrow' s'$ as $(s' \geq x_1  	\vee s' \geq x_2  	\vee...	\vee s' \geq x_p) \wedge s \rightarrow s'$ ; this insures that the new (guarded) WSTS $\mathscr{S'}=(S, \rightarrow', \leq,s_0)$ is $\pred^*(X)$-resilient and then it is also the maximal resilient sub-WSTS of $\mathscr{S}=(S, \rightarrow, \leq)$.
 
+It is also possible to define $(s_0,X)$-resilient systems as satisfying $\post^*(s_0) \xrightarrow{*} X$.
 
 
 
