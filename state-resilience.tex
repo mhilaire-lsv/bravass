@@ -6,7 +6,7 @@
 
 
 Resilience is a strong property since it implies that from every element of $\Bad$ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to ask that only from $\Bad \cap \post^*(s_0)$, there must exist a path to $\Safe$. 
-Since we still consider $\Bad$ and $\Safe$ complement of each others, this is akin to asking whether from $\post^*(s_0)$ there always exists a path to $\Safe$. 
+Since we still consider $\Bad$ and $\Safe$ complements of each others, this is akin to asking whether from $\post^*(s_0)$ there always exists a path to $\Safe$. 
 The three previous problems become:
 
 
@@ -45,17 +45,12 @@ As in the Section~3, we study decidability results for $\Safe$ downward-closed a
 \subsection{Case: $\Safe = \uparrow \Safe$% and $\Bad = \downarrow \Bad$
 }
 
-
-
-Unfortunately, {\sc State-resilience} is undecidable for (general) WSTS even with strong upward-compatibility.
+We start with the case $\Safe = \uparrow \Safe$.
+%
+Unfortunately, in this case {\sc State-resilience} is undecidable for (general) WSTS even with strong upward-compatibility.
 This stems from the fact that it is undecidable in the particular case of Reset VASS,
 where  $t$-liveness is both undecidable and 
- reducible to {\sc State-resilience}.
-
-
-
-Since {\sc %$Reset $d$-VASS 
-$t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+ reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{theorem}\label{srp up down}
@@ -69,17 +64,12 @@ $\Safe=\uparrow \Safe$.
 
 
 \begin{proof}
-{\sc State-resilience} itself is undecidable from Proposition~\ref{reductions} since 
-{\sc %Reset $d$-VASS 
-$t$-liveness} is undecidable.
-% \begin{proposition}
-% \end{proof}
-% \begin{proposition}
-In WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
+{\sc State-resilience} itself is undecidable % from Proposition~\ref{reductions} 
+since 
+{\sc $t$-liveness} is undecidable in Reset VASS
+and reducible to {\sc State-resilience}.
+Additionally, in WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
 reducible to {\sc $k$-state-resilience}:
-% \end{proposition}
-% 
-% \begin{proof}
 since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong %upward-
 compatibility, then $\pred^{\leq n}(\Safe)= \uparrow~\pred^{\leq n}(\Safe)$ for all $n \in \N$,
@@ -87,17 +77,11 @@ and there exists $n_0 \in \N$ such that
 $\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = \uparrow \pred^*(\Safe) = \pred^*(\Safe)$.
 We compute 
 $n_0$, then iteratively check whether $k$-state-resilience 
-% \alain{$k$-state resilience ou $k$-state-resilience ?}
 hold for $k$ from $0$ to $n_0$.  
-% \end{proof}
 Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
-% \end{proposition}
-%
-% \begin{proof}
 since 
 $\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = {\uparrow \pred^*(\Safe)} = \pred^*(\Safe)$.
-Hence the %equivalence, and
- undecidability of {\sc Bounded-state-resilience}
+Hence the undecidability of {\sc Bounded-state-resilience}
 and 
  {\sc $k$-state-resilience}. 
 \end{proof}
@@ -108,7 +92,6 @@ and
 
 
 On the positive side, let us recall a result about {\sc Bounded-state-resilience} decidability (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
-
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
 {\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
 when
