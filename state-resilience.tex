@@ -45,7 +45,7 @@ As in the Section~3, we study decidability results for $\Safe$ downward-closed a
 \subsection{Case: $\Safe = \uparrow \Safe$% and $\Bad = \downarrow \Bad$
 }
 
-We start with the case $\Safe = \uparrow \Safe$.
+We start with the case $\Safe = \uparrow \Safe$ hence $\Bad = \downarrow \Bad$.
 %
 Unfortunately, in this case {\sc State-resilience} is undecidable for (general) WSTS even with strong upward-compatibility.
 This stems from the fact that it is undecidable in the particular case of reset-VASS,
@@ -253,7 +253,7 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 }
 
 
-We now consider the case $\Safe = \downarrow \Safe$.
+We now consider the case $\Safe = \downarrow \Safe$ hence $\Bad = \uparrow \Bad$.
 %
 Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in Appendix~\ref{HS-Minsk}. 
 
