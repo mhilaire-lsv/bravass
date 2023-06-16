@@ -100,6 +100,8 @@ hence the resilience problem is decidable.
 
 \section{Home-state is undecidable for Minsky machine, reset-VASS and thus, WSTS}\label{HS-Minsk}
 
+
+As mentionned in Section~$3$, {\sc Resilience} is undecidable for WSTS in general when $\Safe = \downarrow \Safe$ hence $\Bad = \uparrow \Bad$. 
 Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
 
