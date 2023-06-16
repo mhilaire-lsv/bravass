@@ -11,7 +11,7 @@ It is of interest to note this case can be linked to the problem of mutual exclu
 Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS with $k$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
 %  indeed, one can choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is not bounded by $k$, and $\Safe$ to be the downward-closed complement of $\Bad$.
 
- In this case, our contribution consist in the following:
+ In the case $\Safe=\downarrow \Safe$, our contribution consist in the following:
 
 
 
