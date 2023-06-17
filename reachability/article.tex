@@ -140,14 +140,15 @@ Agence Nationale de la Recherche grant no.  ANR-17-CE40-0010.}
 \subsubsection*{Background}
 
 
-
-Stack-based automata are a popular formalism for modeling the sequential behavior of computer programs. 
-Pushdown systems are probably the most studied models of stack-based automata.
-They are
+{\bf Context}
+Stack-based automata \textcolor{red}{pourquoi ne pas commencer directement avec lesPushdown systems ?}are a popular formalism for modeling the sequential behavior of computer programs. 
+Pushdown systems \textcolor{red}{or stack-automata ?}are probably the most studied models of stack-based automata.
+\textcolor{red}{inutile: They are
 finite automata 
- extended with a stack that can be manipulated by pushing or popping stack symbols from some finite set, and can use the top of the stack to decide which transition to take next.
-\textcolor{black}{To underline the fact that we are concerned with the graph of configurations and not the language recognized, we use the name pushdown system rather than pushdown automaton.}
-Pushdown systems can be used to model the behavior of recursive programs and,
+ extended with a stack that can be manipulated by pushing or popping stack symbols from some finite set, and can use the top of the stack to decide which transition to take next.}
+\textcolor{blue}{ok je comprends que tu signales la différence mais c'est trop détaillé pour cet endroit du texte: To underline the fact that we are concerned with the graph of configurations and not the language recognized, we use the name pushdown system rather than pushdown automaton.}
+
+{\bf Games on pushdown systems}Pushdown systems can be used to model the behavior of recursive programs and,
 as a result, a variety of 
  program analysis questions can be reduced to decision problems for games on pushdown systems.
 They have applications for instance in inter-procedural control-flow analysis of recursive programs \cite{esparza1999automata, reps2005weighted}.
@@ -175,7 +176,7 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 
 
 
-
+{\bf Parametric pushdown automata or systems ?}
  Parametric pushdown automata provide a  formalism to
 reason about 
 recursive programs
@@ -221,6 +222,7 @@ we consider
 checks against unspecified word values that can be instantiated using parameters.
 This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
 
+{\bf Extensions of  pushdown automata/systems ?}
 Extensions of pushdown automata with storage for later comparisons
 have been introduced for instance as register pushdown automata. 
 Such automata possess registers in addition to their stack, and can keep data values in both.
@@ -955,7 +957,7 @@ all parameter valuations $\mu: P\rightarrow \Gamma^*$.
 Moreover, for every configuration $\mu$ in $A_{P_0,P_1,\Gamma^*}$,
 we add a transition
 from $\mu$ towards 
-$q_{init}(\gamma_{init}, \mu)$ in $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$. \label{PPDA reachability game}
+$q_{init}(\gamma_{init}, \mu)$ in $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$. \label{PPDA reachability game}
 
 
 
@@ -1027,7 +1029,7 @@ Reduction to pebble pushdown automata parity games
 
 
 % 21. Globerman, N., Harel, D.: Complexity results for two-way and multi-pebble automata and their logics. Theor. Comput. Sci. 169, 161–184 (1996)
-%		same as [13] bellow
+%		same as [13] bellow
 %
 % Engelfriet, J., Hoogeboom, H.J.: Tree-walking pebble automata. In: Karhumäki, J., Maurer, H., Pa ̆un, G., Rozenberg, G. (Eds.) Jewels are Forever, Contributions to Theoretical Computer Science in Honor of Arto Salomaa, pp. 72–83. Springer, Berlin (1999) for tree-walking automata.
 %
@@ -1660,7 +1662,7 @@ For $2 \leq j \leq n$
 the new operation
 $\text{\textit{pop}}_j^=$ has the same effect as $\text{\textit{pop}}_j$, but
 can only be applied if the two top level $j$ stacks coincide.
-In \cite{carayol2006automates} it is seen as a symmetrical operation in comparison to
+In \cite{carayol2006automates} it is seen as a symmetrical operation in comparison to
 $\text{\textit{push}}_j$.\\
 
 A {\em higher-order pushdown automaton with equality pop of level $n$} ($n$-HPDA$^=$ for short) 
