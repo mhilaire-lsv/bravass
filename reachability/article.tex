@@ -174,26 +174,26 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 
 
 {\bf Parametric pushdown automata or systems ?}
- Parametric pushdown automata provide a  formalism to
+ Parametric pushdown systems provide a  formalism to
 reason about 
 recursive programs
 making use of parametric constraints.
 % Here, the stack can additionally be compared against parameters that can take unspecified word values. 
-Recently, different variants of parametric pushdown automata have been introduced in the literature 
+Recently, different variants of parametric pushdown systems have been introduced in the literature 
 % [Hague’11]=[20], [Esparza, Ganty, Majumdar’13]=[15]
 \cite{hague2011parameterised, esparza2016parameterized, fortin2017model} 
 % In this work, following [21,20,15,27,12], we consider parametric pushdown systems
 however as
 parameterized asynchronous shared-memory systems.
 These systems consist of a leader pushdown automaton
-and arbitrarily many identical contributor pushdown automata, communicating via a shared memory
+and arbitrarily many identical contributor pushdown systems, communicating via a shared memory
 in the form of a register which can take finitely many values.
 This variant have been shown to have applications
 to the dataflow analysis of concurrent programs \cite{kahlon2008parameterization}. 
-We consider here a different approach to extending pushdown automata with parameters, by allowing them to test equality of the stack content against parameters.
+We consider here a different approach to extending pushdown systems with parameters, by allowing them to test equality of the stack content against parameters.
 % Pushdown systems which can test the stack content against regular-expressions are equivalent to pushdown systems, so pushdown systems which can test the stack content against specific words are too.
 Perhaps a similar model consists in 
-pushdown automata 
+pushdown systems 
 with transitions that are conditioned by regular conditions on their stack content, which
 can in particular
 test the
@@ -206,8 +206,8 @@ when the formulas are allowed to include regular predicates on the stack content
 and to obtain 
 model checking algorithms for LTL and CTL$^*$ model checking
 for
-pushdown automata \cite{finkel1997direct}.
-Pushdown automata 
+pushdown systems \cite{finkel1997direct}.
+Pushdown systems 
 %with regularity condition on the stack
 with transitions that are conditioned by regular conditions on their stack content
 can be viewed as
@@ -220,14 +220,14 @@ checks against unspecified word values that can be instantiated using parameters
 This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
 
 {\bf Extensions of  pushdown automata/systems ?}
-Extensions of pushdown automata with storage for later comparisons
-have been introduced for instance as register pushdown automata. 
+Extensions of pushdown systems with storage for later comparisons
+have been introduced for instance as register pushdown systems. 
 Such automata possess registers in addition to their stack, and can keep data values in both.
-Register pushdown automata have been shown to have applications for malware detection and XML schema checking \cite{senda2021forward, senda2021ltl}. 
-In theory, since registers can be unfilled and later be filled again an unbounded number of times, the number of different data values a pushdown register automata can store in its registers in a run is unbounded.  
+Register pushdown systems have been shown to have applications for malware detection and XML schema checking \cite{senda2021forward, senda2021ltl}. 
+In theory, since registers can be unfilled and later be filled again an unbounded number of times, the number of different data values a pushdown register systems can store in its registers in a run is unbounded.  
 In \cite{murawski2017reachability} it was shown however that a register pushdown automaton can
 only really ``remember'' at most  $3r$ data values, where $r$ is the number of registers,
-% Even though pushdown register automata have no bound on the number of elements of the alphabet that they can store at any instant, over the course of a run they can really “remember” at most 3r of them, 
+% Even though pushdown register systems have no bound on the number of elements of the alphabet that they can store at any instant, over the course of a run they can really “remember” at most 3r of them, 
 i.e. for any run of a register pushdown automaton with $r$ registers there exists an equivalent run %, i.e.
  with the same initial and final conﬁgurations, but in which every configuration contains register assignments drawn from only $3r$ elements. This 
  %can 
@@ -280,7 +280,7 @@ parameters.
  \iffalse
  
  
-We provide formal definitions of parametric pushdown automata, parametric pushdown reachability games
+We provide formal definitions of parametric pushdown systems, parametric pushdown reachability games
 and parametric pushdown parity games in Section~\ref{section def ppda}. We give an overview of our contribution in Section~\ref{contribution ppda}. The contribution consists in
 proving parametric pushdown reachability games
 and parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number of parameters
@@ -310,11 +310,11 @@ we reduce the $\FO$ satisfiability problem on words, known to be nonelementary
 from \cite{Sto74}, to the
 problem of deciding whether a player has a winning strategy for parametric pushdown reachability games. 
 
-	For the upper bound, we start by replacing parameters by pebbles acting as registers, leading to a more general model, pebble pushdown automata.
- We then show that higher-order pushdown automata parity games can be used to solve parity games on
- the transition systems of pebble pushdown automata,
+	For the upper bound, we start by replacing parameters by pebbles acting as registers, leading to a more general model, pebble pushdown systems.
+ We then show that higher-order pushdown systems parity games can be used to solve parity games on
+ the transition systems of pebble pushdown systems,
 using one additional stack level for each pebble.
- Since solving parity games on higher-order pushdown automata with level $n$ stack is $n$-$\EXP$-complete \cite{ Cach03, cachat2007complexity}, this provides an $(n+1)$-$\EXP$ upper bound for solving parametric parity games on parametric pushdown automata with $n$ parameters.
+ Since solving parity games on higher-order pushdown systems with level $n$ stack is $n$-$\EXP$-complete \cite{ Cach03, cachat2007complexity}, this provides an $(n+1)$-$\EXP$ upper bound for solving parametric parity games on parametric pushdown systems with $n$ parameters.
 
 
 
@@ -322,8 +322,8 @@ using one additional stack level for each pebble.
 
 In Section 2, we provide general notations and preliminary definitions. 
 Section 3 will deal with the introduction of  parametric pushdown games.
-% Section 4 is devoted to using pebble alternating tree automata with parity acceptance condition to solve parametric pushdown system parity games. We leave the proof of decidability itself  for Section 5.
-Section 4 is Reduction to higher-order pushdown automata
+% Section 4 is devoted to using pebble alternating tree systems with parity acceptance condition to solve parametric pushdown system parity games. We leave the proof of decidability itself  for Section 5.
+Section 4 is Reduction to higher-order pushdown systems
 Section 5 at last shows a nonelementary lower bound for the problem.
 
 
@@ -660,7 +660,7 @@ One important property of parity games is that of {\em memoryless determinacy}: 
 $\mathcal{G}= ((S_0,S_1,\rightarrow),\win_\Omega) $ and an initial configuration $s \in S_0 \cup S_1$, one of the players has a memoryless winning strategy from $s$ \cite{zielonka1998infinite}.
 
 %\mh{
-Of note is that several model checking problems %for pushdown automata 
+Of note is that several model checking problems %for pushdown systems 
 can be expressed as decision problems for games: the most famous example is that the modal $\mu$-calculus model checking problem is polynomially equivalent to solving the parity game problem. 
 %}
 
@@ -671,11 +671,11 @@ can be expressed as decision problems for games: the most famous example is that
 
 
 
-\textcolor{black}{Parametric pushdown automata extend pushdown automata by allowing the stack to be compared against parameters that can be assigned values which are words over the stack alphabet.}
+\textcolor{black}{Parametric pushdown systems extend pushdown systems by allowing the stack to be compared against parameters that can be assigned values which are words over the stack alphabet.}
 A parametric pushdown automaton is then a finite automaton extended with a finite set of parameters $P$  and with a stack that can be manipulated by pushing or popping stack symbols and such that, moreover, the automaton can use the top of the stack, or check that the stack content corresponds to a parameter,  to decide which transition to take next.\\
 
 \par\noindent\ignorespacesafterend
-A {\em parametric pushdown automaton} ({\em PPDA} for short) 
+A {\em parametric pushdown system} ({\em PPDS} for short) 
 is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
  $Q$ is a non-empty finite {\em set of  states};
  $\Gamma$ is a non-empty finite {\em  stack alphabet};
@@ -750,7 +750,7 @@ induced by $\mathcal{Z}$ and $\mu$.
 %and will be noted
 %$q_0(z_0) \xrightarrow{\lambda_0}_{\mathcal{Z},\mu} q_1(z_1) \xrightarrow{\lambda_1}_{\mathcal{Z},\mu} \cdots \xrightarrow{\lambda_{n-1}}_{\mathcal{Z},\mu} q_n(z_n)$.
 %
-As with PDA, we say $\pi$ is {\em accepting} if $q_0 = q_{init}$, $a_0=\gamma_{init}$,
+As with pushdown systems, we say $\pi$ is {\em accepting} if $q_0 = q_{init}$, $a_0=\gamma_{init}$,
 and $q_n\in F$.
 %
 % We say {\em reachability holds} for $\mathcal{Z}$ if there is a $\mu$ such that there is a $\mu$-run in $\mathcal{Z}$ from $q_{init}(\gamma_{init})$   to some configuration $q(w)$ for some $q\in F$ and some $w \in \Gamma^*$.
@@ -774,13 +774,13 @@ instead of $\xrightarrow{%\lambda
 
 		\iffalse	
 
-\subsection{PPDA reachability}
+\subsection{PPDS reachability}
 
-Note that the reachability problem for parametric pushdown automata consists in
+Note that the reachability problem for parametric pushdown systems consists in
 the following decision problem.
 
-\problemx{$n$-PPDA reachability}
-{An $n$-PPDA $\mathcal{Z}$.}
+\problemx{$n$-PPDS reachability}
+{An $n$-PPDS $\mathcal{Z}$.}
 {Does 
 %reachability hold for
 an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
@@ -789,13 +789,13 @@ an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
 		\fi
 
 % \subsubsection{Parametric pshdown games}
-\subsection{PPDA games}
+\subsection{PPDS games}
 
 
 Several model checking problems can be
 expressed as decision problems for games.
 For instance 
-in the case of pushdown automata, 
+in the case of pushdown systems, 
 the modal $\mu$-calculus
 model checking problem is polynomially equivalent to solving the parity game problem.
 % \textcolor{red}{Since the model checking problem has a more varied range of applications than the reachability problem (mb have a source for that or smtg)},
@@ -933,7 +933,7 @@ With these notations in mind one can define the arena
 A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
 =
 (\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})\]
-induced by a PPDA $\mathcal{Z}$, a partition of its set of states, and a
+induced by a PPDS $\mathcal{Z}$, a partition of its set of states, and a
 parameter valuation $\mu: P\rightarrow \Gamma^*$.
 
 
@@ -1016,33 +1016,10 @@ We are interested in the following games and problems.
 
 %\subsection{A decidability result from reduction to parity games on automata with pebbles}\label{pebbles}
 \section{%A decidability result via r
-Reduction to pebble pushdown automata parity games
+Reduction to pebble pushdown systems parity games
 }\label{pebbles}
 
 
-
-% \mh{Motivates the use of pebbles. See pebbles on two-way automata, two-way tree automata, weighted automata, etc.}
-
-
-
-% 21. Globerman, N., Harel, D.: Complexity results for two-way and multi-pebble automata and their logics. Theor. Comput. Sci. 169, 161–184 (1996)
-%		same as [13] bellow
-%
-% Engelfriet, J., Hoogeboom, H.J.: Tree-walking pebble automata. In: Karhumäki, J., Maurer, H., Pa ̆un, G., Rozenberg, G. (Eds.) Jewels are Forever, Contributions to Theoretical Computer Science in Honor of Arto Salomaa, pp. 72–83. Springer, Berlin (1999) for tree-walking automata.
-%
-% @incollection{engelfriet1999tree,
-%  title={Tree-walking pebble automata},
-%  author={Engelfriet, Joost and Hoogeboom, Hendrik Jan},
-%  booktitle={Jewels are forever},
-%  pages={72--83},
-%  year={1999},
-%  publisher={Springer}
-%}
-% 
-%
-% Two-way pebble transducers for partial functions and their composition, Joost Engelfriet
-%
-% Tree-Walking Pebble automata, Joost Engelfriet and Hendrik Jan Hoogeboom 
 A pebble automaton is a two-way finite state automaton that uses a fixed, finite number of
 pebbles that it can drop on, and lift from 
 words, using them as markers.
@@ -1061,7 +1038,7 @@ and a \textit{lift} pops the last dropped pebble if the current position corresp
 
 
 
-In this section, we extend these ideas to pushdown automata. Instead of using pebbles as markings on their input, pebble pushdown automata have the ability to lift or drop pebbles on their universe of stack contents; a \textit{drop} simply records the current stack content with a fresh pebble (such a pebble should be available) % and returns to the beginning of the tape, 
+In this section, we extend these ideas to pushdown systems. Instead of using pebbles as markings on their input, pebble pushdown systems have the ability to lift or drop pebbles on their universe of stack contents; a \textit{drop} simply records the current stack content with a fresh pebble (such a pebble should be available) % and returns to the beginning of the tape, 
 and a \textit{lift} pops the last dropped pebble 
 while requiring that
 % assuming
@@ -1076,7 +1053,7 @@ We first define more formally our pebble pushdown automaton framework, and then 
 
 
 %\subsubsection{Pebble pushdown automata}
-\subsection{Pebble pushdown automata}
+\subsection{Pebble pushdown systems}
 
 \newcommand{\ppda}{\mathcal{I}}
 % \Denarius
@@ -1216,7 +1193,7 @@ $j < i$.
 
 
 \par\noindent\ignorespacesafterend
-We are interested in games over pebble pushdown automata, % namely, 
+We are interested in games over pebble pushdown systems, % namely, 
 %reachability, B\"uchi, and parity games.
 mainly, parity games.
 
@@ -1270,7 +1247,7 @@ $\mu \in ( \Gamma^* \biguplus \{ \bot \})^{\{1, \ldots, n\}}$. \\
 
 
 
-Concerning pebble pushdown automata, we are interested in the following decision problem.
+Concerning pebble pushdown systems, we are interested in the following decision problem.
 
 
 \problemx{$n$-pebble pushdown parity game}
@@ -1283,10 +1260,10 @@ $\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ?\newline}
 
 
 
-% \subsubsection{Reduction from parameters to pebble pushdown automata}
+% \subsubsection{Reduction from parameters to pebble pushdown systems}
 \subsection{From parametric pushdown 
-automata 
-to pebble pushdown automata
+systems 
+to pebble pushdown systems
 }
 
 We now provide a reduction from the problem of solving parametric pushdown parity games to the problem of solving pebble pushdown parity games. 
@@ -1392,23 +1369,23 @@ so are player $0$ states, player $1$ states and the priority mapping.
 
 
 
-\section{Reduction to higher-order pushdown automata}\label{section HPDA}
+\section{Reduction to higher-order pushdown systems}\label{section HPDA}
 
 
 
 
-Higher-order pushdown automata (HPDA for short) were introduced as a 
-generalization of pushdown automata \cite{aho1969nested,Gre70,maslov1976multilevel}. 
-% Alfred V. Aho. Nested stack automata. J. ACM, 16(3):383–406, 1969.
+Higher-order pushdown systems (HPDS for short) were introduced as a 
+generalization of pushdown systems \cite{aho1969nested,Gre70,maslov1976multilevel}. 
+% Alfred V. Aho. Nested stack systems. J. ACM, 16(3):383–406, 1969.
 % S. Greibach. Full AFL’s and nested iterated substitution. Inf. Control, 16(1):7–35, 1970.
-% A.N. Maslov. Multilevel stack automata. Problemy Peredachi Informatsii, 12:55–62, 1976.
+% A.N. Maslov. Multilevel stack systems. Problemy Peredachi Informatsii, 12:55–62, 1976.
 A stack of a pushdown automaton is seen as a {\em level $1$ stack}. 
-A pushdown automaton of level $2$ (or $2$-HPDA) then works with a stack of level $1$ stacks. 
+A pushdown automaton of level $2$ (or $2$-HPDS) then works with a stack of level $1$ stacks. 
 In addition to the ability to push
-and to pop a symbol on the top-most level $1$ stack, an $2$-HPDA can copy or remove the entire topmost level $1$ stack. 
-The definition generalizes to any $n \geq 2$, and $n$-HPDA are similarly defined for all level
-$n$ as automata working with a stack of level $(n-1)$ stacks.
-% HPDA have been extensively studied as language recognizers [Dam82,Eng83].
+and to pop a symbol on the top-most level $1$ stack, an $2$-HPDS can copy or remove the entire topmost level $1$ stack. 
+The definition generalizes to any $n \geq 2$, and $n$-HPDS are similarly defined for all level
+$n$ as systems working with a stack of level $(n-1)$ stacks.
+% HPDS have been extensively studied as language recognizers [Dam82,Eng83].
 
 
 
@@ -1417,7 +1394,7 @@ reduction from the problem of solving pebble pushdown parity games to the proble
 higher-order pushdown parity games.
 
 
-\subsection{Higher-order pushdown automata}
+\subsection{Higher-order pushdown systems}
 
 A {\em level $1$ stack} (or {\em $1$-stack}) over an alphabet $\Gamma$ is 
 simply a %word in $\Gamma^*$
@@ -1516,7 +1493,7 @@ we denote by  $\Op_n(\Gamma)$ the {\em base set of $n$-stack operations} as
 % \begin{definition}
 \begin{samepage}
 \par\noindent\ignorespacesafterend
-A {\em higher-order pushdown automata of level $n$} (or $n$-HPDA for short) 
+A {\em higher-order pushdown systems of level $n$} (or $n$-HPDS for short) 
 is a tuple $\H=(Q, \Gamma, R, q_{init}, \gamma_{init}, F)$,
 where 
 \begin{itemize}
@@ -1533,13 +1510,13 @@ initial stack symbol}, and
 
 \par\noindent\ignorespacesafterend
 By $\Conf(\mathcal{H}) = Q \times \mathscr{S}_n(\Gamma)$
-we denote the set of {\em configurations} of an $n$-HPDA $\H$. 
+we denote the set of {\em configurations} of an $n$-HPDS $\H$. 
 %is a pair $(q, s)$ where $q \in Q$ and $s$ is an $n$-stack over $\Gamma$. 
 As usual we abbreviate $(q,s) \in \Conf(\mathcal{H})$ as $q(s)$.
 
 
 
-An $n$-HPDA $\H=(Q, \Gamma, R, q_{init}, F)$
+An $n$-HPDS $\H=(Q, \Gamma, R, q_{init}, F)$
 induces the transition system $\T_\H = (Conf(\mathcal{H}), \rightarrow_{\mathcal{H}})$
 where
 for all $q,q'$ in $Q$,
@@ -1573,7 +1550,7 @@ and E is defined above.
 
 Again we are interested in parity games.
 As expected, given an 
- $n$-HPDA $\mathcal{H}$
+ $n$-HPDS $\mathcal{H}$
  and a partition of
 $Q$ into $Q_0$ and $Q_1$,
 we partition the configurations of
@@ -1590,7 +1567,7 @@ A_{(\mathcal{H}, Q_0, Q_1)}
 =
 (\Conf_{\mathcal{H},0}, \Conf_{\mathcal{H},1}, \rightarrow_{\mathcal{H}})$$
 \par\noindent\ignorespacesafterend
-induced by an $n$-HPDA $\mathcal{H}$ and a partition of its set of states.
+induced by an $n$-HPDS $\mathcal{H}$ and a partition of its set of states.
 
 
 As expected, given a 
@@ -1608,11 +1585,11 @@ $s \in \mathscr{S}_n(\Gamma)$.
 
 
 
-Concerning higher-order pushdown automata, we are interested in the following decision problem. 
+Concerning higher-order pushdown systems, we are interested in the following decision problem. 
 
 \begin{samepage}
-\problemx{$n$-HPDA parity game}
-{An $n$-HPDA $\H= (Q, \Gamma,  R, q_{init}, {\gamma_{init}} , F)$, 
+\problemx{$n$-HPDS parity game}
+{An $n$-HPDS $\H= (Q, \Gamma,  R, q_{init}, {\gamma_{init}} , F)$, 
 where $Q = Q_0  \biguplus Q_1 $, 
 and
 a priority mapping $\Omega: Q \to \{0, \ldots m\}$.}
@@ -1622,21 +1599,21 @@ for the parity game
 $\mathcal{G}= (A_{(\H, Q_0 , Q_1)}, \win_{\Omega_{\mathscr{S}_n(\Gamma)}})$ ?\newline}
 \end{samepage}
 
-It was shown in \cite{Cach03} that {\sc $n$-HPDA parity game} can
+It was shown in \cite{Cach03} that {\sc $n$-HPDS parity game} can
 be solved in $n$-$\EXP$. This also gives an $n$-$\EXP$ algorithm for the $\mu$-calculus
-model checking over transitions systems induced by  $n$-HPDA.
+model checking over transitions systems induced by  $n$-HPDS.
 In \cite{cachat2007complexity} the matching lower bound was showed, even in the case of reachability games,
-hence showing $n$-$\EXP$-completeness of {\sc $n$-HPDA parity game}.
+hence showing $n$-$\EXP$-completeness of {\sc $n$-HPDS parity game}.
 
 \begin{theorem}{\cite{ Cach03, cachat2007complexity}}
-{\sc $n$-HPDA parity game} is $n$-$\EXP$-complete.
+{\sc $n$-HPDS parity game} is $n$-$\EXP$-complete.
 \end{theorem}
 
 
-% \subsection{From pebble pushdown automata to higher-order pushdown automata}
+% \subsection{From pebble pushdown systems to higher-order pushdown systems}
 
 
-In a $2$-HPDA, the operation $\text{\textit{push}}_2$ % allowig to copy a part of the stack, are responsible for the fact the hierarchy of HPDS is strict.
+In a $2$-HPDS, the operation $\text{\textit{push}}_2$ % allowig to copy a part of the stack, are responsible for the fact the hierarchy of HPDS is strict.
 allows to ``copy'' the top level $1$ stack. The current word is hereby stored away and left untouched
 until the next operation $\text{\textit{pop}}_2$,
 while $\text{\textit{push}}_1$ and $\text{\textit{pop}}_1$ can be performed on the additional ``copy'' in the meantime. This behavior is similar to that of dropping and lifting a pebble. 
@@ -1645,7 +1622,7 @@ The main difference is that there is no operation to test that the ``copy'', aft
 % But cannot test
 
 \iffalse
-In an $n$-HPDA, the operation $\text{\textit{push}}_j$ % allowig to copy a part of the stack, are responsible for the fact the hierarchy of HPDS is strict.
+In an $n$-HPDS, the operation $\text{\textit{push}}_j$ % allowig to copy a part of the stack, are responsible for the fact the hierarchy of HPDS is strict.
 allows to ``copy'' the top stack of level $j$ for all $2 \leq j \leq k$. 
 \fi
 
@@ -1653,7 +1630,7 @@ allows to ``copy'' the top stack of level $j$ for all $2 \leq j \leq k$.
 In \cite{CaWoe03, Woeh05, carayol2006automates} however 
 %the authors
 Carayol and W\"ohrle
- introduced a variant of $n$-HPDA by extending the 
+ introduced a variant of $n$-HPDS by extending the 
 $\text{\textit{pop}}_j$ operations for $2 \leq j \leq n$ with a built-in equality test. 
 For $2 \leq j \leq n$ 
 the new operation
@@ -1662,7 +1639,7 @@ can only be applied if the two top level $j$ stacks coincide.
 In \cite{carayol2006automates} it is seen as a symmetrical operation in comparison to
 $\text{\textit{push}}_j$.\\
 
-A {\em higher-order pushdown automaton with equality pop of level $n$} ($n$-HPDA$^=$ for short) 
+A {\em higher-order pushdown automaton with equality pop of level $n$} ($n$-HPDS$^=$ for short) 
 is a higher-order pushdown automaton of level $n$ where in
 % Instrn
 $\Op_n(\Gamma)$
@@ -1700,13 +1677,13 @@ complète apparait dans [Wöh05]. Indépendamment, ce résultat a été obtenu d
 [Fra05].
 \fi
 %
-Transition systems induced by higher-order pushdown automata with equality pop of level $n$
+Transition systems induced by higher-order pushdown systems with equality pop of level $n$
 are then defined as expected.  
 Carayol and W\"ohrle proved \cite{Woeh05, carayol2006automates} that the two models,
 namely
-higher-order pushdown automata with equality pop of level $n$
+higher-order pushdown systems with equality pop of level $n$
 and
-higher-order pushdown automata of level $n$,
+higher-order pushdown systems of level $n$,
 generate the same classes of transition systems.
 
 
@@ -1714,24 +1691,24 @@ generate the same classes of transition systems.
 
 
 \begin{theorem}{\cite{Woeh05, carayol2006automates}}
-If $\H$ is an $n$-HPDA (resp. $n$-HPDA$^=$) then there
-exists an $n$-HPDA$^=$ (resp. $n$-HPDA) $\H'$ such that
+If $\H$ is an $n$-HPDS (resp. $n$-HPDS$^=$) then there
+exists an $n$-HPDS$^=$ (resp. $n$-HPDS) $\H'$ such that
 $\H$ and $\H'$ %generate the same graph.
 induce isomorphic transition systems.
 \end{theorem}
 
 \iffalse
 \begin{theorem}{\cite{Woeh05, carayol2006automates}}
-If $\H$ is an $n$-HPDA  then there
-exists an $n$-HPDA$^=$  $\H'$ such that
+If $\H$ is an $n$-HPDS  then there
+exists an $n$-HPDS$^=$  $\H'$ such that
 $\H$ and $\H'$ %generate the same graph.
 induce isomorphic transition systems.
 \end{theorem}
 % Proposition 3.12
 
 \begin{theorem}{\cite{Woeh05, carayol2006automates}}
-If $\H$ is an $n$-HPDA$^=$ then there
-exists an $n$-HPDA $\H'$ such that
+If $\H$ is an $n$-HPDS$^=$ then there
+exists an $n$-HPDS $\H'$ such that
 $\H$ and $\H'$ %generate the same graph.
 induce isomorphic transition systems.
 \end{theorem}
@@ -1741,7 +1718,7 @@ induce isomorphic transition systems.
 % that A and B generate the same graph.
 \fi
 
-From $n$-HPDA to $n$-HPDA$^=$ (Proposition 3.12 in \cite{Woeh05}) the proof relies on recreating a correct stack content to simulate higher-order 
+From $n$-HPDS to $n$-HPDS$^=$ (Proposition 3.12 in \cite{Woeh05}) the proof relies on recreating a correct stack content to simulate higher-order 
 $\text{\textit{pop}}$ operations by $\text{\textit{pop}}^=$, essentially ``guessing'' the correct stack content to be able to apply $\text{\textit{pop}}^=$. 
 In the other direction (Proposition 3.18 in \cite{Woeh05}), 
 the author
@@ -1754,40 +1731,40 @@ for every stack $s$ of level $n$
  a unique shortest sequence of instructions which creates $s$ from
 $\epsilon_n$. \\
 
-Defined like {\sc $n$-HPDA parity game}, we write {\sc $n$-HPDA$^=$ parity game}  
-in case the input is an $n$-HPDA$^=$ rather than an $n$-HPDA.
+Defined like {\sc $n$-HPDS parity game}, we write {\sc $n$-HPDS$^=$ parity game}  
+in case the input is an $n$-HPDS$^=$ rather than an $n$-HPDS.
 
 
 
 The algorithm from \cite{Cach03} actually provides an algorithmic solution to parity games on the graphs of the Caucal hierarchy. 
 We skip a formal definition of a graph of level $n$ in the Caucal hierarchy, and refer the reader
 to \cite{Cau02mfcs} for more details.
-The $n$-$\EXP$ upper bound on $n$-HPDA parity games follows from the fact that every transition system induced by an $n$-HPDA $\H$ is a graph of the Caucal hierarchy \cite{Cach03, Woeh05},
+The $n$-$\EXP$ upper bound on $n$-HPDS parity games follows from the fact that every transition system induced by an $n$-HPDS $\H$ is a graph of the Caucal hierarchy \cite{Cach03, Woeh05},
 whose vertices are almost in one-to-one correspondence with the configurations of $\H$.
 In \cite{Woeh05} the converse direction is proven, i.e. that every graph of level $n$
-of the Caucal hierarchy is generated by an $n$-HPDA.  
+of the Caucal hierarchy is generated by an $n$-HPDS.  
 %
 %
 In \cite{carayol2006automates}
 it is similarly shown that
-every transition system induced by an $n$-HPDA$^=$ $\H$ is a graph of the Caucal hierarchy.
+every transition system induced by an $n$-HPDS$^=$ $\H$ is a graph of the Caucal hierarchy.
 %
 %
 The algorithm from \cite{Cach03} hence lead to a solution for
-$n$-HPDA$^=$ parity games as well.
+$n$-HPDS$^=$ parity games as well.
 
 
 
 \iffalse
 \textcolor{red}{
-Now then, because the class of $n$-HPDA$^=$ transitions systems
+Now then, because the class of $n$-HPDS$^=$ transitions systems
 is the same as
-the class of $n$-HPDA transitions systems, we have the following result.
+the class of $n$-HPDS transitions systems, we have the following result.
 }
 \fi
 
 \begin{theorem}\label{HPDA parity game}
-{\sc $n$-HPDA$^=$ parity game} is in $n$-$\EXP$.
+{\sc $n$-HPDS$^=$ parity game} is in $n$-$\EXP$.
 \end{theorem}
 
 
@@ -1870,22 +1847,22 @@ sur COpsk coïncident.
 
 
 \subsection{From pebble pushdown 
-automata 
+systems 
 to higher-order pushdown 
-automata
+systems
 }
 
 
 
-We use HPDA$^=$ parity games to simulate pebble pushdown automata
+We use HPDS$^=$ parity games to simulate pebble pushdown systems
 parity games.
 A similar approach was used in \cite{carayol2006automates} to show that $(n + 2)$-level stack
-automata could be used to simulate $n$-pebble alternating two-way word automata.
+systems could be used to simulate $n$-pebble alternating two-way word systems.
 
 
 Let us start by discussing the simulation of the dropping and lifting of a pebble in the case of
 a pebble pushdown automaton $\ppda$ with only one pebble.
-As long as no pebble is dropped, a $2$-HPDA$^=$ $\H$ can simulate 
+As long as no pebble is dropped, a $2$-HPDS$^=$ $\H$ can simulate 
 the behavior of a pebble pushdown automaton $\ppda$ with a $2$-stack containing a single $1$-stack
 on which it performs the same operations $\ppda$ performs on its stack.
 When the automaton $\ppda$ is in configuration $q(w)$ and drops a pebble, instead of making a pop or a push, we need
@@ -1943,7 +1920,7 @@ Lifting the second pebble simply uses $\text{\textit{pop}}^=_3$.
 By expanding this reasoning inductively, we conclude that given $n \in N$, and
 given an $n$-pebble pushdown automaton 
 $\ppda = (Q, \Gamma, R, q_{init}, \gamma_{init}, F)$, where $Q= Q_0 \biguplus Q_1$,
-one can compute an $(n+1)$-HPDA 
+one can compute an $(n+1)$-HPDS 
 $\H = (Q', \Gamma, R', q_{init}', \gamma_{init}', F')$  where $Q'= Q_0' \biguplus Q_1'$, 
 such 
 that 
@@ -1955,21 +1932,21 @@ Hence the following reduction.
 
 \begin{theorem} 
 {\sc $n$-pebble pushdown parity game} is polynomial time reducible
-to {\sc $(n+1)$-HPDA$^=$ parity game}.
+to {\sc $(n+1)$-HPDS$^=$ parity game}.
 \end{theorem}
 
-The reduction implies decidability of pebble pushdown automata parity game. Furthermore,
+The reduction implies decidability of pebble pushdown systems parity game. Furthermore,
 by Theorem~\ref{HPDA parity game}, it implies the following complexity result.
 
 
 \begin{theorem}
-{\sc $n$-pebble pushdown automata parity game} is in $(n+1)$-$\EXP$.
+{\sc $n$-pebble pushdown systems parity game} is in $(n+1)$-$\EXP$.
 \end{theorem}
 
 Finally, the following complexity result is due the above and Theorem~\ref{PPDA reduction}.
 
 \begin{corollary}
-{\sc $n$-parametric pushdown automata parity game} is in $(n+1)$-$\EXP$.
+{\sc $n$-parametric pushdown systems parity game} is in $(n+1)$-$\EXP$.
 \end{corollary}
 
 
@@ -2168,17 +2145,7 @@ from \cite{Sto74} \---- to the
 problem of deciding whether player $0$ has a winning strategy from some starting configuration in 
 a pebble pushdown parity game.
 
-	For the decidability upper bound, we  used pebble alternating two-way tree automata to solve pebble pushdown parity games.
-Alternating two-way tree automata (ATWA) with parity winning conditions have been used to solve parity games on pushdown graphs \cite{cachat2002two}. The technique was first developped to solve model-checking problem for pushdown graphs in \cite{kupferman2000automata}. 
-We showed that, when pushdown graphs and ATWA are extended with a set of pebbles to manage, the technique
-also works.
-We then proved decidability 
-% for checking that an $n$-PATWA $\mathcal{A}$ accepts the full infinite tree $\{0,1\}^*$ 
-by %reducing it
-a reduction
- to the problem of model-checking $\MSO$ on a well chosen structure. To ensure decidability of model-checking $\MSO$ on the chosen structure, we made use of 
-Muchnik's Theorem: the structure is constructed by applying a successive number of times Muchnik's iteration to a structure $\mathfrak{A}_0$ for which model-checking $\MSO$ is decidable.
-%  After providing this structure, we will show that  checking that an $n$-PATWA $\mathcal{A}$ accepts the full binary tree $\{0,1\}^*$ reduces itself to the problem of model-checking $\MSO$ on it.
+	For the decidability upper bound, we 
 
 
 
