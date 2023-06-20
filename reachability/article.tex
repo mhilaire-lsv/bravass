@@ -145,8 +145,8 @@ $n$ is fixed, and provide a nonelementary lower bound for the general case.
 % {\bf Context}
 
 
-{\bf Games on pushdown systems} Pushdown systems can be used to model the behavior of recursive programs and,
-as a result, a variety of 
+{\bf Games on pushdown systems} Pushdown systems can be used to model the behavior of recursive programs.
+As a result, a variety of 
  program analysis questions can be reduced to decision problems for games on pushdown systems.
 They have applications for instance in inter-procedural control-flow analysis of recursive programs \cite{esparza1999automata, reps2005weighted}.
 
@@ -173,7 +173,7 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 \textcolor{blue}{ok je comprends que tu signales la différence mais c'est trop détaillé pour cet endroit du texte: To underline the fact that we are concerned with the graph of configurations and not the language recognized, we use the name pushdown system rather than pushdown automaton.}
 
 
-{\bf Parametric pushdown automata or systems ?}
+{\bf Parametric pushdown systems}
  Parametric pushdown systems provide a  formalism to
 reason about 
 recursive programs
@@ -318,8 +318,7 @@ using one additional stack level for each pebble.
 
 
 
-\subsubsection*{Overview}
-
+{\bf Overview. }
 In Section 2, we provide general notations and preliminary definitions. 
 Section 3 will deal with the introduction of  parametric pushdown games.
 % Section 4 is devoted to using pebble alternating tree systems with parity acceptance condition to solve parametric pushdown system parity games. We leave the proof of decidability itself  for Section 5.
@@ -539,7 +538,7 @@ A partial play $\pi = s_0 \rightarrow s_1 \rightarrow \ldots \rightarrow s_n$ is
 if for all $j\in[0,n-1]$, for all element $v_j \in V_i$ in the sequence $\pi$,
 $v_{j+1} = \sigma_i(v_j)$.
  Given a configuration $s$,   a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1$ for player $1$, the play starting with $s$ that is consistent with both strategies is unique and is called the {\em resulting play} of $\sigma_0$ and $\sigma_1$ starting from $s$. It is 
-denoted by $\pi(s, \sigma_0, \sigma_1)$.\\
+denoted by $\pi(s, \sigma_0, \sigma_1)$.
 
 %  \subsubsection{Winning conditions}
 
