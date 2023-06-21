@@ -139,10 +139,8 @@ $n$ is fixed, and provide a nonelementary lower bound for the general case.
 
 \section{Introduction}
 
-\subsubsection*{Background}
 
-
-{\bf Context} Pushdown systems can be used to model the behavior of recursive programs.
+{\bf Background.} Pushdown systems can be used to model the behavior of recursive programs.
 As a result, a variety of 
  program analysis questions can be reduced to decision problems for games on pushdown systems.
 They have applications for instance in inter-procedural control-flow analysis of recursive programs \cite{esparza1999automata, reps2005weighted}.
@@ -167,7 +165,6 @@ have been studied in depths, including
 tree-pushdown systems \cite{guessarian1983pushdown}, ordered
 multi-pushdown systems \cite{breveglieri1996multi, atig2012model}, annotated higher-order pushdown systems \cite{maslov1976multilevel, broadbent2012saturation}, and
 strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
-\textcolor{blue}{ok je comprends que tu signales la différence mais c'est trop détaillé pour cet endroit du texte: To underline the fact that we are concerned with the graph of configurations and not the language recognized, we use the name pushdown system rather than pushdown automaton.}
 
 
 {\bf Parametric pushdown systems}
@@ -283,7 +280,7 @@ Section 5 at last shows a nonelementary lower bound for the problem.
 
 
 
-\section{Definitions}
+\section{Preliminaries}
 
 
 \newcommand{\LCM}{\mathsf{LCM}}
@@ -417,31 +414,19 @@ arenas and
 
 
 
-\begin{samepage}
-An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of
-\begin{itemize}
-	\item two  disjoint  sets of configurations, $S_0$ and $S_1$, 
+An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of two  disjoint  sets of configurations, $S_0$ and $S_1$, 
 	whose disjoint union $S_0 \cup S_1$ we denote by $S$, and
-	\item a relation of  
+ a relation of  
 		transitions
 	 ${\rightarrow} \subseteq S \times 	S$. 
-\end{itemize}
-\end{samepage}
-
-\noindent
 Note that $(S,{\rightarrow})$, where $S=S_0 \uplus S_1$, forms
 a %labeled 
 transition system, and, in particular, given a 
 %labeled 
 transition system,
 one needs only to provide 
-a partition of the set of configurations $S$ into two sets $S_0$ and $S_1$ to obtain an arena. \\
-% We require that the out-degree of each configurations is at least one. This ensures that every finite path in (V, E) can be prolonged. 
+a partition of the set of configurations $S$ into two sets $S_0$ and $S_1$ to obtain an arena.
 
-
-% \mh{I dont think I want to disallow dead-ends from the very beginning, means every time you define some arena you have to prove it has no dead-ends, seem tedious and unecessary.}
-
-\noindent
 The games we are interested in are played by two players, called {\em player $0$} and {\em player $1$}. We will often write player $i$ to denote a general player for $i \in \{0,1 \}$,
 and we will call player $1-i$ its {\em opponent}. 
 A {\em play} in an arena $A=(S_0,S_1,\rightarrow)$ is a path in $(S,{\rightarrow})$ that is {\em maximal} in the following sense: it is either infinite or finite and if it is finite, then the target configuration is a dead end. 
@@ -544,19 +529,17 @@ With regards to parity games, we are going to concern ourselves with games over 
 	\begin{figure}
 			\hspace{3.81cm}
 \includegraphics[width=0.4\textwidth]{figures/parity_game}
-	\caption{An example of an arena. Circles  belong to player $0$, whereas diamonds belong to player $1$. Arrows represent transitions from a configuration to the next. The priority assigned by the priority mapping to each configuration is a number in $\{0,1,2,3\}$, next to the configuration it is assigned to. Note that we do not have a dead end in our example.}
+	\caption{An example of an arena. Circles  belong to player~$0$, whereas diamonds belong to player~$1$. Arrows represent transitions from a configuration to the next. The priority assigned by the priority mapping to each configuration is a number in $\{0,1,2,3\}$, next to the configuration it is assigned to. Note that we do not have any dead end in our example.}
 	\label{example_parity_game}
 	\end{figure}
 \end{center}
 
 \begin{example}
 Let us consider the arena presented in  Figure~\ref{example_parity_game}. 
-Configurations are partitioned into two sets: the circles, belonging to player $0$, and the diamonds,
+Configurations are partitioned into two sets: circles belonging to player $0$ and diamonds
 belonging to player $1$. 
 The priorities are $\{ 0,1,2,3\}$.
 % The transitions and priority mappings may be derived from the picture.
-% Note that we don't have a dead end in our example. 
-Consider the game on the arena, where the winning condition is a parity condition.
 Plays $\pi_1 = q_0 q_1 q_2 (q_4 q_7)^\omega$ and 
 $\pi_2 = (q_0 q_1 q_2 q_4)^\omega$ are both winning for player $0$. Indeed, in $\pi_1$, 
 the minimal priority encountered infinitely often is %that of $q_7$, that is, 
@@ -565,7 +548,6 @@ whereas in $\pi_2$, it is %that of $q_2$, that is,
 			$0$. 
 In both cases, it is an even number. On the other hand,
 the plays $\pi_3 = (q_5 q_3 q_6)^\omega$ and $\pi_4=(q_5 q_6)^\omega$ are both winning for player $1$: the minimal priority encountered is odd, since it is $1$ for both.
-
 One can take matters further: on this arena, player $0$ has a winning strategy for the parity game from $q_0$, $q_1$, $q_2$, $q_4$ and $q_7$, but not from $q_5$, $q_3$ nor $q_6$, where player $1$ has a winning strategy. 
 \end{example}
 
@@ -574,19 +556,13 @@ One can take matters further: on this arena, player $0$ has a winning strategy f
 One important property of parity games is that of {\em memoryless determinacy}: for a parity game
 $\mathcal{G}= ((S_0,S_1,\rightarrow),\win_\Omega) $ and an initial configuration $s \in S_0 \cup S_1$, one of the players has a memoryless winning strategy from $s$ \cite{zielonka1998infinite}.
 
-%\mh{
-Of note is that several model checking problems %for pushdown systems 
-can be expressed as decision problems for games: the most famous example is that the modal $\mu$-calculus model checking problem is polynomially equivalent to solving the parity game problem. 
-%}
 
 
 \section{Parametric pushdown games}
 
 
 
-
-
-\textcolor{black}{Parametric pushdown systems extend pushdown systems by allowing the stack to be compared against parameters that can be assigned values which are words over the stack alphabet.}
+Parametric pushdown systems extend pushdown systems by allowing the stack to be compared against parameters that can be assigned values which are words over the stack alphabet.
 A parametric pushdown automaton is then a finite automaton extended with a finite set of parameters $P$  and with a stack that can be manipulated by pushing or popping stack symbols and such that, moreover, the automaton can use the top of the stack, or check that the stack content corresponds to a parameter,  to decide which transition to take next.\\
 
 \par\noindent\ignorespacesafterend
@@ -684,7 +660,8 @@ will call the $\mu$-run an {\em $u$-run}. In case the automaton $\mathcal{Z}$ is
 }_{u}$)
 instead of $\xrightarrow{%\lambda
 }_{\mathcal{Z}, \mu}$ (resp. $\xrightarrow{%\lambda
-}_{\mathcal{Z},u}$). \\
+}_{\mathcal{Z},u}$). 
+Since we are concerned with the graph of configurations and not the language recognized, we omit the input alphabet from the model and will use the name pushdown system rather than pushdown automaton.
 
 
 		\iffalse	
@@ -706,16 +683,13 @@ an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
 % \subsubsection{Parametric pshdown games}
 \subsection{PPDS games}
 
-
 Several model checking problems can be
 expressed as decision problems for games.
 For instance 
 in the case of pushdown systems, 
 the modal $\mu$-calculus
-model checking problem is polynomially equivalent to solving the parity game problem.
-% \textcolor{red}{Since the model checking problem has a more varied range of applications than the reachability problem (mb have a source for that or smtg)},
-Since we are interested in parametric model checking and specification,
-we are naturally interested in parametric variants of reachability games and parity games.
+model checking problem is polynomially equivalent to solving the parity game problem~\cite{emerson1993model}.
+We are interested in this article in parametric variants of reachability games and parity games.
 
 One goal may be to characterize the set of all possible parameter valuations for which a player has a winning strategy in a 
 reachability game or a parity game
@@ -769,8 +743,7 @@ the last configuration of the resulting play $\pi(\mu_\bot,\sigma_0, \sigma_1)$
 is called {\em the resulting parameter valuation}
  and is denoted by $\mu_{\sigma_0, \sigma_1}$, where 
  $\mu_\bot$ is the partial parameter valuation with domain $\emptyset$. 
- %We do not really consider winning conditions for parameter valuation games. Rather, once the resulting parameter valuation is produced, it serves to instantiate the parametric transition system for the next game.
-Parametric valuation arenas can then be used as prefixes in parametric games. Once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
+We then use parametric valuation arenas as prefixes in parametric games: once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
 %
 %
 Indeed, where a concrete automaton induces a transition system, a parametric automaton induces one transition system for every possible parameter valuation.
@@ -793,7 +766,7 @@ a parametric automaton $\A$ with parameters $P$ taking values in $\Gamma^*$ and 
 	the totally undefined function and can be viewed rather as 
 	the function that assigns $\bot$ to both parameters. For $i,j \in [0,N]$, $\mu_i$ is the partial parameter assignment with domain $\{p_0\}$ that maps $p_0$ to $i$ and $\mu_{i,j}$ is the parameter assignment that maps $p_0$ to $i$ and $p_1$ to $j$.
 	 %Lastly $T^\mu_\A$ denotes the transition system induced by the concrete automaton corresponding to $\A$ with parameter valuation $\mu$.
-	  As before, the circles belong to player $0$ and the diamonds to player $1$.} 
+	  As before, the circles belong to player $0$ and the diamonds to player~$1$.} 
 	\label{parametric_arena}
 	\end{figure}
 \end{center}
@@ -824,35 +797,23 @@ $T_\A^\mu$.
 % See Figure~\ref{parametric_arena} for an illustration of such an arena.
 \fi
  
-Recall that given a 
-%labeled 
-transition system,
-one needs only to provide %a mapping $\Omega$ and 
-a partition of the set of configuration $S$ into two sets $S_0$ and $S_1$ to obtain an arena. 
-Thus, for an  $n$-parametric pushdown automaton 
+More formally, for an  $n$-parametric pushdown automaton 
 $\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
 given a partition of
 $Q$ into $Q_0$ and $Q_1$, 
 we naturally partition the configurations of
-%the transition system of 
  $\mathcal{Z}$
-% $T^\mu_{\mathcal{Z}}$
 into
 $\Conf_{\mathcal{Z},0}=Q_0\times \Gamma^*$
 and
 $\Conf_{\mathcal{Z},1}=Q_1\times \Gamma^*$. 
-
-
-With these notations in mind one can define the arena
-\[
+With these notations in mind we define the arena
+$
 A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
 =
-(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})\]
-induced by a PPDS $\mathcal{Z}$, a partition of its set of states, and a
+(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})$
+induced by $\mathcal{Z}$, the partition $Q = Q_0 \biguplus Q_1$, and a
 parameter valuation $\mu: P\rightarrow \Gamma^*$.
-
-
-
 From a partition of
 $P$ into $P_0$ and $P_1$, 
 we thus define 
@@ -874,10 +835,10 @@ $q_{init}(\gamma_{init}, \mu)$ in $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$.
 
 
 
-Given a 
-priority function $\Omega: Q \to [0, m]$,
-we consider the function
-$\widehat{\Omega}: \Conf(\mathcal{Z}) \cup (\Gamma^* \cup \bot)^{[0,n]} \to [0, m]$
+We extend any 
+priority function $\Omega: Q \to [0, m]$
+into
+$\widehat{\Omega}: \Conf(\mathcal{Z}) \cup (\Gamma^* \cup \bot)^{[0,n]} \to [0, m]$,
 where we set
 $\widehat{\Omega}(q, w, \mu) = \Omega(q)$
 for all
@@ -918,20 +879,11 @@ and
 {\sc $n$-parametric pushdown parity game} if 
  the number of parameters $n=|P|$ of $\mathcal{Z}$ is fixed by the problem.
 Remark that the parametric reachability problem for an automaton with parameters can be seen as solving the parametric reachability game where $P_1 = \emptyset$, and $Q_1 = \emptyset$.
-We are interested in the following games and problems.
 
 
 
 			
-			
-				
-				
-				
-
-
-%\subsection{A decidability result from reduction to parity games on automata with pebbles}\label{pebbles}
-\section{%A decidability result via r
-Reduction to pebble pushdown systems parity games
+\section{Reduction to pebble pushdown systems parity games
 }\label{pebbles}
 
 
@@ -996,11 +948,8 @@ where $Q$ is a {\em finite set of  states}; $\Gamma$ is a {\em finite stack alph
  $F \subseteq Q$ is a {\em set of final  states}.
 
 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% \mh{remind the reader what a partial function is}
- 
-\par\noindent\ignorespacesafterend 
+
+
 Recall that for a partial function $ f : S \rightharpoonup X $% (see page~\pageref{partial})
 , for notational purposes, we consider some element $\bot_X \not\in X$ and 
  associate $f$ with the function returning the 
@@ -1027,22 +976,12 @@ is that, if the automaton $\ppda$ is in state $q$ with pebbles $1,\ldots, i$ dro
 $\ppda$ goes to state 
 $q'$ and makes modifications to the stack or the pebbles according to
 $m$. 
-% \mh{The set $S$ is used for testing the presence of certain pebbles.}
 Note a pebble 
 can be lifted only if the stack content which corresponds to the pebble
 is the same as the current stack content. 
-%$\Dzeta$ $\zeta$ $\Xi$
 This is enforced by syntactically requiring
 the last pebble dropped $i$ is in the set $S$ used for testing the presence of certain pebbles.
 
-\iffalse
-A {\em weak} $n$-pebble pushdown system is an $n$-pebble pushdown system $\ppda = (Q, \Gamma,  \Delta )$ in which $\text{\textit{lift}}$ operations also require the presence of the last pebble dropped, i.e.
-for all $(q, a, i, S, q', \text{\textit{lift}}) \in \Delta$, we have $ i \in S $. 
-%  is an additionnal restriction $f(i) = wa$ that needs to hold for the application of the $lift$ operation.
-{\em Weak $n$-pebble pushdown games} are defined naturally as $n$-pebble pushdown games on 
-weak $n$-pebble pushdown systems.
-
-\fi
 
 
 
@@ -1054,17 +993,6 @@ The $\emptyset$-pebble assignment is denoted by $\mu_{init} :  \{ 1, \ldots, n\}
 totally undefined function.
 
 
-\iffalse
-For $0 \leq i \leq n$, an {\em $i$-configuration} is a tuple $(q, w, \mu )$, where $w \in \Gamma^*$, $q$ is a state and
-$\mu$ a $\{ 1, \ldots , i \}$-pebble assignment. 
-We call $w$ the current stack, $q$ the current state and
-$\mu$ the current pebble assignment. 
-We also write $(q,w, w_{1} , \ldots , w_{i} )$ if 
-$\mu(j) = w_j$, for each
-$j \leq i$.
-
-The set of configurations is the union of all $i$-configurations for $0 \leq i \leq n$. 
-\fi
 
 
 \begin{samepage}
@@ -1130,18 +1058,11 @@ into
 $\Conf_{\ppda,0}=Q_0\times \Gamma^* \times ( \Gamma^* \biguplus \{ \bot \})^{\{1, \ldots n\}}$
 and
 $\Conf_{\ppda,1}=Q_1\times  \Gamma^* \times ( \Gamma^* \biguplus \{ \bot \})^{\{1, \ldots n\}}$. 
-
-
-
-With these notations in mind one can  define the arena
-$$
+We  define the arena
+$
 A_{(\ppda, Q_0 , Q_1)}
 =
-(\Conf_{\ppda,0}, \Conf_{\ppda,1}, \rightarrow_{\ppda}).$$
-
-
-
-
+(\Conf_{\ppda,0}, \Conf_{\ppda,1}, \rightarrow_{\ppda}).$
 As expected, given a 
 priority function $\Omega: Q \to \{0, \ldots m\}$,
 one naturally 
@@ -1171,11 +1092,10 @@ where $Q = Q_0  \biguplus Q_1 $,
 and
 a priority mapping $\Omega: Q \to \{0, \ldots m\}$.}
 {Does player $0$ have a winning strategy from $q_{init}(\gamma_{init}, \mu_{init})$ for the parity game 
-$\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ?\newline}
+$\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ?}
 
 
 
-% \subsubsection{Reduction from parameters to pebble pushdown systems}
 \subsection{From parametric pushdown 
 systems 
 to pebble pushdown systems
@@ -1185,10 +1105,8 @@ We now provide a reduction from the problem of solving parametric pushdown parit
 
 
 \begin{theorem}\label{PPDA reduction}
-%The problem of 
 {\sc $n$-parametric pushdown parity game} 
 is polynomial time reducible to
-%the problem of 
 {\sc $n$-pebble pushdown parity game}.
 \end{theorem}
 
@@ -1200,8 +1118,7 @@ is polynomial time reducible to
 
 Let us fix some
 $n$-parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, 
-P%\{p_1, \ldots, p_n \}
-, q_{init}, { \gamma_{init}} , F)$,
+P, q_{init}, { \gamma_{init}} , F)$,
  disjoint
 union $Q = Q_0  \biguplus Q_1$
 and $P = P_0 \biguplus P_1$,
@@ -1211,7 +1128,6 @@ $\Omega : Q \times \Gamma^* \times ( \Gamma^* \biguplus \{ \bot \})^R \to [0, m 
 
 
 We construct
-% polynomial time
   an 
  $n$-pebble pushdown automaton $\ppda =(Q', \Gamma,  R', q_{init}', {\gamma_{init}} , F')$,
 a 
@@ -1219,8 +1135,6 @@ a
 union $Q' = Q_0'  \biguplus Q_1'$
 and a mapping $\Omega' : Q \times  \Gamma'^* \times ( \Gamma'^* \biguplus \{ \bot \})^{\{1, \ldots, n\}} \to \{1, \ldots, m \}$,
 such that
- %:
-%
 player $0$ has a winning strategy from 
 $(q'_{init},\gamma_{init}, \mu_{init})$
 in
@@ -1248,15 +1162,11 @@ and
 $\widehat{\Omega}$
 correspond to the definitions on page~\pageref{PPDA reachability game}.
 
-%
-%
-%
-%
+
 
 
 The transition graph of the $n$-pebble pushdown automaton $\ppda$ will simulate the possible transitions graphs 
 (one for every 
-%total 
 parameter assignment)
  of the pushdown automaton with $n$ parameters by using pebbles to represent the parameters. 
 The $n$-pebble pushdown automaton will first simulate the 
@@ -1264,18 +1174,11 @@ parameter valuation arena.
 Players take turns chosing particular stack contents on which to place pebbles. 
 Once every parameter has been assigned with the dropping of a corresponding pebble, 
 the pebble assignment $\mu$ is fixed.
-%%
-%
-%
-%
-%
-%
-%
+
 
 
 Further configurations in the $n$-pebble pushdown automaton then consist of a word representing the status of the stack, a state, and a fixed pebble assignment. For a fixed pebble assignment there is then a one for one correspondance between configurations of the $n$-parametric pushdown 
 automaton 
-%transition system with assignment $\mu$
 and these of the $n$-pebble pushdown automaton. The set of states of the $n$-pebble pushdown automaton apart from the initial gadget is the same as 
 the set of states of the $n$-parametric pushdown automaton, and 
 so are player $0$ states, player $1$ states and the priority mapping.
@@ -1960,15 +1863,9 @@ towards the problem of %following problem.
 
 \noindent
 We start with
-% a $\tau(\{0,1\})$-structure $w$ and
  a 
- $\FO[\tau(\{0,1\})]$%%
-% $\FO$%
+ $\FO[\tau(\{0,1\})]$
 -formula $\phi$.
-%
-% Note that $w$ corresponds to a word $w \in \{0,1\}^*$ of size $n$.\\
-%
-% \noindent
 We construct
 a parametric pushdown system $\mathcal{Z}_\phi = (Q_\phi,W_\phi, \Delta_\phi )$, with a disjoint
 union $Q_\phi = Q_0  \biguplus Q_1 $, a priority mapping $\Omega_\phi$, and an initial state $q_I \in Q_\phi$
