@@ -5,10 +5,10 @@
 Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety (\cite{challenges}). Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
 pushed it towards some kind of ‘error state’ and, if it can, whether it can perform the return in a satisfactory timeframe. 
 %%%%%%%%
-In the exemple of air trafic control, an accident i.e. for instance a delay in the arrival of a plane can lead to conflicts of resolution (i.e. landing) which lead to prompting planes to remain on standby. Since their fuel quantity is limited it is hence pretty important to be able to know that trafic will return to its normal pace quickly enough. We formalize this as the resilience problem. 
+\alain{fait double emploi avec l'exemple si on le développe ce que je ne suis plus sûr...:  In the exemple of air trafic control, an accident i.e. for instance a delay in the arrival of a plane can lead to conflicts of resolution (i.e. landing) which lead to prompting planes to remain on standby. Since their fuel quantity is limited it is hence pretty important to be able to know that trafic will return to its normal pace quickly enough. We formalize this as the resilience problem. 
 Resilience is then the capacity of a system that fall in a bad set of states to leave this set and to reach a safe set of states. \\
 
-State-resilience only consider bad elements that are reachable from an initial state, while bounded-resilience and $k$-resilience ask whether safe is reachable in a bounded number of step and $k$ or less steps respectively.
+State-resilience only consider bad elements that are reachable from an initial state, while bounded-resilience and $k$-resilience ask whether safe is reachable in a bounded number of step and $k$ or less steps respectively.}
 
 
 {\bf Home-spaces}
@@ -31,14 +31,14 @@ the bounded resilience problem (BRP) is to decide whether there exists an $k$ su
 In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} many interesting intuitions (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. Since the definition of resilience is only given informally in the introduction as "a process is resilient to an adversary if its observable behaviour in the presence of adversarial action is equivalent to its behaviour in the absence of the adversary", it still remains unclear what is formally resilience.
 %%%%%%%%%
 
-in 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and in 2022, Okzan \cite{DBLP:conf/gg/Ozkan22} proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
+In 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and Okzan in 2022, \cite{DBLP:conf/gg/Ozkan22} proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
 $\uparrow$ $\post^*$ basis) and with $\Safe=\uparrow \Safe$, hence $\Bad$ is downward-closed
 (even though \cite{DBLP:conf/gg/Ozkan22} also discuss, albeit briefly, the other possible cases). The paper of Prasad and Zuck \cite{DBLP:journals/corr/PrasadZ16} is not quoted by Ozkan and Würdemann.
 
 Both Prasad \& Zuck and Ozkan \& Würdemann did not make the relation between resilience and the home-space property.
 %%%%%%%%%
 %
-Remark that the reflexive downward compatibility of a WSTS implies that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to prove the announced result by Prasad and Zuck.
+Remark also that the reflexive downward compatibility of an effective WSTS implies that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to prove the announced result by Prasad and Zuck.
 
 
 
