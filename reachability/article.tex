@@ -142,10 +142,7 @@ $n$ is fixed, and provide a nonelementary lower bound for the general case.
 \subsubsection*{Background}
 
 
-% {\bf Context}
-
-
-{\bf Games on pushdown systems} Pushdown systems can be used to model the behavior of recursive programs.
+{\bf Context} Pushdown systems can be used to model the behavior of recursive programs.
 As a result, a variety of 
  program analysis questions can be reduced to decision problems for games on pushdown systems.
 They have applications for instance in inter-procedural control-flow analysis of recursive programs \cite{esparza1999automata, reps2005weighted}.
@@ -177,12 +174,9 @@ strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
  Parametric pushdown systems provide a  formalism to
 reason about 
 recursive programs
-making use of parametric constraints.
-% Here, the stack can additionally be compared against parameters that can take unspecified word values. 
+making use of parametric constraints. 
 Recently, different variants of parametric pushdown systems have been introduced in the literature 
-% [Hague’11]=[20], [Esparza, Ganty, Majumdar’13]=[15]
 \cite{hague2011parameterised, esparza2016parameterized, fortin2017model} 
-% In this work, following [21,20,15,27,12], we consider parametric pushdown systems
 however as
 parameterized asynchronous shared-memory systems.
 These systems consist of a leader pushdown automaton
@@ -191,7 +185,6 @@ in the form of a register which can take finitely many values.
 This variant have been shown to have applications
 to the dataflow analysis of concurrent programs \cite{kahlon2008parameterization}. 
 We consider here a different approach to extending pushdown systems with parameters, by allowing them to test equality of the stack content against parameters.
-% Pushdown systems which can test the stack content against regular-expressions are equivalent to pushdown systems, so pushdown systems which can test the stack content against specific words are too.
 Perhaps a similar model consists in 
 pushdown systems 
 with transitions that are conditioned by regular conditions on their stack content, which
@@ -208,7 +201,6 @@ model checking algorithms for LTL and CTL$^*$ model checking
 for
 pushdown systems \cite{finkel1997direct}.
 Pushdown systems 
-%with regularity condition on the stack
 with transitions that are conditioned by regular conditions on their stack content
 can be viewed as
 a special case of stack automata as seen in \cite{hopcroft1969formal}.
@@ -239,32 +231,10 @@ i.e. for any run of a register pushdown automaton with $r$ registers there exist
 
 
 
-% Hence we propose in this paper to extend pushdown systems with a set of  parameters.
-%
-% Compared to pebble word automata, instead of using pebbles
-% as markings on their input, pebble pushdown systems have the ability to lift or drop pebbles
-% on their universe of stack contents. Dropping a pebble records the current stack content with an available pebble until it is lifted. Lifting a pebble then makes it available again.
-
-
-% A pebble automaton is a two-way finite state automaton that uses a fixed, finite number of
-% pebbles that it can drop on, and lift from 
-% words, using them as markers.
-% Pebble automata recognize regular languages only, provided the life times of the pebbles, i.e. the times between dropping a pebble and lifting it again, are properly nested
-% \cite{globerman1996complexity, engelfriet1999tree}.
-% Automata with nested pebbles were also introduced for tree-walking automata. 
-% It is known that tree-walking automata do not recognize all regular tree languages \cite{bojanczyk2008tree}, the main trouble being that the tree-walking automata get lost rather easily.
-% Using pebbles is a remedy against getting lost along a tree, but  the unrestricted use of pebbles leads to a class of tree languages much larger than the regular tree languages, in fact to all tree languages in $\NSPACE(log ~ n)$.
-% Thus, in both pebble word automata and pebble tree-walking automata, the placement of the pebble follows a strict stack discipline, and our model will follow this strict stack discipline too.
-%
-%
-% One motivation to the study of pebble pushdown systems is their ability to compare a stack content against some later stack content.
-% Similar type of storage for later comparison has already been used for instance in register pushdown systems. Introduced in \cite{murawski2017reachability}  as an extension of pushdown systems that can keep data values in a set of registers and a stack, register pushdown systems enable manipulation of data values from an infinite domain, and have applications for instance for malware detection and XML schema checking \cite{senda2021forward, senda2021ltl}.
 
 
 
-
-Another closely related formalism is that of alternating tree automata with nested pebbles%, as we consider in more details in Section 4
-. The approach of extending tree automata with pebbles was used in \cite{milo2000typechecking} to show that the XML typechecking problem is decidable, and in \cite{karhumaki2012jewels} to recognize first-order logic on trees. In both cases however, the input trees considered are finite, while 
+Another closely related formalism is that of alternating tree automata with nested pebbles. The approach of extending tree automata with pebbles was used in \cite{milo2000typechecking} to show that the XML typechecking problem is decidable, and in \cite{karhumaki2012jewels} to recognize first-order logic on trees. In both cases however, the input trees considered are finite, while 
 simulation of plays in parametric pushdown graphs
 requires the use of pebble alternating tree automata working on infinite trees
 since the stack of a pushdown system is in general unbounded.
@@ -277,22 +247,7 @@ the winner of a parity game on a graph of a pushdown system with
 parameters.
 
 
- \iffalse
  
- 
-We provide formal definitions of parametric pushdown systems, parametric pushdown reachability games
-and parametric pushdown parity games in Section~\ref{section def ppda}. We give an overview of our contribution in Section~\ref{contribution ppda}. The contribution consists in
-proving parametric pushdown reachability games
-and parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number of parameters
-$n$ is fixed,
-and providing a nonelementary lower bound for parametric pushdown reachability games in general.
-We provide the proof of our result, which stretches along 
-Section~\ref{lower bound PDA},
-Section~\ref{pebbles},
-% Section~\ref{ATWA and PATWA}, and
-Section~\ref{section HPDA}.
-In Section~\ref{discuss ppda} we close the chapter with a discussion about the methods used, with some directions for future work.
-\fi
 
 \subsubsection*{Our contributions}
 
@@ -337,21 +292,13 @@ Section 5 at last shows a nonelementary lower bound for the problem.
 \newcommand{\SO}{\mathsf{SO}}
 
 By $\Z $ we denote the {\em integers} and by $\N=\{0,1,\ldots\}$ we denote the {\em naturals}.
-% For every $a,b\in\Z$ with $a\leq b$ we define $[a,b]=\{k\in\Z\mid a\leq k\leq b\}$.
-% For every $n\geq 1$ we define $n\Z=\{n\cdot z\mid z\in\Z\}$.
-% For every number $n\in\N$ we define $\log(n)=\min\{i+1\mid i\in\N, n\leq 2^i\}$, which is the smallest number of bits necessary to write down $n$ in binary.
 For every finite alphabet $A$, $A^*$ is the set of finite
 words with letters in  $A$, $A^\omega$ is the set of infinite words with letters in $A$, and
-%by
  $A^\infty = A^\omega \cup A^*$. We denote the empty word in $A^*$ by $\epsilon$.
-%For all $a\in A$ and all $w\in A^*$ let $|w|_a$ denote the number of occurrences of the letter $a$ in $w$.
-%
-% For every finite set $M\subset\N\setminus\{0\}$ let $\LCM(M)=\min\{n\geq 1\mid \forall m\in M\setminus\{0\}: m|n\}$ denote the least common multiple of the elements in $M$. 
-% For any $j \in \N$ let $\LCM(j)=\LCM([1,j])$ denote the least common multiple of the numbers $\{1,\ldots,j\}$.
+
 
  For any two sets $X$ and $S$, let $X^S$ denote the set of all functions from $S$ to $X$.
 For any set $S$ let 
-%$\mathscr{P}(S) = \{ X \mid X \subseteq S \}$
 $\mathcal{P}(S) = \{ X \mid X \subseteq S \}$
 denote the power set of $S$.
 %
@@ -362,9 +309,6 @@ by considering it as returning the bottom element $\bot$ when it is undefined.
 
 
 A {\em graph} $G=(V,E)$ is a finite set of graph vertices $V$ with a set of graph edges $E \subseteq V \times V$. 
-% Two graphs $G = (V,E)$ and $G'=(V',E')$ with sets of graph vertices $V=V'=V_n=\{1,2,...,n\}$ are said to be {\em isomorphic} if there is a permutation $\rho$ of $V_n$ such that $(u,v)$ is in the set of graph edges $E$ iff $(\rho(u),\rho(v))$ is in the set of graph edges $E'$.
-%%%
-%
 For any set $V$, and a given infinite sequence $\pi = v_0 v_1 \ldots \in V^\omega$ of elements of $V$, we define the set 
 $\text{\textit{Inf}}(\pi)$ of elements occurring infinitely often in $\pi$ as
 $\text{\textit{Inf}}(\pi) = \{ v \in V \mid \forall i, \exists j > i, ~ v_j = v \}$. 
@@ -465,25 +409,22 @@ Concerning the logic $\MSO$, we are interested in the following decision problem
 
 
 
-%ù \subsection{Games}
-
 
 A {\em game} is composed of an arena and a winning condition.
 We will ﬁrst study
 arenas and
  then introduce common winning conditions that will be of interest to us.
 
-% \subsubsection{Arenas}
+
 
 \begin{samepage}
 An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of
 \begin{itemize}
-	\item two  disjoint  sets of configurations, $S_0$ and $S_1$, %respectively associated with player $0$ and $1$, 
+	\item two  disjoint  sets of configurations, $S_0$ and $S_1$, 
 	whose disjoint union $S_0 \cup S_1$ we denote by $S$, and
-	\item a relation of %labeled 
+	\item a relation of  
 		transitions
-	 ${\rightarrow} \subseteq S \times %\Lambda \times 
-	 				S$. 
+	 ${\rightarrow} \subseteq S \times 	S$. 
 \end{itemize}
 \end{samepage}
 
