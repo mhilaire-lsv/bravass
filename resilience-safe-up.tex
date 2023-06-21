@@ -131,16 +131,19 @@ Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=\max(k'_{i,j} \mid i=1,..,n$ and
 % \alain{indecidabilite en enlevant une ou des hypotheses: The resilience problem (RP), the bounded resilience problem (BRP) and the $k$-resilience problem (kRP) are undecidable for WSTS with strong compatibility}
 %
 
-
-Without the completion-post-effective hypothesis nor the pred-basis hypothesis, coverability 
-becomes undecidable. For instance the coverability problem for strongly increasing well-structured nets is undecidable~\cite{FMP-ic04}. 
-Coverability reduce
+Let us remark that coverability reduce
 to resilience when $\Bad = \downarrow \Bad$ and  $\Safe = \uparrow \Safe$,
 as $s \to^* \uparrow t$ 
 reduces to $(\Safe,\Bad)$-resilience for $\Bad = \downarrow s$ and $\Safe = \uparrow t$.
+%
+Let us recall that the coverability problem for strongly increasing well-structured nets is undecidable~\cite{FMP-ic04}, hence the strongly increasing well-structured nets are not completion-post-effective hypothesis nor have the pred-basis hypothesis.
+%
+Without the completion-post-effective hypothesis nor the pred-basis hypothesis \alain{où est-ce prouvé ?}, coverability 
+becomes undecidable. For instance
+
 Hence, without the completion-post-effective hypothesis, 
 {\sc Resilience} itself is undecidable.
-
+\alain{c'est confus}
 Remark we did not make use of the hypothesis that $\Bad$ is the complement of $\Safe$, simply using
 $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
