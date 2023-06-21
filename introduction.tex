@@ -120,7 +120,7 @@ We assume that the VASS is
 lossy, i.e. 
  the contents of a counter can spontaneously get lower at any time.
  Lossiness is represented by using transitions decreasing any counter by one from every state. 
-We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
+% We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
 In this example, the safe, desirable state would be one where the aircrafts have both landed, i.e.
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$, and $\Bad$ is the complement of $\Safe$. 
 % We remark that $\Safe$ and $\Bad$ are here both upward and downward closed.
@@ -129,7 +129,7 @@ Explicit resilience is of interest since in general we want to ensure the safe s
 be reached in
 the least amount of steps possible. 
 In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time.
-With one out of ten increment of a counter guarranteed to not be lost, $40$-resilience hold in the example.
+With one out of ten increment of a counter guarranteed to not be lost, $8$-resilience hold in the example.
 \end{example}
 
 %\alain{il faut mieux expliquer le modèle, le rôle des 4 canaux, des messages, remarquer que 2 canaux sont des compteurs,....}
