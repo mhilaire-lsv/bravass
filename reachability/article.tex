@@ -503,22 +503,6 @@ a partition of the set of configurations $S$ into two sets $S_0$ and $S_1$ to ob
 \noindent
 The games we are interested in are played by two players, called {\em player $0$} and {\em player $1$}. We will often write player $i$ to denote a general player for $i \in \{0,1 \}$,
 and we will call player $1-i$ its {\em opponent}. 
-
-% Observe that there is no restriction on the number of the successors of a configuration in an arena. Also, we don’t require that (V, E) is a bipartite graph with corresponding partition {V 0 , V 1 }.
-
-\iffalse
-\noindent
-In the case where $\Lambda$ is a singleton $\{ a\}$, we will abuse notation
-and denote the arena by
-$(S_0, S_1,{\rightarrow},\Omega)$, and we will see $(S,{\rightarrow})$
-as an unlabeled transition system.
-\fi
-
-
-%  \subsubsection{Plays}
-
-
-\noindent
 A {\em play} in an arena $A=(S_0,S_1,\rightarrow)$ is a path in $(S,{\rightarrow})$ that is {\em maximal} in the following sense: it is either infinite or finite and if it is finite, then the target configuration is a dead end. 
 A {\em partial play} in an arena $A=(S_0,S_1,\rightarrow)$ is a 
 % sequence of configurations $s_{init} = s_0 s_1 \ldots \in S^\infty$ connected by the transition relation, i.e. such that $(v_i, v_{i+1}) \in T$.
@@ -549,11 +533,6 @@ is a subset
 of the set of maximal plays for $A$. A {\em game} is a pair $\mathcal{G}= (A, \win)$ which is composed of an arena $A$ and a winning condition $\win$.
 Although a winning condition is in general an infinite object we are interested in winning conditions 
 that can finitely be described.
-
-
-
-
-
 A strategy $\sigma_0$ for player $0$ from position $s \in S$ is a {\em winning strategy
  from $s$} for player $0$ if 
 % no matter which
@@ -583,16 +562,12 @@ To indicate that the winning condition of a game is a reachability winning condi
 
 With regards to reachability games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem.
 
-\begin{samepage}
+
 \problemx{Reachability game}
 {A reachability game $\mathcal{G}= ((S_0, S_1,{\rightarrow}),\win_F)$, an initial configuration $s \in S_0 \cup S_1$.}
-{Does player $0$ have a winning strategy from $s$ in $\mathcal{G}$?}
-\end{samepage}
+{Does player $0$ have a winning strategy from $s$ in $\mathcal{G}$? \\}
 
 
-
-
-% \subsection{Parity Games}
 
 Secondly, we consider min-parity games: 
 the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
