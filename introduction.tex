@@ -10,37 +10,36 @@ Resilience is then the capacity of a system that fall in a bad set of states to 
 
 State-resilience only consider bad elements that are reachable from an initial state, while bounded-resilience and $k$-resilience ask whether safe is reachable in a bounded number of step and $k$ or less steps respectively.
 
-{\bf Resiliences.}  We now define the resilience and the state-resilience : the (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $Bad,Safe \subseteq S$, is stated as follows: $\mathscr{S}$ is (Bad,Safe)-resilient if $\post^*(Bad) \subseteq \pred^*(Safe)$; similarly, $\mathscr{S}$ is (Bad,Safe)-state-resilient if $\post^*(s_0) \cap Bad \subseteq \pred^*(Safe)$. Resilience implies state-resilience but a system can be state-resilient but not resilient.
 
-and we define three decidability questions for each of type of resilience:
- The (state-)resilience problem (RP), the bounded (state-)resilience problem (BRP)
-and the $k$-(state-)resilience problem (kRP). 
+{\bf Home-spaces}
+ In 1986, Memmi and Vautherin introduced the notion of home-space \cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
+%			from all reachable states from $s_0$, it is always possible to reach $H$ 
+$\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subsets $X,H$, we say that $H$ is an home-space for $X$ if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
+%%%%%
+
+{\bf Resiliences.}  
+%		We now give the definition of two kinds of resilience: the (general) resilience and the state-resilience. 
+The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $Bad,Safe \subseteq S$ can be stated as an home-space problem : $\mathscr{S}$ is (Bad,Safe)-resilient if $\post^*(Bad) \subseteq \pred^*(Safe)$; 
+similarly, $\mathscr{S}$ is (Bad,Safe)-state-resilient for an initial state $s_0$ if $\post^*(s_0) \cap Bad \subseteq \pred^*(Safe)$. Resilience implies state-resilience but a system can be state-resilient but not resilient. 
+We will study three decidability questions for each of type of resilience.
+The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is (Bad,Safe)-resilient (for two given subsets of states $Bad,Safe \subseteq S$).
+The $k$-resilience problem (kRP) is to decide whether $\post^*(Bad) \subseteq \pred^{\leq k}(Safe)$ (for a given $k$) and 
+the bounded resilience problem (BRP) is to decide whether there exists an $k$ such that $\mathscr{S}$ is (Bad,Safe)-$k$-resilient. We adapt these three definitions to state-resilience.
 
 
 {\bf State of the art.}
 In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} many interesting intuitions (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. Since the definition of resilience is only given informally in the introduction as "a process is resilient to an adversary if its observable behaviour in the presence of adversarial action is equivalent to its behaviour in the absence of the adversary", it still remains unclear what is formally resilience.
 %%%%%%%%%
 
-in 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and in 2022, Okzan \cite{DBLP:conf/gg/Ozkan22} studied well-structured graph transformation systems and they considered two state-resilience problems : the k-State-Resilience Problem and the Bounded-State-Resilience Problem. They studied these two problems for WSTS with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$. In these papers, $\Bad$ is downward-closed and $\Safe$ is upward-closed 
-(even though \cite{DBLP:conf/gg/Ozkan22} also discuss, albeit briefly, the other possible cases).
+in 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and in 2022, Okzan \cite{DBLP:conf/gg/Ozkan22} proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
+$\uparrow$ $\post^*$ basis) and with $\Safe=\uparrow \Safe$, hence $\Bad$ is downward-closed
+(even though \cite{DBLP:conf/gg/Ozkan22} also discuss, albeit briefly, the other possible cases). The paper of Prasad and Zuck \cite{DBLP:journals/corr/PrasadZ16} is not quoted by Ozkan and Würdemann.
+
+Both Prasad \& Zuck and Ozkan \& Würdemann did not make the relation between resilience and the home-space property.
 %%%%%%%%%
-
- In 1986, Memmi and Vautherin introduced the notion of home-space \cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
-%			from all reachable states from $s_0$, it is always possible to reach $H$ 
-$\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subsets $X,H$, we say that $H$ is an home-space for $X$ if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X,H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %
+Remark that the reflexive downward compatibility of a WSTS implies that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to prove the announced result by Prasad and Zuck.
 
-Remark that the downward compatibility of a WSTS implies  there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$.
-
-No relation is established in previous papers with the HSP.
-
-State-resilience is an instance of the home-space property.
-
-Okan Özkan and Nick Würdemann~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}, considered two decidability questions: xxxx whether a system can reach a safe state in a bounded number of steps whenever it reached a bad state. xxxxxx
-
-
-% is the following: let $L_1,L_2 \subseteq S$ be two subsets of states, S is $(L_1,L_2)$-resilient if $\post^*(L_1)	\subseteq \pred^*(L_2)$. 
-asks whether a set of safe elements $\Safe$ is reachable for all elements in a set of bad elements $\Bad$. 
 
 
 
