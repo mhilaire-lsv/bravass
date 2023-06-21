@@ -1,5 +1,5 @@
 
-\end{proof}
+
 %		l'état atteint $s'$ est au dessus des minimaux de $\pred^*(X)$, ainsi par (upward) compatibility on sera toujours capable d'aller dans $X$. 
 %
 %
@@ -8,6 +8,13 @@
 %
 
 \section{Resilience for VASS}
+
+In this section we continue to study VASS. Since they are completion-post-effective WSTS, they inherit the decidability results for WSTS in the case 
+$\Safe$ is upward-closed. Lacking downward compatibility or a more relaxed hypothesis that
+for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
+VASS do not inherit the decidability results for WSTS in the case $\Safe$ is downward-closed.
+In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
+
 
 Let us recall that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
 % The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
@@ -56,11 +63,6 @@ Let us consider the following four associated upward-closed sets.
 Let $(V,v_0)$ be a VASS with an initial state and $X$ be any of the 4 previous sets. Valk and Jantzen showed that the maximal subsystem of $(V,v_0)$ such that its reachability set $\post^*(V,v_0)$ is included in $X$ is still a VASS $(V_X,v_0)$ that can be constructed with the coverability graph \cite{DBLP:journals/acta/ValkJ85} whose complexity is Ackermanian. Let us remark that the basis of the four upward-closed sets $X$ are computable in $2^{2^n}$, the maximal $X$-resilient VASS of $V$ is also a computable VASS $V_X$ and that $V_X$ is independant of the initial state $v_0$.
 
 
-In this section we continue to study VASS. Since they are completion-post-effective WSTS, they inherit the decidability results for WSTS in the case 
-$\Safe$ is upward-closed. Lacking downward compatibility or a more relaxed hypothesis that
-for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
-VASS do not inherit the decidability results for WSTS in the case $\Safe$ is downward-closed.
-In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
 
 
 \begin{theorem}{}
