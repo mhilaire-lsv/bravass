@@ -56,9 +56,8 @@ Recall the {\bf Flight Controller System} example, where the safe state correspo
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$,
 and $\Bad$ is the complement of $\Safe$. 
 % $\Bad = \{(q_{A,0}, q_{M,0}, q_{B,0})(\textbf{v}) \mid \textbf{v} \in \N^4\}$.
-  Then the resilience problem asks
-  whether there exists a path to $\{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$ from any state not already in the set.
 % wheher
+The system is not $7$-resilient since there is no path of length smaller than $7$ from $(q_{A,0}, q_{M,5}, q_{B,0})(\textbf{v})$ to $\Safe$, but it is $8$-resilient.
 
 \iffalse
 \begin{example}
