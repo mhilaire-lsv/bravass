@@ -83,13 +83,12 @@ and in the general case when $\Safe = \downarrow \Safe$.
 
 
 
-% Given a set of states $S$, with two subsets $\Bad$ and $\Safe$, 
 It is useful to note that in a sequence of states% of $S$
 , every prefix is always 
 either in the case that the latest visited $\Bad$ state has already been followed by a 
-$\Safe$ state
-or in the case that it still has to. 
-Thus, \emph{in context}, there is no true ``neutral'' state: either a neutral state is contextually ``$\Safe$'' because it follows a visit in a $\Safe$ state, either it is contextually ``$\Bad$'' because it follows a visit in a $\Bad$ state and has, accordingly, to reach a $\Safe$ one.
+$\Safe$ state \-- and thus the latest state is contextually ``$\Safe$'' \--
+or in the case that it still has to \-- and thus the latest state is contextually ``$\Bad$''. 
+Thus, \emph{in context}, there is no true ``neutral'' state.
 Hence we will consider in the following not only that $\Bad$ and $\Safe$ are disjoint but
 % w.l.o.g.
 	also

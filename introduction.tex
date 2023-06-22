@@ -2,7 +2,7 @@
 
 
 {\bf Context.} 
-Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety (\cite{challenges}). Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
+Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety~\cite{challenges}. Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
 pushed it towards some kind of ‘error state’ and, if it can, whether it can perform the return in a satisfactory timeframe. 
 %%%%%%%%
 \alain{fait double emploi avec l'exemple si on le développe ce que je ne suis plus sûr...:  In the exemple of air trafic control, an accident i.e. for instance a delay in the arrival of a plane can lead to conflicts of resolution (i.e. landing) which lead to prompting planes to remain on standby. Since their fuel quantity is limited it is hence pretty important to be able to know that trafic will return to its normal pace quickly enough. We formalize this as the resilience problem. 
@@ -12,19 +12,19 @@ State-resilience only consider bad elements that are reachable from an initial s
 
 
 {\bf Home-spaces}
- In 1986, Memmi and Vautherin introduced the notion of home-space \cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
+ In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
 %			from all reachable states from $s_0$, it is always possible to reach $H$ 
 $\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subsets $X,H$, we say that $H$ is an home-space for $X$ if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %%%%%
 
 {\bf Resiliences.}  
 %		We now give the definition of two kinds of resilience: the (general) resilience and the state-resilience. 
-The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $Bad,Safe \subseteq S$ can be stated as an home-space problem : $\mathscr{S}$ is (Bad,Safe)-resilient if $\post^*(Bad) \subseteq \pred^*(Safe)$; 
-similarly, $\mathscr{S}$ is (Bad,Safe)-state-resilient for an initial state $s_0$ if $\post^*(s_0) \cap Bad \subseteq \pred^*(Safe)$. Resilience implies state-resilience but a system can be state-resilient but not resilient. 
+The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $\Bad,\Safe \subseteq S$ can be stated as an home-space problem : $\mathscr{S}$ is ($\Bad,\Safe$)-resilient if $\post^*(\Bad) \subseteq \pred^*(\Safe)$; 
+similarly, $\mathscr{S}$ is (\Bad,\Safe)-state-resilient for an initial state $s_0$ if $\post^*(s_0) \cap \Bad \subseteq \pred^*(\Safe)$. Resilience implies state-resilience but a system can be state-resilient but not resilient. 
 We will study three decidability questions for each of type of resilience.
-The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is (Bad,Safe)-resilient (for two given subsets of states $Bad,Safe \subseteq S$).
-The $k$-resilience problem (kRP) is to decide whether $\post^*(Bad) \subseteq \pred^{\leq k}(Safe)$ (for a given $k$) and 
-the bounded resilience problem (BRP) is to decide whether there exists an $k$ such that $\mathscr{S}$ is (Bad,Safe)-$k$-resilient. We adapt these three definitions to state-resilience.
+The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is ($\Bad,\Safe$)-resilient (for two given subsets of states $\Bad,\Safe \subseteq S$).
+The $k$-resilience problem (kRP) is to decide whether $\post^*(\Bad) \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
+the bounded resilience problem (BRP) is to decide whether there exists an $k$ such that $\mathscr{S}$ is ($\Bad,\Safe$)-$k$-resilient. We adapt these three definitions to state-resilience.
 
 
 {\bf State of the art.}
@@ -130,8 +130,7 @@ Resilience here expresses that the aircrafts will both land, while explicit resi
 Explicit resilience is of interest since in general we want to ensure the safe space will
 be reached in
 the least amount of steps possible. 
-In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time.
-With one out of ten increment of a counter guarranteed to not be lost, $8$-resilience hold in the example.
+In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time. Fortunately, $8$-resilience hold in the example.
 \end{example}
 
 %\alain{il faut mieux expliquer le modèle, le rôle des 4 canaux, des messages, remarquer que 2 canaux sont des compteurs,....}
