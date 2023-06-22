@@ -107,22 +107,23 @@ This section is dedicated to studying reset-VASS for showing undecidability of {
 
 We mentionned in Section~$3$ that {\sc Resilience} is undecidable for WSTS in general when $\Safe = \downarrow \Safe$ hence $\Bad = \uparrow \Bad$. Let us provide a more detailed undecidability proof here.
 
-First, let us recall the home-state problem: 
-whether a state $s$ is such that, for all state $s_0$ there exists a path from $s_0$ to $s$.
+First, let us recall the home-state problem
+
+\problemx{Home-state}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and a state $s \in S$.}
+{$S \longrightarrow^{*} \{s\}$ ?\newline}
+
+% whether a state $s$ is such that, for all state $s_0$ there exists a path from $s_0$ to $s$.
 
 Home-state is undecidable for Minsky machine with $3+$ counters.
-
-Because $2$-counter Minsky machine termination is undecidable.
+This stems from the fact $2$-counter Minsky machine termination is undecidable~\cite{Min61, Min67}.
+From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
+such that the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control state indicative of termination, then lower the first two counters until they reach $0$, then finally lower the third counter until it reaches $0$.
   
-$2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ which 
-third counter starts at least at $1$, and simulates $M$ until it reaches a control state indicative of termination, then lower the first two counters until they reach $0$, then finally lower the third counter until it reaches $0$.
-  
-Then the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter.
- 
 % Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
 
-Thus home-state/resilience is undecidable for Minsky machines.
+Thus {\sc Home-state} is undecidable for Minsky machines. Hence {\sc Resilience} is undecidable.
 
 
 Executions of Minsky machines can be simulated by reset-VASS. 
