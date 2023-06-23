@@ -93,13 +93,13 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
 
-\alain{sur le dessin, enlever les vecteurs (0000) et juste dire qu'un arc non étiqueté ne modifie pas les compteurs.}
+
  
 \begin{center}
 	\begin{figure}
-			\hspace{0.75cm}
-\includegraphics[width=0.85\textwidth]{FigureB}
-	\caption{A lossy VASS with three subsystems and four counters. Leftmost and rightmost systems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $M$ \alain{C pour controlleur, faire le dessin plus petit}represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing.}
+			\hspace{2cm}
+\includegraphics[width=0.65\textwidth]{FigureB}
+	\caption{A lossy VASS with three subsystems and four counters. Leftmost and rightmost systems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $C$ represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing. Arrows represent control-transitions. Unlabelled arrows by default do not modify counter values.}
 					\label{air control}
 	\end{figure}
 \end{center}
@@ -131,8 +131,6 @@ be reached in
 the least amount of steps possible. 
 In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time. Fortunately, $8$-resilience hold in the example.
 \end{example}
-
-%\alain{il faut mieux expliquer le modèle, le rôle des 4 canaux, des messages, remarquer que 2 canaux sont des compteurs,....}
 
 % contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
 
