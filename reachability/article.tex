@@ -141,33 +141,25 @@ $n$ is fixed, and provide a nonelementary lower bound for the general case.
 
 
 {\bf Background.} Pushdown systems can be used to model the behavior of recursive programs.
-As a result, a variety of 
- program analysis questions can be reduced to decision problems for games on pushdown systems.
 They have applications for instance in inter-procedural control-flow analysis of recursive programs \cite{esparza1999automata, reps2005weighted}.
+More generally, a variety of 
+ program analysis questions can be reduced to decision problems for games on pushdown systems.
 
 
 
 
-
-Two player games can be used in particular to
+In particular, two player games can be used to
  represent the
 interaction of a program with some environment, with the first player representing the program while the second player represents the environment. A winning condition then expresses a property required to hold however the environment behaves. Finding a winning strategy for the first player
 thus provides some way 
  to ensure that the desired 
 property, as expressed by the winning condition,
 always holds \cite{arnold2003games}.
-
-
 Games on the graphs of pushdown systems have been extensively studied.
-It is known in particular from \cite{walukiewicz1996pushdown} that deciding the winner of a parity game on a graph of a pushdown system is an ${\sf EXPTIME}$-complete problem.
-Several generalizations of the pushdown systems 
-have been studied in depths, including
-tree-pushdown systems \cite{guessarian1983pushdown}, ordered
-multi-pushdown systems \cite{breveglieri1996multi, atig2012model}, annotated higher-order pushdown systems \cite{maslov1976multilevel, broadbent2012saturation}, and
-strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
+It is known from \cite{walukiewicz1996pushdown} that deciding the winner of a parity game on a graph of a pushdown system is an ${\sf EXPTIME}$-complete problem.
 
 
-{\bf Parametric pushdown systems}
+{\bf Parametric constraints.}
  Parametric pushdown systems provide a  formalism to
 reason about 
 recursive programs
@@ -176,12 +168,12 @@ Recently, different variants of parametric pushdown systems have been introduced
 \cite{hague2011parameterised, esparza2016parameterized, fortin2017model} 
 however as
 parameterized asynchronous shared-memory systems.
-These systems consist of a leader pushdown automaton
+These consist of a leader pushdown system
 and arbitrarily many identical contributor pushdown systems, communicating via a shared memory
 in the form of a register which can take finitely many values.
-This variant have been shown to have applications
-to the dataflow analysis of concurrent programs \cite{kahlon2008parameterization}. 
-We consider here a different approach to extending pushdown systems with parameters, by allowing them to test equality of the stack content against parameters.
+They have applications
+in the dataflow analysis of concurrent programs~\cite{kahlon2008parameterization}. 
+We consider in this article a different approach to extending pushdown systems with parameters, by allowing equality test of the stack against parameters.
 Perhaps a similar model consists in 
 pushdown systems 
 with transitions that are conditioned by regular conditions on their stack content, which
@@ -190,25 +182,24 @@ test the
 stack content against
 specific words. 
 They can be used to ensure that some word over the stack alphabet appears in the configurations of a run, but only for a specific value (or, rather, specific regular languages).
-They have \textcolor{red}{ phrases trop longues}
-been used to establish that CTL$^*$ model checking remains decidable
-when the formulas are allowed to include regular predicates on the stack content,
-and to obtain 
+They have 
+been used to  obtain 
 model checking algorithms for LTL and CTL$^*$ model checking
 for
-pushdown systems \cite{finkel1997direct}.
-Pushdown systems 
-with transitions that are conditioned by regular conditions on their stack content
-can be viewed as
-a special case of stack automata as seen in \cite{hopcroft1969formal}.
+pushdown systems~\cite{finkel1997direct}.
 Instead
-of checking the stack content against regular conditions, or, in a more limited manner,
+of checking the stack content against regular conditions, or
 against specified word values,
 we consider
-checks against unspecified word values that can be instantiated using parameters.
+checks against unspecified word values. These will be instantiated using parameters,
+and compared against using parametric guards.
 This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
 
 {\bf Related models.}
+Several generalizations of the pushdown systems 
+have been studied in depths, including
+ ordered multi-pushdown systems \cite{breveglieri1996multi, atig2012model}, annotated higher-order pushdown systems \cite{maslov1976multilevel, broadbent2012saturation}, and
+strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 Extensions of pushdown systems with storage for later comparisons
 have been introduced for instance as register pushdown systems. 
 Such automata possess registers in addition to their stack, and can keep data values in both.
@@ -216,10 +207,8 @@ Register pushdown systems have been shown to have applications for malware detec
 In theory, since registers can be unfilled and later be filled again an unbounded number of times, the number of different data values a pushdown register systems can store in its registers in a run is unbounded.  
 In \cite{murawski2017reachability} it was shown however that a register pushdown automaton can
 only really ``remember'' at most  $3r$ data values, where $r$ is the number of registers,
-% Even though pushdown register systems have no bound on the number of elements of the alphabet that they can store at any instant, over the course of a run they can really “remember” at most 3r of them, 
-i.e. for any run of a register pushdown automaton with $r$ registers there exists an equivalent run %, i.e.
- with the same initial and final conﬁgurations, but in which every configuration contains register assignments drawn from only $3r$ elements. This 
- %can 
+i.e. for any run of a register pushdown automaton with $r$ registers there exists an equivalent run 
+ with the same initial and final conﬁgurations, but in which every configuration contains register assignments drawn from only $3r$ elements. This  
  leads to
  the
   question
@@ -241,7 +230,7 @@ since the stack of a pushdown system is in general unbounded.
 The aim of the present paper is to study the decidability and complexity of
 deciding
 the winner of a parity game on a graph of a pushdown system with  
-parameters.
+parametric guards.
 
 
  
@@ -312,97 +301,7 @@ $\text{\textit{Inf}}(\pi) = \{ v \in V \mid \forall i, \exists j > i, ~ v_j = v 
 
 
 
-		\iffalse
 
-
-\subsection{Logics}
-
-We now brieﬂy review some standard deﬁnitions from mathematical logic.
-
-\begin{samepage}
-\begin{definition}
- A {\em vocabulary} $\tau$ is a set of relational symbols (denoted $P_1, P_2, \ldots $), each of which has a specified
- arity. A symbol $P \in \tau$ is called monadic if its arity is one, i.e., if it is used to
- denote sets.
-%
-A {\em $\tau$-structure} %(also called a {\em model})
-%
-$$ \mathfrak{A} = (A,	( P^{\mathfrak{A}} )_{P \in \tau})$$
-%
-consists of a set $A$ together with an interpretation of
- each $k$-ary relational symbol $P$ from $\tau$ as a $k$-ary relation on $A$; that is, a
-set $P^{\mathfrak{A}} \subseteq A^k$.
-% A structure $\mathfrak{A}$ is called finite if $A$ and $\sigma$ are finite sets. 
-% The {\em universe} of a structure is typically denoted by a Roman letter corresponding to the name of the structure; that is, the universe of $\mathfrak{A}$ is the set $A$, the universe of $\mathfrak{B}$ is $B$, and so on. We shall also occasionally write $a \in \mathfrak{A}$ instead of $a \in A$.\newline
-%
-\end{definition}
-\end{samepage}
-
-
-%\noindent As an illustration, if $\tau$ consists of a single relational symbol $E$ of arity $2$, graphs are possible $\tau$-structures. 
-
-
-
-
-% Next, we deﬁne the  monadic second-order logic, or $\MSO$.
-
-Next, we deﬁne monadic second-order formulas over a vocabulary $\tau$, or $\MSO[\tau]$ for short. %We define free variables, and the semantics of $\MSO(\tau)$ formulas.
-
-\begin{samepage}
-\begin{definition}\label{MSO}
-We assume countably infinite sets of first-order variables {\em Var}
-and of second-order variables {\em VAR}. First-order variables
-will be typically denoted by $x, y, z, \ldots,$ with subscripts and superscripts,
-whereas second-order variables will be typically denoted by $X, Y, Z, \ldots ,$
-using subscripts and superscripts as well. We
-inductively define %terms and 
-formulas of the monadic second-order logic
-over vocabulary $\tau$ %as follows: 
-by the grammar:
-$$ \phi :=  P(x_1 , \ldots , x_k) \mid x_1 = x_2 \mid X(x) 
-		\mid \phi \vee \phi \mid \phi \wedge \phi \mid \neg \phi 
-		\mid \exists x ~ \phi \mid  \forall x ~ \phi
-		\mid \exists X ~ \phi \mid  \forall X ~ \phi		$$
-where $P \in \tau$ is a $k$-ary relational symbol, $X \in \text{VAR}$, and $x, x_1, \ldots, x_k \in \text{Var}$.
-\end{definition}
-\end{samepage}
-
-A formula that does not use existential ($\exists$) nor universal ($\forall$) quantiﬁers
-is called {\em quantifier-free}.
-%
-% Given a set of formulas $S$, formulas constructed from formulas in $S$ using only the Boolean connectives $\vee$, $\wedge$, and $\neg$ are called {\em Boolean combinations} of formulas in $S$.
-%
-We shall use the standard shorthand $\phi  \to \psi $ for $ \neg \phi \vee \psi $ 
-and $\phi \leftrightarrow \psi $ for
-$(\phi  \to \psi ) \wedge (\psi  \to \phi )$. 
-
-
-If $\overrightarrow{x}$ is the tuple of all the free first-order variables of $\phi$,
-and $\overrightarrow{X}$ is the tuple of all the free second-order variables of $\phi$ 
-we write $\phi(\overrightarrow{x},\overrightarrow{X})$. A {\em sentence}
-is a formula without free variables. We use the standard semantic of $\MSO$,
-see Appendix~\ref{MSO appendix} for a more thorough induction over the formula.\\
-
-
-
-
-
-Concerning the logic $\MSO$, we are interested in the following decision problem.
-
-\problemx{$\MSO[\tau]$ model-checking}
-{A $\tau$-structure $\mathfrak{A}$ and a $\MSO[\tau]$-sentence $\phi$.}
-{Does $\mathfrak{A} \models \phi $ ?\newline}
-
-
-\textcolor{black}{We define the problem in a general abstract manner, instead of focusing on particular representation for the input, since we will consider many structures of infinite size.}
-
-
-
-{\em First-order logic over a vocabulary $\tau$} ($\FO[\tau]$ for short) is the fragment of $\MSO$ which is restricted to first-order quantifiers and variables: quantification is permitted only over individuals, and no second-order variables are used. 
-
-
-
-		\fi
 
 
 
@@ -718,7 +617,6 @@ the fully universal one, the case $P_0 = \emptyset$.
 
 
 Assume an ordering of the parameters $P_0 \biguplus P_1 = \{p_0, p_1, \ldots, p_k \}$ for some 
-%\textcolor{red}{even}
  $k \in \N$.
 %
 Then given a alphabet $\Gamma$, a {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\Gamma} = (S_0, S_1, \rightarrow_P)$ where
@@ -919,18 +817,11 @@ We first define more formally our pebble pushdown automaton framework, and then 
 
 
 
-%\subsubsection{Pebble pushdown automata}
+
 \subsection{Pebble pushdown systems}
 
 \newcommand{\ppda}{\mathcal{I}}
-% \Denarius
-% \vernal
-% \mathscr{Z}
-% \mathcal{I}
-% \pluto
-% \capricornus
-% \Bumpeq
-% \Pfund
+
 
 An {\em $n$-pebble pushdown automaton} 
 is a tuple 
@@ -956,14 +847,12 @@ Recall that for a partial function $ f : S \rightharpoonup X $% (see page~\pager
 bottom element $\bot_X$ when $f$ is undefined. Thus we write $(X \biguplus \{ \bot_X \})^S$ for the set of all partial functions from $S$ to $X$, which we here abbreviate as $(X \biguplus \{ \bot \})^S$. 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
  
  
-% An $i$-configuration of $\ppda$ is an element of
-%$ Q\times W^* \times (W^*)^{\{1, \ldots i\}}$.
-% By $\Conf_i(\ppda)$ we denote the set of $i$-configurations of $\ppda$.
+
+
 By $\Conf(\ppda)=Q\times \Gamma^* \times (\Gamma^* \biguplus \{ \bot \})^{\{1, \ldots, n\}}$ we denote the set of
-% By $\Conf(\ppda) = \bigcup_{0 \leq i \leq n} \Conf_i(\ppda)$ we denote the set of
 {\em configurations} of $\ppda$. As expected, we rather write $q(w, \mu)$ instead of $(q, w, \mu)$.
 An {\em$i$-configuration} for $i > 0$ of $\ppda$ is a configuration $q(z,\mu)$ where
 $\text{Dom}(\mu) = \{1, \ldots, i\}$, while a $0$-configuration is a configuration 
@@ -988,30 +877,24 @@ the last pebble dropped $i$ is in the set $S$ used for testing the presence of c
 A {\em pebble set} of $\ppda$ is a set $U \subseteq \{ 1, \ldots, n\}$. For a stack alphabet $\Gamma$, a 
 {\em $U \!$-pebble assignment} is a function which maps each $j \in U$ to a word in $ \Gamma^*$.
 The $\emptyset$-pebble assignment is denoted by $\mu_{init} :  \{ 1, \ldots, n\} \rightharpoonup  \Gamma^* $ and is the 
-%partial function from  $\{ 1, \ldots, n\}$ to $ \Gamma^* $ that
-%does not map any $j \in \{ 1, \ldots, n \}$ to an output.
 totally undefined function.
 
 
 
 
 \begin{samepage}
-%\begin{definition}
 An $n$-pebble pushdown automaton $\ppda =  (Q, \Gamma,  R, q_{init}, {\gamma_{init}} , F)$ induces 
 a transition system  $T_{\ppda} = (\Conf(\ppda), \rightarrow_{\ppda})$ 
  such that
 for all $(q, a, i, S, q', m) \in R$, with $a \in \Gamma$,
  for all words $w \in  \Gamma^*$, and for all $\{ 1, \ldots , i \}$-pebble assignments $\mu$ such that $\mu(j) = wa$ 
- %(respectively $\mu(j)= {\gamma_{init}}  $) 
  for each
 $j \in S$ 	and
  $\mu(j) \neq wa$ 
- %(resp. $\mu(j) \neq {\gamma_{init}} $) 
  for each $j \in \{ 1, \ldots , i \} \setminus S$,
 the following holds
 \begin{itemize}
 \item if $m \in \Op(\Gamma)$, 
-% $(q,wa,\mu) \rightarrow_{\ppda} (q',wm, \mu)$, 
 either
 \begin{itemize}
 \item $ m = \text{\textit{push}}^\gamma$ and $(q,wa,\mu) \rightarrow_{\ppda} (q',wa\gamma, \mu)$,
@@ -1031,23 +914,18 @@ where $\mu'$ is the $\{ 1, \ldots , i - 1 \}$-pebble assignment such that
 $\mu'(j) = \mu(j)$, for each
 $j < i$.
 \end{itemize}
-%\end{definition}
 \end{samepage}
 
 
 \par\noindent\ignorespacesafterend
-We are interested in games over pebble pushdown systems, % namely, 
-%reachability, B\"uchi, and parity games.
+We are interested in games over pebble pushdown systems, 
 mainly, parity games.
 
 Again, given
 a 
-%labeled
  transition system, one needs only to provide 
-%a mapping $\Omega$ and 
 a partition of the set of
 configurations 
-%$S$ into two sets $S_0$ and $S_1$
  to obtain an arena.
  %
 Given a partition of
@@ -1194,9 +1072,6 @@ so are player $0$ states, player $1$ states and the priority mapping.
 
 Higher-order pushdown systems (HPDS for short) were introduced as a 
 generalization of pushdown systems \cite{aho1969nested,Gre70,maslov1976multilevel}. 
-% Alfred V. Aho. Nested stack systems. J. ACM, 16(3):383–406, 1969.
-% S. Greibach. Full AFL’s and nested iterated substitution. Inf. Control, 16(1):7–35, 1970.
-% A.N. Maslov. Multilevel stack systems. Problemy Peredachi Informatsii, 12:55–62, 1976.
 A stack of a pushdown automaton is seen as a {\em level $1$ stack}. 
 A pushdown automaton of level $2$ (or $2$-HPDS) then works with a stack of level $1$ stacks. 
 In addition to the ability to push
@@ -1217,7 +1092,6 @@ higher-order pushdown parity games.
 A {\em level $1$ stack} (or {\em $1$-stack}) over an alphabet $\Gamma$ is 
 simply a %word in $\Gamma^*$
 	stack over $\Gamma$, i.e. a word  in $\Gamma^*$.
-% an arbitrary sequence $w_0 w_1 \ldots w_n $ of elements of $\Gamma$ for some $n \in \N$. 
 A  {\em level $n$ stack} (or {\em $n$-stack}) over an alphabet $\Gamma$, for $n \geq 2$, is a 
 non-empty sequence
 $ \langle s_0 \rangle \langle s_1 \rangle \ldots \langle s_m \rangle$
@@ -1239,7 +1113,6 @@ to $\mathscr{S}(\Gamma)$ which preserves the level of the input (i.e. the image 
 an $n$-stack is an $n$-stack for all $n \in \N$). The {\em level } of an operation $op$
 is the smallest $n \in \N$ such that $\text{Dom}(op) \cap \mathscr{S}_n \neq \emptyset$. 
 The operations 
-%we consider
 additionally
  respect the hierarchicality of higher-order stacks, i.e. in
 a level $n+1$ stack only the topmost level $n$ stack can be accessed. An operation
@@ -1253,9 +1126,8 @@ if applicable.
 The definition for  all levels of stacks greater than $n$ follows the same pattern.
 
 
-% For all $m \in \N$, 
+
 The following operations can be performed on a $1$-stacks of length $m \in \N$.
-% $ w_0 w_1 \ldots w_m \in \Gamma^*$.
 \begin{eqnarray*}
 &\text{\textit{push}}_1^\gamma( w_0 w_1 \ldots w_m) &=\quad w_0 w_1 \ldots w_m \gamma   \text{ for all } \gamma \in  \Gamma, \\
 &\text{\textit{pop}}_1(w_0 w_1 \ldots w_{m-1} w_m ) &=\quad w_0 w_1 \ldots w_{m-1}, \text{ if } m \geq 1\\
@@ -1286,8 +1158,6 @@ the following operations are possible.
 &\text{\textit{top}}( \langle s_0 \rangle \langle s_1 \rangle \ldots \langle s_m \rangle) &=\quad
 \text{\textit{top}}(s_m).
 \end{eqnarray*}
-% We omit the stack alphabet $\Gamma$ from 
-%The operation $pop_j$ is undefined on a stack whose top stack of level $j$ is empty.
 The operations $pop_1$ and $top$ are undefined on a stack whose top $1$-stack is empty.  \\
 
 
@@ -1308,7 +1178,7 @@ we denote by  $\Op_n(\Gamma)$ the {\em base set of $n$-stack operations} as
 
 
 
-% \begin{definition}
+
 \begin{samepage}
 \par\noindent\ignorespacesafterend
 A {\em higher-order pushdown systems of level $n$} (or $n$-HPDS for short) 
@@ -1324,12 +1194,11 @@ initial stack symbol}, and
 	\item $F\subseteq Q$ is a {\em set of final  states}.
 		\end{itemize}
 \end{samepage}
-% \end{definition}
+
 
 \par\noindent\ignorespacesafterend
 By $\Conf(\mathcal{H}) = Q \times \mathscr{S}_n(\Gamma)$
 we denote the set of {\em configurations} of an $n$-HPDS $\H$. 
-%is a pair $(q, s)$ where $q \in Q$ and $s$ is an $n$-stack over $\Gamma$. 
 As usual we abbreviate $(q,s) \in \Conf(\mathcal{H})$ as $q(s)$.
 
 
@@ -1346,25 +1215,11 @@ $(q,\gamma,q',op) \in R$
 such that
 $\text{\textit{top}}(s) = \gamma$
 and
-%$s' = \theta(s)$.
 $s' = op(s)$.
 
 
 
 
-\iffalse
-For our constructions it would be simpler to assume that k-HPDS can work
-also on stacks of lower levels, in particular on 1-stacks. Of course we can always
-simulate a j-stack, for j < k with an k-stack but in the notation it requires some
-additional parenthesis that make it less readable.
-
-To define a game on the graph of a HPDA, we assign a player to each control
-state, and we consider an initial configuration: a game structure on a HPDS H
-is a tuple G = (H, P0 , P1 , s0 ), where P = P0 ⊎ P1 is a partition of the control
-states of H, and s0 ∈ Sk . This extends naturally to a partition of the set of
-configurations: with the notations of Section 2.1, V0 = P0 × Sk , V1 = P1 × Sk ,
-and E is defined above.
-\fi
 
 Again we are interested in parity games.
 As expected, given an 
@@ -1428,25 +1283,20 @@ hence showing $n$-$\EXP$-completeness of {\sc $n$-HPDS parity game}.
 \end{theorem}
 
 
-% \subsection{From pebble pushdown systems to higher-order pushdown systems}
 
 
-In a $2$-HPDS, the operation $\text{\textit{push}}_2$ % allowig to copy a part of the stack, are responsible for the fact the hierarchy of HPDS is strict.
+
+In a $2$-HPDS, the operation $\text{\textit{push}}_2$ 
 allows to ``copy'' the top level $1$ stack. The current word is hereby stored away and left untouched
 until the next operation $\text{\textit{pop}}_2$,
 while $\text{\textit{push}}_1$ and $\text{\textit{pop}}_1$ can be performed on the additional ``copy'' in the meantime. This behavior is similar to that of dropping and lifting a pebble. 
 The main difference is that there is no operation to test that the ``copy'', after many updates, is again equal to the ``original'', i.e. there is no operation to syntactically test that the two topmost level $1$ stacks are identical.
 
-% But cannot test
 
-\iffalse
-In an $n$-HPDS, the operation $\text{\textit{push}}_j$ % allowig to copy a part of the stack, are responsible for the fact the hierarchy of HPDS is strict.
-allows to ``copy'' the top stack of level $j$ for all $2 \leq j \leq k$. 
-\fi
+
 
 
 In \cite{CaWoe03, Woeh05, carayol2006automates} however 
-%the authors
 Carayol and W\"ohrle
  introduced a variant of $n$-HPDS by extending the 
 $\text{\textit{pop}}_j$ operations for $2 \leq j \leq n$ with a built-in equality test. 
@@ -1485,15 +1335,6 @@ More formally the new operations $\text{\textit{push}}_j^=$ are defined as
 %
 %
 %
-\iffalse
-Dans ce sous-paragraphe, nous présentons formellement les automates à pile
-de niveau k sur le jeu d'opérations symétriques Opsk et sur le jeu d'opérations
-classiques COpsk . Nous donnons à cette occasion un bref historique de la notion
-d'automate à pile de piles. Enfin, nous établissons l'équivalence entre les deux
-modèles d'automates à chaque niveau en tant qu'accepteurs de langages. Ce résultat a été obtenu dans [CW03] en collaboration ave Stefan Wöhrle. La preuve
-complète apparait dans [Wöh05]. Indépendamment, ce résultat a été obtenu dans
-[Fra05].
-\fi
 %
 Transition systems induced by higher-order pushdown systems with equality pop of level $n$
 are then defined as expected.  
@@ -1515,26 +1356,7 @@ $\H$ and $\H'$ %generate the same graph.
 induce isomorphic transition systems.
 \end{theorem}
 
-\iffalse
-\begin{theorem}{\cite{Woeh05, carayol2006automates}}
-If $\H$ is an $n$-HPDS  then there
-exists an $n$-HPDS$^=$  $\H'$ such that
-$\H$ and $\H'$ %generate the same graph.
-induce isomorphic transition systems.
-\end{theorem}
-% Proposition 3.12
 
-\begin{theorem}{\cite{Woeh05, carayol2006automates}}
-If $\H$ is an $n$-HPDS$^=$ then there
-exists an $n$-HPDS $\H'$ such that
-$\H$ and $\H'$ %generate the same graph.
-induce isomorphic transition systems.
-\end{theorem}
-
-% Proposition 3.18 If A is a higher-order pushdown system with equality pop
-% of level n then there exists a higher-order pushdown system B of level n such
-% that A and B generate the same graph.
-\fi
 
 From $n$-HPDS to $n$-HPDS$^=$ (Proposition 3.12 in \cite{Woeh05}) the proof relies on recreating a correct stack content to simulate higher-order 
 $\text{\textit{pop}}$ operations by $\text{\textit{pop}}^=$, essentially ``guessing'' the correct stack content to be able to apply $\text{\textit{pop}}^=$. 
@@ -1545,7 +1367,6 @@ instructions have to be executed to recreate a
 previous stack content. It is proven that such en encoding is possible since
 there is 
 for every stack $s$ of level $n$
-% there is
  a unique shortest sequence of instructions which creates $s$ from
 $\epsilon_n$. \\
 
@@ -1573,13 +1394,7 @@ $n$-HPDS$^=$ parity games as well.
 
 
 
-\iffalse
-\textcolor{red}{
-Now then, because the class of $n$-HPDS$^=$ transitions systems
-is the same as
-the class of $n$-HPDS transitions systems, we have the following result.
-}
-\fi
+
 
 \begin{theorem}\label{HPDA parity game}
 {\sc $n$-HPDS$^=$ parity game} is in $n$-$\EXP$.
@@ -1589,77 +1404,6 @@ the class of $n$-HPDS transitions systems, we have the following result.
 
 
 
-\iffalse
-"To show that such an automaton exists we introduce the notion of a weak
-popping higher-order pushdown automaton. A weak popping automaton is only
-allowed to execute a pop instruction of level $j \geq 2$ if the two top level $j$ stacks
-coincide. We skip a formal definition of a weak popping higher-order pushdown
-automaton and just mention that even though this automaton model is equipped
-with a built-in test on the equality of two stacks of the same level, it is equivalent
-to the usual model. All proofs are given in the full version of this article [4]."
-
-Pour pouvoir obtenir une notion pertinente d'ensemble rationnel de piles de
-piles, il faut considérer un jeu d'opérations où la destruction inconditionnelle des
-piles est remplacée par une version plus symétrique où la dernière pile de niveau ℓ
-ne peut être détruite que si elle est égale à la précédente. Nous établissons dans le
-paragraphe 4.1 l'équivalence (en temps qu'accepteurs de langages) les automates
-à pile définis sur ces deux jeux d'opérations ( f. théorème 4.1.23). Nous montrons,
-dans le paragraphe 4.6, le manque de pertinence de la notion de rationalité induite
-par le jeu d'opérations classiques et par là même, nous établissons la nécessité de
-considérer le jeu d'opérations symétriques.
-
-L'opération de destruction symétrique a été introduite pour des raisons techniques dans 
-[CW03] et a été utilisée de manière 
-systématique dans [Car05] et
-[Fra05]. 
-Nous montrerons, dans le sous-paragraphe 4.1.5, que les automates à pile
-de piles définis en utilisant les opérations destrk ou les opérations copyk acceptent
-les mêmes langages.
-
-Les automates à pile d'ordre supérieur ont été introduits dans les années 70.
-Dans [Gre70℄, Greibach attribue l'idée de ces automates à Aho et Ullman. Ces
-automates sont aussi définis dans [Mas76℄. Les automates sur COpsk diffèrent
-légèrement des automates considérés par ces auteurs et de ceux onsidérés dans
-[DG86, Eng91℄. La différence majeure réside dans la définition des piles de piles.
-Les piles de niveau k sont des suites non vides de couples formés d'un symbole de
-pile et d'une pile de niveau k − 1. Comme remarqué dans [KNU02℄, ces symboles
-de pile supplémentaires peuvent être simulés dans le modèle des automates sur
-COpsk .
-
-Les langages a eptées par les automates à pile sur COpsk sont onnus sous
-le nom de langages k -OI ou de langages indexés de niveau k . La première déno-
-mination vient des travaux de Damm [Dam82]
-
-Nous allons maintenant établir que les encodages des opérations simulent bien
-les opérations sur les encodages des piles.
-
-Lemme 4.1.21. Pour toute pile s ∈ Stacksk (Γ) et pour tout θ ∈ Opsk ,
-[[ θ ]]k ([[ s ]]) =
-{
-[[ θ(s) ]]		si θ(s) est défini,	
-non définie		sinon.
-
-
-Proposition 4.1.22. Tout langage accepté par un automate à pile sur Opsk est
-accepté par un automate à pile sur COpsk .
-
-Démonstration. Soit A = (Γ,Σ,τ,Q,I,F,∆) un automate à pile sur Ops⋆k . Nous
-définissons un automate B = (Γ,Σ,τ,Q,I,F,∆B ) où l'ensemble des transitions ∆B
-est défini par:
-∆B = {(p,x,η,q) | (p,x,θ,q) ∈ ∆ et η ∈ [[ θ ]]k }.
-Par le lemme 4.1.21, il suit que pour tout w ∈ (Σ)∗ , p ∈ Q et s ∈ Stacksk (Γ):
-w
-(q0 , [ ]k ) −→ (p,s)
-A
-⇔
-w
-(q0 , [ ]k ) −→ (p,[[ s ]]).
-
-Théorème 4.1.23. Les langages acceptés par les automates à pile sur Opsk et
-sur COpsk coïncident.
-
-
-\fi
 
 
 
@@ -1684,7 +1428,7 @@ As long as no pebble is dropped, a $2$-HPDS$^=$ $\H$ can simulate
 the behavior of a pebble pushdown automaton $\ppda$ with a $2$-stack containing a single $1$-stack
 on which it performs the same operations $\ppda$ performs on its stack.
 When the automaton $\ppda$ is in configuration $q(w)$ and drops a pebble, instead of making a pop or a push, we need
-to %go to state $q'$ and word $w$ and 
+to
 	store the information that the pebble has been
 dropped on $w$.
 To simulate the next configuration in such a case, we use 
@@ -1784,7 +1528,7 @@ Finally, the following complexity result is due the above and Theorem~\ref{PPDA 
 The aim of this section is to show a nonelementary lower bound for the 
 problem of deciding whether player $0$ has a winning strategy from some starting configuration in
 a parametric pushdown parity game.
-% problem of deciding winning configuration for pebble pushdown parity games.
+
 
 We reduce the satisfiability problem for first-order logic on words
 to the problem of {\sc Parametric pushdown parity game}. 
@@ -1792,7 +1536,6 @@ We know from \cite{Sto74}
 that satisfiability is nonelementary. 
 %
 
-% Here a function is in {\sf elementary} if it is  $O(h_k (n))$ for one of the $k$-fold exponential functions $h_k$ with $h_0 (n) = n$ and $h_{k+1} (n) = 2^{h_k (n)}$.
 
 We define the tower function $T : \N \times \R \to \R$ by $T(0,r) =r$ and
 $T(h+1,r)= 2^{T(h,r)}$ for all $h \in \N, r \in \R$. Thus $T(h,r)$ is a tower of $2$s of height $h$ with an $r$ sitting on top.
@@ -1822,18 +1565,7 @@ The result that is previously known and motivates the upcoming reduction consist
 
 
 \begin{theorem}[\cite{Sto74}]\label{FOnonelementary}
-
-%  Assume that $FPT \neq AW[*]$, and let $f$ be an elementary function and let $p$ be a polynomial.
-%  There is no model-checking algorithm for first-order logic on the class of words 
-%  whose running time is bounded by
-%  $$ f(k) \cdot p(n)$$ 
-
-% where $k$ denotes the size of the input sentence of the model-checking problem and $n$ the
-% size of the input word.
-
 The {\sc $\FO$ satisfiability on words} problem is not in {\sc ELEMENTARY}.
-	% SAT(N,<) is not elementary-recursive
-	% and in fact SAT(N,<) \not\in NSPACE(g(log_b(n),0)) for all b > 3.
 \end{theorem}
 
 
@@ -1844,8 +1576,7 @@ The {\sc $\FO$ satisfiability on words} problem is not in {\sc ELEMENTARY}.
 
 The following theorem states a polynomial time reduction from
 {\sc $\FO$ satisfiability on words}
-%We consider reduction 
-towards the problem of %following problem.
+towards the problem of 
 {\sc Parametric pushdown parity game}.
 
 
@@ -1899,7 +1630,6 @@ The other parameters are meant to correspond to the variables, with player $1$ p
 Once players have chosen values for their respective variables, the parameter assignment
 $\mu$ is fixed. It is then time
 for player $0$ to ensure that
-%$\mathfrak{W}$ 
 $w$
 satisfies $\psi$ if the variables $x_1, \ldots, x_k$ are interpreted by 
 $ |\mu(p_1)|-1, \ldots, |\mu(p_k)|-1$ respectively. This is the goal of the reachability game.
@@ -1909,18 +1639,15 @@ $ |\mu(p_1)|-1, \ldots, |\mu(p_k)|-1$ respectively. This is the goal of the reac
 The first step of the game is to check that the values assigned to the parameters correspond indeed to possible variables, that is, that the values of the parameters are prefixes of $w$. 
 
 Recall $\psi$ is quantifier-free and in disjunctive normal form, i.e.
- $$\phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k \bigvee_{i=1}^l(\bigwedge_{j=1}^{h_i} \psi_{i,j}(x_1, \ldots, x_k)).$$
+ \[ \phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k \bigvee_{i=1}^l(\bigwedge_{j=1}^{h_i} \psi_{i,j}(x_1, \ldots, x_k)).\]
 
 
 Player $0$, being the existential player, choses one of the conjunctive clause in $\psi$, essentially claiming to be able to prove it. Then player $1$, the universal player, chooses one of the atomic formula in the clause to test. 
-%The process can be seen in Figure~\ref{DNF}. 
 Testing the atomic formula is the purpose of a gadget 
-%$ \C_{\psi_{i,j}}$ built such that
 in which
  player $0$ has a winning strategy 
- %in $ \C_{\psi_{i,j}}$
   if and only if 
-$w$ satisfies %$\psi_{i,j}$
+$w$ satisfies 
 the atomic formula
  if the variables $x_1, \ldots, x_k$ are interpreted by 
 $ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
@@ -1958,6 +1685,47 @@ problem of deciding whether player $0$ has a winning strategy from some starting
 a pebble pushdown parity game.
 
 	For the upper bound, we replaced parameters by pebbles acting as registers, leading to a more general model, and then used a reducton to higher-order pushdown systems parity games to solve parity games. Since solving parity games on higher-order pushdown systems with level $n$ stack is $n$-$\EXP$-complete \cite{ Cach03, cachat2007complexity}, this provides an $(n+1)$-$\EXP$ upper bound for solving parametric parity games on parametric pushdown systems with $n$ parameters.
+
+
+For solving parametric pushdown parity games, on the other hand, we introduced the notion of pebble pushdown parity games, and
+pebble pushdown automata over unary alphabet plus a bottom-of-stack symbol
+can be seen as a form of one-counter automata extended with pebbles. 
+A pebble one-counter automata is then a one-counter automata that
+can use a set of pebbles as markings on the set of non-negative integers, with a 
+$\text{\textit{drop}}$ recording the current counter value, and a 
+$\text{\textit{lift}}$ poping the last dropped
+pebble while requiring that the current counter value 
+corresponds to the one from the last dropped pebble.
+%
+%Hence, u
+Unlike for parametric extensions, 
+decidability of 
+what should be called
+pebble one-counter parity games follows from
+decidability of pebble pushdown parity games. 
+We believe it natural to study such a pebble one-counter automata model
+on its own.
+In particular we believe that the question of whether or not
+solving pebble one-counter reachability games is nonelementary is worth investigating.
+% It may very well be the case that the hierarchy collapses instead, at level e.g. 2 or 3.
+
+
+Of note is that reachability games and parity games are 
+not the only problems one can consider, as one can
+also explore the complexity of reachability itself. 
+In particular
+one can 
+% ask whether or not the parametric pushdown automata model described in this section  admits effective preservation of regularity.
+study the precise complexity of the
+{\sc $n$-PPDA reachability} problem.
+Since reachability can be viewed as a reachability game, we know that
+{\sc $n$-PPDA reachability} is decidable in $(n+1)$-$\EXP$, 
+but the precise complexity of the problem remains unknown.
+We are furthermore convinced that it is worthwhile to investigate further comparisons between parametric pushdown automata, pebble pushdown automata, 
+%pebble alternating tree automata 
+and register pushdown automata, especially since the latter have been shown to only really ``remember'' at most  $3r$ data values, where $r$ is the number of registers. 
+
+
 
 
 \bibliography{bibliography/bib}
