@@ -161,7 +161,8 @@ It is known from \cite{walukiewicz1996pushdown} that deciding the winner of a pa
 
 {\bf Parametric constraints.}
 % Parametric pushdown systems provide a  formalism to reason about  recursive programs making use of parametric constraints. 
-For certain types of computer programs, such as embedded systems, under-specified constraints are necessary rather than only considering concrete specifications.
+For certain types of computer programs, such as embedded systems, it can
+be necessary to consider under-specified constraints rather than concrete specifications only.
 Unspecified values represented by parameters have been used
 for instance in parametric timed automata~\cite{AHV93-stoc} and parametric one-counter automata~\cite{haase2012complexity, lechner2015complexity}.
 Verification of the desired properties of the system is then performed without concrete values.
@@ -410,8 +411,8 @@ With regards to parity games, we are going to concern ourselves with games over 
 
 \begin{center}
 	\begin{figure}
-			\hspace{3.81cm}
-\includegraphics[width=0.4\textwidth]{figures/parity_game}
+			\hspace{3.95cm}
+\includegraphics[width=0.35\textwidth]{figures/parity_game}
 	\caption{An example of an arena. Circles  belong to player~$0$, whereas diamonds belong to player~$1$. Arrows represent transitions from a configuration to the next. The priority assigned by the priority mapping to each configuration is a number in $\{0,1,2,3\}$, next to the configuration it is assigned to. Note that we do not have any dead end in our example.}
 	\label{example_parity_game}
 	\end{figure}
@@ -419,10 +420,9 @@ With regards to parity games, we are going to concern ourselves with games over 
 
 \begin{example}
 Let us consider the arena presented in  Figure~\ref{example_parity_game}. 
-Configurations are partitioned into two sets: circles belonging to player $0$ and diamonds
+Configurations are partitioned into circles belonging to player $0$ and diamonds
 belonging to player $1$. 
 The priorities are $\{ 0,1,2,3\}$.
-% The transitions and priority mappings may be derived from the picture.
 Plays $\pi_1 = q_0 q_1 q_2 (q_4 q_7)^\omega$ and 
 $\pi_2 = (q_0 q_1 q_2 q_4)^\omega$ are both winning for player $0$. Indeed, in $\pi_1$, 
 the minimal priority encountered infinitely often is %that of $q_7$, that is, 
