@@ -153,17 +153,29 @@ In particular, two player games can be used to
 interaction of a program with some environment, with the first player representing the program while the second player represents the environment. A winning condition then expresses a property required to hold however the environment behaves. Finding a winning strategy for the first player
 thus provides some way 
  to ensure that the desired 
-property, as expressed by the winning condition,
+property
 always holds \cite{arnold2003games}.
 Games on the graphs of pushdown systems have been extensively studied.
 It is known from \cite{walukiewicz1996pushdown} that deciding the winner of a parity game on a graph of a pushdown system is an ${\sf EXPTIME}$-complete problem.
 
 
 {\bf Parametric constraints.}
- Parametric pushdown systems provide a  formalism to
-reason about 
-recursive programs
-making use of parametric constraints. 
+% Parametric pushdown systems provide a  formalism to reason about  recursive programs making use of parametric constraints. 
+For certain types of computer programs, such as embedded systems, under-specified constraints are necessary rather than only considering concrete specifications.
+Unspecified values represented by parameters have been used
+for instance in parametric timed automata~\cite{AHV93-stoc} and parametric one-counter automata~\cite{haase2012complexity, lechner2015complexity}.
+Verification of the desired properties of the system is then performed without concrete values.
+ We consider in this article a similar approach, only applied to pushdown systems. Rather than comparing a counter against a parametric number, we allow comparison of a stack content against a parametric word.
+  Perhaps a similar model consists in  pushdown systems with transitions that are conditioned by regular conditions on their stack content, which can in particular test the stack content against specific words. 
+They can be used to ensure that some word over the stack alphabet appears in the configurations of a run, but only for a specific value (or, rather, specific regular languages).
+They have  been used to  obtain  model checking algorithms for LTL and CTL$^*$ model checking
+for pushdown systems~\cite{finkel1997direct}.
+Instead of checking the stack content against regular conditions, or against specified word values, we consider checks against unspecified word values. These will be instantiated using parameters, and compared against using parametric guards.
+This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
+
+
+
+{\bf Related models.}
 Recently, different variants of parametric pushdown systems have been introduced in the literature 
 \cite{hague2011parameterised, esparza2016parameterized, fortin2017model} 
 however as
@@ -173,33 +185,9 @@ and arbitrarily many identical contributor pushdown systems, communicating via a
 in the form of a register which can take finitely many values.
 They have applications
 in the dataflow analysis of concurrent programs~\cite{kahlon2008parameterization}. 
-We consider in this article a different approach to extending pushdown systems with parameters, by allowing equality test of the stack against parameters.
-Perhaps a similar model consists in 
-pushdown systems 
-with transitions that are conditioned by regular conditions on their stack content, which
-can in particular
-test the
-stack content against
-specific words. 
-They can be used to ensure that some word over the stack alphabet appears in the configurations of a run, but only for a specific value (or, rather, specific regular languages).
-They have 
-been used to  obtain 
-model checking algorithms for LTL and CTL$^*$ model checking
-for
-pushdown systems~\cite{finkel1997direct}.
-Instead
-of checking the stack content against regular conditions, or
-against specified word values,
-we consider
-checks against unspecified word values. These will be instantiated using parameters,
-and compared against using parametric guards.
-This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
+We consider in this article a different approach to extending pushdown systems with parameters, by making them appear directly in equality tests against the stack.
 
-{\bf Related models.}
-Several generalizations of the pushdown systems 
-have been studied in depths, including
- ordered multi-pushdown systems \cite{breveglieri1996multi, atig2012model}, annotated higher-order pushdown systems \cite{maslov1976multilevel, broadbent2012saturation}, and
-strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
+% Several generalizations of the pushdown systems  have been studied in depths, including ordered multi-pushdown systems \cite{breveglieri1996multi, atig2012model}, annotated higher-order pushdown systems \cite{maslov1976multilevel, broadbent2012saturation}, and strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 Extensions of pushdown systems with storage for later comparisons
 have been introduced for instance as register pushdown systems. 
 Such automata possess registers in addition to their stack, and can keep data values in both.
@@ -244,27 +232,23 @@ and parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number
 $n$ is fixed,
 and providing a nonelementary lower bound for parametric pushdown reachability games in general.
 
-
-
-	For the nonelementary lower bound,
-we reduce the $\FO$ satisfiability problem on words, known to be nonelementary
-from \cite{Sto74}, to the
-problem of deciding whether a player has a winning strategy for parametric pushdown reachability games. 
-
 	For the upper bound, we start by replacing parameters by pebbles acting as registers, leading to a more general model, pebble pushdown systems.
  We then show that higher-order pushdown systems parity games can be used to solve parity games on
  the transition systems of pebble pushdown systems,
 using one additional stack level for each pebble.
  Since solving parity games on higher-order pushdown systems with level $n$ stack is $n$-$\EXP$-complete \cite{ Cach03, cachat2007complexity}, this provides an $(n+1)$-$\EXP$ upper bound for solving parametric parity games on parametric pushdown systems with $n$ parameters.
 
+	For the nonelementary lower bound,
+we reduce the $\FO$ satisfiability problem on words, known to be nonelementary
+from \cite{Sto74}, to the
+problem of deciding whether a player has a winning strategy for parametric pushdown reachability games. 
 
 
-{\bf Overview. }
-In Section 2, we provide general notations and preliminary definitions. 
-Section 3 will deal with the introduction of  parametric pushdown games.
-% Section 4 is devoted to using pebble alternating tree systems with parity acceptance condition to solve parametric pushdown system parity games. We leave the proof of decidability itself  for Section 5.
-Section 4 is Reduction to higher-order pushdown systems
-Section 5 at last shows a nonelementary lower bound for the problem.
+% {\bf Overview. }
+% In Section 2, we provide general notations and preliminary definitions. 
+% Section 3 will deal with the introduction of  parametric pushdown games.
+% Section 4 is Reduction to higher-order pushdown systems
+% Section 5 at last shows a nonelementary lower bound for the problem.
 
 
 
