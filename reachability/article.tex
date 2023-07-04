@@ -52,11 +52,6 @@
 \usepackage{wrapfig}
 
 
-\newcommand\sg[1]{\todo[inline,size=\scriptsize]{#1 - \textbf{Stefan}}}
-\newcommand\mh[1]{\todo[inline,size=\scriptsize]{#1 - \textbf{Mathieu}}}
-\newcommand\sgchanged[1]{{\color{red}{'1}}}
-\newcommand\mhchanged[1]{{\color{blue}{'1}}}
-
 
 \renewcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
@@ -91,7 +86,6 @@
 
 \titlerunning{Parity games in pushdown systems with parameters} 
 
-% \author{Stefan G\"oller}{University of Kassel \and School of Electrical Engineering and Computer Science \and Kassel, Germany }{stefan.goeller@uni-kassel.de}{}{The author was supported by the Agence Nationale de la Recherche grant no.  ANR-17-CE40-0010.}
 \author{Mathieu Hilaire}{Université Paris-Saclay,
 CNRS,
 ENS Paris-Saclay,
@@ -117,7 +111,7 @@ Agence Nationale de la Recherche grant no.  ANR-17-CE40-0010.}
 \relatedversion{}
 % \relatedversiondetails{Full Version}{}
 
-\acknowledgements{The author would like to thank Benedikt Bollig, Stefan G\"oller and Alain Finkel for helpful discussions and feedback.}
+\acknowledgements{The author would like to thank Benedikt Bollig, Stefan G\"oller and Alain Finkel for helpful discussions and feedback. The author would also like to thank the anonymous reviewers from FSTTCS 2022 for their helpful suggestions and remarks.}
 
 
 \ArticleNo{70}
@@ -129,7 +123,7 @@ Agence Nationale de la Recherche grant no.  ANR-17-CE40-0010.}
 \begin{abstract}
 	We investigate the decidability and complexity of
 	parity games over an extension of pushdown systems.
-	More specifically, we consider parameters pushdown systems, in
+	More specifically, we consider parametric pushdown systems, in
 	which parameters can be instantiated to some word over a stack alphabet,
 	and compared against the current stack content.
 	We determine the problem
@@ -152,26 +146,23 @@ In particular, two player games can be used to
  represent the
 interaction of a program with some environment, with the first player representing the program while the second player represents the environment. A winning condition then expresses a property required to hold however the environment behaves. Finding a winning strategy for the first player
 thus provides some way 
- to ensure that the desired 
-property
-always holds \cite{arnold2003games}.
-Games on the graphs of pushdown systems have been extensively studied.
+ to ensure the desired 
+property~\cite{arnold2003games}.
 It is known from \cite{walukiewicz1996pushdown} that deciding the winner of a parity game on a graph of a pushdown system is an ${\sf EXPTIME}$-complete problem.
 
 
 {\bf Parametric constraints.}
-% Parametric pushdown systems provide a  formalism to reason about  recursive programs making use of parametric constraints. 
 For certain types of computer programs, such as embedded systems, it can
 be necessary to consider under-specified constraints rather than concrete specifications only.
 Unspecified values represented by parameters have been used
-for instance in parametric timed automata~\cite{AHV93-stoc} and parametric one-counter automata~\cite{haase2012complexity, lechner2015complexity}.
-Verification of the desired properties of the system is then performed without concrete values.
+for instance in parametric timed automata~\cite{AHV93-stoc} and parametric one-counter automata~\cite{haase2012complexity, lechner2015complexity} in which
+verification of the desired properties of the system is then performed without concrete values.
  We consider in this article a similar approach, only applied to pushdown systems. Rather than comparing a counter against a parametric number, we allow comparison of a stack content against a parametric word.
   Perhaps a similar model consists in  pushdown systems with transitions that are conditioned by regular conditions on their stack content, which can in particular test the stack content against specific words. 
 They can be used to ensure that some word over the stack alphabet appears in the configurations of a run, but only for a specific value (or, rather, specific regular languages).
-They have  been used to  obtain  model checking algorithms for LTL and CTL$^*$ model checking
+They have  been used to  obtain  algorithms for LTL and CTL$^*$ model checking
 for pushdown systems~\cite{finkel1997direct}.
-Instead of checking the stack content against regular conditions, or against specified word values, we consider checks against unspecified word values. These will be instantiated using parameters, and compared against using parametric guards.
+Instead of checking the stack content against regular conditions, or against specified word values, we consider checks against unspecified word values, instantiated using parameters, and compared against using parametric guards.
 This allows for example to ensure equality between two stack contents appearing in two distincts configurations in a run.
 
 
@@ -186,9 +177,8 @@ and arbitrarily many identical contributor pushdown systems, communicating via a
 in the form of a register which can take finitely many values.
 They have applications
 in the dataflow analysis of concurrent programs~\cite{kahlon2008parameterization}. 
-We consider in this article a different approach to extending pushdown systems with parameters, by making them appear directly in equality tests against the stack.
+This article's approach to extending pushdown systems with parameters is different in that it makes them appear directly in equality tests against the stack.
 
-% Several generalizations of the pushdown systems  have been studied in depths, including ordered multi-pushdown systems \cite{breveglieri1996multi, atig2012model}, annotated higher-order pushdown systems \cite{maslov1976multilevel, broadbent2012saturation}, and strongly normed multi-pushdown systems \cite{czerwinski2012reachability}.
 Extensions of pushdown systems with storage for later comparisons
 have been introduced for instance as register pushdown systems. 
 Such automata possess registers in addition to their stack, and can keep data values in both.
@@ -245,12 +235,6 @@ from \cite{Sto74}, to the
 problem of deciding whether a player has a winning strategy for parametric pushdown reachability games. 
 
 
-% {\bf Overview. }
-% In Section 2, we provide general notations and preliminary definitions. 
-% Section 3 will deal with the introduction of  parametric pushdown games.
-% Section 4 is Reduction to higher-order pushdown systems
-% Section 5 at last shows a nonelementary lower bound for the problem.
-
 
 
 
@@ -304,9 +288,8 @@ An {\em arena} is a tuple $A=(S_0, S_1,{\rightarrow})$  which is composed of two
 		transitions
 	 ${\rightarrow} \subseteq S \times 	S$. 
 Note that $(S,{\rightarrow})$, where $S=S_0 \uplus S_1$, forms
-a %labeled 
-transition system, and, in particular, given a 
-%labeled 
+a   
+transition system, and, in particular, given a  
 transition system,
 one needs only to provide 
 a partition of the set of configurations $S$ into two sets $S_0$ and $S_1$ to obtain an arena.
@@ -320,7 +303,7 @@ prefix of a play in $A$.
 Essentially plays can be seen as this: the two players, player $0$ and player $1$, move along the labeled transition system, taking turns either inﬁnitely often or until a dead end is reached.
 
 
-% \subsection{Strategies}
+
 
 
 A {\em strategy} for player $i \in \{ 0,1\}$ is a function $\sigma_i : S^* S_i \to S$ such
@@ -334,10 +317,9 @@ $v_{j+1} = \sigma_i(v_j)$.
  Given a configuration $s$,   a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1$ for player $1$, the play starting with $s$ that is consistent with both strategies is unique and is called the {\em resulting play} of $\sigma_0$ and $\sigma_1$ starting from $s$. It is 
 denoted by $\pi(s, \sigma_0, \sigma_1)$.
 
-%  \subsubsection{Winning conditions}
+
 
 Once we have provided players with an arena, it remains to define  properly what the winning condition is in order to define a game. Given an arena $A = (S_0, S_1, \rightarrow)$, a {\em winning condition}
-%$\win \subseteq S^\infty$
 $\win$
 is a subset  
 of the set of maximal plays for $A$. A {\em game} is a pair $\mathcal{G}= (A, \win)$ which is composed of an arena $A$ and a winning condition $\win$.
@@ -345,22 +327,16 @@ Although a winning condition is in general an infinite object we are interested 
 that can finitely be described.
 A strategy $\sigma_0$ for player $0$ from position $s \in S$ is a {\em winning strategy
  from $s$} for player $0$ if 
-% no matter which
-% strategy $\sigma_{1}$ the other player pursues,
-% the play $\pi(s, \sigma_0, \sigma_1)$ is in $\win$.
 every maximal play starting from $s$ and consistent with $\sigma_0$ is in $\win$.
 On the other hand, a strategy $\sigma_1$ for player $1$ from position $s \in S$ is a {\em winning strategy
  from $s$} for player $1$ if 
-% no matter which
-% strategy $\sigma_{0}$ the other player pursues,
-% the play $\pi(s, \sigma_0, \sigma_1)$ is not in $\win$.
 every maximal play starting from $s$ and consistent with $\sigma_1$ is not in $\win$.
  
 
 
 
 
-% \subsection{Reachability Games}
+
 
 We first consider reachability games: 
 the winning condition $\win_F(S)$ is given by a set of final configurations
@@ -383,12 +359,9 @@ Secondly, we consider min-parity games:
 the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
  $\Omega : S \to  [0, m]$.
 An infinite path $ \pi = s_0 s_1 s_2 \ldots$ is in $\win_\Omega(S)$ if the smallest priority appearing infinitely often in
-%this path
 the sequence 
  is even, i.e.
- %$\min ~ \text{\textit{Inf}}( \Omega (r( \beta ))) $
-if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even. 
-% The winner of a finite play is the player whose opponent is unable to move, i.e. a play such that the last configuration of the play is in $S_{0}$ (resp. $S_1$) is player $1$ (resp. player $0$). 
+if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even.  
 A finite play is in $\win_\Omega(S)$ if its target configuration is in $S_1$.
 We simply write
 $\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
@@ -425,9 +398,9 @@ belonging to player $1$.
 The priorities are $\{ 0,1,2,3\}$.
 Plays $\pi_1 = q_0 q_1 q_2 (q_4 q_7)^\omega$ and 
 $\pi_2 = (q_0 q_1 q_2 q_4)^\omega$ are both winning for player $0$. Indeed, in $\pi_1$, 
-the minimal priority encountered infinitely often is %that of $q_7$, that is, 
+the minimal priority encountered infinitely often is   
 				$2$, 
-whereas in $\pi_2$, it is %that of $q_2$, that is, 
+whereas in $\pi_2$, it is   
 			$0$. 
 In both cases, it is an even number. On the other hand,
 the plays $\pi_3 = (q_5 q_3 q_6)^\omega$ and $\pi_4=(q_5 q_6)^\omega$ are both winning for player $1$: the minimal priority encountered is odd, since it is $1$ for both.
@@ -454,7 +427,6 @@ is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
  $Q$ is a non-empty finite {\em set of  states};
  $\Gamma$ is a non-empty finite {\em  stack alphabet};
  $P$ is a finite {\em   set of parameters}, \textcolor{black}{with $\Gamma \cap P = \emptyset$};
-% \item  $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Gamma^*$ is finite {\em  set of rules},
   $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Op(\Gamma)$ is finite {\em  set of rules};
  $q_{init}\in Q$ is an {\em initial  state};
  $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}; and
@@ -466,45 +438,24 @@ $|\mathcal{Z}| = |Q| + |\Gamma| + |P| + |R| $.
 We also refer to $\mathcal{Z}$ as an $n$-parametric pushdown automaton if $|P| = n$.
 A {\em stack content} is a word from $ \Gamma^*$. 
 As before we write the top
-of the stack at the right of the word%(we are considering suffix rewriting as in Chapter 15)
-. 
-% A configuration is a  state and a stack content: $(q, w)$,
-% which we rather write $q(w)$, where $w  \in  W^*$, $q  \in Q$. 
+of the stack at the right of the word. 
 By $\Conf(\mathcal{Z})=Q\times  \Gamma^*$ we denote the set of
 {\em configurations} of $\mathcal{Z}$. As usual we rather write $q(w)$ instead of $(q, w)$.
 A {\em parameter valuation} is a function $\mu$ from $P$ to $\Gamma^*$.
 
 \begin{samepage}
-%\begin{definition}
 A parametric pushdown automaton  $\mathcal{Z}= (Q, \Gamma, P,u R, q_{init}, \gamma_{init},F)$ 
 and a parameter valuation $\mu: P\rightarrow \Gamma^*$ induce the 
-%labeled 
 transition system  
 $T_{\mathcal{Z}}^{\mu} = (\Conf(\mathcal{Z}), 
-%\Lambda_{\mathcal{Z}}, 
 \rightarrow_{\mathcal{Z},\mu})$ where
-% $\Lambda_{\mathcal{Z}} = \Gamma \cup P$ and
 for all $ q, q'  \in  Q$, 
 for all $ w,w' \in \Gamma^* $, and 
 for all $ a  \in  \Gamma$, 
-\iffalse
-\begin{eqnarray*}
-q(wa) \xrightarrow{%a
-}_{\mathcal{Z},\mu} q'(w') & \text{if} &  (q, a, q' , op)  \in  R, \\
-q(\mu(p) ) \xrightarrow{%p
-}_{\mathcal{Z},\mu} q'(\mu(p) %\textcolor{red}{\cdot} 
-w) & \text{if} &  (q, p , q' , w)  \in  R.
-\end{eqnarray*}
-% \end{definition}
-\fi
-$q(wa) \xrightarrow{%a
-}_{\mathcal{Z},\mu} q'(w')$
+$q(wa) \rightarrow_{\mathcal{Z},\mu} q'(w')$
 if there exists a rule in $R$
  of the form $(q,a,q', op)$ or $(q,p,q', op)$ with $\mu(p)=wa$,
 such that
-		% $\text{\textit{top}}(w) = a$
-		% and 
-% $w' = \theta(w)$.
 either of the following holds
 \begin{itemize}
 \item $ op = \text{\textit{push}}^\gamma$ and $w' = wa\gamma$,
@@ -516,64 +467,23 @@ either of the following holds
 \end{samepage}
 
 
-A {\em $\mu$-run} from $q_0(a_0)$ to $q_n(a_n)$ in $\mathcal{Z}$ is a corresponding
-path in the transition system 
-$T_{\mathcal{Z}}^\mu$ 
-induced by $\mathcal{Z}$ and $\mu$.
-%
-%and will be noted
-%$q_0(z_0) \xrightarrow{\lambda_0}_{\mathcal{Z},\mu} q_1(z_1) \xrightarrow{\lambda_1}_{\mathcal{Z},\mu} \cdots \xrightarrow{\lambda_{n-1}}_{\mathcal{Z},\mu} q_n(z_n)$.
-%
-As with pushdown systems, we say $\pi$ is {\em accepting} if $q_0 = q_{init}$, $a_0=\gamma_{init}$,
-and $q_n\in F$.
-%
-% We say {\em reachability holds} for $\mathcal{Z}$ if there is a $\mu$ such that there is a $\mu$-run in $\mathcal{Z}$ from $q_{init}(\gamma_{init})$   to some configuration $q(w)$ for some $q\in F$ and some $w \in \Gamma^*$.
-% We refer to Figure~\ref{example_pda} for an instance of a PDA for which reachability holds.
-
 
 
 
 In the particular case where $P=\{p\}$ is a singleton for some parameter $p$ and $\mu(p)=u \in \Gamma^*$,
-we prefer to write $q(w)\xrightarrow{%\lambda
-}_{\mathcal{Z}, u}q'(w')$
-to denote $q(w)\xrightarrow{%\lambda
-}_{\mathcal{Z}, \mu}q'(w')$ and
-will call the $\mu$-run an {\em $u$-run}. In case the automaton $\mathcal{Z}$ is obvious from context, we write $\xrightarrow{%\lambda
-}_{\mu}$ (resp. $\xrightarrow{%\lambda
-}_{u}$)
-instead of $\xrightarrow{%\lambda
-}_{\mathcal{Z}, \mu}$ (resp. $\xrightarrow{%\lambda
-}_{\mathcal{Z},u}$). 
+we prefer to write $q(w)\rightarrow_{\mathcal{Z}, u}q'(w')$
+to denote $q(w)\rightarrow_{\mathcal{Z}, \mu}q'(w')$. In case the automaton $\mathcal{Z}$ is obvious from context, we write $\rightarrow_{\mu}$ (resp. $\rightarrow_{u}$)
+instead of $\rightarrow_{\mathcal{Z}, \mu}$ (resp. $\rightarrow_{\mathcal{Z},u}$). 
 Since we are concerned with the graph of configurations and not the language recognized, we omit the input alphabet from the model and will use the name pushdown system rather than pushdown automaton.
 
 
-		\iffalse	
 
-\subsection{PPDS reachability}
 
-Note that the reachability problem for parametric pushdown systems consists in
-the following decision problem.
 
-\problemx{$n$-PPDS reachability}
-{An $n$-PPDS $\mathcal{Z}$.}
-{Does 
-%reachability hold for
-an accepting $\mu$-run for some $\mu\in(\Gamma^*)^P$ exist in
- $\mathcal{Z}$?\newline}
-
-		\fi
-
-% \subsubsection{Parametric pshdown games}
 \subsection{PPDS games}
 
-Several model checking problems can be
-expressed as decision problems for games.
-For instance 
-in the case of pushdown systems, 
-the modal $\mu$-calculus
-model checking problem is polynomially equivalent to solving the parity game problem~\cite{emerson1993model}.
-We are interested in this article in parametric variants of reachability games and parity games.
 
+We are interested in this article in parametric variants of reachability games and parity games.
 One goal may be to characterize the set of all possible parameter valuations for which a player has a winning strategy in a 
 reachability game or a parity game
 played on the arena induced by the
@@ -587,7 +497,7 @@ For simplicity's sake, the values are assigned to the parameters one by one, alt
 
 A winning strategy for player $0$ allows to synthesize a controller that restricts the environment and ensures that {the property expressed by the winning condition always holds.}
 
-% \subsection{Parameter valuation arenas}
+
 
 We introduce here arenas over the set of partial parameter valuations for a set of parameters
 $P = P_0 \biguplus P_1$. The values are assigned to the parameters one by one, alternating between values assigned by player $0$ (corresponding to parameters in $P_0$) and by player $1$ (corresponding to parameters in $P_1$). Other options could have been considered: for instance, we could consider a fully existential approach 
@@ -632,52 +542,9 @@ Indeed, where a concrete automaton induces a transition system, a parametric aut
 We use $T^\mu_\A$ to denote the transition system induced by the concrete automaton corresponding to
 a parametric automaton $\A$ with parameters $P$ taking values in $\Gamma^*$ and a parameter valuation $\mu: P \to \Gamma^*$.
 
-
-\iffalse
-\begin{center}
-	\begin{figure}
-		\hspace{2cm}
-\includegraphics[width=0.7\textwidth]{figures/parameter_arena}
-	\caption{An illustration of the arena for a parametric automaton $\A$ with 
-%	two parameters, $p_0$ and $p_1$,	
-	$P_0 = \{p_0\}$, $P_1 = \{p_1\}$ and
-%	 that can take values in $[0,N]$ for some $N \in \N$. 
-	$\M = [0,N]$ for some $N\in \N$.
-	 Here $\mu_\bot$ is 
-	%the partial parameter assignment with domain $\emptyset$,
-	the totally undefined function and can be viewed rather as 
-	the function that assigns $\bot$ to both parameters. For $i,j \in [0,N]$, $\mu_i$ is the partial parameter assignment with domain $\{p_0\}$ that maps $p_0$ to $i$ and $\mu_{i,j}$ is the parameter assignment that maps $p_0$ to $i$ and $p_1$ to $j$.
-	 %Lastly $T^\mu_\A$ denotes the transition system induced by the concrete automaton corresponding to $\A$ with parameter valuation $\mu$.
-	  As before, the circles belong to player $0$ and the diamonds to player~$1$.} 
-	\label{parametric_arena}
-	\end{figure}
-\end{center}
-\fi
+ 
 
 
-\iffalse
-Given a parametric automaton $\A$ with a set of parameters $P = P_0 \biguplus P_1$ that can take 
-values in the set $\Gamma^*$,
-a {\em parametric game} for $\A$ is a game played 
-on the 
-arena $A_\A$
-that include both 
-the parameter valuation arena
-$A_{P_0, P_1,\Gamma}$
-and, %   
-for all parameter valuations $\mu: P\rightarrow \Gamma^*$,
-the transition system %s 
- $T_\A^\mu$
-\---- albeit with configurations additionally indexed by $\mu$ %in the tuple
- to avoid confusion.
-Moreover, for every 
-dead end $\mu$
- in $A_{P_0,P_1,\Gamma}$,
-we add a transition
-from the configuration $\mu \in (\Gamma^*)^P$ to
-$T_\A^\mu$.
-% See Figure~\ref{parametric_arena} for an illustration of such an arena.
-\fi
  
 More formally, for an  $n$-parametric pushdown automaton 
 $\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
@@ -734,8 +601,7 @@ for all $\mu \in (\Gamma^* \cup \bot)^{P}$.
 
 
 \problemx{Parametric pushdown reachability game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
-, and $ P = P_0 \biguplus P_1$.}
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$.}
 {Does player $0$ have a winning strategy from $\mu_\bot$ in the reachability game \\
 $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{F \times \Gamma^* \times (\Gamma^*)^P})$ ?\newline}
 
@@ -743,12 +609,8 @@ $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{F \times \Gamma^* \
 
 
 \problemx{Parametric pushdown parity game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $%which naturally lead to a partition of $T_{\mathcal{Z}}$
-, and $ P = P_0 \biguplus P_1$, 
-and a priority function $\Omega: Q \to [0, m]$%
-%which naturally lead to a mapping on $\Conf(\mathcal{Z})$
-%, and an initial state $q_{init} \in Q$% and initial stack symbol $w_{init} \in W$
-.}
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$, 
+and a priority function $\Omega: Q \to [0, m]$.}
 {Does player $0$ have a winning strategy from $\mu_\bot$ in the parity game \\
 $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$ ?\newline}
 
@@ -776,23 +638,20 @@ Pebble automata recognize regular languages only, provided the life times of the
 \cite{globerman1996complexity, engelfriet1999tree}.
 Automata with nested pebbles were also introduced
 for tree-walking automata. 
-It is known that tree-walking automata do not recognize all regular tree languages \cite{bojanczyk2008tree}%, the main trouble being that tree-walking automata get lost rather easily
-.
+It is known that tree-walking automata do not recognize all regular tree languages \cite{bojanczyk2008tree}.
 Using pebbles is a remedy against getting lost along a tree, but 
 the unrestricted use of pebbles leads to a class of tree languages much larger than the
 regular tree languages, in fact to all tree languages in $\NSPACE(log ~ n)$.
-Thus, in  both pebble word automata and pebble tree-walking automata, the placement of the pebble follows a strict stack discipline. It is traditional hence to represent syntactically the dropping and lifting of pebbles by operations \textit{lift} and \textit{drop}; a \textit{drop} simply records the current position with a fresh pebble (such a pebble should be available) % and returns to the beginning of the tape, 
+Thus, in  both pebble word automata and pebble tree-walking automata, the placement of the pebble follows a strict stack discipline. It is traditional hence to represent syntactically the dropping and lifting of pebbles by operations \textit{lift} and \textit{drop}; a \textit{drop} simply records the current position with a fresh pebble (such a pebble should be available)  
 and a \textit{lift} pops the last dropped pebble if the current position corresponds to the one recorded by it.
 
 
 
 
-In this section, we extend these ideas to pushdown systems. Instead of using pebbles as markings on their input, pebble pushdown systems have the ability to lift or drop pebbles on their universe of stack contents; a \textit{drop} simply records the current stack content with a fresh pebble (such a pebble should be available) % and returns to the beginning of the tape, 
+In this section, we extend these ideas to pushdown systems. Instead of using pebbles as markings on their input, pebble pushdown systems have the ability to lift or drop pebbles on their universe of stack contents; a \textit{drop} simply records the current stack content with a fresh pebble (such a pebble should be available)  
 and a \textit{lift} pops the last dropped pebble 
 while requiring that
-% assuming
  it was placed on the current node. 
-% Thus hierarchicality on the registers works slightly differently from hierarchicality on the pebbles, hierarchicality on the registers being a syntactic property, whereas hierarchicality on the pebbles is a semantical one.
 One can think of a pebble as a register that can store a stack content for later comparisons.
 
 
@@ -825,8 +684,7 @@ where $Q$ is a {\em finite set of  states}; $\Gamma$ is a {\em finite stack alph
 
 
 
-Recall that for a partial function $ f : S \rightharpoonup X $% (see page~\pageref{partial})
-, for notational purposes, we consider some element $\bot_X \not\in X$ and 
+Recall that for a partial function $ f : S \rightharpoonup X $, for notational purposes, we consider some element $\bot_X \not\in X$ and 
  associate $f$ with the function returning the 
 bottom element $\bot_X$ when $f$ is undefined. Thus we write $(X \biguplus \{ \bot_X \})^S$ for the set of all partial functions from $S$ to $X$, which we here abbreviate as $(X \biguplus \{ \bot \})^S$. 
 
@@ -1000,21 +858,10 @@ such that
 player $0$ has a winning strategy from 
 $(q'_{init},\gamma_{init}, \mu_{init})$
 in
-		\iffalse
-		for the parity condition on
-		$\mathcal{G}_{(\ppda, Q'_0, Q'_1, \Omega')}$.
-		\fi
 the parity game
 $\mathcal{G'}= (A_{(\ppda, Q'_0, Q'_1)}, \win_{\overline{\Omega'}})$
 if and only if
 player $0$ has a 
-		\iffalse
-		strategy $\sigma_0$ for the parameter valuation game  such that
-		for all player $1$ strategies $\sigma_1$ for the parameter valuation game,
-		player $0$ have a
-		winning strategy from $q_{init}(\gamma_{init})$ for the parity condition on
-		$\mathcal{G}_{(\mathcal{Z}, \mu_{\sigma_0, \sigma_1}, P_0, P_1, Q_0 , Q_1, \Omega)}$. 
-		\fi
 winning strategy from $\mu_\bot$ in 
 the parity game
 $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$,
@@ -1062,7 +909,7 @@ In addition to the ability to push
 and to pop a symbol on the top-most level $1$ stack, an $2$-HPDS can copy or remove the entire topmost level $1$ stack. 
 The definition generalizes to any $n \geq 2$, and $n$-HPDS are similarly defined for all level
 $n$ as systems working with a stack of level $(n-1)$ stacks.
-% HPDS have been extensively studied as language recognizers [Dam82,Eng83].
+
 
 
 
@@ -1074,7 +921,7 @@ higher-order pushdown parity games.
 \subsection{Higher-order pushdown systems}
 
 A {\em level $1$ stack} (or {\em $1$-stack}) over an alphabet $\Gamma$ is 
-simply a %word in $\Gamma^*$
+simply a 
 	stack over $\Gamma$, i.e. a word  in $\Gamma^*$.
 A  {\em level $n$ stack} (or {\em $n$-stack}) over an alphabet $\Gamma$, for $n \geq 2$, is a 
 non-empty sequence
@@ -1194,7 +1041,6 @@ for all $q,q'$ in $Q$,
 for all $s,s'$ in $\mathscr{S}_n(\Gamma)$,
 $q(s) \rightarrow_{\mathcal{H}} q'(s')$ if
 there exists some rule
-%$(q,\gamma,q',\theta) \in R$
 $(q,\gamma,q',op) \in R$
 such that
 $\text{\textit{top}}(s) = \gamma$
@@ -1293,20 +1139,14 @@ $\text{\textit{push}}_j$.\\
 
 A {\em higher-order pushdown automaton with equality pop of level $n$} ($n$-HPDS$^=$ for short) 
 is a higher-order pushdown automaton of level $n$ where in
-% Instrn
 $\Op_n(\Gamma)$
  the operation 
- %popk
  $\text{\textit{pop}}_j$  
   is replaced by 
-%  pop=
-%k 
 $\text{\textit{push}}_j^=$
-%for 1 ≤ k ≤ n. 
 for $2 \leq j \leq n$.
 We denote
 this new set of operations by 
-% Instr= n
 $\Op_n^=(\Gamma)$. 
 More formally the new operations $\text{\textit{push}}_j^=$ are defined as
 \begin{eqnarray*}
@@ -1315,7 +1155,6 @@ More formally the new operations $\text{\textit{push}}_j^=$ are defined as
 \langle \text{\textit{pop}}_j^=(s_m) \rangle,
 \text{ if } 2 \leq j < k. 
 \end{eqnarray*}
-%
 %
 %
 %
@@ -1336,7 +1175,7 @@ generate the same classes of transition systems.
 \begin{theorem}{\cite{Woeh05, carayol2006automates}}
 If $\H$ is an $n$-HPDS (resp. $n$-HPDS$^=$) then there
 exists an $n$-HPDS$^=$ (resp. $n$-HPDS) $\H'$ such that
-$\H$ and $\H'$ %generate the same graph.
+$\H$ and $\H'$ 
 induce isomorphic transition systems.
 \end{theorem}
 
@@ -1681,7 +1520,6 @@ $\text{\textit{lift}}$ poping the last dropped
 pebble while requiring that the current counter value 
 corresponds to the one from the last dropped pebble.
 %
-%Hence, u
 Unlike for parametric extensions, 
 decidability of 
 what should be called
@@ -1691,7 +1529,7 @@ We believe it natural to study such a pebble one-counter automata model
 on its own.
 In particular we believe that the question of whether or not
 solving pebble one-counter reachability games is nonelementary is worth investigating.
-% It may very well be the case that the hierarchy collapses instead, at level e.g. 2 or 3.
+
 
 
 Of note is that reachability games and parity games are 
@@ -1699,14 +1537,12 @@ not the only problems one can consider, as one can
 also explore the complexity of reachability itself. 
 In particular
 one can 
-% ask whether or not the parametric pushdown automata model described in this section  admits effective preservation of regularity.
 study the precise complexity of the
 {\sc $n$-PPDA reachability} problem.
 Since reachability can be viewed as a reachability game, we know that
 {\sc $n$-PPDA reachability} is decidable in $(n+1)$-$\EXP$, 
 but the precise complexity of the problem remains unknown.
 We are furthermore convinced that it is worthwhile to investigate further comparisons between parametric pushdown automata, pebble pushdown automata, 
-%pebble alternating tree automata 
 and register pushdown automata, especially since the latter have been shown to only really ``remember'' at most  $3r$ data values, where $r$ is the number of registers. 
 
 
@@ -1716,52 +1552,7 @@ and register pushdown automata, especially since the latter have been shown to o
 
 
 
-
-
-
-
-
-
 \appendix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
