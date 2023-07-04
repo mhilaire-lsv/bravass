@@ -65,12 +65,12 @@ then resilience hold but not bounded resilience: for every bound $k$ there is an
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00, DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$ and $\Bad$. In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Bad$ is downward-closed and $\Safe$ is upward-closed. %\mathieu{Remarquer que dans l'example~\ref{Example} on a à la fois upward closed ET downward closed pour $\Safe$ ET $\Bad$.} 
 Remark that in {\bf Flight Controller System}, $\Safe$ and $\Bad$ are both upward-closed \emph{and} downward-closed.
 
-Surprinsingly, we have not found decidability results about the resilience problems for WSTS.	
-% We deduce decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed as seen in Section~\ref{synthesis}.
-In particular, the existing proofs of resilience use the decidability of reachability;
-\mathieu{quelles preuves ? pour quelle notion de résilience ?} but we wish to decide resilience for models with undecidable reachability.
-Our result will rely on coverability instead of reachability. We moreover show undecidability when coverability is not decidable in the case $\Safe = \uparrow \Safe$
-and in the general case when $\Safe = \downarrow \Safe$.
+%Surprinsingly, we have not found decidability results about the resilience problems for WSTS.	
+%% We deduce decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed as seen in Section~\ref{synthesis}.
+%In particular, the existing proofs of resilience use the decidability of reachability;
+%\mathieu{quelles preuves ? pour quelle notion de résilience ?} but we wish to decide resilience for models with undecidable reachability.
+%Our result will rely on coverability instead of reachability. We moreover show undecidability when coverability is not decidable in the case $\Safe = \uparrow \Safe$
+%and in the general case when $\Safe = \downarrow \Safe$.
  
 
 
