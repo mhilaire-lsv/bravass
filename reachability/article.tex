@@ -349,30 +349,7 @@ We simply write
 $\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
 
 
-\begin{center}
-	\begin{figure}
-			\hspace{3.95cm}
-\includegraphics[width=0.35\textwidth]{figures/parity_game}
-	\caption{An example of an arena. Circles  belong to player~$0$, whereas diamonds belong to player~$1$. Arrows represent transitions from a configuration to the next. The priority assigned by the priority mapping to each configuration is a number in $\{0,1,2,3\}$, next to the configuration it is assigned to. Note that we do not have any dead end in our example.}
-	\label{example_parity_game}
-	\end{figure}
-\end{center}
 
-\begin{example}
-Let us consider the arena presented in  Figure~\ref{example_parity_game}. 
-Configurations are partitioned into circles belonging to player $0$ and diamonds
-belonging to player $1$. 
-The priorities are $\{ 0,1,2,3\}$.
-Plays $\pi_1 = q_0 q_1 q_2 (q_4 q_7)^\omega$ and 
-$\pi_2 = (q_0 q_1 q_2 q_4)^\omega$ are both winning for player $0$. Indeed, in $\pi_1$, 
-the minimal priority encountered infinitely often is   
-				$2$, 
-whereas in $\pi_2$, it is   
-			$0$. 
-In both cases, it is an even number. On the other hand,
-the plays $\pi_3 = (q_5 q_3 q_6)^\omega$ and $\pi_4=(q_5 q_6)^\omega$ are both winning for player $1$: the minimal priority encountered is odd, since it is $1$ for both.
-One can take matters further: on this arena, player $0$ has a winning strategy for the parity game from $q_0$, $q_1$, $q_2$, $q_4$ and $q_7$, but not from $q_5$, $q_3$ nor $q_6$, where player $1$ has a winning strategy. 
-\end{example}
 
 
 
