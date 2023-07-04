@@ -338,24 +338,10 @@ every maximal play starting from $s$ and consistent with $\sigma_1$ is not in $\
 
 
 
-We first consider reachability games: 
+We first consider {\em reachability games}: 
 the winning condition $\win_F(S)$ is given by a set of final configurations
 $F \subseteq S$, and $\win_F(S)$ is the set of maximal plays in $S^* F S^\infty$. 
-We simply write
-$\win_F$ in case the set $S$ is obvious from context.
-To indicate that the winning condition of a game is a reachability winning condition, we will speak of {\em reachability games}. 
-
-
-With regards to reachability games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem.
-
-
-\problemx{Reachability game}
-{A reachability game $\mathcal{G}= ((S_0, S_1,{\rightarrow}),\win_F)$, an initial configuration $s \in S_0 \cup S_1$.}
-{Does player $0$ have a winning strategy from $s$ in $\mathcal{G}$? \\}
-
-
-
-Secondly, we consider min-parity games: 
+Secondly, we consider {\em parity games}: 
 the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
  $\Omega : S \to  [0, m]$.
 An infinite path $ \pi = s_0 s_1 s_2 \ldots$ is in $\win_\Omega(S)$ if the smallest priority appearing infinitely often in
@@ -364,22 +350,7 @@ the sequence
 if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even.  
 A finite play is in $\win_\Omega(S)$ if its target configuration is in $S_1$.
 We simply write
-$\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
-To indicate that the winning condition of a game is a parity winning condition, we will speak of
- {\em parity games}. 
-
-
-With regards to parity games, we are going to concern ourselves with games over potentially infinitely large arenas, and we are interested in the following decision problem. 
-
-
-
-\begin{samepage}
-\problemx{Parity game}
-{A parity game $\mathcal{G}= ((S_0, S_1,{\rightarrow}),\win_\Omega)$, an initial configuration $s \in S_0 \cup S_1$.}
-{Does player $0$ have a winning strategy from $s$ in $\mathcal{G}$?}
-\end{samepage}
-
-
+$\win_F$  and $\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
 
 
 \begin{center}
@@ -494,9 +465,6 @@ For determining such a set of parameter valuations, we incorporate the choice of
 In keeping with the spirit of alternation between players choosing successors in the arena, we consider here games where players
 alternate choosing values for the parameters before alternating choosing successor configurations in the game on the induced arena.
 For simplicity's sake, the values are assigned to the parameters one by one, alternating between values assigned by player $0$ and by player $1$.
-
-A winning strategy for player $0$ allows to synthesize a controller that restricts the environment and ensures that {the property expressed by the winning condition always holds.}
-
 
 
 We introduce here arenas over the set of partial parameter valuations for a set of parameters
@@ -815,83 +783,13 @@ a priority mapping $\Omega: Q \to \{0, \ldots m\}$.}
 $\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ?}
 
 
-
-\subsection{From parametric pushdown 
-systems 
-to pebble pushdown systems
-}
-
-We now provide a reduction from the problem of solving parametric pushdown parity games to the problem of solving pebble pushdown parity games. 
-
-
-\begin{theorem}\label{PPDA reduction}
+Note
 {\sc $n$-parametric pushdown parity game} 
 is polynomial time reducible to
 {\sc $n$-pebble pushdown parity game}.
-\end{theorem}
+See appendix for more details.
 
 
-
-
-\begin{proof}[Sketch]
-
-
-Let us fix some
-$n$-parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, 
-P, q_{init}, { \gamma_{init}} , F)$,
- disjoint
-union $Q = Q_0  \biguplus Q_1$
-and $P = P_0 \biguplus P_1$,
-and
-some priority function 
-$\Omega : Q \times \Gamma^* \times ( \Gamma^* \biguplus \{ \bot \})^R \to [0, m ]$.
-
-
-We construct
-  an 
- $n$-pebble pushdown automaton $\ppda =(Q', \Gamma,  R', q_{init}', {\gamma_{init}} , F')$,
-a 
- disjoint
-union $Q' = Q_0'  \biguplus Q_1'$
-and a mapping $\Omega' : Q \times  \Gamma'^* \times ( \Gamma'^* \biguplus \{ \bot \})^{\{1, \ldots, n\}} \to \{1, \ldots, m \}$,
-such that
-player $0$ has a winning strategy from 
-$(q'_{init},\gamma_{init}, \mu_{init})$
-in
-the parity game
-$\mathcal{G'}= (A_{(\ppda, Q'_0, Q'_1)}, \win_{\overline{\Omega'}})$
-if and only if
-player $0$ has a 
-winning strategy from $\mu_\bot$ in 
-the parity game
-$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$,
-where		 
-$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
-and
-$\widehat{\Omega}$
-correspond to the definitions on page~\pageref{PPDA reachability game}.
-
-
-
-
-The transition graph of the $n$-pebble pushdown automaton $\ppda$ will simulate the possible transitions graphs 
-(one for every 
-parameter assignment)
- of the pushdown automaton with $n$ parameters by using pebbles to represent the parameters. 
-The $n$-pebble pushdown automaton will first simulate the 
-parameter valuation arena.
-Players take turns chosing particular stack contents on which to place pebbles. 
-Once every parameter has been assigned with the dropping of a corresponding pebble, 
-the pebble assignment $\mu$ is fixed.
-
-
-
-Further configurations in the $n$-pebble pushdown automaton then consist of a word representing the status of the stack, a state, and a fixed pebble assignment. For a fixed pebble assignment there is then a one for one correspondance between configurations of the $n$-parametric pushdown 
-automaton 
-and these of the $n$-pebble pushdown automaton. The set of states of the $n$-pebble pushdown automaton apart from the initial gadget is the same as 
-the set of states of the $n$-parametric pushdown automaton, and 
-so are player $0$ states, player $1$ states and the priority mapping.
-\end{proof}
 
 
 
@@ -1344,8 +1242,6 @@ Finally, the following complexity result is due the above and Theorem~\ref{PPDA 
 
 
 
-
-
 \section{Lower bound}
 
 The aim of this section is to show a nonelementary lower bound for the 
@@ -1368,17 +1264,11 @@ $T(h, log^{(h)}(n)) = n$.
 % 
 Here a problem is in ${\sf ELEMENTARY}$ if it can be solved in time $O ( T(n, 0) )$.
 
-For a finite alphabet $\Sigma$,  let $\tau (\Sigma )$ be the vocabulary consisting of a binary relational symbol $\leq$,  and a unary relational symbol $P_a$ for every $a \in \Sigma$. 
-A word $w \in \Sigma^*$ can be seen as a $\tau (\Sigma )$-structure where the set of elements consists of a finite interval of $\N$. Elements are seen as positions in the word and for every element $i$, there exists precisely one $a \in \Sigma$ such that $i$ is in the interpretation of $P_a$. Lastly $\leq$ is interpreted as the linear order of $\N$.\\
-
-
-It is well-known that if we are interested in the complexity of first-order or monadic
-second-order model-checking on words, the alphabet can be assumed to be $\{0,1\}$ without loss of generality.
-Thus the satisfiability problem is concerned with the following question.
+The satisfiability problem is concerned with the following question.
 \begin{samepage}
 \problemx{$\FO$ satisfiability on words}
 {A  
-$\FO[\tau(\{0,1\})]$-sentence $\phi$.}
+$\FO$-sentence $\phi$.}
 {Does there exists a word $w\in \{0, 1\}^*$, such that $w \models \phi$ ?\newline}
 \end{samepage}
 
@@ -1418,24 +1308,18 @@ towards the problem of
 \noindent
 We start with
  a 
- $\FO[\tau(\{0,1\})]$
--formula $\phi$.
-We construct
-a parametric pushdown system $\mathcal{Z}_\phi = (Q_\phi,W_\phi, \Delta_\phi )$, with a disjoint
-union $Q_\phi = Q_0  \biguplus Q_1 $, a priority mapping $\Omega_\phi$, and an initial state $q_I \in Q_\phi$
-such that
-player $0$ has a winning strategy from $(q_I, \$, f_I)$ in the  parity game
-$\mathcal{G}_{\mathcal{Z_\phi}, Q_0,Q_1, \Omega_\phi}$
-if and only if
-there exists a word $w \in \{0,1\}^*$ such that
-$w  \models \phi $. \\
-
-\noindent
+ $\FO$-formula $\phi$.
 We assume without loss of generality that $\phi$ is written in the prenex normal form
 $\phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k ~ \psi$, where 
 an even number $k$ of quantifiers alternate between existential and universal ones, and 
 $\psi$ is quantifier-free and in disjunctive normal form.
-
+We construct
+a parametric parity game
+in which
+player $0$ has a winning strategy
+if and only if
+there exists a word $w \in \{0,1\}^*$ such that
+$w  \models \phi $. 
 
 
 
@@ -1447,7 +1331,6 @@ This parameter is meant in part to enforce that
 the stack remains a prefix of $w$, with each stack content of the play corresponding to a position in the word.
  To enforce this, we allow in $\mathcal{Z}$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position in the word.
   A player thus challenged only has the ability to add things onto the stack, and win if and only if able to find a way back to the value of parameter $p_0$. 
- The gadgets for these intermediary potential challenges will be excluded from the illustrations to preserve clarity of representation.
 The other parameters are meant to correspond to the variables, with player $1$ parameters corresponding to universal variables and player $0$ parameters corresponding to existential variables.
 
 Once players have chosen values for their respective variables, the parameter assignment
@@ -1455,16 +1338,10 @@ $\mu$ is fixed. It is then time
 for player $0$ to ensure that
 $w$
 satisfies $\psi$ if the variables $x_1, \ldots, x_k$ are interpreted by 
-$ |\mu(p_1)|-1, \ldots, |\mu(p_k)|-1$ respectively. This is the goal of the reachability game.
-
-
-
-The first step of the game is to check that the values assigned to the parameters correspond indeed to possible variables, that is, that the values of the parameters are prefixes of $w$. 
-
+$ |\mu(p_1)|-1, \ldots, |\mu(p_k)|-1$ respectively. 
 Recall $\psi$ is quantifier-free and in disjunctive normal form, i.e.
- \[ \phi = \forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k \bigvee_{i=1}^l(\bigwedge_{j=1}^{h_i} \psi_{i,j}(x_1, \ldots, x_k)).\]
-
-
+ $ \psi = %\forall x_1 \exists x_2 \forall x_3 \ldots \exists x_k 
+ \bigvee_{i=1}^l(\bigwedge_{j=1}^{h_i} \psi_{i,j}(x_1, \ldots, x_k)).$
 Player $0$, being the existential player, choses one of the conjunctive clause in $\psi$, essentially claiming to be able to prove it. Then player $1$, the universal player, chooses one of the atomic formula in the clause to test. 
 Testing the atomic formula is the purpose of a gadget 
 in which
@@ -1474,10 +1351,7 @@ $w$ satisfies
 the atomic formula
  if the variables $x_1, \ldots, x_k$ are interpreted by 
 $ |f(1)|-1, \ldots, |f(k)|-1$ respectively.
-
-
-Now we need only to describe the gadgets $ \C_{\psi_{i,j}}$. 
-The gadget depends on the type of the atomic formula. For a formula checking the letter at the position of a variable $x$, player $0$ goes to the position corresponding to $x$, then checks that the top of the stack
+The gadget will depend on the type of the atomic formula. For a formula checking the letter at the position of a variable $x$, player $0$ goes to the position corresponding to $x$, then checks that the top of the stack
 $x$ is the right letter. For one checking that $x = x'$ where $x$ and $x'$ are both variables,
 player $0$ goes to the position corresponding to $x$ and checks against the parameter corresponding to $x'$ as well. If the formula is a negation, players exchange their roles. 
 \end{proof}
@@ -1555,6 +1429,82 @@ and register pushdown automata, especially since the latter have been shown to o
 \appendix
 
 
+\subsection{From parametric pushdown 
+systems 
+to pebble pushdown systems
+}
+
+We now provide a reduction from the problem of solving parametric pushdown parity games to the problem of solving pebble pushdown parity games. 
+
+
+\begin{theorem}\label{PPDA reduction}
+{\sc $n$-parametric pushdown parity game} 
+is polynomial time reducible to
+{\sc $n$-pebble pushdown parity game}.
+\end{theorem}
+
+
+
+
+\begin{proof}[Sketch]
+
+
+Let us fix some
+$n$-parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, 
+P, q_{init}, { \gamma_{init}} , F)$,
+ disjoint
+union $Q = Q_0  \biguplus Q_1$
+and $P = P_0 \biguplus P_1$,
+and
+some priority function 
+$\Omega : Q \times \Gamma^* \times ( \Gamma^* \biguplus \{ \bot \})^R \to [0, m ]$.
+
+
+We construct
+  an 
+ $n$-pebble pushdown automaton $\ppda =(Q', \Gamma,  R', q_{init}', {\gamma_{init}} , F')$,
+a 
+ disjoint
+union $Q' = Q_0'  \biguplus Q_1'$
+and a mapping $\Omega' : Q \times  \Gamma'^* \times ( \Gamma'^* \biguplus \{ \bot \})^{\{1, \ldots, n\}} \to \{1, \ldots, m \}$,
+such that
+player $0$ has a winning strategy from 
+$(q'_{init},\gamma_{init}, \mu_{init})$
+in
+the parity game
+$\mathcal{G'}= (A_{(\ppda, Q'_0, Q'_1)}, \win_{\overline{\Omega'}})$
+if and only if
+player $0$ has a 
+winning strategy from $\mu_\bot$ in 
+the parity game
+$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$,
+where		 
+$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
+and
+$\widehat{\Omega}$
+correspond to the definitions on page~\pageref{PPDA reachability game}.
+
+
+
+
+The transition graph of the $n$-pebble pushdown automaton $\ppda$ will simulate the possible transitions graphs 
+(one for every 
+parameter assignment)
+ of the pushdown automaton with $n$ parameters by using pebbles to represent the parameters. 
+The $n$-pebble pushdown automaton will first simulate the 
+parameter valuation arena.
+Players take turns chosing particular stack contents on which to place pebbles. 
+Once every parameter has been assigned with the dropping of a corresponding pebble, 
+the pebble assignment $\mu$ is fixed.
+
+
+
+Further configurations in the $n$-pebble pushdown automaton then consist of a word representing the status of the stack, a state, and a fixed pebble assignment. For a fixed pebble assignment there is then a one for one correspondance between configurations of the $n$-parametric pushdown 
+automaton 
+and these of the $n$-pebble pushdown automaton. The set of states of the $n$-pebble pushdown automaton apart from the initial gadget is the same as 
+the set of states of the $n$-parametric pushdown automaton, and 
+so are player $0$ states, player $1$ states and the priority mapping.
+\end{proof}
 
 \end{document}
 
