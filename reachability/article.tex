@@ -218,10 +218,9 @@ parametric guards.
 
 
 Our main result consists in
-proving parametric pushdown reachability games
-and parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number of parameters
+proving parametric pushdown parity games belong to $(n+1)$-$\EXP$ in case the number of parameters
 $n$ is fixed,
-and providing a nonelementary lower bound for parametric pushdown reachability games in general.
+and providing a nonelementary lower bound for parametric pushdown parity games in general.
 
 	For the upper bound, we start by replacing parameters by pebbles acting as registers, leading to a more general model, pebble pushdown systems.
  We then show that higher-order pushdown systems parity games can be used to solve parity games on
@@ -232,7 +231,7 @@ using one additional stack level for each pebble.
 	For the nonelementary lower bound,
 we reduce the $\FO$ satisfiability problem on words, known to be nonelementary
 from \cite{Sto74}, to the
-problem of deciding whether a player has a winning strategy for parametric pushdown reachability games. 
+problem of deciding whether a player has a winning strategy for parametric pushdown parity games. 
 
 
 
@@ -338,10 +337,7 @@ every maximal play starting from $s$ and consistent with $\sigma_1$ is not in $\
 
 
 
-We first consider {\em reachability games}: 
-the winning condition $\win_F(S)$ is given by a set of final configurations
-$F \subseteq S$, and $\win_F(S)$ is the set of maximal plays in $S^* F S^\infty$. 
-Secondly, we consider {\em parity games}: 
+We consider {\em parity games}: 
 the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
  $\Omega : S \to  [0, m]$.
 An infinite path $ \pi = s_0 s_1 s_2 \ldots$ is in $\win_\Omega(S)$ if the smallest priority appearing infinitely often in
@@ -350,7 +346,7 @@ the sequence
 if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even.  
 A finite play is in $\win_\Omega(S)$ if its target configuration is in $S_1$.
 We simply write
-$\win_F$  and $\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
+$\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
 
 
 \begin{center}
@@ -441,22 +437,12 @@ either of the following holds
 
 
 
-In the particular case where $P=\{p\}$ is a singleton for some parameter $p$ and $\mu(p)=u \in \Gamma^*$,
-we prefer to write $q(w)\rightarrow_{\mathcal{Z}, u}q'(w')$
-to denote $q(w)\rightarrow_{\mathcal{Z}, \mu}q'(w')$. In case the automaton $\mathcal{Z}$ is obvious from context, we write $\rightarrow_{\mu}$ (resp. $\rightarrow_{u}$)
-instead of $\rightarrow_{\mathcal{Z}, \mu}$ (resp. $\rightarrow_{\mathcal{Z},u}$). 
-Since we are concerned with the graph of configurations and not the language recognized, we omit the input alphabet from the model and will use the name pushdown system rather than pushdown automaton.
 
 
 
-
-
-\subsection{PPDS games}
-
-
-We are interested in this article in parametric variants of reachability games and parity games.
-One goal may be to characterize the set of all possible parameter valuations for which a player has a winning strategy in a 
-reachability game or a parity game
+\textbf{PPDS games.}
+We are interested in this article in parametric variants of parity games.
+One goal may be to characterize the set of all possible parameter valuations for which a player has a winning strategy in a parity game
 played on the arena induced by the
 resulting concrete automaton
 and some partition of its set of states. 
@@ -551,7 +537,6 @@ $q_{init}(\gamma_{init}, \mu)$ in $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$.
 
 
 
-
 We extend any 
 priority function $\Omega: Q \to [0, m]$
 into
@@ -567,15 +552,6 @@ $\widehat{\Omega}(\mu) = 0$
 for all $\mu \in (\Gamma^* \cup \bot)^{P}$.
 
 
-
-\problemx{Parametric pushdown reachability game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init},  \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$.}
-{Does player $0$ have a winning strategy from $\mu_\bot$ in the reachability game \\
-$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{F \times \Gamma^* \times (\Gamma^*)^P})$ ?\newline}
-
-
-
-
 \problemx{Parametric pushdown parity game}
 {A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$, 
 and a priority function $\Omega: Q \to [0, m]$.}
@@ -586,11 +562,9 @@ $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$
 
 
 
-We write {\sc $n$-parametric reachability parity game}
-and
+We write 
 {\sc $n$-parametric pushdown parity game} if 
  the number of parameters $n=|P|$ of $\mathcal{Z}$ is fixed by the problem.
-Remark that the parametric reachability problem for an automaton with parameters can be seen as solving the parametric reachability game where $P_1 = \emptyset$, and $Q_1 = \emptyset$.
 
 
 
@@ -783,11 +757,11 @@ a priority mapping $\Omega: Q \to \{0, \ldots m\}$.}
 $\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ?}
 
 
-Note
+\begin{theorem}\label{PPDA reduction}
 {\sc $n$-parametric pushdown parity game} 
 is polynomial time reducible to
 {\sc $n$-pebble pushdown parity game}.
-See appendix for more details.
+\end{theorem}
 
 
 
@@ -1402,18 +1376,18 @@ decidability of pebble pushdown parity games.
 We believe it natural to study such a pebble one-counter automata model
 on its own.
 In particular we believe that the question of whether or not
-solving pebble one-counter reachability games is nonelementary is worth investigating.
+solving pebble one-counter parity games is nonelementary is worth investigating.
 
 
 
-Of note is that reachability games and parity games are 
+Of note is that parity games are 
 not the only problems one can consider, as one can
-also explore the complexity of reachability itself. 
+also explore the complexity of reachability. 
 In particular
 one can 
 study the precise complexity of the
 {\sc $n$-PPDA reachability} problem.
-Since reachability can be viewed as a reachability game, we know that
+Since reachability can be viewed as a reachability game, which can be simulated using a parity game, we know that
 {\sc $n$-PPDA reachability} is decidable in $(n+1)$-$\EXP$, 
 but the precise complexity of the problem remains unknown.
 We are furthermore convinced that it is worthwhile to investigate further comparisons between parametric pushdown automata, pebble pushdown automata, 
