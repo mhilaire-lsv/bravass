@@ -322,8 +322,19 @@ Once we have provided players with an arena, it remains to define  properly what
 $\win$
 is a subset  
 of the set of maximal plays for $A$. A {\em game} is a pair $\mathcal{G}= (A, \win)$ which is composed of an arena $A$ and a winning condition $\win$.
-Although a winning condition is in general an infinite object we are interested in winning conditions 
-that can finitely be described.
+Although a winning condition is in general an infinite object we are interested in parity games winning conditions, 
+which can finitely be described. In 
+{\em parity games},
+the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
+ $\Omega : S \to  [0, m]$.
+An infinite path $ \pi = s_0 s_1 s_2 \ldots$ is in $\win_\Omega(S)$ if the smallest priority appearing infinitely often in
+the sequence 
+ is even, i.e.
+if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even.  
+A finite play is in $\win_\Omega(S)$ if its target configuration is in $S_1$.
+We simply write
+$\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
+
 A strategy $\sigma_0$ for player $0$ from position $s \in S$ is a {\em winning strategy
  from $s$} for player $0$ if 
 every maximal play starting from $s$ and consistent with $\sigma_0$ is in $\win$.
@@ -337,16 +348,7 @@ every maximal play starting from $s$ and consistent with $\sigma_1$ is not in $\
 
 
 
-We consider {\em parity games}: 
-the winning condition $\win_\Omega(S)$ is given by a {\em priority function} 
- $\Omega : S \to  [0, m]$.
-An infinite path $ \pi = s_0 s_1 s_2 \ldots$ is in $\win_\Omega(S)$ if the smallest priority appearing infinitely often in
-the sequence 
- is even, i.e.
-if $\min( \{ \Omega(s) | ~ s \in \text{\textit{Inf}}( \pi) \})$ is even.  
-A finite play is in $\win_\Omega(S)$ if its target configuration is in $S_1$.
-We simply write
-$\win_\Omega$ in case the set $S = S_0 \biguplus S_1$ is obvious from context.
+
 
 
 
@@ -367,14 +369,13 @@ A parametric pushdown automaton is then a finite automaton extended with a finit
 
 \par\noindent\ignorespacesafterend
 A {\em parametric pushdown system} ({\em PPDS} for short) 
-is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}, F),$ where
+is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}),$ where
  $Q$ is a non-empty finite {\em set of  states};
  $\Gamma$ is a non-empty finite {\em  stack alphabet};
  $P$ is a finite {\em   set of parameters}, \textcolor{black}{with $\Gamma \cap P = \emptyset$};
   $R   \subseteq  Q  \times (\Gamma \biguplus P)  \times Q  \times \Op(\Gamma)$ is finite {\em  set of rules};
  $q_{init}\in Q$ is an {\em initial  state};
- $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}; and
- $F\subseteq Q$ is a {\em set of final  states}.
+ $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}.
 
 
 The {\em size} of $\mathcal{Z}$ is defined as
@@ -388,7 +389,7 @@ By $\Conf(\mathcal{Z})=Q\times  \Gamma^*$ we denote the set of
 A {\em parameter valuation} is a function $\mu$ from $P$ to $\Gamma^*$.
 
 \begin{samepage}
-A parametric pushdown automaton  $\mathcal{Z}= (Q, \Gamma, P,u R, q_{init}, \gamma_{init},F)$ 
+A parametric pushdown automaton  $\mathcal{Z}= (Q, \Gamma, P,u R, q_{init}, \gamma_{init})$ 
 and a parameter valuation $\mu: P\rightarrow \Gamma^*$ induce the 
 transition system  
 $T_{\mathcal{Z}}^{\mu} = (\Conf(\mathcal{Z}), 
@@ -429,9 +430,11 @@ In keeping with the spirit of alternation between players choosing successors in
 alternate choosing values for the parameters before alternating choosing successor configurations in the game on the induced arena.
 For simplicity's sake, the values are assigned to the parameters one by one, alternating between values assigned by player $0$ and by player $1$.
 
-
-We introduce here arenas over the set of partial parameter valuations for a set of parameters
-$P = P_0 \biguplus P_1$. The values are assigned to the parameters one by one, alternating between values assigned by player $0$ (corresponding to parameters in $P_0$) and by player $1$ (corresponding to parameters in $P_1$). Other options could have been considered: for instance, we could consider a fully existential approach 
+For an  $n$-parametric pushdown automaton 
+$\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init})$,
+and a partition
+$P = P_0 \biguplus P_1$,
+we introduce first arenas over the set of partial parameter valuations. The values are assigned to the parameters one by one, alternating between values assigned by player $0$ (corresponding to parameters in $P_0$) and by player $1$ (corresponding to parameters in $P_1$). Other options could have been considered: for instance, we could consider a fully existential approach 
 (i.e. all parameters have their values assigned by player $0$), 
 or a fully universal approach
 (i.e. all parameters have their values assigned by player $1$). 
@@ -440,11 +443,8 @@ the fully existential approach consists in the case where $P_1 = \emptyset$ and
 the fully universal one, the case $P_0 = \emptyset$.
 
 
-
 Assume an ordering of the parameters $P_0 \biguplus P_1 = \{p_0, p_1, \ldots, p_k \}$ for some 
- $k \in \N$.
-%
-Then given a alphabet $\Gamma$, a {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\Gamma} = (S_0, S_1, \rightarrow_P)$ where
+ $k \in \N$, the {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\Gamma} = (S_0, S_1, \rightarrow_P)$ where
 \begin{itemize}
 
 \item $S_0$ is the set of all partial parameter valuations with images in $\Gamma^*$ and domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_0$,
@@ -460,57 +460,32 @@ and
 \end{itemize}
 
 
-Note that the arena has dead ends, and that these are the configurations that correspond to parameter valuations.
+The arena has dead ends which correspond to parameter valuations.
 Given a strategy $\sigma_0$ for player $0$ and a strategy $\sigma_1 $ for player $1$,
 the last configuration of the resulting play $\pi(\mu_\bot,\sigma_0, \sigma_1)$
 is called {\em the resulting parameter valuation}
  and is denoted by $\mu_{\sigma_0, \sigma_1}$, where 
  $\mu_\bot$ is the partial parameter valuation with domain $\emptyset$. 
-We then use parametric valuation arenas as prefixes in parametric games: once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
+The parametric valuation arena is a prefix of the full parametric games: once the resulting parameter valuation is produced by the two players, it serves to instantiate the transition system for continuing the game.
 %
 %
-Indeed, where a concrete automaton induces a transition system, a parametric automaton induces one transition system for every possible parameter valuation.
-We use $T^\mu_\A$ to denote the transition system induced by the concrete automaton corresponding to
-a parametric automaton $\A$ with parameters $P$ taking values in $\Gamma^*$ and a parameter valuation $\mu: P \to \Gamma^*$.
 
- 
-
-
- 
-More formally, for an  $n$-parametric pushdown automaton 
-$\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init},F)$,
-given a partition of
-$Q$ into $Q_0$ and $Q_1$, 
-we naturally partition the configurations of
- $\mathcal{Z}$
-into
-$\Conf_{\mathcal{Z},0}=Q_0\times \Gamma^*$
-and
-$\Conf_{\mathcal{Z},1}=Q_1\times \Gamma^*$. 
-With these notations in mind we define the arena
+We then obtain the full parametric game's arena $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$ by, for every configuration $\mu$ in $A_{P_0,P_1,\Gamma^*}$,
+ adding a transition
+from $\mu$ towards the initial configuration
+$(q_{init}(\gamma_{init}), \mu)$ 
+of
+the arena
 $
 A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
 =
-(\Conf_{\mathcal{Z},0}, \Conf_{\mathcal{Z},1}, \rightarrow_{\mathcal{Z},\mu})$
-induced by $\mathcal{Z}$, the partition $Q = Q_0 \biguplus Q_1$, and a
-parameter valuation $\mu: P\rightarrow \Gamma^*$.
-From a partition of
-$P$ into $P_0$ and $P_1$, 
-we thus define 
-$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
-as
-the arena that contains both the configurations and transitions of
-the parameter valuation arena
-$A_{P_0,P_1,\Gamma}$,
-and that moreover contains the configurations and transitions of
-$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$ 
-\---- albeit with configurations additionally including $\mu$ in the tuple to avoid confusion \----
-for
-all parameter valuations $\mu: P\rightarrow \Gamma^*$.
-Moreover, for every configuration $\mu$ in $A_{P_0,P_1,\Gamma^*}$,
-we add a transition
-from $\mu$ towards 
-$q_{init}(\gamma_{init}, \mu)$ in $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1, \mu)}$. \label{PPDA reachability game}
+(Q_0\times \Gamma^*, Q_1\times \Gamma^*, \rightarrow_{\mathcal{Z},\mu})$
+with configurations additionally including $\mu$ in the tuple.
+
+
+
+ 
+ \label{PPDA reachability game}
 
 
 
@@ -526,11 +501,11 @@ and
 for all $\mu \in (\Gamma^*)^{P}$,
 and
 $\widehat{\Omega}(\mu) = 0$
-for all $\mu \in (\Gamma^* \cup \bot)^{P}$.
+for all $\mu \in (\Gamma^* \cup \bot)^{P}$. We consider the following decision problem.
 
 
 \problemx{Parametric pushdown parity game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} , F)$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$, 
+{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} )$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$, 
 and a priority function $\Omega: Q \to [0, m]$.}
 {Does player $0$ have a winning strategy from $\mu_\bot$ in the parity game \\
 $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$ ?\newline}
@@ -561,8 +536,7 @@ It is known that tree-walking automata do not recognize all regular tree languag
 Using pebbles is a remedy against getting lost along a tree, but 
 the unrestricted use of pebbles leads to a class of tree languages much larger than the
 regular tree languages, in fact to all tree languages in $\NSPACE(log ~ n)$.
-Thus, in  both pebble word automata and pebble tree-walking automata, the placement of the pebble follows a strict stack discipline. It is traditional hence to represent syntactically the dropping and lifting of pebbles by operations \textit{lift} and \textit{drop}; a \textit{drop} simply records the current position with a fresh pebble (such a pebble should be available)  
-and a \textit{lift} pops the last dropped pebble if the current position corresponds to the one recorded by it.
+It is traditional since pebbles follows a strict stack discipline to represent syntactically the dropping and lifting of pebbles by operations \textit{lift} and \textit{drop}; a \textit{drop} simply records the current position with a fresh pebble (such a pebble should be available)  and a \textit{lift} pops the last dropped pebble if the current position corresponds to the one recorded by it.
 
 
 
@@ -575,19 +549,16 @@ One can think of a pebble as a register that can store a stack content for later
 
 
 
-We first define more formally our pebble pushdown automaton framework, and then provide a reduction from the problem of solving parametric pushdown parity games to the problem of solving pebble pushdown parity games.
 
 
-
-
-\subsection{Pebble pushdown systems}
+\paragraph*{Pebble pushdown systems}
 
 \newcommand{\ppda}{\mathcal{I}}
 
 
 An {\em $n$-pebble pushdown automaton} 
 is a tuple 
-$\ppda = (Q, \Gamma,  R, q_{init}, \gamma_{init}, F)$
+$\ppda = (Q, \Gamma,  R, q_{init}, \gamma_{init})$
 where $Q$ is a {\em finite set of  states}; $\Gamma$ is a {\em finite stack alphabet};
   $R  \subseteq  Q  \times \Gamma \times
 		 \{ 0, 1, \ldots n\} \times \mathcal{P}(\{1,\ldots,n\})
@@ -597,8 +568,7 @@ where $Q$ is a {\em finite set of  states}; $\Gamma$ is a {\em finite stack alph
 		and if the last element is
 		$\text{\textit{lift}}$ then we additionally require $i \in S$;
  $q_{init} \in Q$ is an {\em initial  state};
- $\gamma_{init} \in \Gamma$ is an {\em initial stack symbol}; and
- $F \subseteq Q$ is a {\em set of final  states}.
+ $\gamma_{init} \in \Gamma$ is an {\em initial stack symbol}.
 
 
 
@@ -630,7 +600,7 @@ Note a pebble
 can be lifted only if the stack content which corresponds to the pebble
 is the same as the current stack content. 
 This is enforced by syntactically requiring
-the last pebble dropped $i$ is in the set $S$ used for testing the presence of certain pebbles.
+the last pebble dropped $i$ is in the set $S$ used for testing the presence of  pebbles.
 
 
 
@@ -643,8 +613,7 @@ totally undefined function.
 
 
 
-\begin{samepage}
-An $n$-pebble pushdown automaton $\ppda =  (Q, \Gamma,  R, q_{init}, {\gamma_{init}} , F)$ induces 
+An $n$-pebble pushdown automaton $\ppda =  (Q, \Gamma,  R, q_{init}, {\gamma_{init}} )$ induces 
 a transition system  $T_{\ppda} = (\Conf(\ppda), \rightarrow_{\ppda})$ 
  such that
 for all $(q, a, i, S, q', m) \in R$, with $a \in \Gamma$,
@@ -654,6 +623,7 @@ $j \in S$ 	and
  $\mu(j) \neq wa$ 
  for each $j \in \{ 1, \ldots , i \} \setminus S$,
 the following holds
+	%\begin{samepage}
 \begin{itemize}
 \item if $m \in \Op(\Gamma)$, 
 either
@@ -675,12 +645,10 @@ where $\mu'$ is the $\{ 1, \ldots , i - 1 \}$-pebble assignment such that
 $\mu'(j) = \mu(j)$, for each
 $j < i$.
 \end{itemize}
-\end{samepage}
+	%\end{samepage}
 
 
-\par\noindent\ignorespacesafterend
-We are interested in games over pebble pushdown systems, 
-mainly, parity games.
+
 
 Again, given
 a 
@@ -714,24 +682,19 @@ $w \in  \Gamma^*$
 and
 $\mu \in ( \Gamma^* \biguplus \{ \bot \})^{\{1, \ldots, n\}}$. \\
 
-
-
-
-
-
-
-
-
 Concerning pebble pushdown systems, we are interested in the following decision problem.
 
 
 \problemx{$n$-pebble pushdown parity game}
-{An $n$-pebble pushdown automaton $\ppda= (Q, \Gamma,  R, q_{init}, {\gamma_{init}} , F)$, 
+{An $n$-pebble pushdown automaton $\ppda= (Q, \Gamma,  R, q_{init}, {\gamma_{init}})$, 
 where $Q = Q_0  \biguplus Q_1 $, 
 and
 a priority mapping $\Omega: Q \to \{0, \ldots m\}$.}
 {Does player $0$ have a winning strategy from $q_{init}(\gamma_{init}, \mu_{init})$ for the parity game 
-$\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ?}
+$\mathcal{G}= (A_{(\ppda, Q_0 , Q_1)}, \win_{\overline{\Omega}})$ ? \\}
+
+
+Since pebbles can store stack contents, they can be used to simulate parameters. From this we deduce the following theorem. See Appendix~\ref{appendix A} for more details on the construction.
 
 
 \begin{theorem}\label{PPDA reduction}
@@ -767,7 +730,7 @@ reduction from the problem of solving pebble pushdown parity games to the proble
 higher-order pushdown parity games.
 
 
-\subsection{Higher-order pushdown systems}
+\paragraph*{Higher-order pushdown systems}
 
 A {\em level $1$ stack} (or {\em $1$-stack}) over an alphabet $\Gamma$ is 
 simply a 
@@ -817,7 +780,7 @@ The operations added at level $n+1$ are the copy of the topmost $n$-stack
 and the removal of the topmost $n$-stack.
 More formally, if $ \langle s_0 \rangle \langle s_1 \rangle \ldots \langle s_m \rangle$ is a stack of 
 level $n > 1$, 
-the following operations are possible.
+the following operations are possible. 
 %
 \begin{eqnarray*}
 &\text{\textit{push}}_n( \langle s_0 \rangle \langle s_1 \rangle \ldots \langle s_m \rangle) &=\quad  \langle s_0 \rangle \langle s_1 \rangle \ldots \langle s_m \rangle \langle s_m \rangle , \\
@@ -838,7 +801,7 @@ the following operations are possible.
 &\text{\textit{top}}( \langle s_0 \rangle \langle s_1 \rangle \ldots \langle s_m \rangle) &=\quad
 \text{\textit{top}}(s_m).
 \end{eqnarray*}
-The operations $pop_1$ and $top$ are undefined on a stack whose top $1$-stack is empty.  \\
+The operations $pop_1$ and $top$ are undefined on a stack whose top $1$-stack is empty.  
 
 
 Given a stack alphabet $\Gamma$ and $n \in \N$, 
@@ -862,28 +825,21 @@ we denote by  $\Op_n(\Gamma)$ the {\em base set of $n$-stack operations} as
 \begin{samepage}
 \par\noindent\ignorespacesafterend
 A {\em higher-order pushdown systems of level $n$} (or $n$-HPDS for short) 
-is a tuple $\H=(Q, \Gamma, R, q_{init}, \gamma_{init}, F)$,
+is a tuple $\H=(Q, \Gamma, R, q_{init}, \gamma_{init})$,
 where 
-\begin{itemize}
-        \item $Q$ is a non-empty finite {\em set of  states},
-        \item $\Gamma$ is a non-empty finite {\em  stack alphabet},
-	\item $R\subseteq Q\times \Gamma \times Q \times \Op_n(\Gamma)$ is a finite {\em set of  rules},
-        \item $q_{init}$ is the {\em initial  state},
-        \item $\gamma_{init} \in \Gamma$ is the {\em %bottom-of-stack
-initial stack symbol}, and
-	\item $F\subseteq Q$ is a {\em set of final  states}.
-		\end{itemize}
+ $Q$ is a non-empty finite {\em set of  states} ;
+         $\Gamma$ is a non-empty finite {\em  stack alphabet};
+	 $R\subseteq Q\times \Gamma \times Q \times \Op_n(\Gamma)$ is a finite {\em set of  rules};
+         $q_{init}$ is the {\em initial  state} ;
+         $\gamma_{init} \in \Gamma$ is the {\em %bottom-of-stack
+initial stack symbol}.
 \end{samepage}
 
 
-\par\noindent\ignorespacesafterend
 By $\Conf(\mathcal{H}) = Q \times \mathscr{S}_n(\Gamma)$
 we denote the set of {\em configurations} of an $n$-HPDS $\H$. 
 As usual we abbreviate $(q,s) \in \Conf(\mathcal{H})$ as $q(s)$.
-
-
-
-An $n$-HPDS $\H=(Q, \Gamma, R, q_{init}, F)$
+An $n$-HPDS $\H=(Q, \Gamma, R, q_{init})$
 induces the transition system $\T_\H = (Conf(\mathcal{H}), \rightarrow_{\mathcal{H}})$
 where
 for all $q,q'$ in $Q$,
@@ -914,11 +870,10 @@ $\Conf_{\mathcal{H},1}=Q_1\times\mathscr{S}_n(\Gamma)$.
 %
 %
 With these notations in mind one can define the arena
-$$
+$
 A_{(\mathcal{H}, Q_0, Q_1)}
 =
-(\Conf_{\mathcal{H},0}, \Conf_{\mathcal{H},1}, \rightarrow_{\mathcal{H}})$$
-\par\noindent\ignorespacesafterend
+(\Conf_{\mathcal{H},0}, \Conf_{\mathcal{H},1}, \rightarrow_{\mathcal{H}})$
 induced by an $n$-HPDS $\mathcal{H}$ and a partition of its set of states.
 
 
@@ -941,7 +896,7 @@ Concerning higher-order pushdown systems, we are interested in the following dec
 
 \begin{samepage}
 \problemx{$n$-HPDS parity game}
-{An $n$-HPDS $\H= (Q, \Gamma,  R, q_{init}, {\gamma_{init}} , F)$, 
+{An $n$-HPDS $\H= (Q, \Gamma,  R, q_{init}, {\gamma_{init}})$, 
 where $Q = Q_0  \biguplus Q_1 $, 
 and
 a priority mapping $\Omega: Q \to \{0, \ldots m\}$.}
@@ -1153,9 +1108,9 @@ Lifting the second pebble simply uses $\text{\textit{pop}}^=_3$.
 
 By expanding this reasoning inductively, we conclude that given $n \in N$, and
 given an $n$-pebble pushdown automaton 
-$\ppda = (Q, \Gamma, R, q_{init}, \gamma_{init}, F)$, where $Q= Q_0 \biguplus Q_1$,
+$\ppda = (Q, \Gamma, R, q_{init}, \gamma_{init})$, where $Q= Q_0 \biguplus Q_1$,
 one can compute an $(n+1)$-HPDS 
-$\H = (Q', \Gamma, R', q_{init}', \gamma_{init}', F')$  where $Q'= Q_0' \biguplus Q_1'$, 
+$\H = (Q', \Gamma, R', q_{init}', \gamma_{init}')$  where $Q'= Q_0' \biguplus Q_1'$, 
 such 
 that 
 player $0$ has a winning strategy from $q'_{init}(\text{\textit{push}}_1^{\gamma_{init}'}(\epsilon_{n}))$ in $A_{(\H,Q'_0,Q'_1)}$ 
@@ -1170,18 +1125,13 @@ to {\sc $(n+1)$-HPDS$^=$ parity game}.
 \end{theorem}
 
 The reduction implies decidability of pebble pushdown systems parity game. Furthermore,
-by Theorem~\ref{HPDA parity game}, it implies the following complexity result.
+by Theorem~\ref{HPDA parity game} and Theorem~\ref{PPDA reduction}, it implies the following complexity result.
 
 
 \begin{theorem}
-{\sc $n$-pebble pushdown systems parity game} is in $(n+1)$-$\EXP$.
+{\sc $n$-pebble pushdown systems parity game} and {\sc $n$-parametric pushdown systems parity game} are in $(n+1)$-$\EXP$.
 \end{theorem}
 
-Finally, the following complexity result is due the above and Theorem~\ref{PPDA reduction}.
-
-\begin{corollary}
-{\sc $n$-parametric pushdown systems parity game} is in $(n+1)$-$\EXP$.
-\end{corollary}
 
 
 
@@ -1323,20 +1273,17 @@ Then, the nonelementary lower bound follows from Theorem~\ref{FOnonelementary}.
 
 In this paper we have shown that
 deciding
-the winner of a parity game on a graph of a pebble pushdown system 
-is nonelementary.
-
-	For the nonelementary lower bound
-we reduced the $\FO$ satisfiability problem on words \---- known to be nonelementary
+the winner of a parametric parity game
+is nonelementary, reducing the $\FO$ satisfiability problem on words \---- known to be nonelementary
 from \cite{Sto74} \---- to the
 problem of deciding whether player $0$ has a winning strategy from some starting configuration in 
-a pebble pushdown parity game.
+a parametric pushdown parity game.
 
 	For the upper bound, we replaced parameters by pebbles acting as registers, leading to a more general model, and then used a reducton to higher-order pushdown systems parity games to solve parity games. Since solving parity games on higher-order pushdown systems with level $n$ stack is $n$-$\EXP$-complete \cite{ Cach03, cachat2007complexity}, this provides an $(n+1)$-$\EXP$ upper bound for solving parametric parity games on parametric pushdown systems with $n$ parameters.
 
 
-For solving parametric pushdown parity games, on the other hand, we introduced the notion of pebble pushdown parity games, and
-pebble pushdown automata over unary alphabet plus a bottom-of-stack symbol
+For solving parametric pushdown parity games we introduced the notion of pebble pushdown parity games.
+Pebble pushdown automata over unary alphabet plus a bottom-of-stack symbol
 can be seen as a form of one-counter automata extended with pebbles. 
 A pebble one-counter automata is then a one-counter automata that
 can use a set of pebbles as markings on the set of non-negative integers, with a 
@@ -1377,15 +1324,18 @@ and register pushdown automata, especially since the latter have been shown to o
 
 
 
+
 \appendix
 
 
-\subsection{From parametric pushdown 
+\setcounter{theorem}{0}
+
+\section{From parametric pushdown 
 systems 
 to pebble pushdown systems
-}
+}\label{appendix A}
 
-We now provide a reduction from the problem of solving parametric pushdown parity games to the problem of solving pebble pushdown parity games. 
+We now provide a reduction from the problem of solving parametric pushdown parity games to the problem of solving pebble pushdown parity games. Recall the theorem from Section~\ref{pebbles}.
 
 
 \begin{theorem}\label{PPDA reduction}
@@ -1402,7 +1352,7 @@ is polynomial time reducible to
 
 Let us fix some
 $n$-parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, 
-P, q_{init}, { \gamma_{init}} , F)$,
+P, q_{init}, { \gamma_{init}})$,
  disjoint
 union $Q = Q_0  \biguplus Q_1$
 and $P = P_0 \biguplus P_1$,
@@ -1413,7 +1363,7 @@ $\Omega : Q \times \Gamma^* \times ( \Gamma^* \biguplus \{ \bot \})^R \to [0, m 
 
 We construct
   an 
- $n$-pebble pushdown automaton $\ppda =(Q', \Gamma,  R', q_{init}', {\gamma_{init}} , F')$,
+ $n$-pebble pushdown automaton $\ppda =(Q', \Gamma,  R', q_{init}', {\gamma_{init}})$,
 a 
  disjoint
 union $Q' = Q_0'  \biguplus Q_1'$
