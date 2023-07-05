@@ -28,7 +28,7 @@ the bounded resilience problem (BRP) is to decide whether there exists an $k$ su
 
 
 {\bf State of the art.}
-In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} interesting results (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
+In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
 %Since the definition of resilience is only given informally in the introduction as "a process is resilient to an adversary if its observable behaviour in the presence of adversarial action is equivalent to its behaviour in the absence of the adversary", it still remains unclear what is formally resilience.
 %%%%%%%%%
 
@@ -120,16 +120,16 @@ or vice-versa. To make its choice known to the aircrafts, the control tower will
 We assume that the VASS is
 lossy, i.e. 
  the contents of a counter can spontaneously get lower at any time.
- Lossiness is represented by using transitions decreasing any counter by one from every state. 
+\alain{contradictoire, à enlever:  Lossiness is represented by using transitions decreasing any counter by one from every state.}
 % We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
-In this example, the safe, desirable state would be one where the aircrafts have both landed, i.e.
+In this example, the safe states would be ones where the aircrafts have both landed, i.e.
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$, and $\Bad$ is the complement of $\Safe$. 
 % We remark that $\Safe$ and $\Bad$ are here both upward and downward closed.
-Resilience here expresses that the aircrafts will both land, while $k$-resilience asks whether they will do so in at most $k$ steps. 
-$k$-resilience is of interest since in general we want to ensure the safe space will 
-be reached in
-the least amount of steps possible. 
-In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time. Fortunately, $8$-resilience hold in the example.
+Resilience here expresses that the aircrafts will both land, while $k$-resilience is the property insuring that they will do so in at most $k$ steps. 
+%$k$-resilience is of interest since in general we want to ensure the safe space will 
+%be reached in
+%the least amount of steps possible. 
+In this exemple, aircrafts cannot simply wait in the air an unbounded amount of time: here, $8$-resilience hold.\alain{expliquer}
 \end{example}
 
 % contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
