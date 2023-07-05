@@ -60,7 +60,7 @@
 \renewcommand{\G}{\mathcal{G}}
 \renewcommand{\O}{\mathcal{O}}
 \renewcommand{\R}{\mathbb{R}}
-\renewcommand{\H}{\mathcal{H}}
+\renewcommand{\H}{\mathcal{C}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Time}{\mathbb{T}}
@@ -369,7 +369,7 @@ A parametric pushdown automaton is then a finite automaton extended with a finit
 
 \par\noindent\ignorespacesafterend
 A {\em parametric pushdown system} ({\em PPDS} for short) 
-is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}),$ where
+is a tuple $\mathcal{A} = (Q, \Gamma, P, R, q_{init},\gamma_{init}),$ where
  $Q$ is a non-empty finite {\em set of  states};
  $\Gamma$ is a non-empty finite {\em  stack alphabet};
  $P$ is a finite {\em   set of parameters}, \textcolor{black}{with $\Gamma \cap P = \emptyset$};
@@ -378,26 +378,26 @@ is a tuple $\mathcal{Z} = (Q, \Gamma, P, R, q_{init},\gamma_{init}),$ where
  $ \gamma_{init} \in \Gamma$ is an {\em initial stack symbol}.
 
 
-The {\em size} of $\mathcal{Z}$ is defined as
-$|\mathcal{Z}| = |Q| + |\Gamma| + |P| + |R| $.
-We also refer to $\mathcal{Z}$ as an $n$-parametric pushdown automaton if $|P| = n$.
+The {\em size} of $\mathcal{A}$ is defined as
+$|\mathcal{A}| = |Q| + |\Gamma| + |P| + |R| $.
+We also refer to $\mathcal{A}$ as an $n$-parametric pushdown automaton if $|P| = n$.
 A {\em stack content} is a word from $ \Gamma^*$. 
 As before we write the top
 of the stack at the right of the word. 
-By $\Conf(\mathcal{Z})=Q\times  \Gamma^*$ we denote the set of
-{\em configurations} of $\mathcal{Z}$. As usual we rather write $q(w)$ instead of $(q, w)$.
+By $\Conf(\mathcal{A})=Q\times  \Gamma^*$ we denote the set of
+{\em configurations} of $\mathcal{A}$. As usual we rather write $q(w)$ instead of $(q, w)$.
 A {\em parameter valuation} is a function $\mu$ from $P$ to $\Gamma^*$.
 
 \begin{samepage}
-A parametric pushdown automaton  $\mathcal{Z}= (Q, \Gamma, P,u R, q_{init}, \gamma_{init})$ 
+A parametric pushdown automaton  $\mathcal{A}= (Q, \Gamma, P,u R, q_{init}, \gamma_{init})$ 
 and a parameter valuation $\mu: P\rightarrow \Gamma^*$ induce the 
 transition system  
-$T_{\mathcal{Z}}^{\mu} = (\Conf(\mathcal{Z}), 
-\rightarrow_{\mathcal{Z},\mu})$ where
+$T_{\mathcal{A}}^{\mu} = (\Conf(\mathcal{A}), 
+\rightarrow_{\mathcal{A},\mu})$ where
 for all $ q, q'  \in  Q$, 
 for all $ w,w' \in \Gamma^* $, and 
 for all $ a  \in  \Gamma$, 
-$q(wa) \rightarrow_{\mathcal{Z},\mu} q'(w')$
+$q(wa) \rightarrow_{\mathcal{A},\mu} q'(w')$
 if there exists a rule in $R$
  of the form $(q,a,q', op)$ or $(q,p,q', op)$ with $\mu(p)=wa$,
 such that
@@ -431,7 +431,7 @@ alternate choosing values for the parameters before alternating choosing success
 For simplicity's sake, the values are assigned to the parameters one by one, alternating between values assigned by player $0$ and by player $1$.
 
 For an  $n$-parametric pushdown automaton 
-$\mathcal{Z}= (Q, \Gamma, P, R, q_{init}, \gamma_{init})$,
+$\mathcal{A}= (Q, \Gamma, P, R, q_{init}, \gamma_{init})$,
 and a partition
 $P = P_0 \biguplus P_1$,
 we introduce first arenas over the set of partial parameter valuations. The values are assigned to the parameters one by one, alternating between values assigned by player $0$ (corresponding to parameters in $P_0$) and by player $1$ (corresponding to parameters in $P_1$). Other options could have been considered: for instance, we could consider a fully existential approach 
@@ -447,7 +447,7 @@ Assume an ordering of the parameters $P_0 \biguplus P_1 = \{p_0, p_1, \ldots, p_
  $k \in \N$, the {\em parameter valuation arena} is a tuple $A_{P_0,P_1,\Gamma} = (S_0, S_1, \rightarrow_P)$ where
 \begin{itemize}
 
-\item $S_0$ is the set of all partial parameter valuations with images in $\Gamma^*$ and domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_0$,
+\item $S_0$ is the set of all partial parameter valuations with images in $\Gamma^*$ and domain $\{p_0, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_0$,
 
 \item $S_1$ is the set of all partial $\M$-parameter valuations  with images in $\Gamma^*$ and  domain $\{p_0, p_1, \ldots, p_{j}\} \setminus \{p_j\}$ where $\p_j \in P_1$,
 
@@ -470,16 +470,16 @@ The parametric valuation arena is a prefix of the full parametric games: once th
 %
 %
 
-We then obtain the full parametric game's arena $A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$ by, for every configuration $\mu$ in $A_{P_0,P_1,\Gamma^*}$,
+We then obtain the full parametric game's arena $A_{(\mathcal{A}, P_0, P_1, Q_0 , Q_1)}$ by, for every configuration $\mu$ in $A_{P_0,P_1,\Gamma^*}$,
  adding a transition
 from $\mu$ towards the initial configuration
 $(q_{init}(\gamma_{init}), \mu)$ 
 of
 the arena
 $
-A_{(\mathcal{Z}, Q_0, Q_1, \mu)}
+A_{(\mathcal{A}, Q_0, Q_1, \mu)}
 =
-(Q_0\times \Gamma^*, Q_1\times \Gamma^*, \rightarrow_{\mathcal{Z},\mu})$
+(Q_0\times \Gamma^*, Q_1\times \Gamma^*, \rightarrow_{\mathcal{A},\mu})$
 with configurations additionally including $\mu$ in the tuple.
 
 
@@ -492,7 +492,7 @@ with configurations additionally including $\mu$ in the tuple.
 We extend any 
 priority function $\Omega: Q \to [0, m]$
 into
-$\widehat{\Omega}: \Conf(\mathcal{Z}) \cup (\Gamma^* \cup \bot)^{[0,n]} \to [0, m]$,
+$\widehat{\Omega}: \Conf(\mathcal{A}) \cup (\Gamma^* \cup \bot)^{[0,n]} \to [0, m]$,
 where we set
 $\widehat{\Omega}(q, w, \mu) = \Omega(q)$
 for all
@@ -505,10 +505,10 @@ for all $\mu \in (\Gamma^* \cup \bot)^{P}$. We consider the following decision p
 
 
 \problemx{Parametric pushdown parity game}
-{A parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} )$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$, 
+{A parametric pushdown automaton $\mathcal{A}= (Q, \Gamma, \{p_0, p_1, \ldots, p_k \}, R, q_{init}, \gamma_{init} )$, where $Q = Q_0  \biguplus Q_1 $, and $ P = P_0 \biguplus P_1$, 
 and a priority function $\Omega: Q \to [0, m]$.}
 {Does player $0$ have a winning strategy from $\mu_\bot$ in the parity game \\
-$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$ ?\newline}
+$\mathcal{G} =(A_{(\mathcal{A}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$ ?\newline}
 
 
 
@@ -516,7 +516,7 @@ $\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$
 
 We write 
 {\sc $n$-parametric pushdown parity game} if 
- the number of parameters $n=|P|$ of $\mathcal{Z}$ is fixed by the problem.
+ the number of parameters $n=|P|$ of $\mathcal{A}$ is fixed by the problem.
 
 
 
@@ -553,7 +553,7 @@ One can think of a pebble as a register that can store a stack content for later
 
 \paragraph*{Pebble pushdown systems}
 
-\newcommand{\ppda}{\mathcal{I}}
+\newcommand{\ppda}{\mathcal{B}}
 
 
 An {\em $n$-pebble pushdown automaton} 
@@ -823,7 +823,7 @@ we denote by  $\Op_n(\Gamma)$ the {\em base set of $n$-stack operations} as
 
 
 \begin{samepage}
-\par\noindent\ignorespacesafterend
+%\par\noindent\ignorespacesafterend
 A {\em higher-order pushdown systems of level $n$} (or $n$-HPDS for short) 
 is a tuple $\H=(Q, \Gamma, R, q_{init}, \gamma_{init})$,
 where 
@@ -836,15 +836,15 @@ initial stack symbol}.
 \end{samepage}
 
 
-By $\Conf(\mathcal{H}) = Q \times \mathscr{S}_n(\Gamma)$
+By $\Conf(\H) = Q \times \mathscr{S}_n(\Gamma)$
 we denote the set of {\em configurations} of an $n$-HPDS $\H$. 
-As usual we abbreviate $(q,s) \in \Conf(\mathcal{H})$ as $q(s)$.
+As usual we abbreviate $(q,s) \in \Conf(\H)$ as $q(s)$.
 An $n$-HPDS $\H=(Q, \Gamma, R, q_{init})$
-induces the transition system $\T_\H = (Conf(\mathcal{H}), \rightarrow_{\mathcal{H}})$
+induces the transition system $\T_\H = (Conf(\H), \rightarrow_{\H})$
 where
 for all $q,q'$ in $Q$,
 for all $s,s'$ in $\mathscr{S}_n(\Gamma)$,
-$q(s) \rightarrow_{\mathcal{H}} q'(s')$ if
+$q(s) \rightarrow_{\H} q'(s')$ if
 there exists some rule
 $(q,\gamma,q',op) \in R$
 such that
@@ -858,23 +858,23 @@ $s' = op(s)$.
 
 Again we are interested in parity games.
 As expected, given an 
- $n$-HPDS $\mathcal{H}$
+ $n$-HPDS $\H$
  and a partition of
 $Q$ into $Q_0$ and $Q_1$,
 we partition the configurations of
-$T_{\mathcal{H}}$
+$T_{\H}$
 into
-$\Conf_{\mathcal{H},0}=Q_0\times \mathscr{S}_n(\Gamma)$
+$\Conf_{\H,0}=Q_0\times \mathscr{S}_n(\Gamma)$
 and
-$\Conf_{\mathcal{H},1}=Q_1\times\mathscr{S}_n(\Gamma)$.
+$\Conf_{\H,1}=Q_1\times\mathscr{S}_n(\Gamma)$.
 %
 %
 With these notations in mind one can define the arena
 $
-A_{(\mathcal{H}, Q_0, Q_1)}
+A_{(\H, Q_0, Q_1)}
 =
-(\Conf_{\mathcal{H},0}, \Conf_{\mathcal{H},1}, \rightarrow_{\mathcal{H}})$
-induced by an $n$-HPDS $\mathcal{H}$ and a partition of its set of states.
+(\Conf_{\H,0}, \Conf_{\H,1}, \rightarrow_{\H})$
+induced by an $n$-HPDS $\H$ and a partition of its set of states.
 
 
 As expected, given a 
@@ -882,7 +882,7 @@ priority function $\Omega: Q \to [0, m]$,
 we naturally extend the function
 as follows,
 by setting
-$\Omega_{\mathscr{S}_n(\Gamma)}: \Conf(\mathcal{H}) \to [0, m]$
+$\Omega_{\mathscr{S}_n(\Gamma)}: \Conf(\H) \to [0, m]$
 and
 $\Omega_{\mathscr{S}_n(\Gamma)}(q, s) = \Omega(q)$
 for all
@@ -939,7 +939,7 @@ the new operation
 $\text{\textit{pop}}_j^=$ has the same effect as $\text{\textit{pop}}_j$, but
 can only be applied if the two top level $j$ stacks coincide.
 In \cite{carayol2006automates} it is seen as a symmetrical operation in comparison to
-$\text{\textit{push}}_j$.\\
+$\text{\textit{push}}_j$.
 
 A {\em higher-order pushdown automaton with equality pop of level $n$} ($n$-HPDS$^=$ for short) 
 is a higher-order pushdown automaton of level $n$ where in
@@ -995,13 +995,10 @@ previous stack content. It is proven that such en encoding is possible since
 there is 
 for every stack $s$ of level $n$
  a unique shortest sequence of instructions which creates $s$ from
-$\epsilon_n$. \\
+$\epsilon_n$. 
 
 Defined like {\sc $n$-HPDS parity game}, we write {\sc $n$-HPDS$^=$ parity game}  
 in case the input is an $n$-HPDS$^=$ rather than an $n$-HPDS.
-
-
-
 The algorithm from \cite{Cach03} actually provides an algorithmic solution to parity games on the graphs of the Caucal hierarchy. 
 We skip a formal definition of a graph of level $n$ in the Caucal hierarchy, and refer the reader
 to \cite{Cau02mfcs} for more details.
@@ -1013,7 +1010,7 @@ of the Caucal hierarchy is generated by an $n$-HPDS.
 %
 In \cite{carayol2006automates}
 it is similarly shown that
-every transition system induced by an $n$-HPDS$^=$ $\H$ is a graph of the Caucal hierarchy.
+every transition system induced by an $n$-HPDS$^=$ $\H$ is a graph of level $n$ of the Caucal hierarchy.
 %
 %
 The algorithm from \cite{Cach03} hence lead to a solution for
@@ -1230,7 +1227,7 @@ Player $0$ starts by chosing a valuation $w$ for the first parameter (parameter 
 the word $w$, which corresponds to the word ``guessed" by player $0$. 
 This parameter is meant in part to enforce that 
 the stack remains a prefix of $w$, with each stack content of the play corresponding to a position in the word.
- To enforce this, we allow in $\mathcal{Z}$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position in the word.
+ To enforce this, we allow in $\mathcal{A}$, after any decision, for a player to challenge the assumption that the last movement of the other player led to a position in the word.
   A player thus challenged only has the ability to add things onto the stack, and win if and only if able to find a way back to the value of parameter $p_0$. 
 The other parameters are meant to correspond to the variables, with player $1$ parameters corresponding to universal variables and player $0$ parameters corresponding to existential variables.
 
@@ -1351,7 +1348,7 @@ is polynomial time reducible to
 
 
 Let us fix some
-$n$-parametric pushdown automaton $\mathcal{Z}= (Q, \Gamma, 
+$n$-parametric pushdown automaton $\mathcal{A}= (Q, \Gamma, 
 P, q_{init}, { \gamma_{init}})$,
  disjoint
 union $Q = Q_0  \biguplus Q_1$
@@ -1378,9 +1375,9 @@ if and only if
 player $0$ has a 
 winning strategy from $\mu_\bot$ in 
 the parity game
-$\mathcal{G} =(A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$,
+$\mathcal{G} =(A_{(\mathcal{A}, P_0, P_1, Q_0 , Q_1)}, \win_{\widehat{\Omega}})$,
 where		 
-$A_{(\mathcal{Z}, P_0, P_1, Q_0 , Q_1)}$
+$A_{(\mathcal{A}, P_0, P_1, Q_0 , Q_1)}$
 and
 $\widehat{\Omega}$
 correspond to the definitions on page~\pageref{PPDA reachability game}.
