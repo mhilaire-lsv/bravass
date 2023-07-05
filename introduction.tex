@@ -14,7 +14,7 @@ pushed it towards some kind of ‘error state’ and, if it can, whether it can 
 {\bf Home-spaces}
  In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
 %			from all reachable states from $s_0$, it is always possible to reach $H$ 
-$\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subsets $X,H$, we say that $H$ is an home-space for $X$ if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
+$\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %%%%%
 
 {\bf Resiliences.}  
@@ -28,16 +28,17 @@ the bounded resilience problem (BRP) is to decide whether there exists an $k$ su
 
 
 {\bf State of the art.}
-In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} many interesting intuitions (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
+In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
 %Since the definition of resilience is only given informally in the introduction as "a process is resilient to an adversary if its observable behaviour in the presence of adversarial action is equivalent to its behaviour in the absence of the adversary", it still remains unclear what is formally resilience.
 %%%%%%%%%
 
-In 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and Okzan in 2022, \cite{DBLP:conf/gg/Ozkan22} proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
-$\uparrow$ $\post^*$ basis) and with $\Safe=\uparrow \Safe$, hence $\Bad$ is downward-closed
+In 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and Okzan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
+$\uparrow$ $\post^*$ basis) and with $\Safe=\uparrow \Safe$, (hence $\Bad$ is downward-closed).
 %		(even though \cite{DBLP:conf/gg/Ozkan22} also discuss, albeit briefly, the other possible cases). 
 %		The paper of Prasad and Zuck \cite{DBLP:journals/corr/PrasadZ16} is not quoted by Ozkan and Würdemann.
+
 Remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
-Both Prasad \& Zuck and Ozkan \& Würdemann did not make the relation between resilience and the home-space property.
+However, neither Prasad \& Zuck nor Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
 %%%%%%%%%
 %
 
@@ -53,7 +54,7 @@ Both Prasad \& Zuck and Ozkan \& Würdemann did not make the relation between re
 \begin{itemize}
 %\item We investigate and expand upon the notion of state-resilience ~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we study three decidability questions for each of type of resilience. We remark that it is an instance of the home-space problem~\cite{DBLP:journals/corr/abs-2207-02697,memmi2023invariants}.
 
-\item Surprinsingly, the general undecidability statements were not known neither proved. We show that resilience and state-resilience problems are both undecidable for WSTS with strong compatibility. 
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and state-resilience problems are both undecidable for WSTS with strong compatibility. 
 %Moreover, state-resilience,
 %bounded-state-resilience and
 % $k$-state-resilience
@@ -85,7 +86,7 @@ for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-cl
 %when
 %$\Safe=\uparrow \Safe$
 %and $\Bad=\downarrow \Bad$. 
-We show that removing the effective 
+We also show that removing the effective 
 $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideal-effective WSTS with downward and upward compatibilities ({\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility).
 %
 
@@ -98,7 +99,7 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 	\begin{figure}
 			\hspace{2cm}
 \includegraphics[width=0.65\textwidth]{FigureB}
-	\caption{A lossy VASS with three subsystems and four counters. Leftmost and rightmost systems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $C$ represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing. Arrows represent control-transitions. Unlabelled arrows by default do not modify counter values.}
+	\caption{A lossy VASS with three subsystems and four counters. Leftmost and rightmost subsystems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $C$ represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing. Arrows represent control-transitions. Unlabelled arrows by default do not modify counter values.}
 					\label{air control}
 	\end{figure}
 \end{center}
@@ -119,16 +120,16 @@ or vice-versa. To make its choice known to the aircrafts, the control tower will
 We assume that the VASS is
 lossy, i.e. 
  the contents of a counter can spontaneously get lower at any time.
- Lossiness is represented by using transitions decreasing any counter by one from every state. 
+\alain{contradictoire, à enlever:  Lossiness is represented by using transitions decreasing any counter by one from every state.}
 % We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
-In this example, the safe, desirable state would be one where the aircrafts have both landed, i.e.
+In this example, the safe states would be ones where the aircrafts have both landed, i.e.
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$, and $\Bad$ is the complement of $\Safe$. 
 % We remark that $\Safe$ and $\Bad$ are here both upward and downward closed.
-Resilience here expresses that the aircrafts will both land, while $k$-resilience asks whether they will do so in at most $k$ steps. 
-$k$-resilience is of interest since in general we want to ensure the safe space will 
-be reached in
-the least amount of steps possible. 
-In this exemple, for instance, aircrafts cannot simply wait in the air an infinite amount of time. Fortunately, $8$-resilience hold in the example.
+Resilience here expresses that the aircrafts will both land, while $k$-resilience is the property insuring that they will do so in at most $k$ steps. 
+%$k$-resilience is of interest since in general we want to ensure the safe space will 
+%be reached in
+%the least amount of steps possible. 
+In this exemple, aircrafts cannot simply wait in the air an unbounded amount of time: here, $8$-resilience hold.\alain{expliquer}
 \end{example}
 
 % contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
