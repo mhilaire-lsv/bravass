@@ -48,7 +48,7 @@ $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
 the resilience problem is decidable.
 \end{proof}
 
-Let us recall that a system $\mathscr{S}=(S,\rightarrow, \leq)$ is downward compatible if
+Let us recall that a system $\mathscr{S}=(S,\rightarrow, \leq)$ is \emph{downward compatible} if
 for all $s_1, s_2, t_1 \in S$ with
 $s_2 \leq s_1$ and $s_1 \to t_1$
 there
@@ -58,6 +58,9 @@ $t_2 \leq t_1$ and $s_2 \to^* t_2$.
 \begin{corollary}
 The resilience problem is decidable for ideal-effective downward-compatible WSTS with 
 $\Safe=\downarrow \Safe$.
+\alain{ou
+{\sc Resilience} is decidable for ideal-effective downward-compatible WSTS with 
+$\Safe=\downarrow \Safe$.}
 \end{corollary}
 
 \begin{proof}
