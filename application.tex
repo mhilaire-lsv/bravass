@@ -7,7 +7,7 @@
 %{\bf Vector addition system with states}
 %
 
-\section{Resilience for VASS}
+\section{Resilience for VASS and variations}
 
 In this section we continue to study VASS. Since they are completion-post-effective WSTS, they inherit the decidability results for WSTS in the case 
 $\Safe$ is upward-closed. Lacking downward compatibility or a more relaxed hypothesis that
@@ -160,7 +160,7 @@ the path from $\Bad$ to $\Safe$
 when $\Safe$ is downward-closed. Unfortunately, we have the following:
 
 \begin{proposition}
-{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system \alain{pas défini}when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{proposition}
 
 
@@ -179,7 +179,7 @@ Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$
 Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold either.
 \end{proof}
 
-This all changes when you add control states. For a VASS with control states in $Q$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+This all changes when one considers VASS (having control states). For a VASS $V = (Q,T)$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
 then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 $\uparrow q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
