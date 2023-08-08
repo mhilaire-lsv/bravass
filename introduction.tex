@@ -121,9 +121,7 @@ Safety requires that only one aircraft at a time attempts to land. The role of t
 there are two possible choices: aircraft $A$ waits for aircraft $B$ to land
 or vice-versa. To make its choice known to the aircrafts, the control tower will use the counters. 
 We assume that the VASS is
-lossy, i.e. 
- the contents of a counter can spontaneously get lower at any time.
-\alain{contradictoire, à enlever:  Lossiness is represented by using transitions decreasing any counter by one from every state.}
+lossy;  Lossiness will be represented by using transitions decreasing any counter by one from every state.
 % We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
 In this example, the safe states would be ones where the aircrafts have both landed, i.e.
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$, and $\Bad$ is the complement of $\Safe$. 
