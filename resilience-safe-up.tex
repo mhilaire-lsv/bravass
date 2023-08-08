@@ -55,14 +55,14 @@ Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two 
 %finite \alain{non, confusion entre ensemble et base}
  sets $\Bad = \downarrow \Bad$ and $\Safe = \uparrow \Safe$.
-The resilience problem (RP), the bounded resilience problem (BRP)
-and the $k$-resilience problem (kRP) are decidable.
+{\sc Resilience}, {\sc Bounded resilience} 
+and {\sc $k$-resilience} are decidable.
 \end{theorem}
 
 \begin{proof}
 Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Safe$.
 The %uniform 
-resilience problem (RP) can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
+resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
 
 %Proposition 30 in \cite{BFM-icalp14} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{*} y'$ in $\mathscr{S}$.
 
@@ -96,30 +96,11 @@ This implies that resilience and bounded resilience are equivalent to coverabili
 %else if some of these $n \times m$ coverability questions are negative then resilience
 %do not hold and bounded resilience do not hold either.
 Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we deduce that both the 
-  resilience problem (RP) and the bounded resilience problem (BRP) are decidable.
+  resilience problem and the bounded resilience problem are decidable.
 
-\iffalse
-	\end{proof}
 
-	\begin{theorem}\label{k-down-up}
-	Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS 
-	with strong compatibility and the predbasis hypothesis, and two finite sets: $\Bad$ 
-	and $\Safe$.
-	The  $k$-resilience problem (kRP) is decidable 
-	%	for $k \geq \min(K,n)$ where $n$ satisfies $ \uparrow \pred^n(\Safe)=  \uparrow 	\pred^*(\Safe)$. 
-	\textcolor{red}{CONJECTURE for now}
-	 \end{theorem}
 
-	\begin{proof}
-
-We begin to compute $K$ and $n$ such that $ \uparrow \pred^n(\Safe)=  \uparrow \pred^*(\Safe)$.
-If $K=\infty$ then $\mathscr{S}$ is not resilient for Safe and Bad.
-Now, if $k \geq min(K,n)$, we conclude that is $k$-resilient; 
-%	if moreover $\mathscr{S}=(S,\rightarrow, \leq)$ has the predbasis hypothesis, 
-%	and then kRP is decidable.
-\fi
-
-Let us now show that the $k$-resilience problem (kRP), with $k \in \mathbb{N}$, is also decidable.
+Let us now show that the $k$-resilience problem, with $k \in \mathbb{N}$, is also decidable.
 Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. 
 If $\downarrow b_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow b_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
@@ -128,8 +109,7 @@ Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=\max(k'_{i,j} \mid i=1,..,n$ and
 %	than $\min(K,n)$ from the ideals of the decomposition of $\Bad$ in the completion \alain{à expliquer mieux}.
 \end{proof}
 
-% \alain{indecidabilite en enlevant une ou des hypotheses: The resilience problem (RP), the bounded resilience problem (BRP) and the $k$-resilience problem (kRP) are undecidable for WSTS with strong compatibility}
-%
+
 
 Let us remark that coverability reduce
 to resilience when $\Bad = \downarrow \Bad$ and  $\Safe = \uparrow \Safe$,
