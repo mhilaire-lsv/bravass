@@ -2,7 +2,7 @@
 
 \section{Resilience when $\Safe$ and $\Bad$ have the same closure properties}
 
-We relax for now the hypothesis that $\Bad$ is the complement of $\Safe$, thus it is possible for $\Safe$ and $\Bad$ to share closure properties, i.e. for them to be both downward-closed or upward-closed, and we explore both possiblities.
+We relax now the hypothesis that $\Bad$ is the complement of $\Safe$. In this appendix it is thus possible for $\Safe$ and $\Bad$ to share closure properties, i.e. for them to be both downward-closed or upward-closed. We will now explore both possiblities.
 
 
 \subsection{Case: $\Bad=\downarrow \Bad$ and $\Safe=\downarrow \Safe$}\label{case down down}
@@ -13,7 +13,7 @@ We start with the case $\Safe = \downarrow \Safe$ and $\Bad = \downarrow \Bad$.
 Unfortunately, in this case the resilience problem is undecidable.
 
 \begin{theorem}\label{down-down}
-The {\sc Resilience problem} is undecidable for  effective WSTS with  strong  compatibility such that
+{\sc Resilience} is undecidable for  effective WSTS with  strong  compatibility such that
 %	with more than one minimal element, 
 $\Safe=\downarrow \Safe$
 and $\Bad=\downarrow \Bad$.
@@ -42,7 +42,7 @@ such that $\Bad = U \setminus \Safe$.
 
 
 \begin{theorem}\label{up-up}
-The resilience problem is decidable for effective WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
+{\sc Resilience} is decidable for effective WSTS with effective pred-basis, $\Safe=\uparrow \Safe$
 and $\Bad= U \setminus \Safe$ with $U = \uparrow U$.
 \end{theorem}
 
@@ -57,7 +57,7 @@ hence the resilience problem is decidable.
 \end{proof}
 
 \begin{proposition}
-In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the bounded resilience problem is equivalent to the resilience problem.
+In WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, the {\sc Bounded resilience} is equivalent to {\sc Resilience}.
 \end{proposition}
 
 \begin{proof}
@@ -71,7 +71,7 @@ Hence the equivalence.
 \end{proof}
 
 \begin{corollary}\label{B-up-up}
-The bounded resilience problem is decidable for WSTS with effective pred-basis,
+{\sc Bounded resilience}  is decidable for WSTS with effective pred-basis,
 strong compatibility
  $\Safe=\uparrow \Safe$
 and $\Bad=U \setminus \Safe$ with $U = \uparrow U$.
@@ -79,8 +79,7 @@ and $\Bad=U \setminus \Safe$ with $U = \uparrow U$.
 
 
 \begin{theorem}\label{k-up-up}
-The % three %uniform 
-$k$-resilience problem is decidable for WSTS with effective pred-basis, strong %upward-
+{\sc $k$-resilience}  is decidable for WSTS with effective pred-basis, strong %upward-
 compatibility, $\Safe=\uparrow \Safe$
 and $\Bad=U \setminus \Safe$  with $U = \uparrow U$.
 %	and \Bad is upward-closed or downward-closed.
@@ -98,22 +97,24 @@ hence the resilience problem is decidable.
 
 \section{Reductions to reset-VASS}
 
-Most of our undecidability results make use of reset-VASS, which are WSTS, and for which several problems are undecidable, including reachability~\cite{araki1976PN, dufourd1998reset}. This has consequences for {\sc Resilience}. For instance in the case $\Safe = \downarrow \Safe$, it is possible for $\Safe$ to be a singleton element. Even then, though, {\sc Resilience} (resp. {\sc State-resilience}) is not strictly reachability, and we will need to delve more into the details to obtain undecidability results. 
+Most of our undecidability results rely on reset-VASS, which are WSTS, and for which several problems are undecidable, including reachability~\cite{araki1976PN, dufourd1998reset}. This has consequences for {\sc Resilience}; for instance in the case $\Safe = \downarrow \Safe$, it is possible for $\Safe$ to be a singleton element. Even then, {\sc Resilience} (resp. {\sc State-resilience}) is not strictly speaking the same as reachability, and we will need to delve more into the details to obtain undecidability results. 
 
 This section is dedicated to studying reset-VASS for showing undecidability of {\sc Resilience} and {\sc State-resilience} for WSTS in general. 
 
-\subsection{Home-state is undecidable for Minsky machine, reset-VASS and thus, WSTS}\label{HS-Minsk}
+\subsection{Home-state is undecidable for Minsky machine, reset-VASS and WSTS}\label{HS-Minsk}
 
 
-We mentionned in Section~$3$ that {\sc Resilience} is undecidable for WSTS in general when $\Safe = \downarrow \Safe$ hence $\Bad = \uparrow \Bad$. Let us provide a more detailed undecidability proof here.
+We mentionned in Section~$3$ that {\sc Resilience} is undecidable for WSTS in general when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. Let us provide a more detailed undecidability proof here.
 
 First, let us recall the home-state problem
 
 \problemx{Home-state}
 {A transition system $\mathscr{S}=(S,\rightarrow)$ and a state $s \in S$.}
-{$S \longrightarrow^{*} \{s\}$ ?\newline}
+{$\post^*(S) \subseteq \pred^*(\{s\})$ ?\newline}
 
 % whether a state $s$ is such that, for all state $s_0$ there exists a path from $s_0$ to $s$.
+% post ∗ (S ) ⊆ pred ∗ (s_0)
+
 
 Home-state is undecidable for Minsky machine with $3+$ counters.
 This stems from the fact $2$-counter Minsky machine termination is undecidable~\cite{Min61, Min67}.
@@ -121,7 +122,7 @@ From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky ma
 such that the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control state indicative of termination, then lower the first two counters until they reach $0$, then finally lower the third counter until it reaches $0$.
 % Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
-Thus {\sc Home-state} is undecidable for Minsky machines, and hence {\sc Resilience} is undecidable.
+Thus {\sc Home-state} is undecidable for Minsky machines. Since $\post^*(S) \subseteq \pred^*(\{s\})$ is equivalent to $S \rightarrow^* \{s\}$,  {\sc Home-state} is a particular instance of {\sc Resilience}. Hence {\sc Resilience} is undecidable for Minsky machines.
 
 
 Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}. 
@@ -162,8 +163,8 @@ Since Reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} i
 
 We are now interested in the 
 %following
- undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in Reset $d$-VASS, which consists in, given a
-Reset $d$-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in Reset VASS, which consists in, given a
+Reset VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
 deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 %
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
@@ -391,7 +392,7 @@ and hence from which it is not possible at all to reach
 $\Safe$ in $k$ or less steps.
 \end{proof}
 
-\section{More Appendix thing if necessary}\label{appendix W}
+
 
 
 
