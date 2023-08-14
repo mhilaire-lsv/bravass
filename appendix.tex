@@ -32,8 +32,8 @@ The problem of whether $m_2$ is reachable from $m_1$ reduces itself to the resil
 
 We now consider the case where $\Safe = \uparrow \Safe$ and $\Bad$ is not the complement of 
 $\Safe$ and we'd want $\Bad$ to have the same closure properties as $\Safe$.
-We still however maintain the hypothesis that $\Bad \cap \Safe = \emptyset$, thus the subcase 
-$\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ leads to a contradiction, since two upward-closed sets have not an empty intersection. We thus consider instead the case where $\Bad$ is as upward-closed
+We still however maintain the hypothesis that $\Bad \cap \Safe = \emptyset$, thus the conditions 
+$\Safe = \uparrow \Safe$ and $\Bad = \uparrow \Bad$ would lead to a contradiction, since two upward-closed sets have not an empty intersection. We consider instead the case where $\Bad$ is as upward-closed
 as it can be without intersecting with $\Safe$,
 i.e. 
 such that there exists an upward-closed set $U$
@@ -119,7 +119,7 @@ First, let us recall the home-state problem
 Home-state is undecidable for Minsky machine with $3+$ counters.
 This stems from the fact $2$-counter Minsky machine termination is undecidable~\cite{Min61, Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
-such that the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control state indicative of termination, then lower the first two counters until they reach $0$, then finally lower the third counter until it reaches $0$.
+such that the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
 % Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
 Thus {\sc Home-state} is undecidable for Minsky machines. Since $\post^*(S) \subseteq \pred^*(\{s\})$ is equivalent to $S \rightarrow^* \{s\}$,  {\sc Home-state} is a particular instance of {\sc Resilience}. Hence {\sc Resilience} is undecidable for Minsky machines.
@@ -130,7 +130,8 @@ Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}.
 Reset-VASS extend the basic VASS model with special “reset
 transitions” that resets (set to $0$) some coordinates in the vector. Let us recall their definition here.
 \begin{definition}
-A {\em reset-VASS} in dimension $d$ (Reset $d$-VASS for short) is a finite 
+A {\em reset-VASS} in dimension $d$ %(reset-VASS for short)
+ is a finite 
 labeled directed graph $V = (Q,T)$, where $Q$ will be referred to as the {\em control-states} of $V$, and where 
 $T \subseteq Q \times Op \times Q$
  will be referred to as the {\em control-transitions} of $V$,
@@ -155,7 +156,7 @@ and
 $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
 \end{itemize} \end{samepage}
 
-It is well known that Reset $d$-VASS are WSTS~\cite{dufourd1998reset}. 
+It is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
 Since Reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.
 
 
@@ -163,18 +164,18 @@ Since Reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} i
 
 We are now interested in the 
 %following
- undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in Reset VASS, which consists in, given a
-Reset VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS, which consists in, given a
+reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
 deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 %
-We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live, that is, whether it is always ,
+We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
 which we then reduce to {\sc State-resilience}.
-A control-transition $t$ of a Reset $d$-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
- $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole Reset $d$-VASS is live if all its control-transitions are
+A control-transition $t$ of a reset-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
+ $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole reset-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
 \problemx{$t$-liveness}
-{Reset $d$-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
+{reset-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
 {Is $t$ live in $s_0$ ? \\}
 
 
@@ -184,7 +185,7 @@ $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf
 
 
 \begin{proposition}\label{reductions}
-{\sc $t$-liveness} is reducible to {\sc State-resilience} in Reset $d$-VASS.
+{\sc $t$-liveness} is reducible to {\sc State-resilience} in reset-VASS.
 \end{proposition}
 
 
@@ -192,7 +193,7 @@ $pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf
 We reformulate $t$-liveness 
 in a 
 % WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ 
-Reset $d$-VASS $(Q,T)$ 
+reset-VASS $(Q,T)$ 
 with initial configuration $s_0$
 as the following formula
 \[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
@@ -215,7 +216,6 @@ The  zero reachability problem can be reduced to the $t$-liveness problem in res
 
 % Recall Theorem~\ref{liveness reset}.
 
-\mathieu{À refaire avec des Reset VASS}
 
 %\begin{proposition}\label{liveness reset}
 % The  zero reachability problem can be reduced to the $t$-liveness problem in reset-VASS.
@@ -224,10 +224,24 @@ The  zero reachability problem can be reduced to the $t$-liveness problem in res
 Let us describe therein how to adjust Theorem~5.5 from \cite{peterson1981petri}.
 
 \begin{proof}
-If we wish to determine if $0 \in R(C_1, \mu_1)$ in any
-reset Petri net $C_1 = (P_1, T_1, I_1, O_1, R_1 )$ (where $R_1(t) =$ places that are reset when t fires off), with initial marking $\mu_1$, we construct a
-reset petri net $C_2 = (P_2, T_2, I_2, O_2, R_2 )$ with initial marking
-$\mu_2$ which is live if and only if the zero marking is not reachable from $\mu_1$.
+
+We wish to determine if $q(\textbf{0})$ is reachable in a reset-VASS $V_1$
+with
+initial vector $\textbf{u}$ and initial state $q$.
+To do so, we construct a reset-VASS $V_2$
+with initial vector $\textbf{v}$ and initial state $q'$
+which is live if and only if 
+$\textbf{0}$
+is reachable from $\textbf{u}$.
+
+The new reset-VASS is constructed by adding two new places
+and
+$|V_1|+2$ new transitions.
+
+We first modify all transitions to include $r_1$ both as an input and an output
+
+\mathieu{Ok non pas comme ça}
+
 
 The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$
 and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
@@ -281,14 +295,14 @@ Thus if $C_2$ is not live then a marking is reachable in which the marking of ea
 \end{proof}
 
 
-Since the zero-reachability problem for Reset $d$-VASS is undecidable, the reduction implies 
+Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies 
 % the following:
 %
 %
-{\sc %$ Reset $d$-VASS 
+{\sc %$ reset-VASS 
 $t$-liveness} is undecidable.
 
-Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for Reset $d$-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. %This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. %This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 
