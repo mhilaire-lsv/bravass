@@ -234,64 +234,80 @@ which is live if and only if
 $\textbf{0}$
 is reachable from $\textbf{u}$.
 
-The new reset-VASS is constructed by adding two new places
+The new reset-VASS is constructed by adding four new vector coordinate
 and
-$|V_1|+2$ new transitions.
+$|V_1|+4$ new transitions.
 
-We first modify all transitions to include $r_1$ both as an input and an output
+We first modify all transitions to include a $-1$ on the first additional vector coordinate and a $+1$ on the second additional vector coordinate. We also add a transition with only $+1$ on the first additional vector coordinate and $-1$ on the second one.
 
-\mathieu{Ok non pas comme ça}
+% The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$ and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
 
+% We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
 
-The reset PN $C_2$ is constructed from $C_1$ by the addition of two places $r_1$ and $r_2$
-and $|P_1| +2$ transitions $s$, $\{ s_p | p \in P_1 \}$ and $s'$.
-
-We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
-The initial marking $\mu_2$ will include a token in $r_1$. 
+The initial vector $\textbf{v}$ is constructed from $\textbf{u}$ by having at least $1$ on the first two additional vector coordinate.
 
 
-The place $r_1$ is a 'run' place; as long as the token remains in $r_1$ the transitions of $T_1$ can fire normally.
-Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
+% The initial marking $\mu_2$ will include a token in $r_1$. 
+
+These two vector coordinate serve to mark that the run is ongoing. As long as they are both non-zero, the adjusted transitions of $V_1$ are live and can be used normally. Thus any vector which is reachable in $V_1$ is also reachable [in $V_2$].
+
+% The place $r_1$ is a 'run' place; as long as the token remains in $r_1$ the transitions of $T_1$ can fire normally.
+% Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
 
 
+We add an additional transition $s$ which reset the first two additional vector coordinate.
+% Transition $s$ is defined to have $r_1$ as an input and a null output.
+This allows to disable the transitions of $V_1$ and to "freeze" the vector of $V_1$.
+% This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$ and "freezing" the marking of $P_1$.
 
-Transition $s$ is defined to have $r_1$ as an input and a null output.
-This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$
-and "freezing" the marking of $P_1$.
+% Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
 
-Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
+These first two additional vector coordinate together with this additional transition allow
+to reach aby reachable vector and then to freeze.
 
-The place $r_1$ and transition $s$ allow the net $C_1$ to reach any reachable marking and then for $s$ to fire and freeze the net at that marking.
+% The place $r_1$ and transition $s$ allow the net $C_1$ to reach any reachable marking and then for $s$ to fire and freeze the net at that marking.
 
-Now we need to see if that marking is zero.
+Now we need to see if that vector is zero.
+% Now we need to see if that marking is zero.
 
-We introduce a new place $r_2$ and new transitions $s_p$ which have $p$ as input and $r_2$ as output.
+We introduce two new additional vector coordinate and $d$ new transitions which have
+$-1$ on the $d$-th vector coordinate and $+1$ on this penultimate coordinate. 
 
-If $p$ can ever become zero, $s_p$ is not live. The entire net is dead if
-$s$ fires in the marking zero.
+% We introduce a new place $r_2$ and new transitions $s_p$ which have $p$ as input and $r_2$ as output.
 
-If we can always have some $p_i$ not be zero, then we can always fire some $s_{p_i}$, putting a token in $r_2$.
+If $\textbf{0}$ is reachable, then these $d$ new transitions are not live. Everything is dead if $s$ fires in $\textbf{0}$.
 
-In this case we must put a token back in $r_1$ and assure that all transitions in $C_2$ are live.
-We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
-This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$.
-Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
+% If $p$ can ever become zero, $s_p$ is not live. The entire net is dead if $s$ fires in the marking zero.
 
-Now if $0$ is reachable
-in $R(C_1, \mu_1)$ 
-then the net $C_2$ can also reach this marking
-in the place of $P_1$ by executing the same sequence of transition firings.
-Then $s$ can fire, freezing the $C_1$ subset.
-Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
-Thus if $0$ is reachable then $C_2$ is not live.
+If we can always have some vector coordinate be not zero, then we can always fire some transition to add $+1$ to the penultimate additional coordinate.
+% If we can always have some $p_i$ not be zero, then we can always fire some $s_{p_i}$, putting a token in $r_2$.
+In this case we can add to the first additional coordinate again and assure that all transitions are live.
+% In this case we must put a token back in $r_1$ and assure that all transitions in $C_2$ are live.
+We must be sure that $V_2$ is live even if $V_1$ is {\em not} live.
+% We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
+% This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$. Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
+This is accomplished by a transition $s'$ which arbitrarily increments every other vector coordinate 
+while decrementing the penultimate one and, additionally, a transition which 
+substract from the last additional vector coordinate and add to the penultimate one. 
 
-Conversey, if $C_2$ is not live, then a marking $\mu$ must be reachable in which 
-$\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token
-(in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.)
-% (Rappel: tant que il y a un token quelque part, on peut mettre un token en r_2
-% et r_2 commence sans token)
-If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
-Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
+
+Now if $\textbf{0}$ is reachable from $\textbf{u}$ in $V_1$, then $V_2$ can also reach a similar
+vector $(0,0,0,\ldots, 0, 1,0,0,0)$ by executing the same sequence of transition.
+Then $s$ can freeze the $V_1$ subset,
+% Now if $0$ is reachable in $R(C_1, \mu_1)$  then the net $C_2$ can also reach this marking in the place of $P_1$ by executing the same sequence of transition firings. Then $s$ can fire, freezing the $C_1$ subset.
+ending up in $0^{d+4}$, and $V_2$ is not live.
+% Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
+Thus if $\textbf{0}$ is reachable then $V_2$ is not live.
+
+
+Conversely, if $V_2$ is not live, then a vector is reachable in which the last two coordinate are equal to $0$ and there is no reachable vector in which either is equal to at least one.
+% Conversely, if $C_2$ is not live, then a marking $\mu$ must be reachable in which  $\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token (in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.).
+If it is not possible to have (), then the transitions are not live, and the
+$d$-dimensional subset of the current vector must be zero.
+% If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
+% Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
+Thus if $V_2$ is not live then 
+$\textbf{0}$ is reachable.
 \end{proof}
 
 
