@@ -56,6 +56,65 @@ where  $t$-liveness is both undecidable and
  reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
+We are now interested in the 
+%following
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS, which consists in, given a
+reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
+deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
+%
+We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
+which we then reduce to {\sc State-resilience}.
+A control-transition $t$ of a reset-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
+ $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole reset-VASS is live if all its control-transitions are
+live. This leads to the following problem.
+
+\problemx{$t$-liveness}
+{reset-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
+{Is $t$ live in $s_0$ ? \\}
+
+
+To better discuss $t$-liveness let us define more formally the set of configurations such that $t$ is enabled
+$pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
+
+
+
+\begin{proposition}\label{reductions}
+{\sc $t$-liveness} is reducible to {\sc State-resilience} in reset-VASS.
+\end{proposition}
+
+\begin{proof}
+We reformulate $t$-liveness 
+in a 
+% WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ 
+reset-VASS $(Q,T)$ 
+with initial configuration $s_0$
+as the following formula
+\[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
+~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in U_t, ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]
+where
+$U_t=\uparrow pre(t)$ 
+is the upward closure of the preconditions to fire transition $t$.  
+The problem reduces itself to {\sc State-resilience}
+where $\Safe = U_t$.
+\end{proof}
+
+
+The following theorem is a transposition of Theorem~5.5 from \cite{peterson1981petri} from Petri nets to reset-VASS%, whose proof can be seen in Appendix~\ref{appendix}%
+.
+\begin{proposition}\label{liveness reset}
+The  zero reachability problem can be reduced to the $t$-liveness problem in reset-VASS.
+\end{proposition}
+
+Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies 
+% the following:
+%
+%
+{\sc %$ reset-VASS 
+$t$-liveness} is undecidable.
+
+Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. %This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+
+
 \begin{theorem}\label{srp up down}
 {\sc State-resilience},
 {\sc Bounded-state-resilience} and
@@ -258,7 +317,7 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 
 We now consider the case $\Safe = \downarrow \Safe$ hence $\Bad = \uparrow \Bad$.
 %
-Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in Appendix~\ref{HS-Minsk}. 
+Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in % Appendix~\ref{HS-Minsk}. 
 
 \begin{theorem}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
