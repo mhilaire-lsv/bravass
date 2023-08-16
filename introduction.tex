@@ -19,9 +19,12 @@ $\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subs
 
 {\bf Resiliences.}  
 %		We now give the definition of two kinds of resilience: the (general) resilience and the state-resilience. 
-The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $\Bad,\Safe \subseteq S$ can be stated as an home-space problem : $\mathscr{S}$ is ($\Bad,\Safe$)-resilient if $\post^*(\Bad) \subseteq \pred^*(\Safe)$; 
-\mathieu{Pas la définition exacte,  $\Bad \subseteq \pred^*(\Safe)$ n'est pas la même chose que $\post^*(\Bad) \subseteq \pred^*(\Safe)$ sauf cas particulier comme typiquement Bad et Safe complémentaire. Changer la formulation.}
-similarly, $\mathscr{S}$ is (\Bad,\Safe)-state-resilient for an initial state $s_0$ if $\post^*(s_0) \cap \Bad \subseteq \pred^*(\Safe)$.
+The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $\Bad,\Safe \subseteq S$ consists of the following: $\mathscr{S}$ is ($\Bad,\Safe$)-resilient if
+$\Bad \subseteq \pred^*(\Safe)$. In the case 
+it 
+can be stated as an home-space problem : $\mathscr{S}$ is ($\Bad,\Safe$)-resilient if $\post^*(\Bad) \subseteq \pred^*(\Safe)$.
+Similarly, $\mathscr{S}$ is (\Bad,\Safe)-state-resilient for an initial state $s_0$ if  
+$\post^*(s_0) \cap \Bad \subseteq \pred^*(\Safe)$.
 We will study three decidability questions for each of type of resilience.
 The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is ($\Bad,\Safe$)-resilient (for two given subsets of states $\Bad,\Safe \subseteq S$).
 The $k$-resilience problem is to decide whether $\post^*(\Bad) \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
@@ -55,19 +58,19 @@ However, neither Prasad \& Zuck nor Ozkan \& Würdemann established the strong r
 \begin{itemize}
 %\item We investigate and expand upon the notion of state-resilience ~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we study three decidability questions for each of type of resilience. We remark that it is an instance of the home-space problem~\cite{DBLP:journals/corr/abs-2207-02697,memmi2023invariants}.
 
-\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {\sc State-resilience} problems are both undecidable for WSTS with strong compatibility. 
-\alain{harminiser les notations des pbs {\sc State-resilience} ou  State-resilience ?}
-\mathieu{je pense dans l'intro on peut conserver State-resilience et par contre une fois le probleme de {\sc State-resilience} proprement défini c'est cette notation qu'il faudrait utiliser}
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and { State-resilience} problems are both undecidable for WSTS with strong compatibility. 
+% \alain{harminiser les notations des pbs { State-resilience} ou  State-resilience ?}
+% \mathieu{je pense dans l'intro on peut conserver State-resilience et par contre une fois le probleme de {\ State-resilience} proprement défini c'est cette notation qu'il faudrait utiliser}
 %Moreover, state-resilience,
 %bounded-state-resilience and
 % $k$-state-resilience
 %are undecidable for WSTS with strong compatibility having an effective pred-basis. 
-Moreover, {\sc State-resilience},
-{\sc Bounded-state-resilience} and
-{\sc $k$-state-resilience}
+Moreover, { State-resilience},
+{ Bounded-state-resilience} and
+{ $k$-state-resilience}
 are undecidable for strongly upward-compatible WSTS with effective pred-basis
 when
-$\Safe=\uparrow \Safe$. We made a reduction of zero-reachability in reset-VASS to {\sc State-resilience} in reset-VASS.
+$\Safe=\uparrow \Safe$. We made a reduction of zero-reachability in reset-VASS to {\ State-resilience} in reset-VASS.
 
 %\item safe clos haut, bad clos par le bas: resilience = reachability d'un clos par le bas (anti-coverability)
 
@@ -83,14 +86,14 @@ for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-cl
 %%%
 
 \item We generalize the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} by relaxing the strong compatibility hypothesis.
-%: {\sc State-resilience} is still decidable for 
+%: {\ State-resilience} is still decidable for 
 % WSTS with effective 
 %$\uparrow$ $\post^*$ basis
 %when
 %$\Safe=\uparrow \Safe$
 %and $\Bad=\downarrow \Bad$. 
 We also show that removing the effective 
-$\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideal-effective WSTS with downward and upward compatibilities ({\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility).
+$\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideal-effective WSTS with downward and upward compatibilities ({ $k$-state-resilience} and { bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility).
 %
 
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
