@@ -22,9 +22,9 @@ Let us recall that a {\em vector addition system with states (VASS)} in dimensio
 Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with $V$.
 For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
 %
-\iffalse \mathieu{Defining it like this makes it a LTS rather than a unlabeled TS - maybe talk about how we can 'forget' the labels to obtain an unlabeled TS ?}
-\alain{les VASS ne sont pas vraiment étiquetés, sauf si on veut le faire, car on peut dire que les VASS sont définis à partir d'un nombre fini de control-transitions  $t = (p, \textbf{z}, q)$ générant une infinité de transtions notées $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ puisque pour tout s, $p(\textbf{u+s}) \xrightarrow{t} q(\textbf{v+s})$} \fi
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
+
 
 \noindent
 
@@ -184,12 +184,13 @@ then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\B
 $\uparrow q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
  $\Safe$ and compute basis for the sets of elements from which they are reachable in at most $k$ steps. 
-Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure, written in detail in Appendix~\ref{appendix brp VASS}, which lead to the following decidability result:
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure%, written in detail in Appendix~\ref{appendix brp VASS},
+ which lead to the following decidability result:
 
-\begin{theorem*}{{\em \textbf{\ref{brp VASS}}}.}
+\begin{theorem}
 {\sc $k$-resilience }  and {\sc Bounded resilience} in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable%, and moreover {\sc $k$-resilience } is in $\EXPSPACE$
 .
-\end{theorem*}
+\end{theorem}
 
 \begin{proof}
 Let $V$ be a given $d$-VASS and consider a given $k \in \N$.
