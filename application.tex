@@ -107,7 +107,7 @@ Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are
 \end{theorem}
 
 \begin{proof}
-The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
 % For Z-VAS we observe that we are asking for inclusion between linear sets. 
 % Again let us without loss of generality hence let us consider only the case when $\Safe$ is semilinear and $\Bad = S \setminus \Safe$ is semilinear too.
 % \mathieu{Expliciter davantage la preuve ? $\pred^*(\Safe)$ semilinéaire car définissable en Presburger ? Puis inclusion de semilinéaires décidables.}
@@ -122,7 +122,7 @@ the rationals with addition and order.
 
 \begin{proof}
 The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
-the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also in EXPSPACE. 
+the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is decidable (and also in EXPSPACE). 
 %			\alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
 \end{proof}
 
@@ -158,7 +158,7 @@ The above results concern only unbounded resilience. We consider now
 {\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of
 the path from $\Bad$ to $\Safe$
 when $\Safe$ is downward-closed. Unfortunately, we have the following:
-
+\alain{incohérence des notations: VASS ou vector addition system with states and plus bas seulement vector addition system ??? VAS ???}
 \begin{proposition}
 {\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system \alain{pas défini}when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{proposition}
