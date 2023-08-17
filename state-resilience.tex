@@ -56,60 +56,6 @@ where  $t$-liveness is both undecidable and
  reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
-The
-%following
- undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS consists in, given a
-reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
-deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
-%
-We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
-which we then reduce to {\sc State-resilience}.
-A control-transition $t$ of a reset-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a 
- $p(\textbf{u})$ with $q(\textbf{v}) \to^* p(\textbf{u})$ such that $t$ is enabled in $p(\textbf{u})$. We say the whole reset-VASS is live if all its control-transitions are
-live. This leads to the following problem.
-
-\problemx{$t$-liveness}
-{reset-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
-{Is $t$ live in $s_0$ ? \\}
-
-
-To better discuss $t$-liveness let us define more formally the upward-closed set of configurations such that $t$ is enabled
-$pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
-
-
-
-\begin{proposition}\label{reductions}
-{\sc $t$-liveness} is reducible to {\sc State-resilience} in reset-VASS.
-\end{proposition}
-
-\begin{proof}
-We reformulate $t$-liveness 
-in a 
-% WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ with an initial state $s_0$ 
-reset-VASS $(Q,T)$ 
-with initial configuration $s_0$
-as the following formula
-\[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
-~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in pre(t), ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]
-The problem reduces itself to {\sc State-resilience}
-where $\Safe = pre(t)$.
-\end{proof}
-
-
-The following theorem is a transposition of Theorem~5.5 from \cite{peterson1981petri} from Petri nets to reset-VASS%, whose proof can be seen in Appendix~\ref{appendix}%
-.
-\begin{proposition}\label{liveness reset}
-The  zero reachability problem can be reduced to the $t$-liveness problem in reset-VASS.
-\end{proposition}
-
-Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies 
-% the following:
-%
-%
-{\sc %$ reset-VASS 
-$t$-liveness} is undecidable.
-
-Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. %This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 
 \begin{theorem}\label{srp up down}
@@ -142,7 +88,7 @@ since
 $\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = {\uparrow \pred^*(\Safe)} = \pred^*(\Safe)$.
 Hence the undecidability of {\sc Bounded-state-resilience}
 and 
- {\sc $k$-state-resilience}. 
+ {\sc $k$-state-resilience}. \qed
 \end{proof}
 
 
@@ -176,7 +122,7 @@ returning $n$ if that is the case.
 Then, because {\sc $n_0$-state-resilience} is decidable, 
 checking $\uparrow \post^*(s) %\cap \Bad
  \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
-and {\sc State-resilience} is decidable.
+and {\sc State-resilience} is decidable. \qed
 \end{proof}
 
 The proof of Theorem~\ref{ref ozkan} rely on the computability of $\uparrow \post^*(s)$ and on the following lemma.
@@ -196,7 +142,7 @@ Hence $a \in A \cap D$ and then $x \in { \uparrow (A \cap D)}$.
 In the other direction,
 since $A \subseteq {\uparrow A}$, the inclusion
 $({\uparrow  A}) \cap D \subseteq U$ implies
-$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$.
+$A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$. \qed
 \end{proof}
 
 
@@ -261,7 +207,7 @@ Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong
  WSTS with effective 
 $\uparrow$ $\post^*$ basis
 when
-$\Safe=\uparrow \Safe$.
+$\Safe=\uparrow \Safe$. 
 \end{theorem}
 
 
@@ -274,7 +220,7 @@ By applying Lemma~\ref{Lemma intersection} twice, we obtain
  \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)} %\cap \Bad 
  \subseteq \pred^*(\Safe)\]
 Since $B_{\uparrow \post^*(s)}$ is finite and we can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, we can check that $B_{\uparrow \post^*(s)} %\cap \Bad
- \setminus \pred^*(\Safe) = \emptyset$. 
+ \setminus \pred^*(\Safe) = \emptyset$.  \qed
 \end{proof}
 
 
@@ -335,7 +281,7 @@ Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
 \end{lemma}
 
 \begin{proof}
-Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is upward-closed, we also have $a \in U$. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$.
+Let us suppose that $A \cap U \subseteq D$. Then ${\downarrow (A \cap U)} \subseteq {\downarrow D} = D$. Let us show that $({\downarrow A}) \cap U \subseteq {\downarrow (A \cap U)}$. Let $x \in ({\downarrow A}) \cap U$, then there exists $a \in A$ such that $x \leq a$. Since $x \in U$ and $U$ is upward-closed, we also have $a \in U$. Hence $a \in A \cap U$ and then $x \in { \downarrow (A \cap U)}$. In the other direction, since $A \subseteq {\downarrow A}$, the inclusion $({\downarrow  A}) \cap U \subseteq D$ implies $A \cap U \subseteq ({\uparrow  A}) \cap U \subseteq D$. \qed
 \end{proof}
 
 
@@ -378,7 +324,7 @@ The second procedure iteratively computes
 $\post^{\leq n}(s) %\cap \Bad
 $
 until it finds an element
-not in $\pred^*(\Safe)$.
+not in $\pred^*(\Safe)$. \qed
 \end{proof}
 
 
