@@ -45,7 +45,7 @@ Since
 $\Bad \subseteq \pred^*(\Safe)$
 can be reformulated as
 $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
-the resilience problem is decidable.
+the resilience problem is decidable. \qed
 \end{proof}
 
 Let us recall that a system $\mathscr{S}=(S,\rightarrow, \leq)$ is \emph{downward compatible} if
@@ -84,7 +84,7 @@ with $d' \leq d$.
 Since
 $d'$ 
 % \alain{qui appartient à qui ?}
-belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$.
+belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$. \qed
 \end{proof}
 
 % \begin{proposition}
@@ -115,6 +115,7 @@ it is not enough to conclude.
 
 
 Without the additional hypothesis that
+<<<<<<< HEAD
 for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed, the problem becomes undecidable.
 
  Indeed, it is 
@@ -182,10 +183,18 @@ Since Reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} i
 
 
 
+=======
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed, the problem becomes undecidable. Indeed, it is 
+undecidable for reset-VAS whether zero (the vector containing only zeroes, also denoted~$ \textbf{0}$) is a home-state for $\N^d \setminus \textbf{0}$, where it is a particular case of resilience with $\Safe = \downarrow \textbf{0}$, $\Bad$ complement of $\Safe$. This stems from the fact that it is undecidable for Minsky machines with more than one counter, whether zero is a home-state. See Appendix~\ref{HS-Minsk} for a more detailed construction.
+>>>>>>> 1bbb43b49bc37d03ff7942356654c25ce6b7db48
 
 
 Remark we did not make use of the hypothesis $\Bad$ complement of $\Safe$, simply 
 $\Bad=\uparrow \Bad$ and $\Safe=\downarrow \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complement of each others.
+
+
+
+
 
 

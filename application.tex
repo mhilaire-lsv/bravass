@@ -87,7 +87,7 @@ Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap 
 \[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).\]
 Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
 $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
-{\sc Resilience} is decidable.
+{\sc Resilience} is decidable. \qed
 \end{proof}
 
 {\sc Resilience} is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
@@ -97,7 +97,7 @@ $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697},
 \end{theorem}
 
 \begin{proof}
-We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear.
+We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
 \end{proof}
 
 Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
@@ -107,7 +107,11 @@ Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are
 \end{theorem}
 
 \begin{proof}
+<<<<<<< HEAD
 The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
+=======
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^d$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \qed
+>>>>>>> 1bbb43b49bc37d03ff7942356654c25ce6b7db48
 % For Z-VAS we observe that we are asking for inclusion between linear sets. 
 % Again let us without loss of generality hence let us consider only the case when $\Safe$ is semilinear and $\Bad = S \setminus \Safe$ is semilinear too.
 % \mathieu{Expliciter davantage la preuve ? $\pred^*(\Safe)$ semilinéaire car définissable en Presburger ? Puis inclusion de semilinéaires décidables.}
@@ -122,7 +126,11 @@ the rationals with addition and order.
 
 \begin{proof}
 The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
+<<<<<<< HEAD
 the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is decidable (and also in EXPSPACE). 
+=======
+the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is also in EXPSPACE. \qed
+>>>>>>> 1bbb43b49bc37d03ff7942356654c25ce6b7db48
 %			\alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
 \end{proof}
 
@@ -160,7 +168,7 @@ the path from $\Bad$ to $\Safe$
 when $\Safe$ is downward-closed. Unfortunately, we have the following:
 \alain{incohérence des notations: VASS ou vector addition system with states and plus bas seulement vector addition system ??? VAS ???}
 \begin{proposition}
-{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system \alain{pas défini}when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for vector addition system when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$.
 \end{proposition}
 
 
@@ -177,6 +185,7 @@ All configurations reachable from $\textbf{u}_k$ in $k$ or less steps are above 
 and thus, are in $\Bad$, by upward-closedness.
 Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$k$-resilience} does not hold.
 Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold either.
+\qed
 \end{proof}
 
 This all changes when one considers VASS (having control states). For a VASS $V = (Q,T)$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
@@ -283,6 +292,7 @@ with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$
 that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf{0}))$,
 and hence from which it is not possible at all to reach
 $\Safe$ in $k$ or less steps.
+\qed
 \end{proof}
 
 
