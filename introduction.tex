@@ -105,15 +105,15 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 	\begin{figure}
 			\hspace{2cm}
 \includegraphics[width=0.65\textwidth]{FigureB}
-	\caption{A lossy VASS with three subsystems and four counters. Leftmost and rightmost subsystems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $C$ represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing. Arrows represent control-transitions. Unlabelled arrows by default do not modify counter values.}
+	\caption{A lossy (distributed) VASS with three subsystems and four counters. Leftmost and rightmost subsystems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $C$ represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing. Arrows represent control-transitions. Unlabelled arrows do not modify counter values.}
 					\label{air control}
 	\end{figure}
 \end{center}
 
 \begin{example}\label{Example}
 {(\bf Flight Controller System).}
-Consider the vector addition system in Figure~\ref{air control}. It models a scenario in which two aircrafts want to land in an airport at the same time. 
-The automata $A$ on the left and $B$ on the right represent the aircrafts attempting to land, while the middle one $M$ represents the control tower. The control tower can communicate information to the aircrafts using 
+Consider the (distributed) VASS in Figure~\ref{air control}. It models a scenario in which two aircrafts want to land in an airport at the same time. 
+The VASSs $A$ on the left and $B$ on the right represent the aircrafts attempting to land, while the middle one $M$ represents the control tower. The control tower can communicate information to the aircrafts using 
 % channels $c_1$ and $c_2$, and these in turn can send messages to the control tower using 
 the first two shared counters, and these in turn can send messages to the control tower
 using the last two shared counters. 
@@ -124,16 +124,16 @@ Safety requires that only one aircraft at a time attempts to land. The role of t
 there are two possible choices: aircraft $A$ waits for aircraft $B$ to land
 or vice-versa. To make its choice known to the aircrafts, the control tower will use the counters. 
 We assume that the VASS is
-lossy;  Lossiness will be represented by using transitions decreasing any counter by one from every state.
+lossy;  \alain{à quoi sert cette phrase ?Lossiness will be represented by using transitions decreasing any counter by one from every state.}
 % We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
-In this example, the safe states would be ones where the aircrafts have both landed, i.e.
+The safe states would be ones where the aircrafts have both landed, i.e.
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$, and $\Bad$ is the complement of $\Safe$. 
 % We remark that $\Safe$ and $\Bad$ are here both upward and downward closed.
 Resilience here expresses that the aircrafts will both land, while $k$-resilience is the property insuring that they will do so in at most $k$ steps. 
 %$k$-resilience is of interest since in general we want to ensure the safe space will 
 %be reached in
 %the least amount of steps possible. 
-In this exemple, aircrafts cannot simply wait in the air an unbounded amount of time: here, $8$-resilience hold.\alain{expliquer}
+In this exemple, aircrafts cannot simply wait in the air an unbounded amount of time: here, $8$-resilience hold but $8$-resilience don't.\alain{expliquer}
 \end{example}
 
 % contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
