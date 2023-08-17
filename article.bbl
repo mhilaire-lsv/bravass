@@ -86,6 +86,10 @@ Memmi, G., Vautherin, J.: Analysing nets by the invariant method. In: Brauer,
   Science, vol.~254, pp. 300--336. Springer (1986). \doi{10.1007/BFb0046843},
   \url{https://doi.org/10.1007/BFb0046843}
 
+\bibitem{Min67}
+Minsky, M.L.: Computation: Finite and Infinite Machines. Prentice-Hall
+  International, Englewood Cliffs (1967)
+
 \bibitem{Min61}
 Minsky, M.L.: Recursive unsolvability of {P}ost's problem of ``tag'' and other
   topics in theory of {T}uring machines. Annals of Mathematics. Second Series
