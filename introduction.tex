@@ -18,17 +18,17 @@ $\post^*(s_0) \subseteq \pred^*(H)$; it could be easily generalized for two subs
 %%%%%
 
 {\bf Resiliences.}  
-%		We now give the definition of two kinds of resilience: the (general) resilience and the state-resilience. 
-The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and two subsets of states $\Bad,\Safe \subseteq S$ consists of the following: $\mathscr{S}$ is ($\Bad,\Safe$)-resilient if
-$\Bad \subseteq \pred^*(\Safe)$. In the case 
-it 
-can be stated as an home-space problem : $\mathscr{S}$ is ($\Bad,\Safe$)-resilient if $\post^*(\Bad) \subseteq \pred^*(\Safe)$.
-Similarly, $\mathscr{S}$ is (\Bad,\Safe)-state-resilient for an initial state $s_0$ if  
-$\post^*(s_0) \cap \Bad \subseteq \pred^*(\Safe)$.
+The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and a subset of states $\Safe \subseteq S$ consists of the following: $\mathscr{S}$ is {\em $\Safe$-resilient} if
+$S \subseteq \pred^*(\Safe)$. %In the case 
+% it
+It 
+can be stated as an home-space problem : $\mathscr{S}$ is $\Safe$-resilient if $\post^*(S) \subseteq \pred^*(\Safe)$.
+Similarly, $\mathscr{S}$ is $\Safe$-state-resilient for an initial state $s_0$ if  
+$\post^*(s_0) \subseteq \pred^*(\Safe)$.
 We will study three decidability questions for each of type of resilience.
-The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is ($\Bad,\Safe$)-resilient (for two given subsets of states $\Bad,\Safe \subseteq S$).
-The $k$-resilience problem is to decide whether $\post^*(\Bad) \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
-the bounded resilience problem is to decide whether there exists an $k$ such that $\mathscr{S}$ is ($\Bad,\Safe$)-$k$-resilient. We adapt these three definitions to state-resilience.
+The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient (for a given subset of states $\Safe \subseteq S$).
+The $k$-resilience problem is to decide whether $S \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
+the bounded resilience problem is to decide whether there exists an $k$ such that $\mathscr{S}$ is $\Safe$-$k$-resilient. We adapt these three definitions to state-resilience.
 
 
 {\bf State of the art.}
@@ -72,10 +72,9 @@ are undecidable for strongly upward-compatible WSTS with effective pred-basis
 when
 $\Safe=\uparrow \Safe$. We made a reduction of zero-reachability in reset-VASS to {\ State-resilience} in reset-VASS.
 
-%\item safe clos haut, bad clos par le bas: resilience = reachability d'un clos par le bas (anti-coverability)
 
 \item The three resilience problems are decidable for completion-post-effective $\omega^2$-WSTS with strong compatibility and $\Safe = \uparrow \Safe$.
-%		two sets $\Bad = \downarrow \Bad$ 
+
 
 \item The resilience problem is decidable for ideal-effective WSTS with 
 $\Safe=\downarrow \Safe$
@@ -91,7 +90,6 @@ for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-cl
 %$\uparrow$ $\post^*$ basis
 %when
 %$\Safe=\uparrow \Safe$
-%and $\Bad=\downarrow \Bad$. 
 We also show that removing the effective 
 $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideal-effective WSTS with downward and upward compatibilities ({ $k$-state-resilience} and { bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility).
 %
@@ -127,8 +125,8 @@ We assume that the VASS is
 lossy;  \alain{à quoi sert cette phrase ?Lossiness will be represented by using transitions decreasing any counter by one from every state.}
 % We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
 The safe states would be ones where the aircrafts have both landed, i.e.
-$\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$, and $\Bad$ is the complement of $\Safe$. 
-% We remark that $\Safe$ and $\Bad$ are here both upward and downward closed.
+$\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$%, and $\Bad$ is the complement of $\Safe$. 
+.
 Resilience here expresses that the aircrafts will both land, while $k$-resilience is the property insuring that they will do so in at most $k$ steps. 
 %$k$-resilience is of interest since in general we want to ensure the safe space will 
 %be reached in
