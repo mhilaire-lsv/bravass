@@ -102,15 +102,18 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 
  \begin{center}
 	\begin{figure}
-			\hspace{2cm}
-\includegraphics[width=0.65\textwidth]{FigureC}
-	\caption{A reset-VASS.}
+	%		\hspace{3cm}
+\includegraphics[width=0.45\textwidth]{FigureC}
+\hspace{0.5cm}
+\includegraphics[width=0.45\textwidth]{FigureD}
+	\caption{Two reset-VASS with three states and one counter.}
 					\label{r-V}
 	\end{figure}
 \end{center}
 
 \begin{example}\label{Example}
 {(\bf Reset-VASS example).}
-
-
+Consider the leftmost reset-VASS from Figure~\ref{r-V}.
+Consider first $\Safe = \{q_0(n) \mid n \in \N\}$; In this case,  {Resilience}, { $k$-resilience} and { Bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then { Resilience} hold: it is possible to reach $q_1(0)$ from any configuration of $V$. However, { Bounded resilience} do not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of lenght less than $n$ towards $q_1(0)$. Consider now the rightmost reset-VASS, which corresponds to having added a $+1$ transition from $q_1$ back to $q_0$. In this reset-VASS { Bounded resilience} hold, since $10$-resilience hold. 
+Indeed, from any configuration with value of the counter bigger than $10$, 
 \end{example}
