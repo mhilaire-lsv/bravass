@@ -9,21 +9,28 @@ We have extended the state-resilience problem introduced in~\cite{DBLP:journals/
 % The problem [] is []. 
 %In [] the problem was introduced. We expand on the notion. 
 We complemented previous results by providing some undecidability proofs for resilience and state-resilience in general. We also exhibited classes of WSTS with decidable resilience, namely, 
-completion-post-effective $\omega^2$-WSTS with strong compatibility (in the case $\Bad = \downarrow \Bad$ and $\Safe = \uparrow \Safe$) and 
+completion-post-effective $\omega^2$-WSTS with strong compatibility (in the case 
+%$\Bad = \downarrow \Bad$ and
+ $\Safe = \uparrow \Safe$) and 
 downward-compatible
 ideal-effective WSTS
-(in the case $\Bad = \uparrow \Bad$ and $\Safe = \downarrow \Safe$).
+(in the case %$\Bad = \uparrow \Bad$ and
+ $\Safe = \downarrow \Safe$).
 %We additionnally generalized decidability results from~\cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}.
 
 Several questions still remain.
 % We will analyse in detail the complexities of the different resilience. resilience for other computable models like stack automata,...
 For instance, we have been concerned with decidability only, and a detailed complexity analysis of the different resilience problems still remains to be done for concrete models. 
-One other angle of attack not studied here is synthesis of sets $\Bad$ and/or $\Safe$ for resilience,
-for instance, given a set $\Safe$, find the maximal upward-closed (resp. downward-closed) subset 
-$\Bad$ so that a system is $(\Safe,\Bad)$-resilient. 
+One other angle of attack not studied here is synthesis of sets %$\Bad$ and/or 
+$\Safe$ for resilience,
+for instance, %given a set $\Safe$,
+ find the maximal upward-closed (resp. downward-closed) subset 
+% $\Bad$ so that a system is $(\Safe,\Bad)$-resilient.
+$\Safe$ so that a system is $\Safe$-resilient. 
 % \alain{trouver les \Bad~ et \Safe~ maximum tels que S est resilient. est-ce vrai que si S est $(B_i,D_i)$-resilient alors S est $(\cap, \cup B_i,D_i)$-resilient ?}
 Another question could be to analyse the resilience in the framework of a controller and its environment. 
-One could also extend upon the classes of set $\Bad$ and $\Safe$ considered. As with semilinear sets for VASS, one could study resilience for sets defined in a boolean logic on upward and downward-closed subsets \cite{DBLP:journals/fmsd/BertrandS13}. Finally, while we mention VASS, but a more detailed analysis of the resilience problems could be also done for other computational models such as pushdown automata, one-counter automata or timed automata.
+One could also extend upon the classes of set $\Safe$ %and $\Safe$
+ considered. As with semilinear sets for VASS, one could study resilience for sets defined in a boolean logic on upward and downward-closed subsets \cite{DBLP:journals/fmsd/BertrandS13}. Finally, while we mention VASS, but a more detailed analysis of the resilience problems could be also done for other computational models such as pushdown automata, one-counter automata or timed automata.
 
 % \alain{on peut penser à des ensembles $\Bad$ definis dans une logique booleennne sur les clos par le bas, haut, +...}
 
