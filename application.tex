@@ -59,7 +59,7 @@ Let $(V,v_0)$ be a VASS with an initial state and $X$ be any of the 4 previous s
 
 
 
-\begin{theorem}{}
+\begin{theorem}\label{SL VASS}
 {\sc Resilience} is decidable for VASS when $\Safe$ 
 %and $\Bad$ are semilinear sets.
 is a semilinear set.
@@ -88,7 +88,7 @@ $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697},
 
 {\sc Resilience} is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
 
-\begin{theorem}{}
+\begin{theorem}\label{SL Lossy}
 {\sc Resilience} is decidable for lossy counter machines when $\Safe$ 
 %and $\Bad$ are semilinear sets.
 is a semilinear set.
@@ -100,7 +100,7 @@ We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\S
 
 Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
 
-\begin{theorem}{}
+\begin{theorem}\label{SL int-VASS}
 {\sc Resilience} is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear.
 \end{theorem}
 
@@ -128,8 +128,13 @@ the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:jo
 \end{proof}
 
 
-
-
+Remark that
+Theorem~\ref{SL Lossy} and
+Theorem~\ref{SL int-VASS}
+(resp. Theorem~\ref{RP VASS})
+did not make use of the hypothesis that $\Bad$ is the complement of $\Safe$, simply relying on the
+semilinearity of the set (resp. its definability in the existential theory of the rationals with addition and order). Thus 
+the mentionned theorems still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
 The above results concern only unbounded resilience. We consider now 
 {\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of
