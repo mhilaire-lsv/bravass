@@ -7,7 +7,17 @@
 
 In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider a subset of states $\Safe \subseteq S$, and its complement, $\Bad$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
-The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
+The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe)$ is to decide whether from \emph{any} state in %$\Bad$
+$S$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation 
+% $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$)
+$S \longrightarrow^{*} \Safe$ (resp. $S \longrightarrow^{\leq k} \Safe$)
+ for 
+ %$\forall x \in \Bad, \exists y \in \Safe$ 
+$\forall x \in S, \exists y \in \Safe$ 
+ such that $x \longrightarrow^{*} y$ 
+ %(resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$).
+  (resp.  $\forall x \in S, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$).
+  In our framework, $\Safe \subseteq S$  is possibly infinite but  must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
 
 
 
@@ -17,55 +27,27 @@ Let us formalize three resilience problems.
 
 
 \problemx{Resilience (RP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
-{$\Bad \longrightarrow^{*} \Safe$ ?\newline}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and a set $\Safe \subseteq S$.}
+{$S \longrightarrow^{*} \Safe$ ?\newline}
 
 % \alain{il faudrait ne pas répéter 3 fois les mêmes imputs pour les 3 pbs: énoncer les 3 uniformes pbs d'un coup avec une fois l'input puis les 3 pbs pour un état s donné sans répéter non plus 3 fois les mêmes inputs}
 
 
 \problemx{$k$-resilience (kRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and two sets $\Safe, \Bad \subseteq S$.}
-{$\Bad \longrightarrow^{\leq k} \Safe$ ?\newline}
+{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and a sets $\Safe \subseteq S$.}
+{$S \longrightarrow^{\leq k} \Safe$ ?\newline}
 
 \problemx{Bounded resilience (BRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and two sets $\Safe, \Bad \subseteq S$.}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ and a set $\Safe \subseteq S$.}
 %{$\exists k \geq 0 ~ \forall s' \in D ~ s \rightarrow^* s' \implies \exists s'' \in U ~ s' \rightarrow^{\leq k} s''$ ?\newline}
-{$\exists k \geq 0$ such that {$\Bad \longrightarrow^{\leq k} \Safe$ ?\newline}}
+{$\exists k \geq 0$ such that {$S \longrightarrow^{\leq k} \Safe$ ?\newline}}
 
 %$\mathscr{S}$ is %uniformely
 % $k$-resilient ?\newline}
 
-
-\iffalse
-
-\problemx{Resilience problems}
-{A transition system $\mathscr{S}=(S,\rightarrow)$, two sets $\Safe, \Bad \subseteq S$, $k \in \mathbb{N}$.}
-{ ({\sc resilience problem (RP)}) $\Bad \longrightarrow^{*} \Safe$ ?\newline  
-({\sc $k$-resilience problem (kRP)})		$\Bad \longrightarrow^{\leq k} \Safe$ ?\newline
-({\sc bounded resilience problem (BRP)})	$\exists k \geq 0$ such that $\mathscr{S}$ is 
- $k$-resilient ?\newline}
-
-\fi
-
-\iffalse
-In {\bf Flight Controller System}, the safe states correspond to the aircrafts having both landed, i.e.
-$\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$,
-and $\Bad$ is the complement of $\Safe$. 
-% $\Bad = \{(q_{A,0}, q_{M,0}, q_{B,0})(\textbf{v}) \mid \textbf{v} \in \N^4\}$.
-% wheher
-The system is not $7$-resilient since there is no path of length smaller than $7$ from $(q_{A,0}, q_{M,5}, q_{B,0})(\textbf{v})$ to $\Safe$, but it is $8$-resilient.
-\fi
-
-\iffalse
-\begin{example}
-Let us consider a VASS with only one state $q$, one counter, and one transition that substracts $-1$ from the counter, with $\Safe = \downarrow q(0)$, $\Bad = \uparrow q(1)$,
-then resilience hold but not bounded resilience: for every bound $k$ there is an element of $\Bad$ e.g. $q(k+1)$ which necessitate at least $k+1$ steps before it can reach $\Safe$. 
-\end{example}
-\fi
-
-
   
-These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$ and $\Bad$. In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Bad$ is downward-closed and $\Safe$ is upward-closed. %\mathieu{Remarquer que dans l'example~\ref{Example} on a à la fois upward closed ET downward closed pour $\Safe$ ET $\Bad$.} 
+These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$% and $\Bad$
+. In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed. %\mathieu{Remarquer que dans l'example~\ref{Example} on a à la fois upward closed ET downward closed pour $\Safe$ ET $\Bad$.} 
 % Remark that in {\bf Flight Controller System}, $\Safe$ and $\Bad$ are both upward-closed \emph{and} downward-closed.
 
 %Surprinsingly, we have not found decidability results about the resilience problems for WSTS.	
@@ -76,28 +58,6 @@ These three resilience problems are decidable for finite transition systems but 
 %and in the general case when $\Safe = \downarrow \Safe$.
  
 
-
-
-
-
-It is useful to note that in a sequence of states% of $S$
-, every prefix is always 
-either in the case that the latest visited $\Bad$ state has already been followed by a 
-$\Safe$ state \-- and thus the latest state is contextually ``$\Safe$'' \--
-or in the case that it still has to \-- and thus the latest state is contextually ``$\Bad$''. 
-Thus, \emph{in context}, there is no true ``neutral'' state.
-Hence we will consider in the following not only that $\Bad$ and $\Safe$ are disjoint but
-% w.l.o.g.
-	also
-that $\Bad$ is the complement of $\Safe$,
-in which case
-if $\Bad$ is downward-closed then $\Safe$ is upward-closed and vice-versa.
-Cases where $\Bad$ or $\Safe$ are not complements of each other, and share closure properties, i.e. are both downward-closed or both upward-closed,
-have also been studied, 
-see 
-Appendix~\ref{case down down}
-and
-Appendix~\ref{case up up} for results.
 
 
 {\bf Related problems.} 
