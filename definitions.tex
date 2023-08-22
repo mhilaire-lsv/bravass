@@ -1,7 +1,7 @@
 
 
 
-\section{Well-structured transition systems}\label{section definitions}
+\section{Well-structured transition systems and VASS}\label{section definitions}
 
 %   In this section, we introduce general notations and preliminary definitions.
 
@@ -132,13 +132,17 @@ Coverability is decidable for any ideal-effective ordered upward-compatible tran
 
 
 
-Let us recall finally that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+Let us recall the  definition of vector addition system with states. 
+ \begin{definition} 
+A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+ \end{definition} 
 % The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
 %
 Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with $V$.
 For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
 %
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
 A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton.
 
 
