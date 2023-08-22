@@ -5,9 +5,14 @@
 \section{State-resilience}
 
 
-Resilience is a strong property that implies that from every element of $\Bad$ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to only ask that from $\Bad \cap \post^*(s_0)$, there must exist a path to $\Safe$. 
+Resilience is a strong property that implies that from every element %of $\Bad$
+ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to only ask that from 
+ $
+ % \Bad \cap 
+ \post^*(s_0)$, there must exist a path to $\Safe$. 
 %In the {\bf Flight Controller System}, the state $(q_{A,1}, q_{M,4}, q_{B,0})(\textbf{0})$ belongs to $\Bad$, but is not reachable from $(q_{A,0}, q_{M,0}, q_{B,0})(\textbf{0})$, hence it may seem unnecessary to check for the existence of a path to $\Safe$ from this element.
-Since we still consider $\Bad$ and $\Safe$ complements of each others, this is akin to asking whether from $\post^*(s_0)$ there always exists a path to $\Safe$. 
+%
+% Since we still consider $\Bad$ and $\Safe$ complements of each others, this is akin to asking whether from $\post^*(s_0)$ there always exists a path to $\Safe$. 
 The three previous problems become:
 
 
@@ -49,7 +54,7 @@ As in the Section~3, we study decidability results for $\Safe$ downward-closed a
 \subsection{Case: $\Safe = \uparrow \Safe$% and $\Bad = \downarrow \Bad$
 }
 
-We start with the case $\Safe = \uparrow \Safe$ hence $\Bad = \downarrow \Bad$.
+We start with the case $\Safe = \uparrow \Safe$.
 %
 Unfortunately, in this case {\sc State-resilience} is undecidable for (general) WSTS even with strong upward-compatibility.
 This stems from the fact that it is undecidable in the particular case of reset-VASS,
@@ -234,7 +239,7 @@ Since $\pred(\uparrow \Safe)$ is not necessarily upward-closed, it is possible t
 despite having 
 $\post^* (s) \cap S \subseteq \pred( \Safe)$.
 In such a case the algorithm from
-\cite{DBLP:conf/gg/Ozkan22} would deduce that $1$-rechable-resilience does not hold,
+\cite{DBLP:conf/gg/Ozkan22} would deduce that {\sc $1$-state-resilience} does not hold,
 which is incorrect.
 
 Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not strong) compatibility, we don't know the decidability status of {\sc $k$-state-resilience} and 
@@ -259,9 +264,11 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 }
 
 
-We now consider the case $\Safe = \downarrow \Safe$ hence $\Bad = \uparrow \Bad$.
+We now consider the case $\Safe = \downarrow \Safe$.
 %
-Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in % Appendix~\ref{HS-Minsk}. 
+Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
+% Appendix~\ref{HS-Minsk}. 
+Section~\ref{safe-down}.
 
 \begin{theorem}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
