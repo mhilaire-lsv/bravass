@@ -27,6 +27,8 @@ Similarly, $\mathscr{S}$ is $\Safe$-state-resilient for an initial state $s_0$ i
 $\post^*(s_0) \subseteq \pred^*(\Safe)$.
 We will study three decidability questions for each of type of resilience.
 The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient (for a given subset of states $\Safe \subseteq S$).
+The resilience problem could be easily generalized for two subsets $\Bad$ and $\Safe$ by asking
+whether $\Bad \subseteq \pred^*(\Safe)$.
 The $k$-resilience problem is to decide whether $S \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
 the bounded resilience problem is to decide whether there exists an $k$ such that $\mathscr{S}$ is $\Safe$-$k$-resilient. We adapt these three definitions to state-resilience.
 
@@ -99,42 +101,15 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 
 
  
-\begin{center}
 	\begin{figure}
 			\hspace{2cm}
-\includegraphics[width=0.65\textwidth]{FigureB}
-	\caption{A lossy (distributed) VASS with three subsystems and four counters. Leftmost and rightmost subsystems $A$ and $B$ represent aircrafts attempting to land and staying on stand-by in the air while they haven't received permission to land, while the middle one $C$ represents the control tower managing the aircrafts landings so that only one aircraft at a time is allowed for landing. Arrows represent control-transitions. Unlabelled arrows do not modify counter values.}
-					\label{air control}
+\includegraphics[width=0.65\textwidth]{FigureC}
+	\caption{A reset-VASS.}
+					\label{r-V}
 	\end{figure}
 \end{center}
 
 \begin{example}\label{Example}
-{(\bf Flight Controller System).}
-Consider the (distributed) VASS in Figure~\ref{air control}. It models a scenario in which two aircrafts want to land in an airport at the same time. 
-The VASSs $A$ on the left and $B$ on the right represent the aircrafts attempting to land, while the middle one $M$ represents the control tower. The control tower can communicate information to the aircrafts using 
-% channels $c_1$ and $c_2$, and these in turn can send messages to the control tower using 
-the first two shared counters, and these in turn can send messages to the control tower
-using the last two shared counters. 
-% respectively channel $c_3$ and $c_4$. 
-% Remark channels $c_3$ and $c_4$ have a unary alphabet in the exemple and therefore can be seen as counters. 
-
-Safety requires that only one aircraft at a time attempts to land. The role of the control tower is to ensure this;
-there are two possible choices: aircraft $A$ waits for aircraft $B$ to land
-or vice-versa. To make its choice known to the aircrafts, the control tower will use the counters. 
-We assume that the VASS is
-lossy;  \alain{à quoi sert cette phrase ?Lossiness will be represented by using transitions decreasing any counter by one from every state.}
-% We ask however that the system is not too lossy. We add the condition that for every prefix of an execution, the number of ``lossiness transition'' for a counter is less than nine tenth of the number of transitions incrementing said counter.
-The safe states would be ones where the aircrafts have both landed, i.e.
-$\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$%, and $\Bad$ is the complement of $\Safe$. 
-.
-Resilience here expresses that the aircrafts will both land, while $k$-resilience is the property insuring that they will do so in at most $k$ steps. 
-%$k$-resilience is of interest since in general we want to ensure the safe space will 
-%be reached in
-%the least amount of steps possible. 
-In this exemple, aircrafts cannot simply wait in the air an unbounded amount of time: here, $8$-resilience hold but $8$-resilience don't.\alain{expliquer}
-\end{example}
-
-% contrôle de trafic aérien, perturbation dans le planning → Bad (par exemple, trop d’avions qui cherchent à atterir en même temps et qui doivent être mis en stand-by au dessus de l’aéroport?) → Safe (trafic fluide à nouveau). K-résilience important car les avions peuvent pas rester indéfiniment en stand-by (re : le carburant est un réactif limitant) 
-
+{(\bf Reset-VASS example).}
 
 
