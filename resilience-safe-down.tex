@@ -114,11 +114,8 @@ it is not enough to conclude.
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.}
 
 
-Without the additional hypothesis that
-\alain{pas clair}
-<<<<<<< HEAD
-for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed, the problem becomes undecidable.
-\alain{pas clair}
+Without the hypothesis that
+{\em for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed}, the problem is undecidable.
  Indeed, it is 
 undecidable for reset-VAS whether zero (the vector containing only zeroes, also denoted~$ \textbf{0}$) is a home-state for $\N^d \setminus \textbf{0}$, where it is a particular case of resilience with $\Safe = \downarrow \textbf{0}$, $\Bad$ complement of $\Safe$. This stems from the fact that it is undecidable for Minsky machines with more than one counter, whether zero is a home-state. % See Appendix~\ref{HS-Minsk} for a more detailed construction.
 
@@ -183,19 +180,7 @@ It is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
 Since Reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.
 
 
-%%%%%%%%%%
-%		attention
-%%%%%%%%%
 
-\alain{pas clair}
-=======
-for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed, the problem becomes undecidable. Indeed, it is 
-undecidable for reset-VAS whether zero (the vector containing only zeroes, also denoted~$ \textbf{0}$) is a home-state for $\N^d \setminus \textbf{0}$, where it is a particular case of resilience with $\Safe = \downarrow \textbf{0}$, $\Bad$ complement of $\Safe$. This stems from the fact that it is undecidable for Minsky machines with more than one counter, whether zero is a home-state. See Appendix~\ref{HS-Minsk} for a more detailed construction.
->>>>>>> 1bbb43b49bc37d03ff7942356654c25ce6b7db48
-\alain{pas clair}
-%%%%%%%%%%
-%		attention
-%%%%%%%%%
 
 
 Remark we did not make use of the hypothesis $\Bad$ complement of $\Safe$, simply 
