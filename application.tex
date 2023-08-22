@@ -101,7 +101,9 @@ We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\S
 Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
 
 \begin{theorem}\label{SL int-VASS}
-{\sc Resilience} is decidable for integer VASS when $\Safe$ and $\Bad$ are semilinear.
+{\sc Resilience} is decidable for integer VASS when $\Safe$ %and $\Bad$ are
+is a
+semilinear set.
 \end{theorem}
 
 \begin{proof}
@@ -172,7 +174,9 @@ Substracting these predecessor from $\Bad$ yields either a finite number of elem
  which lead to the following decidability result:
 
 \begin{theorem}
-{\sc $k$-resilience }  and {\sc Bounded resilience} in VASS when $\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable%, and moreover {\sc $k$-resilience } is in $\EXPSPACE$
+{\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
+$\Safe = \downarrow \Safe$%
+%$\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable%, and moreover {\sc $k$-resilience } is in $\EXPSPACE$
 .
 \end{theorem}
 
