@@ -7,30 +7,11 @@
 
 %
 
-We start with the case $\Safe=\uparrow \Safe$ hence $\Bad=\downarrow \Bad$. 
+We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$. 
 It can be viewed as a generalizeation
  of coverability, as
 it asks whether for every element of $\Bad$ it is possible to cover an element of the basis of $\Safe$.
 
-
-% Let us choose $\Bad$ to be the set of states from which there is no infinite run. If we are in an upward compatible ordered transition system (like VASS, lossy channel systems,...), then $\Bad$ is downward-closed.
-% \alain{ce qui précède est faux et pas convaincant: un vass qui seulement décroit ses compteurs}
-
-%%%%
-
-\iffalse
-As a
-example: in a VASS, we may choose $\Safe$ to be the set of states that are not deadlocks, i.e. from which it is always possible to fire a transition. This set of states is upward-closed and $\Safe=S \setminus \Bad=\uparrow \Safe$.\alain{mal rédigé}
-\fi
-
-%  Parosh Aziz Abdulla, Karlis Cerans, Bengt Jonsson & Yih-Kuen Tsay (1996): General Decidability Theorems for Infinite-State Systems. In: Proc. LICS 1996, IEEE Computer Society Press, pp. 313–321,
-%  Alain Finkel & Philippe Schnoebelen (2001): Well-structured transition systems everywhere! Theor. Comput. Sci. 256(1-2), pp. 63–92, doi:10.1016/S0304-3975(00)00102-X.
-
-%Transfering the abstract resilience problems into this framework,
-%it is therefore reasonable to demand that both propositions, \Safe and \Bad, are given by 
-%upward-closed or downward-closed sets.
-
-%
 
 
 % \mathieu{I'm using the notion of ideally effective-ness for WBTS here}
@@ -52,15 +33,13 @@ Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a
 
 %
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and two 
-%finite \alain{non, confusion entre ensemble et base}
- sets $\Bad = \downarrow \Bad$ and $\Safe = \uparrow \Safe$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
 
 \begin{proof}
-Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Safe$.
+Let  $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
 The %uniform 
 resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
 
@@ -112,9 +91,9 @@ Let us now define $K'_{\mathscr{S}}(\Safe,\Bad)=\max(k'_{i,j} \mid i=1,..,n$ and
 
 
 Let us remark that coverability reduce
-to resilience when $\Bad = \downarrow \Bad$ and  $\Safe = \uparrow \Safe$,
+to resilience when  $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$,
 as $s \to^* \uparrow t$ 
-reduces to $(\Safe,\Bad)$-resilience for $\Bad = \downarrow s$ and $\Safe = \uparrow t$.
+reduces to $\Safe$-resilience for $\Safe = \uparrow t$ and $\Bad = \downarrow s$.
 %
 Let us recall that the coverability problem for strongly increasing well-structured nets is undecidable~\cite{FMP-ic04}, hence the strongly increasing well-structured nets are not completion-post-effective hypothesis nor have the pred-basis hypothesis.
 %
