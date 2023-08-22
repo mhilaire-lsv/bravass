@@ -155,10 +155,9 @@ transitions” that resets (set to $0$) some coordinates in the vector. Let us r
 \begin{definition}
 A {\em reset-VASS} in dimension $d$ %(reset-VASS for short)
  is a finite 
-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and 
+labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, 
 $T \subseteq Q \times Op \times Q$
-is the set of {\em control-transitions},
-where $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
+is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
 		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
 \end{definition}
 
