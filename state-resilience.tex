@@ -6,9 +6,7 @@
 
 
 Resilience is a strong property that implies that from every element of $\Bad$ there must exist a path to $\Safe$. However, when one considers a system with an initial state $s_0$, it could be sufficient to only ask that from $\Bad \cap \post^*(s_0)$, there must exist a path to $\Safe$. 
-In the {\bf Flight Controller System}, the state $(q_{A,1}, q_{M,4}, q_{B,0})(\textbf{0})$
-belongs to $\Bad$, but is not reachable from $(q_{A,0}, q_{M,0}, q_{B,0})(\textbf{0})$,
-hence it may seem unnecessary to check for the existence of a path to $\Safe$ from this element.
+%In the {\bf Flight Controller System}, the state $(q_{A,1}, q_{M,4}, q_{B,0})(\textbf{0})$ belongs to $\Bad$, but is not reachable from $(q_{A,0}, q_{M,0}, q_{B,0})(\textbf{0})$, hence it may seem unnecessary to check for the existence of a path to $\Safe$ from this element.
 Since we still consider $\Bad$ and $\Safe$ complements of each others, this is akin to asking whether from $\post^*(s_0)$ there always exists a path to $\Safe$. 
 The three previous problems become:
 
