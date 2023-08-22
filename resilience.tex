@@ -5,7 +5,7 @@
 % \alain{pourquoi redire ça, c'est dans l'intro : In this section we introduce the concepts of resilience, bounded-resilience and $k$-resilience for well structured transition systems. We show that the resilience problems are decidable for  completion-post-effective $\omega^2$-WSTS with strong compatibility with $\Safe=\uparrow \Safe$, and that resilience is decidable for downward-compatible ideal-effective WSTS when $\Safe=\downarrow \Safe$.  We show that the three resilience problems are however undecidable for WSTS with strong compatibility in general.}
 
 
-In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider two subsets of states $\Safe, \Bad \subseteq S$ such that $\Safe \cap  \Bad = \emptyset$ and $\Safe ,  \Bad \neq \emptyset$.
+In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider a subset of states $\Safe \subseteq S$, and its complement, $\Bad$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe,\Bad)$ is to decide whether from \emph{any} state in $\Bad$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$) for $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{*} y$ (resp.  $\forall x \in \Bad, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$). In our framework, $\Safe, \Bad \subseteq S$  are possibly infinite but they must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
 
@@ -47,13 +47,14 @@ Let us formalize three resilience problems.
 
 \fi
 
-
+\iffalse
 In {\bf Flight Controller System}, the safe states correspond to the aircrafts having both landed, i.e.
 $\Safe = \{(q_{A,1}, q_{M,i}, q_{B,1})(\textbf{v}) \mid \textbf{v} \in \N^4, i \in \N\}$,
 and $\Bad$ is the complement of $\Safe$. 
 % $\Bad = \{(q_{A,0}, q_{M,0}, q_{B,0})(\textbf{v}) \mid \textbf{v} \in \N^4\}$.
 % wheher
 The system is not $7$-resilient since there is no path of length smaller than $7$ from $(q_{A,0}, q_{M,5}, q_{B,0})(\textbf{v})$ to $\Safe$, but it is $8$-resilient.
+\fi
 
 \iffalse
 \begin{example}
@@ -65,7 +66,7 @@ then resilience hold but not bounded resilience: for every bound $k$ there is an
 
   
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$ and $\Bad$. In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Bad$ is downward-closed and $\Safe$ is upward-closed. %\mathieu{Remarquer que dans l'example~\ref{Example} on a à la fois upward closed ET downward closed pour $\Safe$ ET $\Bad$.} 
-Remark that in {\bf Flight Controller System}, $\Safe$ and $\Bad$ are both upward-closed \emph{and} downward-closed.
+% Remark that in {\bf Flight Controller System}, $\Safe$ and $\Bad$ are both upward-closed \emph{and} downward-closed.
 
 %Surprinsingly, we have not found decidability results about the resilience problems for WSTS.	
 %% We deduce decidability results for the four pairs of sets $\Safe$ and $\Bad$ downward-closed and upward-closed as seen in Section~\ref{synthesis}.
