@@ -30,9 +30,9 @@ We describe therein how to adjust Theorem~5.5 from \cite{peterson1981petri} redu
 
 We wish to determine if $q(\textbf{0})$ is reachable in a reset-VASS $V_1$
 with
-initial vector $\textbf{u}$ and initial state $q_0$.
+initial vector $\textbf{u}$ and initial \alain{control-}state $q_0$.\alain{incohérent: control-state !, notation $q_0(\textbf{u})$  à utiliser}
 To do so, we construct a reset-VASS $V_2$
-with initial vector $\textbf{v}$ and initial state $q'_0$
+with initial vector $\textbf{v}$ and initial state $q'_0$ \alain{idem}
 which is live if and only if 
 $q(\textbf{0})$
 is reachable from $q_0(\textbf{u})$.
@@ -49,7 +49,7 @@ We first modify all transitions to include a $-1$ on the first additional vector
 % We first modify all transitions of $T_1$ to include $r_1$ as both an input and an output.
 
 The initial vector $\textbf{v}$ is constructed from $\textbf{u}$ by having at least $1$ on the first two additional vector coordinate.
-
+\alain{un dessin aiderait...}
 
 % The initial marking $\mu_2$ will include a token in $r_1$. 
 
@@ -66,7 +66,7 @@ This allows to disable the transitions of $V_1$ and to "freeze" the vector of $V
 % This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$ and "freezing" the marking of $P_1$.
 
 % Note that all transitions of $T_1$ are in conflict and, by construction if not by definition, no more than one transition can fire at a time.
-
+\alain{donne des noms, numéros,...}
 These first two additional vector coordinate together with this additional transition allow
 to reach any reachable vector and control-state $q$ and then to freeze the configuration.
 
@@ -74,7 +74,7 @@ to reach any reachable vector and control-state $q$ and then to freeze the confi
 
 Now we need to see if that vector is zero.
 % Now we need to see if that marking is zero.
-
+\alain{structurer la preuve pour la rendre lisible, nommer les objets, faire des paragraphes,...}
 We introduce two new additional vector coordinate and $d$ new transitions which have
 $-1$ on the $d$-th vector coordinate and $+1$ on this penultimate coordinate. 
 
@@ -97,7 +97,7 @@ substract from the last additional vector coordinate and add to the penultimate 
 
 
 Now if $q(\textbf{0})$ is reachable from $q_0(\textbf{u})$ in $V_1$, then $V_2$ can also reach a similar
-vector $q(0,0,0,\ldots, 0, 1,0,0,0)$ by executing the same sequence of transition.
+vector $q(0,0,0,\ldots, 0, 1,0,0,0)$ by executing the same sequence of transitions.
 Then $s$ can freeze the $V_1$ subset,
 % Now if $0$ is reachable in $R(C_1, \mu_1)$  then the net $C_2$ can also reach this marking in the place of $P_1$ by executing the same sequence of transition firings. Then $s$ can fire, freezing the $C_1$ subset.
 ending up in $q(0^{d+4})$, and $V_2$ is not live.
