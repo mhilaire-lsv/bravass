@@ -95,6 +95,35 @@ property that $\Bad$ is the complement of $\Safe$, simply using
 $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
+
+The completion-post-effective hypothesis is needed to decide {\sc Resilience}.
+Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of %strongly 
+increasing recursive functions from \cite{FMP-ic04} defined as
+
+$ f_j(n,k) = \begin{dcases*} (n,0) & \text{ if } k=0 \text{ and } TM$_j$ \text{ runs for more than } n \text{ steps} \\
+		(n,n+k) &\text{ otherwise,} \end{dcases*} $
+		
+	\noindent	
+	where $TM_j$ is the $j$-th Turing machine (in a classical enumeration)
+	which moreover begins
+by writing the integer $j$ on its tape,	
+	and consider additionnally the function $g : \N^2 \to \N^2$ defined by $g(n,k) = (n+1,k)$. 
+	The
+	transition system 
+	$S_j = (\N^2, \{f_j, g\}, \leq)$ 
+	is a WSTS
+	and
+	has the property that
+	it is
+	$\uparrow (1,1)$-resilient
+	iff $TM_j$ halts on input $j$,
+	since $(1,1)$ is coverable from $(0,0)$
+	iff $TM_j$ halts on input $j$. 
+	Hence there is no Turing machine which correctly determines 
+	resilience and halts whenever its input is a
+	WSTS.
+\iffalse
+
 Let us remark that coverability reduce
 to resilience when  $\Safe = \uparrow \Safe$ and $\Bad = \downarrow \Bad$,
 as $s \to^* \uparrow t$ 
@@ -102,9 +131,9 @@ reduces to $\Safe$-resilience for $\Safe = \uparrow t$ and $\Bad = \downarrow s$
 \mathieu{No longer the case here since $\Bad$ needs be the complement of $\Safe$.}
 Let us recall that the coverability problem for strongly increasing well-structured nets is undecidable~\cite{FMP-ic04}, hence the strongly increasing well-structured nets are not completion-post-effective hypothesis nor have the pred-basis hypothesis.
 %
-Moreover, this implies from the reduction that resilience for strongly increasing well-structured nets is  undecidable. Hence resilience for WSTS in general is undecidable.
-
-
+Moreover, this implies from the reduction that resilience for strongly increasing well-structured nets is  undecidable. 
+\fi
+Hence resilience for WSTS in general is undecidable.
 
 
 

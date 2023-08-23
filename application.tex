@@ -72,7 +72,7 @@ is a semilinear set.
 \iffalse When asking about {\sc Resilience}, in context, there are no true ``neutral'' configurations.
 Indeed, from a VASS $V$, $\Safe$ and $\Bad$ semilinear, one can build VASS $V'$, $\Safe'$ semilinear, and $\Bad'$ complement of $\Safe'$ such that {\sc Resilience} holds for
 $V$, $\Safe$ and $\Bad$ if and only if {\sc Resilience} holds for
-$V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of the control states of $V$; $Q_{A}$ and $Q_{B}$, and will have two other VASS running in parallel checking whether or not the current configuration belong to $\Safe$ resp. $\Bad$. 
+$V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of the control-states of $V$; $Q_{A}$ and $Q_{B}$, and will have two other VASS running in parallel checking whether or not the current configuration belong to $\Safe$ resp. $\Bad$. 
 From a configuration with state in $Q_{A}$ you go to $Q_B$ when you are in a $\Bad$ place
 and from a configuration with state in $Q_{B}$ you go to $Q_{A}$ when you are in a $\Safe$ place.
 $\Safe'$ is $Q_A \times \N^d$ and $\Bad'$ is $Q_B \times N^d$.
@@ -168,7 +168,7 @@ Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not h
 \qed
 \end{proof}
 
-This all changes when one considers VASS (having control states). For a VASS $V = (Q,T)$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+This all changes when one considers VASS (having control-states). For a VASS $V = (Q,T)$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
 then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 $\uparrow q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
