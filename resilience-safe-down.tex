@@ -145,7 +145,7 @@ From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky ma
 such that the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
 % Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
 % or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
-Thus {\sc Home-state} is undecidable for Minsky machines. Since $\post^*(S) \subseteq \pred^*(\{s\})$ is equivalent to $S \rightarrow^* \{s\}$,  {\sc Home-state} is a particular instance of {\sc Resilience}. Hence {\sc Resilience} is undecidable for Minsky machines.
+Thus {\sc Home-space} is undecidable for Minsky machines. Since $\post^*(S) \subseteq \pred^*(\{s\})$ is equivalent to $S \rightarrow^* \{s\}$,  {\sc Home-space} is a particular instance of {\sc Resilience}. Hence {\sc Resilience} is undecidable for Minsky machines.
 
 
 Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}. 
