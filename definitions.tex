@@ -17,7 +17,7 @@
 We write $s \rightarrow s'$ to denote $ (s,s') \in  {\rightarrow} $.
 We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
 for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
-Let $X,Y \subseteq S$ and $k \in \mathbb{N}$. We denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
+Let $X,Y \subseteq S$ and $k \in \mathbb{N}$; we denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
 \noindent
 The set of {\em (immediate) successors} of a state $s \in S$ is defined as 
  $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
@@ -138,12 +138,12 @@ A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for
  \end{definition} 
 % The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
 %
-Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with $V$.
-For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with a $d$-VASS $V$.
+For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
 %
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
-A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton.
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence it can be only defined by $T$.
 
 
 

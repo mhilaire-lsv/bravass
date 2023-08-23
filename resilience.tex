@@ -8,7 +8,7 @@
 In a transition system $\mathscr{S}=(S,\rightarrow)$, we consider a subset of states $\Safe \subseteq S$, and its complement, $\Bad$.
 %	The property of mutual exclusion is often modelised with $\Safe = \downarrow \Safe$.
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe)$ is to decide whether from \emph{any} state in %$\Bad$
-$S$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. We use the notation 
+$S$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. Resilience is then the Home-Space problem for the set $\Safe$. We use the notation 
 % $\Bad \longrightarrow^{*} \Safe$ (resp. $\Bad \longrightarrow^{\leq k} \Safe$)
 $S \longrightarrow^{*} \Safe$ (resp. $S \longrightarrow^{\leq k} \Safe$)
  for 

@@ -118,8 +118,8 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 Consider the %leftmost
  reset-VASS $V_1$ from Figure~\ref{r-V}.
 Consider first $\Safe = \{q_0(n) \mid n \in \N\}$; In this case,  {Resilience}, \alain{quelle est la logique des majuscules ?} { $k$-resilience} and { Bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then { Resilience} hold: it is possible to reach $q_1(0)$ from any configuration of $V_1$. However, { Bounded resilience} do not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of length less than $n$ towards $q_1(0)$. Consider now the %rightmost
- reset-VASS $V_2$, which is $V_1$ plus an $+1$ transition from $q_1$ back to $q_0$. In this reset-VASS { Bounded resilience} hold, since $6$-resilience hold. 
-Indeed, from any configuration with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
+ reset-VASS $V_2$, which is $V_1$ plus an $+1$ transition from $q_1$ back to $q_0$. In $V_2$, { Bounded resilience} hold, since $6$-resilience hold. 
+Indeed, from any configuration with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the (unique) reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
 $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
 \end{example}
 
