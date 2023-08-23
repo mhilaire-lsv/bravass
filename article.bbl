@@ -31,19 +31,6 @@ Blondin, M., Finkel, A., McKenzie, P.: Handling infinitely branching
   well-structured transition systems. Information and Computation
   \textbf{258},  28--49 (2018). \doi{10.1016/j.ic.2017.11.001}
 
-\bibitem{DBLP:conf/rp/BozzelliG11}
-Bozzelli, L., Ganty, P.: Complexity analysis of the backward coverability
-  algorithm for {VASS}. In: Delzanno, G., Potapov, I. (eds.) Reachability
-  Problems - 5th International Workshop, {RP} 2011, Genoa, Italy, September
-  28-30, 2011. Proceedings. Lecture Notes in Computer Science, vol.~6945, pp.
-  96--109. Springer (2011). \doi{10.1007/978-3-642-24288-5\_10},
-  \url{https://doi.org/10.1007/978-3-642-24288-5\_10}
-
-\bibitem{DBLP:journals/jcss/Demri13}
-Demri, S.: On selective unboundedness of {VASS}. J. Comput. Syst. Sci.
-  \textbf{79}(5),  689--713 (2013). \doi{10.1016/j.jcss.2013.01.014},
-  \url{https://doi.org/10.1016/j.jcss.2013.01.014}
-
 \bibitem{dufourd1998reset}
 Dufourd, C., Finkel, A., Schnoebelen, P.: Reset nets between decidability and
   undecidability. In: International Colloquium on Automata, Languages, and
@@ -135,10 +122,5 @@ Schnoebelen, P.: Lossy counter machines decidability cheat sheet. In: Kucera,
   Notes in Computer Science, vol.~6227, pp. 51--75. Springer (2010).
   \doi{10.1007/978-3-642-15349-5\_4},
   \url{https://doi.org/10.1007/978-3-642-15349-5\_4}
-
-\bibitem{DBLP:journals/acta/ValkJ85}
-Valk, R., Jantzen, M.: The residue of vector sets with applications to
-  decidability problems in petri nets. Acta Informatica  \textbf{21},  643--674
-  (1985). \doi{10.1007/BF00289715}, \url{https://doi.org/10.1007/BF00289715}
 
 \end{thebibliography}
