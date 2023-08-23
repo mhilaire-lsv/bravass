@@ -108,6 +108,16 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 
 
 
+Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies 
+% the following:
+%
+%
+{\sc %$ reset-VASS 
+$t$-liveness} is undecidable.
+
+Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. %This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
+
+
 \begin{theorem}\label{srp up down}
 {\sc State-resilience},
 {\sc Bounded-state-resilience} and
