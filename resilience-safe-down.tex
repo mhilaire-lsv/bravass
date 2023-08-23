@@ -129,17 +129,17 @@ undecidable for reset-VAS whether zero (the vector containing only zeroes, also 
 	%
 % We mentionned in Section~$3$ that {\sc Resilience} is undecidable for WSTS in general when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. Let us provide a more detailed undecidability proof here.
 
-First, let us recall the home-state problem
+First, let us recall the home-space problem
 
-\problemx{Home-state}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and two states $s_0, s \in S$.}
-{$\post^*(s_0) \subseteq \pred^*(\{s\})$ ?\newline}
+\problemx{Home-space}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ a states $s_0 \in S$ and a subset $H \subseteq S$.}
+{$\post^*(s_0) \subseteq \pred^*(H)$ ?\newline}
 
 % whether a state $s$ is such that, for all state $s_0$ there exists a path from $s_0$ to $s$.
 % post ∗ (S ) ⊆ pred ∗ (s_0)
 
 
-Home-state is undecidable for Minsky machine with at least $3$ counters.
+Home-space is undecidable for Minsky machine with at least $3$ counters, since it is undecidable in the particular case where $H$ is a singleton.
 This stems from the fact $2$-counter Minsky machine termination is undecidable~\cite{Min61,Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
 such that the Minsky machine $M$ terminates for all inputs iff the Minsky machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
