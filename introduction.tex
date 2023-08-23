@@ -14,7 +14,7 @@ pushed it towards some kind of ‘error state’ and, if it can, whether it can 
 {\bf Home-spaces}
  In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
 %			from all reachable states from $s_0$, it is always possible to reach $H$ 
-$\post^*(s_0) \subseteq \pred^*(H)$. If the set $H$ contains a single element, this element is an {\em home-state}.
+$\post^*(s_0) \subseteq \pred^*(H)$. If the home-space contains a single element, this element is an {\em home-state}.
 It could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %%%%%
 
