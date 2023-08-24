@@ -60,7 +60,8 @@ These two vector coordinate serve to mark that the run is ongoing. As long as th
 % Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
 
 
-We add an additional transition $s$ which reset the first two additional vector coordinate from control-state $q$.
+We add an additional transition $s$ \alain{s est d'habitude un état}
+which reset the first two additional vector coordinate from control-state $q$.
 % Transition $s$ is defined to have $r_1$ as an input and a null output.
 This allows to disable the transitions of $V_1$ and to "freeze" the vector of $V_1$.
 % This allows the token in $r_1$ to be removed, disabling all transitions in $T_1$ and "freezing" the marking of $P_1$.
@@ -82,7 +83,7 @@ $-1$ on the $d$-th vector coordinate and $+1$ on this penultimate coordinate. \\
 
 Let us now prove that $V_2$ is live if and only if 
 $q(\textbf{0})$
-is reachable from $q_0(\textbf{u})$.
+is reachable from $q_0(\textbf{u})$ in $V_1$ ?????.
 
 {\bf Suppose that $q(\textbf{0})$ is reachable from $q_0(\textbf{u})$} in V1 or V2 ????\\
 Then these \alain{vague} $d$ new transitions are not live. Everything \alain{vague} is dead if $s$ fires in $q(\textbf{0})$.
@@ -96,30 +97,32 @@ In this case we can add to the first additional coordinate again and assure that
 We must be sure that $V_2$ is live even if $V_1$ is {\em not} live.
 % We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
 % This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$. Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
-This is accomplished by a transition $s'$ which arbitrarily increments every other vector coordinate 
+This is accomplished by a transition $s'$  \alain{s' est d'habitude un état}
+which arbitrarily increments every other vector coordinate 
 while decrementing the penultimate one and, additionally, a transition which 
 substract from the last additional vector coordinate and add to the penultimate one. 
 
-Now if $q(\textbf{0})$ is reachable from $q_0(\textbf{u})$ in $V_1$, then $V_2$ can also reach a similar
-vector $q(0,0,0,\ldots, 0, 1,0,0,0)$ by executing the same sequence of transitions.
-Then $s$ can freeze the $V_1$ subset,
+Now if $q(\textbf{0})$ is reachable from $q_0(\textbf{u})$ in $V_1$ by a sequence $\sigma$, then $V_2$ can also reach a similar
+vector $q(0,0,0,\ldots, 0, 1,0,0,0)$ by executing the same sequence $\sigma$.
+Then $s$ can freeze the $V_1$ subset, \alain{quel subset ?}
 % Now if $0$ is reachable in $R(C_1, \mu_1)$  then the net $C_2$ can also reach this marking in the place of $P_1$ by executing the same sequence of transition firings. Then $s$ can fire, freezing the $C_1$ subset.
 ending up in $q(0^{d+4})$, and $V_2$ is not live.
 % Since $mu(p_i) = 0$ for all $p_i \in P_1$, no transition $s_{p_i}$ with $p_i \in P_1$ can fire, and $C_2$ is dead.
-Thus if $q(\textbf{0})$ is reachable then $V_2$ is not live.
+Thus if $q(\textbf{0})$ is reachable in ???? then $V_2$ is not live.
 
 
 {\bf Suppose that $V_2$ is not live and prove that 
-$q(\textbf{0})$ is reachable in V12 ???}\\
+$q(\textbf{0})$ is reachable in ???}\\
 
-if $V_2$ is not live, then a vector \alain{vague} is reachable in which the last two coordinate are equal to $0$ and there is no reachable vector in which either is equal to at least one.
+if $V_2$ is not live, then a vector \alain{vague} is reachable in which the last two coordinate are equal to $0$ and there is no reachable vector in which either is equal to at least one.\alain{pas compréhensible facilement}
 % Conversely, if $C_2$ is not live, then a marking $\mu$ must be reachable in which  $\mu(r_2) = 0$ and there is no reachable state in which $r_2$ has a token (in particular, since we do not allow token removal from $r_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $r_2$.).
 If it is not possible to have a strictly positive integer in one of the last two coordinates, then the transitions \alain{vague} are not live, and the
-$d$-dimensional subset of the current vector must be zero.
+$d$-dimensional subset \alain{subset ou vecteur ?}
+of the current vector must be zero.
 % If $r_2$ has no token and cannot get any, then the transitions $s_p$ are not live, and the markings of $p$ for $p \in P_1$ must be zero. 
 % Thus if $C_2$ is not live then a marking is reachable in which the marking of each $p$ in $P_1$ is zero. 
 Thus if $V_2$ is not live then 
-$q(\textbf{0})$ is reachable.
+$q(\textbf{0})$ is reachable in ???.
 \end{proof}
 
 
