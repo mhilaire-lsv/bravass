@@ -30,9 +30,9 @@ We describe therein how to adjust Theorem~5.5 from \cite{peterson1981petri} redu
 
 We wish to determine if $q(\textbf{0})$ is reachable in a reset-VASS $V_1$
 with
-initial vector $\textbf{u}$ and initial \alain{control-}state $q_0$.\alain{incohérent: control-state !, notation $q_0(\textbf{u})$  à utiliser}
+initial configuration $q_0(\textbf{u})$.
 To do so, we construct a reset-VASS $V_2$
-with initial vector $\textbf{v}$ and initial state $q'_0$ \alain{idem}
+and an initial configuration $q'_0(\textbf{v})$ 
 which is live if and only if 
 $q(\textbf{0})$
 is reachable from $q_0(\textbf{u})$.
@@ -60,7 +60,7 @@ These two vector coordinate serve to mark that the run is ongoing. As long as th
 % Thus any marking which is reachable in the places of $P_1$ is also reachable in $C_2$.
 
 
-We add an additional transition $s$ \alain{s est d'habitude un état}
+We add an additional transition $t$ %\alain{s est d'habitude un état}
 which reset the first two additional vector coordinate from control-state $q$.
 % Transition $s$ is defined to have $r_1$ as an input and a null output.
 This allows to disable the transitions of $V_1$ and to "freeze" the vector of $V_1$.
@@ -97,7 +97,7 @@ In this case we can add to the first additional coordinate again and assure that
 We must be sure that $V_2$ is live even if $V_1$ is {\em not} live.
 % We must be sure that $C_2$ is live even if $C_1$ is {\em not} live.
 % This is accomplished by a transition $s'$ which  "floods" the net $C_2$ with tokens, assuring that every transition is live if a token is ever put in $r_2$. Transition $s'$ has $r_2$ as its input and every place of $C_2$ as output
-This is accomplished by a transition $s'$  \alain{s' est d'habitude un état}
+This is accomplished by a transition $t'$  %\alain{s' est d'habitude un état}
 which arbitrarily increments every other vector coordinate 
 while decrementing the penultimate one and, additionally, a transition which 
 substract from the last additional vector coordinate and add to the penultimate one. 
