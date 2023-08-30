@@ -29,19 +29,21 @@ deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 \fi
 %%%%
 
-For the sake of clarity, we will use reset Petri nets rather than reset-VASS. It is well-known that Petri nets and VASS are equivalents models with regards of the decidability of reachability problems: an $d$-VASS can be encoded into a Petri net with $d+2$ places and conversely, a Petri net with $p$ places can be encoded into a $p$-VASS~\cite{DBLP:journals/siglog/Schmitz16}. The same equivalence hold between reset-VASS and reset Petri nets.
-
-We describe therein how to adjust Theorem~5.5 \alain{que dit le theorem 5.5 ?}from \cite{peterson1981petri} reducing the {\em zero-reachability} problem to {\sc $t$-liveness} in reset Petri nets. \\
-
+For the sake of clarity \alain{bof, une autre raison?}, we will use reset Petri nets rather than reset-VASS. 
 
 A \emph{reset Petri net} $N = (\Pi, \Sigma, E, R, \mu)$ consists of a finite set of {\em places} $\Pi = \{r_1, r_2, ... r_{|\Pi|}\}$, a finite set of {\em transitions} $\Sigma = \{t_1, t_2, ..., t_{|\Sigma|} \}$, a finite set of {\em arcs} $E \subseteq \Pi \times \Sigma \cup \Sigma \times \Pi$, a finite set of
 {\em reset-arcs} $R \subseteq \Sigma \times \Pi$, and an {\em initial marking} $\mu : \Pi \to \N$.
+
+It is well-known that Petri nets and VASS are equivalents models with regards of the decidability of reachability problems: an $d$-VASS can be encoded into a Petri net with $d+2$ places and conversely, a Petri net with $p$ places can be encoded into a $p$-VASS~\cite{DBLP:journals/siglog/Schmitz16}. The same equivalence hold between reset-VASS and reset Petri nets.
+
+
+We describe therein how to adjust Theorem~5.5 \alain{que dit le theorem 5.5 ?}from \cite{peterson1981petri} reducing the {\em zero-reachability} problem to {\sc $t$-liveness} in reset Petri nets. \\
 
 
 \noindent
 \textbf{Proposition~\ref{liveness reset}}
 %\label{liveness reset}
-{\em In reset-Petri nets, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
+{\em In reset Petri nets, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
 
 
 
