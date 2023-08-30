@@ -115,6 +115,11 @@ Prasad, S., Zuck, L.D.: Self-similarity breeds resilience. In: Gebler, D.,
   {EPTCS}, vol.~222, pp. 30--44 (2016). \doi{10.4204/EPTCS.222.3},
   \url{https://doi.org/10.4204/EPTCS.222.3}
 
+\bibitem{DBLP:journals/siglog/Schmitz16}
+Schmitz, S.: The complexity of reachability in vector addition systems. {ACM}
+  {SIGLOG} News  \textbf{3}(1),  4--21 (2016). \doi{10.1145/2893582.2893585},
+  \url{https://doi.org/10.1145/2893582.2893585}
+
 \bibitem{DBLP:conf/rp/Schnoebelen10}
 Schnoebelen, P.: Lossy counter machines decidability cheat sheet. In: Kucera,
   A., Potapov, I. (eds.) Reachability Problems, 4th International Workshop,
