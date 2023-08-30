@@ -36,14 +36,6 @@ Dufourd, C., Finkel, A., Schnoebelen, P.: Reset nets between decidability and
   undecidability. In: International Colloquium on Automata, Languages, and
   Programming. pp. 103--115. Springer (1998)
 
-\bibitem{DBLP:conf/icalp/DufourdFS98}
-Dufourd, C., Finkel, A., Schnoebelen, P.: Reset nets between decidability and
-  undecidability. In: Larsen, K.G., Skyum, S., Winskel, G. (eds.) Automata,
-  Languages and Programming, 25th International Colloquium, ICALP'98, Aalborg,
-  Denmark, July 13-17, 1998, Proceedings. Lecture Notes in Computer Science,
-  vol.~1443, pp. 103--115. Springer (1998). \doi{10.1007/BFb0055044},
-  \url{https://doi.org/10.1007/BFb0055044}
-
 \bibitem{DBLP:journals/iandc/Finkel90}
 Finkel, A.: Reduction and covering of infinite reachability trees. Inf. Comput.
    \textbf{89}(2),  144--179 (1990). \doi{10.1016/0890-5401(90)90009-7},
