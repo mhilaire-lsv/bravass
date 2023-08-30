@@ -37,7 +37,7 @@ A \emph{reset Petri net} $N = (P, T, E, R, \mu)$ consists of a finite set of {\e
 It is well-known that Petri nets and VASS are equivalents models with regards of the decidability of reachability problems: an $d$-VASS can be encoded into a Petri net with $d+2$ places and conversely, a Petri net with $p$ places can be encoded into a $p$-VASS~\cite{DBLP:journals/siglog/Schmitz16}. The same equivalence hold between reset-VASS and reset Petri nets.
 
 
-We describe therein how to "adjust" Theorem~5.5 in  \cite{peterson1981petri} that shows that reachability can be reduced to liveness for Petri nets \cite{peterson1981petri} reducing the {\em zero-reachability} problem to {\sc $t$-liveness} in reset Petri nets. \\
+We describe therein how to "adjust" Theorem~5.5 in  \cite{peterson1981petri}, that shows that reachability can be reduced to liveness for Petri nets \cite{peterson1981petri}, reducing the {\em zero-reachability} problem to {\sc $t$-liveness} in reset Petri nets. \\
 
 
 \noindent
@@ -80,19 +80,19 @@ put in $p_2$.
 \end{center}
 
 
-Let us now prove that $t_{p_2}$ is live if and only if 
+Let us now prove that $t_{p_2}$ is live in $N_2$ if and only if 
 the zero marking
 is not reachable from $\mu_1$ in $N_1$. \\
 
 
-{\bf Suppose that the zero marking is reachable from $\mu_1$ in $N_1$, then $t_{p_2}$ is not live}
+{\bf Suppose that the zero marking is reachable from $\mu_1$ in $N_1$, then $t_{p_2}$ is not live} in $N_2$.
 
-Indeed the marking with zero in every place of $P_1$ and in $p_b$ is reachable in $N_2$, by executing the same sequence of transition firings. Then $t_{p_a}$ can fire, leading to the marking which assigns zero to every place of $P_2$. From this marking the transitions $t_p$ are not live and neither are the transitions inherited from $N_1$ nor $t_{p_a}$, and, finally, nor is $t_{p_2}$. Thus $t_{p_2}$ is not live. \\
+Indeed the marking with zero in every place of $P_1$ and in $p_b$ is reachable in $N_2$, by executing the same sequence of transition firings. Then $t_{p_a}$ can fire, leading to the marking which assigns zero to every place of $P_2$. From this marking the transitions $t_p$ are not live and neither are the transitions inherited from $N_1$ nor $t_{p_a}$, and, finally, nor is $t_{p_2}$. Thus $t_{p_2}$ is not live \alain{dire tt le temps dans quel PN in $N_2$}. \\
 
 
-{\bf Suppose that $t_{p_2}$ is not live, then the zero marking is reachable from $\mu_1$ in $N_1$}
+{\bf Suppose that $t_{p_2}$ is not live in $N_2$, then the zero marking is reachable from $\mu_1$ in $N_1$}
 
-Indeed, if $t_{p_2}$ is not live, then a marking $\mu$ must be reachable in which $\mu(p_2) = 0$ and there is no reachable state in which $p_2$ has a token (in particular, since we do not allow token removal from $p_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $p_2$).
+Indeed, if $t_{p_2}$ is not live \alain{in $N_2$}, then a marking $\mu$ must be reachable in which $\mu(p_2) = 0$ and there is no reachable state in which $p_2$ has a token (in particular, since we do not allow token removal from $p_2$, the marking $\mu$ must be reached in a sequence of transitions that do not place any token in $p_2$).
 This means that no transition $t_p$ is live in $\mu$ since any transition $t_p$ can place a token in $p_2$. 
 Thus, every place of $P_2$ inherited from $N_1$ must be devoid of token. Moreover, since the marking $\mu$ must be reached  in a sequence of transitions that do not place any token in $p_2$, 
 it can be reached without using the transitions $t_p$ or $t_{p_2}$. Since $t_{p_a}$ do not modify the places inherited from $P_1$ nor does it enable new transitions, the reachability of $\mu$ implies the reachability of a marking where every place of $P_2$ inherited from $P_1$ is devoid of token using only the transitions inherited from $N_1$. Thus the zero marking is reachable from $\mu_1$ in $N_1$.
