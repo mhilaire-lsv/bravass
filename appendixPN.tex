@@ -17,7 +17,7 @@ Let us recall the {\em zero-reachability} problem in (reset-)VASS.
 
 \problemx{zero-reachability}
 {A $d$-reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$.} 
-{  $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$ ?\\}
+{  $\exists q \in Q, ~ p(\textbf{u}) \to^* q(\textbf{0})$ ?\\}
 
 The zero-reachability problem is decidable in VASS and it is undecidable in reset-VASS \cite{araki1976PN}.
 %%%%%
@@ -37,7 +37,10 @@ A \emph{reset Petri net} $N = (P, T, E, R, \mu)$ consists of a finite set of {\e
 It is well-known that Petri nets and VASS are equivalents models with regards of the decidability of reachability problems: an $d$-VASS can be encoded into a Petri net with $d+2$ places and conversely, a Petri net with $p$ places can be encoded into a $p$-VASS~\cite{DBLP:journals/siglog/Schmitz16}. The same equivalence hold between reset-VASS and reset Petri nets.
 
 
-We describe therein how to "adjust" Theorem~5.5 in  \cite{peterson1981petri}, that shows that reachability can be reduced to liveness for Petri nets \cite{peterson1981petri}, reducing the {\em zero-reachability} problem to {\sc $t$-liveness} in reset Petri nets. \\
+We will show that the {\em zero-reachability} problem can be reduced to {\sc $t$-liveness} in reset Petri nets; this is done by "adjusting" a similar result for Petri nets (Theorem~5.5 in  \cite{peterson1981petri}).\\
+
+%that shows that reachability can be reduced to liveness for Petri nets \cite{peterson1981petri}, 
+%reducing the {\em zero-reachability} problem to {\sc $t$-liveness} in reset Petri nets.
 
 
 \noindent
