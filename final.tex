@@ -981,13 +981,12 @@ $\Safe=\uparrow \Safe$.
 
 \begin{proof}
 Let $B_{\uparrow \post^*(s)}$ 
-%\alain{notation fluctuante}
  be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
-\[ \post^*(s) %\cap \Bad
- \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)} %\cap \Bad 
+\[ \post^*(s) 
+ \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)}  
  \subseteq \pred^*(\Safe)\]
-Since $B_{\uparrow \post^*(s)}$ is finite and we can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, we can check that $B_{\uparrow \post^*(s)} %\cap \Bad
+Since $B_{\uparrow \post^*(s)}$ is finite and we can compute a basis of $\pred^*(\Safe)$ from $B_\Safe$, we can check that $B_{\uparrow \post^*(s)} 
  \setminus \pred^*(\Safe) = \emptyset$.  \qed
 \end{proof}
 
@@ -1011,10 +1010,8 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 {\bf Results synthesis in the case $\Safe = \uparrow \Safe$}
 \begin{center}
 \begin{tabular}{ | l | c | c | c | c |}
-\hline  Hypothesis & strong %upward 
-			compatibility ~ & $\uparrow \post^*$ effective 
-			& strong %upward 
-					compatibility \textit{+} $\uparrow \post^*$ effective \\ \hline
+\hline  Hypothesis & strong compatibility ~ & $\uparrow \post^*$ effective 
+			& strong compatibility \textit{+} $\uparrow \post^*$ effective \\ \hline
    SRP & Undecidable (Thm~\ref{srp up down}) & Decidable (Thm~\ref{post srp})  & Decidable (Thm~\ref{postcomputable})\\ \hline
    BSRP & Undecidable (Thm~\ref{srp up down}) &  ?  & Decidable (Thm~\ref{ref ozkan}) \\ \hline
       kSRP & Undecidable (Thm~\ref{srp up down}) & ? & Decidable (Thm~\ref{ref ozkan}) \\ \hline
@@ -1022,14 +1019,12 @@ Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not st
 \end{center}
 
 
-\subsection{Case: $\Safe = \downarrow \Safe$% and $\Bad = \uparrow \Bad$
-}
+\subsection{Case: $\Safe = \downarrow \Safe$}
 
 
 We now consider the case $\Safe = \downarrow \Safe$.
 %
 Unfortunately the {\sc State-resilience} problem is undecidable for WSTS in the case $\Safe = \downarrow \Safe$. As for resilience in WSTS when $\Safe = \downarrow \Safe$, it stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
-% Appendix~\ref{HS-Minsk}. 
 Section~\ref{safe-down}.
 
 \begin{theorem}\label{srp down up}
@@ -1060,9 +1055,8 @@ then $\Safe$ downward-closed implies $\pred^*(\Safe)$ downward-closed and
 Lemma~\ref{Lemma intersection 2} can be used to show that
 if $\Safe = \downarrow \Safe$,
 then
-$\post^*(s) %\cap \Bad 
+$\post^*(s)  
 \subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
-%\cap \Bad 
 \subseteq \pred^*(\Safe)$.
 
 
@@ -1072,7 +1066,7 @@ $\Safe = \downarrow \Safe$.
 \end{theorem}
 
 \begin{proof}
-In order to decide whether $\post^{\leq n}(s) %\cap \Bad
+In order to decide whether $\post^{\leq n}(s) 
  \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward-closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
@@ -1081,18 +1075,14 @@ Notice that, by
 upward compatibility, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
 
 Procedure 1 stops when it finds an invariant $D$ such that
-$D  %\cap \Bad
- \subseteq \pred^*(\Safe)$. 
+$D   \subseteq \pred^*(\Safe)$. 
 Indeed
-$D % \cap \Bad 
-\subseteq  \pred^*(\Safe)$ implies
-$\downarrow \post^*(s) % \cap \Bad
- \subseteq  \pred^*(\Safe)$
+$D \subseteq  \pred^*(\Safe)$ implies
+$\downarrow \post^*(s)  \subseteq  \pred^*(\Safe)$
 since $ \downarrow \post^*(s)  \subseteq D$.
 
 The second procedure iteratively computes
-$\post^{\leq n}(s) %\cap \Bad
-$
+$\post^{\leq n}(s) $
 until it finds an element
 not in $\pred^*(\Safe)$. \qed
 \end{proof}
@@ -1109,7 +1099,7 @@ $\Safe = \downarrow \Safe$.
 
 
 
-%\subsection{Computing the maximal resilient subsystem}
+
 
 
 
