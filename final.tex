@@ -1356,8 +1356,13 @@ We will show that the {\em zero-reachability} problem can be reduced to {\sc $t$
 
 \noindent
 \textbf{Proposition~\ref{liveness reset}}
-{\em In reset Petri nets, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
+{\em In reset Petri nets, the zero reachability problem can be reduced to {\sc $t$-liveness}.}\\
 
+We deduce that:\\
+
+\noindent
+\textbf{Corollary}
+{\em In reset-VASS, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
 
 
 \begin{proof}
@@ -1409,11 +1414,6 @@ This means that no transition $t_p$ is live in $N_2$ in $\mu$ since any transiti
 Thus, every place of $P_2$ inherited from $N_1$ must be devoid of token. Moreover, since the marking $\mu$ must be reached  in a sequence of transitions that do not place any token in $p_2$, 
 it can be reached without using the transitions $t_p$ or $t_{p_2}$. Since $t_{p_a}$ do not modify the places inherited from $P_1$ nor does it enable new transitions, the reachability of $\mu$ implies the reachability of a marking where every place of $P_2$ inherited from $P_1$ is devoid of token using only the transitions inherited from $N_1$. Thus the zero marking is reachable from $\mu_1$ in $N_1$.
 \end{proof}
-
-
-\noindent
-\textbf{Corollary}
-{\em In reset-VASS, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
 
 
 
