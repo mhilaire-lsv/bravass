@@ -951,19 +951,7 @@ It is well-known that
 VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded-state-resilience} is decidable for VASS.
 Hence {\sc State-resilience} is decidable for  
 VASS.
-However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.  \iffalse Moreover, we may show:
-
-\begin{proposition}
-There exist classes of WSTSs with strong 
- compatibility for which there doesn't exist an algorithm computing a basis of $\uparrow \post^*$.
-\end{proposition}
-
-
-\begin{proof}
-Let us show that reset-VASS, that are effective WSTSs with strong compatibility, don't enjoy the property that $\uparrow \post^*$ is computable.
-Suppose that one are able to compute a finite basis of $\uparrow \post^*$ for reset-VASS. 
-Then, {\sc State-resilience} would be decidable for reset-VASS, which leads to a contradiction.
-\end{proof} \fi
+However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.  
 Moreover there exist classes of WSTSs with strong 
  compatibility for which there doesn't exist an algorithm computing a basis of $\uparrow \post^*$, such as reset-VASS.
 
@@ -1101,12 +1089,228 @@ $\Safe = \downarrow \Safe$.
 
 
 
+\section{Resilience for VASS and variations}\label{section VASS}
+
+In this section we continue to study VASS. Since they are completion-post-effective WSTS, they inherit the decidability results for WSTS in the case 
+$\Safe$ is upward-closed. Lacking downward compatibility or a more relaxed hypothesis that
+for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
+VASS do not inherit the decidability results for WSTS in the case $\Safe$ is downward-closed.
+In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
 
 
 
-\input{application}
+\begin{theorem}\label{SL VASS}
+{\sc Resilience} is decidable for VASS when $\Safe$  is a semilinear set.
+\end{theorem}
 
- 	\input{conclusion}
+\begin{proof}
+We consider the case when $\Safe$ is semilinear
+and $\Bad = S \setminus \Safe$ is semilinear too.
+{\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
+We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
+Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
+\[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).\]
+Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
+$\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
+{\sc Resilience} is decidable. \qed
+\end{proof}
+
+{\sc Resilience} is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
+
+\begin{theorem}\label{SL Lossy}
+{\sc Resilience} is decidable for lossy counter machines when $\Safe$  is a semilinear set.
+\end{theorem}
+
+\begin{proof}
+We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
+\end{proof}
+
+Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
+
+\begin{theorem}\label{SL int-VASS}
+{\sc Resilience} is decidable for integer VASS when $\Safe$ 
+is a
+semilinear set.
+\end{theorem}
+
+\begin{proof}
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
+\end{proof}
+
+Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
+
+\begin{theorem}\label{RP VASS}
+{\sc Resilience} is decidable for continuous VASS when $\Safe$  is
+definable in the existential theory of the rationals with addition and order.
+\end{theorem}
+
+\begin{proof}
+The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
+the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is decidable (and also in EXPSPACE). \qed
+\end{proof}
+
+
+Remark that
+Theorem~\ref{SL Lossy} and
+Theorem~\ref{SL int-VASS}
+(resp. Theorem~\ref{RP VASS})
+did not make use of the hypothesis that $\Bad$ is the complement of $\Safe$, simply relying on the
+semilinearity of the set (resp. its definability in the existential theory of the rationals with addition and order). Thus 
+the mentionned theorems still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
+
+The above results concern only unbounded resilience. We consider now 
+{\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of
+the path from $\Bad$ to $\Safe$
+when $\Safe$ is downward-closed. Unfortunately, we have the following:
+\begin{proposition}
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$.
+\end{proposition}
+
+
+\begin{proof}
+Consider a given $k \in \N$,
+ $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed, and
+consider a given VAS $V$.
+Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
+The set $\Bad$ admits a finite basis $B_\Bad$.
+Consider $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider 
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+
+All configurations reachable from $\textbf{u}_k$ in $k$ or less steps are above $ \textbf{v}_{\Bad} $
+and thus, are in $\Bad$, by upward-closedness.
+Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$k$-resilience} does not hold.
+Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold either.
+\qed
+\end{proof}
+
+This all changes when one considers VASS (having control-states). For a VASS $V = (Q,T)$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+$\uparrow q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
+ $\Safe$ and compute basis for the sets of elements from which they are reachable in at most $k$ steps. 
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure
+ which lead to the following decidability result:
+\begin{theorem}
+{\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
+$\Safe = \downarrow \Safe$.
+\end{theorem}
+
+\begin{proof}
+Let $V$ be a given $d$-VASS and consider a given $k \in \N$.
+Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
+$\Safe = S \setminus \Bad$
+ downward-closed.
+Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition.
+
+The set $\Bad$ admits a finite basis 
+$B_\Bad = \{ q_{i_1}(\textbf{v}_{i_1}), q_{i_2}(\textbf{v}_{i_2}), \ldots,
+q_{i_m}(\textbf{v}_{i_m}) \}$.
+Consider $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
+and then consider 
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+For all $p \in Q$, all configurations reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
+of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
+
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+$\uparrow q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$.
+
+Let us assume from now on 
+ $\uparrow q_{j_1}(\textbf{0}), \uparrow q_{j_2}(\textbf{0}), \ldots \uparrow q_{j_\ell}(\textbf{0})$ are
+all subsets of $\Safe$ and that their union contain all upward-closed subsets of $\Safe$.
+Because these subsets are upward-closed, we can compute a basis of
+$\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$.
+
+
+We now consider the set 
+$\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$.
+We inductively check for any element in the set whether or not it is possible to reach from it the set $\Safe$ in $k$ or less steps.
+If the set is finite then we stop the procedure once we have checked found a witness that $k$-resilience does not hold or once we have checked for every element, whichever comes first.
+If it is infinite then
+$k$-resilience does not hold 
+and we eventually find a witness that $k$-resilience does not hold.
+Indeed, 
+if
+$\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$
+is
+infinite
+then
+there exists an element of the form $q(\textbf{u} )$
+with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
+that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf{0}))$,
+and hence from which it is not possible at all to reach
+$\Safe$ in $k$ or less steps. This also means that, even in the case where $\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$ is finite, we only need to check reachability of $\Safe$ in $k$ or less steps for the elements with vectorial component at most
+$ \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$. Binding the search space
+thus leads to an $\EXPSPACE$ upper bound for {\sc $k$-resilience}.
+
+
+In order to deal with {\sc Bounded resilience} now, remark that there exists some $k_0 \in \N$ for which
+and hence
+$\Bad \setminus (\pred^{\leq k_0}(\uparrow q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\uparrow q_{j_\ell}(\textbf{0}))= 
+\Bad \setminus (\pred^{*}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\uparrow q_{j_\ell}(\textbf{0})) )$.
+We start the decision procedure by checking {\sc $k$-resilience} from $0$ until $k_0$.
+
+From $k_0$ onwards,
+$\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))= 
+\Bad \setminus (\pred^{*}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\uparrow q_{j_\ell}(\textbf{0})) )$
+is stationnary. 
+If the set is finite then we stop the procedure once we have checked for every element
+whether it is possible to reach $\Safe$ from it.
+If it is possible to reach $\Safe$ from every element then {\sc $k_m$-resilience}
+hold
+for $k_m = \max(k_0, k_{\pi})$ with 
+$k_{\pi}$ the maximum of the length of the paths from 
+$\Bad \setminus (\pred^{\leq k_0}(\uparrow q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\uparrow q_{j_\ell}(\textbf{0}))$ to $\Safe$.
+If it is infinite then
+for every $k \in \N$,
+$k$-resilience does not hold, 
+and we eventually find a witness that $k$-resilience does not hold.
+Indeed, 
+if
+$\Bad \setminus (\pred^{*}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{*}(\uparrow q_{j_\ell}(\textbf{0})) )$
+is
+infinite
+then
+there exists an element of the form $q(\textbf{u} )$
+with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
+that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf{0}))$,
+and hence from which it is not possible at all to reach
+$\Safe$ in $k$ or less steps.
+\qed
+\end{proof}
+
+
+
+
+
+
+
+
+
+\section{Conclusion and perspectives}
+
+
+We have extended the state-resilience problem introduced in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}.
+We complemented previous results by providing some undecidability proofs for resilience and state-resilience in general. We also exhibited classes of WSTS with decidable resilience, namely, 
+completion-post-effective $\omega^2$-WSTS with strong compatibility (in the case 
+ $\Safe = \uparrow \Safe$) and 
+downward-compatible
+ideal-effective WSTS
+(in the case 
+ $\Safe = \downarrow \Safe$).
+
+Several questions still remain.
+For instance, we have been concerned with decidability only, and a detailed complexity analysis of the different resilience problems still remains to be done for concrete models. 
+One other angle of attack not studied here is synthesis of sets 
+$\Safe$ for resilience,
+for instance, 
+ find the maximal upward-closed (resp. downward-closed) subset 
+$\Safe$ so that a system is $\Safe$-resilient. 
+Another question could be to analyse the resilience in the framework of a controller and its environment. 
+One could also extend upon the classes of set $\Safe$ 
+ considered. As with semilinear sets for VASS, one could study resilience for sets defined in a boolean logic on upward and downward-closed subsets \cite{DBLP:journals/fmsd/BertrandS13}. Finally, while we mention VASS, but a more detailed analysis of the resilience problems could be also done for other computational models such as pushdown automata, one-counter automata or timed automata.
 
 
 
