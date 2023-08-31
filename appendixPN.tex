@@ -83,7 +83,11 @@ put in $p_2$.
  \begin{center}
 	\begin{figure}
 \includegraphics[width=0.75\textwidth]{FigurePN}
-\caption{Construction of $N_2$ from $N_1$. Places are represented using circles, transitions are represented using lines. Arcs are represented by $\rightarrow$ and reset-arcs by $\arrowcircle$. Note that since the construction of $N_2$ from $N_1$ do not add new reset-arcs, the only reset-arcs in $N_2$ are the ones inherited from $N_1$.}
+\caption{Construction of $N_2$ from $N_1$.}
+%			As usual, places are represented by circles, transitions by lines. Arcs are represented by $\rightarrow$.
+%			and reset-arcs by $\arrowcircle$. 
+%		Note that $N_2$ do not contain new reset-arcs that were not in $N_1$.}
+%		the only reset-arcs in $N_2$ are the ones inherited from $N_1$.}
 	\end{figure}
 \end{center}
 
@@ -91,6 +95,7 @@ Let us now prove that $t_{p_2}$ is live in $N_2$ if and only if
 the zero marking
 is not reachable from $\mu_1$ in $N_1$. \\
 
+\alain{dans le dessin Fig 2, écrire reset Petri net $N_1$ et pas Petri net}
 
 {\bf Suppose that the zero marking is reachable from $\mu_1$ in $N_1$, then $t_{p_2}$ is not live in $N_2$}.
 
