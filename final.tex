@@ -151,7 +151,7 @@ Resilience is a key notion for improving safety of unperfect systems and resilie
 pushed it towards some kind of ‘error state’ and, if it can, whether it can perform the return in a satisfactory timeframe. 
 
 
-{\bf Home-spaces}
+{\bf Home-spaces.}
  In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
 $\post^*(s_0) \subseteq \pred^*(H)$. If the home-space contains a single element, this element is an {\em home-state}.
 It could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
@@ -234,7 +234,7 @@ Consider the
  reset-VASS $V_1$ from Figure~\ref{r-V}.
 Consider first $\Safe = \{q_0(n) \mid n \in \N\}$; In this case,  {resilience}, 
 {$k$-resilience} and {bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then {resilience} hold: it is possible to reach $q_1(0)$ from any state of $V_1$. However, {bounded resilience} does not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of length less than $n$ towards $q_1(0)$. Consider now the 
- reset-VASS $V_2$, which is $V_1$ plus an $+1$ transition from $q_1$ back to $q_0$. In $V_2$, {bounded resilience} hold, since $6$-resilience hold. 
+ reset-VASS $V_2$, which is $V_1$ plus a $+1$ transition from $q_1$ back to $q_0$. In $V_2$, {bounded resilience} hold, since $6$-resilience hold. 
 Indeed, from any state with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the (unique) reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
 $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
 \end{example}
@@ -335,7 +335,7 @@ Several families of formal models of processes give rise to WSTSs in a natural w
 
 
 \noindent
-{\bf On effectivity}
+{\bf On effectivity.}
 Let a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$. We say that $\mathscr{S}$ is {\em effective} if there exists a pair of algorithms
 ($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
 $ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
