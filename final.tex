@@ -885,8 +885,8 @@ $\Safe=\uparrow \Safe$.
 \end{corollary}
 
 \begin{proof}
-Since $\mathscr{S}$ is a WSTS there exists $n_0 \in \N$ such that
-$\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute this $n_0$ by iteratively computing 
+Since $\mathscr{S}$ is a WSTS there exists an $n_0 \in \N$ such that
+$\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute the least $n_0$ by iteratively computing 
 $\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking 
 $\pred^{\leq n+1}(\Safe) = \pred^{\leq n}(\Safe)$, 
 returning $n$ if that is the case.
@@ -928,6 +928,7 @@ The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. Wh
 {$s  \to^* D$? \newline}
 
 %\"Ozkan
+\alain{pourquoi ne pas juste écrire Proposition 1 \cite{DBLP:conf/gg/Ozkan22}et enlever "notre" proposition 3 ?}
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
 For finite-branching WSTS, a basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 \end{proposition}
@@ -970,7 +971,7 @@ $\Safe=\uparrow \Safe$.
 
 \begin{proof}
 Let $B_{\uparrow \post^*(s)}$ 
- be a basis of $\uparrow \post^*(s)$, $B_\Safe$ a basis of $\Safe$.
+ be a basis of $\uparrow \post^*(s)$, and $B_\Safe$ a basis of $\Safe$.
 By applying Lemma~\ref{Lemma intersection} twice, we obtain
 \[ \post^*(s) 
  \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)}  
@@ -983,12 +984,12 @@ Since $B_{\uparrow \post^*(s)}$ is finite and we can compute a basis of $\pred^*
 
 
 
-However when removing strong compatibility, precision is lost.
+However when removing strong compatibility, some precision is lost.
 Since $\pred(\uparrow \Safe)$ is not necessarily upward-closed, it is possible to have 
  $\uparrow \post^* (s) \cap S \not\subseteq \pred(\Safe)$,
 despite having 
 $\post^* (s) \cap S \subseteq \pred( \Safe)$.
-In such a case the algorithm from
+In such a case, the algorithm in
 \cite{DBLP:conf/gg/Ozkan22} would deduce that {\sc $1$-state-resilience} does not hold,
 which is incorrect.
 
