@@ -1,0 +1,427 @@
+
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%
+\usepackage{graphicx}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+%
+
+\bibliographystyle{splncs04}% the mandatory bibstyle
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+
+
+
+\usepackage{mathtools}
+\usepackage{todonotes}
+\usepackage{microtype}
+
+\usepackage{complexity}
+\usepackage{amsmath}
+
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+
+
+\usepackage{mathrsfs}
+\usepackage{mathalpha}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\usepackage{ textcomp } 
+
+\usepackage{stmaryrd}
+\usepackage{wrapfig}
+
+
+%
+
+
+\newcommand{\problemx}[3]{
+	\vspace{0.2cm}
+\par\noindent\underline{\sc#1}\par\nobreak\vskip.2\baselineskip
+\begingroup\clubpenalty10000\widowpenalty10000
+\setbox0\hbox{\bf INPUT:\ }\setbox1\hbox{\bf QUESTION:\ }
+\dimen0=\wd0\ifnum\wd1>\dimen0\dimen0=\wd1\fi
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box0\hfil}\hangindent\dimen0\hangafter1\ignorespaces#2\par
+\vskip-\parskip\noindent
+\hbox to\dimen0{\box1\hfil}\hangindent\dimen0\hangafter1\ignorespaces#3\par
+\endgroup
+	\vspace{-0.2cm}
+}
+
+\newcounter{claimcounter}
+\setcounter{claimcounter}{0}
+\newtheorem{subclaim}{Subclaim}{}
+\newtheorem{fact}{Fact}{}
+
+
+
+\makeatletter
+
+
+
+\renewcommand{\poly}{\mathrm{poly}}
+
+
+\newcommand{\alain}[1]{\todo[inline,color=red!20]{{\bf AF:} #1}}
+\newcommand{\mathieu}[1]{\todo[inline,color=blue!20]{{\bf MH:} #1}}
+
+
+
+\newcommand{\pred}{\textsf{pred}}
+\newcommand{\post}{\textsf{post}}
+
+
+\newcommand{\Bad}{\textsf{Bad}}
+\newcommand{\Safe}{\textsf{Safe}}
+
+
+\begin{document}
+%
+\title{Resilience and Home-Space for WSTS \thanks{This work was partly done while the author was supported by the Agence Nationale de la Recherche grant BraVAS (ANR-17-CE40-0028).}} 
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Alain Finkel\inst{1,2,3} \and Mathieu Hilaire\inst{1,3}}
+% This research has been supported by ANR programme BraVAS (ANR-17-CE40-0028).
+%
+\authorrunning{A. Finkel, M. Hilaire.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Université Paris-Saclay, CNRS, ENS Paris-Saclay, LMF, Gif-sur-Yvette, France %\email{hilaire@lsv.fr}
+\and
+Institut Universitaire de France \and Agence Nationale de la Recherche grant BraVAS (ANR-17-CE40-0028)
+}
+%
+\maketitle              % typeset the header of the contribution
+%
+
+
+
+
+
+\begin{abstract}
+\noindent
+Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state then it can also leave this bad state and reach a safe state.
+We consider six types of resilience (one of them is the home-space property) defined by an upward closed set Safe  ($\Safe=\uparrow \Safe$) or downward-closed set ($\Safe=\downarrow \Safe$) (Bad is generally the complementary of Safe) and by the existence of a bound $k$ on the length of minimal runs starting from Bad and reaching Safe. We study the decidability of each type of resilience for two kinds of models: WSTS and VASS. We first show that most of all resilience problems are undecidable for WSTS with strong compatibility (and with effective pred-basis). Then we prove the decidability of resilience for completion-post-effective $\omega^2$-WSTS with strong compatibility (almost all known WSTS are in this class) and $\Safe = \uparrow \Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
+$\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\downarrow \Safe$. Finally, we study the resilience for VASS with semi-linear subsets Bad and Safe and for variations of VASS (lossy counter machines, integer VASS and continuous VASS); most of the resilience properties are shown decidable.
+\end{abstract}
+
+\keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
+
+
+
+\newcommand{\LCM}{\mathsf{LCM}}
+\newcommand{\LOGSPACE}{\mathsf{LOGSPACE}}
+\newcommand{\MSO}{\mathsf{MSO}}
+\newcommand{\SO}{\mathsf{SO}}
+
+ \newcommand{\N}{\mathds{N}}
+
+
+
+\section{Introduction}\label{section introduction}
+
+
+{\bf Context.} 
+Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety~\cite{challenges}. Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
+pushed it towards some kind of ‘error state’ and, if it can, whether it can perform the return in a satisfactory timeframe. 
+
+
+{\bf Home-spaces}
+ In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
+$\post^*(s_0) \subseteq \pred^*(H)$. If the home-space contains a single element, this element is an {\em home-state}.
+It could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
+%%%%%
+
+{\bf Resiliences.}  
+The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and a subset of states $\Safe \subseteq S$ consists of the following: $\mathscr{S}$ is {\em $\Safe$-resilient} if
+$S \subseteq \pred^*(\Safe)$. It 
+can be stated as an home-space problem : $\mathscr{S}$ is $\Safe$-resilient if $\post^*(S) \subseteq \pred^*(\Safe)$.
+Similarly, $\mathscr{S}$ is $\Safe$-state-resilient for an initial state $s_0$ if  
+$\post^*(s_0) \subseteq \pred^*(\Safe)$.
+We will study three decidability questions for each of type of resilience.
+The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient (for a given subset of states $\Safe \subseteq S$).
+The resilience problem could be easily generalized for two subsets $\Bad$ and $\Safe$ by asking
+whether $\Bad \subseteq \pred^*(\Safe)$.
+The $k$-resilience problem is to decide whether $S \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
+the bounded resilience problem is to decide whether there exists an $k$ such that $\mathscr{S}$ is $\Safe$-$k$-resilient. We adapt these three definitions to state-resilience.
+
+
+{\bf State of the art.}
+In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
+%%%%%%%%%
+
+In 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and Okzan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
+$\uparrow$ $\post^*$ basis) and with $\Safe=\uparrow \Safe$ and $\Bad$ downward-closed.
+
+
+Remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
+However, neither Prasad \& Zuck nor Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
+%%%%%%%%%
+%
+
+
+
+
+\noindent
+{\bf Our contributions}
+\begin{itemize}
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and { State-resilience} problems are both undecidable for WSTS with strong compatibility. 
+Moreover, {State-resilience},
+{Bounded-state-resilience} and
+{$k$-state-resilience}
+are undecidable for strongly upward-compatible WSTS with effective pred-basis
+when
+$\Safe=\uparrow \Safe$. We made a reduction of zero-reachability in reset-VASS to {\ State-resilience} in reset-VASS.
+
+
+\item The three resilience problems are decidable for completion-post-effective $\omega^2$-WSTS with strong compatibility and $\Safe = \uparrow \Safe$.
+
+
+\item The resilience problem is decidable for ideal-effective WSTS with 
+$\Safe=\downarrow \Safe$
+and
+the additional hypothesis that
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
+%
+%%%
+
+\item We generalize the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} by relaxing the strong compatibility hypothesis.
+We also show that removing the effective 
+$\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideal-effective WSTS with downward and upward compatibilities ({ $k$-state-resilience} and { bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility).
+%
+
+\item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
+\end{itemize}
+
+
+ \begin{center}
+	\begin{figure}
+			\hspace{0.8cm}
+\includegraphics[width=0.75\textwidth]{FigureCD}
+	\caption{Two reset-VASS with three control-states and one counter.}
+					\label{r-V}
+	\end{figure}
+\end{center}
+
+\begin{example}\label{Example}
+{(\bf Reset-VASS example).}
+Consider the 
+ reset-VASS $V_1$ from Figure~\ref{r-V}.
+Consider first $\Safe = \{q_0(n) \mid n \in \N\}$; In this case,  {resilience}, 
+{$k$-resilience} and {bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then {resilience} hold: it is possible to reach $q_1(0)$ from any configuration of $V_1$. However, {bounded resilience} does not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of length less than $n$ towards $q_1(0)$. Consider now the 
+ reset-VASS $V_2$, which is $V_1$ plus an $+1$ transition from $q_1$ back to $q_0$. In $V_2$, {bounded resilience} hold, since $6$-resilience hold. 
+Indeed, from any configuration with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the (unique) reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
+$q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
+\end{example}
+
+Hence we can see how adding transitions can 
+turn a system that is not bounded resilient into one that is. 
+
+
+
+
+
+\section{Well-structured transition systems and VASS}\label{section definitions}
+
+
+
+\noindent
+ A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
+ {\em states} and  
+ $ {\rightarrow} \subseteq S \times S$ is a
+ binary relation 
+ on
+ the set of states, denoted as the set of {\em transitions}. 
+%
+We write $s \rightarrow s'$ to denote $ (s,s') \in  {\rightarrow} $.
+We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
+for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
+Let $X,Y \subseteq S$ and $k \in \mathbb{N}$; we denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
+\noindent
+The set of {\em (immediate) successors} of a state $s \in S$ is defined as 
+ $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
+The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
+ $\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
+By iterating $\pred$ and $\post$ we obtain  
+$\post^n(s) = \{ s' \in S \mid  ~ s \xrightarrow{}^n s'\}$
+and
+$\pred^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$.
+However, we are generally more interested in
+$\post^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \post^i(s)$, $\post^*(s)= \bigcup_{1 \leq i} \post^i(s)$
+and
+$\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$ and $\pred^*(s) = \bigcup_{1 \leq i} \pred^i(s)$. 
+The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S, \to)$, two states $s, t \in S$, whether $s \to^* t$. 
+
+%
+
+
+A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
+Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
+A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+To any subset $A \subseteq X$, we may associate
+its {\em upward-closure},
+ $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
+ and its 
+ {\em downward-closure},
+ $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
+We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
+as $\uparrow x$ (resp. $\downarrow x$).
+%
+A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
+
+
+ A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
+%
+%
+%
+Wqo admits many other equivalent formulations. 
+%
+%
+As an example, $(\N^d, \leq)$, the set of vectors of $d$ natural numbers (where $d$ is finite) with component-wise order is a wqo.
+%
+Quasi-orderings that have no 
+infinite subset of mutually incomparable elements (antichains)
+ enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
+%
+%
+In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement), and an upward-closed set $U$ is represented by its finite set of minimal elements. \\
+
+\noindent
+Let us now recall the (most general) definition of well-structured transition systems.
+\begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
+A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
+is a transition system $(S, \rightarrow)$
+equipped with a wqo ${\leq} \subseteq S \times S$ such that   
+the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
+\end{definition}
+
+We say that a WSTS $\mathscr{S}$ has \emph{strong (upward) compatibility} when moreover for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
+
+Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering and lossy channel systems with the subword ordering. 
+
+
+\noindent
+{\bf On effectivity}
+Let a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$. We say that $\mathscr{S}$ is {\em effective} if there exists a pair of algorithms
+($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
+$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
+$M_\leq$ the ordering relation “$\leq$”.
+We say that $\mathscr{S}$ is {\em post-effective} if it is effective, and if there
+exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$ 
+on input $x$, with $x \in X_i $. 
+We say that $\mathscr{S}$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
+%
+We say that $\mathscr{S}$
+is {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
+to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
+%
+
+Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
+We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
+For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. 
+With the effective pred-basis hypothesis, we obtain:
+
+\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
+\end{theorem}
+
+With the ideal-effective hypothesis, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
+
+\begin{theorem}\cite{BFM-ic17}
+Coverability is decidable for any ideal-effective ordered upward-compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
+\end{theorem}
+
+
+
+
+Let us recall the  definition of vector addition system with states. 
+ \begin{definition} 
+A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+ \end{definition} 
+%
+Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with a $d$-VASS $V$.
+For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+%
+When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence it can be only defined by $T$.
+
+
+
+
+\input{resilience}
+
+\input{state-resilience}
+
+
+
+\input{application}
+
+ 	\input{conclusion}
+
+
+
+
+\bibliography{bibliography/bib}
+
+
+\appendix
+
+
+
+\input{appendixPN}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
