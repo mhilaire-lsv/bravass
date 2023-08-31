@@ -233,9 +233,9 @@ $\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and pro
 Consider the 
  reset-VASS $V_1$ from Figure~\ref{r-V}.
 Consider first $\Safe = \{q_0(n) \mid n \in \N\}$; In this case,  {resilience}, 
-{$k$-resilience} and {bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then {resilience} hold: it is possible to reach $q_1(0)$ from any configuration of $V_1$. However, {bounded resilience} does not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of length less than $n$ towards $q_1(0)$. Consider now the 
+{$k$-resilience} and {bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then {resilience} hold: it is possible to reach $q_1(0)$ from any state of $V_1$. However, {bounded resilience} does not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of length less than $n$ towards $q_1(0)$. Consider now the 
  reset-VASS $V_2$, which is $V_1$ plus an $+1$ transition from $q_1$ back to $q_0$. In $V_2$, {bounded resilience} hold, since $6$-resilience hold. 
-Indeed, from any configuration with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the (unique) reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
+Indeed, from any state with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the (unique) reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
 $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
 \end{example}
 
@@ -252,7 +252,7 @@ turn a system that is not bounded resilient into one that is.
 
 \noindent
  A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
- {\em states (or configurations)} and  
+ {\em states} and  
  $ {\rightarrow} \subseteq S \times S$ is a
  binary relation 
  on
@@ -347,7 +347,7 @@ We say that $\mathscr{S}$ has {\em effective pred-basis} \cite{DBLP:journals/tcs
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 %
 We say that $\mathscr{S}$
-is {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
+is {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a state $s$
 to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
 %
 
@@ -374,8 +374,8 @@ Let us recall the  definition of vector addition system with (control-)states.
 A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
  \end{definition} 
 %
-Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with a $d$-VASS $V$.
-For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+Subsetquently, $Q \times \N^d$ is the set of states of the transition system associated with a $d$-VASS $V$.
+For all states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
 %
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
@@ -678,8 +678,8 @@ is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \text
 \end{definition}
 
 Again $Q \times \N^d$
- denotes the set of configurations of $V$.
-For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
+ denotes the set of states of $V$.
+For every states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
 $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
 \begin{samepage}\begin{itemize}
 \item  $t = (q,add(\textbf{z}),q') \in T$
@@ -784,17 +784,17 @@ deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 %
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
 which we then reduce to {\sc State-resilience}.
-A control-transition $t$ of a reset-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a configuration
+A control-transition $t$ of a reset-VASS is {\em live} in a state $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a state
  $p(\textbf{u})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \xrightarrow{t} $ ($t$ is enabled in $p(\textbf{u})$). We say that the whole reset-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
 \problemx{$t$-liveness}
-{A reset-VASS $V=(Q,T)$ of dimension $d$, a transition $t \in T$, an initial configuration $s_0 \in Q \times \N^d$}
+{A reset-VASS $V=(Q,T)$ of dimension $d$, a transition $t \in T$, an initial state $s_0 \in Q \times \N^d$}
 {Is $t$ live in $s_0$ ? \\}
 
 
 %		 better discuss \alain{flou}$t$-liveness, 
-Let us define the set of configurations such that $t$ is enabled:
+Let us define the set of states such that $t$ is enabled:
 $pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$. Remark that $pre(t)$ is upward-closed.
 
 
@@ -808,7 +808,7 @@ $pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v})$ such that
 We reformulate $t$-liveness 
 in a 
 reset-VASS $(Q,T)$ 
-with initial configuration $s_0$
+with initial state $s_0$
 as the following formula
 \[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
 ~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in pre(t), ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]  
@@ -1180,7 +1180,7 @@ The set $\Bad$ admits a finite basis $B_\Bad$.
 Consider the vector $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider the vector
 $\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
 
-All configurations reachable from $\textbf{u}_k$ in $k$ or less steps are above $ \textbf{v}_{\Bad} $
+All states reachable from $\textbf{u}_k$ in $k$ or less steps are above $ \textbf{v}_{\Bad} $
 and thus, are in $\Bad$, by upward-closedness.
 Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$k$-resilience} does not hold.
 Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold either.
@@ -1212,7 +1212,7 @@ q_{i_m}(\textbf{v}_{i_m}) \}$.
 Consider the vector $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
 and then consider the vector
 $\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
-For all $p \in Q$, all configurations reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
+For all $p \in Q$, all states reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
 of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
 
 For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
