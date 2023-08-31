@@ -648,14 +648,13 @@ In the case
 of a ideal-effective WSTS 
 where the hypothesis that
 {for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed}
-is not met, the problem is undecidable.
- Indeed, it is 
-undecidable for reset-VAS whether zero (the vector containing only zeroes, also denoted~$ \textbf{0}$) is a home-state for $\N^d \setminus \textbf{0}$, where it is a particular case of resilience with $\Safe = \downarrow \textbf{0}$. This stems from the fact that it is undecidable for Minsky machines with more than one counter whether zero is a home-state.  
+is not met, {\sc Resilience} is undecidable.
+This stems from the fact that it is undecidable for Minsky machines with more than one counter,
+which can be simulated by WSTS.
 
 
 
-
-Home-space is undecidable for Minsky machine with at least $3$ counters, since it is undecidable in the particular case where $H$ is a singleton.
+Indeed, {\sc Home-space} is undecidable for Minsky machine with at least $3$ counters, since it is undecidable in the particular case where $H$ is a singleton.
 This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
 such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
