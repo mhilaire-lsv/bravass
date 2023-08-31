@@ -785,7 +785,7 @@ deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
 which we then reduce to {\sc State-resilience}.
 A control-transition $t$ of a reset-VASS is {\em live} in a configuration $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a configuration
- $p(\textbf{u})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \to^t $ ($t$ is enabled in $p(\textbf{u})$). We say that the whole reset-VASS is live if all its control-transitions are
+ $p(\textbf{u})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \xrightarrow{t} $ ($t$ is enabled in $p(\textbf{u})$). We say that the whole reset-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
 \problemx{$t$-liveness}
@@ -793,8 +793,9 @@ live. This leads to the following problem.
 {Is $t$ live in $s_0$ ? \\}
 
 
-To better discuss \alain{flou}$t$-liveness, let us define the upward-closed set of configurations \alain{configuration ou state, tjs le même mot stp}such that $t$ is enabled:
-$pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
+%		 better discuss \alain{flou}$t$-liveness, 
+Let us define the set of configurations such that $t$ is enabled:
+$pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$. Remark that $pre(t)$ is upward-closed.
 
 
 
