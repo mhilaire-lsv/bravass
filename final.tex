@@ -458,8 +458,8 @@ it asks whether for \emph{every} element of $\Bad$ it is possible to cover an el
 
 Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS (intuitively speaking, $(S,\leq)$ must not contain the Rado set). 
 A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-post-effective} if
-it is post-effective, and there exists a Turing Machine $M_\downarrow$ that computes, on input $s \in S$, 
- $\downarrow s$, and some Turing Machine $M_{\uparrow^C}$ that computes, on input
+it is post-effective, and there exists an algorithm $M_\downarrow$ that computes, on input $s \in S$, 
+ $\downarrow s$, and some algorithm $M_{\uparrow^C}$ that computes, on input
  $\{s_1, s_2, \ldots, s_m\} \in S^m$, 
  the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$.
 Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS (we don't need the pred-basis hypothesis).
