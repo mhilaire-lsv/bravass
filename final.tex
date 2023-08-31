@@ -778,7 +778,7 @@ where  $t$-liveness is both undecidable and
  reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
 We now recall the
- undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS, which consists in, given a
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS of dimension $d$, which consists in, given a
 reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
 deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 %
@@ -789,12 +789,12 @@ A control-transition $t$ of a reset-VASS is {\em live} in a configuration $r(\te
 live. This leads to the following problem.
 
 \problemx{$t$-liveness}
-{A reset-VASS $V=(Q,T)$, $t \in T$, initial configuration $s_0$}
+{A reset-VASS $V=(Q,T)$ of dimension $d$, a transition $t \in T$, an initial configuration $s_0 \in Q \times \N^d$}
 {Is $t$ live in $s_0$ ? \\}
 
 
-To better discuss $t$-liveness let us define more formally the upward-closed set of configurations such that $t$ is enabled
-$pre(t)=\{ p(\textbf{u}) \in S \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
+To better discuss \alain{flou}$t$-liveness, let us define more formally the upward-closed set of configurations such that $t$ is enabled:
+$pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$.
 
 
 
