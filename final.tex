@@ -175,12 +175,12 @@ the bounded resilience problem is to decide whether there exists an $k$ such tha
 In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
 %%%%%%%%%
 
-In 2021, Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
+In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
 $\uparrow$ $\post^*$ basis) and with $\Safe=\uparrow \Safe$ and $\Bad$ downward-closed.
 
 
 Remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
-However, neither Prasad \& Zuck nor Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
+However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
 %%%%%%%%%
 %
 
@@ -919,7 +919,7 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$. \qed
 
 
 The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
-Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
+\"Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
 \problemx{Downward-reachability problem}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and a downward-closed set $D
@@ -1315,7 +1315,7 @@ One could also extend upon the classes of set $\Safe$
 
 
 
-\bibliography{bibliography/bib}
+\bibliography{bib}
 
 
 \appendix
@@ -1408,9 +1408,9 @@ Thus, every place of $P_2$ inherited from $N_1$ must be devoid of token. Moreove
 it can be reached without using the transitions $t_p$ or $t_{p_2}$. Since $t_{p_a}$ do not modify the places inherited from $P_1$ nor does it enable new transitions, the reachability of $\mu$ implies the reachability of a marking where every place of $P_2$ inherited from $P_1$ is devoid of token using only the transitions inherited from $N_1$. Thus the zero marking is reachable from $\mu_1$ in $N_1$.
 \end{proof}
 
-\alain{numérotation à faire}
+
 \noindent
-\textbf{Corollary~\ref{liveness reset VASS}}
+\textbf{Corollary}
 {\em In reset-VASS, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
 
 
