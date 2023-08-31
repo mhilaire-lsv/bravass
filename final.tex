@@ -654,7 +654,7 @@ which can be simulated by WSTS.
 
 
 
-Indeed, {\sc Home-space} is undecidable for Minsky machine with at least $3$ counters, since it is undecidable in the particular case where $H$ is a singleton.
+Indeed, {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
 This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
 such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
