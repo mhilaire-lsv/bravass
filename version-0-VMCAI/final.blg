@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: final.aux
+The style file: splncs04.bst
+Database file #1: bibliography/bib.bib
+Repeated entry---line 13822 of file bibliography/bib.bib
+ : @inproceedings{DBLP:conf/rp/Schnoebelen10
+ :                                          ,
+I'm skipping whatever remains of this entry
+You've used 21 entries,
+            2850 wiz_defined-function locations,
+            863 strings with 11499 characters,
+and the built_in function-call counts, 12680 in all, are:
+= -- 1085
+> -- 310
+< -- 35
++ -- 126
+- -- 102
+* -- 861
+:= -- 1590
+add.period$ -- 48
+call.type$ -- 21
+change.case$ -- 119
+chr.to.int$ -- 0
+cite$ -- 21
+duplicate$ -- 1150
+empty$ -- 1148
+format.name$ -- 122
+if$ -- 2791
+int.to.chr$ -- 0
+int.to.str$ -- 21
+missing$ -- 230
+newline$ -- 70
+num.names$ -- 54
+pop$ -- 356
+preamble$ -- 2
+purify$ -- 86
+quote$ -- 0
+skip$ -- 359
+stack$ -- 0
+substring$ -- 758
+swap$ -- 689
+text.length$ -- 35
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 80
+warning$ -- 0
+while$ -- 120
+width$ -- 23
+write$ -- 268
+(There was 1 error message)

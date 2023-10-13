@@ -1,0 +1,149 @@
+
+
+
+\section{Well-structured transition systems and VASS}\label{section definitions}
+
+%   In this section, we introduce general notations and preliminary definitions.
+
+\noindent
+%Let us recall the well-known framework of transition systems. 
+ A {\em transition system} is a pair $\mathscr{S} = (S,\rightarrow )$ where $S$ is a set of 
+ {\em states} and  
+ $ {\rightarrow} \subseteq S \times S$ is a
+ binary relation 
+ on
+ the set of states, denoted as the set of {\em transitions}. 
+%
+We write $s \rightarrow s'$ to denote $ (s,s') \in  {\rightarrow} $.
+We write $\rightarrow^{k}$, $\rightarrow^{+}$, $\rightarrow^{=}$, $\rightarrow^{*}$
+for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexive closure, its reflexive and transitive closure.
+Let $X,Y \subseteq S$ and $k \in \mathbb{N}$; we denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
+\noindent
+The set of {\em (immediate) successors} of a state $s \in S$ is defined as 
+ $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
+% $\post(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s \xrightarrow{a} s'\}$. 
+%A state without successors is called a {\em dead end}. 
+The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
+ $\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
+% $\pred(s) = \{ s' \in S \mid  ~ \exists a \in \Sigma~ s' \xrightarrow{a} s\}$. 
+By iterating $\pred$ and $\post$ we obtain  
+$\post^n(s) = \{ s' \in S \mid  ~ s \xrightarrow{}^n s'\}$
+and
+$\pred^n(s) = \{ s' \in S \mid  ~ s' \xrightarrow{}^n s\}$.
+However, we are generally more interested in
+$\post^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \post^i(s)$, $\post^*(s)= \bigcup_{1 \leq i} \post^i(s)$
+and
+$\pred^{\leq n}(s) = \bigcup_{1 \leq i \leq n} \pred^i(s)$ and $\pred^*(s) = \bigcup_{1 \leq i} \pred^i(s)$. % \\
+The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S, \to)$, two states $s, t \in S$, whether $s \to^* t$. 
+
+%
+
+% \noindent
+A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
+Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
+A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+To any subset $A \subseteq X$, we may associate
+its {\em upward-closure},
+ $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
+ and its 
+ {\em downward-closure},
+ $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
+We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
+as $\uparrow x$ (resp. $\downarrow x$).
+%
+A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
+
+
+ A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$.
+%
+%
+%
+Wqo admits many other equivalent formulations. 
+% For instance:  $(X,\leq)$ is a wqo f and only if any infinite sequence  $x_0, x_1, x_2, ...$ in $X$ contains an infinite increasing subsequence: $x_{i_0} \leq x_{i_1} \leq x_{i_2} \cdots$ (with $i_0 < i_1 < i_2 \cdots$) if and only if any infinite increasing sequence $U_0 \subseteq U_1 \subseteq U_2 \subseteq \cdots$ of upward-closed subsets in $X$ eventually stabilizes, if and only if any upward-closed subset $U \subseteq X$ has a finite basis if and only if $(X,\leq)$ is well-founded (i.e. it admits no infinite strictly decreasing sequence) and $X$ don't contain infinite subset of mutually incomparable elements (antichains).
+%
+%
+As an example, $(\N^d, \leq)$, the set of vectors of $d$ natural numbers (where $d$ is finite) with component-wise order is a wqo.
+%
+Quasi-orderings that have no 
+%infinite antichains
+infinite subset of mutually incomparable elements (antichains)
+ enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2,..., J_n$ such that $D = \downarrow (J_1 \cup J_2 \cup..\cup J_n)$.
+%
+%
+In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement), and an upward-closed set $U$ is represented by its finite set of minimal elements. \\
+
+\noindent
+Let us now recall the (most general) definition of well-structured transition systems.
+\begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
+A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
+is a transition system $(S, \rightarrow)$
+equipped with a wqo ${\leq} \subseteq S \times S$ such that   
+the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
+\end{definition}
+
+We say that a WSTS $\mathscr{S}$ has \emph{strong (upward) compatibility} when moreover for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
+
+Several families of formal models of processes give rise to WSTSs in a natural way, e.g. Petri nets when inclusion between markings is used as the well-ordering and lossy channel systems with the subword ordering. % The lossy VASS given in the {\bf Flight Controller System} example, for instance, is a WSTS.
+
+
+
+\noindent
+{\bf On effectivity}
+Let a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$. We say that $\mathscr{S}$ is {\em effective} if there exists a pair of algorithms
+($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
+$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
+$M_\leq$ the ordering relation “$\leq$”.
+We say that $\mathscr{S}$ is {\em post-effective} if it is effective, and if there
+exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$ 
+on input $x$, with $x \in X_i $. 
+We say that $\mathscr{S}$ has {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
+%
+We say that $\mathscr{S}$
+is {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a configuration $s$
+to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
+%
+% As an illustration, the lossy VASS given in the {\bf Flight Controller System} example is post-effective, ideal-effective, and has effective pred-basis.
+
+Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
+We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
+For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. 
+With the effective pred-basis hypothesis, we obtain:
+
+\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
+A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
+\end{theorem}
+
+With the ideal-effective hypothesis, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
+
+\begin{theorem}\cite{BFM-ic17}
+Coverability is decidable for any ideal-effective ordered upward-compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
+\end{theorem}
+
+
+
+
+Let us recall the  definition of vector addition system with states. 
+ \begin{definition} 
+A {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+ \end{definition} 
+% The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
+%
+Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with a $d$-VASS $V$.
+For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+%
+When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence it can be only defined by $T$.
+
+
+

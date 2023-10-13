@@ -1,0 +1,459 @@
+\documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{ifthen}
+
+
+%% \usepackage[thmmarks]{ntheorem}
+%% %%% Theorem environments
+%% \newtheorem{lemma}{Lemma}
+%% \newtheorem{theorem}{Theorem}
+%% \newtheorem{proposition}{Proposition}
+%% \newtheorem{corollary}{Corollary}
+
+%% \theoremstyle{definition}
+%% \theoremsymbol{\ensuremath{\lozenge}}
+%% \theorembodyfont{\normalfont}
+%% \newtheorem{definition}{Definition}
+
+%% \theoremstyle{nonumverplain}
+%% \theoremheaderfont{\normalfont\bf}
+%% \theorembodyfont{\normalfont}
+%% \theoremseparator{.}
+%% \theoremsymbol{\ensuremath{_\blacksquare}}
+%% \newtheorem{example}{Example}
+
+%% \theoremstyle{nonumberplain}
+%% \theoremheaderfont{\normalfont\itshape}
+%% \theorembodyfont{\normalfont}
+%% \theoremseparator{.}
+%% \theoremsymbol{\ensuremath{_\Box}}
+%% \newtheorem{proof}{Proof}
+
+% Symbols
+\newcommand{\naturals}{\ensuremath{\mathbf{N}}}
+\newcommand{\integers}{\ensuremath{\mathbf{Z}}}
+
+% Machines and their ingredients
+\newcommand{\automaton}{\ensuremath{\mathcal{A}}}
+\newcommand{\clocations}{\ensuremath{Q}}
+\newcommand{\iclocation}{\ensuremath{q_{\mathit{in}}}}
+\newcommand{\fclocation}{\ensuremath{F}}
+\newcommand{\transitionrel}{\ensuremath{\Delta}}
+\newcommand{\transitionlabel}{\ensuremath{\lambda}}
+\newcommand{\clocationlabel}{\ensuremath{\xi}}
+\newcommand{\operations}{\ensuremath{Op}}
+\newcommand{\operation}{\ensuremath{op}}
+\newcommand{\add}[1]{\ensuremath{\mathit{add}(#1)}}
+\newcommand{\zero}{\ensuremath{\mathit{zero}}}
+\newcommand{\propositions}{\ensuremath{L}}
+\newcommand{\configuration}{\ensuremath{c}}
+\newcommand{\configurations}{\ensuremath{\mathcal{C}}}
+\newcommand{\run}{\ensuremath{\pi}}
+\newcommand{\trace}{\ensuremath{\tau}}
+\newcommand{\pocatuple}{\ensuremath{\langle \clocations,
+\iclocation, \fclocation, \transitionrel, \transitionlabel,
+\clocationlabel \rangle}}
+
+\newcommand{\circuit}{\ensuremath{\mathcal{C}}}
+
+\newcommand{\tm}{\ensuremath{\mathcal{M}}}
+
+%%% Names
+\newcommand{\oca}{\textsc{OCA} }
+\newcommand{\poca}{\textsc{POCA} }
+
+%%% Problems
+\newcommand{\stsat}{\textsc{Succinct 3-SAT} }
+\newcommand{\tsat}{\textsc{3-SAT} }
+\newcommand{\ltlpoca}{\textsc{LTL-POCA-MC} }
+
+%%% Complexity classes
+\newcommand{\nexptime}{\textsc{NExpTime} }
+\newcommand{\conexptime}{\textsc{co-NExpTime} }
+\newcommand{\pspace}{\textsc{PSpace} }
+
+%%% LTL
+\newcommand{\ltl}{\textsc{LTL} }
+\newcommand{\until}{\ensuremath{\mathcal{~U~}}}
+\newcommand{\propalphabet}{\ensuremath{\Sigma}}
+\newcommand{\pastarred}{\ensuremath{(\mathcal{P}(\propalphabet))^{\omega}}}
+
+%%% Logic
+\newcommand{\true}{\ensuremath{\mathit{true}}}
+\newcommand{\false}{\ensuremath{\mathit{false}}}
+
+%%% Control commands
+\newcommand{\defemph}[1]{\emph{#1}}
+
+\begin{document}
+\section{LTL Model Checking}
+\begin{figure}
+  \begin{center}
+    \includegraphics{graphics/divisibility-1.pdf}
+  \end{center}
+  \begin{center}
+    \includegraphics{graphics/divisibility-2.pdf}
+  \end{center}
+  \caption{Gadgets for testing the counter for divisibility and
+    non-divisibility with $p$.}
+  \label{fig:divisibility-gadgets}
+\end{figure}
+\begin{figure}
+  \begin{center}
+    \includegraphics{graphics/divisibility-0.pdf}
+  \end{center}
+  \caption{Gadget for adding a number between $0$ and $-2^{k+1}+1$ to
+    the counter.}
+  \label{fig:number-diamond}
+\end{figure}
+
+Let $\propalphabet$ be a set of \defemph{propsions}. In the following,
+capital arabic letters such as $A$ will identify elements from
+$\propalphabet$.  The set of \ltl formula is inductively defined
+according to the following grammar:
+\begin{equation*}
+  \varphi ::= A \mid \neg \varphi \mid \varphi_1 \wedge \varphi_2 \mid
+  \bigcirc \varphi \mid \varphi_1 \until \varphi_2
+\end{equation*}
+We define the Boolean abbreviations in a standard way, i.e.,
+$\varphi_1 \vee \varphi_2 := \neg (\neg \varphi_1 \wedge \neg
+\varphi_2)$, $\varphi_1\rightarrow \varphi_2:=\neg \varphi_1 \vee
+\varphi_2$ and moreover $\top:=A\vee \neg A$ for some $A\in
+\propalphabet$. The temporal abbreviations $\Diamond$
+(\defemph{eventually}) and $\Box$ (\defemph{globally}) are defined as
+$\Diamond \varphi:= \top \until \varphi$ and $\Box \varphi := \neg
+\Diamond \neg \varphi$.  Let $\trace \in \pastarred$ be a trace, the
+containment of $\trace$ in the trace language of $\varphi$ ($\trace
+\models \varphi$) is defined by induction on the structure of
+$\varphi$:
+\begin{eqnarray*}
+  \trace \models  A &  \iff & A\in\trace(0)\\
+  \trace \models  \neg \varphi &\iff & \trace \not \models \varphi\\
+  \trace \models \varphi_1 \wedge \varphi_2 &\iff& \trace
+  \models \varphi_1 \text{ and } \trace \models \varphi_2\\
+  \trace \models \bigcirc \varphi & \iff & \tau^1 \models \varphi\\
+  \trace \models  \varphi_1 \until \varphi_2 & \iff &
+  \text{there is } j\in\naturals \text{ s.t. } \tau^j\models \varphi_2
+  \text{ and for all } i<j: \tau^j\models \varphi_1
+\end{eqnarray*}
+Thus, the language of a formula $\varphi$ is $L(\varphi):=\{ \tau \in
+\pastarred : \tau\models \varphi\}$.  Given an \oca $\automaton$, we
+write $\automaton\models \varphi$ iff $L(\automaton)\subseteq
+L(\varphi)$. We can now define the LTL model checking problem for
+parametric one-counter automata.
+\begin{definition}[$\ltlpoca$]
+  Let $\automaton$ be a $\poca$ and $\varphi$ an LTL formula. We write
+  $\automaton \models \varphi$ iff for all assignments $\sigma:
+  \rho(\automaton)\to \integers$ we have $\automaton(\sigma) \models
+  \varphi$.  The \defemph{LTL model checking of parametric one-counter
+    automata ($\ltlpoca$)} is to decide $\mathcal{A}\models \varphi$.
+\end{definition}
+A general automata theoretic approach to check a system given by a
+finite state automaton $\automaton$ against an LTL specification
+$\varphi$ was introduced by Vardi and Wolper in
+\cite{VW86-lics}. Their idea is to translate the negation of
+$\varphi$, which captures all bad behaviours, into a B\"uchi automaton
+$\automaton_{\neg \varphi}$ and then to check for language emptiness
+of the product automaton $\mathcal{B}=\automaton\times
+\automaton_{\neg \varphi}$. Moreover, they shown that the size of the
+automaton $\automaton_{\neg \varphi}$ is in
+$\mathcal{O}(2^{|\varphi|})$, hence $|\mathcal{B}|\in \mathcal{O}
+(|\automaton|\times 2^{|\varphi|})$.
+
+We can employ this technique in a straight-forward way in our
+setting. Given a \poca $\automaton$ and an LTL formula $\varphi$, in
+order to check that $\automaton \not \models \varphi$, we need to find
+an assignment $\sigma$ to $\rho(\automaton)$ such that
+$\automaton(\sigma)\not\models \varphi$. Consequently, it is
+sufficient to check whether $L(\automaton \times \automaton_{\neg
+\varphi}) \neq \emptyset$, for which we have established the
+complexity in the previous section.
+\begin{proposition}
+  \ltlpoca is in $\conexptime$.
+\end{proposition}
+Subsequently, we show that this upper bound cannot be improved.
+Our prototype problem for showing $\conexptime$-hardness is $\stsat$
+\cite{P94-book}. As in classical $\tsat$, the problem posed by an
+instance of $\stsat$ is to find a satisfying assigment of a
+propositional formula $\chi$ in 3-DNF. The difference however is that
+$\chi$ is represented by a Boolean circuit. This representation allows
+for an exponentially succinct representation of $\chi$, which renders
+\stsat $\nexptime$-complete \cite{P94-book}.
+\begin{definition}[\stsat]
+  An instance of \defemph{$\stsat$} is a Boolean circuit $\circuit$
+  with input $y;\ell$, where $y\in \{0, \ldots, 2^m-1\}$ is a number
+  encoded in binary that identifies a clause for some arbitrary but
+  fixed $m\in\naturals$, and $1\le \ell\le 3$ accesses the respective
+  literal of the clause. The output of $\circuit$ is $z;b$, where
+  $1\le z\le t$ is a number encoded in binary identifying a variable
+  $X_z$ for some fixed $1\le t\le 3\cdot 2^m$, and $b\in\{0,1\}$
+  indicates whether or not $X_z$ is negated. The propositional formula
+  encoded by $\circuit$ is
+  \begin{equation*}
+    \chi(X_1,\ldots,X_t) = \bigwedge_{0\le y<2^m}\left(
+    \bigvee_{\circuit(y,\ell)=z;0\atop 1\le \ell\le 3} \neg X_z
+    \vee \bigvee_{C(y,\ell)=z;1\atop 1\le \ell \le 3} X_z \right).
+  \end{equation*}
+  \stsat is to decide whether there exists a valuation $v: \{X_1,
+  \ldots X_{t}\}\to \{\true, \false\}$ such that $\chi$ evaluates to
+  true under $v$.
+\end{definition}
+In order to establish $\conexptime$-hardness of $\ltlpoca$, given an
+instance $\circuit$ of \stsat we construct a \poca $\automaton$ with
+only one parameter and an LTL formula $\varphi$ such that the formula
+$\chi$ induced by $\circuit$ is satisfiable iff $\automaton
+\not\models \neg\varphi$. There are two key ideas for the reduction:
+First, we choose a suitable encoding of arbirtray valuations in the
+naturals so that we can use the parameter to guess and store
+them. Second, we employ the expressive power of LTL in order to
+perform arbitrary computations of \pspace Turing machines on traces of
+runs of $\automaton$.
+
+Regarding the encoding, let $X_1,\ldots, X_t$ be the propositional
+variables ocurring in $\chi$, $p_1, \ldots, p_t$ the first $t$ prime
+numbers and $a\in \naturals$. We define a valuation $v:\{X_1,\ldots,
+X_t\}\to \{\true,\false\}$ such that $a\equiv 0 \mod p_i$ iff
+$v(X_i)=\false, 1\le i\le t$. Thus, any number $a$ corresponds to a
+valuation. Conversely, the Chinese Remainder Theorem guarantees that
+for any valuation a suitable $a$ exists. Note that the Prime Number
+Theorem ensures that the binary representation of the $p_i$ is
+polynomial in $t$.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[scale=0.9]{graphics/structure-0.pdf}
+  \end{center}
+  \caption{High-level description of the automaton $\automaton$ used for
+  the reduction.}
+  \label{fig:high-level}
+\end{figure}
+
+Let us now take a high-level look at the $\poca$ $\automaton$ that is
+used for the reduction and sketched in Figure \ref{fig:high-level}.
+$\automaton$ uses one parameter $a$ and employs several gadgets
+(depicted as rectangles) that communicate via designated propsitional
+variables. First, $\automaton$ loads the value of the parameter $a$
+into the counter. It then passes through a gadget that initially
+chooses a number $c$ identifying a clause of $\chi$ encoded as a
+sequence of propositions. This gadget is constructed such that it
+outputs the increment of $c$ modulo $2^m$ each time it is passed
+thereafter. Now $\automaton$ branches non-deterministically into a
+gadget $\automaton_\circuit$ in order to choose one literal of the
+respective clause, i.e., evaluates the circuit $\circuit$ for input
+$c;1, c;2$, respectively $c;3$. The identifier $z$ of the variable
+$X_z$ of the respective literal, again encoded as a sequence of
+propositions, is then used as input to a gadget $\automaton_p$ which
+computes the $z$-th prime number $p_z$. Having computed $p_z$, if
+$b=0$, i.e., $X_z$ is negative in $c$, it is checked that
+$p_z|a$. Symmetrically, if $X_z$ is positive it is checked that
+$p_z\not|a$. After the checks have been finished, it is ensured that
+the counter has value $a$ and the process continues with clause $c+1
+\mod 2^m$. Given an LTL formula $\varphi$ that ensures that all
+gadgets work and communicate properly, it is clear that $\chi$ is
+satisfiable iff $\automaton \not \models \neg \varphi$.
+
+So it remains to show how the gadgets can be realized. Observe that
+the computations performed by the gadgets $\automaton_\circuit$ and
+$\automaton_p$ can be realized by $\pspace$ Turing machines:
+evaluating a Boolean circuit clearly is in $\pspace$, as well is
+computing the $i$-th prime number for $1\le i\le t$. Therefore, we
+subsequently show how a generic $\pspace$ Turing machine can be
+encoded as an \oca together with a family of LTL formulas that ensure
+proper behaviour and communication.
+
+\begin{figure}
+\begin{center}
+\includegraphics{graphics/tm-oca-0.pdf}
+\end{center}
+\caption{The \poca $\automaton_\tm$ used to generically perform
+  computations of arbitrary \pspace Turing machines.}
+\label{fig:tm}
+\end{figure}
+% assume TM goes into infinite loop if it does not accept
+Let $\tm=\langle S, \{0, 1\}, s_0, \delta, F \rangle$ be a
+deterministic Turing machine which does not use more than $n$ tape
+cells during a computation, where $n$ is polynomial in
+$|\tm|$. Following standard methods for showing $\pspace$-hardness of
+LTL satisfiability, in order to encode computations of $\tm$ we
+introduce propositions $T_{i,b}^\epsilon$ and $T^s_{i,b}$, $1\le i\le
+n, b\in\{0,1\}, s\in S$. When simulating a computation,
+$T_{i,b}^\epsilon$ indicates that the content of the $i$-th tape cell
+is $b$ and $T_{i,b}^s$ additionally signals that the head currently
+reads the $i$-th tape cell in state $s\in S$.  For technical
+convenience, in the following $T_{n+1,b}^s$ abbreviates $\top$ for any
+$s\in S\cup \{\epsilon\}, b\in\{0,1\}$.
+
+Consider now the \poca $\automaton_\tm$ shown in Figure
+\ref{fig:tm}. For each $1\le i\le n$ it contains a column of locations
+such that each $T_{i,b}^\epsilon$ and $T_{i,b}^s$ occurs as a label of
+exactly one location.  When simulating a computation of $\tm$, as long
+as we have not reached an accepting state, we loop through the upper
+component of $\automaton_\tm$. Once the simulated computation reaches
+an accepting state, the final tape content is encoded into a trace of
+a run in the lower component of $\automaton_\tm$, i.e., we pass
+through a location labelled with $A_{i,b}$ iff the $i$-th tape cell
+contains $b$ when the computation has finished for $1\le i\le n, b\in
+\{0,1\}$.  The propositional variable $\$$ is used as a special marker
+the allows for detecting when the upper component of $\automaton_\tm$
+is traversed for the first time. We now give LTL formulas that
+restrict the traces of runs of $\automaton_\tm$ to correspond to
+computations of $\tm$.
+
+At first, we need to make sure that the path we initially take in the
+upper component corresponds to an initial configuration of $\tm$. As
+previously said, we want to be able to use the output of one Turing
+machine as the input to another.  Assume the output is encoded by
+propositions $A_{1,b_1}',\ldots, A_{n,b_n}'$, the following formula
+ensures that they are correctly reused as input to $\automaton_\tm$:
+\begin{equation*}
+  \Box \left( \bigwedge_{b\in \{0,1\}}(A_{1,b}' \rightarrow (( \neg
+  T_{1,\bar{b}}^{s_i}\wedge \bigwedge_{s\in (S\setminus\{s_i\}\cup
+    \{\epsilon\},\atop b'\in\{0,1\}} \neg T_{1,b'}^s) \until \$)
+  \wedge \bigwedge_{2\le i\le n,\atop b\in\{0,1\}} A'_{i,b}
+  \rightarrow ((\neg T_{i,\bar{b}}^\epsilon \wedge\bigwedge_{s\in
+    S,\atop b'\in \{0,1\}} T_{i,b'}^s)\until \$)) \right)
+\end{equation*}
+%% by propositions Suppose the
+%% initial tape content is given by $b_1,\ldots, b_n \in \{0,1\}$, this
+%% can be achieved by the following formula:
+%% \begin{equation}
+%%   \left(\bigwedge_{s\in (S\setminus \{s_i\} \cup \{\epsilon\})\atop b\in\{0,1\}}
+%%   \neg T_{1,b}^s\wedge \neg T_{1,\bar{b_1}}^{s_i}
+%%   \wedge
+%%   \bigwedge_{2\le i\le n} \bigwedge_{s\in S\atop
+%%     b\in\{0,1\}}\neg T_{i,b}^s \wedge \neg
+%%   T_{i,\bar{b_i}}^\epsilon\right)
+%%   \until \$
+%% \end{equation}
+The reason for writing the above formula in this form is that it
+allows us to transfer inputs from outputs of Turing machines even if
+they are not directly connected to each other.
+
+%todo: Add reason why we write formula like that
+We can now give LTL formulas that constraint runs of $\automaton_\tm$
+such that the propositions seen in the corresponding trace
+successively encode valid configurations of $\tm$ with respect to
+$\delta$.  First, whenever we see three consecutive propositions
+indicating that the head is currently not reading any tape cell
+corresponding to them, we require that the content of the second does
+not change in the next encoded configuration. A special case is the
+first tape cell, which needs to be treated seperately. The formula
+enforcing this constraint is
+\begin{equation*}
+   \Box\Bigg(
+     \bigwedge_{b_1,b_2\in \{0,1\}} \Big(
+  (T_{1,b_1}^\epsilon \wedge \bigcirc^2 T_{2,b_2}^\epsilon) \rightarrow
+  \bigcirc^{2n+1} (T_{1,b_1}^\epsilon \vee A_{1,b_1})
+  \Big)\wedge
+\end{equation*}
+\begin{equation*}
+  \wedge\bigwedge_{1\le i\le n-1\atop b_0,b_1,b_2\in \{0,1\}}
+  \Big( (T_{i,b_0}^\epsilon \wedge \bigcirc^{2}T_{i+1,b_1}^\epsilon \wedge
+  \bigcirc^{4}T_{i+2,b_2}^\epsilon) \rightarrow
+  \bigcirc^{2(n+1)+1}(T_{i+1,b_1}^\epsilon\vee A_{i+1,b_1}) \Big)\Bigg)
+\end{equation*}
+%% \begin{equation}
+%% \rightarrow
+%%   (\bigcirc^{2n}(T_{i,b_0}\vee A_{i,b_0}) \wedge
+%%    \wedge
+%%   \bigcirc^{2(n+2)}(T_{i+2,b_2}\vee A_{i+2,b_2})\Big)\Bigg)
+%%   \Box(\bigwedge_{1\le i\le n-1\atop b_0,b_1,b_2\in \{0,1\}}
+%%   ( (T_{i,b_0} \wedge \bigcirc^{2}T_{i+1,b_1} \wedge
+%%   \bigcirc^{4}T_{i+2,b_2}) \rightarrow\\ \rightarrow
+%%   (\bigcirc^{2n}(T_{i,b_0}\vee A_{i,b_0}) \wedge
+%%   \bigcirc^{2(n+1)}(T_{i+1,b_1}\vee A_{i+1,b_1}) \wedge
+%%   \bigcirc^{2(n+2)}(T_{i+2,b_2}\vee A_{i+2,b_2})) \wedge\\
+%% \end{equation}
+Second, whenever we see a proposition indicating that in the
+corresponding configuration the head is reading the respective
+tape cell, we need to ensure that all the neighbour tape
+cells are updated according to $\delta$:
+\begin{equation*}
+  \Box\Bigg(\bigwedge_{1\le i\le n-1\atop b_0,b_1,b_2\in \{0,1\}}
+  \bigwedge_{s\in S} \Big( (T_{i,b_0}^\epsilon \wedge
+  \bigcirc^{2}T_{i+1,b_1}^s \wedge \bigcirc^{4}T_{i+2,b_2}^\epsilon)
+  \rightarrow
+\end{equation*}
+\begin{equation*}
+  \rightarrow \left\{
+    \begin{array}{ll}
+      \bigcirc^{2n+1} T_{i,b_0}^{s'} \wedge \bigcirc^{2(n+1)+1}
+      T_{i+1,b}^\epsilon \wedge \bigcirc^{2(n+2)+1} T_{i+2,b_2}^\epsilon))& \text{ if }
+      \delta(s,b_1)=(s',b,-1), s'\not\in F\\
+      \bigcirc^{2n+1} T_{i,b_1}^\epsilon \wedge \bigcirc^{2(n+1)+1}
+      T_{i+1,b}^\epsilon \wedge \bigcirc^{2(n+2)+1} T_{i+2,b_2}^{s'}))& \text{ if }
+      \delta(s,b_1)=(s',b,+1),s'\not\in F\\
+      \bigcirc^{2n+1} A_{i,b_1} \wedge \bigcirc^{2(n+1)+1}
+      A_{i+1,b} \wedge \bigcirc^{2(n+2)+1} A_{i+2,b_2}))& \text{ if }
+      \delta(s,b_1)=(s',b,d), s'\in F
+    \end{array}
+    \right.
+\end{equation*}
+%% \begin{equation*}
+%%     \wedge
+%%     (T_{0,b_0}^q \wedge \bigcirc^{2} T_{1,b_1}) \rightarrow
+%%     \left \{
+%%     \begin{array}{ll}
+%%       \bigcirc^{2n} T_{0,b} \wedge \bigcirc^{2(n+1)} T_{1,b_1}))
+%%       & \text{ if } \delta(q,b_1)=(q',b,R) \text{ and } q'\neq q_f\\
+%%       \bigcirc^{2n} A_{0,b} \wedge \bigcirc^{2(n+1)} A_{1,b_1}))
+%%       & \text{ if } \delta(q,b_1)=(q',b,R) \text{ and } q'= q_f\\
+%%     \end{array}
+%%     \right.
+%% \end{equation*}
+Here, $A_{n+1,b}$ also abbreviates $\top$ for $b\in\{0,1\}$. In order
+to improve readability, we have omitted the special case when the head
+reads the first tape cell. The above formula can however
+straight-forwardly be adopted to take this into account.
+
+Coming back to Figure \ref{fig:high-level}, it now is easy to see how
+we can implement a gadget that chooses a clause $c$ and subsequently
+increments $c$ modulo $2^m$ each time it is passed. It is just a
+$\pspace$ Turing machine that uses its own output as input and
+increments it modulo $2^m$. A valid input for the first time it is
+used can be provided by a suitable LTL formula.
+
+We contiune with showing how the counter value can be tested for
+{(non\-)} divisibility with a prime number that has previously been
+computed. Suppose the prime number is encoded in propositions
+$A_{1,b_1},\ldots,A_{k+1,b_{k+1}}$. As previously mentioned, Figure
+\ref{fig:divisibility-gadgets} provides gadgets that can test the
+counter for (non-)divisibility with some parametric value $p$.
+Observe that both gadgets ensure that the counter value is $0$ when
+they are left. We can obtain a generic version of those gadgets by
+replacing every edge that is labelled with $\mathit{add}(-p)$ with the
+gadget from Figure \ref{fig:number-diamond}. We just have constraint
+the runs such that each time we pass through the gadget from Figure
+\ref{fig:number-diamond} we take a path whose sum adds up to the
+number encoded by the $A_{i,b_i}$. This is ensured by the following
+formula:
+\begin{equation*}
+  \Box \left( \bigwedge_{1\le i\le k+1,\atop b\in\{0,1\}} A_{i,b}
+  \rightarrow (\neg N_{i-1,\bar{b}}\until \$) \right)
+\end{equation*}
+
+Finally, it is not difficult to see that the techniques we used in the
+previous paragraphs can also be used to correctly handle the branching
+on $b$ performed in Figure \ref{fig:high-level}.
+
+In summary, we can take the disjoint union of all the gadgets from
+Figure \ref{fig:high-level} and their appendant LTL formula that we
+described in this section, connect the gadgets correctly and take the
+conjuction of the LTL formulas in order to obtain an automaton
+$\automaton$ and a formula $\varphi$ such that $\automaton \not
+\models \neg \varphi$ iff $\chi$ is satisfiable.
+
+\begin{theorem}
+  \ltlpoca is $\conexptime$-complete.
+\end{theorem}
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}

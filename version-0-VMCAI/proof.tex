@@ -1,0 +1,253 @@
+
+\section{Resilience for downward-WSTS}
+
+Let us recall the definition of downward-WSTS.
+
+\begin{definition} \cite{DBLP:journals/tcs/FinkelS01}
+A \emph{downward-WSTS} is an ordered transition system $(S, \rightarrow, \leq)$
+such that $\leq$ is a wqo and
+%  decidable ≤  wqo on S, i.e., for each two given states s, s ′ ∈ S, it is decidable whether s ≤ s ′ . 
+the transition relation $ \rightarrow$ is downward-compatible with $\leq$, i.e., for all  transition $s_1 \rightarrow t_1$
+with $s_1, t_1 , s_2 \in S$
+	and $s_2 \leq s_1$, there exists a transition $s_2 \rightarrow^{*} t_2$ with $t_2 \leq t_1$. 		
+\end{definition}
+
+%		enlever l'hypothèse finitely branching ?
+A downward-WSTS has the \emph{reflexive} compatibility if for all transition  $s_1 \rightarrow t_1$ with
+$s_1, t_1 , s_2 \in S$ and $s_2 \leq s_1$, either $t_1 \leq s_2$ or there exists a transition $s_2 \rightarrow t_2$ with $t_2 \leq t_1$.\\
+
+Downward-WSTS with reflexive compatibility enjoy a nice reachability property.
+
+\begin{theorem}[Proposition 5.4 in \cite{DBLP:journals/tcs/FinkelS01}]
+%	Since by Proposition 5.4 in \cite{DBLP:journals/tcs/FinkelS01}, we know that  
+For finitely branching downward-WSTS $(S, \rightarrow, \leq)$, with reflexive compatibility, decidable $\leq$ and effective $post$, a finite basis of $\uparrow post^*(s_0)$ is computable for any $s_0 \in S$.
+\end{theorem}
+
+%	Let us say that a downward-WSTS is \emph{effective}
+Using Corollary \ref{postcomputable}, we deduce that resilience is decidable for finitely branching downward-WSTS with reflexive compatibility and with strong upward compatibility, with a decidable $\leq$ and an effective $post$.
+
+%%%%%
+\alain{peut-on faire mieux ? enlever des hypothèses ?}
+
+Let us establish a general Lemma on downward-closed and upward-closed sets.
+
+\begin{lemma}\label{Lemma intersection}
+Let $A \subseteq S$, $J \subseteq S$ be a downward-closed set and $I \subseteq S$ be an upward-closed set. 
+Then $A \cap J \subseteq I$  iff $ (\uparrow  A) \cap J \subseteq I$.
+\end{lemma}
+
+
+\begin{proof}
+Let us suppose that $A \cap J \subseteq I$. Then ${\uparrow (A \cap J)} \subseteq {\uparrow I} = I$.
+Let us show that $({\uparrow A}) \cap J \subseteq {\uparrow (A \cap J)}$.
+Let $x \in ({\uparrow A}) \cap J$, then there exists $a \in A$ such that $x \geq a$.
+Since $x \in J$ and $J$ is downward-closed, we also have $a \in J$.
+Hence $a \in A \cap J$ and then $x \in { \uparrow (A \cap J)}$.
+In the other direction,
+since $A \subseteq {\uparrow A}$, the inclusion
+$({\uparrow  A}) \cap J \subseteq I$ implies
+$A \cap J \subseteq ({\uparrow  A}) \cap J \subseteq I$.
+\end{proof}
+
+Let us apply the previous Lemma with $A=post^*(s)$.
+
+\begin{corollary}
+For all $k \in \N$ and $s \in S$,
+$ post^*(s)\cap J \subseteq I^k $  iff $ (\uparrow  post^*(s)) \cap J \subseteq I^k$. 
+% et travailler avec $\downarrow post^*(s)$ à la place de $\uparrow post^*(s)$.
+\end{corollary}
+
+% La question deviens: quel $k$ pour que
+% $\downarrow post^*(s) \cap J \subseteq I^k$.
+% Ou alors, à $k$ fixé, est-ce que
+% $\downarrow post^*(s) \cap J \subseteq I^k$.
+
+
+
+Assume $k$ is fixed for now.
+
+{\bf Explanations on the two procedures.}
+Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , . . . , i.e. upward closed subsets $D_i \subseteq S$ such that $\uparrow post(D_i ) \subseteq D_i$. \alain{write U for upward closed subset and not D as for downward...}
+Every inductive invariant $D_i$ is an “over-approximation” of $\uparrow post^*(s)$ if it contains $s$.
+(on énumère des sur-approximations de la cloture par le haut de $post*(s)$ par leur bases finies).
+Each “over-approximation” $D_i$ is given by its basis $b(D_i)$. Notice that, by standard monotonicity, $\uparrow post^*(s)$ is such an inductive invariant and may
+eventually be found.
+% \alain{attention D est clos par le bas et $\uparrow post^*(s)$ est clos par le haut, je ne vois pas pourquoi $\uparrow post^*(s) \subseteq D$}
+% \mathieu{Oui effectivement les D devraient être clos par le haut, je corrige ça à la prochaine update.}
+
+Procedure 1 stops when it finds a basis $b(D)$ of an invariant $D$ such that
+$b(D)  \cap J \subseteq I^k$.  Since $b(D)$ is finite and $J$ is decidable, we can
+directly compute $b(D)  \cap J$.
+% We can compute a basis of $I^{k+1}$ if we have a basis of $I^k$.
+We can compute a basis
+of $I^{k+1}$ if we have a basis of $I^k$. %This follows by the proof of Lemma 3.
+Due to the Lemma ????, 
+$b(D)  \cap J \subseteq I^k$ implies
+$D  \cap J \subseteq I^k$.
+Hence
+$b(D)  \cap J \subseteq I^k$ implies
+$\uparrow post^*(s) \cap J \subseteq D  \cap J \subseteq I^k$.
+(since $ \uparrow post^*(s)  \subseteq D$).
+
+
+
+The second procedure iteratively computes
+$post^{\leq n}(s) \cap J$
+until it finds an element
+not in $ I^k$.
+
+
+This result is not in xxx and don't use the problematic hypothsis on $post^*$.
+\alain{ben si car downward-WSTS + qqhypothèses (voir plus haut) ont un $ \uparrow post^*(s)$ calculable !
+peut-on faire sauter qq hypothèses ?  finitely branching ??? with reflexive compatibility ????}
+
+% Et une fois que l'on a ça, on peut écrire
+
+% Ce serait une procédure qui pourrait par exemple calculer $post^m(s) \cap J $ jusqu'à trouver un élément pas dans $I^k$ ?
+
+% Càd on calcule les éléments de $post^m(s)$ un à un, pour chacun on vérifie s’il est dans $J$ puis s’il y est on vérifie s’il est dans $I^k$ ?
+
+% Il faut aussi une base de $J$ et que $I^k$ soit décidable, mais ça a l'air faisable j'ai l'impression...
+
+
+
+
+\begin{figure}
+\fbox{\parbox[t][3.cm][c]{6cm}{
+$\phantom{a}$\\
+(1)\phantom{aaaaa} $i \leftarrow 0$\\
+(2)\phantom{aaaaa}\textbf{while} $\neg( \uparrow post^*(D_i) \subseteq D_i $
+			 and $ s \in D_i$
+			 and $ b(D)  \cap J \subseteq I^k  )$ \textbf{loop} \newline
+	(3)\phantom{aaaaaa}$\phantom{aaaa} i \leftarrow i +1$ \newline
+(4)\phantom{aaaaa}\textbf{end loop} \newline
+(5)\phantom{aaaaa}\textbf{return} $\text{\textit{false}}$ \newline
+	}
+}
+	\caption{\textbf{Procedure RES:} enumerates inductive invariants to find an inclusion certificate.}\label{procedure1}
+\end{figure}
+
+
+
+
+\begin{figure}
+\fbox{\parbox[t][3.cm][c]{6cm}{
+$\phantom{a}$\\
+(1)\phantom{aaaaa} $D \leftarrow \{ s \} $\\
+(2)\phantom{aaaaa}\textbf{while} $D \cap J \subseteq I^k $ \textbf{loop} \newline
+	(3)\phantom{aaaaaa}$\phantom{aaaa} D \leftarrow D \cup post(D)$ \newline
+(4)\phantom{aaaaa}\textbf{end loop} \newline
+(5)\phantom{aaaaa}\textbf{return} $\text{\textit{false}}$ \newline
+	}
+}
+	\caption{\textbf{Procedure NOT-RES:} searches for a non-inclusion certificate.}\label{procedure2}
+\end{figure}
+
+
+We show that these two procedures allow to solve the $k$-resilience.
+
+\begin{proposition}
+The procedures $RES$ and $NOT-RES$ have the following property.
+\begin{itemize}
+%
+\item $k$-resilience holds if and only if Procedure $RES$ terminates.
+%
+\item $k$-resilience do not hold if and only if Procedure $NOT-RES$ terminates.
+%
+\end{itemize}
+\end{proposition}
+
+
+\begin{proof}
+
+\begin{enumerate}
+
+\item By a simple induction, it can be shown that $\uparrow post^*(D) \subseteq D$ for every inductive invariant $D$. 
+If Procedure 1 terminates, then
+$post^*(s) \cap J \subseteq \uparrow post^*(s) \cap J \subseteq D  \cap J \subseteq I^k$
+which implies that $k$-resilience holds.
+
+It remains to show that Procedure 1 terminates whenever $k$-resilience holds. To do so, it suffices to prove that $\uparrow post^*(s)$ is an inductive invariant. Indeed, this implies that
+$\uparrow post^*(s)$ is eventyally found by Procedure 1 when $k$-resilience holds. 
+
+Formally, let us show that $\uparrow post(\uparrow post^*(s)) \subseteq \uparrow post^*(s)$.
+Let $b \in \uparrow post(\uparrow post^*(s))$ 
+there exists $a', a, b$ such that
+$s \rightarrow^* a'$,
+$a' \leq a$,
+$a \rightarrow b'$,
+and
+$b' \leq b$.
+% By monotonicity, there exists b'' ≥ b' such that a → b'' . Therefore, x → ∗ b'' and b' ≥ b, hence b ∈ ↓ Post ∗ (x).
+By downward compatibility 
+there exists $b'' \leq b'$ such that $a \rightarrow b'' $. Therefore, $x \rightarrow^* b''$ and $b' \geq b$, hence $b \in \downarrow post^*(x)$.
+%\alain{où est cette hypothèse downward compatibility  ?}
+\item Procedure 2 computes
+ $post^{\leq n}(s) \cap J$
+ until it finds an element not in $ I^k$.
+
+If Procedure 2 terminates, then
+$k$-resilience does not hold.
+It remains to show that Procedure 2 terminates whenever $k$-resilience does not hold.
+Assume $ post^*(s) \cap J \not\subseteq I^k$, then there exists $a \in post^*(s) \cap J$ such that $a \not\in I^k$. Since $post^*(s) = \bigcup_{n} post^{\leq n}(s)$, then 
+$a \in post^*(s)$
+implies
+there exists
+$n_a$
+such that
+$a \in post^{\leq n_a}(s)$.
+Hence,  $post^{\leq n_a}(s) \cap J$ contains an element not in 
+$I^k$,
+and Procedure 2 terminates.
+\end{enumerate}
+
+\end{proof}
+
+
+\begin{theorem}
+{\sc $k$-resilience} is decidable for effective \alain{pas défini}WSTS with downward/strong upward compatibility.
+%	with strong monotony.
+\end{theorem}
+\alain{les resultatts et preuves ne sont pas faciles à lire: faire un seul niveau de parentheses}
+\begin{proof}
+%			\begin{proof}
+
+Assume  $(S, \rightarrow, \leq)$ is a WSTS with downward/upward compatibility, $J$ is a decidable downward-closed subset of $S$, and $I$ is an upward-closed set with a given basis.
+We define inductively
+$I^{k} = \bigcup_{0 \leq j \leq k} \pred^j(I)$. Note that for all $k \in \N$, $I^k$ is upward-closed due to
+the strongly upward compatibility of $(S, \rightarrow, \leq)$.
+
+% Si on inverse les types de propriétés (downward closed pour $I = SAFE$, upward closed pour $J= BAD$) alors on peut écrire un lemme symmétrique du Lemme $4$:
+
+The $k$-resilience property can be expressed as the formula
+$ post^*(s) \cap J \subseteq I^k$. In order to decide whether the inclusion holds, we execute two procedures in parallel, one trying to prove $ post^*(s)\cap J \subseteq I^k$ 
+and one looking for a counter example.
+
+%    In order to certify inclusion in $I^k$, we need to work with finite representations.
+%    The next lemma \alain{where ? the previous lemmas ? numbers ?} 
+%    uses that $I$ and $J$ are upward- and downward-closed, respectively.
+\end{proof}
+
+
+\begin{corollary}
+{\sc bounded resilience} and {\sc resilience} are decidable for WSTS with downward/strong upward compatibility.
+\alain{+effective hypothesis}
+\end{corollary}
+
+\begin{proof}{sketch}
+
+Iteratively check whether $k$-resilience holds. 
+If this is the case, return $k_{min} = k$. Otherwise check whether 
+$I^{k+1} = I^k$. If so, return $-1$ (false), otherwise
+continue.
+The stop condition is decidable
+and by Fact~\ref{stop condition} also sufficient. 
+\end{proof}
+
+\alain{explorer d'autres hypothèses...}
+%
+%{\sc resilience} is decidable for WSTS with strong upward compatibility and k-resilience.
+%
+%jouer avec les hypothèses downward/upward compatibility
+
+

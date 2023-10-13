@@ -1,0 +1,290 @@
+
+%
+
+\section{Resilience for VASS and variations}\label{section VASS}
+
+In this section we continue to study VASS. Since they are completion-post-effective WSTS, they inherit the decidability results for WSTS in the case 
+$\Safe$ is upward-closed. Lacking downward compatibility or a more relaxed hypothesis that
+for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
+VASS do not inherit the decidability results for WSTS in the case $\Safe$ is downward-closed.
+In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
+
+\iffalse
+Let us recall that a {\em vector addition system with states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+% The {\em size} of $V$ is defined as $|V|=|Q|+|T|*d*|log(||T||)$ where $||T||$ denotes the absolue value of the largest number that appears in $T$, i.e. $||T|| = max\{ ||\textbf{z}||: (p,\textbf{z},q) \in T\}$.
+%
+Subsetquently, $Q \times \N^d$ is the set of configurations of the transition system associated with $V$.
+For all configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$ we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+%
+When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton.
+%%%%%%%%
+
+\noindent
+
+Let  $V$ be a $d$-VASS, $X \subseteq \mathds{N}^d$ be an upward-closed set and $B_X$ its minimal basis: $X=\uparrow B_X$. The number of elements of $min(\pred^*(\uparrow B_X))$ and the size of the minimal elements in $min(\pred^*(X))$ have been studied in
+\cite{DBLP:conf/rp/BozzelliG11}: both sizes are bounded by $2^{2^n}$ where $n$ is the size of $V$.
+
+\begin{theorem}{}
+Let $V$ be a VASS and $X$ be an upward-closed set. The maximal $X$-resilient subsystem of $V$ is a computable VASS of size $2^{2^n}$ where $n$ is the size of $V$.
+\end{theorem}
+
+We may use the previous Theorem with different upward-closed sets $X$. Let us first recall the definition of 4 types of configurations used in \cite{DBLP:journals/acta/ValkJ85}.
+
+\begin{definition}
+Let $V = (Q,T)$ be a $d$-VASS, $\hat{T} \subseteq T$, and $m$ a configuration in $Q \times \N^d$.
+\begin{itemize}
+\item  $m$ is \em{$\hat{T}$-blocked} if no $t \in \hat{T}$ is fireable in $\post^*(m)$.
+\item $m$ is \em{dead} if the reachability tree from $m$ is finite.
+\item $m$ is \em{bounded} if the reachability set from $m$ is finite.
+\item $m$ is \em{$\hat{T}$-continual} if there is an unfinite run from $m$ such that all transitions in $\hat{T}$ appear infinitely often.
+\end{itemize}
+\end{definition}
+
+These 4 questions are decidable: $m$ is $\hat{T}$-blocked iff the preconditions of each transition in $\hat{T}$ is not coverable from $m$.
+$m$ is dead iff $V$ with $m$ as initial configuration terminates. $m$ is bounded iff $V$ with $m$ as initial configuration is bounded.
+Hence, the first two problems reduce to coverability which is EXPSPACE. The third problem is also well-known in EXPSPACE. The fourth problem can be decided by analysing circuits in the coverability graph \cite{DBLP:journals/acta/ValkJ85} but it can be also shown in EXPSPACE following techniques exposed in \cite{DBLP:journals/jcss/Demri13}.
+
+Let us consider the following four associated upward-closed sets.
+
+\begin{itemize}
+\item  NotBlocked($\hat{T})= \{ m \in Q \times \N^d \mid m$ is not $\hat{T}$-blocked\}.
+\item NotDead = $\{ m \in Q \times \N^d \mid m$ is not dead\}.
+\item UnBounded = $\{ m \in Q \times \N^d \mid m$ is not bounded\}.
+\item Continual($\hat{T}$) = $\{ m \in Q \times \N^d \mid m$ is $\hat{T}$-continual\}.
+\end{itemize}
+
+Let $(V,v_0)$ be a VASS with an initial state and $X$ be any of the 4 previous sets. Valk and Jantzen showed that the maximal subsystem of $(V,v_0)$ such that its reachability set $\post^*(V,v_0)$ is included in $X$ is still a VASS $(V_X,v_0)$ that can be constructed with the coverability graph \cite{DBLP:journals/acta/ValkJ85} whose complexity is Ackermanian. Let us remark that the basis of the four upward-closed sets $X$ are computable in $2^{2^n}$, the maximal $X$-resilient VASS of $V$ is also a computable VASS $V_X$ and that $V_X$ is independant of the initial state $v_0$.
+
+%%%%%%%%%%
+\fi
+%%%%%%%%%%%
+
+
+
+\begin{theorem}\label{SL VASS}
+{\sc Resilience} is decidable for VASS when $\Safe$ 
+%and $\Bad$ are semilinear sets.
+is a semilinear set.
+\end{theorem}
+
+\begin{proof}
+\iffalse When asking about {\sc Resilience}, in context, there are no true ``neutral'' configurations.
+Indeed, from a VASS $V$, $\Safe$ and $\Bad$ semilinear, one can build VASS $V'$, $\Safe'$ semilinear, and $\Bad'$ complement of $\Safe'$ such that {\sc Resilience} holds for
+$V$, $\Safe$ and $\Bad$ if and only if {\sc Resilience} holds for
+$V'$, $\Safe'$ and $\Bad'$. For the construction, $V'$ will have two copies of the control-states of $V$; $Q_{A}$ and $Q_{B}$, and will have two other VASS running in parallel checking whether or not the current configuration belong to $\Safe$ resp. $\Bad$. 
+From a configuration with state in $Q_{A}$ you go to $Q_B$ when you are in a $\Bad$ place
+and from a configuration with state in $Q_{B}$ you go to $Q_{A}$ when you are in a $\Safe$ place.
+$\Safe'$ is $Q_A \times \N^d$ and $\Bad'$ is $Q_B \times N^d$.
+
+Without loss of generality hence let us consider only \fi
+We consider the case when $\Safe$ is semilinear
+and $\Bad = S \setminus \Safe$ is semilinear too.
+{\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
+We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
+Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
+\[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).\]
+Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
+$\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
+{\sc Resilience} is decidable. \qed
+\end{proof}
+
+{\sc Resilience} is also decidable for other class of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
+
+\begin{theorem}\label{SL Lossy}
+{\sc Resilience} is decidable for lossy counter machines when $\Safe$ 
+%and $\Bad$ are semilinear sets.
+is a semilinear set.
+\end{theorem}
+
+\begin{proof}
+We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
+\end{proof}
+
+Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
+
+\begin{theorem}\label{SL int-VASS}
+{\sc Resilience} is decidable for integer VASS when $\Safe$ %and $\Bad$ are
+is a
+semilinear set.
+\end{theorem}
+
+\begin{proof}
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
+% For Z-VAS we observe that we are asking for inclusion between linear sets. 
+% Again let us without loss of generality hence let us consider only the case when $\Safe$ is semilinear and $\Bad = S \setminus \Safe$ is semilinear too.
+% \mathieu{Expliciter davantage la preuve ? $\pred^*(\Safe)$ semilinéaire car définissable en Presburger ? Puis inclusion de semilinéaires décidables.}
+\end{proof}
+
+Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
+
+\begin{theorem}\label{RP VASS}
+{\sc Resilience} is decidable for continuous VASS when $\Safe$ 
+%and $\Bad$ are
+is
+%s
+definable in the existential theory of the rationals with addition and order.
+\end{theorem}
+
+\begin{proof}
+The reachability relation of continuous VASS is definable by a sentence of linear size in the existential theory of
+the rationals with addition and order whose complexity is EXPSPACE \cite{DBLP:journals/tocl/BlondinFHH17}. Hence, $\Bad \subseteq \pred^*(\Safe)$ is decidable (and also in EXPSPACE). 
+%			\alain{and may be in coNP-complete. Recall that reachability is P-complete for continuous VASS}
+\end{proof}
+
+
+Remark that
+Theorem~\ref{SL Lossy} and
+Theorem~\ref{SL int-VASS}
+(resp. Theorem~\ref{RP VASS})
+did not make use of the hypothesis that $\Bad$ is the complement of $\Safe$, simply relying on the
+semilinearity of the set (resp. its definability in the existential theory of the rationals with addition and order). Thus 
+the mentionned theorems still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
+
+The above results concern only unbounded resilience. We consider now 
+{\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of
+the path from $\Bad$ to $\Safe$
+when $\Safe$ is downward-closed. Unfortunately, we have the following:
+% \alain{incohérence des notations: VASS ou vector addition system with states and plus bas seulement vector addition system ??? VAS ???}
+\begin{proposition}
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$% and $\Bad = \uparrow \Bad$
+.
+\end{proposition}
+
+
+\begin{proof}
+Consider a given $k \in \N$,
+ $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed, and
+consider a given VAS $V$.
+Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
+The set $\Bad$ admits a finite basis $B_\Bad$.
+Consider $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider 
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+
+All configurations reachable from $\textbf{u}_k$ in $k$ or less steps are above $ \textbf{v}_{\Bad} $
+and thus, are in $\Bad$, by upward-closedness.
+Hence  $\Safe$ is not reachable from $\textbf{u}_k$ in $k$ or less steps  and {$k$-resilience} does not hold.
+Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not hold either.
+\qed
+\end{proof}
+
+This all changes when one considers VASS (having control-states). For a VASS $V = (Q,T)$, a set $\Bad = \uparrow \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+$\uparrow q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
+ $\Safe$ and compute basis for the sets of elements from which they are reachable in at most $k$ steps. 
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure%, written in detail in Appendix~\ref{appendix brp VASS},
+ which lead to the following decidability result:
+
+\begin{theorem}
+{\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
+$\Safe = \downarrow \Safe$%
+%$\Bad = \uparrow \Bad$ and $\Safe = S \setminus \Bad$ are decidable%, and moreover {\sc $k$-resilience } is in $\EXPSPACE$
+.
+\end{theorem}
+
+\begin{proof}
+Let $V$ be a given $d$-VASS and consider a given $k \in \N$.
+Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
+% $\Safe \subseteq Q \times \N^d$
+$\Safe = S \setminus \Bad$
+ downward-closed.
+Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition.
+
+The set $\Bad$ admits a finite basis 
+$B_\Bad = \{ q_{i_1}(\textbf{v}_{i_1}), q_{i_2}(\textbf{v}_{i_2}), \ldots,
+q_{i_m}(\textbf{v}_{i_m}) \}$.
+Consider $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
+and then consider 
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+For all $p \in Q$, all configurations reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
+of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
+
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+% $q'(\omega)$
+$\uparrow q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$.
+
+Let us assume from now on 
+% $q_{j_1}(\omega), q_{j_2}(\omega), \ldots q_{j_\ell}(\omega)$ are
+ $\uparrow q_{j_1}(\textbf{0}), \uparrow q_{j_2}(\textbf{0}), \ldots \uparrow q_{j_\ell}(\textbf{0})$ are
+all subsets of $\Safe$ and that their union contain all upward-closed subsets of $\Safe$.
+Because these subsets are upward-closed, we can compute a basis of
+% $\pred^{\leq k}(q_{j_1}(\omega))$, $\pred^{\leq k}(q_{j_2}(\omega))$, \ldots
+% $\pred^{\leq k}(q_{j_\ell}(\omega))$.
+$\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\uparrow q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))$.
+
+
+We now consider the set 
+% $\Bad \setminus (\pred^{\leq k}(q_{j_1}(\omega)) \cup \ldots \pred^{\leq k}(q_{j_\ell}(\omega)) )$.
+$\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$.
+% \mathieu{Is it actually possible to check whether or not it is finite ?}
+% If it is finite then w
+We inductively check for any element in the set whether or not it is possible to reach from it the set $\Safe$ in $k$ or less steps.
+If the set is finite then we stop the procedure once we have checked found a witness that $k$-resilience does not hold or once we have checked for every element, whichever comes first.
+If it is infinite then
+$k$-resilience does not hold 
+and we eventually find a witness that $k$-resilience does not hold.
+Indeed, 
+if
+$\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$
+is
+infinite
+then
+there exists an element of the form $q(\textbf{u} )$
+with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
+that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf{0}))$,
+and hence from which it is not possible at all to reach
+$\Safe$ in $k$ or less steps. This also means that, even in the case where $\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0})) )$ is finite, we only need to check reachability of $\Safe$ in $k$ or less steps for the elements with vectorial component at most
+$ \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$. Binding the search space
+thus leads to an $\EXPSPACE$ upper bound for {\sc $k$-resilience}.
+
+
+In order to deal with {\sc Bounded resilience} now, remark that there exists some $k_0 \in \N$ for which
+and hence
+$\Bad \setminus (\pred^{\leq k_0}(\uparrow q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\uparrow q_{j_\ell}(\textbf{0}))= 
+\Bad \setminus (\pred^{*}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\uparrow q_{j_\ell}(\textbf{0})) )$.
+We start the decision procedure by checking {\sc $k$-resilience} from $0$ until $k_0$.
+
+From $k_0$ onwards,
+$\Bad \setminus (\pred^{\leq k}(\uparrow q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\uparrow q_{j_\ell}(\textbf{0}))= 
+\Bad \setminus (\pred^{*}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\uparrow q_{j_\ell}(\textbf{0})) )$
+is stationnary. 
+If the set is finite then we stop the procedure once we have checked for every element
+whether it is possible to reach $\Safe$ from it.
+If it is possible to reach $\Safe$ from every element then {\sc $k_m$-resilience}
+hold
+for $k_m = \max(k_0, k_{\pi})$ with 
+$k_{\pi}$ the maximum of the length of the paths from 
+$\Bad \setminus (\pred^{\leq k_0}(\uparrow q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\uparrow q_{j_\ell}(\textbf{0}))$ to $\Safe$.
+If it is infinite then
+for every $k \in \N$,
+$k$-resilience does not hold, 
+and we eventually find a witness that $k$-resilience does not hold.
+Indeed, 
+if
+$\Bad \setminus (\pred^{*}(\uparrow q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{*}(\uparrow q_{j_\ell}(\textbf{0})) )$
+is
+infinite
+then
+there exists an element of the form $q(\textbf{u} )$
+with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
+that is in $\Bad$ but not in any of the $\pred^{\leq k}(\uparrow q_{j_i}(\textbf{0}))$,
+and hence from which it is not possible at all to reach
+$\Safe$ in $k$ or less steps.
+\qed
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+

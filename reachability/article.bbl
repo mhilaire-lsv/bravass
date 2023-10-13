@@ -1,0 +1,225 @@
+\def\cprime{$'$}
+\begin{thebibliography}{10}
+
+\bibitem{aho1969nested}
+Alfred~V Aho.
+\newblock Nested stack automata.
+\newblock {\em Journal of the ACM (JACM)}, 16(3):383--406, 1969.
+
+\bibitem{arnold2003games}
+Andr{\'e} Arnold, Aymeric Vincent, and Igor Walukiewicz.
+\newblock Games for synthesis of controllers with partial observation.
+\newblock {\em Theoretical computer science}, 303(1):7--34, 2003.
+
+\bibitem{atig2012model}
+Mohamed~Faouzi Atig.
+\newblock Model-checking of ordered multi-pushdown automata.
+\newblock {\em Logical Methods in Computer Science}, 8, 2012.
+
+\bibitem{bojanczyk2008tree}
+Miko{\l}aj Boja{\'n}czyk and Thomas Colcombet.
+\newblock Tree-walking automata do not recognize all regular languages.
+\newblock {\em SIAM Journal on Computing}, 38(2):658--701, 2008.
+
+\bibitem{breveglieri1996multi}
+Luca Breveglieri, Alessandra Cherubini, Claudio Citrini, and Stefano~Crespi
+  Reghizzi.
+\newblock Multi-push-down languages and grammars.
+\newblock {\em International Journal of Foundations of Computer Science},
+  7(03):253--291, 1996.
+
+\bibitem{broadbent2012saturation}
+Chris Broadbent, Arnaud Carayol, Matthew Hague, and Olivier Serre.
+\newblock A saturation method for collapsible pushdown systems.
+\newblock In {\em International Colloquium on Automata, Languages, and
+  Programming}, pages 165--176. Springer, 2012.
+
+\bibitem{cachat2002two}
+Thierry Cachat.
+\newblock Two-way tree automata solving pushdown games.
+\newblock In {\em Automata logics, and infinite games}, pages 303--317.
+  Springer, 2002.
+
+\bibitem{Cach03}
+Thierry Cachat.
+\newblock Higher order pushdown automata, the {Caucal} hierarchy of graphs and
+  parity games.
+\newblock In Jos C.~M. Baeten, Jan~Karel Lenstra, Joachim Parrow, and
+  Gerhard~J. Woeginger, editors, {\em Proceedings of the 30th International
+  Colloquium on Automata, Languages and Programming (ICALP 2003), Eindhoven
+  (The Netherlands)}, number 2719 in Lecture Notes in Computer Science, pages
+  556--569. Springer, 2003.
+
+\bibitem{cachat2007complexity}
+Thierry Cachat and Igor Walukiewicz.
+\newblock The complexity of games on higher order pushdown automata.
+\newblock {\em arXiv preprint arXiv:0705.0262}, 2007.
+
+\bibitem{carayol2006automates}
+Arnaud Carayol.
+\newblock {\em Automates infinis, logiques et langages}.
+\newblock PhD thesis, Universit{\'e} Rennes 1, 2006.
+
+\bibitem{CaWoe03}
+Arnaud Carayol and Stefan W{\"o}hrle.
+\newblock The {Caucal} hierarchy of infinite graphs in terms of logic and
+  higher-order pushdown automata.
+\newblock In {\em Proceedings of the 23rd Conference on Foundations of Software
+  Technology and Theoretical Computer Science (FSTTCS 2003), Mumbai (India)},
+  Lecture Notes in Computer Science. Springer, 2003.
+
+\bibitem{Cau02mfcs}
+Didier Caucal.
+\newblock On infinite terms having a decidable monadic theory.
+\newblock In Krzysztof Diks and Wojciech Rytter, editors, {\em Proceedings of
+  the 27th International Symposium on Mathematical Foundations of Computer
+  Science (MFCS 2002), Warsaw (Poland)}, number 2420 in Lecture Notes in
+  Computer Science, pages 165--176. Springer, 2002.
+
+\bibitem{czerwinski2012reachability}
+Wojciech Czerwi{\'n}ski, Piotr Hofman, and S{\l}awomir Lasota.
+\newblock Reachability problem for weak multi-pushdown automata.
+\newblock In {\em International Conference on Concurrency Theory}, pages
+  53--68. Springer, 2012.
+
+\bibitem{engelfriet1999tree}
+Joost Engelfriet and Hendrik~Jan Hoogeboom.
+\newblock Tree-walking pebble automata.
+\newblock In {\em Jewels are forever}, pages 72--83. Springer, 1999.
+
+\bibitem{esparza2016parameterized}
+Javier Esparza, Pierre Ganty, and Rupak Majumdar.
+\newblock Parameterized verification of asynchronous shared-memory systems.
+\newblock {\em Journal of the ACM (JACM)}, 63(1):1--48, 2016.
+
+\bibitem{esparza1999automata}
+Javier Esparza and Jens Knoop.
+\newblock An automata-theoretic approach to interprocedural data-flow analysis.
+\newblock In {\em International Conference on Foundations of Software Science
+  and Computation Structure}, pages 14--30. Springer, 1999.
+
+\bibitem{finkel1997direct}
+Alain Finkel, Bernard Willems, and Pierre Wolper.
+\newblock A direct symbolic approach to model checking pushdown systems.
+\newblock {\em Electronic Notes in Theoretical Computer Science}, 9:27--37,
+  1997.
+
+\bibitem{fortin2017model}
+Marie Fortin, Anca Muscholl, and Igor Walukiewicz.
+\newblock Model-checking linear-time properties of parametrized asynchronous
+  shared-memory pushdown systems.
+\newblock In {\em International Conference on Computer Aided Verification},
+  pages 155--175. Springer, 2017.
+
+\bibitem{globerman1996complexity}
+Noa Globerman and David Harel.
+\newblock Complexity results for two-way and multi-pebble automata and their
+  logics.
+\newblock {\em Theoretical Computer Science}, 169(2):161--184, 1996.
+
+\bibitem{Gre70}
+Sheila~A Greibach.
+\newblock Full afls and nested iterated substitution.
+\newblock {\em Information and Control}, 16(1):7--35, 1970.
+
+\bibitem{guessarian1983pushdown}
+In{\`e}ne Guessarian.
+\newblock Pushdown tree automata.
+\newblock {\em Mathematical systems theory}, 16(1):237--263, 1983.
+
+\bibitem{hague2011parameterised}
+Matthew Hague.
+\newblock Parameterised pushdown systems with non-atomic writes.
+\newblock {\em arXiv preprint arXiv:1109.6264}, 2011.
+
+\bibitem{hopcroft1969formal}
+John~E Hopcroft and Jeffrey~D Ullman.
+\newblock {\em Formal languages and their relation to automata}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., 1969.
+
+\bibitem{kahlon2008parameterization}
+Vineet Kahlon.
+\newblock Parameterization as abstraction: A tractable approach to the dataflow
+  analysis of concurrent programs.
+\newblock In {\em 2008 23rd Annual IEEE Symposium on Logic in Computer
+  Science}, pages 181--192. IEEE, 2008.
+
+\bibitem{karhumaki2012jewels}
+Juhani Karhum{\"a}ki, Hermann Maurer, Gheorghe Paun, and Grzegorz Rozenberg.
+\newblock {\em Jewels are Forever: Contributions on Theoretical Computer
+  Science in Honor of Arto Salomaa}.
+\newblock Springer Science \& Business Media, 2012.
+
+\bibitem{knapik2002higher}
+Teodor Knapik, Damian Niwi{\'n}ski, and Pawe{\l} Urzyczyn.
+\newblock Higher-order pushdown trees are easy.
+\newblock In {\em International Conference on Foundations of Software Science
+  and Computation Structures}, pages 205--222. Springer, 2002.
+
+\bibitem{kupferman2000automata}
+Orna Kupferman and Moshe~Y Vardi.
+\newblock An automata-theoretic approach to reasoning about infinite-state
+  systems.
+\newblock In {\em International Conference on Computer Aided Verification},
+  pages 36--52. Springer, 2000.
+
+\bibitem{maslov1976multilevel}
+AN~Maslov.
+\newblock Multilevel stack automata.
+\newblock {\em Problemy peredachi informatsii}, 12(1):55--62, 1976.
+
+\bibitem{milo2000typechecking}
+Tova Milo, Dan Suciu, and Victor Vianu.
+\newblock Typechecking for xml transformers.
+\newblock In {\em Proceedings of the nineteenth ACM SIGMOD-SIGACT-SIGART
+  symposium on Principles of database systems}, pages 11--22, 2000.
+
+\bibitem{murawski2017reachability}
+Andrzej~S Murawski, Steven~J Ramsay, and Nikos Tzevelekos.
+\newblock Reachability in pushdown register automata.
+\newblock {\em Journal of Computer and System Sciences}, 87:58--83, 2017.
+
+\bibitem{reps2005weighted}
+Thomas Reps, Stefan Schwoon, Somesh Jha, and David Melski.
+\newblock Weighted pushdown systems and their application to interprocedural
+  dataflow analysis.
+\newblock {\em Science of Computer Programming}, 58(1-2):206--263, 2005.
+
+\bibitem{senda2021forward}
+Ryoma Senda, Yoshiaki Takata, and Hiroyuki Seki.
+\newblock Forward regularity preservation property of register pushdown
+  systems.
+\newblock {\em IEICE TRANSACTIONS on Information and Systems}, 104(3):370--380,
+  2021.
+
+\bibitem{senda2021ltl}
+Ryoma Senda, Yoshiaki Takata, and Hiroyuki Seki.
+\newblock {LTL} model checking for register pushdown systems.
+\newblock {\em IEICE Transactions on Information and Systems},
+  104(12):2131--2144, 2021.
+
+\bibitem{Sto74}
+Larry~J. Stockmeyer.
+\newblock {\em The complexity of decision problems in automata and logic}.
+\newblock PhD thesis, Massachusetts Institute of Technology, Cambridge, MA,
+  1974.
+
+\bibitem{walukiewicz1996pushdown}
+Igor Walukiewicz.
+\newblock Pushdown processes: Games and model checking.
+\newblock In {\em International Conference on Computer Aided Verification},
+  pages 62--74. Springer, 1996.
+
+\bibitem{Woeh05}
+Stefan W{\"o}hrle.
+\newblock {\em {D}ecision problems over infinite graphs: {H}igher-order
+  pushdown systems and synchronized products}.
+\newblock Dissertation, RWTH Aachen, 2005.
+
+\bibitem{zielonka1998infinite}
+Wieslaw Zielonka.
+\newblock Infinite games on finitely coloured graphs with applications to
+  automata on infinite trees.
+\newblock {\em Theoretical Computer Science}, 200(1-2):135--183, 1998.
+
+\end{thebibliography}

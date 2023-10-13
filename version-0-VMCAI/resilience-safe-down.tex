@@ -1,0 +1,202 @@
+
+
+%%%%%%%%
+\subsection{Case: $\Safe=\downarrow \Safe$.}\label{safe-down}
+%
+%		cas unbounded counters
+%
+
+Let us now consider the case $\Safe=\downarrow \Safe$ hence $\Bad=\uparrow \Bad$.
+It is of interest to note this case can be linked to the problem of mutual exclusion.
+Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS with $d$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the (maximal) number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
+%  indeed, one can choose $\Bad$ as the set of states from which the counter $c_{mutex}$ is not bounded by $k$, and $\Safe$ to be the downward-closed complement of $\Bad$.
+
+%	 In the case $\Safe=\downarrow \Safe$, our contribution consist in the following:
+
+
+
+%
+\begin{theorem}\label{up-down}
+{\sc Resilience}  is decidable for ideal-effective WSTS with 
+$\Safe=\downarrow \Safe$
+and
+the additional hypothesis that
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
+% \alain{est-ce que  $\pred(D)$ is downward closed avec D downward closed serait suffisant ? si l'ordre est omega2 alors closbas+inclusion est wqo donc il faudrait juste que la suite croissante $pred^n(D)+le reste$ converge...}
+\end{theorem}
+
+\begin{proof}
+By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
+%  Let $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\pred^*(\Safe)$ and $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Bad$.
+The resilience problem can be reformulated as 
+% $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$.
+$\Bad \subseteq  \pred^*(\Safe)$.
+Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of upward- or downward-closed 
+%\alain{non définis}
+ subsets.
+Hence we can compute the intersection of
+% $\uparrow \{b_1,b_2,...,b_m\}$
+$\Bad$
+and
+$S \setminus \pred^*(\Safe)$,
+which are both upward-closed.
+Since
+% $\uparrow \{b_1,b_2,...,b_m\} \subseteq J_1 \cup J_2 \cup \cdots \cup J_n$
+$\Bad \subseteq \pred^*(\Safe)$
+can be reformulated as
+$\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
+the resilience problem is decidable. \qed
+\end{proof}
+
+Let us recall that a system $\mathscr{S}=(S,\rightarrow, \leq)$ is \emph{downward compatible} \cite{DBLP:journals/tcs/FinkelS01} if
+for all $s_1, s_2, t_1 \in S$ with
+$s_2 \leq s_1$ and $s_1 \to t_1$
+there
+exists $t_2 \in S$ with
+$t_2 \leq t_1$ and $s_2 \to^* t_2$.
+
+\begin{corollary}
+{\sc Resilience} is decidable for ideal-effective downward-compatible WSTS with 
+$\Safe=\downarrow \Safe$.
+\end{corollary}
+
+\begin{proof}
+
+
+Let $D$ be a downward-closed subset of $S$
+and let $x \in \downarrow \pred^*(D)$.
+By downward closure, there exists
+$y \in \pred^*(D)$ 
+such that $x \leq y$.
+By definition of $\pred^*(D)$ then there exists 
+$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
+$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
+
+By downward compatibility $a_0 \to a_1$
+implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
+$x \to^* a'_1$.
+More generally $a_i \to a_{i+1}$ and
+$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
+$a'_i \to^* a'_{i+1}$,
+and, by induction,
+ $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
+with $d' \leq d$.
+Since
+$d'$ 
+% \alain{qui appartient à qui ?}
+belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$. \qed
+\end{proof}
+
+% \begin{proposition}
+In the case
+of a ideal-effective WSTS 
+where
+the additional hypothesis that
+for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed
+is not met,
+the above construction
+can provide a proof
+of non-resilience
+i.e. when
+$\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) \neq \emptyset$
+then
+$\Bad \not\subseteq \downarrow\pred^*(\Safe)$
+and hence
+$\Bad \not\subseteq \pred^*(\Safe)$.
+When $\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) = \emptyset$
+however
+it is not enough to conclude.
+
+% \alain{indecidabilite en enlevant une ou des hypotheses: The resilience problem is undecidable for ideal-effective WSTS}
+
+% \mathieu{
+% Home-state indécidable pour les minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
+% or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.}
+
+
+In the case
+of a ideal-effective WSTS 
+where the hypothesis that
+{for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed}
+is not met, the problem is undecidable.
+ Indeed, it is 
+undecidable for reset-VAS whether zero (the vector containing only zeroes, also denoted~$ \textbf{0}$) is a home-state for $\N^d \setminus \textbf{0}$, where it is a particular case of resilience with $\Safe = \downarrow \textbf{0}$. This stems from the fact that it is undecidable for Minsky machines with more than one counter, whether zero is a home-state. % See Appendix~\ref{HS-Minsk} for a more detailed construction.
+
+
+\iffalse
+	% 	From Appendix
+	%
+% \subsection{Home-state is undecidable for Minsky machine, reset-VASS and WSTS}\label{HS-Minsk}
+	%
+% We mentionned in Section~$3$ that {\sc Resilience} is undecidable for WSTS in general when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. Let us provide a more detailed undecidability proof here.
+
+First, let us recall the home-space problem
+
+\problemx{Home-space}
+{A transition system $\mathscr{S}=(S,\rightarrow)$ a states $s_0 \in S$ and a subset $H \subseteq S$.}
+{$\post^*(s_0) \subseteq \pred^*(H)$ ?\newline}
+
+% whether a state $s$ is such that, for all state $s_0$ there exists a path from $s_0$ to $s$.
+% post ∗ (S ) ⊆ pred ∗ (s_0)
+\fi
+
+Home-space is undecidable for Minsky machine with at least $3$ counters, since it is undecidable in the particular case where $H$ is a singleton.
+This stems from the fact $2$-counter Minsky machine termination is undecidable~\cite{Min61,Min67}.
+From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
+such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
+Remark that in the construction, from any input with at least $1$ on its third counter, it is not possible to reach $(1,0,0)$, $(0,1,0)$ or $(1,1,0)$.
+% Home-state indécidable pour les Minsky machine (preuve très rapide: M à $2$ compteurs s'arrête ssi M' visite $(0,0,0)$ depuis $\uparrow(0,0,1)$, où M' est M mais avec un troisième compteur qui commence à $1$ et qui simule M jusqu'à ce que M s'arrête et à ce moment là décroit les deux premiers compteurs puis le troisième et atteint $(0,0,0)$).
+% or les minsky machine peuvent être simulées par les reset petri nets, on réduit le home-state des minsky machine au home-state des reset petri nets, ce qui donne l'indécidabilité du home-state pour les WSTS en général.
+Based on this construction, the problem of deciding whether the downward closed set $\downarrow (1,1,0)$ is reachable in a $3$-counter Minsky machine
+from any input with at least $1$ on its third counter is undecidable. 
+Hence {\sc Resilience} is undecidable for Minsky machines.
+
+
+Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}. 
+% Let us recall more formally what a reset-VASS is.
+Reset-VASS extend the basic VASS model with special “reset
+transitions” that set to $0$ some coordinates in the vector. Let us recall their definition here.
+\begin{definition}
+A {\em reset-VASS} in dimension $d$ %(reset-VASS for short)
+ is a finite 
+labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, 
+$T \subseteq Q \times Op \times Q$
+is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
+		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
+\end{definition}
+
+Again $Q \times \N^d$
+ denotes the set of configurations of $V$.
+For every configurations $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
+$p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
+\begin{samepage}\begin{itemize}
+\item  $t = (q,add(\textbf{z}),q') \in T$
+% then for all $\textbf{u} \in \N^d$ such that  
+% $\textbf{u}+\textbf{z} \geq 0$
+% $q(\textbf{u}) \xrightarrow{\textbf{z}} q'(\textbf{u}+\textbf{z})$,
+and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
+\item $t = (q,reset(\gamma),q') \in T$ 
+% then for all $\textbf{u} \in \N^d$ 
+% $q(\textbf{u}) \xrightarrow{z} q'(\textbf{u}')$,  where 
+and
+$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
+\end{itemize} \end{samepage}
+
+It is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
+Since Reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.
+
+
+
+
+
+Remark we did not make use of the
+% hypothesis
+property $\Bad$ complement of $\Safe$, simply 
+$\Bad=\uparrow \Bad$ and $\Safe=\downarrow \Safe$, thus 
+the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complement of each others.
+
+
+
+
+
+

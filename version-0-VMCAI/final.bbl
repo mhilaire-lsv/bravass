@@ -1,0 +1,131 @@
+\def\cprime{$'$}
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{DBLP:journals/iandc/AbdullaCJT00}
+Abdulla, P.A., Cerans, K., Jonsson, B., Tsay, Y.: Algorithmic analysis of
+  programs with well quasi-ordered domains. Inf. Comput.  \textbf{160}(1-2),
+  109--127 (2000). \doi{10.1006/inco.1999.2843},
+  \url{https://doi.org/10.1006/inco.1999.2843}
+
+\bibitem{araki1976PN}
+Araki, T., Kasami, T.: Some decision problems related to the reachability
+  problem for petri nets. Theoretical Computer Science  \textbf{3}(1),  85--104
+  (1976)
+
+\bibitem{DBLP:journals/fmsd/BertrandS13}
+Bertrand, N., Schnoebelen, P.: Computable fixpoints in well-structured symbolic
+  model checking. Formal Methods Syst. Des.  \textbf{43}(2),  233--267 (2013).
+  \doi{10.1007/s10703-012-0168-y},
+  \url{https://doi.org/10.1007/s10703-012-0168-y}
+
+\bibitem{DBLP:journals/tocl/BlondinFHH17}
+Blondin, M., Finkel, A., Haase, C., Haddad, S.: The logical view on continuous
+  petri nets. {ACM} Trans. Comput. Log.  \textbf{18}(3),  24:1--24:28 (2017).
+  \doi{10.1145/3105908}, \url{https://doi.org/10.1145/3105908}
+
+\bibitem{BFM-ic17}
+Blondin, M., Finkel, A., McKenzie, P.: Handling infinitely branching
+  well-structured transition systems. Information and Computation
+  \textbf{258},  28--49 (2018). \doi{10.1016/j.ic.2017.11.001}
+
+\bibitem{dufourd1998reset}
+Dufourd, C., Finkel, A., Schnoebelen, P.: Reset nets between decidability and
+  undecidability. In: International Colloquium on Automata, Languages, and
+  Programming. pp. 103--115. Springer (1998)
+
+\bibitem{DBLP:journals/iandc/Finkel90}
+Finkel, A.: Reduction and covering of infinite reachability trees. Inf. Comput.
+   \textbf{89}(2),  144--179 (1990). \doi{10.1016/0890-5401(90)90009-7},
+  \url{https://doi.org/10.1016/0890-5401(90)90009-7}
+
+\bibitem{FMP-ic04}
+Finkel, A., McKenzie, P., Picaronny, C.: A well-structured framework for
+  analysing petri net extensions. Information and Computation
+  \textbf{195}(1-2),  1--29 (2004)
+
+\bibitem{DBLP:journals/tcs/FinkelS01}
+Finkel, A., Schnoebelen, P.: Well-structured transition systems everywhere!
+  Theor. Comput. Sci.  \textbf{256}(1-2),  63--92 (2001).
+  \doi{10.1016/S0304-3975(00)00102-X},
+  \url{https://doi.org/10.1016/S0304-3975(00)00102-X}
+
+\bibitem{DBLP:conf/rp/HaaseH14}
+Haase, C., Halfon, S.: Integer vector addition systems with states. In:
+  Ouaknine, J., Potapov, I., Worrell, J. (eds.) Reachability Problems - 8th
+  International Workshop, {RP} 2014, Oxford, UK, September 22-24, 2014.
+  Proceedings. Lecture Notes in Computer Science, vol.~8762, pp. 112--124.
+  Springer (2014). \doi{10.1007/978-3-319-11439-2\_9},
+  \url{https://doi.org/10.1007/978-3-319-11439-2\_9}
+
+\bibitem{DBLP:journals/corr/abs-2207-02697}
+Jancar, P., Leroux, J.: Semilinear home-space is decidable for petri nets. CoRR
+   \textbf{abs/2207.02697} (2022). \doi{10.48550/arXiv.2207.02697},
+  \url{https://doi.org/10.48550/arXiv.2207.02697}
+
+\bibitem{DBLP:conf/ac/MemmiV86}
+Memmi, G., Vautherin, J.: Analysing nets by the invariant method. In: Brauer,
+  W., Reisig, W., Rozenberg, G. (eds.) Petri Nets: Central Models and Their
+  Properties, Advances in Petri Nets 1986, Part I, Proceedings of an Advanced
+  Course, Bad Honnef, Germany, 8-19 September 1986. Lecture Notes in Computer
+  Science, vol.~254, pp. 300--336. Springer (1986). \doi{10.1007/BFb0046843},
+  \url{https://doi.org/10.1007/BFb0046843}
+
+\bibitem{Min67}
+Minsky, M.L.: Computation: Finite and Infinite Machines. Prentice-Hall
+  International, Englewood Cliffs (1967)
+
+\bibitem{Min61}
+Minsky, M.L.: Recursive unsolvability of {P}ost's problem of ``tag'' and other
+  topics in theory of {T}uring machines. Annals of Mathematics. Second Series
+  \textbf{74},  437--455 (1961)
+
+\bibitem{DBLP:conf/gg/Ozkan22}
+{\"{O}}zkan, O.: Decidability of resilience for well-structured graph
+  transformation systems. In: Behr, N., Str{\"{u}}ber, D. (eds.) Graph
+  Transformation - 15th International Conference, {ICGT} 2022, Held as Part of
+  {STAF} 2022, Nantes, France, July 7-8, 2022, Proceedings. Lecture Notes in
+  Computer Science, vol. 13349, pp. 38--57. Springer (2022).
+  \doi{10.1007/978-3-031-09843-7\_3},
+  \url{https://doi.org/10.1007/978-3-031-09843-7\_3}
+
+\bibitem{DBLP:journals/corr/abs-2108-00889}
+{\"{O}}zkan, O., W{\"{u}}rdemann, N.: Resilience of well-structured graph
+  transformation systems. In: Hoffmann, B., Minas, M. (eds.) Proceedings
+  Twelfth International Workshop on Graph Computational Models, GCM@STAF 2021,
+  Online, 22nd June 2021. {EPTCS}, vol.~350, pp. 69--88 (2021).
+  \doi{10.4204/EPTCS.350.5}, \url{https://doi.org/10.4204/EPTCS.350.5}
+
+\bibitem{challenges}
+Patriarca, R., Bergstr{\"o}m, J., Di~Gravio, G., Costantino, F.: Resilience
+  engineering: current status of the research and future challenges. Safety
+  Science  \textbf{102} (02 2018). \doi{10.1016/j.ssci.2017.10.005}
+
+\bibitem{peterson1981petri}
+Peterson, J.L.: Petri net theory and the modeling of systems. Prentice Hall PTR
+  (1981)
+
+\bibitem{DBLP:journals/corr/PrasadZ16}
+Prasad, S., Zuck, L.D.: Self-similarity breeds resilience. In: Gebler, D.,
+  Peters, K. (eds.) Proceedings Combined 23rd International Workshop on
+  Expressiveness in Concurrency and 13th Workshop on Structural Operational
+  Semantics, {EXPRESS/SOS} 2016, Qu{\'{e}}bec City, Canada, 22nd August 2016.
+  {EPTCS}, vol.~222, pp. 30--44 (2016). \doi{10.4204/EPTCS.222.3},
+  \url{https://doi.org/10.4204/EPTCS.222.3}
+
+\bibitem{DBLP:journals/siglog/Schmitz16}
+Schmitz, S.: The complexity of reachability in vector addition systems. {ACM}
+  {SIGLOG} News  \textbf{3}(1),  4--21 (2016). \doi{10.1145/2893582.2893585},
+  \url{https://doi.org/10.1145/2893582.2893585}
+
+\bibitem{DBLP:conf/rp/Schnoebelen10}
+Schnoebelen, P.: Lossy counter machines decidability cheat sheet. In: Kucera,
+  A., Potapov, I. (eds.) Reachability Problems, 4th International Workshop,
+  {RP} 2010, Brno, Czech Republic, August 28-29, 2010. Proceedings. Lecture
+  Notes in Computer Science, vol.~6227, pp. 51--75. Springer (2010).
+  \doi{10.1007/978-3-642-15349-5\_4},
+  \url{https://doi.org/10.1007/978-3-642-15349-5\_4}
+
+\end{thebibliography}
