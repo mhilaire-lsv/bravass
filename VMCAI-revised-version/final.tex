@@ -331,17 +331,26 @@ $s_1, t_1 , s_2 \in S$
 	$t_2 \in S$ with 
 	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
 
-Several families of formal models of processes give rise to WSTSs in a natural way with disfferent compatibilities, e.g. Petri nets when inclusion between markings is used as the well-ordering (WSTS with strong compatibility) and lossy channel systems with the subword ordering (WSTS, compatibility is not strong).
+Several families of formal models of processes give rise to WSTSs in a natural way with disfferent compatibilities, e.g. compatible counter machines like VASS with $d$ counters and $Q$ a finite set of control-states (and equivalently Petri nets and data Petri nets), reset/transfer VASS are WSTS with strong compatibility for the usual ordering $=\times \leq^d$ on the set of states $S=Q \times \N^d$.
+Similarly, lossy channel systems with $d$ channels and $Q$ a finite set of control-states are WSTS (with a non-strong compatibility)
+for the ordering $=\times \sqsubseteq^d$ (where $\sqsubseteq$ is the subword ordering on $\Sigma^*$) on $S= Q \times (\Sigma^*)^d$.\\
 %%%%
 
-Let us recall a result of Jancar \cite{DBLP:journals/ipl/Jancar99} that we will use as a simple definition of an $\omega^2$-wqo: a wqo $(X,\leq)$ is an $\omega^2$-wqo iff $(Ideals(X),\subseteq)$ is a wqo. There exists wqo that are not $\omega^2$-wqo (see the use of the Rado ordering in \cite{DBLP:journals/ipl/Jancar99}).
+By applying Proposition 4.3 from \cite{DBLP:journals/corr/abs-1208-4549}, we can reintroduce a straightforward definition of a specific proper subset of wqos that possesses an excellent characteristic that allows to obtain more algorithms: 
+
+\begin{definition}
+A wqo $(X, \leq)$ is an \emph{$\omega^2$-wqo} if $(Ideals(X), \subseteq)$ forms a wqo.
+\end{definition}
+
+%Using Proposition 4.3 in \cite{DBLP:journals/corr/abs-1208-4549}, we recall a simple definition of a strict subclass of wqos that has a very nice property: a wqo $(X,\leq)$ is an $\omega^2$-wqo iff $(Ideals(X),\subseteq)$ is a wqo. 
+
+Although there exists wqo that are not $\omega^2$-wqo (see the Rado ordering in \cite{DBLP:journals/ipl/Jancar99}), all naturally occurring wqos are $\omega^2$-wqo, perhaps to the notable exception of ﬁnite graphs quasi-ordered by the graph minor relation, which are wqo but not known to be $\omega^2$-wqo. The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is a an $\omega^2$-wqo (Proposition 4.5 in \cite{DBLP:journals/corr/abs-1208-4549}). Now we are able to define $\omega^2$-WSTS:
 
 \begin{definition} \cite{DBLP:journals/corr/abs-1208-4549}
 A WSTS  $\mathscr{S}=(S, \rightarrow, \leq)$
 is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 \end{definition}
-All naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, Petri nets, VASS, reset/transfer VASS, affine VASS with $d$ counters and $Q$ a finite set of control-states are $\omega^2$-WSTS for the usual ordering ($=\times \leq^d$) on $S=Q \times \N^d$. Similarly, lossy channel systems with $d$ channels and $Q$ a finite set of control-states are $\omega^2$-WSTS
-for the ordering $=\times \sqsubseteq^d$ (where $\sqsubseteq$ is the subword ordering on $\Sigma^*$) on $S= Q \times (\Sigma^*)^d$.\\
+Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, reset/transfer VASS are $\omega^2$-WSTS.\\
 %%%%%%
 
 \noindent
