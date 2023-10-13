@@ -1115,14 +1115,14 @@ for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed,
 VASS do not inherit the decidability results for WSTS in the case $\Safe = \downarrow \Safe$.
 In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
 
-
+Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
 
 \begin{theorem}\label{SL VASS}
-{\sc Resilience} is decidable for VASS when $\Safe$  is a semilinear set.
+{\sc Resilience} is decidable for VASS, and integer VASS, when $\Safe$  is a semilinear set.
 \end{theorem}
 
 \begin{proof}
-We consider the case when $\Safe$ is semilinear
+We consider in VASS the case of when $\Safe$ is semilinear
 and $\Bad = S \setminus \Safe$ is semilinear too.
 {\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
 We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
@@ -1130,7 +1130,8 @@ Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap 
 \[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).\]
 Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
 $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
-{\sc Resilience} is decidable. \qed
+{\sc Resilience} is decidable. 
+The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \qed
 \end{proof}
 
 {\sc Resilience} is also decidable for other classes of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
@@ -1143,17 +1144,9 @@ $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697},
 We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
 \end{proof}
 
-Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
 
-\begin{theorem}\label{SL int-VASS}
-{\sc Resilience} is decidable for integer VASS when $\Safe$ 
-is a
-semilinear set.
-\end{theorem}
 
-\begin{proof}
-The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets.
-\end{proof}
+
 
 Continuous VASS \cite{DBLP:journals/tocl/BlondinFHH17} are a relaxation of classical discrete VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
 
