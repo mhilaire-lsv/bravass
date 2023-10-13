@@ -264,9 +264,10 @@ for the $k$-step iteration of $\rightarrow$, its transitive closure, its reflexi
 Let $X,Y \subseteq S$ and $k \in \mathbb{N}$; we denote $X \longrightarrow^{*} Y$ (resp. $X \longrightarrow^{\leq k} Y$) if from all states $x \in X$ there exists a path (resp. of length smaller than $k$) that reaches a state $y \in Y$.
 \noindent
 The set of {\em (immediate) successors} of a state $s \in S$ is defined as 
- $\post(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
+ $\post_{\mathscr{S}}(s) = \{ s' \in S \mid  ~ s \xrightarrow{} s'\}$. 
 The set of {\em (immediate) predecessors} of a state $s \in S$ is deﬁned as
- $\pred(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
+ $\pred_{\mathscr{S}}(s) = \{ s' \in S \mid  ~ s' \xrightarrow{} s\}$. 
+To simplify the notations, we write without ambiguity $\post_{\mathscr{S}}(D)$ by $\post(D)$ and  $\pred_{\mathscr{S}}(D)$ by  $\pred(D)$.
 By iterating $\pred$ and $\post$ we obtain  
 $\post^n(s) = \{ s' \in S \mid  ~ s \xrightarrow{}^n s'\}$
 and
@@ -372,7 +373,6 @@ Let us reformulate the downward compatibility property.
 For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible; (2) for all downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
 \end{lemma}
 
-To simplify the notations, we write without ambiguity  $\pred_{\mathscr{S}}^*(D)$ by  $\pred^*(D)$.
 \begin{proof}
 Let us prove $1 \implies 2$. 
 Let $D$ be a downward-closed subset of $S$
