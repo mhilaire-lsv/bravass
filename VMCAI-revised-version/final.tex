@@ -353,6 +353,57 @@ is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, reset/transfer VASS are $\omega^2$-WSTS.\\
 %%%%%%
 
+There exists another type of WSTS which enjoy the downward compatibility.
+
+\begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
+A {\em downward compatible well-structured transition system} (dc-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
+is a transition system $(S, \rightarrow)$
+equipped with a wqo ${\leq} \subseteq S \times S$ such that   
+the transition relation $ \rightarrow$ is downward compatible with $\leq$, i.e., for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_2 \leq t_1$ and $s_2 \rightarrow^{*} t_2$.
+\end{definition}
+
+Let us reformulate the downward compatibility property.
+
+\begin{lemma}
+For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible; (2) for all downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
+\end{lemma}
+
+To simplify the notations, we write without ambiguity  $\pred_{\mathscr{S}}^*(D)$ by  $\pred^*(D)$.
+\begin{proof}
+Let us prove $1 \implies 2$. 
+Let $D$ be a downward-closed subset of $S$
+and let $x \in \downarrow \pred^*(D)$.
+By downward closure, there exists
+$y \in \pred^*(D)$ 
+such that $x \leq y$.
+By definition of $\pred^*(D)$ then there exists 
+$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
+$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
+%
+By downward compatibility $a_0 \to a_1$
+implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
+$x \to^* a'_1$.
+More generally $a_i \to a_{i+1}$ and
+$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
+$a'_i \to^* a'_{i+1}$,
+and, by induction,
+ $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
+with $d' \leq d$.
+Since
+$d'$ 
+belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\downarrow\pred^*(D) \subseteq \pred^*(D)$. Since $\pred^*(D) \subseteq \downarrow \pred^*(D)$ always hold, we deduce that $\pred^*(D)=\downarrow\pred^*(D)$ is downward-closed.
+
+Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Consider $\pred^*(\downarrow t_1)$; since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\downarrow t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\downarrow t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\downarrow t_1)$. This means that there exists $t_2 \leq t_1$ such that 
+$s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compatible.
+\qed
+
+
+\end{proof}
+
 \noindent
 {\bf On effectivity.}
 Let $\mathscr{S}=(S, \rightarrow, \leq)$ be a WSTS. We say that $\mathscr{S}$ is {\em effective} if there exists a pair of algorithms
@@ -602,12 +653,7 @@ $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
 the resilience problem is decidable. \qed
 \end{proof}
 
-Let us recall that a system $\mathscr{S}=(S,\rightarrow, \leq)$ is \emph{downward compatible} \cite{DBLP:journals/tcs/FinkelS01} if
-for all $s_1, s_2, t_1 \in S$ with
-$s_2 \leq s_1$ and $s_1 \to t_1$
-there
-exists $t_2 \in S$ with
-$t_2 \leq t_1$ and $s_2 \to^* t_2$.
+
 
 \begin{corollary}
 {\sc Resilience} is decidable for ideal-effective downward-compatible WSTS with 
@@ -616,28 +662,28 @@ $\Safe=\downarrow \Safe$.
 
 \begin{proof}
 
-
-Let $D$ be a downward-closed subset of $S$
-and let $x \in \downarrow \pred^*(D)$.
-By downward closure, there exists
-$y \in \pred^*(D)$ 
-such that $x \leq y$.
-By definition of $\pred^*(D)$ then there exists 
-$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
-$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
-
-By downward compatibility $a_0 \to a_1$
-implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
-$x \to^* a'_1$.
-More generally $a_i \to a_{i+1}$ and
-$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
-$a'_i \to^* a'_{i+1}$,
-and, by induction,
- $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
-with $d' \leq d$.
-Since
-$d'$ 
-belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$. \qed
+%
+%Let $D$ be a downward-closed subset of $S$
+%and let $x \in \downarrow \pred^*(D)$.
+%By downward closure, there exists
+%$y \in \pred^*(D)$ 
+%such that $x \leq y$.
+%By definition of $\pred^*(D)$ then there exists 
+%$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
+%$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
+%
+%By downward compatibility $a_0 \to a_1$
+%implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
+%$x \to^* a'_1$.
+%More generally $a_i \to a_{i+1}$ and
+%$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
+%$a'_i \to^* a'_{i+1}$,
+%and, by induction,
+% $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
+%with $d' \leq d$.
+%Since
+%$d'$ 
+%belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$. \qed
 \end{proof}
 
 
