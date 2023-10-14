@@ -439,6 +439,12 @@ Coverability is decidable for any ideal-effective WBTS.
 \end{theorem}
 
 
+Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. 
+A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-post-effective} if
+it is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
+ $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
+ $s_1, s_2, \ldots, s_m \in S$.
+Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS (we don't need the pred-basis hypothesis).\\
 
 
 Let us recall the  definition of vector addition system with (control-)states. 
@@ -461,9 +467,12 @@ A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $
 
 
 
-In a transition system $\mathscr{S}=(S,\rightarrow)$ (not necessarly ordered), we consider a subset of states $\Safe \subseteq S$, and its complement, $\Bad$.
+In a (not necessarly ordered) transition system $\mathscr{S}=(S,\rightarrow)$, we consider a subset of states $\Safe \subseteq S$, and its complement, $\Bad$.
 The \emph{resilience problem} (resp. the \emph{$k$-resilience problem}) for $(\mathscr{S},\Safe)$ is to decide whether from \emph{any} state in 
-$S$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. Resilience is then akin to the Home-Space problem (defined in the introduction) for the set $\Safe$. We use the notation 
+$S$, \emph{there exists} a path (resp. a path of length smaller than or equal to $k$) that reaches a state in $\Safe$. Resilience is then akin to the Home-Space problem (defined in the introduction) for the set $\Safe$. Resilience can also be viewed as a generalizeation
+ of coverability, as
+it asks whether for \emph{every} element of $\Bad$ it is possible to cover an element of the basis of $\Safe$.
+We use the notation 
 $S \longrightarrow^{*} \Safe$ (resp. $S \longrightarrow^{\leq k} \Safe$)
  for 
 $\forall x \in S, \exists y \in \Safe$ 
@@ -497,10 +506,45 @@ Let us formalize three resilience problems.
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$% and $\Bad$
 . Since $\Safe \subseteq \pred^*(\Safe)$, one only need to decide whether 
 the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.
-In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  
+In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  \\
 
+Surprinsingly, the general undecidability statement about resilience was not known neither proved. 
+We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
 
+\begin{theorem}\label{indec WSTS}
+Resilience for $\omega^2$-WSTS with strong compatibility and for upward closed set $\Safe$ is undecidable.
+\end{theorem}
 
+\begin{proof}
+Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
+increasing recursive functions from \cite{FMP-ic04} defined as
+
+$ f_j(n,k) = \begin{dcases*} (n,0) & \text{ if } k=0 \text{ and } TM$_j$ \text{ runs for more than } n \text{ steps} \\
+		(n,n+k) &\text{ otherwise,} \end{dcases*} $
+		
+	\noindent	
+	where TM$_j$ is the $j$-th Turing machine (in a classical enumeration)
+	which moreover begins
+by writing the integer $j$ on its tape,	
+	and consider additionnally the function $g : \N^2 \to \N^2$ defined by $g(n,k) = (n+1,k)$. 
+	The
+	transition system 
+	$S_j = (\N^2, \{f_j, g\}, \leq)$ 
+	is a $\omega^2$-WSTS with strong compatibility
+	and
+	has the property that
+	it is
+	$\uparrow (1,1)$-resilient
+	iff TM$_j$ halts on input $j$,
+	since $(1,1)$ is coverable from $(0,0)$
+	iff TM$_j$ halts on input $j$. 
+	Hence there is no Turing machine which correctly determines 
+	resilience and halts whenever its input is a
+	WSTS.
+Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\qed
+\end{proof}
+
+\alain{ce qui suit est à mettre ailleurs ?}
 {\bf Related problems.} 
 Resilience and the home-space problem are also linked to the 
 model-checking of basic reachability and safety formulae. 
@@ -522,22 +566,8 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
 
 \subsection{Case: $\Safe=\uparrow \Safe$.}\label{safe-up}
 
-We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$. 
-Resilience can be viewed as a generalizeation
- of coverability, as
-it asks whether for \emph{every} element of $\Bad$ it is possible to cover an element of the basis of $\Safe$.
-
-
-Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS (intuitively speaking, $(S,\leq)$ must not contain the Rado set). 
-A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-post-effective} if
-it is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
- $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
- $s_1, s_2, \ldots, s_m \in S$.
-Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS (we don't need the pred-basis hypothesis).
-
-Let us recall two other results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
-%
-
+We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$.
+Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we consider the completion-post-effective hypothesis to catch decidability.
 
 
 
@@ -550,6 +580,9 @@ and {\sc $k$-resilience} are decidable.
 \end{theorem}
 
 \begin{proof}
+Let us first recall two results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+%
+
 Let  $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
 The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
 
@@ -589,33 +622,35 @@ $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$, thus
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
 
-The completion-post-effective hypothesis is needed to decide {\sc Resilience}.
-Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
-increasing recursive functions from \cite{FMP-ic04} defined as
-
-$ f_j(n,k) = \begin{dcases*} (n,0) & \text{ if } k=0 \text{ and } TM$_j$ \text{ runs for more than } n \text{ steps} \\
-		(n,n+k) &\text{ otherwise,} \end{dcases*} $
-		
-	\noindent	
-	where TM$_j$ is the $j$-th Turing machine (in a classical enumeration)
-	which moreover begins
-by writing the integer $j$ on its tape,	
-	and consider additionnally the function $g : \N^2 \to \N^2$ defined by $g(n,k) = (n+1,k)$. 
-	The
-	transition system 
-	$S_j = (\N^2, \{f_j, g\}, \leq)$ 
-	is a WSTS
-	and
-	has the property that
-	it is
-	$\uparrow (1,1)$-resilient
-	iff TM$_j$ halts on input $j$,
-	since $(1,1)$ is coverable from $(0,0)$
-	iff TM$_j$ halts on input $j$. 
-	Hence there is no Turing machine which correctly determines 
-	resilience and halts whenever its input is a
-	WSTS.
-Hence resilience for WSTS in general is undecidable.
+%				The completion-post-effective hypothesis is needed to decide {\sc Resilience}.
+%%%
+%%%
+%Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
+%increasing recursive functions from \cite{FMP-ic04} defined as
+%
+%$ f_j(n,k) = \begin{dcases*} (n,0) & \text{ if } k=0 \text{ and } TM$_j$ \text{ runs for more than } n \text{ steps} \\
+%		(n,n+k) &\text{ otherwise,} \end{dcases*} $
+%		
+%	\noindent	
+%	where TM$_j$ is the $j$-th Turing machine (in a classical enumeration)
+%	which moreover begins
+%by writing the integer $j$ on its tape,	
+%	and consider additionnally the function $g : \N^2 \to \N^2$ defined by $g(n,k) = (n+1,k)$. 
+%	The
+%	transition system 
+%	$S_j = (\N^2, \{f_j, g\}, \leq)$ 
+%	is a WSTS
+%	and
+%	has the property that
+%	it is
+%	$\uparrow (1,1)$-resilient
+%	iff TM$_j$ halts on input $j$,
+%	since $(1,1)$ is coverable from $(0,0)$
+%	iff TM$_j$ halts on input $j$. 
+%	Hence there is no Turing machine which correctly determines 
+%	resilience and halts whenever its input is a
+%	WSTS.
+%Hence resilience for WSTS in general is undecidable.
 
 
 
@@ -713,7 +748,7 @@ $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for al
 \end{itemize} \end{samepage}
 
 It is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.\alain{déjà dit avant}
 
 
 
