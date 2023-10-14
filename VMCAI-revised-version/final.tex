@@ -588,7 +588,7 @@ Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\q
 \subsection{Case: $\Safe=\uparrow \Safe$.}\label{safe-up}
 
 We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$.
-Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we still consider $\omega^2$-WSTS with strong compatibility but by strengthening the assumptions of effectiveness (we now consider the completion-post-effective hypothesis) we demonstrate that the three resilience problems are decidable.
+Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we still consider $\omega^2$-WSTS with strong compatibility but by strengthening the assumptions of effectiveness (we now consider the completion-post-effective hypothesis) and we demonstrate that the three resilience problems are now decidable.
 
 
 
@@ -728,7 +728,7 @@ it is not enough to conclude.\\
 
 
 In the case
-of a ideal-effective WSTS, {\sc Resilience} is undecidable.
+of a ideal-effective (upward compatible) WSTS, {\sc Resilience} is undecidable.
 
 
 \begin{theorem}\label{indec WSTS with dcs}
@@ -736,10 +736,10 @@ Resilience for ideal-effective $\omega^2$-WSTS with strong compatibility and for
 \end{theorem}
 
 \begin{proof}
+\alain{pas facile à lire, à réécrire et à repenser}
 This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 which can be simulated by WSTS.
 Indeed, {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
-\alain{pas facile à lire, à réécrire et à repenser}
 This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
 such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
