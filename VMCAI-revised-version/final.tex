@@ -457,9 +457,30 @@ For all states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every co
 %
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
-A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence it can be only defined by $T$.
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence it can be only defined by $T$.\\
 
+VASS can extended with resets.
 
+\begin{definition}
+A {\em reset-VASS} in dimension $d$ 
+ is a finite 
+labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, 
+$T \subseteq Q \times Op \times Q$
+is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
+		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
+\end{definition}
+
+Again $Q \times \N^d$
+ denotes the set of states of $V$.
+For every states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
+$p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
+\begin{samepage}\begin{itemize}
+\item  $t = (q,add(\textbf{z}),q') \in T$
+and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
+\item $t = (q,reset(\gamma),q') \in T$ 
+and
+$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
+\end{itemize} \end{samepage}
 
 
 
@@ -502,6 +523,19 @@ Let us formalize three resilience problems.
 {$\exists k \geq 0$ such that {$S \longrightarrow^{\leq k} \Safe$ ?\newline}}
 
 
+
+\alain{ce qui suit est à mettre ici ?}
+{\bf Related problems.} 
+Resilience and the home-space problem are also linked to the 
+model-checking of basic reachability and safety formulae. 
+In particular~\cite{DBLP:conf/rp/Schnoebelen10} shows that the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
+is decidable for Lossy Counter Machine (LCM)
+when $X$ and $Y$ are semi-linear sets.
+Other decidable formulae include ``one-to-one'' ($\exists s \in  X ~ \exists t \in  Y ~ s \to^* 
+ t$), and ``all-to-same'' ($\exists t \in  Y ~ \forall s \in  X ~ s \to^*  t$),
+whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$), 
+``all-to-all'' ($\forall s \in  X ~ \forall t \in  Y ~ s \to^*  t$)
+  and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for LCM). 
   
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$% and $\Bad$
 . Since $\Safe \subseteq \pred^*(\Safe)$, one only need to decide whether 
@@ -512,7 +546,7 @@ Surprinsingly, the general undecidability statement about resilience was not kno
 We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
 
 \begin{theorem}\label{indec WSTS}
-Resilience for $\omega^2$-WSTS with strong compatibility and for upward closed set $\Safe$ is undecidable.
+Resilience for post-effective $\omega^2$-WSTS with strong compatibility and for upward closed set $\Safe$ is undecidable.
 \end{theorem}
 
 \begin{proof}
@@ -530,7 +564,7 @@ by writing the integer $j$ on its tape,
 	The
 	transition system 
 	$S_j = (\N^2, \{f_j, g\}, \leq)$ 
-	is a $\omega^2$-WSTS with strong compatibility
+	is a post-effective $\omega^2$-WSTS with strong compatibility
 	and
 	has the property that
 	it is
@@ -544,19 +578,6 @@ by writing the integer $j$ on its tape,
 Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\qed
 \end{proof}
 
-\alain{ce qui suit est à mettre ailleurs ?}
-{\bf Related problems.} 
-Resilience and the home-space problem are also linked to the 
-model-checking of basic reachability and safety formulae. 
-In particular~\cite{DBLP:conf/rp/Schnoebelen10} shows that the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
-is decidable for Lossy Counter Machine (LCM)
-when $X$ and $Y$ are semi-linear sets.
-Other decidable formulae include ``one-to-one'' ($\exists s \in  X ~ \exists t \in  Y ~ s \to^* 
- t$), and ``all-to-same'' ($\exists t \in  Y ~ \forall s \in  X ~ s \to^*  t$),
-whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$), 
-``all-to-all'' ($\forall s \in  X ~ \forall t \in  Y ~ s \to^*  t$)
-  and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for LCM). 
-  
   
   
 
@@ -567,7 +588,7 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
 \subsection{Case: $\Safe=\uparrow \Safe$.}\label{safe-up}
 
 We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$.
-Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we consider the completion-post-effective hypothesis to catch decidability.
+Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we still consider $\omega^2$-WSTS with strong compatibility but by strengthening the assumptions of effectiveness (we now consider the completion-post-effective hypothesis) we demonstrate that the three resilience problems are decidable.
 
 
 
@@ -578,7 +599,7 @@ Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
-
+\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ?}
 \begin{proof}
 Let us first recall two results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
@@ -702,18 +723,23 @@ and hence
 $\Bad \not\subseteq \pred^*(\Safe)$.
 When $\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) = \emptyset$
 however
-it is not enough to conclude.
+it is not enough to conclude.\\
 
 
 
 In the case
 of a ideal-effective WSTS, {\sc Resilience} is undecidable.
+
+
+\begin{theorem}\label{indec WSTS with dcs}
+Resilience for ideal-effective $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
+\end{theorem}
+
+\begin{proof}
 This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 which can be simulated by WSTS.
-
-
-
 Indeed, {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
+\alain{pas facile à lire, à réécrire et à repenser}
 This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
 such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
@@ -726,30 +752,12 @@ Hence {\sc Resilience} is undecidable for Minsky machines.
 Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}. 
 Reset-VASS extend the basic VASS model with special “reset
 transitions” that set to $0$ some coordinates in the vector. Let us recall their definition here.
-\begin{definition}
-A {\em reset-VASS} in dimension $d$ 
- is a finite 
-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, 
-$T \subseteq Q \times Op \times Q$
-is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \textbf{z} \in \mathds{Z}^d\} \cup 
-		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
-\end{definition}
 
-Again $Q \times \N^d$
- denotes the set of states of $V$.
-For every states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
-$p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
-\begin{samepage}\begin{itemize}
-\item  $t = (q,add(\textbf{z}),q') \in T$
-and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
-\item $t = (q,reset(\gamma),q') \in T$ 
-and
-$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
-\end{itemize} \end{samepage}
+
 
 It is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.\alain{déjà dit avant}
-
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.\alain{déjà dit avant en mieux omega2 et strong comp et post-effective}\qed
+\end{proof}
 
 
 
@@ -823,7 +831,7 @@ The three previous problems become:
 
 
 Remark that {\sc State-resilience} is {\sc Home-space} with input set $\Safe$.
-Since these problems are undecidable for general infinite-state transition systems, we restrict our study to WSTS.
+Since these problems are undecidable for general infinite-state transition systems, we still restrict our study to WSTS.
 As in the Section~3, we study decidability results for $\Safe$ downward-closed and upward-closed. 
 
 
