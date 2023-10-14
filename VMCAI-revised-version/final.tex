@@ -369,7 +369,7 @@ $s_1, t_1 , s_2 \in S$
 
 Let us reformulate the downward compatibility property.
 
-\begin{lemma}
+\begin{lemma}\label{downward compatible}
 For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible; (2) for all downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
 \end{lemma}
 
@@ -628,15 +628,12 @@ Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS 
 
 %
 \begin{theorem}\label{up-down}
-{\sc Resilience}  is decidable for ideal-effective WSTS with 
-$\Safe=\downarrow \Safe$
-and
-the additional hypothesis that
-for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
+{\sc Resilience}  is decidable for ideal-effective downward compatible WSTS with 
+$\Safe=\downarrow \Safe$.
 \end{theorem}
 
 \begin{proof}
-By hypothesis $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
+By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
 The resilience problem can be reformulated as 
 $\Bad \subseteq  \pred^*(\Safe)$.
 Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of upward- or downward-closed 
@@ -655,44 +652,8 @@ the resilience problem is decidable. \qed
 
 
 
-\begin{corollary}
-{\sc Resilience} is decidable for ideal-effective downward-compatible WSTS with 
-$\Safe=\downarrow \Safe$.
-\end{corollary}
-
-\begin{proof}
-
-%
-%Let $D$ be a downward-closed subset of $S$
-%and let $x \in \downarrow \pred^*(D)$.
-%By downward closure, there exists
-%$y \in \pred^*(D)$ 
-%such that $x \leq y$.
-%By definition of $\pred^*(D)$ then there exists 
-%$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
-%$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
-%
-%By downward compatibility $a_0 \to a_1$
-%implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
-%$x \to^* a'_1$.
-%More generally $a_i \to a_{i+1}$ and
-%$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
-%$a'_i \to^* a'_{i+1}$,
-%and, by induction,
-% $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
-%with $d' \leq d$.
-%Since
-%$d'$ 
-%belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$. \qed
-\end{proof}
-
-
 In the case
-of a ideal-effective WSTS 
-where
-the additional hypothesis that
-for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed
-is not met,
+of a ideal-effective WSTS, not necesarly downward compatible,
 the above construction
 can provide a proof
 of non-resilience
@@ -709,10 +670,7 @@ it is not enough to conclude.
 
 
 In the case
-of a ideal-effective WSTS 
-where the hypothesis that
-{for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed}
-is not met, {\sc Resilience} is undecidable.
+of a ideal-effective WSTS, {\sc Resilience} is undecidable.
 This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 which can be simulated by WSTS.
 
