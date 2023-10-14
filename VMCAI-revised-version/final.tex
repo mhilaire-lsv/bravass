@@ -430,10 +430,11 @@ With the effective pred-basis hypothesis, we obtain:
 A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
-With the ideal-effective hypothesis, we obtain the decidability of coverability for a class of ordered transition systems larger than WSTS.
+Let us recall that a Well Behaved Transition Systems (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, integer VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. 
+With the ideal-effective hypothesis, we obtain the decidability of coverability for WBTS.
 
-\begin{theorem}\cite{BFM-ic17}
-Coverability is decidable for any ideal-effective ordered upward-compatible transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $\leq$ is without infinite antichains.
+\begin{theorem}\cite{DBLP:journals/lmcs/BlondinFM17}
+Coverability is decidable for any ideal-effective WBTS.
 \end{theorem}
 
 
