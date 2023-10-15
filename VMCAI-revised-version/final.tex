@@ -354,6 +354,8 @@ is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, reset/transfer VASS are $\omega^2$-WSTS.\\
 %%%%%%
 
+Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
+
 There exists another type of WSTS which enjoy the downward compatibility.
 
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
@@ -400,13 +402,17 @@ belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\downarr
 Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\downarrow t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\downarrow t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\downarrow t_1)$. This means that there exists $t_2 \leq t_1$ such that 
 $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compatible.
 \qed
-
-
 \end{proof}
 
-We introduce five types of effectivity that will be necessary to decide some resilence problems for differents models of WSTS.\\
+%A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-post-effective} if
+%it is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
+% $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
+% $s_1, s_2, \ldots, s_m \in S$.
+
+
+We introduce five types of effectiveness \cite{BFM-ic17} that will be essential for solving various resilience problems in different models of WSTS.
 \noindent
-{\bf On effectivity.}
+%			{\bf On effectivity.}
 Let $\mathscr{S}=(S, \rightarrow, \leq)$ be a WSTS. We say that $\mathscr{S}$ is 
 \begin{itemize}
 \item {\em effective} if there exists a pair of algorithms
@@ -421,8 +427,7 @@ any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\up
 %
 \item {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a state $s$
 to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
-\item {\em completion-post-effective} if
-$\mathscr{S}$ is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
+\item {\em completion-post-effective} if $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
  $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
  $s_1, s_2, \ldots, s_m \in S$.
 \end{itemize}
@@ -443,14 +448,11 @@ With the ideal-effective hypothesis, we obtain the decidability of coverability 
 Coverability is decidable for any ideal-effective WBTS.
 \end{theorem}
 
+Coverability is  decidable for a class of WSTS without the pred-basis hypothesis.
 
-Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always finitely branching but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. 
-%A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-post-effective} if
-%it is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
-% $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
-% $s_1, s_2, \ldots, s_m \in S$.
-Coverability is shown decidable  [Theorem 44] in \cite{BFM-ic17} for completion-post-effective $\omega^2$-WSTS (we don't need the pred-basis hypothesis).\\
-
+\begin{theorem} (Theorem 44 in \cite{BFM-ic17})
+Coverability is  decidable for completion-post-effective WSTS.
+\end{theorem}
 
 Let us recall the  definition of vector addition system with (control-)states. 
  \begin{definition} 
