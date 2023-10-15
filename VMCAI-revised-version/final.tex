@@ -437,7 +437,7 @@ any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\up
 % $s_1, s_2, \ldots, s_m \in S$.
 %
 \end{itemize}
-%Most of usual WSTS enjoy most of all effectivities.
+Most of usual WSTS are post-effective and ideally-effective.
 
 \alain{le rappel ci-dessous est-il entièrement utile ? Je pense qu'on peut l'enlever, et toi ?}
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
@@ -748,11 +748,12 @@ of a ideal-effective (upward compatible) WSTS, {\sc Resilience} is undecidable.
 
 
 \begin{theorem}\label{indec WSTS with dcs}
-Resilience for ideal-effective $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
+{\sc Resilience} for ideal-effective $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
 \end{theorem}
+\alain{est-ce sur qu'on peut rajouter l'hypothese "ideal-effective" ? oui. et completion-post-effective ?}
 
 \begin{proof}
-\alain{est-ce sur qu'on peut rajouter l'hypothese "ideal-effective" ? oui. et completion-post-effective ?...... preuve pas claire, à réécrire}
+\alain{preuve pas claire, à réécrire}
 This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 which can be simulated by WSTS.
 Indeed, {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
@@ -766,8 +767,9 @@ Hence {\sc Resilience} is undecidable for Minsky machines.
 
 
 Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
-Reset-VASS extend the basic VASS model with special “reset
-transitions” that set to $0$ some coordinates in the vector. 
+
+%Reset-VASS extend the basic VASS model with special “reset
+%transitions” that set to $0$ some coordinates in the vector. 
 %			Let us recall their definition here.
 
 
