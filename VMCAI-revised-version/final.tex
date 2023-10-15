@@ -611,7 +611,7 @@ Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective WSTS with
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
-\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ?}
+\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ? J'ai enlevé l'hypothèse omega2 car j'ai l'impression qu'elle n'est pas utile...à vérifier}
 \begin{proof}
 Let us first recall two results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
@@ -1129,7 +1129,7 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for ideal-effective WSTS with downward and upward compatibilities,
+{\sc State-resilience} is decidable for ideally-effective WSTS with downward and upward compatibilities,
 $\Safe = \downarrow \Safe$.
 \end{theorem}
 
@@ -1161,7 +1161,7 @@ Strong downward compatibility implies furthermore the decidability
 of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 
 \begin{corollary}\label{downward brp}
-{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility and upward compatibility when
+{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideally-effective WSTS with strong downward compatibility and upward compatibility when
 $\Safe = \downarrow \Safe$.
 \end{corollary}
 
