@@ -754,14 +754,15 @@ from any input with at least $1$ on its third counter is undecidable.
 Hence {\sc Resilience} is undecidable for Minsky machines.
 
 
-Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}. 
+Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
 Reset-VASS extend the basic VASS model with special “reset
-transitions” that set to $0$ some coordinates in the vector. Let us recall their definition here.
+transitions” that set to $0$ some coordinates in the vector. 
+%			Let us recall their definition here.
 
 
 
-It is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for WSTS in general as well.\alain{déjà dit avant en mieux omega2 et strong comp et post-effective}\qed
+%      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for $\omega^2$-WSTS as well.\alain{déjà dit avant en mieux omega2 et strong comp et post-effective}\qed
 \end{proof}
 
 
@@ -770,7 +771,7 @@ Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} i
 Remark we did not make use of the
 property $\Bad$ complement of $\Safe$, simply 
 $\Bad=\uparrow \Bad$ and $\Safe=\downarrow \Safe$, thus 
-the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
+the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.\\
 
 
 
