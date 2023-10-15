@@ -413,7 +413,7 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 We introduce five types of effectiveness \cite{BFM-ic17} that will be essential for solving various resilience problems in different models of WSTS.
 \noindent
 %			{\bf On effectivity.}
-Let $\mathscr{S}=(S, \rightarrow, \leq)$ be a WSTS. We say that $\mathscr{S}$ is 
+We say that a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
 \begin{itemize}
 \item {\em effective} if there exists a pair of algorithms
 ($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
@@ -425,13 +425,17 @@ on input $x \in X$.
 \item {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 %
-\item {\em ideal-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a state $s$
+\item {\em ideally-effective} \cite{BFM-ic17} if (1) the function mapping the encoding of a state $s$
 to the encoding of the ideal $\downarrow s$ is computable; (2) inclusion of ideals is decidable; (3) the downward closure $\downarrow \post(I)$ expressed as a finite union of ideals is computable from the ideal $I$.
-\item {\em completion-post-effective} if $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, and there exists an algorithm $M_\downarrow$ that computes 
- $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
- $s_1, s_2, \ldots, s_m \in S$.
+%
+\item {\em completion-post-effective} if $\mathscr{S}$ is ideally-effective and its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective.
+%
+%and there exist an algorithm $M_\downarrow$ that computes 
+% $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
+% $s_1, s_2, \ldots, s_m \in S$.
+%
 \end{itemize}
-\alain{le rappel ci-dessous est-il entièrement utile ?}
+\alain{le rappel ci-dessous est-il entièrement utile ? Je pense qu'on peut l'enlever, et toi ?}
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
 For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. When $\mathscr{S}$ have upward-compatibility but not strong compatibility, we can similarly compute $\pred^*(U)$ by studying the sequence $(\uparrow U_k)_k$ instead.
@@ -448,9 +452,9 @@ With the ideal-effective hypothesis, we obtain the decidability of coverability 
 Coverability is decidable for any ideal-effective WBTS.
 \end{theorem}
 
-Coverability is  decidable for a class of WSTS without the pred-basis hypothesis.
+Coverability is  decidable for a class of WSTS without the effective pred-basis hypothesis.
 
-\begin{theorem} (Theorem 44 in \cite{BFM-ic17})
+\begin{theorem} \cite{BFM-ic17}
 Coverability is  decidable for completion-post-effective WSTS.
 \end{theorem}
 
@@ -584,7 +588,8 @@ by writing the integer $j$ on its tape,
 	WSTS.
 Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\qed
 \end{proof}
-
+ Let us remark that the transition system 
+	$S_j = (\N^2, \{f_j, g\}, \leq)$ in the previous proof is not ideally effective neither completion-post-effective.
   
   
 
@@ -602,7 +607,7 @@ Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (
 
 %
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective $\omega^2$-WSTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a completion-post-effective WSTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
@@ -631,7 +636,7 @@ Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downa
 We now have $\mathscr{S}$ is resilient iff $K_{\mathscr{S}}(\Safe)$ is finite iff $\mathscr{S}$ is $K_{\mathscr{S}}(\Safe)$-resilient with $K_{\mathscr{S}}(\Safe)$ finite.
 
 This implies that resilience and bounded resilience are equivalent to coverability.
-Since coverability is decidable for completion-post-effective $\omega^2$-WSTS, we deduce that both the 
+Since coverability is decidable for completion-post-effective WSTS \cite{BFM-ic17}, we deduce that both the 
   resilience problem and the bounded resilience problem are decidable.
 
 
@@ -764,7 +769,7 @@ transitions” that set to $0$ some coordinates in the vector.
 
 
 %      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for $\omega^2$-WSTS as well.\alain{déjà dit avant en mieux omega2 et strong comp et post-effective}\qed
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for $\omega^2$-WSTS as well.\alain{déjà dit avant en mieux omega2 et strong comp et post-effective mais reset-VASS apportent effective pred-basis....}\qed
 \end{proof}
 
 
