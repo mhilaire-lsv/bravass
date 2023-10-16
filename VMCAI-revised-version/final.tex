@@ -283,19 +283,19 @@ The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S
 
 
 A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
-Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $x \leq y$ and $x \in U$ then $y \in U $.
+Given a quasi-ordering $(X,\leq)$, an {\em upward-closed set} is any set $U \subseteq X$ such that if $x \leq y$ and $x \in U$ then $y \in U $.
 A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
 It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
 To any subset $A \subseteq X$, we may associate
 its {\em upward-closure},
- $\uparrow A = \{x \in X \mid \exists a \in A ~ a \leq y\}$
+ $\uparrow A = \{x \in X \mid \exists a \in A ~ a \leq x\}$
  and its 
  {\em downward-closure},
- $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
+ $\downarrow A = \{x \in X \mid \exists a \in A ~ x \leq a\}$. 
 We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
 as $\uparrow x$ (resp. $\downarrow x$).
 %
-A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
+A {\em basis} of an upward-closed set $U$ is a set $U_b$ such that $U = \uparrow U_b$; similarly, a {\em basis} of a downward-closed set $D$ is a set $D_b$ such that $D = \downarrow D_b$.
 
 
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$. This property is equivalent to the \emph{finite decomposition} property : every upward-closed set $\emptyset \neq U \subseteq X$ admits a finite basis $B \subseteq X$ such that $U=\uparrow B$.
@@ -303,13 +303,13 @@ A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow
 %
 %
 Wqo admits many other equivalent formulations like : a qo $(X,\leq)$ is a wqo iff $(X,\leq)$ is well founded (i.e. there is no infinite strictly decreasing sequence
-of elements of $X$) and $(X,\leq)$ contains no infinite antichains (an antichain is a subset of mutually incomparable elements of $X$). See other equivalences in \cite{schmitz:cel-00727025}. 
+of elements of $X$) and $(X,\leq)$ contains no infinite antichains (an antichain is a subset of mutually incomparable elements of $X$). See other equivalences in \cite{DBLP:phd/hal/Halfon18,schmitz:cel-00727025}. 
 %
 %
 As an example, $(\N^d, \leq)$, the set of vectors of $d$ natural numbers (where $d$ is finite) with component-wise order is a wqo.\\
 Quasi-orderings that have no 
 infinite antichains
- enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2, \ldots, J_n$ such that $D = \downarrow (J_1 \cup J_2 \cup \ldots \cup J_n)$ See for example \cite{BFM-ic17}.
+ enjoy a similar \emph{finite decomposition} property than wqo: every downward-closed subset $D \subseteq X$ can be decomposed into a \emph{finite} set of ideals $J_1, J_2, \ldots, J_n$ such that $D = J_1 \cup J_2 \cup \ldots \cup J_n$ See for example \cite{BFM-ic17}.
 %
 %
 In what follows, a downward-closed set $D$ is represented by its finite set of ideals (or by the minimal elements of its upward-closed complement), and an upward-closed set $U$ is represented by its finite set of minimal elements. \\
@@ -333,7 +333,7 @@ $s_1, t_1 , s_2 \in S$
 	$t_2 \in S$ with 
 	$t_1 \leq t_2$ and $s_2 \rightarrow t_2$.
 
-Several families of formal models of processes give rise to WSTSs in a natural way with disfferent compatibilities, e.g. compatible counter machines like VASS with $d$ counters and $Q$ a finite set of control-states (and equivalently Petri nets and data Petri nets), reset/transfer VASS are WSTS with strong compatibility for the usual ordering $=\times \leq^d$ on the set of states $S=Q \times \N^d$.
+Several families of formal models of processes  \cite{DBLP:journals/tcs/FinkelS01} give rise to WSTSs in a natural way with disfferent compatibilities, e.g. compatible counter machines like VASS with $d$ counters and $Q$ a finite set of control-states (and equivalently Petri nets and data Petri nets), reset/transfer VASS are WSTS with strong compatibility for the usual ordering $=\times \leq^d$ on the set of states $S=Q \times \N^d$.
 Similarly, lossy channel systems with $d$ channels and $Q$ a finite set of control-states are WSTS (with a non-strong compatibility)
 for the ordering $=\times \sqsubseteq^d$ (where $\sqsubseteq$ is the subword ordering on $\Sigma^*$) on $S= Q \times (\Sigma^*)^d$.\\
 %%%%
@@ -449,6 +449,14 @@ any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
 For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. When $\mathscr{S}$ have upward-compatibility but not strong compatibility, we can similarly compute $\pred^*(U)$ by studying the sequence $(\uparrow U_k)_k$ instead.
+
+Recall the \emph{coverability problem} for ordered transition systems.
+
+\problemx{Coverability problem}
+{An ordered transition system $\mathscr{S}=(S,\rightarrow,\longrightarrow)$ and two states $s_0,s \in S$.}
+{ $s_0 \in \pred^*(\uparrow s )$ ? \newline}
+
+%An equivalent formulation is : Does there exist $t \in S$ such that $s_0 \longrightarrow^{*} t$ and $s \leq t$ ?
 With the effective pred-basis hypothesis, we obtain:
 
 
@@ -481,11 +489,11 @@ A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d
  \end{definition} 
 %
 Subsetquently, $Q \times \N^d$ is the set of states of the transition system associated with a $d$-VASS $V$.
-For all states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$
+For all states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and for every control-transition $t = (p, \textbf{z}, q)$, we write $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ whenever $\textbf{v} = \textbf{u} + \textbf{z} \geq \textbf{0}$.
 %
 When in the context of a $d$-VASS, we denote $0^d$ by $\textbf{0}$.
 
-A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence it can be only defined by $T$.\\
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton; hence one only needs $T$.\\
 
 VASS can extended with resets.
 
@@ -529,7 +537,7 @@ $S \longrightarrow^{*} \Safe$ (resp. $S \longrightarrow^{\leq k} \Safe$)
 $\forall x \in S, \exists y \in \Safe$ 
  such that $x \longrightarrow^{*} y$ 
   (resp.  $\forall x \in S, \exists y \in \Safe$ such that $x \longrightarrow^{\leq k} y$).
-  In our framework, $\Safe \subseteq S$  is possibly infinite but  must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqo and semilinear sets in $\mathbb{N}^d$ have finite representations. 
+  In our framework, $\Safe \subseteq S$  is possibly infinite but  must admit a computable finite representation : for example, downward-closed sets and upward-closed sets in wqos and semilinear sets in $\mathbb{N}^d$ have finite representations. 
 
 
 
@@ -568,7 +576,7 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
   and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for LCM). 
   
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$% and $\Bad$
-. Since $\Safe \subseteq \pred^*(\Safe)$, one only need to decide whether 
+. Since $\Safe \subseteq \pred^*(\Safe)$, one only needs to decide whether 
 the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.
 In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  \\
 
