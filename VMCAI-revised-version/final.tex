@@ -316,7 +316,7 @@ In what follows, a downward-closed set $D$ is represented by its finite set of i
 
 \noindent
 Let us now recall the (most general) definition of well-structured transition systems.
-\begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
+\begin{definition}(Finkel \cite{DBLP:journals/iandc/Finkel90})
 A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ such that   
@@ -348,7 +348,7 @@ A wqo $(X, \leq)$ is an \emph{$\omega^2$-wqo} if $(Ideals(X), \subseteq)$ forms 
 
 Although there exists wqo that are not $\omega^2$-wqo (see the Rado ordering in \cite{DBLP:journals/ipl/Jancar99}), all naturally occurring wqos are $\omega^2$-wqo, perhaps to the notable exception of ﬁnite graphs quasi-ordered by the graph minor relation, which are wqo but not known to be $\omega^2$-wqo. The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is a an $\omega^2$-wqo (Proposition 4.5 in \cite{DBLP:journals/corr/abs-1208-4549}). Now we are able to define $\omega^2$-WSTS:
 
-\begin{definition} \cite{DBLP:journals/corr/abs-1208-4549}
+\begin{definition}(Finkel and Goubault-Larrecq \cite{DBLP:journals/corr/abs-1208-4549}
 A WSTS  $\mathscr{S}=(S, \rightarrow, \leq)$
 is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 \end{definition}
@@ -359,7 +359,7 @@ Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}
 
 Another type of WSTS exists that enjoys downward compatibility.
 
-\begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
+\begin{definition}(Finkel and Schnoebelen \cite{DBLP:journals/tcs/FinkelS01})
 A {\em downward (compatible) well-structured transition system} (downward-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ such that   
@@ -452,20 +452,20 @@ For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \su
 With the effective pred-basis hypothesis, we obtain:
 
 
-\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
+\begin{theorem}(Finkel and Schnoebelen  \cite{DBLP:journals/tcs/FinkelS01}, Abdulla and al. \cite{DBLP:journals/iandc/AbdullaCJT00})
  A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
 Let us recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, integer VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. 
 With the ideally-effective hypothesis, we obtain the decidability of coverability for WBTS (without the effective pred-basis hypothesis).
 
-\begin{theorem}(Blondin~\cite{DBLP:journals/lmcs/BlondinFM17})
+\begin{theorem}(Blondin and al. ~\cite{DBLP:journals/lmcs/BlondinFM17})
 Coverability is decidable for any ideally-effective WBTS.
 \end{theorem}
 
 Downward-WSTS enjoy a powerfull property.
 
-\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01}
+\begin{theorem}(Finkel and Schnoebelen \cite{DBLP:journals/tcs/FinkelS01})
 Effective finitely branching downward-WSTS are effective $\post^*$-basis.
 \end{theorem}
 %
@@ -948,7 +948,7 @@ and
 
 On the positive side, let us recall a result about {\sc Bounded-state-resilience} (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 \begin{theorem}\label{ref ozkan}
-(\"Ozkan~\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889})
+(\"Ozkan~\cite{DBLP:conf/gg/Ozkan22}, \"Ozkan and W{\"{u}}rdemann \cite{DBLP:journals/corr/abs-2108-00889})
 {\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for effective $\post^*$-basis WSTS with strong compatibility
 when
 $\Safe=\uparrow \Safe$.
