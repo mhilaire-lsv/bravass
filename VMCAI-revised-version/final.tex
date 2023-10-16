@@ -348,7 +348,7 @@ A wqo $(X, \leq)$ is an \emph{$\omega^2$-wqo} if $(Ideals(X), \subseteq)$ forms 
 
 Although there exists wqo that are not $\omega^2$-wqo (see the Rado ordering in \cite{DBLP:journals/ipl/Jancar99}), all naturally occurring wqos are $\omega^2$-wqo, perhaps to the notable exception of ﬁnite graphs quasi-ordered by the graph minor relation, which are wqo but not known to be $\omega^2$-wqo. The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is a an $\omega^2$-wqo (Proposition 4.5 in \cite{DBLP:journals/corr/abs-1208-4549}). Now we are able to define $\omega^2$-WSTS:
 
-\begin{definition}(Finkel and Goubault-Larrecq \cite{DBLP:journals/corr/abs-1208-4549}
+\begin{definition}(Finkel and Goubault-Larrecq \cite{DBLP:journals/corr/abs-1208-4549})
 A WSTS  $\mathscr{S}=(S, \rightarrow, \leq)$
 is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 \end{definition}
@@ -375,7 +375,7 @@ There are fewer downward-WSTS than WSTS, but we can still mention FIFO automata 
 Let us reformulate the downward compatibility property.
 
 \begin{lemma}\label{downward compatible}
-For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible; (2) for all downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
+For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible; (2) for every downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
 \end{lemma}
 
 \begin{proof}
@@ -413,7 +413,7 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 % $s_1, s_2, \ldots, s_m \in S$.
 
 
-We introduce five types of effectiveness \cite{BFM-ic17} that will be essential for solving various resilience problems in different models of WSTS.
+We recall and introduce five types of \emph{effectiveness} that will be essential for solving various resilience problems in different models of WSTS.
 \noindent
 %			{\bf On effectivity.}
 We say that a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
@@ -664,9 +664,8 @@ Let us now show that the $k$-resilience problem, with $k \in \mathbb{N}$, is als
 Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. 
 If $\downarrow b_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow b_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
-Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe)$. \qed
-\end{proof}
-
+Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe)$.
+\end{proof} \qed
 
 Remark that the above proof doesn't make use of the 
 property that $\Bad$ is the complement of $\Safe$, simply using
@@ -762,38 +761,35 @@ In the case of (upward compatible) WSTS with ideally-effectivity, {\sc Resilienc
 
 
 \begin{proposition}\label{indec WSTS with dcs}
-{\sc Resilience} for ideally-effective $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
+{\sc Resilience} for ideally-effective and effective pred-basis $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
 \end{proposition}
 
 
 \begin{proof}
 \alain{preuve pas claire, à réécrire}
-This stems from the fact that it is undecidable for Minsky machines with more than one counter,
-which can be simulated by WSTS.
-Indeed, {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
-This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
+\alain{les reset-VASS sont-ils effective $\post^*$-basis ?}
+%This stems from the fact that it is undecidable for Minsky machines with more than one counter,
+%which can be simulated by WSTS.
+First, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
+%	This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
 From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
-such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input with at least $1$ on its third counter. We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then lower the first two counters until they reach $0$, then, and only then, finally lower the third counter until it reaches $0$.
-Remark that in the construction, from any input with at least $1$ on its third counter, it is not possible to reach $(1,0,0)$, $(0,1,0)$ or $(1,1,0)$.
-Based on this construction, the problem of deciding whether the downward closed set $\downarrow (1,1,0)$ is reachable in a $3$-counter Minsky machine
-from any input with at least $1$ on its third counter is undecidable. 
+such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input in $\uparrow(0,0,1)$ 
+%			with at least $1$ on its third counter. 
+We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
+Remark that in the construction, from any input in $\uparrow(0,0,1)$, it is not possible to reach $(1,0,0)$, $(0,1,0)$ or $(1,1,0)$.
+Based on this construction, the problem of deciding whether the downward closed set $\downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
+from any input in $\uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61,Min67}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
-
-
-Executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
-
+\alain{écrire qqchose ici}
+Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
+\alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
 %Reset-VASS extend the basic VASS model with special “reset
 %transitions” that set to $0$ some coordinates in the vector. 
 %			Let us recall their definition here.
-
-
-
 %      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for $\omega^2$-WSTS as well.\alain{déjà dit avant en mieux omega2 et strong comp et post-effective mais reset-VASS apportent effective pred-basis, completion et ideally effective....}\qed
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  ideally-effective, effective pred-basis, $\post^*$-basis $\omega^2$-WSTS with strong compatibility as well.\qed
+%\alain{déjà dit avant en mieux omega2 et strong comp et post-effective mais reset-VASS apportent effective pred-basis et ideally effective....}
 \end{proof}
-
-
-
 
 Remark we did not make use of the
 property $\Bad$ complement of $\Safe$, simply 
@@ -995,9 +991,6 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$. \qed
 \end{proof}
 
 
-
-
-The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ? \alain{One first answer is the class of effective finitely branching downward-WSTS which are precisely effective $\post^*$-basis}. Moreover, 
 \"Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
 \problemx{Downward-reachability problem}
@@ -1086,7 +1079,7 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Section~\ref{safe-down}.
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
+{\sc State-resilience} is undecidable for ideally-effective and effective pred-basis $\omega^2$-WSTS with strong compatibility
 when
 $\Safe=\downarrow \Safe$.
 \end{proposition}
