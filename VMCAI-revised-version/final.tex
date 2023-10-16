@@ -282,12 +282,12 @@ The {\em reachability problem} asks, given a transition system $\mathscr{S} = (S
 
 
 A {\em quasi-ordering} (a qo) is any reflexive and transitive relation $\leq$ over some set $X$ and we often write $(X,\leq)$. 
-Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $y \geq x$ and $x \in U$ then $y \in U $.
+Given $(X,\leq)$ a quasi-ordering, an {\em upward-closed set} is any set $U \subseteq X$ such that if $x \leq y$ and $x \in U$ then $y \in U $.
 A {\em downward-closed set} is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
 It is an {\em ideal } if it is also {\em directed}, i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
 To any subset $A \subseteq X$, we may associate
 its {\em upward-closure},
- $\uparrow A = \{x \in X \mid \exists a \in A ~ y \geq a\}$
+ $\uparrow A = \{x \in X \mid \exists a \in A ~ a \leq y\}$
  and its 
  {\em downward-closure},
  $\downarrow A = \{x \in X \mid \exists a \in A ~ y \leq a\}$. 
@@ -359,7 +359,7 @@ Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}
 There exists another type of WSTS which enjoy the downward compatibility.
 
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
-A {\em downward compatible well-structured transition system} (dc-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
+A {\em downward (compatible) well-structured transition system} (downward-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ such that   
 the transition relation $ \rightarrow$ is downward compatible with $\leq$, i.e., for all 
@@ -458,6 +458,12 @@ With the ideally-effective hypothesis, we obtain the decidability of coverabilit
 \begin{theorem}\cite{DBLP:journals/lmcs/BlondinFM17}
 Coverability is decidable for any ideally-effective WBTS.
 \end{theorem}
+
+Downward-WSTS enjoy a powerfull property.
+
+\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01}
+Effective finitely branching downward-WSTS are effective $\post^*$-basis.
+\end{theorem}
 %
 %Coverability is  decidable for a class of WSTS without the effective pred-basis hypothesis.
 %
@@ -500,6 +506,8 @@ and
 $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
 \end{itemize} \end{samepage}
 
+
+\alain{ici un dessin comme celui que j'ai envoyé sur skype...à rajouter les downward WSTS}
 
 
 \section{Resilience for WSTS}
@@ -1006,7 +1014,7 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$. \qed
 
 
 
-The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ?
+The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ? \alain{One first answer is the class of effective downward-WSTS which are precisely effective $\post^*$-basis}. Moreover, 
 \"Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
 \problemx{Downward-reachability problem}
