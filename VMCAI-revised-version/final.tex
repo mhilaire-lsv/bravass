@@ -297,7 +297,7 @@ as $\uparrow x$ (resp. $\downarrow x$).
 A {\em basis} of an upward-closed set $I$ is a set $I_b$ such that $I = \uparrow I_b$. 
 
 
- A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$. This property is equivalent to : every upward-closed set $\emptyset \neq U \subseteq X$ admits a finite basis $B \subseteq X$ such that $U=\uparrow B$.
+ A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$. This property is equivalent to the \emph{finite decomposition} property : every upward-closed set $\emptyset \neq U \subseteq X$ admits a finite basis $B \subseteq X$ such that $U=\uparrow B$.
 %
 %
 %
@@ -356,7 +356,7 @@ Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are i
 
 Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
 
-There exists another type of WSTS which enjoy the downward compatibility.
+Another type of WSTS exists that enjoys downward compatibility.
 
 \begin{definition}\cite{DBLP:journals/iandc/Finkel90,DBLP:journals/tcs/FinkelS01}
 A {\em downward (compatible) well-structured transition system} (downward-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
@@ -368,6 +368,8 @@ $s_1, t_1 , s_2 \in S$
 	$t_2 \in S$ with 
 	$t_2 \leq t_1$ and $s_2 \rightarrow^{*} t_2$.
 \end{definition}
+
+There are fewer downward-WSTS than WSTS, but we can still mention FIFO automata with insertion errors and Basic Process Algebra (BPA).
 
 Let us reformulate the downward compatibility property.
 
