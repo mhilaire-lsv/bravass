@@ -199,10 +199,10 @@ when
 $\Safe=\uparrow \Safe$. We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
 
 
-\item The three resilience problems are decidable for completion-post-effective $\omega^2$-WSTS with strong compatibility and $\Safe = \uparrow \Safe$.
+\item The three resilience problems are decidable for ideally-effective $\omega^2$-WSTS with strong compatibility and $\Safe = \uparrow \Safe$.
 
 
-\item The resilience problem is decidable for ideal-effective WSTS with 
+\item The resilience problem is decidable for ideally-effective WSTS with 
 $\Safe=\downarrow \Safe$
 and
 the additional hypothesis that
@@ -210,9 +210,9 @@ for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-cl
 %
 %%%
 
-\item We generalize the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} by relaxing the strong compatibility hypothesis.
+\item We generalize the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} by relaxing the  strong compatibility hypothesis.
 We also show that removing the effective 
-$\uparrow$ $\post^*$ basis hypothesis leads to undecidability. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideal-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for ideal-effective WSTS with strong downward compatibility).
+$\uparrow$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, most WSTS don't enjoy this property. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideally-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for ideally-effective WSTS with strong downward compatibility).
 %
 
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
@@ -420,7 +420,7 @@ We say that a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is
 $ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
 $M_\leq$ the ordering relation “$\leq$”.
 %
-\item {\em post-effective} if $\mathscr{S}$ is effective, and if there
+\item {\em $\post$-effective} if $\mathscr{S}$ is effective, and if there
 exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$ 
 on input $x \in X$.
 %
@@ -429,15 +429,18 @@ to the encoding of the ideal $\downarrow s$ is computable, inclusion of ideals i
 %
 %\item {\em completion-post-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
-\item {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+\item {\em effective $\pred$-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
 %
 %and there exist an algorithm $M_\downarrow$ that computes 
 % $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
 % $s_1, s_2, \ldots, s_m \in S$.
 %
+\item {\em effective $\post^*$-basis} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if there exists an algorithm accepting
+any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 \end{itemize}
-Most of usual WSTS are post-effective and ideally-effective.
+
+%Most of usual WSTS are post-effective and ideally-effective.
 
 \alain{le rappel ci-dessous est-il entièrement utile ? Je pense qu'on peut l'enlever, et toi ?}
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
@@ -955,7 +958,7 @@ and
 
 On the positive side, let us recall a result about {\sc Bounded-state-resilience} (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 \begin{theorem}\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}\label{ref ozkan}
-{\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for WSTS $S$ with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+{\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for effective $\post^*$-basis WSTS with strong compatibility
 when
 $\Safe=\uparrow \Safe$.
 \end{theorem}
@@ -963,7 +966,7 @@ $\Safe=\uparrow \Safe$.
 We may immediately  \emph{generalize} this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
 
 \begin{proposition}\label{postcomputable}
-{\sc State-resilience} is decidable for WSTS with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
+{\sc State-resilience} is decidable for effective $\post^*$-basis WSTS with strong compatibility
 when
 $\Safe=\uparrow \Safe$.
 \end{proposition}
@@ -1045,9 +1048,8 @@ Keeping the $\uparrow \post^*$ effectiveness hypothesis but \emph{loosening} the
 
 
 \begin{theorem}\label{post srp}
-{\sc State-resilience} is decidable for 
- WSTS with effective 
-$\uparrow$ $\post^*$ basis
+{\sc State-resilience} is decidable for effective $\post^*$-basis 
+ WSTS
 when
 $\Safe=\uparrow \Safe$. 
 \end{theorem}
@@ -1077,7 +1079,7 @@ In such a case, the algorithm in
 \cite{DBLP:conf/gg/Ozkan22} would deduce that {\sc $1$-state-resilience} does not hold,
 which is incorrect.
 
-Thus in case of a WSTS with an effective basis of $\uparrow \post^*$ and (not strong) compatibility, we don't know the decidability status of {\sc $k$-state-resilience} and 
+Thus in case of effective $\post^*$-basis WSTS (when the compatibility is not strong), we don't know the decidability status of {\sc $k$-state-resilience} and 
 {\sc Bounded-state-resilience}. 
 
 
