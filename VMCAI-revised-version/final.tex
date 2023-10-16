@@ -713,7 +713,7 @@ Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS 
 
 %
 \begin{theorem}\label{up-down}
-{\sc Resilience}  is decidable for ideal-effective downward compatible WSTS with 
+{\sc Resilience}  is decidable for ideal-effective downward-WSTS with 
 $\Safe=\downarrow \Safe$.
 \end{theorem}
 
@@ -926,14 +926,14 @@ Since the zero-reachability problem for reset-VASS is undecidable, the reduction
 Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong upward-compatibility. 
 
 
-\begin{theorem}\label{srp up down}
+\begin{proposition}\label{srp up down}
 {\sc State-resilience},
 {\sc Bounded-state-resilience} and
 {\sc $k$-state-resilience}
 are undecidable for strongly compatible WSTS with effective pred-basis
 when
 $\Safe=\uparrow \Safe$.
-\end{theorem}
+\end{proposition}
 
 
 \begin{proof}
@@ -1014,7 +1014,7 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$. \qed
 
 
 
-The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ? \alain{One first answer is the class of effective downward-WSTS which are precisely effective $\post^*$-basis}. Moreover, 
+The computability of $\uparrow \post^*(s)$ however seems a strong hypothesis. What are the WSTS for which $\uparrow \post^*(s)$ is computable for $s \in S$ ? \alain{One first answer is the class of effective finitely branching downward-WSTS which are precisely effective $\post^*$-basis}. Moreover, 
 \"Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
 
 \problemx{Downward-reachability problem}
