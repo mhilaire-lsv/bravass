@@ -960,13 +960,13 @@ when
 $\Safe=\uparrow \Safe$.
 \end{theorem}
 
-We may immediately generalize this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
+We may immediately  \emph{generalize} this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
 
-\begin{corollary}\label{postcomputable}
+\begin{proposition}\label{postcomputable}
 {\sc State-resilience} is decidable for WSTS with strong compatibility and such that $\uparrow \post^*(s)$ is computable for $s \in S$
 when
 $\Safe=\uparrow \Safe$.
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
 Since $\mathscr{S}$ is a WSTS there exists an $n_0 \in \N$ such that
@@ -1036,11 +1036,12 @@ It is well-known that
 VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded-state-resilience} is decidable for VASS.
 Hence {\sc State-resilience} is decidable for  
 VASS.
+
 However, the hypothesis that $\uparrow \post^*$ is computable cannot be tested in the general WSTS framework.  
 Moreover there exist classes of WSTSs with strong 
  compatibility for which there doesn't exist an algorithm computing a basis of $\uparrow \post^*$, such as reset-VASS.
 
-Keeping the $\uparrow \post^*$ effectiveness hypothesis but loosening the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
+Keeping the $\uparrow \post^*$ effectiveness hypothesis but \emph{loosening} the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
 
 
 \begin{theorem}\label{post srp}
@@ -1102,11 +1103,11 @@ We now consider the case $\Safe = \downarrow \Safe$.
 Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \downarrow \Safe$, this stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
 Section~\ref{safe-down}.
 
-\begin{theorem}\label{srp down up}
+\begin{proposition}\label{srp down up}
 {\sc State-resilience} is undecidable for effective WSTS with  strong  compatibility 
 when
 $\Safe=\downarrow \Safe$.
-\end{theorem}
+\end{proposition}
 
 
 
