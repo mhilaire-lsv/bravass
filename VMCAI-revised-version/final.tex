@@ -913,7 +913,7 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies 
 {\sc $t$-liveness} is undecidable.
 
-Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong upward-compatibility. Hence {\sc State-resilience} is undecidable  for WSTS with strong upward-compatibility. 
+Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong upward-compatibility. 
 
 
 \begin{theorem}\label{srp up down}
@@ -1192,14 +1192,15 @@ Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are
 \begin{proof}
 We consider in VASS the case of when $\Safe$ is semilinear
 and $\Bad = S \setminus \Safe$ is semilinear too.
+We want to use the fact that
+it is decidable whether $\post^*(X) \subseteq \pred^*(Y)$ when 
+$X$ and $Y$ are both semilinear sets~\cite{DBLP:journals/corr/abs-2207-02697}.
 {\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
 We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Safe = \Bad$.
 Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
-\[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad iff \quad \Bad \subseteq \pred^*(\Safe).\]
-Since it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
-$\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}, 
-{\sc Resilience} is decidable. 
-The reachability relation of integer $d$-VASS is definable by a sentence in Presburger in $\mathbb{Z}^{2d}$ hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \qed
+\[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad \text{iff} \quad \Bad \subseteq \pred^*(\Safe).\]
+and hence, {\sc Resilience} is decidable. 
+The reachability relation of integer $d$-VASS is definable by a well-formed formula with no free variables in the first-order theory of the integers with addition and orders (Presburger arithmetic) in $\mathbb{Z}^{2d}$, hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \qed
 \end{proof}
 
 {\sc Resilience} is also decidable for other classes of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
