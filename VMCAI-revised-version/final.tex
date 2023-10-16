@@ -425,9 +425,9 @@ exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$
 on input $x \in X$.
 %
 \item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
-to the encoding of the ideal $\downarrow s$ is computable and inclusion of ideals is decidable.
+to the encoding of the ideal $\downarrow s$ is computable, inclusion of ideals is decidable and $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
-\item {\em completion-post-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
+%\item {\em completion-post-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
 \item {\em effective pred-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
 any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
@@ -459,7 +459,7 @@ Coverability is decidable for any ideally-effective WBTS.
 Coverability is  decidable for a class of WSTS without the effective pred-basis hypothesis.
 
 \begin{theorem} \cite{BFM-ic17}
-Coverability is  decidable for completion-post-effective and ideally-effective WSTS.
+Coverability is decidable for ideally-effective WSTS.
 \end{theorem}
 
 Let us recall the  definition of vector addition system with (control-)states. 
