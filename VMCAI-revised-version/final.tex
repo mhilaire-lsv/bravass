@@ -52,6 +52,7 @@
 \usepackage{wrapfig}
 
 
+
 %
 
 
@@ -446,18 +447,22 @@ any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
 We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
 For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. When $\mathscr{S}$ have upward-compatibility but not strong compatibility, we can similarly compute $\pred^*(U)$ by studying the sequence $(\uparrow U_k)_k$ instead.
-With the effective pred-basis hypothesis, we obtain:
+With the effective pred-basis hypothesis, we obtain:\\
 
-\begin{theorem}\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
-A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
-\end{theorem}
+\noindent
+\textbf{Theorem.}
+{\em ~\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
+ A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
+}\\
 
 Let us recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, integer VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. 
-With the ideally-effective hypothesis, we obtain the decidability of coverability for WBTS (without the effective pred-basis hypothesis).
+With the ideally-effective hypothesis, we obtain the decidability of coverability for WBTS (without the effective pred-basis hypothesis).\\
 
-\begin{theorem}\cite{DBLP:journals/lmcs/BlondinFM17}
+\noindent
+\textbf{Theorem.}
+{\em ~\cite{DBLP:journals/lmcs/BlondinFM17}
 Coverability is decidable for any ideally-effective WBTS.
-\end{theorem}
+}\\
 
 Downward-WSTS enjoy a powerfull property.
 
