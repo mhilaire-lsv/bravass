@@ -797,22 +797,17 @@ Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki197
 %			Let us recall their definition here.
 %      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
 The simulation operates by building a reset-VASS such that
- an execution from 
+there exists
+ a sequence from 
 an initial state %$(s,x_1 \ldots x_n)$
 to
-a state of the form $ (s, 0,  \ldots 0)$  in the reset-VASS simulates
+a state of the form $ (s, 0,  \ldots 0)$  in the reset-VASS if and only if
+there exists
 a sequence
  in the Minsky machine
  from a corresponding initial state
  to
- a state of the form $(s',0,0,0)$, and
- correspondingly,
-  if there is a sequence from 
-  $(s_0,0,0,0)$ to 
-  $(s_f,0,0,0)$ in the Minsky machine
-  there is a sequence in the reset-VASS which simulates
-  the sequence and ends
-  in a state of the form $(s,0, \ldots O)$
+ a state of the form $(s',0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
 Hence $\downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
 resilience in the corresponding reset-VASS.
