@@ -776,6 +776,7 @@ In the case of (upward compatible) WSTS with ideally-effectivity, {\sc Resilienc
 \begin{proof}
 \alain{preuve pas claire, à réécrire}
 \alain{les reset-VASS sont-ils effective $\post^*$-basis ?}
+\mathieu{non, sinon on aurait décidabilité pour la state résilience}
 %This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 %which can be simulated by WSTS.
 First, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
@@ -786,7 +787,7 @@ such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0
 We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
 Remark that in the construction, from any input in $\uparrow(0,0,1)$, it is not possible to reach $(1,0,0)$, $(0,1,0)$ or $(1,1,0)$.
 Based on this construction, the problem of deciding whether the downward closed set $\downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
-from any input in $\uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61,Min67}. 
+from any input in $\uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
 \alain{écrire qqchose ici}
 Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
@@ -794,7 +795,27 @@ Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki197
 %Reset-VASS extend the basic VASS model with special “reset
 %transitions” that set to $0$ some coordinates in the vector. 
 %			Let us recall their definition here.
-%      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}. 
+%      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
+The simulation operates by building a reset-VASS such that
+ an execution from 
+an initial state %$(s,x_1 \ldots x_n)$
+to
+a state of the form $ (s, 0,  \ldots 0)$  in the reset-VASS simulates
+a sequence
+ in the Minsky machine
+ from a corresponding initial state
+ to
+ a state of the form $(s',0,0,0)$, and
+ correspondingly,
+  if there is a sequence from 
+  $(s_0,0,0,0)$ to 
+  $(s_f,0,0,0)$ in the Minsky machine
+  there is a sequence in the reset-VASS which simulates
+  the sequence and ends
+  in a state of the form $(s,0, \ldots O)$
+  (from Theorem~$5$ in \cite{araki1976PN}).
+Hence $\downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
+resilience in the corresponding reset-VASS.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  ideally-effective, effective pred-basis, $\post^*$-basis $\omega^2$-WSTS with strong compatibility as well.\qed
 %\alain{déjà dit avant en mieux omega2 et strong comp et post-effective mais reset-VASS apportent effective pred-basis et ideally effective....}
 \end{proof}
@@ -1126,12 +1147,17 @@ $\Safe = \downarrow \Safe$.
 In order to decide whether $\post^{\leq n}(s) 
  \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
-Procedure 1 enumerates inductive invariants in some fixed order $D_1$ , $D_2$ , $\ldots$ , i.e. downward-closed subsets $D_i \subseteq S$ such that $\downarrow \post(D_i ) \subseteq D_i$. 
-Every inductive invariant $D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
-Notice that, by 
-upward compatibility, $\downarrow \post^*(s)$ is such an inductive invariant and may eventually be found.
 
-Procedure 1 stops when it finds an invariant $D$ such that
+Procedure 1 enumerates every downward closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the ideally-effective hypothesis, as seen in
+Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}.
+The procedure then check for every downward closed subset $D_i$ whether $\downarrow \post^*(D_i) \subseteq D_i$. 
+Every subset $D_i$ such that $\downarrow \post^*(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
+Notice that, by 
+upward compatibility, $\downarrow \post^*(s)$ is such a subset and may eventually be found.
+
+Procedure 1 stops when it finds a subset $D$ such that
+$\downarrow \post^*(D) \subseteq D$,
+$s \in D$ and
 $D   \subseteq \pred^*(\Safe)$. 
 Indeed
 $D \subseteq  \pred^*(\Safe)$ implies
