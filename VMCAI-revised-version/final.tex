@@ -413,33 +413,51 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 % $s_1, s_2, \ldots, s_m \in S$.
 
 
-We recall and introduce five types of \emph{effectiveness} that will be essential for solving various resilience problems in different models of WSTS.
-\noindent
-%			{\bf On effectivity.}
-We say that a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
+To obtain decidability results, we must introduce some notions of \emph{effectiveness}. We use a mixture of the notions defined both by Blondin and al. in \cite{DBLP:journals/lmcs/BlondinFM17}) and by Halfon in \cite{DBLP:phd/hal/Halfon18}.
+%			 that will be essential for solving various resilience problems in different models of WSTS. 
+First, we suppose that all classes of considered ordered transition systems $\mathscr{S}=(S, \rightarrow, \leq)$ are \emph{effective}, i.e. that they satisfy the five following properties:
 \begin{itemize}
-\item {\em effective} if there exists a pair of algorithms
-($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
-$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
-$M_\leq$ the ordering relation “$\leq$”.
+\item there is a computational representation for $S$ for which membership in $S$ is decidable,
+\item there exists an algorithm that decides whether $s \rightarrow t$ is true or not, for any states $s,t \in S$,
+%
+%			We also suppose that all considered wqos $(S,\leq)$ satisfy the three following conditions : 
+\item $\leq$ is decidable,
+\item there is a computational representation for $Ideals(S)$ for which membership in $Ideals(S)$ is decidable, and
+\item  inclusion of ideals is decidable. 
+\end{itemize}
+%
+Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward closed sets} (by their finite decomposition in ideals), to decide inclusion between downward closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward closed sets.
+%
+Halfon introduced \emph{ideally effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of intersections of two filters and intersections of ideals.
+%	 (hence of downward closed sets).
+From now, we suppose that wqo are ideally effective and this the case of most known wqo \cite{DBLP:phd/hal/Halfon18}.
+%
+To build algorithms, we also need some effective hypotheses on the computations of some sets of predecessors and successors. More precisely, we say that a WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
+\begin{itemize}
+%\item {\em effective} if there exists a pair of algorithms
+%($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
+%$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
+%$M_\leq$ the ordering relation “$\leq$”.
 %
 \item {\em $\post$-effective} if $\mathscr{S}$ is effective, and if there
-exists an algorithm that computes $|\post(x)| \in \N \cup \{\infty\}$ 
-on input $x \in X$.
+exists an algorithm that computes $|\post(s)| \in \N \cup \{\infty\}$ 
+on input $s \in S$.
 %
-\item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
-to the encoding of the ideal $\downarrow s$ is computable, inclusion of ideals is decidable and $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
+%\item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
+%to the encoding of the ideal $\downarrow s$ is computable.
 %
+\item {\em $\post$-ideal-effective} if there exists an algorithm accepting
+any ideal $I \in Ideals(S)$ and returning $\downarrow \post(I)$, expressed as a finite union of (maximal) ideals.
 %\item {\em completion-post-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
-\item {\em effective $\pred$-basis} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
-any state $s \in S$ and returning $pb(s)$, a finite basis of $\uparrow \pred(\uparrow s)$.
+\item {\em $\pred$-basis effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+any state $s \in S$ and returning a finite basis of $\uparrow \pred(\uparrow s)$.
 %
 %and there exist an algorithm $M_\downarrow$ that computes 
 % $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
 % $s_1, s_2, \ldots, s_m \in S$.
 %
-\item {\em effective $\post^*$-basis} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if there exists an algorithm accepting
+\item {\em $\post^*$-basis effective} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if there exists an algorithm accepting
 any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 \end{itemize}
 
