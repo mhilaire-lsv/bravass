@@ -128,7 +128,7 @@ Institut Universitaire de France }
 \noindent
 Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state then it can also leave this bad state and reach a safe state.
 We consider six types of resilience (one of them is the home-space property) defined by an upward closed set $\Safe$  ($\Safe=\uparrow \Safe$) or a downward-closed set ($\Safe=\downarrow \Safe$), and by the existence of a bound $k$ on the length of minimal runs starting from $\Bad$ and reaching $\Safe$, where $\Bad$ is generally the complementary of $\Safe$. We study the decidability of each type of resilience for two kinds of models: WSTS and VASS. We first show that most of all resilience problems are undecidable for WSTS with strong compatibility (and with effective pred-basis). Then we prove the decidability of resilience for completion-post-effective $\omega^2$-WSTS with strong compatibility (almost all known WSTS are in this class) and $\Safe = \uparrow \Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
-$\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\downarrow \Safe$. Finally, we study the resilience for VASS with semi-linear subsets $\Bad$ and $\Safe$ and for variations of VASS (lossy counter machines, integer VASS and continuous VASS); most of the resilience properties are shown decidable.
+$\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\downarrow \Safe$. Finally, we study the resilience for VASS with semi-linear subsets $\Bad$ and $\Safe$ and for variations of VASS (lossy counter machines,  $\mathbb{Z}-$VASS and continuous VASS); most of the resilience properties are shown decidable.
 \end{abstract}
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
@@ -445,15 +445,15 @@ any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 
 %Most of usual WSTS are post-effective and ideally-effective.
 
-\alain{le rappel ci-dessous est-il entièrement utile ? Je pense qu'on peut l'enlever, et toi ?}
-Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
-We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
-For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. When $\mathscr{S}$ have upward-compatibility but not strong compatibility, we can similarly compute $\pred^*(U)$ by studying the sequence $(\uparrow U_k)_k$ instead.
+% \alain{le rappel ci-dessous est-il entièrement utile ? Je pense qu'on peut l'enlever, et toi ?}
+% Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\uparrow s )$ is computable for every $s \in S$.
+% We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
+% For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. When $\mathscr{S}$ have upward-compatibility but not strong compatibility, we can similarly compute $\pred^*(U)$ by studying the sequence $(\uparrow U_k)_k$ instead.
 
 Recall the \emph{coverability problem} for ordered transition systems.
 
 \problemx{Coverability problem}
-{An ordered transition system $\mathscr{S}=(S,\rightarrow,\longrightarrow)$ and two states $s_0,s \in S$.}
+{An ordered transition system $\mathscr{S}=(S,\rightarrow, \leq)$ and two states $s_0,s \in S$.}
 { $s_0 \in \pred^*(\uparrow s )$ ? \newline}
 
 %An equivalent formulation is : Does there exist $t \in S$ such that $s_0 \longrightarrow^{*} t$ and $s \leq t$ ?
@@ -464,7 +464,7 @@ With the effective pred-basis hypothesis, we obtain:
  A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
-Let us recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, integer VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. 
+Let us recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, $\mathbb{Z}-$VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. 
 With the ideally-effective hypothesis, we obtain the decidability of coverability for WBTS (without the effective pred-basis hypothesis).
 
 \begin{theorem}(Blondin and al. ~\cite{DBLP:journals/lmcs/BlondinFM17})
@@ -562,19 +562,7 @@ Let us formalize three resilience problems.
 
 
 
-\alain{ce qui suit est à mettre ici ?}
-{\bf Related problems.} 
-Resilience and the home-space problem are also linked to the 
-model-checking of basic reachability and safety formulae. 
-In particular~\cite{DBLP:conf/rp/Schnoebelen10} shows that the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
-is decidable for Lossy Counter Machine (LCM)
-when $X$ and $Y$ are semi-linear sets.
-Other decidable formulae include ``one-to-one'' ($\exists s \in  X ~ \exists t \in  Y ~ s \to^* 
- t$), and ``all-to-same'' ($\exists t \in  Y ~ \forall s \in  X ~ s \to^*  t$),
-whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$), 
-``all-to-all'' ($\forall s \in  X ~ \forall t \in  Y ~ s \to^*  t$)
-  and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for LCM). 
-  
+
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$% and $\Bad$
 . Since $\Safe \subseteq \pred^*(\Safe)$, one only needs to decide whether 
 the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.
@@ -586,7 +574,7 @@ We show that the resilience problem is undecidable for $\omega^2$-WSTS with stro
 \begin{proposition}\label{indec WSTS}
 Resilience for post-effective $\omega^2$-WSTS with strong compatibility, for upward closed sets $\Safe$ is undecidable.
 \end{proposition}
-\alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-post-effective vu le theoreme qui suit}
+% \alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-post-effective vu le theoreme qui suit}
 \begin{proof}
 Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
 increasing recursive functions from \cite{FMP-ic04} defined as
@@ -775,43 +763,44 @@ In the case of (upward compatible) WSTS with ideally-effectivity, {\sc Resilienc
 
 \begin{proof}
 \alain{preuve pas claire, à réécrire}
-\alain{les reset-VASS sont-ils effective $\post^*$-basis ?}
-\mathieu{non, sinon on aurait décidabilité pour la state résilience}
+% \alain{les reset-VASS sont-ils effective $\post^*$-basis ?}
+% \mathieu{non, sinon on aurait décidabilité pour la state résilience}
 %This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 %which can be simulated by WSTS.
 First, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
 %	This is due to the undecidability of $2$-counter Minsky machine termination~\cite{Min61,Min67}.
-From a $2$-counter Minsky machine $M$, one can construct a $3$-counter Minsky machine $M'$ 
-such that machine $M$ terminates for all inputs iff machine $M'$ can reach $(0,0,0)$ from any input in $\uparrow(0,0,1)$ 
+From a $2$-counter Minsky machine $M$ with final control-state $q_f \in Q_M$, one can construct a $3$-counter Minsky machine $M'$ with final control-state $q_f' \in Q_{M'}$
+such that machine $M$ terminates for all inputs iff machine $M'$ can reach $q_f'(0,0,0)$ from any input in $Q_{M'} \times \uparrow (0,0,1)$. 
 %			with at least $1$ on its third counter. 
-We build $M'$ to simulate $M$ until it reaches a control-state indicative of termination, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
-Remark that in the construction, from any input in $\uparrow(0,0,1)$, it is not possible to reach $(1,0,0)$, $(0,1,0)$ or $(1,1,0)$.
-Based on this construction, the problem of deciding whether the downward closed set $\downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
-from any input in $\uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
+We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
+Remark that in the construction, from any input in $Q_{M'} \times \uparrow(0,0,1)$, it is not possible to reach an element in $Q_{M'} \times \{ (1,0,0), (0,1,0),(1,1,0)\}$.
+Based on this construction, the problem of deciding whether the downward closed set $Q_{M'} \times \downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
+from any input in $Q_{M'} \times \uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
 \alain{écrire qqchose ici}
 Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
-\alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
+% \alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
 %Reset-VASS extend the basic VASS model with special “reset
 %transitions” that set to $0$ some coordinates in the vector. 
 %			Let us recall their definition here.
 %      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
-The simulation operates by building a reset-VASS such that
+The simulation operates by building a reset-VASS in which
 there exists
  a sequence from 
 an initial state %$(s,x_1 \ldots x_n)$
 to
-a state of the form $ (s, 0,  \ldots 0)$  in the reset-VASS if and only if
+a state of the form $ q(0,  \ldots 0)$ if and only if
 there exists
 a sequence
  in the Minsky machine
  from a corresponding initial state
  to
- a state of the form $(s',0,0,0)$
+ a state of the form $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
-Hence $\downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
-resilience in the corresponding reset-VASS.
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  ideally-effective, effective pred-basis, $\post^*$-basis $\omega^2$-WSTS with strong compatibility as well.\qed
+Hence $Q_{M'} \times \downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
+resilience hold in the reset-VASS simulating $M'$.
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  ideally-effective, effective pred-basis, 
+$\omega^2$-WSTS with strong compatibility as well.\qed
 %\alain{déjà dit avant en mieux omega2 et strong comp et post-effective mais reset-VASS apportent effective pred-basis et ideally effective....}
 \end{proof}
 
@@ -1134,12 +1123,13 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for ideally-effective WSTS with downward and upward compatibilities,
-$\Safe = \downarrow \Safe$.
+{\sc State-resilience} is decidable for ideally-effective WSTS with downward and upward compatibilities, effective pred-basis,
+and $\Safe = \downarrow \Safe$.
 \end{theorem}
 
 \begin{proof}
-In order to decide whether $\post^{\leq n}(s) 
+In order to decide whether %$\post^{\leq n}(s)
+$\post^{ *}(s)  
  \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
@@ -1162,7 +1152,13 @@ since $ \downarrow \post^*(s)  \subseteq D$.
 The second procedure iteratively computes
 $\post^{\leq n}(s) $
 until it finds an element
-not in $\pred^*(\Safe)$. \qed
+not in $\pred^*(\Safe)$.
+
+If resilience hold, then procedure 1 terminates since it eventually finds
+ $D = \downarrow \post^*(s)$ 
+ such that  $D \subseteq  \pred^*(\Safe)$.
+ If resilience does not hold, then procedure 2 terminates since
+there exists a witness that resilience does not hold which can eventually be found. \qed
 \end{proof}
 
 
@@ -1171,7 +1167,7 @@ Strong downward compatibility implies furthermore the decidability
 of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 
 \begin{corollary}\label{downward brp}
-{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideally-effective WSTS with strong downward compatibility and upward compatibility when
+{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideally-effective WSTS with effective pred-basis, strong downward compatibility and upward compatibility when
 $\Safe = \downarrow \Safe$.
 \end{corollary}
 
@@ -1187,10 +1183,11 @@ for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed,
 VASS do not inherit the decidability results for WSTS in the case $\Safe = \downarrow \Safe$.
 In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
 
-Integer VASS or $\mathbb{Z}-$VASS \cite{DBLP:conf/rp/HaaseH14} are VASS that are allowed to take values from the integers.
+%Integer VASS or 
+$\mathbb{Z}^d-$VASS (resp. $\mathbb{Z}-$VASS)~\cite{DBLP:conf/rp/HaaseH14} are $d$-VASS (resp. VASS) that are allowed to take values from the integers.
 
 \begin{theorem}\label{SL VASS}
-{\sc Resilience} is decidable for VASS, and integer VASS, when $\Safe$  is a semilinear set.
+{\sc Resilience} is decidable for VASS, and $\mathbb{Z}-$VASS, when $\Safe$  is a semilinear set.
 \end{theorem}
 
 \begin{proof}
@@ -1204,10 +1201,23 @@ We have $\post^*(\Bad) \setminus \Safe = \Bad$ by extension of $S \setminus \Saf
 Thus $\post^*(\Bad) = \Bad \cup (\Safe \cap \post^*(\Bad))$. Since $(\Safe \cap \post^*(\Bad)) \subseteq \pred^*(\Safe)$, we have
 \[\post^*(\Bad) \subseteq \pred^*(\Safe) \quad \text{iff} \quad \Bad \subseteq \pred^*(\Safe).\]
 and hence, {\sc Resilience} is decidable. 
-The reachability relation of integer $d$-VASS is definable by a well-formed formula with no free variables in the first-order theory of the integers with addition and orders (Presburger arithmetic) in $\mathbb{Z}^{2d}$, hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \qed
+The reachability relation of 
+%integer $d$-VASS
+ $\mathbb{Z}^d-$VASS is definable by a well-formed formula with no free variables in the first-order theory of the integers with addition and orders (Presburger arithmetic) in $\mathbb{Z}^{2d}$, hence	$\Bad \subseteq \pred^*(\Safe)$ is decidable when $\Safe$ and $\Bad$ are semilinear sets. \qed
 \end{proof}
 
-{\sc Resilience} is also decidable for other classes of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines \cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
+{\sc Resilience} is also decidable for other classes of counter machines for which the reachability relation can be expressed in a decidable logic. Recall that lossy counter machines (LCM)~\cite{DBLP:conf/rp/Schnoebelen10} are counter machines that may loose tokens in each control-state.
+
+Resilience and the home-space problem are also linked to the 
+model-checking of basic reachability and safety formulae. 
+In particular~\cite{DBLP:conf/rp/Schnoebelen10} shows that the ``from-all'' formula $\forall s \in X~ \exists t \in Y~ s \to^* t$
+is decidable for lossy counter machine
+when $X$ and $Y$ are semi-linear sets.
+Other decidable formulae include ``one-to-one'' ($\exists s \in  X ~ \exists t \in  Y ~ s \to^* 
+ t$), and ``all-to-same'' ($\exists t \in  Y ~ \forall s \in  X ~ s \to^*  t$),
+whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$), 
+``all-to-all'' ($\forall s \in  X ~ \forall t \in  Y ~ s \to^*  t$)
+  and ``to-all'' ($\forall t \in  Y  ~ \exists s \in  X ~ s \to^*  t$) are undecidable (again, for LCM). 
 
 \begin{theorem}\label{SL Lossy}
 {\sc Resilience} is decidable for lossy counter machines when $\Safe$  is a semilinear set.
@@ -1216,6 +1226,7 @@ The reachability relation of integer $d$-VASS is definable by a well-formed form
 \begin{proof}
 We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
 \end{proof}
+
 
 
 
