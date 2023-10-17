@@ -317,7 +317,7 @@ In what follows, a downward-closed set $D$ is represented by its finite set of i
 \noindent
 Let us now recall the (most general) definition of well-structured transition systems.
 \begin{definition}(Finkel \cite{DBLP:journals/iandc/Finkel90})
-A {\em well-structured transition system} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
+A {\em Well-Structured Transition System} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ such that   
 the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
@@ -337,6 +337,8 @@ Several families of formal models of processes  \cite{DBLP:journals/tcs/FinkelS0
 Similarly, lossy channel systems with $d$ channels and $Q$ a finite set of control-states are WSTS (with a non-strong compatibility)
 for the ordering $=\times \sqsubseteq^d$ (where $\sqsubseteq$ is the subword ordering on $\Sigma^*$) on $S= Q \times (\Sigma^*)^d$.\\
 %%%%
+
+But there is a more general class of ordered transition systems than WSTS for which coverability is still decidable: recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, $\mathbb{Z}^d-$VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. \\
 
 By applying Proposition 4.3 from \cite{DBLP:journals/corr/abs-1208-4549}, we can reintroduce a straightforward definition of a specific proper subset of wqos that possesses an excellent characteristic that allows to obtain more algorithms: 
 
@@ -415,7 +417,7 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 
 To obtain decidability results, we must introduce some notions of \emph{effectiveness}. We use a mixture of the notions defined both by Blondin and al. in \cite{DBLP:journals/lmcs/BlondinFM17}) and by Halfon in \cite{DBLP:phd/hal/Halfon18}.
 %			 that will be essential for solving various resilience problems in different models of WSTS. 
-First, we suppose that all classes of considered ordered transition systems $\mathscr{S}=(S, \rightarrow, \leq)$ are \emph{effective}, i.e. that they satisfy the five following properties:
+First, to simplify, we suppose that all classes of considered ordered transition systems $\mathscr{S}=(S, \rightarrow, \leq)$ are \emph{effective}, i.e. that they satisfy the five following properties:
 \begin{itemize}
 \item there is a computational representation for $S$ for which membership in $S$ is decidable,
 \item there exists an algorithm that decides whether $s \rightarrow t$ is true or not, for any states $s,t \in S$,
@@ -428,11 +430,11 @@ First, we suppose that all classes of considered ordered transition systems $\ma
 %
 Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward closed sets} (by their finite decomposition in ideals), to decide inclusion between downward closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward closed sets.
 %
-Halfon introduced \emph{ideally effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of intersections of two filters and intersections of ideals.
+Halfon introduced \emph{ideally effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals.
 %	 (hence of downward closed sets).
-From now, we suppose that wqo are ideally effective and this the case of most known wqo \cite{DBLP:phd/hal/Halfon18}.
+
 %
-To build algorithms, we also need some effective hypotheses on the computations of some sets of predecessors and successors. More precisely, we say that a WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
+Starting now, we assume that all wqo are ideally effective, which is the case for most well-known wqo \cite{DBLP:phd/hal/Halfon18}. In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely, we say that a WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
 \begin{itemize}
 %\item {\em effective} if there exists a pair of algorithms
 %($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
@@ -446,18 +448,18 @@ on input $s \in S$.
 %\item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
 %to the encoding of the ideal $\downarrow s$ is computable.
 %
-\item {\em $\post$-ideal-effective} if there exists an algorithm accepting
+\item {\em $\post$-ideal-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
 any ideal $I \in Ideals(S)$ and returning $\downarrow \post(I)$, expressed as a finite union of (maximal) ideals.
 %\item {\em completion-post-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is post-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
-\item {\em $\pred$-basis effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if there exists an algorithm accepting
+\item {\em $\pred$-basis-effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if $\mathscr{S}$ is effective and there exists an algorithm accepting
 any state $s \in S$ and returning a finite basis of $\uparrow \pred(\uparrow s)$.
 %
 %and there exist an algorithm $M_\downarrow$ that computes 
 % $\downarrow s$, on input $s \in S$, and some algorithm $M_{\uparrow^C}$ that computes the ideal decomposition of $S \setminus \uparrow \{ s_1, s_2, \ldots, s_m\}$, on input
 % $s_1, s_2, \ldots, s_m \in S$.
 %
-\item {\em $\post^*$-basis effective} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if there exists an algorithm accepting
+\item {\em $\post^*$-basis-effective} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if $\mathscr{S}$ is effective and there exists an algorithm accepting
 any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 \end{itemize}
 
@@ -475,24 +477,23 @@ Recall the \emph{coverability problem} for ordered transition systems.
 { $s_0 \in \pred^*(\uparrow s )$ ? \newline}
 
 %An equivalent formulation is : Does there exist $t \in S$ such that $s_0 \longrightarrow^{*} t$ and $s \leq t$ ?
-With the effective pred-basis hypothesis, we obtain:
+With the effective pred-basis effective hypothesis, we obtain:
 
 
 \begin{theorem}(Finkel and Schnoebelen  \cite{DBLP:journals/tcs/FinkelS01}, Abdulla and al. \cite{DBLP:journals/iandc/AbdullaCJT00})
  A finite basis of $ \pred^*(U)$ is computable for any effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ with effective pred-basis and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
-Let us recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, $\mathbb{Z}-$VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. 
-With the ideally-effective hypothesis, we obtain the decidability of coverability for WBTS (without the effective pred-basis hypothesis).
+With the post-ideal-effective hypothesis, we obtain the decidability of coverability for WBTS (without the pred-basis effective hypothesis).
 
 \begin{theorem}(Blondin and al. ~\cite{DBLP:journals/lmcs/BlondinFM17})
-Coverability is decidable for any ideally-effective WBTS.
+Coverability is decidable for any post-ideal-effective WBTS.
 \end{theorem}
 
 Downward-WSTS enjoy a powerfull property.
 
 \begin{theorem}(Finkel and Schnoebelen \cite{DBLP:journals/tcs/FinkelS01})
-Effective finitely branching downward-WSTS are effective $\post^*$-basis.
+Effective finitely branching downward-WSTS are $\post^*$-basis-effective.
 \end{theorem}
 %
 %Coverability is  decidable for a class of WSTS without the effective pred-basis hypothesis.
@@ -536,6 +537,7 @@ and
 $\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
 \end{itemize} \end{samepage}
 
+As an example, let us remark that $(\N^d,\leq)$ is an ideally-effective wqo and reset-VASS are $\post$-effective, $\post$-ideal-effective and $\pred$-basis-effective but they are not $\post^*$-basis-effective (VASS are $\post^*$-basis-effective).
 
 \alain{ici un dessin comme celui que j'ai envoyé sur skype...à rajouter les downward WSTS}
 
@@ -622,7 +624,7 @@ by writing the integer $j$ on its tape,
 Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\qed
 \end{proof}
  Let us remark that the transition system 
-	$S_j = (\N^2, \{f_j, g\}, \leq)$ in the previous proof is not ideally-effective.
+	$S_j = (\N^2, \{f_j, g\}, \leq)$ in the previous proof is not post-ideal effective.
   
   
 
@@ -640,11 +642,13 @@ Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (
 
 %
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be an ideally-effective WSTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a post-effective WSTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
+
 \alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ? J'ai enlevé l'hypothèse omega2 car j'ai l'impression qu'elle n'est pas utile...à vérifier}
+
 \begin{proof}
 Let us first recall two results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
@@ -669,7 +673,7 @@ Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downa
 We now have $\mathscr{S}$ is resilient iff $K_{\mathscr{S}}(\Safe)$ is finite iff $\mathscr{S}$ is $K_{\mathscr{S}}(\Safe)$-resilient with $K_{\mathscr{S}}(\Safe)$ finite.
 
 This implies that resilience and bounded resilience are equivalent to coverability.
-Since coverability is decidable for ideally-effective WSTS \cite{BFM-ic17}, we deduce that both the 
+Since coverability is decidable for post-effective  WSTS \cite{BFM-ic17}, we deduce that both the 
   resilience problem and the bounded resilience problem are decidable.
 
 
@@ -686,7 +690,17 @@ property that $\Bad$ is the complement of $\Safe$, simply using
 $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
+\alain{maintenant on a toutes les possibilités de manipuler les ideaux, on doit pouvoir enlever strong compatibility}
+\begin{theorem}\label{xxx}
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a pred-basis-effective WSTS with strong compatibility ???? and a set $\Safe = \uparrow \Safe$.
+{\sc Resilience}, {\sc Bounded resilience} 
+and {\sc $k$-resilience} are decidable.
+\end{theorem}
 
+\begin{proof}
+on calcule $pre^*(Safe)$ qui est clos par le haut et on teste si $Bad = \downarrow Bad$  est inclus dans $pre^*(Safe)$, ce qui revient à tester si $Bad \cap (S-pre^*(Safe))=\emptyset$ ce qui revient à calculer l'intersection de 2 clos par le bas ce qui est possible (ideally effective wqo).
+
+\end{proof} \qed
 %				The completion-post-effective hypothesis is needed to decide {\sc Resilience}.
 %%%
 %%%
@@ -730,7 +744,7 @@ Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS 
 
 %
 \begin{theorem}\label{up-down}
-{\sc Resilience}  is decidable for ideal-effective downward-WSTS with 
+{\sc Resilience}  is decidable for post-ideal-effective downward-WSTS with 
 $\Safe=\downarrow \Safe$.
 \end{theorem}
 
@@ -738,7 +752,7 @@ $\Safe=\downarrow \Safe$.
 By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
 The resilience problem can be reformulated as 
 $\Bad \subseteq  \pred^*(\Safe)$.
-Since $\mathscr{S}=(S,\rightarrow, \leq)$ is ideally effective, we can compute intersections of upward- or downward-closed 
+Since $\mathscr{S}=(S,\rightarrow, \leq)$ is post-ideal-effective, we can compute intersections of upward- or downward-closed 
  subsets.
 Hence we can compute the intersection of
 $\Bad$
@@ -751,7 +765,6 @@ can be reformulated as
 $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$
 the resilience problem is decidable. \qed
 \end{proof}
-
 
 
 In the case
@@ -775,7 +788,7 @@ In the case of (upward compatible) WSTS with ideally-effectivity, {\sc Resilienc
 
 
 \begin{proposition}\label{indec WSTS with dcs}
-{\sc Resilience} for ideally-effective and effective pred-basis $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
+{\sc Resilience} for pred-basis-effective ???? $\omega^2$-WSTS with strong compatibility and for downward closed set $\Safe$ is undecidable.
 \end{proposition}
 
 
@@ -817,7 +830,7 @@ a sequence
   (from Theorem~$5$ in \cite{araki1976PN}).
 Hence $Q_{M'} \times \downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
 resilience hold in the reset-VASS simulating $M'$.
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  ideally-effective, effective pred-basis, 
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  pred-basis-effective, 
 $\omega^2$-WSTS with strong compatibility as well.\qed
 %\alain{déjà dit avant en mieux omega2 et strong comp et post-effective mais reset-VASS apportent effective pred-basis et ideally effective....}
 \end{proof}
@@ -1049,7 +1062,7 @@ asking whether $S \setminus U_n$ is reachable from $s$.
 
 
 More concretely,
-VASS for instance are $\uparrow \post^*$-effective WSTS \cite{DBLP:journals/corr/abs-2108-00889}. 
+VASS for instance are $ \post^*$-basis-effective WSTS \cite{DBLP:journals/corr/abs-2108-00889}. 
 It is well-known that 
 VASS are WSTS with strong compatibility and since there is an algorithm that computes a finite basis of  $\uparrow \post^*(s)$, \cite{DBLP:conf/gg/Ozkan22} deduced that {\sc Bounded-state-resilience} is decidable for VASS.
 Hence {\sc State-resilience} is decidable for  
@@ -1110,7 +1123,7 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Section~\ref{safe-down}.
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for ideally-effective and effective pred-basis $\omega^2$-WSTS with strong compatibility
+{\sc State-resilience} is undecidable for post-ideal-effective ???? and effective pred-basis $\omega^2$-WSTS with strong compatibility
 when
 $\Safe=\downarrow \Safe$.
 \end{proposition}
@@ -1141,7 +1154,7 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for ideally-effective WSTS with downward and upward compatibilities, effective pred-basis,
+{\sc State-resilience} is decidable for post-ideal-effective WSTS with downward and upward compatibilities, effective pred-basis,
 and $\Safe = \downarrow \Safe$.
 \end{theorem}
 
@@ -1185,7 +1198,7 @@ Strong downward compatibility implies furthermore the decidability
 of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 
 \begin{corollary}\label{downward brp}
-{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for ideally-effective WSTS with effective pred-basis, strong downward compatibility and upward compatibility when
+{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for post-ideal-effective ???? WSTS with effective pred-basis, strong downward compatibility and upward compatibility when
 $\Safe = \downarrow \Safe$.
 \end{corollary}
 
