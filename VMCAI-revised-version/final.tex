@@ -1184,7 +1184,7 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for $\post$-effective, $\post$-ideal-effective and effective $\pred$-basis WSTS with downward and upward compatibilities
+{\sc State-resilience} is decidable for $\post$-effective, $\pred$-basis-effective, $\post$-ideal-effective  WSTS with downward and upward compatibilities
 and $\Safe = \downarrow \Safe$.
 \end{theorem}
 
@@ -1195,7 +1195,7 @@ $\post^{ *}(s)
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
 Procedure 1 enumerates every downward closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
-The procedure then check for every downward closed subset $D_i$ whether $\downarrow \post^*(D_i) \subseteq D_i$. 
+The procedure then checks for every downward closed subset $D_i$ whether $\downarrow \post^*(D_i) \subseteq D_i$. 
 \alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
 Every subset $D_i$ such that $\downarrow \post^*(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
 Notice that, by 
@@ -1205,6 +1205,7 @@ Procedure 1 stops when it finds a subset $D$ such that
 $\downarrow \post^*(D) \subseteq D$,
 $s \in D$ and
 $D   \subseteq \pred^*(\Safe)$. 
+\mathieu{ici $\pred^*(\Safe)$ est downward-closed. du coup pas sur que la $\pred$-basis-effectivité telle qu'elle est actuellement nous permette de trancher ... à moins que les hypothèses d'effectivté sur les idéaux nous permettent de guarantir qu'on puisse calculer le $\pred$ d'un idéal ?}
 Indeed
 $D \subseteq  \pred^*(\Safe)$ implies
 $\downarrow \post^*(s)  \subseteq  \pred^*(\Safe)$
@@ -1227,6 +1228,12 @@ there exists a witness that resilience does not hold which can eventually be fou
 Strong downward compatibility implies furthermore the decidability
 of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 \alain{trop rapide}
+Indeed, with strong downward compatibility, 
+$\pred^{\leq k}(\Safe)$ is downward-closed when $\Safe$ is,
+and becomes possible to represent \mathieu{... and compute ?} and compare
+$\pred^{\leq k}(\Safe)$ 
+to other downward closed subsets.
+
 
 \begin{corollary}\label{downward brp}
 {\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for $\pred$-basis-effective, $\post$-ideal-effective ???? WSTS, strong downward compatibility and upward compatibility when
