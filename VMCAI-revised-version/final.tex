@@ -440,11 +440,11 @@ First, to simplify, we suppose that all classes of considered ordered transition
 %
 Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward closed sets} (by their finite decomposition in ideals), to decide inclusion between downward closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward closed sets.
 %
-Halfon introduced \emph{ideally effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally effective . \cite{DBLP:phd/hal/Halfon18}.
+Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective . \cite{DBLP:phd/hal/Halfon18}.
 %	 (hence of downward closed sets).
 
 %
-Starting now, we assume that all considered WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five previous properties and that the wqo $\leq$ is ideally effective. We refer to such WBTS as \emph{effective}.
+Starting now, we assume that all considered WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five previous properties and that the wqo $\leq$ is ideally-effective. We refer to such WBTS as \emph{effective}.
 
 In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely, we say that a WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
 \begin{itemize}
@@ -721,7 +721,7 @@ and {\sc $k$-resilience} are decidable.
 The resilience problem can be reformulated as 
 $\Bad \subseteq  \pred^*(\Safe)$ that is equivalent to $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
 The set $\pred^*(\Safe)$ is upward-closed, since $\Safe$ is upward-closed. Since $\mathscr{S}=(S,\rightarrow, \leq)$ is $\pred$-basis-effective, we can compute a basis of $\pred^*(\Safe)$.
-Since the wqo is ideally effective, we can compute the intersection of
+Since the wqo is ideally-effective, we can compute the intersection of
 $\Bad$
 and
 $S \setminus \pred^*(\Safe)$,
@@ -858,7 +858,7 @@ Hence $Q_{M'} \times \downarrow (1,1,0)$-resilience hold in the Minsky machine $
 resilience hold in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
 $\omega^2$-WSTS with strong compatibility as well.\qed
-%\alain{déjà dit avant en mieux omega2 et strong comp et $\post$-effective mais reset-VASS apportent effective $\pred$-basis et ideally effective....}
+%\alain{déjà dit avant en mieux omega2 et strong comp et $\post$-effective mais reset-VASS apportent effective $\pred$-basis et ideally-effective....}
 \end{proof}
 
 Remark we did not make use of the
@@ -1102,7 +1102,7 @@ Keeping the $\uparrow \post^*$ effectiveness hypothesis but \emph{loosening} the
 
 
 \begin{theorem}\label{post srp}
-{\sc State-resilience} is decidable for $\post^*$-basis-effective WSTS
+{\sc State-resilience} is decidable for $\pred$-effective, $\post^*$-basis-effective WSTS
 when
 $\Safe=\uparrow \Safe$. 
 \end{theorem}
