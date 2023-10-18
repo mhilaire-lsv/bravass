@@ -127,7 +127,7 @@ Institut Universitaire de France }
 \begin{abstract}
 \noindent
 Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state then it can also leave this bad state and reach a safe state.
-We consider six types of resilience (one of them is the home-space property) defined by an upward closed set $\Safe$  ($\Safe=\uparrow \Safe$) or a downward-closed set ($\Safe=\downarrow \Safe$), and by the existence of a bound $k$ on the length of minimal runs starting from $\Bad$ and reaching $\Safe$, where $\Bad$ is generally the complementary of $\Safe$. We study the decidability of each type of resilience for two kinds of models: WSTS and VASS. We first show that most of all resilience problems are undecidable for WSTS with strong compatibility (and with effective pred-basis). Then we prove the decidability of resilience for completion-$\post$-effective $\omega^2$-WSTS with strong compatibility (almost all known WSTS are in this class) and $\Safe = \uparrow \Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
+We consider six types of resilience (one of them is the home-space property) defined by an upward closed set $\Safe$  ($\Safe=\uparrow \Safe$) or a downward-closed set ($\Safe=\downarrow \Safe$), and by the existence of a bound $k$ on the length of minimal runs starting from $\Bad$ and reaching $\Safe$, where $\Bad$ is generally the complementary of $\Safe$. We study the decidability of each type of resilience for two kinds of models: WSTS and VASS. We first show that most of all resilience problems are undecidable for WSTS with strong compatibility (and with effective $\pred$-basis). Then we prove the decidability of resilience for completion-$\post$-effective $\omega^2$-WSTS with strong compatibility (almost all known WSTS are in this class) and $\Safe = \uparrow \Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
 $\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\downarrow \Safe$. Finally, we study the resilience for VASS with semi-linear subsets $\Bad$ and $\Safe$ and for variations of VASS (lossy counter machines,  $\mathbb{Z}-$VASS and continuous VASS); most of the resilience properties are shown decidable.
 \end{abstract}
 
@@ -489,14 +489,14 @@ Recall the \emph{coverability problem} for ordered transition systems.
 { $s_0 \in \pred^*(\uparrow s )$ ? \newline}
 
 %An equivalent formulation is : Does there exist $t \in S$ such that $s_0 \longrightarrow^{*} t$ and $s \leq t$ ?
-With the pred-basis-effective hypothesis, we obtain:
+With the $\pred$-basis-effective hypothesis, we obtain:
 
 
 \begin{theorem}(Finkel and Schnoebelen  \cite{DBLP:journals/tcs/FinkelS01}, Abdulla and al. \cite{DBLP:journals/iandc/AbdullaCJT00})
- A finite basis of $ \pred^*(U)$ is computable for any pred-basis-effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
+ A finite basis of $ \pred^*(U)$ is computable for any $\pred$-basis-effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
-With the $\post$-ideal-effective hypothesis, we obtain the decidability of coverability for WBTS (without the pred-basis-effective hypothesis).
+With the $\post$-ideal-effective hypothesis, we obtain the decidability of coverability for WBTS (without the $\pred$-basis-effective hypothesis).
 
 \begin{theorem}(Blondin and al. ~\cite{DBLP:journals/lmcs/BlondinFM17})
 Coverability is decidable for any $\post$-ideal-effective WBTS.
@@ -508,7 +508,7 @@ Downward-WSTS enjoy a powerfull property.
 $\post$-effective finitely branching downward-WSTS with reflexive compatibility are $\post^*$-basis-effective.
 \end{theorem}
 %
-%Coverability is  decidable for a class of WSTS without the effective pred-basis hypothesis.
+%Coverability is  decidable for a class of WSTS without the effective $\pred$-basis hypothesis.
 %
 %\begin{theorem} \cite{BFM-ic17}
 %Coverability is decidable for ideally-effective WSTS.
@@ -712,7 +712,7 @@ the above results still hold in the more general case where $\Bad$ and $\Safe$ a
 
 \alain{maintenant on doit pouvoir enlever strong compatibility}
 \begin{theorem}\label{xxx}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a pred-basis-effective WSTS and a set $\Safe = \uparrow \Safe$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS and a set $\Safe = \uparrow \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
@@ -720,7 +720,7 @@ and {\sc $k$-resilience} are decidable.
 \begin{proof}
 The resilience problem can be reformulated as 
 $\Bad \subseteq  \pred^*(\Safe)$ that is equivalent to $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
-The set $\pred^*(\Safe)$ is upward-closed, since $\Safe$ is upward-closed. Since $\mathscr{S}=(S,\rightarrow, \leq)$ is pred-basis-effective, we can compute a basis of $\pred^*(\Safe)$.
+The set $\pred^*(\Safe)$ is upward-closed, since $\Safe$ is upward-closed. Since $\mathscr{S}=(S,\rightarrow, \leq)$ is $\pred$-basis-effective, we can compute a basis of $\pred^*(\Safe)$.
 Since the wqo is ideally effective, we can compute the intersection of
 $\Bad$
 and
@@ -809,11 +809,11 @@ it is not enough to conclude.\\
 
 
 
-In the case of (upward compatible) WSTS with pred-basis-effectivity, {\sc Resilience} is undecidable.
+In the case of (upward compatible) WSTS with $\pred$-basis-effectivity, {\sc Resilience} is undecidable.
 
 
 \begin{proposition}\label{indec WSTS with dcs}
-{\sc Resilience} for pred-basis-effective ???? $\omega^2$-WSTS with strong compatibility and with 
+{\sc Resilience} for $\pred$-basis-effective ???? $\omega^2$-WSTS with strong compatibility and with 
 $\Safe=\downarrow \Safe$ is undecidable.
 \end{proposition}
 
@@ -856,9 +856,9 @@ a sequence
   (from Theorem~$5$ in \cite{araki1976PN}).
 Hence $Q_{M'} \times \downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
 resilience hold in the reset-VASS simulating $M'$.
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  pred-basis-effective, 
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
 $\omega^2$-WSTS with strong compatibility as well.\qed
-%\alain{déjà dit avant en mieux omega2 et strong comp et $\post$-effective mais reset-VASS apportent effective pred-basis et ideally effective....}
+%\alain{déjà dit avant en mieux omega2 et strong comp et $\post$-effective mais reset-VASS apportent effective $\pred$-basis et ideally effective....}
 \end{proof}
 
 Remark we did not make use of the
@@ -989,7 +989,7 @@ $\Safe=\uparrow \Safe$.
 since 
 {\sc $t$-liveness} is undecidable in reset-VASS
 and reducible to {\sc State-resilience}.
-Additionally, in WSTS with strong compatibility and effective pred-basis, {\sc Bounded-state-resilience} is
+Additionally, in WSTS with strong compatibility and effective $\pred$-basis, {\sc Bounded-state-resilience} is
 reducible to {\sc $k$-state-resilience}:
 since $\Safe=\uparrow \Safe$ and
 $\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong 
@@ -999,7 +999,7 @@ $\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = \uparrow \pred^*(\
 We compute 
 $n_0$, then iteratively check whether $k$-state-resilience 
 hold for $k$ from $0$ to $n_0$.  
-Furthermore, in WSTS with strong compatibility and effective pred-basis,  $\Safe=\uparrow \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
+Furthermore, in WSTS with strong compatibility and effective $\pred$-basis,  $\Safe=\uparrow \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
 since 
 $\pred^{\leq n_0}(\Safe) = \uparrow \pred^{\leq n_0}(\Safe) = {\uparrow \pred^*(\Safe)} = \pred^*(\Safe)$.
 Hence the undecidability of {\sc Bounded-state-resilience}
@@ -1115,7 +1115,7 @@ By applying Lemma~\ref{Lemma intersection} twice, we obtain
 \[ \post^*(s) 
  \subseteq \pred^*(\Safe) \text{ iff } B_{\uparrow \post^*(s)}  
  \subseteq \pred^*(\Safe)\]
-Since $B_{\uparrow \post^*(s)}$ is finite and we can compute \alain{comment calcule-t-on une telle base sans l'hypothèse pred-basis-effective qui n'est pas dans les hypothèses du théorème ? Est-elle chez Ozkan ?} a basis of $\pred^*(\Safe)$ from $B_\Safe$, we can check that $B_{\uparrow \post^*(s)} 
+Since $B_{\uparrow \post^*(s)}$ is finite and we can compute \alain{comment calcule-t-on une telle base sans l'hypothèse $\pred$-basis-effective qui n'est pas dans les hypothèses du théorème ? Est-elle chez Ozkan ?} a basis of $\pred^*(\Safe)$ from $B_\Safe$, we can check that $B_{\uparrow \post^*(s)} 
  \setminus \pred^*(\Safe) = \emptyset$.  \qed
 \end{proof}
 
@@ -1148,7 +1148,7 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Section~\ref{safe-down}.\alain{trop rapide}
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for $\post$-ideal-effective ???? and pred-basis-effective $\omega^2$-WSTS with strong compatibility
+{\sc State-resilience} is undecidable for $\post$-ideal-effective ???? and $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
 when
 $\Safe=\downarrow \Safe$.
 \end{proposition}
@@ -1181,7 +1181,7 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for $\post$-effective, $\post$-ideal-effective and effective pred-basis WSTS with downward and upward compatibilities
+{\sc State-resilience} is decidable for $\post$-effective, $\post$-ideal-effective and effective $\pred$-basis WSTS with downward and upward compatibilities
 and $\Safe = \downarrow \Safe$.
 \end{theorem}
 
