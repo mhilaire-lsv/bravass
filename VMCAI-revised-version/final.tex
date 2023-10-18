@@ -1071,7 +1071,7 @@ $A \cap D \subseteq ({\uparrow  A}) \cap D \subseteq U$. \qed
 
 
 \begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
-For $\pred$-basis-effective finite-branching WSTS, a finite basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
+For $\post$-effective, $\pred$-basis-effective finite-branching WSTS, a finite basis of $\uparrow \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 \end{proposition}
 
 
@@ -1080,7 +1080,8 @@ $B_{\uparrow \post^*(s)} \cap D = \emptyset$,
 where $B_{\uparrow \post^*(s)}$ is a basis of $\uparrow \post^*(s)$,
  that is equivalent to $\post^*(s)\cap D = \emptyset$ by
 Lemma~\ref{Lemma intersection}. For the converse direction, one computes the sequence of upward-closed sets
-$U_n = \uparrow \post^{\leq n}(s)$ \alain{il manque l'hypothèse $\post$-effective}until it becomes stationnary. 
+$U_n = \uparrow \post^{\leq n}(s)$ %\alain{il manque l'hypothèse $\post$-effective}
+until it becomes stationnary. 
 Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
 
@@ -1102,7 +1103,7 @@ Keeping the $\uparrow \post^*$ effectiveness hypothesis but \emph{loosening} the
 
 
 \begin{theorem}\label{post srp}
-{\sc State-resilience} is decidable for $\pred$-effective, $\post^*$-basis-effective WSTS
+{\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS
 when
 $\Safe=\uparrow \Safe$. 
 \end{theorem}
