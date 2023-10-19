@@ -439,10 +439,10 @@ First, to simplify, we suppose that all classes of considered ordered transition
 \item  inclusion of ideals is decidable. 
 \end{enumerate}
 %
-Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward closed sets} (by their finite decomposition in ideals), to decide inclusion between downward closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward closed sets.
+Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward-closed sets} (by their finite decomposition in ideals), to decide inclusion between downward-closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward-closed sets.
 %
 Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective . \cite{DBLP:phd/hal/Halfon18}.
-%	 (hence of downward closed sets).
+%	 (hence of downward-closed sets).
 
 %
 Starting now, we assume that all considered WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five previous properties and that the wqo $\leq$ is ideally-effective. We refer to such WBTS as \emph{effective}.
@@ -542,15 +542,15 @@ is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \text
 \end{definition}
 
 Again $Q \times \N^d$
- denotes the set of states of $V$.
+ is the set of states of $V$.
 For every states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
 $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
 \begin{samepage}\begin{itemize}
 \item  $t = (q,add(\textbf{z}),q') \in T$
 and $\textbf{u}+\textbf{z} = \textbf{v} \geq 0$,
-\item $t = (q,reset(\gamma),q') \in T$ 
+\item $t = (q,reset(i),q') \in T$ 
 and
-$\textbf{v}[\gamma] = 0$, and $\textbf{v}[\gamma'] = \textbf{u}[\gamma']$ for all $\gamma' \in \{1,\ldots, d\} \setminus \gamma$.
+$\textbf{v}[i] = 0$, and $\textbf{v}[i'] = \textbf{u}[i']$ for all $i' \in \{1,\ldots, d\} \setminus i$.
 \end{itemize} \end{samepage}
 
 As an example, let us remark that $(\N^d,\leq)$ is an ideally-effective wqo and reset-VASS are $\post$-effective, $\post$-ideal-effective and $\pred$-basis-effective but they are not $\post^*$-basis-effective (VASS are $\post^*$-basis-effective).
@@ -834,7 +834,7 @@ such that machine $M$ terminates for all inputs iff machine $M'$ can reach $q_f'
 %			with at least $1$ on its third counter. 
 We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
 Remark that in the construction, from any input in $Q_{M'} \times \uparrow(0,0,1)$, it is not possible to reach an element in $Q_{M'} \times \{ (1,0,0), (0,1,0),(1,1,0)\}$.
-Based on this construction, the problem of deciding whether the downward closed set $Q_{M'} \times \downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
+Based on this construction, the problem of deciding whether the downward-closed set $Q_{M'} \times \downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
 from any input in $Q_{M'} \times \uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
 \alain{écrire qqchose ici}
@@ -930,8 +930,10 @@ deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
 %
 We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
 which we then reduce to {\sc State-resilience}.
-A control-transition $t$ of a reset-VASS is {\em live} in a state $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists a state
- $p(\textbf{u})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \xrightarrow{t} $ ($t$ is enabled in $p(\textbf{u})$). We say that the whole reset-VASS is live if all its control-transitions are
+A control-transition $t$ of a reset-VASS is {\em live} in a state $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists two states
+ $p(\textbf{u}),p'(\textbf{u'})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \xrightarrow{t} p'(\textbf{u'}) $. 
+%		($t$ is enabled in $p(\textbf{u})$). 
+We say that the whole reset-VASS is live if all its control-transitions are
 live. This leads to the following problem.
 
 \problemx{$t$-liveness}
@@ -1199,7 +1201,7 @@ $\post^{ *}(s)
  \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
-Procedure 1 enumerates every downward closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
+Procedure 1 enumerates every downward-closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
 The procedure then checks for every downward-closed subset $D_i$ whether $\downarrow \post(D_i) \subseteq D_i$ (this inclusion is decidable because $\mathscr{S}$ is $\post$-ideal-effective). 
 %\alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
 Every subset $D_i$ such that $\downarrow \post(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
@@ -1239,7 +1241,7 @@ Indeed, with strong downward compatibility,
 $\pred^{\leq k}(\Safe)$ is downward-closed when $\Safe$ is,
 and becomes possible to represent \mathieu{... and compute ?} and compare
 $\pred^{\leq k}(\Safe)$ 
-to other downward closed subsets.
+to other downward-closed subsets.
 
 
 \begin{corollary}\label{downward brp}
