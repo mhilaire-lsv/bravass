@@ -133,7 +133,7 @@ $\mathop{\uparrow}$ $\post^*$ basis and $\Safe=\mathop{\uparrow} \Safe$ ; (2) id
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
 
-\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée- peutx-tu changer pour review 3: $A = \mathop{\downarrow} B$ instead of $A = \mathop{\downarrow} B$: this dangling arrow is typographically horrific!}
+%\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée- peutx-tu changer pour review 3: $A = \mathop{\downarrow} B$ instead of $A = \mathop{\downarrow} B$: this dangling arrow is typographically horrific!}
 
 
 \newcommand{\LCM}{\mathsf{LCM}}
@@ -349,7 +349,7 @@ for the ordering $=\times \sqsubseteq^d$ (where $\sqsubseteq$ is the subword ord
 
 But there is a more general class of (upward) compatible ordered transition systems than WSTS for which coverability is still decidable: recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, $\mathbb{Z}^d-$VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. \\
 
-By applying Proposition 4.3 from \cite{DBLP:journals/corr/abs-1208-4549}, we can reintroduce a straightforward definition of a specific proper subset of wqos that possesses a characteristic that allows to obtain more algorithms: 
+By applying Proposition 4.3 from \cite{DBLP:journals/corr/abs-1208-4549}, we can reintroduce a straightforward definition of a specific proper subset of wqos that allow to construct coverability trees: 
 
 \begin{definition}
 A wqo $(X, \leq)$ is an \emph{$\omega^2$-wqo} if $(Ideals(X), \subseteq)$ forms a wqo.
@@ -541,8 +541,8 @@ is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \text
 		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
 \end{definition}
 
-Again $Q \times \N^d$
- is the set of states of $V$.
+%Again $Q \times \N^d$
+% is the set of states of $V$.
 For every states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
 $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
 \begin{samepage}\begin{itemize}
@@ -607,9 +607,9 @@ Let us formalize three resilience problems.
 
 These three resilience problems are decidable for finite transition systems but undecidable for (general) infinite-state transition systems. So we restrict our framework to the class of infinite-state WSTS. Since most of decidable properties in WSTS rely on the computation of upward or downward-closed sets \cite{DBLP:journals/iandc/AbdullaCJT00,DBLP:journals/tcs/FinkelS01}, we consider upward-closed or downward-closed sets $\Safe$% and $\Bad$
 . Since $\Safe \subseteq \pred^*(\Safe)$, one only needs to decide whether 
-the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.
-In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  \\
-
+the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.\\
+%In   	 \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  \\
+%
 Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven.
 We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
 %
@@ -729,7 +729,7 @@ and
 $S \setminus \pred^*(\Safe)$,
 which are both downward-closed, and test if this intersection is empty or not. Hence, the resilience problem is decidable.
 %%%%%%%
-\alain{faire les deux autres résilience}
+\alain{prouver, si possible, les deux autres résilience}
 \end{proof} \qed
 %				The completion-$\post$-effective hypothesis is needed to decide {\sc Resilience}.
 %%%
@@ -816,8 +816,8 @@ In the case of (upward compatible) WSTS with $\pred$-basis-effectivity, {\sc Res
 
 
 \begin{proposition}\label{indec WSTS with dcs}
-{\sc Resilience} for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility and with 
-$\Safe=\mathop{\downarrow} \Safe$ is undecidable.
+{\sc Resilience} is undecidable for reset-VASS, hence it is also undecidable for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility and with 
+$\Safe=\mathop{\downarrow} \Safe$.
 \end{proposition}
 
 
@@ -839,7 +839,7 @@ Based on this construction, the problem of deciding whether the downward-closed 
 from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
 \alain{écrire qqchose ici}
-Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN}~\cite{dufourd1998reset}. 
+Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset}. 
 % \alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
 %Reset-VASS extend the basic VASS model with special “reset
 %transitions” that set to $0$ some coordinates in the vector. 
@@ -850,13 +850,13 @@ there exists
  a sequence from 
 an initial state %$(s,x_1 \ldots x_n)$
 to
-a state of the form $ q(0,  \ldots 0)$ if and only if
+a state $ q(0,  \ldots 0)$ if and only if
 there exists
 a sequence
  in the Minsky machine
  from a corresponding initial state
  to
- a state of the form $q_f(0,0,0)$
+ the state $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
 Hence $Q_{M'} \times \mathop{\downarrow} (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
 resilience hold in the reset-VASS simulating $M'$.
