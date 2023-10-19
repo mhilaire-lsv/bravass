@@ -87,7 +87,7 @@
 \newcommand{\alain}[1]{\todo[inline,color=red!20]{{\bf AF:} #1}}
 \newcommand{\mathieu}[1]{\todo[inline,color=blue!20]{{\bf MH:} #1}}
 
-
+\newcommand{\pre}{\textsf{pre}}
 
 \newcommand{\pred}{\textsf{pred}}
 \newcommand{\post}{\textsf{post}}
@@ -127,13 +127,13 @@ Institut Universitaire de France }
 \begin{abstract}
 \noindent
 Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state then it can also leave this bad state and reach a safe state.
-We consider six types of resilience (one of them is the home-space property) defined by an upward closed set $\Safe$  ($\Safe=\uparrow \Safe$) or a downward-closed set ($\Safe=\downarrow \Safe$), and by the existence of a bound $k$ on the length of minimal runs starting from $\Bad$ and reaching $\Safe$, where $\Bad$ is generally the complementary of $\Safe$. We study the decidability of each type of resilience for two kinds of models: WSTS and VASS. We first show that most of all resilience problems are undecidable for WSTS with strong compatibility (and with effective $\pred$-basis). Then we prove the decidability of resilience for completion-$\post$-effective $\omega^2$-WSTS with strong compatibility (almost all known WSTS are in this class) and $\Safe = \uparrow \Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
-$\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\downarrow \Safe$. Finally, we study the resilience for VASS with semi-linear subsets $\Bad$ and $\Safe$ and for variations of VASS (lossy counter machines,  $\mathbb{Z}-$VASS and continuous VASS); most of the resilience properties are shown decidable.
+We consider six types of resilience (one of them is the home-space property) defined by an upward closed set $\Safe$  ($\Safe=\uparrow \Safe$) or a downward-closed set ($\Safe=\mathop{\downarrow} \Safe$), and by the existence of a bound $k$ on the length of minimal runs starting from $\Bad$ and reaching $\Safe$, where $\Bad$ is generally the complementary of $\Safe$. We study the decidability of each type of resilience for two kinds of models: WSTS and VASS. We first show that most of all resilience problems are undecidable for WSTS with strong compatibility (and with effective $\pred$-basis). Then we prove the decidability of resilience for completion-$\post$-effective $\omega^2$-WSTS with strong compatibility (almost all known WSTS are in this class) and $\Safe = \uparrow \Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
+$\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\mathop{\downarrow} \Safe$. Finally, we study the resilience for VASS with semi-linear subsets $\Bad$ and $\Safe$ and for variations of VASS (lossy counter machines,  $\mathbb{Z}-$VASS and continuous VASS); most of the resilience properties are shown decidable.
 \end{abstract}
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
 
-\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée}
+\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée- peutx-tu changer pour review 3: $A = \mathop{\downarrow} B$ instead of $A = \mathop{\downarrow} B$: this dangling arrow is typographically horrific!}
 
 
 \newcommand{\LCM}{\mathsf{LCM}}
@@ -156,7 +156,7 @@ pushed it towards some kind of ‘error state’ and, if it can, whether it can 
 {\bf Home-spaces.}
  In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
 $\post^*(s_0) \subseteq \pred^*(H)$. If the home-space contains a single element, this element is an {\em home-state}.
-It could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
+It could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report \cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %%%%%
 
 {\bf Resiliences.}  
@@ -178,7 +178,7 @@ In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} inte
 %%%%%%%%%
 
 In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$ (called effective 
-$\uparrow$ $\post^*$ basis) in the case $\Safe=\uparrow \Safe$ and $\Bad = \downarrow \Bad$.
+$\uparrow$ $\post^*$ basis) in the case $\Safe=\uparrow \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
 
 
 Remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\uparrow \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
@@ -205,7 +205,7 @@ $\Safe=\uparrow \Safe$. We made a reduction of zero-reachability in reset-VASS t
 
 
 \item The resilience problem is decidable for ideally-effective WSTS with 
-$\Safe=\downarrow \Safe$
+$\Safe=\mathop{\downarrow} \Safe$
 and
 the additional hypothesis that
 for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
@@ -292,11 +292,11 @@ its {\em upward-closure},
  $\uparrow A = \{x \in X \mid \exists a \in A ~ a \leq x\}$
  and its 
  {\em downward-closure},
- $\downarrow A = \{x \in X \mid \exists a \in A ~ x \leq a\}$. 
-We abbreviate $\uparrow \{x\}$ (resp. $\downarrow \{x\}$)
-as $\uparrow x$ (resp. $\downarrow x$).
+ $\mathop{\downarrow} A = \{x \in X \mid \exists a \in A ~ x \leq a\}$. 
+We abbreviate $\uparrow \{x\}$ (resp. $\mathop{\downarrow} \{x\}$)
+as $\uparrow x$ (resp. $\mathop{\downarrow} x$).
 %
-A {\em basis} of an upward-closed set $U$ is a set $U_b$ such that $U = \uparrow U_b$; similarly, a {\em basis} of a downward-closed set $D$ is a set $D_b$ such that $D = \downarrow D_b$.
+A {\em basis} of an upward-closed set $U$ is a set $U_b$ such that $U = \uparrow U_b$; similarly, a {\em basis} of a downward-closed set $D$ is a set $D_b$ such that $D = \mathop{\downarrow} D_b$.
 
 
  A {\em well-quasi-ordering} (wqo) is any quasi-ordering $(X,\leq)$ such that, for any infinite sequence $x_0, x_1, x_2, ...$ in $X$, there exist indexes $i \leq j$ with $x_i \leq  x_j$. This property is equivalent to the \emph{finite decomposition} property : every upward-closed set $\emptyset \neq U \subseteq X$ admits a finite basis $B \subseteq X$ such that $U=\uparrow B$.
@@ -367,7 +367,7 @@ is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, reset/transfer VASS are $\omega^2$-WSTS.\\
 %%%%%%
 
-Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\downarrow \post_{\mathscr{S}}(I)$. The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
+Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\mathop{\downarrow} \post_{\mathscr{S}}(I)$. The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
 
 Another type of WSTS exists that enjoys downward compatibility.
 
@@ -393,7 +393,7 @@ For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not neces
 \begin{proof}
 Let us prove $1 \implies 2$. 
 Let $D$ be a downward-closed subset of $S$
-and let $x \in \downarrow \pred^*(D)$.
+and let $x \in \mathop{\downarrow} \pred^*(D)$.
 By downward closure, there exists
 $y \in \pred^*(D)$ 
 such that $x \leq y$.
@@ -412,9 +412,9 @@ and, by induction,
 with $d' \leq d$.
 Since
 $d'$ 
-belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\downarrow\pred^*(D) \subseteq \pred^*(D)$. Since $\pred^*(D) \subseteq \downarrow \pred^*(D)$ always hold, we deduce that $\pred^*(D)=\downarrow\pred^*(D)$ is downward-closed.
+belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\mathop{\downarrow}\pred^*(D) \subseteq \pred^*(D)$. Since $\pred^*(D) \subseteq \mathop{\downarrow} \pred^*(D)$ always hold, we deduce that $\pred^*(D)=\mathop{\downarrow}\pred^*(D)$ is downward-closed.
 
-Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\downarrow t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\downarrow t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\downarrow t_1)$. This means that there exists $t_2 \leq t_1$ such that 
+Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\mathop{\downarrow} t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\mathop{\downarrow} t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\mathop{\downarrow} t_1)$. This means that there exists $t_2 \leq t_1$ such that 
 $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compatible.
 \qed
 \end{proof}
@@ -441,7 +441,7 @@ First, to simplify, we suppose that all classes of considered ordered transition
 %
 Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward-closed sets} (by their finite decomposition in ideals), to decide inclusion between downward-closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward-closed sets.
 %
-Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\downarrow s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective . \cite{DBLP:phd/hal/Halfon18}.
+Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\mathop{\downarrow} s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\uparrow s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective . \cite{DBLP:phd/hal/Halfon18}.
 %	 (hence of downward-closed sets).
 
 %
@@ -462,7 +462,7 @@ on input $s \in S$.
 %to the encoding of the ideal $\downarrow s$ is computable.
 %
 \item {\em $\post$-ideal-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
-any ideal $I \in Ideals(S)$ and returning $\downarrow \post(I)$, expressed as a finite union of (maximal) ideals.
+any ideal $I \in Ideals(S)$ and returning $\mathop{\downarrow} \post(I)$, expressed as a finite union of (maximal) ideals.
 %\item {\em completion-$\post$-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is $\post$-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
 \item {\em $\pred$-basis-effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if $\mathscr{S}$ is effective and there exists an algorithm accepting
@@ -476,7 +476,7 @@ any state $s \in S$ and returning a finite basis of $\uparrow \pred(\uparrow s)$
 any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
 %
 \item {\em $\pred^*$-basis-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
-any ideal $I \in Ideals(S)$ and returning a finite basis of $\downarrow \pred^*(I)$.
+any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow} \pred^*(I)$.
 \end{itemize}
 
 %Most of usual WSTS are $\post$-effective and ideally-effective.
@@ -657,7 +657,7 @@ Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\q
 
 \subsection{Case: $\Safe=\uparrow \Safe$.}\label{safe-up}
 
-We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$.
+We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\mathop{\downarrow} \Bad$.
 Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we still consider WSTS, and even WBTS, with strong compatibility but by strengthening the assumptions of effectiveness (we now consider the $\post$-ideal-effective hypothesis) and we demonstrate that the three resilience problems are now decidable.
 
 
@@ -673,23 +673,23 @@ and {\sc $k$-resilience} are decidable.
 %\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ? J'ai enlevé l'hypothèse omega2 car j'ai l'impression qu'elle n'est pas utile...à vérifier}
 
 \begin{proof}
-Let us first recall two results in \cite{BFM-ic17} that are stated for WSTS but are also true for WBTS since the proofs rely only on compatibility and not on the property of wqo. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+Let us first recall two results in \cite{BFM-ic17} that are stated for WSTS but are also true for WBTS since the proofs rely only on compatibility and not on the property of wqo. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
 
 Let  $\{s_1,s_2,...,s_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
 The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $s_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
 
 
-Let us prove that $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\downarrow s_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
+Let us prove that $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\mathop{\downarrow} s_j$ is coverable (for inclusion) from $\mathop{\downarrow} x$ in $\hat{\mathscr{S}}$.
 %
-Suppose that $s_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq s_j$. From Proposition~30, there exist an ideal $J$ and a run $\downarrow x \xrightarrow{k} J$ where $J \supseteq \downarrow y \supseteq \downarrow s_j$ in $\hat{\mathscr{S}}$, hence $\downarrow s_j$ is covered from $\downarrow x$.
-Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow s_j \subseteq J$ then 
+Suppose that $s_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq s_j$. From Proposition~30, there exist an ideal $J$ and a run $\mathop{\downarrow} x \xrightarrow{k} J$ where $J \supseteq \mathop{\downarrow} y \supseteq \mathop{\downarrow} s_j$ in $\hat{\mathscr{S}}$, hence $\mathop{\downarrow} s_j$ is covered from $\mathop{\downarrow} x$.
+Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\mathop{\downarrow} s_j \subseteq J$ then 
 %	for every $y \in J$, 
 there exists $x \in I$ and $y' \geq s_j$ such that $x \xrightarrow{k} y'  \geq s_j$ in $\mathscr{S}$ and then $s_j$ is coverable from $x$ in $\mathscr{S}$.
 
-Hence we obtain: $\mathscr{S}$ is resilient iff for all $i=1,..,n$ and $j= 1,..m$, $\downarrow s_j$ is coverable from ideal $J_i$ in $\hat{\mathscr{S}}$.
+Hence we obtain: $\mathscr{S}$ is resilient iff for all $i=1,..,n$ and $j= 1,..m$, $\mathop{\downarrow} s_j$ is coverable from ideal $J_i$ in $\hat{\mathscr{S}}$.
 %
-Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downarrow s_j$ from $J_i$ in $\hat{\mathscr{S}}$ and let $k_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow s_j$ is not coverable from $J_i$. Let us now define $K_{\mathscr{S}}(\Safe)=\max(k_{i,j} \mid i=1,..,n$ and $j= 1,..m$).
+Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\mathop{\downarrow} s_j$ from $J_i$ in $\hat{\mathscr{S}}$ and let $k_{i,j}\stackrel{\text{def}}{=}\infty$ if $\mathop{\downarrow} s_j$ is not coverable from $J_i$. Let us now define $K_{\mathscr{S}}(\Safe)=\max(k_{i,j} \mid i=1,..,n$ and $j= 1,..m$).
 %
 
 %
@@ -702,15 +702,15 @@ Since coverability is decidable for $\post$-effective WSTS \cite{BFM-ic17}, we d
 
 
 Let us now show that the $k$-resilience problem, with $k \in \mathbb{N}$, is also decidable.
-Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\downarrow s_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow s_j$ is not coverable from $J_i$. 
-If $\downarrow s_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow s_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
+Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\mathop{\downarrow} s_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\mathop{\downarrow} s_j$ is not coverable from $J_i$. 
+If $\mathop{\downarrow} s_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\mathop{\downarrow} s_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
 Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe)$.
 \end{proof} \qed
 
 Remark that the above proof doesn't make use of the 
 property that $\Bad$ is the complement of $\Safe$, simply using
-$\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$, thus 
+$\Bad=\mathop{\downarrow} \Bad$ and $\Safe=\uparrow \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
 \begin{theorem}\label{xxx}
@@ -764,10 +764,10 @@ which are both downward-closed, and test if this intersection is empty or not. H
 
 
 
-\subsection{Case: $\Safe=\downarrow \Safe$.}\label{safe-down}
+\subsection{Case: $\Safe=\mathop{\downarrow} \Safe$.}\label{safe-down}
 
 
-Let us now consider the case $\Safe=\downarrow \Safe$ hence $\Bad=\uparrow \Bad$.
+Let us now consider the case $\Safe=\mathop{\downarrow} \Safe$ hence $\Bad=\uparrow \Bad$.
 It is of interest to note this case can be linked to the problem of mutual exclusion.
 Indeed the well-known mutual exclusion property can be modeled, in a $d$-VASS with $d$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the (maximal) number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
 
@@ -775,12 +775,12 @@ Indeed the well-known mutual exclusion property can be modeled, in a $d$-VASS wi
 %
 \begin{theorem}\label{up-down}
 {\sc Resilience}  is decidable for $\pred^*$-basis-effective downward-WSTS with 
-$\Safe=\downarrow \Safe$.
+$\Safe=\mathop{\downarrow} \Safe$.
 \end{theorem}
 
 \begin{proof}
 Let $\mathscr{S}$ be a $\pred^*$-basis-effective downward-WSTS with 
-$\Safe=\downarrow \Safe$.
+$\Safe=\mathop{\downarrow} \Safe$.
 By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed; moreover, $\pred^*(\Safe)$ is computable because $\mathscr{S}$ is $\pred^*$-basis-effective.
 The resilience problem can be reformulated as $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
 %\alain{mais comment je calcule $\pred^*(\Safe)$ ?}
@@ -801,12 +801,12 @@ the above construction
 can provide a proof
 of non-resilience
 i.e. when
-$\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) \neq \emptyset$
+$\Bad \cap (S \setminus \mathop{\downarrow}\pred^*(\Safe)) \neq \emptyset$
 then
-$\Bad \not\subseteq \downarrow\pred^*(\Safe)$
+$\Bad \not\subseteq \mathop{\downarrow}\pred^*(\Safe)$
 and hence
 $\Bad \not\subseteq \pred^*(\Safe)$.
-When $\Bad \cap (S \setminus \downarrow\pred^*(\Safe)) = \emptyset$
+When $\Bad \cap (S \setminus \mathop{\downarrow}\pred^*(\Safe)) = \emptyset$
 however
 it is not enough to conclude.\\
 
@@ -817,7 +817,7 @@ In the case of (upward compatible) WSTS with $\pred$-basis-effectivity, {\sc Res
 
 \begin{proposition}\label{indec WSTS with dcs}
 {\sc Resilience} for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility and with 
-$\Safe=\downarrow \Safe$ is undecidable.
+$\Safe=\mathop{\downarrow} \Safe$ is undecidable.
 \end{proposition}
 
 
@@ -834,7 +834,8 @@ such that machine $M$ terminates for all inputs iff machine $M'$ can reach $q_f'
 %			with at least $1$ on its third counter. 
 We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
 Remark that in the construction, from any input in $Q_{M'} \times \uparrow(0,0,1)$, it is not possible to reach an element in $Q_{M'} \times \{ (1,0,0), (0,1,0),(1,1,0)\}$.
-Based on this construction, the problem of deciding whether the downward-closed set $Q_{M'} \times \downarrow (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
+Based on this construction, the problem of deciding whether the downward-closed set $Q_{M'} \times \mathop{\downarrow} (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
+\alain{review 3: - p. 10: why not choose $\mathop{\downarrow}{(0,0,0)}$ instead of $\mathop{\downarrow}{(1,1,0)}$?}
 from any input in $Q_{M'} \times \uparrow(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
 \alain{écrire qqchose ici}
@@ -857,7 +858,7 @@ a sequence
  to
  a state of the form $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
-Hence $Q_{M'} \times \downarrow (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
+Hence $Q_{M'} \times \mathop{\downarrow} (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
 resilience hold in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
 $\omega^2$-WSTS with strong compatibility as well.\qed
@@ -866,7 +867,7 @@ $\omega^2$-WSTS with strong compatibility as well.\qed
 
 Remark we did not make use of the
 property $\Bad$ complement of $\Safe$, simply 
-$\Bad=\uparrow \Bad$ and $\Safe=\downarrow \Safe$, thus 
+$\Bad=\uparrow \Bad$ and $\Safe=\mathop{\downarrow} \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.\\
 
 
@@ -942,8 +943,8 @@ live. This leads to the following problem.
 
 
 
-Let us define the set of states such that $t$ is enabled:
-$pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v})$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$. Remark that $pre(t)$ is upward-closed.
+Let us define the set of states, $\pre(t)$, from which a  control-transition $t$ is enabled:
+$\pre(t)=\{ p(\textbf{u}) \in Q \times \N^d \mid \exists q(\textbf{v}) \in Q \times \N^d$ such that $ p(\textbf{u}) \xrightarrow{t} q(\textbf{v}) \}$. Remark that $\pre(t)$ is upward-closed.
 
 
 
@@ -959,9 +960,9 @@ reset-VASS $(Q,T)$
 with initial state $s_0$
 as the following formula
 \[ ~ \forall p(\textbf{u}) \in Q \times \N^d, 
-~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in pre(t), ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]  
+~ s_0 \rightarrow^* p(\textbf{u}) \implies \exists q(\textbf{v}) \in \pre(t), ~ p(\textbf{u}) \rightarrow^{*} q(\textbf{v})\]  
 The previous formula reduces itself to {\sc State-resilience}
-where $\Safe = pre(t)$.
+where $\Safe = \pre(t)$.
 \end{proof}
 
 
@@ -972,11 +973,7 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 \end{proposition}
 
 
-
-Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies 
-{\sc $t$-liveness} is undecidable.
-
-Since {\sc $t$-liveness} is undecidable, from Proposition~\ref{reductions},  we deduce that {\sc State-resilience} is undecidable  for reset-VASS, which are WSTS with strong upward-compatibility. 
+We may now prove the undecidability of the three state-resilience problems.
 
 
 \begin{proposition}\label{srp up down}
@@ -990,10 +987,11 @@ $\Safe=\uparrow \Safe$.
 
 
 \begin{proof}
-{\sc State-resilience} itself is undecidable 
-since 
+Since the zero-reachability problem for reset-VASS is undecidable \cite{dufourd1998reset}, the previous reduction (Proposition \ref{liveness reset}) implies 
+{\sc $t$-liveness} is undecidable.
+Because
 {\sc $t$-liveness} is undecidable in reset-VASS
-and reducible to {\sc State-resilience}.
+and reducible to {\sc State-resilience}, we also deduce that {\sc State-resilience} is undecidable for reset-VASS, which are WSTS with strong compatibility.
 Additionally, in WSTS with strong compatibility and effective $\pred$-basis, {\sc Bounded-state-resilience} is
 reducible to {\sc $k$-state-resilience}:
 since $\Safe=\uparrow \Safe$ and
@@ -1147,23 +1145,23 @@ Thus in case of $\post^*$-basis-effective WSTS (when the compatibility is not st
 
 
 
-\subsection{Case: $\Safe = \downarrow \Safe$}
+\subsection{Case: $\Safe = \mathop{\downarrow} \Safe$}
 
 
-We now consider the case $\Safe = \downarrow \Safe$.
+We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
-Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \downarrow \Safe$, this stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
+Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
 Section~\ref{safe-down}.\alain{trop rapide}
 
 \begin{proposition}\label{srp down up}
 {\sc State-resilience} is undecidable for $\post$-ideal-effective ???? and $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
 when
-$\Safe=\downarrow \Safe$.
+$\Safe=\mathop{\downarrow} \Safe$.
 \end{proposition}
 
 
 
-Despite this, it is possible to yield positive results. Indeed, in many ways the case where $\Safe = \downarrow \Safe$
+Despite this, it is possible to yield positive results. Indeed, in many ways the case where $\Safe = \mathop{\downarrow} \Safe$
 is symmetrical to the case $\Safe = \uparrow \Safe$.
 %
 % For instance one can write the following lemma:
@@ -1172,7 +1170,7 @@ We will need the following lemma in order to obtain symmetrical results.
 
 \begin{lemma}(Symmetrical from Lemma~\ref{Lemma intersection})\label{Lemma intersection 2}
 Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
-Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
+Then $A \cap U \subseteq D$  iff $ (\mathop{\downarrow}  A) \cap U \subseteq D$.
 \end{lemma}
 
 
@@ -1181,20 +1179,20 @@ Then $A \cap U \subseteq D$  iff $ (\downarrow  A) \cap U \subseteq D$.
 In the case of a WSTS with \emph{downward} compatibility, not necessarily strong,
 then $\Safe$ downward-closed implies $\pred^*(\Safe)$ downward-closed and
 Lemma~\ref{Lemma intersection 2} can be used to show that
-if $\Safe = \downarrow \Safe$,
+if $\Safe = \mathop{\downarrow} \Safe$,
 then
 $\post^*(s)  
-\subseteq \pred^*(\Safe)$  iff $ (\downarrow  \post^*(s)) 
+\subseteq \pred^*(\Safe)$  iff $ (\mathop{\downarrow}  \post^*(s)) 
 \subseteq \pred^*(\Safe)$.
 
 
 \begin{theorem}\label{downward srp}
 {\sc State-resilience} is decidable for $\post$-effective, $\pred$-basis-effective, $\post$-ideal-effective and $\pred^*$-basis-effective WSTS with downward and upward compatibilities
-and $\Safe = \downarrow \Safe$.
+and $\Safe = \mathop{\downarrow} \Safe$.
 \end{theorem}
 
 \begin{proof}
-Since $\mathscr{S}$ is $\pred^*$-basis-effective, $\Safe = \downarrow \Safe$ and $\pred^*(\Safe)=\downarrow \pred^*(\Safe)$, we may compute the finite decomposition in ideals of $\pred^*(\Safe)$.
+Since $\mathscr{S}$ is $\pred^*$-basis-effective, $\Safe = \mathop{\downarrow} \Safe$ and $\pred^*(\Safe)=\mathop{\downarrow} \pred^*(\Safe)$, we may compute the finite decomposition in ideals of $\pred^*(\Safe)$.
 
 In order to decide whether %$\post^{\leq n}(s)
 $\post^{ *}(s)  
@@ -1202,22 +1200,22 @@ $\post^{ *}(s)
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
 Procedure 1 enumerates every downward-closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
-The procedure then checks for every downward-closed subset $D_i$ whether $\downarrow \post(D_i) \subseteq D_i$ (this inclusion is decidable because $\mathscr{S}$ is $\post$-ideal-effective). 
+The procedure then checks for every downward-closed subset $D_i$ whether $\mathop{\downarrow} \post(D_i) \subseteq D_i$ (this inclusion is decidable because $\mathscr{S}$ is $\post$-ideal-effective). 
 %\alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
-Every subset $D_i$ such that $\downarrow \post(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
+Every subset $D_i$ such that $\mathop{\downarrow} \post(D_i) \subseteq D_i$ is an “over-approximation” of $\mathop{\downarrow} \post^*(s)$ if it contains $s$.
 Notice that, by 
-upward compatibility, $\downarrow \post^*(s)$ is such a subset and may eventually be found.
+upward compatibility, $\mathop{\downarrow} \post^*(s)$ is such a subset and may eventually be found.
 
 Procedure 1 stops when it finds a downward-closed subset $D$ such that
-$\downarrow \post(D) \subseteq D$,
+$\mathop{\downarrow} \post(D) \subseteq D$,
 $s \in D$ and
 $D   \subseteq \pred^*(\Safe)$. 
 %\mathieu{ici $\pred^*(\Safe)$ est downward-closed. du coup pas sur que la $\pred$-basis-effectivité telle qu'elle est actuellement nous permette de trancher ... à moins que les hypothèses d'effectivté sur les idéaux nous permettent de guarantir qu'on puisse calculer le $\pred$ d'un idéal ?}
 
 Indeed
 $D \subseteq  \pred^*(\Safe)$ implies
-$\downarrow \post^*(s)  \subseteq  \pred^*(\Safe)$
-since $ \downarrow \post^*(s)  \subseteq D$.
+$\mathop{\downarrow} \post^*(s)  \subseteq  \pred^*(\Safe)$
+since $ \mathop{\downarrow} \post^*(s)  \subseteq D$.
 
 The second procedure iteratively computes
 $\post^{\leq n}(s) $ (this is effective because $\mathscr{S}$ is $\post$-effective)
@@ -1226,7 +1224,7 @@ until it finds an element
 not in $\pred^*(\Safe)$.
 
 If resilience hold, then procedure 1 terminates since it eventually finds
- $D = \downarrow \post^*(s)$ 
+ $D = \mathop{\downarrow} \post^*(s)$ 
  such that  $D \subseteq  \pred^*(\Safe)$.
  If resilience does not hold, then procedure 2 terminates since
 there exists a witness that resilience does not hold which can eventually be found. \qed
@@ -1246,7 +1244,7 @@ to other downward-closed subsets.
 
 \begin{corollary}\label{downward brp}
 {\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for $\pred$-basis-effective, $\post$-ideal-effective ???? WSTS, strong downward compatibility and upward compatibility when
-$\Safe = \downarrow \Safe$.
+$\Safe = \mathop{\downarrow} \Safe$.
 \end{corollary}
 
 
@@ -1258,8 +1256,8 @@ $\Safe = \downarrow \Safe$.
 In this section we study VASS. Since they enjoy many properties of effectivity ($\leq$ is ideally-effective, VASS are $\post$-effective, $\post$-ideal-effective, $\pred$-basis-effective, $\post^*$-basis-effective), they inherit the decidability results for WSTS in the case 
 $\Safe = \uparrow \Safe$. Lacking downward compatibility or a more relaxed hypothesis that
 for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
-VASS do not inherit the decidability results for WSTS in the case $\Safe = \downarrow \Safe$.
-In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
+VASS do not inherit the decidability results for WSTS in the case $\Safe = \mathop{\downarrow} \Safe$.
+In this section, we work to re-establish decidability results for VASS when $\Safe$ is downward-closed and $\Bad = S \setminus \Safe$. We also extend decidability to resilience for semilinear sets rather than simply upward and downward-closed ones.
 
 %Integer VASS or 
 $\mathbb{Z}^d-$VASS (resp. $\mathbb{Z}-$VASS)~\cite{DBLP:conf/rp/HaaseH14} are $d$-VASS (resp. VASS) that are allowed to take values from the integers.
@@ -1335,16 +1333,16 @@ The above results concern only unbounded resilience. We consider now
 the path from $\Bad$ to $\Safe$
 when $\Safe$ is downward-closed. Surprisingly, we have the following result for VAS (not VASS):
 \begin{proposition}
-{\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$.
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for $d$-VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Safe \neq \N^d$.
 \end{proposition}
 
 
 \begin{proof}
 Consider a given $k \in \N$,
- $\Bad \subseteq \N^d$ upward-closed and $\Safe \subseteq \N^d$ downward-closed, and
+ $\emptyset \neq \Bad \subseteq \N^d$ is upward-closed and $\Safe \subseteq \N^d$ is downward-closed, and
 consider a given VAS $V$.
 Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
-The set $\Bad$ admits a finite basis $B_\Bad$.
+The set $\Bad \neq \emptyset$ admits a finite basis $B_\Bad$.
 Consider the vector $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider the vector
 $\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
 
@@ -1360,11 +1358,11 @@ then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\B
 $\uparrow q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
  $\Safe$ and compute basis for the sets of elements from which they are reachable in at most $k$ steps. 
-Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Bad = \uparrow \Bad$. This lead to a decision procedure
  which lead to the following decidability result:
 \begin{theorem}
 {\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
-$\Safe = \downarrow \Safe$.
+$\Safe = \mathop{\downarrow} \Safe$.
 \end{theorem}
 
 \begin{proof}
@@ -1465,7 +1463,7 @@ $\Safe$ in $k$ or less steps.
 
 We complemented previous results (decidability of two state-resilience problems for a restricted class of WSTS in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}) by providing some undecidability proofs for resilience and state-resilience in general. We exhibited classes of WBTS, WSTS, VASS and extensions of VASS with decidable resilience, in the case 
  $\Safe = \uparrow \Safe$ and in the case 
- $\Safe = \downarrow \Safe$.
+ $\Safe = \mathop{\downarrow} \Safe$.
 
 Several questions still remain.
 For instance, we have been concerned with decidability only, and a detailed complexity analysis of the different resilience problems still remains to be done for concrete models. 
@@ -1479,7 +1477,7 @@ One could also extend upon the classes of set $\Safe$
  considered. As with semilinear sets for VASS, one could study resilience for sets defined in a boolean logic on upward and downward-closed subsets~\cite{DBLP:journals/fmsd/BertrandS13}. Finally, while we mention VASS, a more detailed analysis of the resilience problems could be also done for other computational models such as pushdown automata, one-counter automata or timed automata.
 
 
-
+\alain{remercier les reviewers !}
 
 \bibliography{bib}
 
