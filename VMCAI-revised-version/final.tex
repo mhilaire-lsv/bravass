@@ -473,6 +473,9 @@ any state $s \in S$ and returning a finite basis of $\uparrow \pred(\uparrow s)$
 %
 \item {\em $\post^*$-basis-effective} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if $\mathscr{S}$ is effective and there exists an algorithm accepting
 any state $s \in S$ and returning a finite basis of $\uparrow \post^*(s)$.
+%
+\item {\em $\pred^*$-basis-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
+any ideal $I \in Ideals(S)$ and returning a finite basis of $\downarrow \pred^*(I)$.
 \end{itemize}
 
 %Most of usual WSTS are $\post$-effective and ideally-effective.
@@ -708,7 +711,6 @@ property that $\Bad$ is the complement of $\Safe$, simply using
 $\Bad=\downarrow \Bad$ and $\Safe=\uparrow \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
-\alain{maintenant on doit pouvoir enlever strong compatibility}
 \begin{theorem}\label{xxx}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS and a set $\Safe = \uparrow \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
@@ -770,28 +772,29 @@ Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS 
 
 %
 \begin{theorem}\label{up-down}
-{\sc Resilience}  is decidable for $\post$-ideal-effective downward-WSTS with 
+{\sc Resilience}  is decidable for $\pred^*$-effective downward-WSTS with 
 $\Safe=\downarrow \Safe$.
 \end{theorem}
 
 \begin{proof}
-By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed, since $\Safe$ is downward-closed.
-The resilience problem can be reformulated as 
-$\Bad \subseteq  \pred^*(\Safe)$ and also as $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
-\alain{mais comment je calcule $\pred^*(\Safe)$ ?}
-Since $\leq$ is ideally-effective, we can compute complementaries and intersections of upward (and downward-closed) 
+Let $\mathscr{S}$ be a $\pred^*$-effective downward-WSTS with 
+$\Safe=\downarrow \Safe$.
+By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed; moreover, $\pred^*(\Safe)$ is computable because $\mathscr{S}$ is $\pred^*$-effective.
+The resilience problem can be reformulated as $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
+%\alain{mais comment je calcule $\pred^*(\Safe)$ ?}
+Since $\leq$ is ideally-effective, we can compute complementaries and intersections of upward and downward-closed
  subsets.
-Hence we can compute the intersection of
+Hence we can compute $S \setminus \pred^*(\Safe)$ and then the intersection of
 $\Bad$
 and
 $S \setminus \pred^*(\Safe)$,
-which are both upward-closed. Hence
+which are both upward-closed. We may decide whether this intersection is empty, hence
 the resilience problem is decidable. \qed
 \end{proof}
 
 
 In the case
-of a $\post$-ideal-effective WSTS, not necesarly downward compatible,
+of a $\pred^*$-effective WSTS, not necesarly downward compatible,
 the above construction
 can provide a proof
 of non-resilience
@@ -811,7 +814,7 @@ In the case of (upward compatible) WSTS with $\pred$-basis-effectivity, {\sc Res
 
 
 \begin{proposition}\label{indec WSTS with dcs}
-{\sc Resilience} for $\pred$-basis-effective ???? $\omega^2$-WSTS with strong compatibility and with 
+{\sc Resilience} for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility and with 
 $\Safe=\downarrow \Safe$ is undecidable.
 \end{proposition}
 
@@ -1182,35 +1185,39 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for $\post$-effective, $\pred$-basis-effective, $\post$-ideal-effective  WSTS with downward and upward compatibilities
+{\sc State-resilience} is decidable for $\post$-effective, $\pred$-basis-effective, $\post$-ideal-effective and $\pred^*$-basis-effective WSTS with downward and upward compatibilities
 and $\Safe = \downarrow \Safe$.
 \end{theorem}
 
 \begin{proof}
+Since $\mathscr{S}$ is $\pred^*$-basis-effective, $\Safe = \downarrow \Safe$ and $\pred^*(\Safe)=\downarrow \pred^*(\Safe)$, we may compute the finite decomposition in ideals of $\pred^*(\Safe)$.
+
 In order to decide whether %$\post^{\leq n}(s)
 $\post^{ *}(s)  
  \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
 Procedure 1 enumerates every downward closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
-The procedure then checks for every downward closed subset $D_i$ whether $\downarrow \post^*(D_i) \subseteq D_i$. 
-\alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
-Every subset $D_i$ such that $\downarrow \post^*(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
+The procedure then checks for every downward-closed subset $D_i$ whether $\downarrow \post(D_i) \subseteq D_i$ (this inclusion is decidable because $\mathscr{S}$ is $\post$-ideal-effective). 
+%\alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
+Every subset $D_i$ such that $\downarrow \post(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
 Notice that, by 
 upward compatibility, $\downarrow \post^*(s)$ is such a subset and may eventually be found.
 
-Procedure 1 stops when it finds a subset $D$ such that
-$\downarrow \post^*(D) \subseteq D$,
+Procedure 1 stops when it finds a downward-closed subset $D$ such that
+$\downarrow \post(D) \subseteq D$,
 $s \in D$ and
 $D   \subseteq \pred^*(\Safe)$. 
-\mathieu{ici $\pred^*(\Safe)$ est downward-closed. du coup pas sur que la $\pred$-basis-effectivité telle qu'elle est actuellement nous permette de trancher ... à moins que les hypothèses d'effectivté sur les idéaux nous permettent de guarantir qu'on puisse calculer le $\pred$ d'un idéal ?}
+%\mathieu{ici $\pred^*(\Safe)$ est downward-closed. du coup pas sur que la $\pred$-basis-effectivité telle qu'elle est actuellement nous permette de trancher ... à moins que les hypothèses d'effectivté sur les idéaux nous permettent de guarantir qu'on puisse calculer le $\pred$ d'un idéal ?}
+
 Indeed
 $D \subseteq  \pred^*(\Safe)$ implies
 $\downarrow \post^*(s)  \subseteq  \pred^*(\Safe)$
 since $ \downarrow \post^*(s)  \subseteq D$.
 
 The second procedure iteratively computes
-$\post^{\leq n}(s) $ \alain{ici on utilise $\post$-effective que j'ai rajoutée}
+$\post^{\leq n}(s) $ (this is effective because $\mathscr{S}$ is $\post$-effective)
+%			\alain{ici on utilise $\post$-effective que j'ai rajoutée}
 until it finds an element
 not in $\pred^*(\Safe)$.
 
@@ -1452,14 +1459,14 @@ $\Safe$ in $k$ or less steps.
 
 \section{Conclusion and perspectives}
 
-
-We have extended the state-resilience problem introduced in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}.
 We complemented previous results by providing some undecidability proofs for resilience and state-resilience in general. We also exhibited classes of WSTS with decidable resilience, namely $\post$-ideal-effective WSTS with strong compatibility (in the case 
  $\Safe = \uparrow \Safe$) and 
 downward-compatible
 effective WSTS \alain{vérifier les effectivités}
 (in the case 
  $\Safe = \downarrow \Safe$).
+
+We have extended the state-resilience problem introduced in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}.
 
 Several questions still remain.
 For instance, we have been concerned with decidability only, and a detailed complexity analysis of the different resilience problems still remains to be done for concrete models. 
