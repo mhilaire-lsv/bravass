@@ -133,6 +133,7 @@ $\uparrow$ $\post^*$ basis and $\Safe=\uparrow \Safe$ ; (2) ideal-effective WSTS
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
 
+\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée}
 
 
 \newcommand{\LCM}{\mathsf{LCM}}
@@ -1251,7 +1252,7 @@ $\Safe = \downarrow \Safe$.
 
 \section{Resilience for VASS and variations}\label{section VASS}
 
-In this section we study VASS. Since they are ideally-effective and completion-$\post$-effective WSTS, they inherit the decidability results for WSTS in the case 
+In this section we study VASS. Since they enjoy many properties of effectivity ($\leq$ is ideally-effective, VASS are $\post$-effective, $\post$-ideal-effective, $\pred$-basis-effective, $\post^*$-basis-effective), they inherit the decidability results for WSTS in the case 
 $\Safe = \uparrow \Safe$. Lacking downward compatibility or a more relaxed hypothesis that
 for all downward-closed set $D$, the set $\pred^*(D)$ is downward-closed, 
 VASS do not inherit the decidability results for WSTS in the case $\Safe = \downarrow \Safe$.
@@ -1265,9 +1266,9 @@ $\mathbb{Z}^d-$VASS (resp. $\mathbb{Z}-$VASS)~\cite{DBLP:conf/rp/HaaseH14} are $
 \end{theorem}
 
 \begin{proof}
-We consider in VASS the case of when $\Safe$ is semilinear
+We consider the case where $\Safe$ is semilinear
 and $\Bad = S \setminus \Safe$ is semilinear too.
-We want to use the fact that
+We want to use the fact that, for VASS,
 it is decidable whether $\post^*(X) \subseteq \pred^*(Y)$ when 
 $X$ and $Y$ are both semilinear sets~\cite{DBLP:journals/corr/abs-2207-02697}.
 {\sc Resilience} asks whether $\Bad \subseteq \pred^*(\Safe)$.
@@ -1306,7 +1307,7 @@ We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\S
 
 
 
-$\mathds{Q}^d$-VASS~\cite{DBLP:journals/tocl/BlondinFHH17} (or continuous VASS) are a relaxation of classical discrete $d$-VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
+$\mathds{Q}^d$-VASS~\cite{DBLP:journals/tocl/BlondinFHH17} (or continuous VASS) are a relaxation of classical (discrete) $d$-VASS in which transitions can be fired a fractional number of times, and consequently counters may contain a fractional number of tokens.
 
 \begin{theorem}\label{RP VASS}
 {\sc Resilience} is decidable for continuous VASS when $\Safe$  is
@@ -1329,7 +1330,7 @@ the mentionned theorems still hold in the more general case where $\Bad$ and $\S
 The above results concern only unbounded resilience. We consider now 
 {\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of
 the path from $\Bad$ to $\Safe$
-when $\Safe$ is downward-closed. Unfortunately, we have the following:
+when $\Safe$ is downward-closed. Surprisingly, we have the following result for VAS (not VASS):
 \begin{proposition}
 {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \downarrow \Safe$.
 \end{proposition}
