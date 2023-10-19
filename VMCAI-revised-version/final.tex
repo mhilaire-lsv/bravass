@@ -671,20 +671,20 @@ and {\sc $k$-resilience} are decidable.
 Let us first recall two results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
 
-Let  $\{b_1,b_2,...,b_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
-The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $b_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
+Let  $\{s_1,s_2,...,s_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
+The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $s_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
 
 
-Let us prove that $b_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\downarrow b_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
+Let us prove that $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\downarrow s_j$ is coverable (for inclusion) from $\downarrow x$ in $\hat{\mathscr{S}}$.
 %
-Suppose that $b_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq b_j$. From Proposition 30, there exist an ideal $J$ and a run $\downarrow x \xrightarrow{k} J$ where $J \supseteq \downarrow y \supseteq \downarrow b_j$ in $\hat{\mathscr{S}}$, hence $\downarrow b_j$ is covered from $\downarrow x$.
-Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow b_j \subseteq J$ then 
+Suppose that $s_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq s_j$. From Proposition~30, there exist an ideal $J$ and a run $\downarrow x \xrightarrow{k} J$ where $J \supseteq \downarrow y \supseteq \downarrow s_j$ in $\hat{\mathscr{S}}$, hence $\downarrow s_j$ is covered from $\downarrow x$.
+Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\downarrow s_j \subseteq J$ then 
 %	for every $y \in J$, 
-there exists $x \in I$ and $y' \geq b_j$ such that $x \xrightarrow{k} y'  \geq b_j$ in $\mathscr{S}$ and then $b_j$ is coverable from $x$ in $\mathscr{S}$.
+there exists $x \in I$ and $y' \geq s_j$ such that $x \xrightarrow{k} y'  \geq s_j$ in $\mathscr{S}$ and then $s_j$ is coverable from $x$ in $\mathscr{S}$.
 
-Hence we obtain: $\mathscr{S}$ is resilient iff for all $i=1,..,n$ and $j= 1,..m$, $\downarrow b_j$ is coverable from ideal $J_i$ in $\hat{\mathscr{S}}$.
+Hence we obtain: $\mathscr{S}$ is resilient iff for all $i=1,..,n$ and $j= 1,..m$, $\downarrow s_j$ is coverable from ideal $J_i$ in $\hat{\mathscr{S}}$.
 %
-Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ and let $k_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. Let us now define $K_{\mathscr{S}}(\Safe)=\max(k_{i,j} \mid i=1,..,n$ and $j= 1,..m$).
+Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\downarrow s_j$ from $J_i$ in $\hat{\mathscr{S}}$ and let $k_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow s_j$ is not coverable from $J_i$. Let us now define $K_{\mathscr{S}}(\Safe)=\max(k_{i,j} \mid i=1,..,n$ and $j= 1,..m$).
 %
 
 %
@@ -697,8 +697,8 @@ Since coverability is decidable for $\post$-effective WSTS \cite{BFM-ic17}, we d
 
 
 Let us now show that the $k$-resilience problem, with $k \in \mathbb{N}$, is also decidable.
-Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\downarrow b_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow b_j$ is not coverable from $J_i$. 
-If $\downarrow b_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow b_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
+Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\downarrow s_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\downarrow s_j$ is not coverable from $J_i$. 
+If $\downarrow s_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\downarrow s_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
 Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe)$.
 \end{proof} \qed
@@ -1182,7 +1182,7 @@ $\post^*(s)
 
 
 \begin{theorem}\label{downward srp}
-{\sc State-resilience} is decidable for $\post$-effective, $\post$-ideal-effective and effective $\pred$-basis WSTS with downward and upward compatibilities
+{\sc State-resilience} is decidable for $\post$-effective, $\pred$-basis-effective, $\post$-ideal-effective  WSTS with downward and upward compatibilities
 and $\Safe = \downarrow \Safe$.
 \end{theorem}
 
@@ -1193,7 +1193,7 @@ $\post^{ *}(s)
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
 Procedure 1 enumerates every downward closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
-The procedure then check for every downward closed subset $D_i$ whether $\downarrow \post^*(D_i) \subseteq D_i$. 
+The procedure then checks for every downward closed subset $D_i$ whether $\downarrow \post^*(D_i) \subseteq D_i$. 
 \alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
 Every subset $D_i$ such that $\downarrow \post^*(D_i) \subseteq D_i$ is an “over-approximation” of $\downarrow \post^*(s)$ if it contains $s$.
 Notice that, by 
@@ -1203,6 +1203,7 @@ Procedure 1 stops when it finds a subset $D$ such that
 $\downarrow \post^*(D) \subseteq D$,
 $s \in D$ and
 $D   \subseteq \pred^*(\Safe)$. 
+\mathieu{ici $\pred^*(\Safe)$ est downward-closed. du coup pas sur que la $\pred$-basis-effectivité telle qu'elle est actuellement nous permette de trancher ... à moins que les hypothèses d'effectivté sur les idéaux nous permettent de guarantir qu'on puisse calculer le $\pred$ d'un idéal ?}
 Indeed
 $D \subseteq  \pred^*(\Safe)$ implies
 $\downarrow \post^*(s)  \subseteq  \pred^*(\Safe)$
@@ -1225,6 +1226,12 @@ there exists a witness that resilience does not hold which can eventually be fou
 Strong downward compatibility implies furthermore the decidability
 of {\sc $k$-state-resilience} and {\sc bounded-state-resilience}.
 \alain{trop rapide}
+Indeed, with strong downward compatibility, 
+$\pred^{\leq k}(\Safe)$ is downward-closed when $\Safe$ is,
+and becomes possible to represent \mathieu{... and compute ?} and compare
+$\pred^{\leq k}(\Safe)$ 
+to other downward closed subsets.
+
 
 \begin{corollary}\label{downward brp}
 {\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for $\pred$-basis-effective, $\post$-ideal-effective ???? WSTS, strong downward compatibility and upward compatibility when
