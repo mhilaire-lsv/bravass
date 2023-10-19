@@ -612,7 +612,8 @@ In \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$
 
 Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven.
 We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
-
+%
+\alain{pourquoi n'a-t-on pas prouvé la même chose pour la BR et la k-R ?: où est la difficulté ?}
 \begin{proposition}\label{indec WSTS}
 Resilience for $\post$-effective $\omega^2$-WSTS with strong compatibility, for upward closed sets $\Safe$ is undecidable.
 \end{proposition}
@@ -657,14 +658,14 @@ Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\q
 \subsection{Case: $\Safe=\uparrow \Safe$.}\label{safe-up}
 
 We start with the case $\Safe=\uparrow \Safe$, hence $\Bad=\downarrow \Bad$.
-Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we still consider $\omega^2$-WSTS with strong compatibility but by strengthening the assumptions of effectiveness (we now consider the $\post$-ideal-effective hypothesis) and we demonstrate that the three resilience problems are now decidable.
+Since Resilience is undecidable for  $\omega^2$-WSTS with strong compatibility (Theorem \ref{indec WSTS}), we still consider WSTS, and even WBTS, with strong compatibility but by strengthening the assumptions of effectiveness (we now consider the $\post$-ideal-effective hypothesis) and we demonstrate that the three resilience problems are now decidable.
 
 
 
 
 %
 \begin{theorem}\label{down-up}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WSTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with strong compatibility and a set $\Safe = \uparrow \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
@@ -672,7 +673,7 @@ and {\sc $k$-resilience} are decidable.
 %\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ? J'ai enlevé l'hypothèse omega2 car j'ai l'impression qu'elle n'est pas utile...à vérifier}
 
 \begin{proof}
-Let us first recall two results in \cite{BFM-ic17}. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+Let us first recall two results in \cite{BFM-ic17} that are stated for WSTS but are also true for WBTS since the proofs rely only on compatibility and not on the property of wqo. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \downarrow x$, there exists an ideal $J \supseteq \downarrow y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
 
 Let  $\{s_1,s_2,...,s_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
@@ -773,14 +774,14 @@ Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS 
 
 %
 \begin{theorem}\label{up-down}
-{\sc Resilience}  is decidable for $\pred^*$-effective downward-WSTS with 
+{\sc Resilience}  is decidable for $\pred^*$-basis-effective downward-WSTS with 
 $\Safe=\downarrow \Safe$.
 \end{theorem}
 
 \begin{proof}
-Let $\mathscr{S}$ be a $\pred^*$-effective downward-WSTS with 
+Let $\mathscr{S}$ be a $\pred^*$-basis-effective downward-WSTS with 
 $\Safe=\downarrow \Safe$.
-By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed; moreover, $\pred^*(\Safe)$ is computable because $\mathscr{S}$ is $\pred^*$-effective.
+By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed; moreover, $\pred^*(\Safe)$ is computable because $\mathscr{S}$ is $\pred^*$-basis-effective.
 The resilience problem can be reformulated as $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
 %\alain{mais comment je calcule $\pred^*(\Safe)$ ?}
 Since $\leq$ is ideally-effective, we can compute complementaries and intersections of upward and downward-closed
@@ -795,7 +796,7 @@ the resilience problem is decidable. \qed
 
 
 In the case
-of a $\pred^*$-effective WSTS, not necesarly downward compatible,
+of a $\pred^*$-basis-effective WSTS, not necesarly downward compatible,
 the above construction
 can provide a proof
 of non-resilience
