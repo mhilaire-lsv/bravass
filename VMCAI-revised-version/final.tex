@@ -387,7 +387,7 @@ There are fewer downward-WSTS than WSTS, but we can still mention FIFO automata 
 Let us reformulate the downward compatibility property.
 
 \begin{lemma}\label{downward compatible}
-For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible; (2) for every downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
+For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible ; (2) for every downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
 \end{lemma}
 
 \begin{proof}
@@ -397,8 +397,8 @@ and let $x \in \downarrow \pred^*(D)$.
 By downward closure, there exists
 $y \in \pred^*(D)$ 
 such that $x \leq y$.
-By definition of $\pred^*(D)$ then there exists 
-$d \in D$, $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
+By definition of $\pred^*(D)$, there exists 
+$d \in D$ such that: (1) either $y=d$ and then $x \in D \subseteq \pred^*(D)$ or (2) there exist $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
 $y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
 %
 By downward compatibility $a_0 \to a_1$
@@ -769,7 +769,7 @@ which are both downward-closed, and test if this intersection is empty or not. H
 
 Let us now consider the case $\Safe=\downarrow \Safe$ hence $\Bad=\uparrow \Bad$.
 It is of interest to note this case can be linked to the problem of mutual exclusion.
-Indeed the well-known mutual exclusion property can be modelized, in a $d$-VASS with $d$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the (maximal) number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
+Indeed the well-known mutual exclusion property can be modeled, in a $d$-VASS with $d$ counters, by the property that a special counter $c_{mutex}$ must be bounded by $k \geq 1$ which counts the (maximal) number of processes that are allowed to be simultaneously in the critical section. Then, the set $\Safe =  \{c_{mutex} \leq k\} \times \mathbb{N}^{d-1}$ is downward-closed		and $\Bad =\{c_{mutex} \geq k+1\} \times  \mathbb{N}^{d-1} $ is the upward-closed complementary of $\Safe$. 
 
 
 %
@@ -1461,14 +1461,9 @@ $\Safe$ in $k$ or less steps.
 
 \section{Conclusion and perspectives}
 
-We complemented previous results by providing some undecidability proofs for resilience and state-resilience in general. We also exhibited classes of WSTS with decidable resilience, namely $\post$-ideal-effective WSTS with strong compatibility (in the case 
- $\Safe = \uparrow \Safe$) and 
-downward-compatible
-effective WSTS \alain{vérifier les effectivités}
-(in the case 
- $\Safe = \downarrow \Safe$).
-
-We have extended the state-resilience problem introduced in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}.
+We complemented previous results (decidability of two state-resilience problems for a restricted class of WSTS in~\cite{DBLP:journals/corr/PrasadZ16,DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22}) by providing some undecidability proofs for resilience and state-resilience in general. We exhibited classes of WBTS, WSTS, VASS and extensions of VASS with decidable resilience, in the case 
+ $\Safe = \uparrow \Safe$ and in the case 
+ $\Safe = \downarrow \Safe$.
 
 Several questions still remain.
 For instance, we have been concerned with decidability only, and a detailed complexity analysis of the different resilience problems still remains to be done for concrete models. 
