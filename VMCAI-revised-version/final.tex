@@ -241,7 +241,6 @@ Indeed, from any state with value of the counter bigger than $9$, it is possible
 $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
 \end{example}
 
-\mathieu{Reviewer 1: we can consider that the example at the bottom of page 8, even if it is a WSTS, is a very particular case very different from VASS, lossy counter, Petri nets, communicating automata, etc. and wonder if classes containing such  systems are interesting per se. }
 % Hence we can see how adding transitions can 
 % turn a system that is not bounded resilient into one that is. 
 % \alain{à quoi sert cette remarque ?}
@@ -350,16 +349,16 @@ for the ordering $=\times \sqsubseteq^d$ (where $\sqsubseteq$ is the subword ord
 
 But there is a more general class of (upward) compatible ordered transition systems than WSTS for which coverability is still decidable: recall that a Well Behaved Transition System (WBTS) \cite{DBLP:journals/lmcs/BlondinFM17} is an upward compatible ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ where $(S,\leq)$ that contains no infinite antichains (but it can be not well founded). The class of WBTS is strictly larger than WSTS: for example, $\mathbb{Z}^d-$VASS under the lexicographical ordering are WBTS but not WSTS \cite{DBLP:journals/lmcs/BlondinFM17}. \\
 
-By applying Proposition 4.3 from \cite{DBLP:journals/corr/abs-1208-4549}, we can reintroduce a straightforward definition of a specific proper subset of wqos that allow to construct coverability trees: 
+By applying Proposition~4.3 from \cite{DBLP:journals/corr/abs-1208-4549}, we can reintroduce a straightforward definition of a specific proper subset of wqos that allow to construct coverability trees: 
 
 \begin{definition}
 A wqo $(X, \leq)$ is an \emph{$\omega^2$-wqo} if $(Ideals(X), \subseteq)$ forms a wqo.
 \end{definition}
 
-%Using Proposition 4.3 in \cite{DBLP:journals/corr/abs-1208-4549}, we recall a simple definition of a strict subclass of wqos that has a very nice property: a wqo $(X,\leq)$ is an $\omega^2$-wqo iff $(Ideals(X),\subseteq)$ is a wqo. 
+%Using Proposition~4.3 in \cite{DBLP:journals/corr/abs-1208-4549}, we recall a simple definition of a strict subclass of wqos that has a very nice property: a wqo $(X,\leq)$ is an $\omega^2$-wqo iff $(Ideals(X),\subseteq)$ is a wqo. 
 
 Although there exists wqo that are not $\omega^2$-wqo (see the Rado ordering in \cite{DBLP:journals/ipl/Jancar99}), all naturally occurring wqos are $\omega^2$-wqo, perhaps to the notable exception of ﬁnite graphs well-quasi-ordered by the graph minor relation. %			which are wqo but not known to be $\omega^2$-wqo. 
-The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is an $\omega^2$-wqo (Proposition 4.5 in \cite{DBLP:journals/corr/abs-1208-4549}). Now we are able to define $\omega^2$-WSTS:
+The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is an $\omega^2$-wqo (Proposition~4.5 in \cite{DBLP:journals/corr/abs-1208-4549}). Now we are able to define $\omega^2$-WSTS:
 
 \begin{definition}(Finkel and Goubault-Larrecq \cite{DBLP:journals/corr/abs-1208-4549})
 A WSTS  $\mathscr{S}=(S, \rightarrow, \leq)$
@@ -481,7 +480,7 @@ any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow}
 \end{enumerate}
 
 Counter machines are effective but don't enjoy any other effectivities among the list of five.
-Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective (Proposition 35 in \cite{BFM-ic17}); there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition 36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition 45 in \cite{BFM-ic17}).
+Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective (Proposition~35 in \cite{BFM-ic17}); there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition~36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition~45 in \cite{BFM-ic17}).
 Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite{DBLP:journals/corr/abs-2108-00889} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
 %
 Reset-VASS are not $\pred^*$-basis-effective because computing a finite basis of $\mathop{\downarrow} \pred^*(q,0,...,0)$ would allow to decide whether $(q,0,...,0)$ is reachable that is undecidable for reset-VASS.
@@ -568,8 +567,8 @@ As an example, let us remark that $(\N^d,\leq)$ is an ideally-effective wqo.
 
  \begin{center}
 	\begin{figure}
-	\hspace{1.5cm}
-\includegraphics[width=0.70\textwidth]{WSTS_taxonomy}
+	\hspace{2.3cm}
+\includegraphics[width=0.60\textwidth]{WSTS_taxonomy}
 	\caption{A taxonomy of WSTS and variants.}
 	\end{figure}
 \end{center}
@@ -620,7 +619,7 @@ These three resilience problems are decidable for finite transition systems but 
 . Since $\Safe \subseteq \pred^*(\Safe)$, one only needs to decide whether 
 the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.\\
 %In   	 \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  \\
-%
+
 Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven.
 We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
 %
@@ -661,6 +660,7 @@ Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\q
 	$S_j = (\N^2, \{f_j, g\}, \leq)$ in the previous proof is not $\post$-ideal-effective.
   
   
+\mathieu{Reviewer 1: the example at the bottom of page 8, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. }
 
 
 
@@ -716,13 +716,9 @@ Let us now show that the $k$-resilience problem, with $k \in \mathbb{N}$, is als
 Let us denote by $k'_{i,j}$ the \emph{minimal} length of a covering sequence that covers $\mathop{\downarrow} s_j$ from $J_i$ in $\hat{\mathscr{S}}$ if it exists and let $k'_{i,j}\stackrel{\text{def}}{=}\infty$ if $\mathop{\downarrow} s_j$ is not coverable from $J_i$. 
 If $\mathop{\downarrow} s_j$ is coverable from $J_i$, we first compute an $k_{i,j}$, and then we compute $k'_{i,j}$ by iteratively checking whether there exists a sequence of length $0,1,...,k_{i,j}-1$ that covers $\mathop{\downarrow} s_j$ from $J_i$ until we find the minimal one which is necessarly smaller (or equal to) than $k_{i,j}$.
 
-Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe)$.
-\end{proof} \qed
+Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 1,..m$) and we deduce that  $\mathscr{S}$ is $k$-resilient iff $k \geq K'_{\mathscr{S}}(\Safe)$.\qed
+\end{proof} 
 
-Remark that the above proof doesn't make use of the 
-property that $\Bad$ is the complement of $\Safe$, simply using
-$\Bad=\mathop{\downarrow} \Bad$ and $\Safe=\mathop{\uparrow} \Safe$, thus 
-the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
 \begin{theorem}\label{xxx}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS and a set $\Safe = \mathop{\uparrow} \Safe$.
@@ -738,10 +734,24 @@ Since the wqo is ideally-effective, we can compute the intersection of
 $\Bad$
 and
 $S \setminus \pred^*(\Safe)$,
-which are both downward-closed, and test if this intersection is empty or not. Hence, the resilience problem is decidable.
+which are both downward-closed, and test if this intersection is empty or not. Hence, the resilience problem is decidable. \qed\end{proof} 
 %%%%%%%
 \alain{prouver, si possible, les deux autres résilience}
-\end{proof} \qed
+
+\begin{corollary}
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$, {\sc Bounded resilience} 
+and {\sc $k$-resilience} are decidable.
+\end{corollary}
+
+
+
+
+Remark that the above proofs do not make use of the 
+property that $\Bad$ is the complement of $\Safe$, simply using
+$\Bad=\mathop{\downarrow} \Bad$ and $\Safe=\mathop{\uparrow} \Safe$, thus 
+the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
+
+
 %				The completion-$\post$-effective hypothesis is needed to decide {\sc Resilience}.
 %%%
 %%%
