@@ -160,77 +160,94 @@ Most of the resilience properties are shown decidable for other classes like dow
 
 
 {\bf Context.} 
-Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety~\cite{challenges}. Some systems are subjects at frequent intervals to accidents, attacks or changes. Think for instance of a supply chain, or an airport’s air trafic control. In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
+Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety~\cite{challenges}. Some systems are subjects at frequent intervals to accidents, attacks or changes. 
+%				Think for instance of a supply chain, or an airport’s air trafic control. 
+In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
 pushed it towards some kind of ‘error state’ and, if it can, whether it can perform the return in a satisfactory timeframe. 
 
-
-{\bf Home-spaces.}
- In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for a system $\mathscr{S} = (S,\rightarrow )$ with an initial state $s_0$ : a subset $H \subseteq S$ is an \emph{home-space}  if 
-$\post^*(s_0) \subseteq \pred^*(H)$. If the home-space contains a single element, this element is an {\em home-state}.
-It could be easily generalized for two subsets $X,H$ and we say that $H$ is an \emph{home-space for $X$} if $\post^*(X) \subseteq \pred^*(H)$. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (only published as an internal report \cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %%%%%
-
+\noindent
 {\bf Resiliences.}  
-The (general) resilience property for a transition system $\mathscr{S} = (S,\rightarrow )$ and a subset of states $\Safe \subseteq S$ consists of the following: $\mathscr{S}$ is {\em $\Safe$-resilient} if
-$S \subseteq \pred^*(\Safe)$. It 
-can be stated as an home-space problem : $\mathscr{S}$ is $\Safe$-resilient if $\post^*(S) \subseteq \pred^*(\Safe)$.
-Similarly, $\mathscr{S}$ is $\Safe$-state-resilient for an initial state $s_0$ if  
-$\post^*(s_0) \subseteq \pred^*(\Safe)$.
-We will study three decidability questions for each type of set $\Safe$.
-The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient (for a given subset of states $\Safe \subseteq S$).
-The resilience problem could be easily generalized for two subsets $\Bad$ and $\Safe$ by asking
-whether $\Bad \subseteq \pred^*(\Safe)$.
-The $k$-resilience problem is to decide whether $S \subseteq \pred^{\leq k}(\Safe)$ (for a given $k$) and 
-the bounded resilience problem is to decide whether there exists an $k$ such that $\mathscr{S}$ is $\Safe$-$k$-resilient. We adapt these three definitions to state-resilience.
-
-
-{\bf State of the art.}
-In 2016, Prasad and Zuck introduced in  \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They built the composition of the process and its adversary as a transition system and they gave conditions that insure that the composed transition system is an effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions). In this framework and under these hypotheses, resilience reduces to coverability which is decidable on WSTS. 
-%%%%%%%%%
-
-In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of $\mathop{\uparrow} \post^*(s)$ for all state $s$ (called effective 
-$\mathop{\uparrow}$ $\post^*$ basis) in the case $\Safe=\mathop{\uparrow} \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
-
-
-Remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\mathop{\uparrow} \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
-However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
-%%%%%%%%%
 %
+%			If the home-space contains a single element, this element is an {\em home-state}.
+Given a transition system (where $S$ is the set of states) and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$ (i.e., $\post^*(X) \subseteq \pred^*(H)$).
+%
+A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ satisfies the home-space property. A transition system is {\em resilient for $\Safe$} if it is resilient for $(\Bad,\Safe)$ with $\Bad=S \setminus \Safe$. It is {\em state-resilient} if it is resilient for $(\Bad,\Safe)$ with $\Bad=\{s_0\}$.
+%
+%			(resp. $\post^*(s_0)$)
+%                  It  is state-resilient if
+%			from every state, there is a run that goes into $\Safe$.
+%
+%			$\mathscr{S}$ is {\em resilient for $\Safe$} if from every state, there is a run that goes into  $\Safe$.
+%			$S \subseteq \pred^*(\Safe)$. 
+%			this is the $(S,\Safe)$ home-space problem.
+%			($\post^*(S) \subseteq \pred^*(\Safe)$).
+%
+% 		for $S,\Safe$: $\mathscr{S}$ is $\Safe$-resilient if $\post^*(S) \subseteq \pred^*(\Safe)$.
+%		Similarly, $\mathscr{S}$ is $\Safe$-state-resilient for an initial state $s_0$ if  
+%		$\post^*(s_0) \subseteq \pred^*(\Safe)$.
+%		We will study three decidability questions for each type of set $\Safe$.
+%		The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient 			(for a given subset of states $\Safe \subseteq S$).
+%		The resilience problem could be easily generalized for two subsets $\Bad$ and $\Safe$ by asking
+%		whether $\Bad \subseteq \pred^*(\Safe)$.
+The {\em $k$-resilience} problem, for $k\geq0$, is to decide whether from any state is it always possible to reach $\Safe$ with a run of length smaller than $k$ (i.e., $S \subseteq \pred^{\leq k}(\Safe)$) and 
+the {\em bounded resilience} problem is to decide whether there exists an $k$ such that the system is $k$-resilient.
 
+\noindent
+{\bf State of the art.}
+%
+%			{\bf Home-spaces.}
 
+In 2016, Prasad and Zuck introduced in \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They show that resilience is decidable for effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions).
 
+%		reduces to coverability which is decidable on WSTS.
+%		They gave conditions that insure that a transition system is an effective WSTS with both upward and reflexive 		downward compatibilities (and some other technical conditions). 
+%              In this framework and under these hypotheses, 
+%			resilience reduces to coverability which is decidable on WSTS. 
+%%%%%%%%%
+
+In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$ (i.e., $\mathop{\uparrow} \post^*(s)$) when $\Safe$ is upward-closed.
+%
+%			(called effective 
+%			$\mathop{\uparrow}$ $\post^*$ basis) in the case $\Safe=\mathop{\uparrow} \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
+%%%%%%%%%
+
+In 1986, Memmi and Vautherin introduced the (restricted) notion of home-space~\cite{DBLP:conf/ac/MemmiV86} for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 
 \noindent
 {\bf Our contributions}
 \begin{itemize}
-\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} problems are both undecidable for WSTS with strong compatibility. 
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X=\{s_0\}$) problems are both undecidable for WSTS with strong compatibility. 
 Moreover, {state-resilience},
 {bounded-state-resilience} and
 {$k$-state-resilience}
 are undecidable for strongly upward-compatible $\pred$-basis-effective WSTS
 when
 $\Safe=\mathop{\uparrow} \Safe$. We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
-
-
-\item The three resilience problems are decidable for ideally-effective $\omega^2$-WSTS with strong compatibility and $\Safe = \mathop{\uparrow} \Safe$.
-
-
-\item The resilience problem is decidable for ideally-effective WSTS with 
+%
+\item We clarify the different effectiness conditions that allow decidability of resilience.
+%
+\item When $\Safe$ is upward-closed, the three resilience problems are decidable for both post-ideal-effective WBTS with strong (upward) compatibility and for effective pred-basis WSTS with strong (upward) compatibility .
+%
+\item The resilience problem is decidable for post-ideal-effective downward-WSTS with 
 $\Safe=\mathop{\downarrow} \Safe$
-and
-the additional hypothesis that
-for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
+%and
+%the additional hypothesis that
+%for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
 %
 %%%
 
-\item We generalize the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} by relaxing the  strong compatibility hypothesis.
-We also show that removing the effective 
-$\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, most WSTS don't enjoy this property. We extend and prove the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for ideally-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for ideally-effective WSTS with strong downward compatibility).
+\item We remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
+$\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, most WSTS don't enjoy this property. We extend the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for post-ideal-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for post-ideal-effective WSTS with strong downward compatibility).
 %
-
+\item Remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\mathop{\uparrow} \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
+However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
+%
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
 
+\noindent
+{\bf Plan of the paper.}
 
  \begin{center}
 	\begin{figure}
