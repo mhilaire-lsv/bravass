@@ -686,11 +686,11 @@ $\Safe=\mathop{\downarrow} \Safe$.
 
 \begin{proof}
 First, note that {\sc Resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
-$\Safe = Q_{M} \times \mathop{\downarrow} (1,1,0)$,
-since it is possible to guarantee that state $q_f(0,0,0)$ is the only element of
-$Q_{M} \times \mathop{\downarrow} (1,1,0)$
+$\Safe = \mathop{\downarrow} \Safe$,
+since it is possible to guarantee that state $q_f(0,0,0)$ is the only element 
+% of $Q_{M} \times \mathop{\downarrow} (1,1,0)$
 potentially reachable from 
-$Q_{M} \times \mathop{\uparrow} (0,0,1)$.
+$\Bad = Q_{M} \times \mathop{\uparrow} (0,0,1)$ that is not already inside $\Bad$.
 Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset} in such a way that any sequence 
 % from  a state $p({\bf u})$
 % to
@@ -700,6 +700,7 @@ reaching
 $ q({\bf 0})$ corresponds to one that reaches 
 $q_f(0,0,0)$
  in the Minsky machine and vice versa.
+ Moreover, the reset-VASS is able to emulate zero tests on the counters, hence it is able to guarrantee that $ q({\bf 0})$ is its only $\Safe$ state reachable from a $\Bad$ state as well.
  By combining both constructions, which can be seen in more details in Appendix~\ref{minsk},
  we obtain that 
  {\sc Resilience} is undecidable for reset-VASS when $\Safe = \downarrow \Safe$, and hence for  $\pred$-basis-effective, 
@@ -1225,8 +1226,18 @@ Thus in case of $\post^*$-basis-effective WSTS (when the compatibility is not st
 
 We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
-Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
-Section~\ref{safe-down}.\alain{trop rapide}
+Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the corresponding problem in Minsky machines.
+Indeed, {\sc State-resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
+$\Safe$ is downward-closed, since it is possible to guarantee that state $q_f(0,0,0)$ is the only $\Safe$ element potentially reachable from $\Bad$.
+ As seen in 
+Proposition~\ref{indec WSTS with dcs},
+ the sequences of $M$ reaching a $\Safe$ state from a $\Bad$ one can be simulated in a reset-VASS
+by sequences reaching a $\Safe'$ state from a $\Bad'$ one,
+ and vice versa, hence the following result. 
+ \alain{trop rapide}
+\mathieu{tjr trop rapide ?}
+
+
 
 \begin{proposition}\label{srp down up}
 {\sc State-resilience} is undecidable for 
@@ -1588,10 +1599,11 @@ From a $2$-counter Minsky machine $M$ with final control-state $q_f \in Q_M$, on
 such that machine $M$ terminates for all inputs iff machine $M'$ can reach $q_f'(0,0,0)$ from any input in $Q_{M'} \times \mathop{\uparrow} (0,0,1)$. 
 %			with at least $1$ on its third counter. 
 We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
-Remark that in the construction, from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$, it is not possible to reach an element in $Q_{M'} \times \{ (1,0,0), (0,1,0),(1,1,0)\}$.
-Based on this construction, the problem of deciding whether the downward-closed set $Q_{M'} \times \mathop{\downarrow} (1,1,0)$ is reachable in the $3$-counter Minsky machine $M'$
+Remark that in the construction, from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$, it is not possible to reach an element in $Q_{M'} \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$.
+Based on this construction, the problem of deciding whether the downward-closed set 
+$Q_{M'} \times \N^3 \setminus Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is reachable in the $3$-counter Minsky machine $M'$
 \alain{review 3: - p. 10: why not choose $\mathop{\downarrow}{(0,0,0)}$ instead of $\mathop{\downarrow}{(1,1,0)}$?}
-from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable ~\cite{Min61}. 
+from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable~\cite{Min61}. 
 Hence {\sc Resilience} is undecidable for Minsky machines.
 \alain{écrire qqchose ici}
 Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset}. 
