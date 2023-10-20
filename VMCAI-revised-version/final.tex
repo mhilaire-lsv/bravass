@@ -672,10 +672,10 @@ Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\q
 	nor $\pred$-effective.
   
   
-\mathieu{Reviewer 1: the example at the bottom of \textbf{ page 8} (now 10), even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. }
+\mathieu{Reviewer 1: the example at the bottom of \textbf{ page~\pageref{indec WSTS}}, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. }
 
 
-In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} is undecidable.
+In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.
 
 
 \begin{proposition}\label{indec WSTS with dcs}
@@ -807,8 +807,7 @@ Let us now define $K'_{\mathscr{S}}(\Safe)=\max(k'_{i,j} \mid i=1,..,n$ and $j= 
 
 \begin{theorem}\label{xxx}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS and a set $\Safe = \mathop{\uparrow} \Safe$.
-{\sc Resilience}, {\sc Bounded resilience} 
-and {\sc $k$-resilience} are decidable.
+ {\sc Resilience} is decidable.
 \end{theorem}
 
 \begin{proof}
@@ -826,7 +825,7 @@ Strong compatibility implies furthermore the decidability
 of {\sc $k$-resilience} and {\sc bounded-resilience}.
 
 \begin{corollary}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$, {\sc Bounded resilience} 
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$.  {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
 \end{corollary}
 
@@ -844,7 +843,7 @@ To decide {\sc Bounded resilience}, we check {\sc $k$-resilience}
 starting with $k=0$ until we find some $k_0$ such that either {\sc $k_0$-resilience} holds,
 either $\pred^{\leq k_0}(\Safe) = \pred^{\leq k_0+1}(\Safe)$, whichever comes first.
 The convergence of $(\pred^{\leq k}(\Safe) )_{k\in\N}$ guarantees the latter eventually happens.
-\end{proof}
+\qed\end{proof}
 
 
 Remark that the above proofs do not make use of the 
