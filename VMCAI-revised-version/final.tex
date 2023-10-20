@@ -241,6 +241,7 @@ Indeed, from any state with value of the counter bigger than $9$, it is possible
 $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
 \end{example}
 
+\mathieu{Reviewer 1: we can consider that the example at the bottom of page 8, even if it is a WSTS, is a very particular case very different from VASS, lossy counter, Petri nets, communicating automata, etc. and wonder if classes containing such  systems are interesting per se. }
 % Hence we can see how adding transitions can 
 % turn a system that is not bounded resilient into one that is. 
 % \alain{à quoi sert cette remarque ?}
@@ -1154,7 +1155,9 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Section~\ref{safe-down}.\alain{trop rapide}
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for $\post$-ideal-effective ???? and $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
+{\sc State-resilience} is undecidable for 
+%$\post$-ideal-effective ???? and
+ $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
 when
 $\Safe=\mathop{\downarrow} \Safe$.
 \end{proposition}
