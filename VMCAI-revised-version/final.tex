@@ -447,8 +447,8 @@ Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to 
 %
 Starting now, we assume that all considered WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five previous properties and that the wqo $\leq$ is ideally-effective. We refer to such WBTS as \emph{effective}.
 
-In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely, we say that a WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ is 
-\begin{itemize}
+In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely, we say that an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ is 
+\begin{enumerate}
 %\item {\em effective} if there exists a pair of algorithms
 %($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
 %$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
@@ -477,7 +477,17 @@ any state $s \in S$ and returning a finite basis of $\mathop{\uparrow} \post^*(s
 %
 \item {\em $\pred^*$-basis-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
 any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow} \pred^*(I)$.
-\end{itemize}
+\end{enumerate}
+
+Counter machines are effective but don't enjoy any other effectivities among the list of five.
+Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective (Proposition 35 in \cite{BFM-ic17}); there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition 36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition 45 in \cite{BFM-ic17}).
+Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite{DBLP:journals/corr/abs-2108-00889} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
+%
+Reset-VASS are not $\pred^*$-basis-effective because computing a finite basis of $\mathop{\downarrow} \pred^*(q,0,...,0)$ would allow to decide whether $(q,0,...,0)$ is reachable that is undecidable for reset-VASS.
+
+VASS are not $\pred^*$-basis-effective ????
+
+
 
 %Most of usual WSTS are $\post$-effective and ideally-effective.
 
@@ -553,7 +563,7 @@ and
 $\textbf{v}[i] = 0$, and $\textbf{v}[i'] = \textbf{u}[i']$ for all $i' \in \{1,\ldots, d\} \setminus i$.
 \end{itemize} \end{samepage}
 
-As an example, let us remark that $(\N^d,\leq)$ is an ideally-effective wqo and reset-VASS are $\post$-effective, $\post$-ideal-effective and $\pred$-basis-effective but they are not $\post^*$-basis-effective (VASS are $\post^*$-basis-effective).
+As an example, let us remark that $(\N^d,\leq)$ is an ideally-effective wqo.
 
  \begin{center}
 	\begin{figure}
