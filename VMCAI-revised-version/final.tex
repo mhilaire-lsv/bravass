@@ -925,13 +925,7 @@ This stems from the fact that it is undecidable in the particular case of reset-
 where  $t$-liveness is both undecidable and 
  reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
-We now recall the
- undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS of dimension $d$, which consists in, given a
-reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
-deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
-%
-We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
-which we then reduce to {\sc State-resilience}.
+
 A control-transition $t$ of a reset-VASS is {\em live} in a state $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists two states
  $p(\textbf{u}),p'(\textbf{u'})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \xrightarrow{t} p'(\textbf{u'}) $. 
 %		($t$ is enabled in $p(\textbf{u})$). 
@@ -966,7 +960,19 @@ The previous formula reduces itself to {\sc State-resilience}
 where $\Safe = \pre(t)$.
 \end{proof}
 
-
+It now remains to argue why {\sc $t$-liveness} is undecidable.
+We  recall the
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS of dimension $d$, which consists in, given a
+reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
+deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
+%
+Remark that the quantification over the path is existential rather than universal i.e. 
+{\em zero-reachability}
+does not asks that zero remains reachable from an initial state $s_0$ at all times but rather, that there exists at least one way to reach it.
+Despite this it is possible to reduce 
+the {\em zero-reachability problem} 
+to
+{\sc $t$-liveness}.
 The following Proposition is a variation  to reset-VASS of Theorem~5.5 in \cite{peterson1981petri} originally stated for Petri nets, whose proof can be seen in Appendix~\ref{appendix}%
 .
 \begin{proposition}\label{liveness reset}
