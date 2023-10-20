@@ -685,6 +685,22 @@ $\Safe=\mathop{\downarrow} \Safe$.
 
 
 \begin{proof}
+First, note that {\sc Resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
+$\Safe = Q_{M} \times \mathop{\downarrow} (1,1,0)$.
+Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset} such that a sequence from 
+an initial state %$(s,x_1 \ldots x_n)$
+to
+a state $ q(0,  \ldots 0)$ if and only if
+there exists
+a sequence
+ in the Minsky machine
+ from a corresponding initial state
+ to
+ the state $q_f(0,0,0)$
+Hence $Q_{M'} \times \mathop{\downarrow} (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
+resilience hold in the reset-VASS simulating $M'$.
+Hence {\sc Resilience} is undecidable for reset-VASS when $\Safe = \downarrow \Safe$, and hence for  $\pred$-basis-effective, 
+$\omega^2$-WSTS with strong compatibility as well.
 \mathieu{preuve résumé / concise à écrire}
 \iffalse
 \alain{preuve pas claire, à réécrire}
@@ -726,10 +742,10 @@ a sequence
 Hence $Q_{M'} \times \mathop{\downarrow} (1,1,0)$-resilience hold in the Minsky machine $M'$ iff 
 resilience hold in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} is undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
-$\omega^2$-WSTS with strong compatibility as well.\qed
+$\omega^2$-WSTS with strong compatibility as well.
 %\alain{déjà dit avant en mieux omega2 et strong comp et $\post$-effective mais reset-VASS apportent effective $\pred$-basis et ideally-effective....}
 \fi
-\end{proof}
+\qed \end{proof}
 
 
 \subsection{Case: $\Safe=\mathop{\uparrow} \Safe$.}\label{safe-up}
