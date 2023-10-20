@@ -623,11 +623,11 @@ the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to 
 Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven.
 We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
 %
-\alain{pourquoi n'a-t-on pas prouvé la même chose pour la BR et la k-R ?: où est la difficulté ?}
+% \alain{pourquoi n'a-t-on pas prouvé la même chose pour la BR et la k-R ?: où est la difficulté ?}
 \begin{proposition}\label{indec WSTS}
 {\sc Resilience} for $\post$-effective $\omega^2$-WSTS with strong compatibility, for upward closed sets $\Safe$ is undecidable.
 \end{proposition}
-% \alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-$\post$-effective vu le theoreme qui suit}
+ \alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-$\post$-effective vu le theoreme qui suit}
 \begin{proof}
 Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
 increasing recursive functions from \cite{FMP-ic04} defined as
@@ -657,14 +657,18 @@ by writing the integer $j$ on its tape,
 Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\qed
 \end{proof}
  Let us remark that the transition system 
-	$S_j = (\N^2, \{f_j, g\}, \leq)$ in the previous proof is not $\post$-ideal-effective.
+	$S_j = (\N^2, \{f_j, g\}, \leq)$ in the previous proof is not $\post$-ideal-effective
+	nor $\pred$-effective.
   
   
-\mathieu{Reviewer 1: the example at the bottom of page 8, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. }
+\mathieu{Reviewer 1: the example at the bottom of \textbf{ page 8} (now 10), even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. }
 
-
-
-
+For strongly compatible WSTS,
+$\pred^{\leq k}(\Safe) = \mathop{\uparrow} \pred^{\leq k}(\Safe)$
+when $\Safe = \mathop[\uparrow}(\Safe)$. 
+$\mathop{\uparrow} \pred^{\leq k}(\Safe)$
+$k_min$ such that 
+$\pred^{\leq k_{min}}(\Safe) = \pred^{*}(\Safe) $
 
 \subsection{Case: $\Safe=\mathop{\uparrow} \Safe$.}\label{safe-up}
 
