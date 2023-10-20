@@ -241,6 +241,7 @@ Indeed, from any state with value of the counter bigger than $9$, it is possible
 $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
 \end{example}
 
+\mathieu{Reviewer 1: we can consider that the example at the bottom of page 8, even if it is a WSTS, is a very particular case very different from VASS, lossy counter, Petri nets, communicating automata, etc. and wonder if classes containing such  systems are interesting per se. }
 % Hence we can see how adding transitions can 
 % turn a system that is not bounded resilient into one that is. 
 % \alain{à quoi sert cette remarque ?}
@@ -484,8 +485,8 @@ Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $
 Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite{DBLP:journals/corr/abs-2108-00889} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
 %
 Reset-VASS are not $\pred^*$-basis-effective because computing a finite basis of $\mathop{\downarrow} \pred^*(q,0,...,0)$ would allow to decide whether $(q,0,...,0)$ is reachable that is undecidable for reset-VASS.
+By using the decidability of reachability and Theorem 3.11 in \cite{DBLP:journals/acta/ValkJ85}, we may prove that VASS are $\pred^*$-basis-effective. A more complete study of these properties will be done in the long version of this paper.
 
-VASS are not $\pred^*$-basis-effective ????
 
 
 
@@ -934,13 +935,7 @@ This stems from the fact that it is undecidable in the particular case of reset-
 where  $t$-liveness is both undecidable and 
  reducible to {\sc State-resilience}. This undecidability result furthermore implies the undecidability of the other two state resilience problems by straightforward reductions.
 
-We now recall the
- undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS of dimension $d$, which consists in, given a
-reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
-deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
-%
-We reduce the zero-reachability problem to the problem of deciding whether a control-transition is live,
-which we then reduce to {\sc State-resilience}.
+
 A control-transition $t$ of a reset-VASS is {\em live} in a state $r(\textbf{w})$ if for each $q(\textbf{v}) \in \post^*(r(\textbf{w}))$ there exists two states
  $p(\textbf{u}),p'(\textbf{u'})$ such that $q(\textbf{v}) \to^* p(\textbf{u}) \xrightarrow{t} p'(\textbf{u'}) $. 
 %		($t$ is enabled in $p(\textbf{u})$). 
@@ -975,7 +970,19 @@ The previous formula reduces itself to {\sc State-resilience}
 where $\Safe = \pre(t)$.
 \end{proof}
 
-
+It now remains to argue why {\sc $t$-liveness} is undecidable.
+We  recall the
+ undecidable \cite{araki1976PN} decision problem of {\em zero-reachability} in reset-VASS of dimension $d$, which consists in, given a
+reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$,
+deciding whether $\exists q \in Q ~ p(\textbf{u}) \to^* q(\textbf{0})$.
+%
+Remark that the quantification over the path is existential rather than universal i.e. 
+{\em zero-reachability}
+does not asks that zero remains reachable from an initial state $s_0$ at all times but rather, that there exists at least one way to reach it.
+Despite this it is possible to reduce 
+the {\em zero-reachability problem} 
+to
+{\sc $t$-liveness}.
 The following Proposition is a variation  to reset-VASS of Theorem~5.5 in \cite{peterson1981petri} originally stated for Petri nets, whose proof can be seen in Appendix~\ref{appendix}%
 .
 \begin{proposition}\label{liveness reset}
@@ -1164,7 +1171,9 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Section~\ref{safe-down}.\alain{trop rapide}
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for $\post$-ideal-effective ???? and $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
+{\sc State-resilience} is undecidable for 
+%$\post$-ideal-effective ???? and
+ $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
 when
 $\Safe=\mathop{\downarrow} \Safe$.
 \end{proposition}
