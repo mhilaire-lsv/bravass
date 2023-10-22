@@ -652,7 +652,7 @@ We show that the resilience problem is undecidable for $\omega^2$-WSTS with stro
 \begin{proposition}\label{indec WSTS}
 {\sc Resilience} for $\post$-effective $\omega^2$-WSTS with strong compatibility, for upward closed sets $\Safe$ is undecidable.
 \end{proposition}
- \alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-$\post$-effective vu le theoreme qui suit}
+% \alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-$\post$-effective vu le theoreme qui suit}
 \begin{proof}
 Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
 increasing recursive functions from \cite{FMP-ic04} defined as
@@ -1066,12 +1066,12 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 
 We may now prove the undecidability of the three state-resilience problems.
 
-\alain{énoncer pour les reset-VASS c'est plus fort}
+%\alain{énoncer pour les reset-VASS c'est plus fort}
 \begin{proposition}\label{srp up down}
 {\sc State-resilience},
 {\sc Bounded-state-resilience} and
 {\sc $k$-state-resilience}
-are undecidable for strongly compatible,
+are undecidable for reset-VASS, hence for strongly compatible,
 $\post$-effective, $\pred$-basis-effective WSTS
 when
 $\Safe=\mathop{\uparrow} \Safe$.
@@ -1246,17 +1246,17 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Indeed, {\sc State-resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
 $\Safe$ is downward-closed, since it is possible to guarantee that state $q_f(0,0,0)$ is the only $\Safe$ element potentially reachable from $\Bad$.
  As seen in 
-Proposition~\ref{indec WSTS with dcs},
+Proposition~\ref{indec WSTS with dcs},\alain{la Proposition~\ref{indec WSTS with dcs} n'apparait que dans les annéexes...}
  the sequences of $M$ reaching a $\Safe$ state from a $\Bad$ one can be simulated in a reset-VASS
 by sequences reaching a $\Safe'$ state from a $\Bad'$ one,
  and vice versa, hence the following result. 
- \alain{trop rapide}
-\mathieu{tjr trop rapide ?}
-
+% \alain{trop rapide}
+%\mathieu{tjr trop rapide ?}
+%\alain{ça va}
 
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for 
+{\sc State-resilience} is undecidable for reset-VASS, hence also for
 %$\post$-ideal-effective ???? and
 $\post$-effective,
  $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
