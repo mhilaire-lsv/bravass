@@ -217,26 +217,23 @@ In 1986, Memmi and Vautherin introduced the (restricted) notion of home-space~\c
 \noindent
 {\bf Our contributions}
 \begin{itemize}
-\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X=\{s_0\}$) problems are both undecidable for WSTS with strong compatibility. 
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X=\{s_0\}$) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed. 
 Moreover, {state-resilience},
 {bounded-state-resilience} and
 {$k$-state-resilience}
-are undecidable for strongly upward-compatible $\pred$-basis-effective WSTS
-when
-$\Safe=\mathop{\uparrow} \Safe$. We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
-%
-\item We clarify the different effectiness conditions that allow decidability of resilience.
-%
-\item When $\Safe$ is upward-closed, the three resilience problems are decidable for both post-ideal-effective WBTS with strong (upward) compatibility and for effective pred-basis WSTS with strong (upward) compatibility .
-%
-\item The resilience problem is decidable for post-ideal-effective downward-WSTS with 
-$\Safe=\mathop{\downarrow} \Safe$
+are undecidable for reset-VASS (that are strongly compatible $\pred$-basis-effective WSTS) when
+$\Safe$ is upward-closed. 
+%			We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
+\item When $\Safe$ is upward-closed, the three resilience problems are decidable for both post-ideal-effective WBTS with strong (upward) compatibility and for effective pred-basis WSTS with strong (upward) compatibility. Moreover, the resilience problem is decidable for post-ideal-effective downward-WSTS with 
+$\Safe$ upward-closed
 %and
 %the additional hypothesis that
 %for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
 %
 %%%
-
+%
+\item We clarify the different effectiness conditions that allow decidability of the six resilience.
+%
 \item We remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
 $\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, most WSTS don't enjoy this property. We extend the main result in  \cite{DBLP:journals/corr/PrasadZ16} : the three state-resilience problems are decidable for post-ideal-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for post-ideal-effective WSTS with strong downward compatibility).
 %
@@ -1069,7 +1066,7 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 
 We may now prove the undecidability of the three state-resilience problems.
 
-
+\alain{énoncer pour les reset-VASS c'est plus fort}
 \begin{proposition}\label{srp up down}
 {\sc State-resilience},
 {\sc Bounded-state-resilience} and
