@@ -144,6 +144,8 @@ Most of the resilience properties are shown decidable for other classes like dow
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
 
+\alain{j'ai enlevé les noms lorsqu'on cite un resultat}
+
 %\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée- peutx-tu changer pour review 3: $A = \mathop{\downarrow} B$ instead of $A = \mathop{\downarrow} B$: this dangling arrow is typographically horrific!}
 
 
@@ -342,7 +344,7 @@ In what follows, a downward-closed set $D$ is represented by its finite set of i
 
 \noindent
 Let us now recall the (most general) definition of well-structured transition systems.
-\begin{definition}(Finkel \cite{DBLP:journals/iandc/Finkel90})
+\begin{definition}[Definition 3.10, \cite{DBLP:journals/iandc/Finkel90}]
 A {\em Well-Structured Transition System} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ such that   
@@ -395,8 +397,10 @@ Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are i
 Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\mathop{\downarrow} \post_{\mathscr{S}}(I)$. The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
 
 Another type of WSTS exists that enjoys downward compatibility.
-
-\begin{definition}(Finkel and Schnoebelen \cite{DBLP:journals/tcs/FinkelS01})
+%
+%		Finkel and Schnoebelen, 
+%
+\begin{definition}[Definition 5.1, \cite{DBLP:journals/tcs/FinkelS01}]
 A {\em downward (compatible) well-structured transition system} (downward-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
 is a transition system $(S, \rightarrow)$
 equipped with a wqo ${\leq} \subseteq S \times S$ such that   
@@ -529,22 +533,27 @@ Recall the \emph{coverability problem} for ordered transition systems.
 
 %An equivalent formulation is : Does there exist $t \in S$ such that $s_0 \longrightarrow^{*} t$ and $s \leq t$ ?
 With the $\pred$-basis-effective hypothesis, we obtain:
-
-
-\begin{theorem}(Finkel and Schnoebelen, [Theorem 3.6, \cite{DBLP:journals/tcs/FinkelS01}], Abdulla and al., [Theorem 4.1, \cite{DBLP:journals/iandc/AbdullaCJT00}])
+%
+%			(Finkel and Schnoebelen, Abdulla and al., 
+%
+\begin{theorem}[Theorem 3.6, \cite{DBLP:journals/tcs/FinkelS01}, Theorem 4.1, \cite{DBLP:journals/iandc/AbdullaCJT00}]
  A finite basis of $ \pred^*(U)$ is computable for any $\pred$-basis-effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
 \end{theorem}
 
 With the $\post$-ideal-effective hypothesis, we obtain the decidability of coverability for WBTS (without the $\pred$-basis-effective hypothesis).
-
-\begin{theorem}(Blondin and al. ~\cite{DBLP:journals/lmcs/BlondinFM17})
+%
+%		(Blondin and al., 
+%
+\begin{theorem}[Corollaire 4.4, ~\cite{DBLP:journals/lmcs/BlondinFM17}]
 Coverability is decidable for any $\post$-ideal-effective WBTS.
 \end{theorem}
 
 Downward-WSTS enjoy a powerfull property.
-
-\begin{theorem}(Finkel and Schnoebelen \cite{DBLP:journals/tcs/FinkelS01})
-$\post$-effective finitely branching downward-WSTS with reflexive compatibility are $\post^*$-basis-effective.
+%
+%		Finkel and Schnoebelen, 
+%
+\begin{theorem}[Proposition 5.4, \cite{DBLP:journals/tcs/FinkelS01}]
+Finitely branching downward-WSTS with reflexive compatibility and $\post$-effective are $\post^*$-basis-effective.
 \end{theorem}
 %
 %Coverability is  decidable for a class of WSTS without the effective $\pred$-basis hypothesis.
@@ -1109,8 +1118,10 @@ and
 
 On the positive side, let us recall a result about {\sc Bounded-state-resilience} (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 %
-\begin{theorem}\label{ref ozkan}
-(\"Ozkan~\cite{DBLP:conf/gg/Ozkan22}, \"Ozkan and W{\"{u}}rdemann \cite{DBLP:journals/corr/abs-2108-00889})
+%		(\"Ozkan,   \"Ozkan and W{\"{u}}rdemann,  
+%
+\alain{je ne comprends pas pourquoi les citations ne sortent pas comme les autres}
+\begin{theorem}\label{ref ozkan}[Theorem 1,~\cite{DBLP:conf/gg/Ozkan22}, Theorem 1, ~\cite{DBLP:journals/corr/abs-2108-00889}]
 {\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
 when
 $\Safe=\mathop{\uparrow} \Safe$.
@@ -1165,7 +1176,7 @@ $A \cap D \subseteq ({\mathop{\uparrow}  A}) \cap D \subseteq U$. \qed
 {$s  \to^* D$? \newline}
 
 
-\begin{proposition}[Proposition 1 in \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
+\begin{proposition}[Proposition 1, \cite{DBLP:conf/gg/Ozkan22}]\label{post*}
 For $\post$-effective, $\pred$-basis-effective finite-branching WSTS, a finite basis of $\mathop{\uparrow} \post^*(s)$ is computable for every state $s$ iff the downward-reachability problem is decidable.
 \end{proposition}
 
