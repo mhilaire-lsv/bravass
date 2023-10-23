@@ -1597,8 +1597,25 @@ One could also extend upon the classes of set $\Safe$
 \section{Reset-VASS and Minsky-machines}\label{minsk}
 
 
+We now delve into more details into the undecidability results 
+upon which rely
+Theorem~\ref{indec WSTS with dcs}
+and
+Theorem~\ref{srp down up},
+namely, that
+{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathopp{\downarrow}~\Safe$
+are undecidable for Minsky machines
+and 
+for reset-VASS.
 
-\begin{proposition}\label{indec WSTS with dcs}
+The problems are undecidable for a Minsky machine with at least $3$ counters when
+$\Safe$ is downward-closed, since it is possible to guarantee that state $q_f(0,0,0)$ is the only $\Safe$ element potentially reachable from $\Bad$. We then consider a reset-VASS simulating the Minsky machine. We then use Reset-VASS to simulate the Minsky machines~\cite{araki1976PN,dufourd1998reset}, albeit in a weak way. 
+% The simulation however is 
+Since by a particular choice of $\Safe$ and $\Bad$ we are only interested in the reachability of $q_f(0,0,0)$ in the Minsky machine, 
+this weak simulation will be enough to obtain undecidability of both problems.
+
+
+\begin{proposition}\label{both minsk indec}
 {\sc Resilience} and {\sc State-resilience} when $\Safe = \mathopp{\downarrow}~\Safe$ are undecidable for reset-VASS, hence also undecidable for $\post$-effective, $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
 \end{proposition}
 
