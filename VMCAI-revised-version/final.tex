@@ -144,7 +144,7 @@ Most of the resilience properties are shown decidable for other classes like dow
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
 
-\alain{j'ai ajouté les numéros et j'ai enlevé les noms dans les {theorem, proposition, definition} qu'on cite}
+%\alain{j'ai ajouté les numéros et j'ai enlevé les noms dans les {theorem, proposition, definition} qu'on cite}
 
 %\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée- peutx-tu changer pour review 3: $A = \mathop{\downarrow} B$ instead of $A = \mathop{\downarrow} B$: this dangling arrow is typographically horrific!}
 
@@ -696,7 +696,7 @@ Hence resilience for $\omega^2$-WSTS with strong compatibility is undecidable.\q
   
   
 \mathieu{Reviewer 1: the example at the bottom of \textbf{ page~\pageref{indec WSTS}}, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. => citer un autre résultat où les increasing recursive functions ont été utilisées ?}
-
+\alain{ma réponse: termination and boundedness are decidable for increasing recursive (functional) WSTS \cite{FMP-ic04}; the decidability of coverability and place-boundedness depends on the effectivity hypothesis on recursive functions.}
 
 In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.
 
@@ -1211,8 +1211,9 @@ Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Re
 Indeed, {\sc State-resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
 $\Safe$ is downward-closed, since it is possible to guarantee that state $q_f(0,0,0)$ is the only $\Safe$ element potentially reachable from $\Bad$.
  As seen in 
-Proposition~\ref{indec WSTS with dcs},\alain{la Proposition~\ref{indec WSTS with dcs} n'apparait que dans les annéexes...}
-\mathieu{Elle apparaît dans le corps du texte aussi mais j'avais utilisé deux fois le même label ce qui est corrigé maintenant.}
+Proposition~\ref{indec WSTS with dcs},
+%\alain{la Proposition~\ref{indec WSTS with dcs} n'apparait que dans les annéexes...}
+%\mathieu{Elle apparaît dans le corps du texte aussi mais j'avais utilisé deux fois le même label ce qui est corrigé maintenant.}
  the sequences of $M$ reaching a $\Safe$ state from a $\Bad$ one can be simulated in a reset-VASS
 by sequences reaching a $\Safe'$ state from a $\Bad'$ one,
  and vice versa, hence the following result. 
