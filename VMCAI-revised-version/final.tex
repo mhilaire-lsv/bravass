@@ -1622,7 +1622,7 @@ One could also extend upon the classes of set $\Safe$
  considered. As with semilinear sets for VASS, one could study resilience for sets defined in a boolean logic on upward and downward-closed subsets~\cite{DBLP:journals/fmsd/BertrandS13}. Finally, while we mention VASS, a more detailed analysis of the resilience problems could be also done for other computational models such as pushdown automata, one-counter automata or timed automata.
 
 
-\alain{remercier les reviewers !} We thank the reviewers of the VMCAI 2024 conference for their numerous and relevant comments and improvement suggestions.
+\alain{remercier les reviewers !} We express our thanks to the reviewers of the VMCAI 2024 Conference for their numerous and relevant comments and improvement suggestions.
 
 \bibliography{bib}
 
@@ -1724,22 +1724,24 @@ this weak simulation will be enough to obtain undecidability of both problems.
 % \mathieu{non, sinon on aurait décidabilité pour la state résilience}
 %This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 %which can be simulated by WSTS.
-First, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $3$ counters.
-	This is due to the undecidability of $2$-counter Minsky machine termination.
-From a $2$-counter Minsky machine $M$ with final control-state $q_f \in Q_M$, one can construct a $3$-counter Minsky machine $M'$ with final control-state $q_f' \in Q_{M'}$
-such that machine $M$ terminates for all inputs iff machine $M'$ can reach $q_f'(0,0,0)$ from any input in $Q_{M'} \times \mathop{\uparrow} (0,0,1)$. 
+First, let us show that {\sc Resilience} is undecidable for $3$-counter machines.
+%	This is due to the undecidability of termination for $2$-counter Minsky machines.
+From an $2$-counter machine $M=(Q, q_f,...)$ where $Q$ is the set of control-states and $q_f \in Q$ is the final control-state, one constructs an associated $3$-counter machine $M'=(Q', q'_f,...)$ with a final control-state $q_f' \in Q'$
+such that $M$ terminates on all initial states iff $q_f'(0,0,0)$ is reachable (in $M'$) from any state in $Q' \times \mathop{\uparrow} (0,0,1)$. 
 %			with at least $1$ on its third counter. 
-We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the first two counters until they reach $0$, then, and only then, finally decrease the third counter until it reaches $0$.
-Remark that in the construction, from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$, it is not possible to reach an element in $Q_{M'} \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$.
-Based on this construction, the problem of deciding whether the downward-closed set 
-$Q_{M'} \times \N^3 \setminus Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is reachable in the $3$-counter Minsky machine $M'$
+We build $M'$ to simulate $M$ until it reaches $q_f$, then $M'$ decreases its first two counters until they reach $0$, then, and only then, finally $M'$ decreases the third counter until it reaches $0$.
+%
+Remark that $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ is not reachable from any state in $Q' \times \mathop{\uparrow}(0,0,1)$.
+%
+Based on this construction, the downward-closed set 
+$Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ is reachable (in $M'$)
 % \alain{review 3: - p. 10: why not choose $\mathop{\downarrow}{(0,0,0)}$ instead of $\mathop{\downarrow}{(1,1,0)}$?}
-from any input in $Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is equivalent to the termination of machine $M$, that is undecidable~\cite{Min61}. 
-Note that by chosing $s_0 \in Q_{M'} \times \mathop{\uparrow} (0,0,1)$,
+from any state in $Q' \times \mathop{\uparrow}(0,0,1)$ iff $M$ terminates on all initial states; this last problem is undecidable~\cite{Min61}. 
+Note that by chosing $s_0 \in Q' \times \mathop{\uparrow} (0,0,1)$,
 deciding whether the downward-closed set 
-$Q_{M'} \times \N^3 \setminus Q_{M'} \times \mathop{\uparrow}(0,0,1)$ is reachable
-from every element of $\post^*(s_0) \cup Q_{M'} \times \mathop{\uparrow} (0,0,1)$ 
-is again equivalent to asking whether $M$ terminate on every input.
+$Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ is reachable
+from every state in $\post^*(s_0) \cup Q' \times \mathop{\uparrow} (0,0,1)$ 
+is again equivalent to asking whether $M$ terminates on every initial state.
 Hence {\sc Resilience} and {\sc State-resilience} are undecidable for Minsky machines.
 
 
