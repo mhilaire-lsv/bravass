@@ -1385,9 +1385,11 @@ and there exists an algorithm accepting any ideal $I$ and returning a finite bas
  $\mathop{\downarrow} \pred(I)$.
 \end{corollary}
 
-\mathieu{Donner des exemples dans cette classe.}
-\alain{je pense aux LCM avec insertions, elle  devrait avoir toutes les propriétés mais faut vérifier}
+% \mathieu{Donner des exemples dans cette classe.}
+% \alain{je pense aux LCM avec insertions, elle  devrait avoir toutes les propriétés mais faut vérifier}
 
+$\post$-effective, $\post$-ideal-effective WSTS, strong downward compatibility and upward compatibility include for instance
+Lossy Channel Systems with insertions~\cite{DBLP:journals/iandc/AbdullaJ96, DBLP:journals/iandc/CeceFI96}. 
 
 \section{Resilience for VASS and variations}\label{section VASS}
 
@@ -1498,12 +1500,13 @@ $\mathop{\uparrow} q(\textbf{0})$
  $\Safe$ and compute basis for the sets of elements from which they are reachable in at most $k$ steps. 
 Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Bad = \mathop{\uparrow} \Bad$. This lead to a decision procedure
  which lead to the following decidability result:
-\begin{theorem}
+\begin{theorem}\label{vass down}
 {\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
 $\Safe = \mathop{\downarrow} \Safe$.
 \end{theorem}
 
 \begin{proof}
+\iffalse
 Let $V$ be a given $d$-VASS and consider a given $k \in \N$.
 Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
 $\Safe = S \setminus \Bad$
@@ -1585,7 +1588,9 @@ there exists an element of the form $q(\textbf{u} )$
 with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
 that is in $\Bad$ but not in any of the $\pred^{\leq k}(\mathop{\uparrow} q_{j_i}(\textbf{0}))$,
 and hence from which it is not possible at all to reach
-$\Safe$ in $k$ or less steps.
+$\Safe$ in $k$ or less steps. 
+\fi
+\mathieu{Write small text and refer to appendix~\ref{appendix vass}}
 \qed
 \end{proof}
 
@@ -1895,13 +1900,104 @@ and
  {\sc $k$-state-resilience}. \qed
 \end{proof}
 
-\section{Thm 9}
 
-\mathieu{mettre ici le détail du Theo 9} 
-
-\section{More details on VASS}
+\section{More details on VASS}\label{appendix vass}
 
 \mathieu{mettre ici le détail du Theo 13}
+
+
+
+\noindent
+\textbf{Theorem~\ref{vass down}.}
+{\em {\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
+$\Safe = \mathop{\downarrow} \Safe$.
+}
+
+\begin{proof}
+Let $V$ be a given $d$-VASS and consider a given $k \in \N$.
+Consider $\Bad \subseteq Q \times \N^d$ upward-closed and 
+$\Safe = S \setminus \Bad$
+ downward-closed.
+Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition.
+
+The set $\Bad$ admits a finite basis 
+$B_\Bad = \{ q_{i_1}(\textbf{v}_{i_1}), q_{i_2}(\textbf{v}_{i_2}), \ldots,
+q_{i_m}(\textbf{v}_{i_m}) \}$.
+Consider the vector $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
+and then consider the vector
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+For all $p \in Q$, all states reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
+of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
+
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+$\mathop{\uparrow} q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$.
+
+Let us assume from now on 
+ $\mathop{\uparrow} q_{j_1}(\textbf{0}), \mathop{\uparrow} q_{j_2}(\textbf{0}), \ldots \mathop{\uparrow} q_{j_\ell}(\textbf{0})$ are
+all subsets of $\Safe$ and that their union contain all upward-closed subsets of $\Safe$.
+Because these subsets are upward-closed, we can compute a basis of
+$\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))$, $\pred^{\leq k}(\mathop{\uparrow} q_{j_2}(\textbf{0}))$, \ldots
+$\pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$.
+
+
+We now consider the set 
+$\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$.
+We inductively check for any element in the set whether or not it is possible to reach from it the set $\Safe$ in $k$ or less steps.
+If the set is finite then we stop the procedure once we have found a witness that $k$-resilience does not hold or once we have checked for every element, whichever comes first.
+If it is infinite then
+$k$-resilience does not hold, 
+hence we eventually find a witness that $k$-resilience does not hold.
+Indeed, 
+if
+$\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$
+is
+infinite
+then
+there exists an element of the form $q(\textbf{u} )$
+with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
+that is in $\Bad$ but not in any of the $\pred^{\leq k}(\mathop{\uparrow} q_{j_i}(\textbf{0}))$,
+and hence from which it is not possible at all to reach
+$\Safe$ in $k$ or less steps. This also means that, even in the case where $\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$ is finite, we only need to check reachability of $\Safe$ in $k$ or less steps for the elements with vectorial component at most
+$ \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$. Binding the search space
+thus leads to an $\EXPSPACE$ upper bound for {\sc $k$-resilience}.
+
+
+In order to deal with {\sc Bounded resilience} now, remark that there exists some $k_0 \in \N$ for which
+and hence
+$\Bad \setminus (\pred^{\leq k_0}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))= 
+\Bad \setminus (\pred^{*}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$.
+We start the decision procedure by checking {\sc $k$-resilience} from $0$ until $k_0$.
+
+From $k_0$ onwards,
+$\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))= 
+\Bad \setminus (\pred^{*}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$
+is stationnary. 
+If the set is finite then we stop the procedure once we have checked for every element
+whether it is possible to reach $\Safe$ from it.
+If it is possible to reach $\Safe$ from every element then {\sc $k_m$-resilience}
+hold
+for $k_m = \max(k_0, k_{\pi})$ with 
+$k_{\pi}$ the maximum of the length of the paths from 
+$\Bad \setminus (\pred^{\leq k_0}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$ to $\Safe$.
+If it is infinite then
+for every $k \in \N$,
+$k$-resilience does not hold, 
+and we eventually find a witness that $k$-resilience does not hold.
+Indeed, 
+if
+$\Bad \setminus (\pred^{*}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \cup \pred^{*}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$
+is
+infinite
+then
+there exists an element of the form $q(\textbf{u} )$
+with $\textbf{u} > \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, \ldots, c_{\max})$ 
+that is in $\Bad$ but not in any of the $\pred^{\leq k}(\mathop{\uparrow} q_{j_i}(\textbf{0}))$,
+and hence from which it is not possible at all to reach
+$\Safe$ in $k$ or less steps.
+\qed
+\end{proof}
 
 
 
