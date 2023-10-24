@@ -461,7 +461,7 @@ Let us reformulate the downward compatibility property.
 For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible ; (2) for every downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.
 \end{lemma}
 
-\begin{proof}
+\iffalse\begin{proof}
 Let us prove $1 \implies 2$. 
 Let $D$ be a downward-closed subset of $S$
 and let $x \in \mathop{\downarrow} \pred^*(D)$.
@@ -488,7 +488,7 @@ belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\mathop{
 Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\mathop{\downarrow} t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\mathop{\downarrow} t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\mathop{\downarrow} t_1)$. This means that there exists $t_2 \leq t_1$ such that 
 $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compatible.
 \qed
-\end{proof}
+\end{proof}\fi
 
 %A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-$\post$-effective} if
 %it is $\post$-effective, and there exists an algorithm $M_\downarrow$ that computes 
@@ -1611,6 +1611,46 @@ One could also extend upon the classes of set $\Safe$
 \appendix
 
 
+\section{Lemma technical proofs}
+
+Let us now prove more formally some of the lemmas and propositions ...
+
+\mathieu{mettre ici les preuves suivantes (?): lemme1, et lemme 2}
+
+\noindent
+\textbf{Lemma~\ref{downward compatible}.}
+{\em For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible ; (2) for every downward-closed set $D \subseteq S$, the set $\pred_{\mathscr{S}}^*(D)$ is downward-closed.}
+
+
+\begin{proof}
+Let us prove $1 \implies 2$. 
+Let $D$ be a downward-closed subset of $S$
+and let $x \in \mathop{\downarrow} \pred^*(D)$.
+By downward closure, there exists
+$y \in \pred^*(D)$ 
+such that $x \leq y$.
+By definition of $\pred^*(D)$, there exists 
+$d \in D$ such that: (1) either $y=d$ and then $x \in D \subseteq \pred^*(D)$ or (2) there exist $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
+$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
+%
+By downward compatibility $a_0 \to a_1$
+implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
+$x \to^* a'_1$.
+More generally $a_i \to a_{i+1}$ and
+$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
+$a'_i \to^* a'_{i+1}$,
+and, by induction,
+ $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
+with $d' \leq d$.
+Since
+$d'$ 
+belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\mathop{\downarrow}\pred^*(D) \subseteq \pred^*(D)$. Since $\pred^*(D) \subseteq \mathop{\downarrow} \pred^*(D)$ always hold, we deduce that $\pred^*(D)=\mathop{\downarrow}\pred^*(D)$ is downward-closed.
+
+Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\mathop{\downarrow} t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\mathop{\downarrow} t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\mathop{\downarrow} t_1)$. This means that there exists $t_2 \leq t_1$ such that 
+$s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compatible.
+\qed
+\end{proof}
+
 
 
 \section{Reset-VASS and Minsky-machines}\label{minsk}
@@ -1784,8 +1824,15 @@ Thus, every place of $P_2$ inherited from $N_1$ must be devoid of token. Moreove
 it can be reached without using the transitions $t_p$ or $t_{p_2}$. Since $t_{p_a}$ do not modify the places inherited from $P_1$ nor does it enable new transitions, the reachability of $\mu$ implies the reachability of a marking where every place of $P_2$ inherited from $P_1$ is devoid of token using only the transitions inherited from $N_1$. Thus the zero marking is reachable from $\mu_1$ in $N_1$.
 \end{proof}
 
+\mathieu{mettre ici le détail de la  prop5}
 
+\section{Thm 9}
 
+\mathieu{mettre ici le détail du Theo 9} 
+
+\section{More details on VASS}
+
+\mathieu{mettre ici le détail du Theo 13}
 
 
 
