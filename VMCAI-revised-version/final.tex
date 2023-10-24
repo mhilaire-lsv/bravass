@@ -1719,29 +1719,52 @@ this weak simulation will be enough to obtain undecidability of both problems.
 
 
 \begin{proof}
-\alain{preuve pas claire, à réécrire}
+\alain{j'ai commencé à  réécrire mais je n'ai pas fini car il y a des choses non expliquées que je ne suis pas sûr de comprendre...}
 % \alain{les reset-VASS sont-ils effective $\post^*$-basis ?}
 % \mathieu{non, sinon on aurait décidabilité pour la state résilience}
 %This stems from the fact that it is undecidable for Minsky machines with more than one counter,
 %which can be simulated by WSTS.
 First, let us show that {\sc Resilience} is undecidable for $3$-counter machines.
+\alain{pourquoi prendre 3 compteurs et pas 2 ? On ne comprend pas}
 %	This is due to the undecidability of termination for $2$-counter Minsky machines.
-From an $2$-counter machine $M=(Q, q_f,...)$ where $Q$ is the set of control-states and $q_f \in Q$ is the final control-state, one constructs an associated $3$-counter machine $M'=(Q', q'_f,...)$ with a final control-state $q_f' \in Q'$
-such that $M$ terminates on all initial states iff $q_f'(0,0,0)$ is reachable (in $M'$) from any state in $Q' \times \mathop{\uparrow} (0,0,1)$. 
+From an $2$-counter machine $M=(Q, q_f,...)$ where $Q$ is the set of control-states and $q_f \in Q$ is the final control-state, one constructs an associated $3$-counter machine $M'=(Q', q'_f,...)$ with a final control-state $q_f' \in Q'$. We build $M'$ to simulate $M$ until it reaches $q_f$, then $M'$ decreases its first two counters until they reach $0$, then, and only then, finally $M'$ decreases the third counter until it reaches $0$.
+
+We observe that $M$ terminates from all (initial) states iff $q_f'(0,0,0)$ is reachable (in $M'$) from any state in $Q' \times \mathop{\uparrow} (0,0,1)$. 
+\alain{pourquoi  ? On ne comprend pas}
 %			with at least $1$ on its third counter. 
-We build $M'$ to simulate $M$ until it reaches $q_f$, then $M'$ decreases its first two counters until they reach $0$, then, and only then, finally $M'$ decreases the third counter until it reaches $0$.
 %
 Remark that $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ is not reachable from any state in $Q' \times \mathop{\uparrow}(0,0,1)$.
+\alain{pourquoi   $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ is not reachable from any state in $Q' \times \mathop{\uparrow}(0,0,1)$ ?}
+\alain{pourquoi  $Q' \times \mathop{\uparrow}(0,0,1)$ et pas $Q' \times \mathop{\uparrow}(0,0,0)$? On ne comprend pas}
+%
+\alain{l'ensemble $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ est redondant car il est égal à $Q' \times \{(m,n,0) \mid m,n \in \N\}=Q' \times \N^2 \times \{0\}$}
+%
+\alain{les ensembles $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ et $Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ sonts les mêmes et égaux à $Q' \times \N^2 \times \{0\}$. Pourquoi avoir deux notations différentes ?? ça complique inutilement la lecture. Et prendre la troisième, la plus simple $Q' \times \N^2 \times \{0\}$ qui n'apparait pas...}
+%
 %
 Based on this construction, the downward-closed set 
 $Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ is reachable (in $M'$)
 % \alain{review 3: - p. 10: why not choose $\mathop{\downarrow}{(0,0,0)}$ instead of $\mathop{\downarrow}{(1,1,0)}$?}
-from any state in $Q' \times \mathop{\uparrow}(0,0,1)$ iff $M$ terminates on all initial states; this last problem is undecidable~\cite{Min61}. 
+from any state in $Q' \times \mathop{\uparrow}(0,0,1)$ iff $M$ terminates from all (initial) states;
+%
+\alain{a déjà été dit qq lignes avant}
+%
+ this last problem is undecidable~\cite{Min61}. 
 Note that by chosing $s_0 \in Q' \times \mathop{\uparrow} (0,0,1)$,
 deciding whether the downward-closed set 
 $Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ is reachable
 from every state in $\post^*(s_0) \cup Q' \times \mathop{\uparrow} (0,0,1)$ 
-is again equivalent to asking whether $M$ terminates on every initial state.
+%
+\alain{n'a-t-on pas $\post^*(s_0) \cup Q' \times \mathop{\uparrow} (0,0,1) = Q' \times \mathop{\uparrow} (0,0,1)$ ? a-t-on $Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1)) = Q' \times  (0,0,0)$ ? si oui pourquoi faire compliqué ?}
+%
+is again equivalent to asking 
+%
+\alain{asking: non}
+%
+whether $M$ terminates on every initial state.
+%
+\alain{je trouve ça pas clair}
+%
 Hence {\sc Resilience} and {\sc State-resilience} are undecidable for Minsky machines.
 
 
@@ -1758,6 +1781,9 @@ there exists
 an initial state %$(s,x_1 \ldots x_n)$
 to
 a state $ q({\bf 0})$ if and only if
+%
+\alain{attention notations incohérentes pour (q,0,0,0) et $ q({\bf 0})$}
+%
 there exists
 a sequence
  in the Minsky machine
@@ -1766,6 +1792,9 @@ a sequence
  the state $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
   Moreover, the reset-VASS is able to emulate zero tests on the counters, hence it is able to guarrantee that $ q({\bf 0})$ is its only $\Safe$ state reachable from a $\Bad$ state as well.
+%
+\alain{désolé, pas clair}
+%
 Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
 {\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
