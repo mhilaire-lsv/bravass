@@ -44,7 +44,7 @@
 \usepackage{mathalpha}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-
+\usepackage{multirow}
 
 \usepackage{ textcomp } 
 
@@ -273,6 +273,48 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 % \alain{à quoi sert cette remarque ?}
 
 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ | l | c | c | c | r |}
+\hline   \ 
+		& $\Safe = {\uparrow \Safe}$~ 
+		 & $\Safe = {\downarrow \Safe}$~ 
+ \\ \hline
+   \multirow{3}{*}{RP} 
+  	& WBTS (post-ideal-effective) Thm~4  
+   		 & Downard-WSTS (pred*-basis-effective) Thm~6 \\ 
+~	& WBTS (pred-basis-effective) Thm~5 
+		& VASS \\\cline{2-3}
+~	& WSTS (post-effective) Prop~1 & WSTS (pred-basis-effective) Prop~2    \\ \hline
+   \multirow{3}{*}{BRP} 
+  	& WBTS (post-ideal-effective) Thm~4  
+   		 & ? \\ 
+~	& WBTS (pred-basis-effective) Thm~5 
+		& (VASS ici aussi) \\\cline{2-3}
+~	& ? & ?    \\ \hline
+   \multirow{3}{*}{kRP} 
+ 	& WBTS (post-ideal-effective) Thm~4  
+   		 & ? \\ 
+~	& WBTS (pred-basis-effective) Thm~5 
+		& (VASS ici aussi) \\\cline{2-3}
+~	& ? & ?    \\ \hline
+
+   \multirow{2}{*}{sRP} 
+  	& WBTS (post-ideal-effective) Thm~8 
+   		 & WSTS (downard + upward) Thm~9 \\ \cline{2-3}
+~	& WSTS (pred-...) Prop~5 & WSTS (pred-basis + ??) Prop~8    \\ \hline
+   \multirow{2}{*}{BsRP} 
+  	& WBTS (pred + post*-ideal-effective) Thm~7 [18,10]  
+   		 & WSTS (d+up) Cor~1 \\ \cline{2-3}
+~	& WSTS (pred-...) Prop~5 & ?    \\ \hline
+   \multirow{2}{*}{ksRP} 
+  	& WBTS (pred + post*-ideal-effective) Thm~7 [18,10]  
+   		 & WSTS (d+up) Cor~1 \\ \cline{2-3}
+~	& WSTS (pred-...) Prop~5 & ?    \\ \hline
+
+ \end{tabular}
+  }
+\end{center}
 
 
 \section{Well-structured transition systems and VASS}\label{section definitions}
