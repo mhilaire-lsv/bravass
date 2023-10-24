@@ -1082,7 +1082,13 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 \end{proposition}
 
 
-We may now prove the undecidability of the three state-resilience problems.
+% We may now prove the undecidability of the three state-resilience problems.
+Since the zero-reachability problem for reset-VASS is undecidable \cite{dufourd1998reset}, the previous reduction implies 
+{\sc $t$-liveness} is undecidable.
+Because
+{\sc $t$-liveness} is undecidable in reset-VASS
+and reducible to {\sc State-resilience}, we 
+deduce the following.
 
 %\alain{énoncer pour les reset-VASS c'est plus fort}
 \begin{proposition}\label{srp up down}
@@ -1096,7 +1102,7 @@ $\Safe=\mathop{\uparrow} \Safe$.
 \end{proposition}
 
 
-\begin{proof}
+\iffalse \begin{proof}
 Since the zero-reachability problem for reset-VASS is undecidable \cite{dufourd1998reset}, the previous reduction (Proposition \ref{liveness reset}) implies 
 {\sc $t$-liveness} is undecidable.
 Because
@@ -1118,7 +1124,7 @@ $\pred^{\leq n_0}(\Safe) = \mathop{\uparrow} \pred^{\leq n_0}(\Safe) = {\mathop{
 Hence the undecidability of {\sc Bounded-state-resilience}
 and 
  {\sc $k$-state-resilience}. \qed
-\end{proof}
+\end{proof} \fi
 
 
 
@@ -1848,6 +1854,43 @@ it can be reached without using the transitions $t_p$ or $t_{p_2}$. Since $t_{p_
 \end{proof}
 
 \mathieu{mettre ici le détail de la  prop5}
+
+
+\noindent
+\textbf{Proposition~\ref{srp up down}.}
+{\em {\sc State-resilience},
+{\sc Bounded-state-resilience} and
+{\sc $k$-state-resilience}
+are undecidable for reset-VASS, hence for strongly compatible,
+$\post$-effective, $\pred$-basis-effective WSTS
+when
+$\Safe=\mathop{\uparrow} \Safe$.
+}
+
+
+\begin{proof}
+Since the zero-reachability problem for reset-VASS is undecidable \cite{dufourd1998reset}, the previous reduction (Proposition \ref{liveness reset}) implies 
+{\sc $t$-liveness} is undecidable.
+Because
+{\sc $t$-liveness} is undecidable in reset-VASS
+and reducible to {\sc State-resilience}, we also deduce that {\sc State-resilience} is undecidable for reset-VASS, which are WSTS with strong compatibility.
+Additionally, in WSTS with strong compatibility and effective $\pred$-basis, {\sc Bounded-state-resilience} is
+reducible to {\sc $k$-state-resilience}:
+since $\Safe=\mathop{\uparrow} \Safe$ and
+$\mathscr{S}=(S,\rightarrow,\leq)$ is a WSTS with strong 
+compatibility, then $\pred^{\leq n}(\Safe)= \mathop{\uparrow}~\pred^{\leq n}(\Safe)$ for all $n \in \N$,
+and there exists $n_0 \in \N$ such that 
+$\pred^{\leq n_0}(\Safe) = \mathop{\uparrow} \pred^{\leq n_0}(\Safe) = \mathop{\uparrow} \pred^*(\Safe) = \pred^*(\Safe)$.
+We compute 
+$n_0$, then iteratively check whether $k$-state-resilience 
+hold for $k$ from $0$ to $n_0$.  
+Furthermore, in WSTS with strong compatibility and effective $\pred$-basis,  $\Safe=\mathop{\uparrow} \Safe$, {\sc Bounded-state-resilience} is equivalent to {\sc State-resilience},
+since 
+$\pred^{\leq n_0}(\Safe) = \mathop{\uparrow} \pred^{\leq n_0}(\Safe) = {\mathop{\uparrow} \pred^*(\Safe)} = \pred^*(\Safe)$.
+Hence the undecidability of {\sc Bounded-state-resilience}
+and 
+ {\sc $k$-state-resilience}. \qed
+\end{proof}
 
 \section{Thm 9}
 
