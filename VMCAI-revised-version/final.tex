@@ -1161,7 +1161,7 @@ Then $A \cap D \subseteq U$  iff $ (\mathop{\uparrow}  A) \cap D \subseteq U$.
 \end{lemma}
 
 
-\begin{proof}
+\iffalse \begin{proof}
 Let us suppose that $A \cap D \subseteq U$. Then ${\mathop{\uparrow} (A \cap D)} \subseteq {\mathop{\uparrow} U} = U$.
 Let us show that $({\mathop{\uparrow} A}) \cap D \subseteq {\mathop{\uparrow} (A \cap D)}$.
 Let $x \in ({\mathop{\uparrow} A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
@@ -1171,7 +1171,7 @@ In the other direction,
 since $A \subseteq {\mathop{\uparrow} A}$, the inclusion
 $({\mathop{\uparrow}  A}) \cap D \subseteq U$ implies
 $A \cap D \subseteq ({\mathop{\uparrow}  A}) \cap D \subseteq U$. \qed
-\end{proof}
+\end{proof} \fi
 
 
 \"Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
@@ -1652,6 +1652,26 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 \end{proof}
 
 
+Additionnally ...
+
+\noindent
+\textbf{Lemma~\ref{Lemma intersection}.}
+{\em Let $A \subseteq S$, $D \subseteq S$ be a downward-closed set and $U \subseteq S$ be an upward-closed set. 
+Then $A \cap D \subseteq U$  iff $ (\mathop{\uparrow}  A) \cap D \subseteq U$.
+}
+
+
+\begin{proof}
+Let us suppose that $A \cap D \subseteq U$. Then ${\mathop{\uparrow} (A \cap D)} \subseteq {\mathop{\uparrow} U} = U$.
+Let us show that $({\mathop{\uparrow} A}) \cap D \subseteq {\mathop{\uparrow} (A \cap D)}$.
+Let $x \in ({\mathop{\uparrow} A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
+Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
+Hence $a \in A \cap D$ and then $x \in { \mathop{\uparrow} (A \cap D)}$.
+In the other direction,
+since $A \subseteq {\mathop{\uparrow} A}$, the inclusion
+$({\mathop{\uparrow}  A}) \cap D \subseteq U$ implies
+$A \cap D \subseteq ({\mathop{\uparrow}  A}) \cap D \subseteq U$. \qed
+\end{proof}
 
 \section{Reset-VASS and Minsky-machines}\label{minsk}
 
