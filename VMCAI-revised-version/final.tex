@@ -284,36 +284,36 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 		 & $\Safe = {\downarrow \Safe}$~ 
  \\ \hline
    \multirow{3}{*}{RP} 
-  	& WBTS (post-ideal-effective) Thm~\ref{down-up}
-   		 & Downard-WSTS (pred*-basis-effective) Thm~\ref{up-down} \\ 
-~	& WBTS (pred-basis-effective) Thm~\ref{xxx}
+  	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
+   		 & Downard-WSTS ($\pred^*$-basis-effective) Thm~\ref{up-down} \\ 
+~	& WBTS ($\pred$-basis-effective) Thm~\ref{xxx}
 		& VASS \\\cline{2-3}
-~	& WSTS (post-effective) Prop~\ref{indec WSTS} & WSTS (pred-basis-effective) Prop~\ref{indec WSTS with dcs}    \\ \hline
+~	& WSTS ($\post$-effective) Prop~\ref{indec WSTS} & WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS with dcs}    \\ \hline
    \multirow{3}{*}{BRP} 
-  	& WBTS (post-ideal-effective) Thm~\ref{down-up}
+  	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
    		 & ? \\ 
-~	& WBTS (pred-basis-effective) Thm~\ref{xxx}
+~	& WBTS ($\pred$-basis-effective) Thm~\ref{xxx}
 		& (VASS ici aussi) \\\cline{2-3}
 ~	& ? & ?    \\ \hline
    \multirow{3}{*}{kRP} 
- 	& WBTS (post-ideal-effective) Thm~\ref{down-up} 
+ 	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up} 
    		 & ? \\ 
-~	& WBTS (pred-basis-effective) Thm~\ref{xxx}
+~	& WBTS ($\pred$-basis-effective) Thm~\ref{xxx}
 		& (VASS ici aussi) \\\cline{2-3}
 ~	& ? & ?    \\ \hline
 
    \multirow{2}{*}{sRP} 
-  	& WBTS (post-ideal-effective) Thm~\ref{post srp}
+  	& WBTS ($\post$-ideal-effective) Thm~\ref{post srp}
    		 & WSTS (downard + upward) Thm~9 \\ \cline{2-3}
-~	& WSTS (pred-...) Prop~\ref{srp up down} & WSTS (pred-basis + ??) Prop~\ref{srp up down}    \\ \hline
+~	& WSTS ($\pred$-...) Prop~\ref{srp up down} & WSTS ($\pred$-basis + ??) Prop~\ref{srp up down}    \\ \hline
    \multirow{2}{*}{BsRP} 
-  	& WBTS (pred + post*-ideal-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
+  	& WBTS ($\pred$ + $\post^*$-ideal-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
    		 & WSTS (d+up) Cor~\ref{downward brp} \\ \cline{2-3}
-~	& WSTS (pred-...) Prop~\ref{srp up down} & ?    \\ \hline
+~	& WSTS ($\pred$-...) Prop~\ref{srp up down} & ?    \\ \hline
    \multirow{2}{*}{ksRP} 
-  	& WBTS (pred + post*-ideal-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}  
+  	& WBTS ($\pred$ + $\post^*$-ideal-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}  
    		 & WSTS (d+up) Cor~\ref{downward brp} \\ \cline{2-3}
-~	& WSTS (pred-...) Prop~\ref{srp up down} & ?    \\ \hline
+~	& WSTS ($\pred$-...) Prop~\ref{srp up down} & ?    \\ \hline
 
  \end{tabular}
   }
@@ -499,7 +499,7 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 % $s_1, s_2, \ldots, s_m \in S$.
 
 
-To obtain decidability results, we must introduce some notions of \emph{effectiveness}. We use a mixture of the notions defined both by Blondin and al. in \cite{DBLP:journals/lmcs/BlondinFM17}) and by Halfon in \cite{DBLP:phd/hal/Halfon18}.
+To obtain decidability results, we must introduce some notions of \emph{effectiveness}. We use a mixture of the notions defined both by Blondin and al. in \cite{DBLP:journals/lmcs/BlondinFM17} and by Halfon in \cite{DBLP:phd/hal/Halfon18}.
 %			 that will be essential for solving various resilience problems in different models of WSTS. 
 First, to simplify, we suppose that all classes of considered ordered transition systems $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five following properties:
 \begin{enumerate}
