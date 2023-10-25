@@ -757,28 +757,30 @@ deciding structural termination of reset-VASS, which is undecidable.
 
 Indeed, the structural termination problem consists in deciding if %the termination problem holds for 
 a system terminates on every initial state. 
-Since termination is w.l.o.g. reachability of $q_f({\bf 0})$ \mathieu{est-ce qu'on a pas besoin d'une hypothèse d'être deterministic ici pour que ce soit vraiment w.l.o.g. ??} for some control state $q_f$, we can formulate the structural termination problem as
 
 \problemx{Structural termination}
-{A reset-VASS $V=(Q,T)$ of dimension $d$, a control state $q_f \in Q$.}
-{ $Q \times \N^d \longrightarrow^{*} q_f({\bf 0})$ ? \\}
+{A reset-VASS $V=(Q,T)$ of dimension $d$.}
+{ %$Q \times \N^d \longrightarrow^{*} q_f({\bf 0})$ ? 
+Do all runs for every initial state terminate ?\\}
 
 The undecidability of which leads to the following proposition.
 
-\mathieu{GOTO}
+% \mathieu{GOTO}
 
 \begin{proposition}\label{indec WSTS with dcs}
 {\sc Resilience} is undecidable for reset-VASS when $\Safe=\mathop{\downarrow} \Safe$, hence it is also undecidable for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
 \end{proposition}
 
 
-\nocite{araki1976PN,dufourd1998reset}
-\iffalse
+
 \begin{proof}
+\nocite{araki1976PN,dufourd1998reset}
 {\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some state $q_f$ is equivalent to
-deciding structural termination of reset-VASS, which is undecidable.
-\qed \end{proof}
-\fi
+deciding structural termination of reset-VASS,
+since termination is w.l.o.g. reachability of $q_f({\bf 0})$ 
+ \mathieu{est-ce qu'on a pas besoin d'une hypothèse d'être deterministic ici pour que ce soit vraiment w.l.o.g. ??} 
+for some control state $q_f$. \qed \end{proof}
+
 
 \subsection{Case: $\Safe=\mathop{\uparrow} \Safe$.}\label{safe-up}
 
@@ -1072,10 +1074,11 @@ Recall the
 {A reset-VASS $V=(Q,T)$ of dimension $d$, and $p(\textbf{u}) \in Q \times \N^d$.} 
 {  $\exists q \in Q, ~ p(\textbf{u}) \to^* q(\textbf{0})$ ?\\}
 
+% 
+{\sc Resilience} (and {\sc $t$-liveness}) needs a set (resp. a transition) to always remains reachable (resp. fireable), while
+{\em zero-reachability} concerns itself only with the existence of at least one way to reach some state $q(\textbf{0})$,
+which could be unreachable from other reachable states. 
 %
-Remark that the quantification over the path is existential rather than universal i.e. 
-{\em zero-reachability}
-does not asks that zero remains reachable from an initial state $s_0$ at all times but rather, that there exists at least one way to reach it.
 Despite this it is possible to reduce 
 the {\em zero-reachability problem} 
 to
@@ -1272,7 +1275,7 @@ We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
 Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the 
 structural termination of reset-VASS.
-\mathieu{GOTO}
+%\mathieu{GOTO}
 
 \begin{proposition}\label{srp down up}
 {\sc State-resilience} is undecidable for reset-VASS when
