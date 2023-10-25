@@ -172,9 +172,10 @@ pushed it towards some kind of ‘error state’ and, if it can, whether it can 
 {\bf Resiliences.}  
 %
 %			If the home-space contains a single element, this element is an {\em home-state}.
-Given a transition system (where $S$ is the set of states) and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$ (i.e., $\post^*(X) \subseteq \pred^*(H)$).
+Given a transition system (where $S$ is the set of states) and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$ 
+%				(i.e., $\post^*(X) \subseteq \pred^*(H)$).
 %
-A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ satisfies the home-space property. A transition system is {\em resilient for $\Safe$} if it is resilient for $(\Bad,\Safe)$ with $\Bad=S \setminus \Safe$. It is {\em state-resilient} if it is resilient for $(\Bad,\Safe)$ with $\Bad=\{s_0\}$.
+A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ satisfies the home-space property. A transition system is {\em resilient for $\Safe$} if it is resilient for $(\Bad,\Safe)$ with $\Bad$ is the complementary to $ \Safe$. It is {\em state-resilient} if it is resilient for $(\Bad,\Safe)$ where $\Bad$ contains an unique state.
 %
 %			(resp. $\post^*(s_0)$)
 %                  It  is state-resilient if
@@ -192,7 +193,11 @@ A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ sati
 %		The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient 			(for a given subset of states $\Safe \subseteq S$).
 %		The resilience problem could be easily generalized for two subsets $\Bad$ and $\Safe$ by asking
 %		whether $\Bad \subseteq \pred^*(\Safe)$.
-The {\em $k$-resilience} problem, for $k\geq0$, is to decide whether from any state is it always possible to reach $\Safe$ with a run of length smaller than $k$ (i.e., $S \subseteq \pred^{\leq k}(\Safe)$) and 
+The {\em $k$-resilience} problem, for $k\geq0$, is to decide whether from any state is it always possible to reach $\Safe$ with a run of length smaller than $k$ 
+%
+%		(i.e., $S \subseteq \pred^{\leq k}(\Safe)$)
+%
+ and 
 the {\em bounded resilience} problem is to decide whether there exists an $k$ such that the system is $k$-resilient.
 
 \noindent
@@ -208,7 +213,11 @@ In 2016, Prasad and Zuck introduced in \cite{DBLP:journals/corr/PrasadZ16} inter
 %			resilience reduces to coverability which is decidable on WSTS. 
 %%%%%%%%%
 
-In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$ (i.e., $\mathop{\uparrow} \post^*(s)$) when $\Safe$ is upward-closed.
+In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$ 
+%
+%			(i.e., $\mathop{\uparrow} \post^*(s)$) 
+%
+when $\Safe$ is upward-closed.
 %
 %			(called effective 
 %			$\mathop{\uparrow}$ $\post^*$ basis) in the case $\Safe=\mathop{\uparrow} \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
@@ -239,7 +248,11 @@ $\Safe$ upward-closed
 \item We first remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
 $\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, many WSTS (like reset-VASS) don't enjoy this property. We still extend  \cite{DBLP:journals/corr/PrasadZ16} as follows: the three state-resilience problems are decidable for post-ideal-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for post-ideal-effective WSTS with strong downward compatibility).
 %
-\item We remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of $\mathop{\uparrow} \post^*(s)$ for all state $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
+\item We remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$,
+%
+%			$\mathop{\uparrow} \post^*(s)$ 
+%
+for all states $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
 However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
 %
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
