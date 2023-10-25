@@ -223,40 +223,55 @@ when $\Safe$ is upward-closed.
 %			$\mathop{\uparrow}$ $\post^*$ basis) in the case $\Safe=\mathop{\uparrow} \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
 %%%%%%%%%
 
-In 1986, Memmi and Vautherin introduced the (restricted) notion of home-space~\cite{DBLP:conf/ac/MemmiV86} in Petri nets for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
+In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} in Petri nets for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 
 \noindent
-{\bf Our contributions}
+{\bf Our main contributions}
 \begin{itemize}
-\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X=\{s_0\}$) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed. 
-Moreover, {state-resilience},
-{bounded-state-resilience} and
-{$k$-state-resilience}
-are undecidable for reset-VASS (that are strongly compatible $\pred$-basis-effective WSTS) when
-$\Safe$ is upward-closed. 
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X$ a singleton) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed. 
+%Moreover, {state-resilience},
+%{bounded-state-resilience} and
+%{$k$-state-resilience}
+%are undecidable for reset-VASS (that are strongly compatible $\pred$-basis-effective WSTS) when
+%$\Safe$ is upward-closed. 
 %			We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
-\item When $\Safe$ is upward-closed, the three resilience problems are decidable for both post-ideal-effective WBTS with strong (upward) compatibility and for effective pred-basis WSTS with strong (upward) compatibility. Moreover, the resilience problem is decidable for post-ideal-effective downward-WSTS with 
-$\Safe$ upward-closed
-%and
+\item The three resilience problems are decidable for post-ideal-effective Well Behaved Transition Systems (a generalisation of WSTS where the quasi-ordering is not necessarly well founded) with strong (upward) compatibility and when $\Safe$ is upward-closed (Theorem \ref{down-up})
+%
+\item  Resilience is also decidable, when 
+$\Safe$ is upward-closed, for effective pred-basis WSTS with strong (upward) compatibility (Theorem \ref{xxx}).
+%
+%    and
 %the additional hypothesis that
 %for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
 %
+%				and for post-ideal-effective downward-WSTS ????
 %%%
 %
-\item We clarify the different effectiness conditions that allow decidability of the six resilience.
+\item We clarify the different effectiness conditions on WBTS and WSTS that allow the decidability of the six resilience.
 %
-\item We first remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
-$\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, many WSTS (like reset-VASS) don't enjoy this property. We still extend  \cite{DBLP:journals/corr/PrasadZ16} as follows: the three state-resilience problems are decidable for post-ideal-effective WSTS with downward and upward compatibilities ({$k$-state-resilience} and {bounded-state-resilience} are decidable for post-ideal-effective WSTS with strong downward compatibility).
+\item We generalize  the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} ; we also show that relaxing some hypothesis leads to undecidability.
 %
-\item We remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$,
+%			à utiliser dans le texte ???
 %
-%			$\mathop{\uparrow} \post^*(s)$ 
+%We first remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
+%$\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, many WSTS (like reset-VASS) don't enjoy this property. 
+
+\item We show that the three state-resilience problems are decidable for post-ideal-effective WSTS with downward and upward compatibilities (Theorem \ref{downward srp} extends Theorem 1 in \cite{DBLP:journals/corr/PrasadZ16}).
+The two other types of resilience, {$k$-state-resilience} and {bounded-state-resilience}, are decidable for post-ideal-effective WSTS with strong downward compatibility.
 %
-for all states $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
-However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
+%			à utiliser dans le texte ???
+%
+%\item We remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$,
+%%
+%%			$\mathop{\uparrow} \post^*(s)$ 
+%%
+%for all states $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
+%However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
 %
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
+
+Most of our results about the different models and different types of resilience are in Figure YYYY.
 
 \noindent
 {\bf Plan of the paper.}
@@ -332,6 +347,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
   }
 \end{center}
 
+\alain{je pense qu'il faut faire deux tableaux pour que ce soit lisible. attention, la décidabilité n'est pas encore indiquée}
 
 \section{Well-structured transition systems and VASS}\label{section definitions}
 
@@ -667,7 +683,8 @@ As an example, let us remark that $(\N^d,\leq)$ is an ideally-effective wqo.
 
 	\vspace{-1.2cm}
 
-
+\alain{il manque des refs dans la fig 1 qui sont déjà dans la biblio: WBTS, omega2,on peut mettre les front lossy avec les LCM et LCS}
+%
 \section{Resilience for WSTS}
 
 
@@ -792,6 +809,7 @@ The undecidability of which leads to the following proposition.
 deciding structural termination of reset-VASS,
 since termination is w.l.o.g. reachability of $q_f({\bf 0})$ 
  \mathieu{est-ce qu'on a pas besoin d'une hypothèse d'être deterministic ici pour que ce soit vraiment w.l.o.g. ??} 
+\alain{qu'entends-tu par deterministic ici ?}
 for some control state $q_f$. \qed \end{proof}
 
 
@@ -1626,7 +1644,7 @@ One could also extend upon the classes of set $\Safe$
  considered. As with semilinear sets for VASS, one could study resilience for sets defined in a boolean logic on upward and downward-closed subsets~\cite{DBLP:journals/fmsd/BertrandS13}. Finally, while we mention VASS, a more detailed analysis of the resilience problems could be also done for other computational models such as pushdown automata, one-counter automata or timed automata.
 
 
-\alain{remercier les reviewers !} We express our thanks to the reviewers of the VMCAI 2024 Conference for their numerous and relevant comments and improvement suggestions.
+\section*{Acknowledgements} We express our thanks to the reviewers of the VMCAI 2024 Conference for their numerous and relevant comments and improvement suggestions.
 
 \bibliography{bib}
 
