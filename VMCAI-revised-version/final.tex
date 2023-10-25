@@ -755,32 +755,16 @@ In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} 
 
 
 \begin{proposition}\label{indec WSTS with dcs}
-{\sc Resilience} is undecidable for reset-VASS, hence it is also undecidable for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility and with 
-$\Safe=\mathop{\downarrow} \Safe$.
+{\sc Resilience} is undecidable for reset-VASS when $\Safe=\mathop{\downarrow} \Safe$, hence it is also undecidable for $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
 \end{proposition}
 
 
 \begin{proof}
-First, note that {\sc Resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
-$\Safe = \mathop{\downarrow} \Safe$,
-since it is possible to guarantee that state $q_f(0,0,0)$ is the only element 
-% of $Q_{M} \times \mathop{\downarrow} (1,1,0)$
-potentially reachable from 
-$\Bad = Q_{M} \times \mathop{\uparrow} (0,0,1)$ that is not already inside $\Bad$.
-Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset} in such a way that any sequence 
-% from  a state $p({\bf u})$
-% to
-reaching
- a state 
-%
-$ q({\bf 0})$ corresponds to one that reaches 
-$q_f(0,0,0)$
- in the Minsky machine and vice versa.
- Moreover, the reset-VASS is able to emulate zero tests on the counters, hence it is able to guarrantee that $ q({\bf 0})$ is its only $\Safe$ state reachable from a $\Bad$ state as well.
- By combining both constructions, which can be seen in more details in Appendix~\ref{minsk},
- we obtain that 
- {\sc Resilience} is undecidable for reset-VASS when $\Safe = \downarrow \Safe$, and hence for  $\post$-effective, $\pred$-basis-effective, 
-$\omega^2$-WSTS with strong compatibility as well.\qed \end{proof}
+\nocite{araki1976PN,dufourd1998reset}
+{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some state $q_f$ is equivalent to
+deciding structural termination of reset-VASS, which is undecidable.
+\qed \end{proof}
+\mathieu{GOTO}
 
 
 \subsection{Case: $\Safe=\mathop{\uparrow} \Safe$.}\label{safe-up}
@@ -1273,29 +1257,16 @@ Thus in case of $\post^*$-basis-effective WSTS (when the compatibility is not st
 
 We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
-Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the corresponding problem in Minsky machines.
-Indeed, {\sc State-resilience} is undecidable for a Minsky machine $M$ with at least $3$ counters when
-$\Safe$ is downward-closed, since it is possible to guarantee that state $q_f(0,0,0)$ is the only $\Safe$ element potentially reachable from $\Bad$.
- As seen in 
-Proposition~\ref{indec WSTS with dcs},
-%\alain{la Proposition~\ref{indec WSTS with dcs} n'apparait que dans les annéexes...}
-%\mathieu{Elle apparaît dans le corps du texte aussi mais j'avais utilisé deux fois le même label ce qui est corrigé maintenant.}
- the sequences of $M$ reaching a $\Safe$ state from a $\Bad$ one can be simulated in a reset-VASS
-by sequences reaching a $\Safe'$ state from a $\Bad'$ one,
- and vice versa, hence the following result. 
-% \alain{trop rapide}
-%\mathieu{tjr trop rapide ?}
-%\alain{ça va}
-
+Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the 
+structural termination of reset-VASS.
+\mathieu{GOTO}
 
 \begin{proposition}\label{srp down up}
-{\sc State-resilience} is undecidable for reset-VASS, hence also for
-%$\post$-ideal-effective ???? and
+{\sc State-resilience} is undecidable for reset-VASS when
+$\Safe=\mathop{\downarrow} \Safe$, hence also for
 $\post$-effective,
- $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility
-when
-$\Safe=\mathop{\downarrow} \Safe$.
-\end{proposition}
+ $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
+ \end{proposition}
 
 
 
@@ -1480,9 +1451,9 @@ when $\Safe$ is downward-closed. Surprisingly, we have the following result for 
 
 
 \begin{proof}
-Consider a given $k \in \N$,
- $\emptyset \neq \Bad \subseteq \N^d$ is upward-closed and $\Safe \subseteq \N^d$ is downward-closed, and
-consider a given VAS $V$.
+Consider a given $k \in \N$, $\Safe \subseteq \N^d$ is downward-closed
+ such that its upward-closed complement $\Bad \subseteq \N^d$ is nonempty, and
+consider a given VAS $V$. 
 Let us call $c_{\max}$ the maximal absolute value of a constant appearing in a coordinate of a transition of $V$.
 The set $\Bad \neq \emptyset$ admits a finite basis $B_\Bad$.
 Consider the vector $\textbf{v}_{\Bad}$ obtained by summing all members of the basis of $\Bad$ and then consider the vector
@@ -1692,116 +1663,7 @@ $({\mathop{\uparrow}  A}) \cap D \subseteq U$ implies
 $A \cap D \subseteq ({\mathop{\uparrow}  A}) \cap D \subseteq U$. \qed
 \end{proof}
 
-\section{Reset-VASS and Minsky-machines}\label{minsk}
 
-
-We now delve into more details into the undecidability results 
-upon which rely
-Proposition~\ref{indec WSTS with dcs}
-and
-Proposition~\ref{srp down up},
-namely, that
-{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathop{\downarrow}~\Safe$
-are undecidable for Minsky machines
-and 
-for reset-VASS.
-
-The problems are undecidable for a Minsky machine with at least $3$ counters when
-$\Safe$ is downward-closed, since it is possible to guarantee that state $q_f(0,0,0)$ is the only $\Safe$ element potentially reachable from $\Bad$. We then consider a reset-VASS simulating the Minsky machine. We then use Reset-VASS to simulate the Minsky machines~\cite{araki1976PN,dufourd1998reset}, albeit in a weak way. 
-% The simulation however is 
-Since by a particular choice of $\Safe$ and $\Bad$ we are only interested in the reachability of $q_f(0,0,0)$ in the Minsky machine, 
-this weak simulation will be enough to obtain undecidability of both problems.
-
-
-\begin{proposition}\label{both minsk indec}
-{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathop{\downarrow}~\Safe$ are undecidable for reset-VASS, hence also undecidable for $\post$-effective, $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
-\end{proposition}
-
-
-\begin{proof}
-\alain{j'ai commencé à  réécrire mais je n'ai pas fini car il y a des choses non expliquées que je ne suis pas sûr de comprendre...}
-% \alain{les reset-VASS sont-ils effective $\post^*$-basis ?}
-% \mathieu{non, sinon on aurait décidabilité pour la state résilience}
-%This stems from the fact that it is undecidable for Minsky machines with more than one counter,
-%which can be simulated by WSTS.
-First, let us show that {\sc Resilience} is undecidable for $3$-counter machines.
-\alain{pourquoi prendre 3 compteurs et pas 2 ? On ne comprend pas}
-%	This is due to the undecidability of termination for $2$-counter Minsky machines.
-From an $2$-counter machine $M=(Q, q_f,...)$ where $Q$ is the set of control-states and $q_f \in Q$ is the final control-state, one constructs an associated $3$-counter machine $M'=(Q', q'_f,...)$ with a final control-state $q_f' \in Q'$. We build $M'$ to simulate $M$ until it reaches $q_f$, then $M'$ decreases its first two counters until they reach $0$, then, and only then, finally $M'$ decreases the third counter until it reaches $0$.
-
-We observe that $M$ terminates from all (initial) states iff $q_f'(0,0,0)$ is reachable (in $M'$) from any state in $Q' \times \mathop{\uparrow} (0,0,1)$. 
-\alain{pourquoi  ? On ne comprend pas}
-%			with at least $1$ on its third counter. 
-%
-Remark that $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ is not reachable from any state in $Q' \times \mathop{\uparrow}(0,0,1)$.
-\alain{pourquoi   $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ is not reachable from any state in $Q' \times \mathop{\uparrow}(0,0,1)$ ?}
-\alain{pourquoi  $Q' \times \mathop{\uparrow}(0,0,1)$ et pas $Q' \times \mathop{\uparrow}(0,0,0)$? On ne comprend pas}
-%
-\alain{l'ensemble $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ est redondant car il est égal à $Q' \times \{(m,n,0) \mid m,n \in \N\}=Q' \times \N^2 \times \{0\}$}
-%
-\alain{les ensembles $Q' \times \{ (m,0,0), (0,n,0),(m,n,0) \mid m,n \in \N\}$ et $Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ sonts les mêmes et égaux à $Q' \times \N^2 \times \{0\}$. Pourquoi avoir deux notations différentes ?? ça complique inutilement la lecture. Et prendre la troisième, la plus simple $Q' \times \N^2 \times \{0\}$ qui n'apparait pas...}
-%
-%
-Based on this construction, the downward-closed set 
-$Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ is reachable (in $M'$)
-% \alain{review 3: - p. 10: why not choose $\mathop{\downarrow}{(0,0,0)}$ instead of $\mathop{\downarrow}{(1,1,0)}$?}
-from any state in $Q' \times \mathop{\uparrow}(0,0,1)$ iff $M$ terminates from all (initial) states;
-%
-\alain{a déjà été dit qq lignes avant}
-%
- this last problem is undecidable~\cite{Min61}. 
-Note that by chosing $s_0 \in Q' \times \mathop{\uparrow} (0,0,1)$,
-deciding whether the downward-closed set 
-$Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1))$ is reachable
-from every state in $\post^*(s_0) \cup Q' \times \mathop{\uparrow} (0,0,1)$ 
-%
-\alain{n'a-t-on pas $\post^*(s_0) \cup Q' \times \mathop{\uparrow} (0,0,1) = Q' \times \mathop{\uparrow} (0,0,1)$ ? a-t-on $Q' \times (\N^3 \setminus \mathop{\uparrow}(0,0,1)) = Q' \times  (0,0,0)$ ? si oui pourquoi faire compliqué ?}
-%
-is again equivalent to asking 
-%
-\alain{asking: non}
-%
-whether $M$ terminates on every initial state.
-%
-\alain{je trouve ça pas clair}
-%
-Hence {\sc Resilience} and {\sc State-resilience} are undecidable for Minsky machines.
-
-
-% \alain{écrire qqchose ici}
-Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset}. 
-% \alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
-%Reset-VASS extend the basic VASS model with special “reset
-%transitions” that set to $0$ some coordinates in the vector. 
-%			Let us recall their definition here.
-%      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
-The simulation operates by building a reset-VASS in which
-there exists
- a sequence from 
-an initial state %$(s,x_1 \ldots x_n)$
-to
-a state $ q({\bf 0})$ if and only if
-%
-\alain{attention notations incohérentes pour (q,0,0,0) et $ q({\bf 0})$}
-%
-there exists
-a sequence
- in the Minsky machine
- from a corresponding initial state
- to
- the state $q_f(0,0,0)$
-  (from Theorem~$5$ in \cite{araki1976PN}).
-  Moreover, the reset-VASS is able to emulate zero tests on the counters, hence it is able to guarrantee that $ q({\bf 0})$ is its only $\Safe$ state reachable from a $\Bad$ state as well.
-%
-\alain{désolé, pas clair}
-%
-Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
-{\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
-and  {\sc State-resilience} are undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
-$\omega^2$-WSTS with strong compatibility as well.\qed
-%\alain{déjà dit avant en mieux omega2 et strong comp et $\post$-effective mais reset-VASS apportent effective $\pred$-basis et ideally-effective....}
-\end{proof}
 
 
 
