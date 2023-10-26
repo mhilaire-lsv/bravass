@@ -1880,6 +1880,21 @@ and
 \end{proof}
 
 
+\section{Structural halting in reset-VASS}
+
+We claim {\sc Structual existential halting} in reset-VASS is undecidable.  
+This is based on the construction providng the undecidability of structural termination in Lossy counter machines and in reset-VASS~\cite{dufourd1998reset,mayr1998lossy}. Strictly speaking undecidability of
+{\sc Structual existential halting} is not considered in
+\cite{mayr1998lossy},
+but 
+the encoding of Minsky machines can be reused
+since 
+ {\sc Structual existential halting}
+ is equivalent to
+ structural termination in the case of deterministic Minsky machines and thus,
+ is undecidable for Minsky machines in general.
+
+
 \section{Decision procedure for VASS when $\Safe = \mathop{\downarrow} \Safe$}\label{appendix vass}
 
 % \mathieu{mettre ici le détail du Theo 13}
@@ -1988,10 +2003,6 @@ and hence from which it is not possible at all to reach
 $\Safe$ in $k$ or less steps.
 \qed
 \end{proof}
-
-
-
-
 
 
 
