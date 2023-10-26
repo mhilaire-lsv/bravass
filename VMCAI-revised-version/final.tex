@@ -1642,9 +1642,10 @@ From then on, we partition $\Safe$ into two subsets: an upward-closed
 union of sets of the form $\mathop{\uparrow} q(\textbf{0})$, and a remaining downward-closed subset.
 The key now is that
 there is only a finite number of elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} \leq \textbf{u}_k$ for all of which we will check reachability of $\Safe$ in $k$ or less steps, while 
- elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{u}_k$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps.
-\mathieu{Write small text and refer to appendix~\ref{appendix vass}}
-\qed
+ elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{u}_k$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps. Only being concerned by the upward-closed subset of $\Safe$ in the latter case enable us to reuse techniques seen when $\Safe$ is upward-closed, in particular the set of
+ elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{u}_k$
+ and the set of elements from which the upward-closed subset of $\Safe$ is reachable
+ are both upward-closed sets a basis of which we can construct, and hence can be checked for inclusion. We refer to appendix~\ref{appendix vass} for more details.\qed
 \end{proof}
 
 Let us now extend decidability of {\sc Resilience} for semilinear sets and VASS variants.
