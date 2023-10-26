@@ -226,7 +226,7 @@ when $\Safe$ is upward-closed.
 In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} in Petri nets for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 
 \noindent
-{\bf Our main contributions}
+{\bf Our main contributions.}
 \begin{itemize}
 \item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X$ a singleton) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed. 
 %Moreover, {state-resilience},
@@ -271,10 +271,8 @@ The two other types of resilience, {$k$-state-resilience} and {bounded-state-res
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
 
-Most of our results about the different models and different types of resilience are in Figure YYYY.
+Most of our results about the different models and different types of resilience are in the following tables. The different notions of effectivity are detailed on page~\pageref{on effectivity}.
 
-\noindent
-{\bf Plan of the paper.}
 
 \iffalse
  \begin{center}
@@ -349,7 +347,6 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 \end{center}
 \fi
 
-\alain{je pense qu'il faut faire deux tableaux pour que ce soit lisible. attention, la décidabilité n'est pas encore indiquée}
 
 
 \begin{center}
@@ -436,6 +433,16 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
  \end{tabular}
   }
 \end{center}
+
+% \alain{je pense qu'il faut faire deux tableaux pour que ce soit lisible. attention, la décidabilité n'est pas encore indiquée}
+
+\noindent
+{\bf Plan of the paper.} 
+
+% Section 2 introduit les notions, Section 3 et 4 les résultats de résilience et state résilience pour les WBTS, Section 5 sur les VASS et variantes
+Section~2 introduces the necessary definitions of WSTS and variations as well as the different notions of effectivity. Section~3 and 4 are concerned with the general framework of WSTS and contain our results on the three resilience problems
+and the three state-resilience problems respectively. Lastly, Section~5 concerns itself with the resilience problems for VASS and variations of VASS.
+
 
 \section{Well-structured transition systems and VASS}\label{section definitions}
 
@@ -640,7 +647,7 @@ Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to 
 Starting now, we assume that all considered WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five previous properties and that the wqo $\leq$ is ideally-effective. We refer to such WBTS as \emph{effective}.
 
 In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely, we say that an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ is 
-\begin{enumerate}
+\begin{enumerate}\label{on effectivity}
 %\item {\em effective} if there exists a pair of algorithms
 %($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
 %$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
@@ -745,7 +752,7 @@ A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $
 	\end{figure}
 \end{center}
 
-	\vspace{-0.8cm}
+	\vspace{-0.9cm}
 
 % \alain{il manque des refs dans la fig 1 qui sont déjà dans la biblio: WBTS, omega2,on peut mettre les front lossy avec les LCM et LCS}
 %
@@ -1503,7 +1510,10 @@ and there exists an algorithm accepting any ideal $I$ and returning a finite bas
 % \alain{je pense aux LCM avec insertions, elle  devrait avoir toutes les propriétés mais faut vérifier}
 
 $\post$-effective, $\post$-ideal-effective WSTS, strong downward compatibility and upward compatibility include for instance
-Lossy Channel Systems with insertions~\cite{DBLP:journals/iandc/AbdullaJ96,DBLP:journals/iandc/CeceFI96}. 
+Lossy Channel Systems with insertions~\cite{DBLP:journals/iandc/AbdullaJ96%,DBLP:journals/iandc/CeceFI96
+%
+%% GOTO bibliographic reference when doing the bibtex final.aux did not work
+}. 
 
 \section{Resilience for VASS and variations}\label{section VASS}
 
