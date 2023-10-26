@@ -1213,8 +1213,7 @@ The  zero reachability problem can be reduced to {\sc $t$-liveness}.
 % We may now prove the undecidability of the three state-resilience problems.
 Since the zero-reachability problem for reset-VASS is undecidable \cite{dufourd1998reset}, the reduction implies 
 {\sc $t$-liveness} is undecidable.
-By reduction to {\sc State-resilience}, and straightforward reduction to the other two state resilience problems, we 
-deduce the following.
+We deduce undecidability by reduction to {\sc State-resilience}, and straightforward reductions to the other two state resilience problems, as detailed in Appendix~\ref{appendix}.
 
 %\alain{énoncer pour les reset-VASS c'est plus fort}
 \begin{proposition}\label{srp up down}
@@ -1918,7 +1917,15 @@ Thus, every place of $P_2$ inherited from $N_1$ must be devoid of token. Moreove
 it can be reached without using the transitions $t_p$ or $t_{p_2}$. Since $t_{p_a}$ do not modify the places inherited from $P_1$ nor does it enable new transitions, the reachability of $\mu$ implies the reachability of a marking where every place of $P_2$ inherited from $P_1$ is devoid of token using only the transitions inherited from $N_1$. Thus the zero marking is reachable from $\mu_1$ in $N_1$.
 \end{proof}
 
-\mathieu{mettre ici le détail de la  prop5}
+
+
+Since the zero-reachability problem for reset-VASS is undecidable, the reduction implies {\sc $t$-liveness} is undecidable as well. This leads to the undecidability of {\sc State resilience}, {\sc Bounded-state-resilience} and
+{\sc $k$-state-resilience}. 
+The first follows straight from Proposition~\ref{reductions},
+while the other two
+follow from straightforward reductions
+we nonetheless
+develop in more details here.
 
 
 \noindent
@@ -1960,7 +1967,7 @@ and
 
 \section{More details on VASS}\label{appendix vass}
 
-\mathieu{mettre ici le détail du Theo 13}
+% \mathieu{mettre ici le détail du Theo 13}
 
 
 
