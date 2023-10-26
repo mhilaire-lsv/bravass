@@ -304,6 +304,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 % \alain{à quoi sert cette remarque ?}
 \fi
 
+\iffalse
 \begin{center}
  \resizebox{\textwidth}{!}{
 \begin{tabular}{ | l | c | c | c | r |}
@@ -346,6 +347,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
  \end{tabular}
   }
 \end{center}
+\fi
 
 \alain{je pense qu'il faut faire deux tableaux pour que ce soit lisible. attention, la décidabilité n'est pas encore indiquée}
 
@@ -362,7 +364,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
    		 &    \multirow{2}{*}{Decidable}  \\ 
 ~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
 		&  \\\cline{2-3}
-~	& WSTS ($\post$-effective) Prop~\ref{indec WSTS} & Undecidable    \\ \hline
+~	& WSTS ($\post$-effective) Prop~\ref{indec WSTS}  & Undecidable    \\ \hline
    \multirow{3}{*}{{\bf BRP }} 
   	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
    		 & \multirow{2}{*}{Decidable}  \\ 
@@ -374,19 +376,23 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
    		 & \multirow{2}{*}{Decidable}  \\ 
 ~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
 		& \\\cline{2-3}
-~	& ? & Undecidable   \\ \hline
+~	&  & Undecidable   \\ \hline
 
-   \multirow{2}{*}{ {\bf sRP } } 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) Thm~\ref{post srp} 
-   		 & Decidable \\ \cline{2-3}
+   \multirow{3}{*}{ {\bf sRP } } 
+  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective)  
+   		 & \multirow{2}{*}{Decidable} \\
+   	& Thm~\ref{post srp} &	 \\ \cline{2-3}
 ~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Undecidable   \\ \hline
-   \multirow{2}{*}{ {\bf BsRP } } 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
-   		 & Decidable \\ \cline{2-3}
+   \multirow{3}{*}{ {\bf BsRP } } 
+  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) 
+   		 & \multirow{2}{*}{Decidable} \\
+   	& Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
+   	& \\ 	  \cline{2-3}
 ~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Undecidable    \\ \hline
-   \multirow{2}{*}{ {\bf ksRP } } 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}  
-   		 & Decidable \\ \cline{2-3}
+   \multirow{3}{*}{ {\bf ksRP } } 
+  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective)
+   		 & \multirow{2}{*}{Decidable} \\
+   	&  Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}  		& \\	  \cline{2-3}
 ~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Undecidable    \\ \hline
 
  \end{tabular}
@@ -406,7 +412,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
    		 	& \multirow{2}{*}{Decidable}  \\ 
 
 		& VASS & \\\cline{2-3}
-		& Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS with dcs} 
+		& ~ Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS with dcs}~ 
 		& Undecidable   \\ \hline
    \multirow{2}{*}{{\bf BRP }} 
    		 & VASS 
@@ -419,7 +425,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 
    \multirow{2}{*}{{\bf sRP }} 
    		 & WSTS (downward + upward) Thm~9 & Decidable\\ \cline{2-3}
-~	& Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{srp up down}  & Undecidable  \\ \hline
+~	& ~ Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{srp up down} ~ & Undecidable  \\ \hline
    \multirow{2}{*}{{\bf BsRP }} 
    		 & WSTS (downward + upward) Cor~\ref{downward brp} & Decidable \\ \cline{2-3}
 ~	&  ? & Undecidable   \\ \hline
@@ -1757,8 +1763,9 @@ One could also extend upon the classes of set $\Safe$
 
 \section{Lemma technical proofs}
 
-Let us now prove more formally some of the lemmas and propositions ...
 
+We have omitted proofs for Lemma~\ref{downward compatible} and Lemma~\ref{Lemma intersection}
+up until now
 \mathieu{mettre ici les preuves suivantes (?): lemme1, et lemme 2}
 
 \noindent
