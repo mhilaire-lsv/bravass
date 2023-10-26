@@ -899,7 +899,7 @@ have a terminating (i.e. finite) run
 { For every initial state, does there exists a run that terminates ?\\}
 
 
-The undecidability of which leads to the following proposition.
+{\sc Structural existential halting} is undecidable which leads to the following proposition.
 
 % \mathieu{GOTO}
 
@@ -912,7 +912,7 @@ The undecidability of which leads to the following proposition.
 \begin{proof}
 \nocite{araki1976PN,dufourd1998reset}
 {\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some state $q_f$ is equivalent to {\sc Structural existential halting} of reset-VASS,
-since a run terminates w.l.o.g. if it reaches a terminal state of the form $q_f({\bf 0})$. \qed \end{proof}
+since a run terminates w.l.o.g. iff it reaches a terminal state of the form $q_f({\bf 0})$. \qed \end{proof}
 
 
 \subsection{Case: $\Safe=\mathop{\uparrow} \Safe$.}\label{safe-up}
@@ -1406,7 +1406,7 @@ Thus in case of $\post^*$-basis-effective WSTS (when the compatibility is not st
 We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
 Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the 
-structural termination of reset-VASS.
+{\sc Structural existential halting} of reset-VASS.
 %\mathieu{GOTO}
 
 \begin{proposition}\label{srp down up}
@@ -1674,7 +1674,7 @@ One could also extend upon the classes of set $\Safe$
 \appendix
 
 
-\section{Lemma technical proofs}
+\section{Proofs of technical lemmas}
 
 
 We have omitted proofs for Lemma~\ref{downward compatible} and Lemma~\ref{Lemma intersection}
@@ -1879,7 +1879,7 @@ and
 \end{proof}
 
 
-\section{More details on VASS}\label{appendix vass}
+\section{Decision procedure for VASS when $\Safe = \mathop{\downarrow} \Safe$}\label{appendix vass}
 
 % \mathieu{mettre ici le détail du Theo 13}
 
@@ -1953,7 +1953,7 @@ $\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldot
 \Bad \setminus (\pred^{*}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$
 is stationnary. 
 %\mathieu{
-We check the finiteness of the set by comparing the finite basis of $\Bad$ and
+We check the finiteness of the set by comparing the elements from the finite basis of $\Bad$ and
 $(\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$.
 %}
 If the set is finite then we stop the procedure once we have checked for every element
