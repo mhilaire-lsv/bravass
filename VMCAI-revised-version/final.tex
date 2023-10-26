@@ -1558,7 +1558,8 @@ The key now is that
 there is only a finite number of elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} \leq \textbf{u}_k$ for all of which we will check reachability of $\Safe$ in $k$ or less steps, while 
  elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{u}_k$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps. 
 Only being concerned by the upward-closed subset of $\Safe$ in the latter case enable us to reuse techniques seen when $\Safe$ is upward-closed. Indeed we can compute the basis for the sets of elements from which our upward-closed subset of $\Safe$ is reachable in at most $k$ steps. 
-Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Bad = \mathop{\uparrow} \Bad$. This leads to a decision procedure detailed in appendix~\ref{appendix vass},
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Bad = \mathop{\uparrow} \Bad$.
+We check the finiteness of the set by comparing the elements from the finite basis of both upward-closed sets. This leads to a decision procedure detailed in appendix~\ref{appendix vass},
  which lead to the following decidability result:
 \begin{theorem}\label{vass down}
 {\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
@@ -1955,6 +1956,12 @@ is stationnary.
 %\mathieu{
 We check the finiteness of the set by comparing the elements from the finite basis of $\Bad$ and
 $(\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$.
+%
+As an example, in dimension $2$, for an upward-closed set $U$, $\mathop{\uparrow} q(n,m) \setminus U$ is finite if and only if $U$ contains an element of the form $q(l,m')$ with $m' \geq m$ and $l \leq n$
+and one of the form $q(n',l)$ with $n' \geq n$ and $l \leq m$. Indeed, if it does, then
+elements of $\mathop{\uparrow} q(n,m)$ with coordinates sufficiently large are greater than these and thus belong to $U$.
+If not, then the infinite set $\{q(n,m') \mid m' \geq m \}$ or the infinite set
+$\{q(n',m) \mid n' \geq n \}$   belong to $\mathop{\uparrow} q(n,m) \setminus U$ which is hence not finite.
 %}
 If the set is finite then we stop the procedure once we have checked for every element
 whether it is possible to reach $\Safe$ from it.
