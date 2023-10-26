@@ -1555,9 +1555,11 @@ then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\B
 $\mathop{\uparrow} q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$.
 
-From then on, we can split $\Safe$ into two subsets: an upward-closed 
-union of sets $\mathop{\uparrow} q(\textbf{0})$ and a remaining downward-closed subset.
-The key now is that elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps.
+From then on, we partition $\Safe$ into two subsets: an upward-closed 
+union of sets of the form $\mathop{\uparrow} q(\textbf{0})$, and a remaining downward-closed subset.
+The key now is that
+there is only a finite number of elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} \leq \textbf{u}_k$ for all of which we will check reachability of $\Safe$ in $k$ or less steps, while 
+ elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{u}_k$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps.
 \mathieu{Write small text and refer to appendix~\ref{appendix vass}}
 \qed
 \end{proof}
