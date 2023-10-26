@@ -1536,13 +1536,13 @@ This all changes when one considers VASS (having control-states). For a VASS $V 
 then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 $\mathop{\uparrow} q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$.
- From then on, we partition $\Safe$ into two subsets: an upward-closed 
+Based on this, we partition $\Safe$ into two subsets: an upward-closed 
 union of sets of the form $\mathop{\uparrow} q(\textbf{0})$, and a remaining downward-closed subset.
 The key now is that
 there is only a finite number of elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} \leq \textbf{u}_k$ for all of which we will check reachability of $\Safe$ in $k$ or less steps, while 
  elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{u}_k$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps. 
-Only being concerned by the upward-closed subset of $\Safe$ in the latter case enable us to reuse techniques seen when $\Safe$ is upward-closed, in particular we can compute the basis for the sets of elements from which the upward-closed subset of $\Safe$ is reachable in at most $k$ steps. 
-Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Bad = \mathop{\uparrow} \Bad$. This lead to a decision procedure detailed in appendix~\ref{appendix vass},
+Only being concerned by the upward-closed subset of $\Safe$ in the latter case enable us to reuse techniques seen when $\Safe$ is upward-closed. Indeed we can compute the basis for the sets of elements from which our upward-closed subset of $\Safe$ is reachable in at most $k$ steps. 
+Substracting these predecessor from $\Bad$ yields either a finite number of elements from which one has to check $\Safe$ is reachable in at most $k$ steps, either an infinite number of elements of which there is one which cannot reach $\Safe$ in at most $k$ steps \-- for much the same reasons {\sc Bounded resilience} and {\sc $k$-resilience} never hold for VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Bad = \mathop{\uparrow} \Bad$. This leads to a decision procedure detailed in appendix~\ref{appendix vass},
  which lead to the following decidability result:
 \begin{theorem}\label{vass down}
 {\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
