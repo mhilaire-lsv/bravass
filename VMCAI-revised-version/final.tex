@@ -1955,22 +1955,23 @@ $\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldot
 is stationnary. 
 %\mathieu{
 We check the finiteness of the set by comparing the elements from the finite basis of $\Bad$ and
-$(\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$.
+$(\pred^{\leq k_0}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$.
 %
-As an example, in dimension $2$, for an upward-closed set $U$, $\mathop{\uparrow} q(n,m) \setminus U$ is finite if and only if $U$ contains an element of the form $q(l,m')$ with $m' \geq m$ and $l \leq n$
-and one of the form $q(n',l)$ with $n' \geq n$ and $l \leq m$. Indeed, if it does, then
-elements of $\mathop{\uparrow} q(n,m)$ with coordinates sufficiently large are greater than these and thus belong to $U$.
-If not, then the infinite set $\{q(n,m') \mid m' \geq m \}$ or the infinite set
+As an example, in dimension $2$, for an upward-closed set $U$, $(\mathop{\uparrow} q(n,m)) \setminus U$ is finite if and only if $U$ contains an element of the form $q(n',m')$ with $m' \geq m$ and $n' \leq n$,
+and one of the form $q(n'',m'')$ with $n'' \geq n$ and $m'' \leq m$. Indeed, if it does, then
+elements of $\mathop{\uparrow} q(n,m)$ with coordinates sufficiently large are greater than these and thus belong to $U$ by upward-closedness.
+If not, then either the infinite set $\{q(n,m') \mid m' \geq m \}$ or the infinite set
 $\{q(n',m) \mid n' \geq n \}$   belong to $\mathop{\uparrow} q(n,m) \setminus U$ which is hence not finite.
 %}
-If the set is finite then we stop the procedure once we have checked for every element
+
+If the set $\Bad \setminus (\pred^{*}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$ is finite then we stop the procedure once we have checked for every element
 whether it is possible to reach $\Safe$ from it.
 If it is possible to reach $\Safe$ from every element then {\sc $k_m$-resilience}
 hold
 for $k_m = \max(k_0, k_{\pi})$ with 
 $k_{\pi}$ the maximum of the length of the paths from 
 $\Bad \setminus (\pred^{\leq k_0}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$ to $\Safe$.
-If it is infinite then
+If the set is infinite then
 for every $k \in \N$,
 $k$-resilience does not hold, 
 and we eventually find a witness that $k$-resilience does not hold.
