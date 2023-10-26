@@ -1444,7 +1444,7 @@ Since the reasoning hold for all $k \in \N$, {\sc Bounded-resilience} does not h
 \qed
 \end{proof}
 
-This all changes when one considers VASS (having control-states). For a VASS $V = (Q,T)$, a set $\Bad = \mathop{\uparrow} \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+This all changes when one considers VASS (having control-states). For a VASS $V = (Q,T)$, a set $\Bad = \mathop{\uparrow} \Bad$, for all $q \in Q$, either there is an element of the basis of $\Bad$ with control-state $q$ \----
 then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 $\mathop{\uparrow} q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$. One can then exhibit upward-closed subsets of 
@@ -1473,7 +1473,7 @@ $\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{
 For all $p \in Q$, all states reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
 of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
 
-For all $q \in Q$, either there is an element of the basis of $\Bad$ with state $q$ \----
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with control-state $q$ \----
 then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
 $\mathop{\uparrow} q(\textbf{0})$
  is in the complement of $\Bad$, i.e. $\Safe$.
@@ -1541,6 +1541,23 @@ that is in $\Bad$ but not in any of the $\pred^{\leq k}(\mathop{\uparrow} q_{j_i
 and hence from which it is not possible at all to reach
 $\Safe$ in $k$ or less steps. 
 \fi
+The set $\Bad$ admits a finite basis 
+$B_\Bad = \{ q_{i_1}(\textbf{v}_{i_1}), q_{i_2}(\textbf{v}_{i_2}), \ldots,
+q_{i_m}(\textbf{v}_{i_m}) \}$.
+Consider the vector $\textbf{v}_{\Bad} = \Sigma_{1 \leq j \leq m} \textbf{v}_{i_j}$,
+and then consider the vector
+$\textbf{u}_k = \textbf{v}_{\Bad} + (k+1) \cdot (c_{\max}, c_{\max}, \ldots, c_{\max})$.
+For all $p \in Q$, all states reachable from $p(\textbf{u}_k)$ in $k$ or less steps are 
+of the form $q(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$.
+
+For all $q \in Q$, either there is an element of the basis of $\Bad$ with control-state $q$ \----
+then $q(\textbf{v})$ with $\textbf{v} > \textbf{v}_{\Bad}$ is necessarily in $\Bad$ by upward closure; if this hold for all $q \in Q$, then $k$-resilience does not hold \---- either there is none. If there is none, then 
+$\mathop{\uparrow} q(\textbf{0})$
+ is in the complement of $\Bad$, i.e. $\Safe$.
+
+From then on, we can split $\Safe$ into two subsets: an upward-closed 
+union of sets $\mathop{\uparrow} q(\textbf{0})$ and a remaining downward-closed subset.
+The key now is that elements of $\Bad$ of the form $p(\textbf{v})$ with $ \textbf{v} > \textbf{v}_{\Bad}$ can only potentially reach the upward-closed subset of $\Safe$ in $k$ or less steps.
 \mathieu{Write small text and refer to appendix~\ref{appendix vass}}
 \qed
 \end{proof}
