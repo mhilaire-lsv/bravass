@@ -874,15 +874,23 @@ $\pred^*(\Safe) = \pred^{\leq k}(\Safe)$, hence {\sc Bounded-resilience} for $\o
 
 In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.  This stems from the fact
 {\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some control-state $q_f$ is equivalent to
-deciding structural termination of reset-VASS, which is undecidable.
+deciding structural %termination of reset-VASS, 
+			existential halting of reset-VASS, 
+which is undecidable.
 
-Indeed, the structural termination problem consists in deciding if %the termination problem holds for 
-a system terminates on every initial state. 
+Indeed, the structural existential halting problem consists in deciding if 
+a system %terminates
+have a terminating (i.e. finite) run
+ from every initial state. 
 
-\problemx{Structural termination}
+% \problemx{Structural universal halting}
+% {A reset-VASS $V=(Q,T)$ of dimension $d$.}
+% { Do all runs for every initial state terminate ?\\}
+
+\problemx{Structural existential halting}
 {A reset-VASS $V=(Q,T)$ of dimension $d$.}
-{ %$Q \times \N^d \longrightarrow^{*} q_f({\bf 0})$ ? 
-Do all runs for every initial state terminate ?\\}
+{ For every initial state, does there exists a run that terminates ?\\}
+
 
 The undecidability of which leads to the following proposition.
 
@@ -896,12 +904,8 @@ The undecidability of which leads to the following proposition.
 
 \begin{proof}
 \nocite{araki1976PN,dufourd1998reset}
-{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some state $q_f$ is equivalent to
-deciding structural termination of reset-VASS,
-since termination is w.l.o.g. reachability of $q_f({\bf 0})$ 
- \mathieu{est-ce qu'on a pas besoin d'une hypothèse d'être deterministic ici pour que ce soit vraiment w.l.o.g. ??} 
-\alain{qu'entends-tu par deterministic ici ?}
-for some control state $q_f$. \qed \end{proof}
+{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some state $q_f$ is equivalent to {\sc Structural existential halting} of reset-VASS,
+since a run terminates w.l.o.g. if it reaches a terminal state of the form $q_f({\bf 0})$. \qed \end{proof}
 
 
 \subsection{Case: $\Safe=\mathop{\uparrow} \Safe$.}\label{safe-up}
