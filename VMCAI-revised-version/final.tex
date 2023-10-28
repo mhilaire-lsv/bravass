@@ -127,9 +127,9 @@ Institut Universitaire de France }
 \begin{abstract}
 \noindent
 Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state in $\Bad$ then it can also leave this bad state and reach a safe state in $\Safe$.
-We consider six types of resilience (one of them is the home-space property) defined by an upward-closed set or a downward-closed set $\Safe$, and by the existence of a bound on the length of minimal runs starting from a set $\Bad$ and reaching $\Safe$ ($\Bad$ is generally the complementary of $\Safe$). We study the decidability of each type of resilience for many models: Well Behaved Transition Systems (WBTS), WSTS, VASS and other variations of counter machines. 
+We consider six types of resilience (one of them is the home-space property) defined by an upward-closed set or a downward-closed set $\Safe$, and by the existence of a bound on the length of minimal runs starting from a set $\Bad$ and reaching $\Safe$ ($\Bad$ is generally the complementary of $\Safe$). We study the decidability of each type of resilience for many infinite-state transitiuon systems: Well Behaved Transition Systems (WBTS), Well Structured Transition Systems (WSTS), VASS and other variations of counter machines. 
 %
-We first show that all resilience problems are undecidable for effective WSTS with strong compatibility and for upward-closed sets $\Safe$; resilience is also undecidable for reset-VASS (that are WSTS with effective $\pred$-basis) for downward-closed sets $\Safe$.
+We first show that all resilience problems are undecidable for effective WSTS with strong compatibility and for upward-closed sets $\Safe$; resilience is also undecidable for reset-VASS (that are WSTS with effective $\pred$-basis) when $\Safe$ are downward-closed sets.
 
 We then show that resilience is decidable for WBTS with the computability of the finite basis of the downward-closure of the set of (immediate) successors of a downward-closed set ($\post$-basis-effective) and for WSTS with the (well-known) $\pred$-basis-effective hypothesis.
 %
@@ -1289,6 +1289,7 @@ $\Safe=\mathop{\uparrow} \Safe$.
 \end{proposition}
 
 \begin{proof}
+\alain{où utilise-t-on la strong compatibility ? et si on ne l'utilise pas, c'est le theo 8...}
 Since $\mathscr{S}$ is a WSTS there exists an $n_0 \in \N$ such that
 $\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute the least $n_0$ by iteratively computing 
 $\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking 
@@ -1360,7 +1361,7 @@ Moreover there exist classes of WSTSs with strong
 
 Keeping the $\mathop{\uparrow} \post^*$ effectiveness hypothesis but \emph{loosening} the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
 
-
+\alain{plus fort que prop 6}
 \begin{theorem}\label{post srp}
 {\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS
 when
@@ -1369,16 +1370,39 @@ $\Safe=\mathop{\uparrow} \Safe$.
 
 
 \begin{proof}
-Let $B_{\mathop{\uparrow} \post^*(s)}$ 
- be a basis of $\mathop{\uparrow} \post^*(s)$, and $B_\Safe$ a basis of $\Safe$.
-By applying Lemma~\ref{Lemma intersection} twice, we obtain
+Let $\mathscr{S}$ be a $\pred$-basis-effective, $\post^*$-basis-effective WSTS.
+%
+Since $\mathscr{S}$ is $\post^*$-basis-effective, let $B_{\mathop{\uparrow} \post^*(s)}$ 
+ be a finite basis of $\mathop{\uparrow} \post^*(s)$, hence $\mathop{\uparrow} \post^*(s) = \mathop{\uparrow} B_{\mathop{\uparrow} \post^*(s)}$.
+%
+Let $B_\Safe$ be a finite basis of $\Safe$, hence $\Safe = .\mathop{\uparrow} B_\Safe$.
+%
+Since $\mathscr{S}$ is $\pred$-basis-effective, we may compute a finite basis $B_{\pred^*(\Safe)}$ of $\pred^*(\Safe)$ from $B_\Safe$.
+%
+\alain{je pense qu'il y a une erreur, on n'utilise pas le Lemme 2}
+%
+By applying Lemma~\ref{Lemma intersection} twice,
+we obtain that 
 \[ \post^*(s) 
  \subseteq \pred^*(\Safe) \text{ iff } B_{\mathop{\uparrow} \post^*(s)}  
  \subseteq \pred^*(\Safe)\]
-Since $B_{\mathop{\uparrow} \post^*(s)}$ is finite and we can compute 
+%
+%
+\alain{je pense qu'il y a une erreur, je propose plutôt}
+%
+Recall that $\mathscr{S}$ is state-resilient iff  $\post^*(s) 
+ \subseteq \pred^*(\Safe)$ iff 
+\[ \mathop{\uparrow} B_{\mathop{\uparrow} \post^*(s)} 
+ \subseteq \mathop{\uparrow}  B_{\pred^*(\Safe)} \text{ iff } \forall b \in B_{\mathop{\uparrow} \post^*(s)}  \exists b' \in B_{\pred^*(\Safe)} \text{ such that } b' \leq b \]
+%
+Since both $B_{\mathop{\uparrow} \post^*(s)}$ and $B_{\pred^*(\Safe)}$ are finite, {\sc State-resilience} is decidable.
+%
+\alain{ce qui suit est à enlever je l'ai commenté (à vérifier)}
+%
+%			Since $B_{\mathop{\uparrow} \post^*(s)}$ is finite
 %\alain{comment calcule-t-on une telle base sans l'hypothèse $\pred$-basis-effective qui n'est pas dans les hypothèses du théorème ? Est-elle chez Ozkan ?} 
-a basis of $\pred^*(\Safe)$ from $B_\Safe$, we can check that $B_{\mathop{\uparrow} \post^*(s)} 
- \setminus \pred^*(\Safe) = \emptyset$.  \qed
+%			we can check that $B_{\mathop{\uparrow} \post^*(s)} 
+%			 \setminus \pred^*(\Safe) = \emptyset$.  \qed
 \end{proof}
 
 
