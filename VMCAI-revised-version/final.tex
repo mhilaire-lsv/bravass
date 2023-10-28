@@ -555,7 +555,7 @@ A wqo $(X, \leq)$ is an \emph{$\omega^2$-wqo} if $(Ideals(X), \subseteq)$ forms 
 %Using Proposition~4.3 in \cite{DBLP:journals/corr/abs-1208-4549}, we recall a simple definition of a strict subclass of wqos that has a very nice property: a wqo $(X,\leq)$ is an $\omega^2$-wqo iff $(Ideals(X),\subseteq)$ is a wqo. 
 
 Although there exists wqo that are not $\omega^2$-wqo (see the Rado ordering in \cite{DBLP:journals/ipl/Jancar99}), all naturally occurring wqos are $\omega^2$-wqo, perhaps to the notable exception of ﬁnite graphs well-quasi-ordered by the graph minor relation. %			which are wqo but not known to be $\omega^2$-wqo. 
-The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is an $\omega^2$-wqo (Proposition~4.5 in \cite{DBLP:journals/corr/abs-1208-4549}). Now we are able to define $\omega^2$-WSTS:
+The class of $\omega^2$-wqo is robust because every datatype in the following list - natural number, finite set, ﬁnite product, ﬁnite sum, finite disjoint sum, ﬁnite words, ﬁnite multisets and ﬁnite trees - is an $\omega^2$-wqo \cite[Proposition~4.5]{DBLP:journals/corr/abs-1208-4549}. Now we are able to define $\omega^2$-WSTS:
 
 \begin{definition}(Finkel and Goubault-Larrecq \cite{DBLP:journals/corr/abs-1208-4549})
 A WSTS  $\mathscr{S}=(S, \rightarrow, \leq)$
@@ -639,7 +639,9 @@ First, to simplify, we suppose that all classes of considered ordered transition
 \item  inclusion of ideals is decidable. 
 \end{enumerate}
 %
-Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the previous hypotheses, one are able to enumerate \emph{downward-closed sets} (by their finite decomposition in ideals), to decide inclusion between downward-closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward-closed sets.
+Blondin and al. showed \cite[Lemma 4.3]{DBLP:journals/lmcs/BlondinFM17} that under the
+%Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the 
+previous hypotheses, one are able to enumerate \emph{downward-closed sets} (by their finite decomposition in ideals), to decide inclusion between downward-closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward-closed sets.
 %
 Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\mathop{\downarrow} s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\mathop{\uparrow} s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective . \cite{DBLP:phd/hal/Halfon18}.
 %	 (hence of downward-closed sets).
@@ -680,7 +682,7 @@ any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow}
 \end{enumerate}
 
 Counter machines are effective but don't enjoy any other effectivities among the list of five.
-Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective (Proposition~35 in \cite{BFM-ic17}); there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition~36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition~45 in \cite{BFM-ic17}).
+Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective \cite[Proposition~35]{BFM-ic17}; there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition~36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition~45 in \cite{BFM-ic17}).
 Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite{DBLP:journals/corr/abs-2108-00889} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
 %
 Reset-VASS are not $\pred^*$-basis-effective because computing a finite basis of $\mathop{\downarrow} \pred^*(q,0,...,0)$ would allow to decide whether $(q,0,...,0)$ is reachable that is undecidable for reset-VASS.
@@ -1015,6 +1017,13 @@ Remark that the above proofs do not make use of the
 property that $\Bad$ is the complement of $\Safe$, simply using
 $\Bad=\mathop{\downarrow} \Bad$ and $\Safe=\mathop{\uparrow} \Safe$, thus 
 the above results still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
+Remark furthermore that
+	reset-VASS are $\pred$-basis-effective
+	hence satisfy the conditions from
+	Theorem~\ref{xxx}
+	which thus implies decidability
+	of {\sc Resilience}, {\sc Bounded resilience} 
+and {\sc $k$-resilience} in reset-VASS in the case $\Safe = \mathop{\uparrow} \Safe$.
 
 
 %				The completion-$\post$-effective hypothesis is needed to decide {\sc Resilience}.
@@ -1217,7 +1226,10 @@ Despite this it is possible to reduce
 the {\em zero-reachability problem} 
 to
 {\sc $t$-liveness}.
-The following Proposition is a variation  to reset-VASS of Theorem~5.5 in \cite{peterson1981petri} originally stated for Petri nets, whose proof can be seen in Appendix~\ref{appendix}%
+% The following Proposition is a variation  to reset-VASS of Theorem~5.5 in \cite{peterson1981petri} originally stated for Petri nets,
+The following Proposition is a variation  to reset-VASS 
+of~\cite[Theorem~5.5]{peterson1981petri} originally stated for Petri nets,
+ whose proof can be seen in Appendix~\ref{appendix}%
 .
 \begin{proposition}\label{liveness reset}
 The  zero reachability problem can be reduced to {\sc $t$-liveness}.
@@ -1639,7 +1651,9 @@ whereas ``one-to-all'' ($\exists s \in  X ~ \forall t \in  Y ~ s \to^*  t$),
 \end{theorem}
 
 \begin{proof}
-We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
+% We deduce from Theorem 3.6 in \cite{DBLP:conf/rp/Schnoebelen10} 
+We deduce from \cite[Theorem 3.6]{DBLP:conf/rp/Schnoebelen10} 
+that $\pred^*(\Safe)$ is a computable semilinear set if $\Safe$ is semilinear. Hence since the inclusion between two semilinear sets is decidable, we deduce that $\Bad \subseteq \pred^*(\Safe)$ is decidable if $\Bad$ is semilinear. \qed
 \end{proof}
 
 
@@ -1795,8 +1809,9 @@ A \emph{reset Petri net} $N = (P, T, E, R, \mu)$ consists of a finite set of {\e
 It is well-known that Petri nets and VASS are equivalents models with regards of the decidability of reachability problems: an $d$-VASS can be encoded into a Petri net with $d+2$ places and conversely, a Petri net with $p$ places can be encoded into a $p$-VASS~\cite{DBLP:journals/siglog/Schmitz16}. The same equivalence hold between reset-VASS and reset Petri nets.
 
 
-We will show that the {\em zero-reachability} problem can be reduced to {\sc $t$-liveness} in reset Petri nets; this is done by "adjusting" a similar result for Petri nets (Theorem~5.5 in  \cite{peterson1981petri}).\\
-
+We will show that the {\em zero-reachability} problem can be reduced to {\sc $t$-liveness} in reset Petri nets; this is done by 
+% "adjusting" a similar result for Petri nets (Theorem~5.5 in  \cite{peterson1981petri}).\\
+"adjusting" a similar result for Petri nets~\cite[Theorem~5.5]{peterson1981petri}. \\
 
 
 \noindent
