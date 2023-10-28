@@ -1280,30 +1280,31 @@ when
 $\Safe=\mathop{\uparrow} \Safe$.
 \end{theorem}
 %
-\alain{ce qui suit est à supprimer car subsumé par Theo 8}
 %
-We may immediately  \emph{generalize} this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
-
-\begin{proposition}\label{postcomputable}
-{\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
-when
-$\Safe=\mathop{\uparrow} \Safe$.
-\end{proposition}
-
-\begin{proof}
-\alain{où utilise-t-on la strong compatibility ? et si on ne l'utilise pas, c'est le theo 8...}
-Since $\mathscr{S}$ is a WSTS there exists an $n_0 \in \N$ such that
-$\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute the least $n_0$ by iteratively computing 
-$\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking 
-$\pred^{\leq n+1}(\Safe) = \pred^{\leq n}(\Safe)$, 
-returning $n$ if that is the case.
-Then, because {\sc $n_0$-state-resilience} is decidable, 
-checking $\mathop{\uparrow} \post^*(s) 
- \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
-and {\sc State-resilience} is decidable. \qed
-\end{proof}
+%\alain{ce qui suit est à supprimer car subsumé par Theo 8}
+%%
+%We may immediately  \emph{generalize} this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
 %
-\alain{ce qui précède est à supprimer car subsumé par Theo 8}
+%\begin{proposition}\label{postcomputable}
+%{\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
+%when
+%$\Safe=\mathop{\uparrow} \Safe$.
+%\end{proposition}
+%
+%\begin{proof}
+%\alain{où utilise-t-on la strong compatibility ? et si on ne l'utilise pas, c'est le theo 8...}
+%Since $\mathscr{S}$ is a WSTS there exists an $n_0 \in \N$ such that
+%$\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute the least $n_0$ by iteratively computing 
+%$\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking 
+%$\pred^{\leq n+1}(\Safe) = \pred^{\leq n}(\Safe)$, 
+%returning $n$ if that is the case.
+%Then, because {\sc $n_0$-state-resilience} is decidable, 
+%checking $\mathop{\uparrow} \post^*(s) 
+% \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
+%and {\sc State-resilience} is decidable. \qed
+%\end{proof}
+%%
+%\alain{ce qui précède est à supprimer car subsumé par Theo 8}
 %
 The proof of Theorem~\ref{ref ozkan} rely on the computability of $\mathop{\uparrow} \post^*(s)$ and on the following lemma.
 
@@ -1365,7 +1366,7 @@ Moreover there exist classes of WSTSs with strong
 
 Keeping the $\mathop{\uparrow} \post^*$ effectiveness hypothesis but \emph{loosening} the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
 
-\alain{Theo 8 est plus fort que prop 6}
+%\alain{Theo 8 est plus fort que prop 6}
 \begin{theorem}\label{post srp}
 {\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS
 when
@@ -1383,25 +1384,23 @@ Let $B_\Safe$ be a finite basis of $\Safe$, hence $\Safe = .\mathop{\uparrow} B_
 %
 Since $\mathscr{S}$ is $\pred$-basis-effective, we may compute a finite basis $B_{\pred^*(\Safe)}$ of $\pred^*(\Safe)$ from $B_\Safe$.
 %
-\alain{je pense qu'il y a une erreur, on n'utilise pas le Lemme 2}
 %
 By applying Lemma~\ref{Lemma intersection} twice,
 we obtain that 
 \[ \post^*(s) 
- \subseteq \pred^*(\Safe) \text{ iff } B_{\mathop{\uparrow} \post^*(s)}  
+ \subseteq \pred^*(\Safe) \text{ iff } \mathop{\uparrow} \post^*(s)
  \subseteq \pred^*(\Safe)\]
 %
 %
-\alain{je pense qu'il y a une erreur, je propose plutôt}
 %
-Recall that $\mathscr{S}$ is state-resilient iff  $\post^*(s) 
- \subseteq \pred^*(\Safe)$ iff 
+%Recall that $\mathscr{S}$ is state-resilient iff  $\post^*(s) 
+% \subseteq \pred^*(\Safe)$ iff 
+Now the last inclusion is equivalent to:
 \[ \mathop{\uparrow} B_{\mathop{\uparrow} \post^*(s)} 
  \subseteq \mathop{\uparrow}  B_{\pred^*(\Safe)} \text{ iff } \forall b \in B_{\mathop{\uparrow} \post^*(s)}  \exists b' \in B_{\pred^*(\Safe)} \text{ such that } b' \leq b \]
 %
-Since both $B_{\mathop{\uparrow} \post^*(s)}$ and $B_{\pred^*(\Safe)}$ are finite, {\sc State-resilience} is decidable.
+Since both $B_{\mathop{\uparrow} \post^*(s)}$ and $B_{\pred^*(\Safe)}$ are finite, {\sc State-resilience} is decidable.\qed
 %
-\alain{ce qui suit est à enlever je l'ai commenté (à vérifier)}
 %
 %			Since $B_{\mathop{\uparrow} \post^*(s)}$ is finite
 %\alain{comment calcule-t-on une telle base sans l'hypothèse $\pred$-basis-effective qui n'est pas dans les hypothèses du théorème ? Est-elle chez Ozkan ?} 
