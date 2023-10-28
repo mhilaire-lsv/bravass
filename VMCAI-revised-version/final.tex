@@ -405,7 +405,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 		 & ~ {\bf Decidability}  ~ 
  \\ \hline
    \multirow{3}{*}{ {\bf RP }} 
-   		 & Downard-WSTS ($\pred^*$-basis-effective) Thm~\ref{up-down}
+   		 & Downard-WBTS ($\pred^*$-basis-effective) Thm~\ref{up-down}
    		 	& \multirow{2}{*}{Decidable}  \\ 
 
 		& VASS & \\\cline{2-3}
@@ -421,13 +421,13 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 ~	& ? & Undecidable    \\ \hline
 
    \multirow{2}{*}{{\bf sRP ~ ~ }} 
-   		 & WSTS (downward + upward) Thm~9 & Decidable\\ \cline{2-3}
+   		 & WBTS (downward + upward) Thm~9 & Decidable\\ \cline{2-3}
 ~	& ~ Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{srp up down}  & Undecidable  \\ \hline
    \multirow{2}{*}{{\bf BsRP }} 
-   		 & WSTS (downward + upward) Cor~\ref{downward brp} & Decidable \\ \cline{2-3}
+   		 & WBTS (downward + upward) Cor~\ref{downward brp} & Decidable \\ \cline{2-3}
 ~	&  ? & Undecidable   \\ \hline
    \multirow{2}{*}{{\bf ksRP }} 
-   		 & WSTS (downward + upward) Cor~\ref{downward brp} & Decidable\\ \cline{2-3}
+   		 & WBTS (downward + upward) Cor~\ref{downward brp} & Decidable\\ \cline{2-3}
 ~	 & ? & Undecidable    \\ \hline
 
  \end{tabular}
@@ -570,15 +570,16 @@ Another type of WSTS exists that enjoys downward compatibility.
 %
 %		Finkel and Schnoebelen, 
 %
-\begin{definition}[Definition 5.1, \cite{DBLP:journals/tcs/FinkelS01}]
-A {\em downward (compatible) well-structured transition system} (downward-WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
-is a transition system $(S, \rightarrow)$
-equipped with a wqo ${\leq} \subseteq S \times S$ such that   
+\begin{definition}
+A {\em downward (compatible) WBTS (short, downward-WBTS)} $\mathscr{S}=(S, \rightarrow, \leq)$
+is an ordered transition system $(S, \rightarrow, \leq)$ such that $\leq$ is without infinite antichains and
 the transition relation $ \rightarrow$ is downward compatible with $\leq$, i.e., for all 
 $s_1, t_1 , s_2 \in S$
 	with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, there exists 
 	$t_2 \in S$ with 
 	$t_2 \leq t_1$ and $s_2 \rightarrow^{*} t_2$.
+
+A  {\em downward (compatible) WSTS (short, downward-WSTS)} \cite[Definition 5.1]{DBLP:journals/tcs/FinkelS01} is a downward-WBTS where $\leq$ is a wqo.
 \end{definition}
 
 There are fewer downward-WSTS than WSTS, but we can still mention FIFO automata with insertion errors and Basic Process Algebra (BPA).
@@ -1059,12 +1060,12 @@ Indeed the well-known mutual exclusion property can be modeled, in a $d$-VASS wi
 
 %
 \begin{theorem}\label{up-down}
-{\sc Resilience}  is decidable for $\pred^*$-basis-effective downward-WSTS with 
+{\sc Resilience}  is decidable for $\pred^*$-basis-effective downward-WBTS with 
 $\Safe=\mathop{\downarrow} \Safe$.
 \end{theorem}
 
 \begin{proof}
-Let $\mathscr{S}$ be a $\pred^*$-basis-effective downward-WSTS with 
+Let $\mathscr{S}$ be a $\pred^*$-basis-effective downward-WBTS with 
 $\Safe=\mathop{\downarrow} \Safe$.
 By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed; moreover, $\pred^*(\Safe)$ is computable because $\mathscr{S}$ is $\pred^*$-basis-effective.
 The resilience problem can be reformulated as $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
@@ -1081,7 +1082,7 @@ the resilience problem is decidable. \qed
 
 
 In the case
-of a $\pred^*$-basis-effective WSTS, not necesarly downward compatible,
+of a $\pred^*$-basis-effective WBTS, not necesarly downward compatible,
 the above construction
 can provide a proof
 of non-resilience
@@ -1234,7 +1235,7 @@ We deduce undecidability by reduction to {\sc State-resilience}, and straightfor
 {\sc Bounded-state-resilience} and
 {\sc $k$-state-resilience}
 are undecidable for reset-VASS, hence for strongly compatible,
-$\post$-effective, $\pred$-basis-effective WSTS
+$\post$-effective, $\pred$-basis-effective $\omega^2$-WSTS
 when
 $\Safe=\mathop{\uparrow} \Safe$.
 \end{proposition}
@@ -1433,7 +1434,7 @@ Then $A \cap U \subseteq D$  iff $ (\mathop{\downarrow}  A) \cap U \subseteq D$.
 
 
 
-In the case of a WSTS with \emph{downward} compatibility, not necessarily strong,
+In the case of a WBTS with \emph{downward} compatibility, not necessarily strong,
 then $\Safe$ downward-closed implies $\pred^*(\Safe)$ downward-closed and
 Lemma~\ref{Lemma intersection 2} can be used to show that
 if $\Safe = \mathop{\downarrow} \Safe$,
@@ -1446,7 +1447,7 @@ $\post^*(s)
 \begin{theorem}\label{downward srp}
 {\sc State-resilience} is decidable for $\post$-effective, 
 %$\pred$-basis-effective, 
-$\post$-ideal-effective and $\pred^*$-basis-effective WSTS with downward and upward compatibilities
+$\post$-ideal-effective and $\pred^*$-basis-effective WBTS with downward and upward compatibilities
 and $\Safe = \mathop{\downarrow} \Safe$.
 \end{theorem}
 
@@ -1500,7 +1501,7 @@ accepting any ideal $I$ and returning a finite basis of
 
 
 \begin{corollary}\label{downward brp}
-{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for $\post$-effective, $\post$-ideal-effective WSTS, strong downward compatibility and upward compatibility when
+{\sc $k$-state-resilience} and {\sc bounded-state-resilience} are decidable for $\post$-effective, $\post$-ideal-effective WBTS, strong downward compatibility and upward compatibility when
 $\Safe = \mathop{\downarrow} \Safe$
 and there exists an algorithm accepting any ideal $I$ and returning a finite basis of
  $\mathop{\downarrow} \pred(I)$.
