@@ -629,7 +629,7 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 
 To obtain decidability results, we must introduce some notions of \emph{effectiveness}. We use a mixture of the notions defined both by Blondin and al. in \cite{DBLP:journals/lmcs/BlondinFM17} and by Halfon in \cite{DBLP:phd/hal/Halfon18}.
 %			 that will be essential for solving various resilience problems in different models of WSTS. 
-First, to simplify, we suppose that all classes of considered ordered transition systems $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five following properties:
+First, to simplify and w.l.o.g., we suppose that all classes of considered ordered transition systems $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five following properties:
 \begin{enumerate}
 \item there exists an algorithm that decides whether $s \rightarrow t$ is true or not, for any states $s,t \in S$,
 %
@@ -645,7 +645,7 @@ Blondin and al. showed \cite[Lemma 4.3]{DBLP:journals/lmcs/BlondinFM17} that und
 %Blondin and al. showed (Lemma 4.3 in \cite{DBLP:journals/lmcs/BlondinFM17}) that under the 
 previous hypotheses, one are able to enumerate \emph{downward-closed sets} (by their finite decomposition in ideals), to decide inclusion between downward-closed sets and to decide if a state belongs to a given finite set of ideals. But the five properties are not sufficient to compute the complementary and the intersection of downward-closed sets.
 %
-Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\mathop{\downarrow} s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\mathop{\uparrow} s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective . \cite{DBLP:phd/hal/Halfon18}.
+Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to compute representations of (principal) ideals $\mathop{\downarrow} s$, of the complementary of an ideal, of the complementary of filters (a filter is a set $\mathop{\uparrow} s$ for $s \in S$) and to compute representations of finite intersections of filters and finite intersections of ideals. Most well-known wqo are ideally-effective \cite{DBLP:phd/hal/Halfon18}.
 %	 (hence of downward-closed sets).
 
 %
@@ -691,8 +691,8 @@ any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow}
 \end{definition}
 %
 Counter machines are effective but don't enjoy any other effectivities among the list of five.
-Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective \cite[Proposition~35]{BFM-ic17}; there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition~36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition~45 in \cite{BFM-ic17}).
-Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite{DBLP:journals/corr/abs-2108-00889} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
+Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective \cite[Proposition~35]{BFM-ic17}; there exist $\post$-ideal-effective WSTS that are not $\post$-effective \cite[Proposition~36]{BFM-ic17}.There also exist WSTS that are not $\pred$-basis-effective \cite[Proposition~45]{BFM-ic17}.
+Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite[Proposition 2]{DBLP:conf/gg/Ozkan22} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
 %
 Reset-VASS are not $\pred^*$-basis-effective because computing a finite basis of $\mathop{\downarrow} \pred^*(q,0,...,0)$ would allow to decide whether $(q,0,...,0)$ is reachable that is undecidable for reset-VASS.
 By using the decidability of reachability and Theorem 3.11 in \cite{DBLP:journals/acta/ValkJ85}, we may prove that VASS are $\pred^*$-basis-effective. A more complete study of these properties will be done in the long version of this paper.
@@ -846,8 +846,8 @@ These three resilience problems are decidable for finite transition systems but 
 the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to denote the complement of $\Safe$.\\
 %In   	 \cite{DBLP:journals/corr/abs-2108-00889}, the authors considered that $\Safe$ is upward-closed.  \\
 
-Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven.
-We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility. 
+Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven (it is simply mentioned as a future work in the conclusion of \cite{DBLP:journals/corr/abs-2108-00889}).
+We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility and natural effectiveness hypothesis. 
 %
 % \alain{pourquoi n'a-t-on pas prouvé la même chose pour la BR et la k-R ?: où est la difficulté ?}
 \begin{proposition}\label{indec WSTS}
