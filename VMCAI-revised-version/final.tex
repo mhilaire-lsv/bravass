@@ -172,7 +172,7 @@ pushed it towards some kind of ‘error state’ and, if it can, whether it can 
 {\bf Resiliences.}  
 %
 %			If the home-space contains a single element, this element is an {\em home-state}.
-Given a transition system (where $S$ is the set of states) and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$ 
+Given a transition system whose set of states is $S$ and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$ 
 %				(i.e., $\post^*(X) \subseteq \pred^*(H)$).
 %
 A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ satisfies the home-space property. A transition system is {\em resilient for $\Safe$} if it is resilient for $(\Bad,\Safe)$ with $\Bad$ is the complementary to $ \Safe$. It is {\em state-resilient} if it is resilient for $(\Bad,\Safe)$ where $\Bad$ contains an unique state.
