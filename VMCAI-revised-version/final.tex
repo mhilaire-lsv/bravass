@@ -172,9 +172,12 @@ pushed it towards some kind of ‘error state’ and, if it can, whether it can 
 {\bf Resiliences.}  
 %
 %			If the home-space contains a single element, this element is an {\em home-state}.
-Given a transition system whose set of states is $S$ and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$ 
-%				(i.e., $\post^*(X) \subseteq \pred^*(H)$).
+Given a transition system whose set of states is $S$ and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$.
 %
+In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} in Petri nets for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
+%
+%				(i.e., $\post^*(X) \subseteq \pred^*(H)$).
+
 A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ satisfies the home-space property. A transition system is {\em resilient for $\Safe$} if it is resilient for $(\Bad,\Safe)$ with $\Bad$ is the complementary to $ \Safe$. It is {\em state-resilient} if it is resilient for $(\Bad,\Safe)$ where $\Bad$ contains an unique state.
 %
 %			(resp. $\post^*(s_0)$)
@@ -205,15 +208,15 @@ the {\em bounded resilience} problem is to decide whether there exists an $k$ su
 %
 %			{\bf Home-spaces.}
 
-In 2016, Prasad and Zuck introduced in \cite{DBLP:journals/corr/PrasadZ16} interesting definitions and results (without detailed proofs) about resilience in the framework of process algebra. They show that resilience is decidable for effective WSTS with both upward and reflexive downward compatibilities (and some other technical conditions).
-
+In 2016, Prasad and Zuck introduced in \cite{DBLP:journals/corr/PrasadZ16} intuitions, definitions (without any connection to the concept of the home-space) and results (without detailed proofs) about resilience in the framework of process algebra. They show that resilience is decidable for effective Well Structured Transition Systems (WSTS) with both upward and reflexive downward compatibilities and some other technical conditions (that are defined in Section \ref{section definitions}).
+%
 %		reduces to coverability which is decidable on WSTS.
 %		They gave conditions that insure that a transition system is an effective WSTS with both upward and reflexive 		downward compatibilities (and some other technical conditions). 
 %              In this framework and under these hypotheses, 
 %			resilience reduces to coverability which is decidable on WSTS. 
 %%%%%%%%%
-
-In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$ 
+%
+In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility (see Section \ref{section definitions}) and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$ 
 %
 %			(i.e., $\mathop{\uparrow} \post^*(s)$) 
 %
@@ -222,8 +225,6 @@ when $\Safe$ is upward-closed.
 %			(called effective 
 %			$\mathop{\uparrow}$ $\post^*$ basis) in the case $\Safe=\mathop{\uparrow} \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
 %%%%%%%%%
-
-In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} in Petri nets for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 
 \noindent
 {\bf Our main contributions.}
@@ -235,10 +236,10 @@ In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf
 %are undecidable for reset-VASS (that are strongly compatible $\pred$-basis-effective WSTS) when
 %$\Safe$ is upward-closed. 
 %			We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
-\item The three resilience problems are decidable for post-ideal-effective Well Behaved Transition Systems (a generalisation of WSTS where the quasi-ordering is not necessarly well founded) with strong (upward) compatibility and when $\Safe$ is upward-closed (Theorem \ref{down-up})
+\item The three resilience problems are decidable for post-ideal-effective (Definition \ref{eff}) Well Behaved Transition Systems (a generalisation of WSTS where the quasi-ordering is not necessarly well founded) with strong (upward) compatibility and when $\Safe$ is upward-closed (Theorem \ref{down-up})
 %
 \item  Resilience is also decidable, when 
-$\Safe$ is upward-closed, for effective pred-basis WSTS with strong (upward) compatibility (Theorem \ref{xxx}).
+$\Safe$ is upward-closed, for effective pred-basis (Definition \ref{eff}) WSTS with strong (upward) compatibility (Theorem \ref{xxx}).
 %
 %    and
 %the additional hypothesis that
@@ -247,9 +248,9 @@ $\Safe$ is upward-closed, for effective pred-basis WSTS with strong (upward) com
 %				and for post-ideal-effective downward-WSTS ????
 %%%
 %
-\item We clarify the different effectiness conditions on WBTS and WSTS that allow the decidability of the six resilience.
+\item We clarify the different effectiness conditions on WBTS and WSTS (Definition \ref{eff}) that allow the decidability of the six resilience.
 %
-\item We generalize  the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} ; we also show that relaxing some hypothesis leads to undecidability.
+\item We generalize  the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we show that relaxing some hypothesis leads to undecidability.
 %
 %			à utiliser dans le texte ???
 %
@@ -271,7 +272,8 @@ The two other types of resilience, {$k$-state-resilience} and {bounded-state-res
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
 
-Most of our results about the different models and different types of resilience are in the following tables. The different notions of effectivity are detailed on page~\pageref{on effectivity}.
+Most of our results about the different models and different types of resilience are in the following tables. The different notions of effectivity are given in Definition \ref{eff}.
+%				detailed on page~\pageref{on effectivity}.
 
 
 \iffalse
@@ -649,7 +651,12 @@ Halfon introduced \emph{ideally-effective wqo} as wqo that essentially allow to 
 %
 Starting now, we assume that all considered WBTS $\mathscr{S}=(S, \rightarrow, \leq)$ satisfy the five previous properties and that the wqo $\leq$ is ideally-effective. We refer to such WBTS as \emph{effective}.
 
-In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely, we say that an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ is 
+In order to construct algorithms, we also require effective hypotheses about the computations of certain sets of predecessors and successors. More precisely:
+%
+\begin{definition}\label{eff}
+%
+We say that an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ is
+%
 \begin{enumerate}\label{on effectivity}
 %\item {\em effective} if there exists a pair of algorithms
 %($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
@@ -680,7 +687,9 @@ any state $s \in S$ and returning a finite basis of $\mathop{\uparrow} \post^*(s
 \item {\em $\pred^*$-basis-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
 any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow} \pred^*(I)$.
 \end{enumerate}
-
+%
+\end{definition}
+%
 Counter machines are effective but don't enjoy any other effectivities among the list of five.
 Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $\post$-ideal-effective, and $\pred$-basis-effective. There exist $\post$-effective WSTS that are not $\post$-ideal-effective \cite[Proposition~35]{BFM-ic17}; there exist $\post$-ideal-effective WSTS that are not $\post$-effective (Proposition~36 in \cite{BFM-ic17}).There also exist WSTS that are not $\pred$-basis-effective (Proposition~45 in \cite{BFM-ic17}).
 Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite{DBLP:journals/corr/abs-2108-00889} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
