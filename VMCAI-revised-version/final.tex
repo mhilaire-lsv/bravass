@@ -229,17 +229,19 @@ when $\Safe$ is upward-closed.
 \noindent
 {\bf Our main contributions.}
 \begin{itemize}
-\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X$ a singleton) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed. 
+\item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X$ a singleton) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed.
 %Moreover, {state-resilience},
 %{bounded-state-resilience} and
 %{$k$-state-resilience}
 %are undecidable for reset-VASS (that are strongly compatible $\pred$-basis-effective WSTS) when
 %$\Safe$ is upward-closed. 
 %			We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
-\item The three resilience problems are decidable for post-ideal-effective (Definition \ref{eff}) Well Behaved Transition Systems (a generalisation of WSTS where the quasi-ordering is not necessarly well founded) with strong (upward) compatibility and when $\Safe$ is upward-closed (Theorem \ref{down-up})
 %
-\item  Resilience is also decidable, when 
+\item In the subsequent three figures, we present the majority of our results pertaining to various models and resilience categories. The figures depict the boundaries of decidability within the context of well-known VASS and reset-VASS models.
+%
+\item In particular, the three resilience problems are decidable for post-ideal-effective (Definition \ref{eff}) Well Behaved Transition Systems (a generalisation of WSTS where the quasi-ordering is not necessarly well founded) with strong (upward) compatibility and when $\Safe$ is upward-closed (Theorem \ref{down-up}). Resilience is also decidable, when 
 $\Safe$ is upward-closed, for effective pred-basis (Definition \ref{eff}) WSTS with strong (upward) compatibility (Theorem \ref{xxx}).
+%
 %
 %    and
 %the additional hypothesis that
@@ -250,15 +252,15 @@ $\Safe$ is upward-closed, for effective pred-basis (Definition \ref{eff}) WSTS w
 %
 \item We clarify the different effectiness conditions on WBTS and WSTS (Definition \ref{eff}) that allow the decidability of the six resilience.
 %
-\item We generalize  the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we show that relaxing some hypothesis leads to undecidability.
+\item We generalize with Theorem \ref{post srp} the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we show that relaxing some hypothesis leads to undecidability (Proposition \ref{srp up down}).
 %
 %			à utiliser dans le texte ???
 %
 %We first remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
 %$\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, many WSTS (like reset-VASS) don't enjoy this property. 
 
-\item We show that the three state-resilience problems are decidable for post-ideal-effective WSTS with downward and upward compatibilities (Theorem \ref{downward srp} extends Theorem 1 in \cite{DBLP:journals/corr/PrasadZ16}).
-The two other types of resilience, {$k$-state-resilience} and {bounded-state-resilience}, are decidable for post-ideal-effective WSTS with strong downward compatibility.
+\item We show that the three state-resilience problems are decidable for post-ideal-effective WBTS with downward and upward compatibilities and $\Safe$ downward-closed (Theorem \ref{downward srp} extends \cite[Theorem 1]{DBLP:journals/corr/PrasadZ16}).
+The two other types of resilience, {$k$-state-resilience} and {bounded-state-resilience}, are decidable for post-ideal-effective WBTS with strong downward compatibility.
 %
 %			à utiliser dans le texte ???
 %
@@ -272,7 +274,7 @@ The two other types of resilience, {$k$-state-resilience} and {bounded-state-res
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
 
-Most of our results about the different models and different types of resilience are in the following tables. The different notions of effectivity are given in Definition \ref{eff}.
+
 %				detailed on page~\pageref{on effectivity}.
 
 
@@ -443,7 +445,7 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
  	\begin{figure}
  	\hspace{-2.cm}
 \includegraphics[width=1.40\textwidth]{All_results}
-\caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded and $k$ variants are indicated in blue.}
+\caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
 	\end{figure}
 \end{center}
 
