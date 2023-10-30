@@ -743,7 +743,7 @@ Reset VASS (hence VASS) and (front) lossy fifo automata are $\post$-effective, $
 Reset VASS are not $\post^*$-basis-effective since $\post^*$-basis-effectiveness allows to compute the finite set of the set of minimal reachable states, hence it would allow to decide the zero-reachability problem that is undecidable for reset-VASS. However, VASS are $\post^*$-basis-effective \cite[Proposition 2]{DBLP:conf/gg/Ozkan22} and LCS (with $d$ fifo channels) are also $\post^*$-basis-effective because we have $(q,w_1,w_2,...,w_d) \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)  \in \mathop{\uparrow} \post^*(q_0,u_1,u_2,...,u_d)$ iff $(q,\epsilon,...,\epsilon)$ is reachable from $(q_0,u_1,u_2,...,u_d)$ that is decidable in LCS.
 %
 Reset-VASS are not $\pred^*$-basis-effective because computing a finite basis of $\mathop{\downarrow} \pred^*(q,0,...,0)$ would allow to decide whether $(q,0,...,0)$ is reachable that is undecidable for reset-VASS.
-By using the decidability of reachability and Theorem 3.11 in \cite{DBLP:journals/acta/ValkJ85}, we may prove that VASS are $\pred^*$-basis-effective. A more complete study of these properties will be done in the long version of this paper.
+By using the decidability of reachability and \cite[Theorem 3.11]{DBLP:journals/acta/ValkJ85}, we may prove that VASS are $\pred^*$-basis-effective. A more complete study of these properties will be done in the long version of this paper.
 
 
 
@@ -767,7 +767,7 @@ With the $\pred$-basis-effective hypothesis, we obtain:
 %			(Finkel and Schnoebelen, Abdulla and al., 
 %
 \begin{theorem}[Theorem 3.6, \cite{DBLP:journals/tcs/FinkelS01}, Theorem 4.1, \cite{DBLP:journals/iandc/AbdullaCJT00}]
- A finite basis of $ \pred^*(U)$ is computable for any $\pred$-basis-effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and any upward-closed set $U \subseteq S$ given with its finite basis $B_U$. Hence coverability is decidable.
+ A finite basis of $ \pred^*(U)$ is computable for any $\pred$-basis-effective WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and any upward-closed set $U \subseteq S$ given with its finite basis. Hence coverability is decidable.
 \end{theorem}
 
 With the $\post$-ideal-effective hypothesis, we obtain the decidability of coverability for WBTS (without the $\pred$-basis-effective hypothesis).
