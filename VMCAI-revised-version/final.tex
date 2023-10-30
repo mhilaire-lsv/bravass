@@ -939,16 +939,18 @@ $\pred^*(\Safe) = \pred^{\leq k}(\Safe)$, hence {\sc Bounded-resilience} for $\o
 % \mathieu{Reviewer 1: the example at the bottom of \textbf{ page~\pageref{indec WSTS}}, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. => citer un autre résultat où les increasing recursive functions ont été utilisées ?}
 % \alain{ma réponse: termination and boundedness are decidable for increasing recursive (functional) WSTS \cite{FMP-ic04}; the decidability of coverability and place-boundedness depends on the effectivity hypothesis on recursive functions.}
 
-In the case of $\pred$-basis-effective (upward) compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.  This stems from the fact
-{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some control-state $q_f$ is equivalent to
-deciding structural %termination of reset-VASS, 
-			existential halting of reset-VASS, 
-which is undecidable.
+%In the case of $\pred$-basis-effective (upward) compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.  This stems from the fact
+%{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some control-state $q_f$ is equivalent to
+%deciding structural %termination of reset-VASS, 
+%			existential halting of reset-VASS, 
+%which is undecidable.
 
-Indeed, the structural existential halting problem consists in deciding if 
-a system %terminates
-have a \alain{un ou tous les run ?}terminating (i.e. finite) run
- from every initial state. 
+We now prove that {\sc Resilience} is undecidable for reset-VASS, hence it will be also undecidable for (upward) compatible WSTS when $\Safe = \mathop{\downarrow} \Safe$.
+%
+%Indeed, the structural existential halting problem consists in deciding if 
+%a system %terminates
+%have a terminating (i.e. finite) run
+% from every initial state. 
 
 % \problemx{Structural universal halting}
 % {A reset-VASS $V=(Q,T)$ of dimension $d$.}
@@ -959,7 +961,9 @@ have a \alain{un ou tous les run ?}terminating (i.e. finite) run
 { For every initial state, does there exist a run that terminates ?\\}
 
 
-{\sc Structural existential halting} is undecidable which leads to the following proposition.
+{\sc Structural existential halting} is undecidable since termination is undecidable for deterministic counter machines.
+
+%			which leads to the following proposition.
 
 % \mathieu{GOTO}
 
