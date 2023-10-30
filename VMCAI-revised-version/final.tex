@@ -127,15 +127,24 @@ Institut Universitaire de France }
 \begin{abstract}
 \noindent
 Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state in $\Bad$ then it can also leave this bad state and reach a safe state in $\Safe$.
-We consider six types of resilience (one of them is the home-space property) defined by an upward-closed set or a downward-closed set $\Safe$, and by the existence of a bound on the length of minimal runs starting from a set $\Bad$ and reaching $\Safe$ ($\Bad$ is generally the complementary of $\Safe$). We study the decidability of each type of resilience for many infinite-state transitiuon systems: Well Behaved Transition Systems (WBTS), Well Structured Transition Systems (WSTS), VASS and other variations of counter machines. 
-%
-We first show that all resilience problems are undecidable for effective WSTS with strong compatibility and for upward-closed sets $\Safe$; resilience is also undecidable for reset-VASS (that are WSTS with effective $\pred$-basis) when $\Safe$ are downward-closed sets.
+We consider six types of resilience (one of them is the home-space property) defined by an upward-closed set or a downward-closed set $\Safe$, and by the existence of a bound on the length of minimal runs starting from a set $\Bad$ and reaching $\Safe$ ($\Bad$ is generally the complementary of $\Safe$). 
 
-We then show that resilience is decidable for WBTS with the computability of the finite basis of the downward-closure of the set of (immediate) successors of a downward-closed set ($\post$-basis-effective) and for WSTS with the (well-known) $\pred$-basis-effective hypothesis.
+%We study the decidability of each type of resilience for many infinite-state transitiuon systems: Well Behaved Transition Systems (WBTS), Well Structured Transition Systems (WSTS), VASS and other variations of counter machines. 
+%
+We first show that all resilience problems are undecidable for effective Well Structured Transition Systems (WSTS) with strong compatibility.
+%
+%and for upward-closed sets $\Safe$; resilience is also undecidable for reset-VASS (that are WSTS with effective $\pred$-basis) when $\Safe$ are downward-closed sets.
+%
+We then show that resilience is decidable for Well Behaved Transition Systems (WBTS) and for WSTS with adapted effectiveness hypotheses.
+%
+%with the computability of the finite basis of the downward-closure of the set of (immediate) successors of a downward-closed set ($\post$-basis-effective) 
+%
+%
+%			with the (well-known) $\pred$-basis-effective hypothesis.
 %
 %		most of all resilience problems are decidable for WSTS with the good effective hypothesis. R
 %
-Most of the resilience properties are shown decidable for other classes like downward-WSTS, VASS, lossy counter machines, integer VASS and continuous VASS.
+Most of the resilience properties are shown decidable for other classes like WSTS with the downward compatibility, VASS, lossy counter machines, reset-VASS, integer VASS and continuous VASS.
 
 %Then we prove the decidability of resilience for WBTS and WSTS with strong compatibility, adapted effective hypothesis and for upward-closed sets $\Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
 %$\mathop{\uparrow}$ $\post^*$ basis and $\Safe=\mathop{\uparrow} \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\mathop{\downarrow} \Safe$. 
