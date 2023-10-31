@@ -2023,6 +2023,82 @@ and
 \end{proof}
 
 
+
+
+\section{Reset-VASS and Minsky-machines}\label{minsk}
+
+
+We now delve into more details into the undecidability results 
+upon which rely
+Proposition~\ref{indec WSTS with dcs}
+and
+Proposition~\ref{srp down up},
+namely, that
+{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathop{\downarrow}~\Safe$
+are undecidable for Minsky machines
+and 
+for reset-VASS.
+
+The problems are undecidable for a Minsky machine with at least $2$ counters when
+$\Safe$ is downward-closed, since it is possible to consider $\Safe = \{q_f(0,0)\}$. We then use Reset-VASS to simulate the Minsky machines~\cite{araki1976PN,dufourd1998reset}, albeit in a weak way. 
+% The simulation however is 
+Since by a particular choice of $\Safe$ and $\Bad$ we are only interested in the reachability of $q_f(0,0)$ in the Minsky machine, 
+this weak simulation will be enough to obtain undecidability of both problems.
+
+
+\begin{proposition}\label{both minsk indec}
+{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathop{\downarrow}~\Safe$ are undecidable for reset-VASS, hence also undecidable for $\post$-effective, $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
+\end{proposition}
+
+
+\begin{proof}
+First, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $2$ counters.
+	This is due to the undecidability of $2$-counter Minsky machine termination.
+From a $2$-counter Minsky machine $M$ with final control-state $q_f \in Q_M$, one can construct a $2$-counter Minsky machine $M'$ with final control-state $q_f' \in Q_{M'}$
+such that there exists a terminating run in $M$ for all inputs iff machine $M'$ can reach $q_f'(0,0)$ from any input. 
+%			with at least $1$ on its third counter. 
+We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the two counters until they reach $0$, then, and only then, go in $q_f'$.
+Based on this construction, the problem of deciding whether the downward-closed set 
+$\{q_f'(0,0)\}$ is reachable in the $2$-counter Minsky machine $M'$
+from any input is equivalent to the asking whether there exists a terminating run from every input of machine $M$, that is undecidable~\cite{Min61}. 
+Note that by chosing $s_0 \in Q_{M'} \times \N^2 \setminus \{q_f'(0,0) \}$,
+deciding whether the downward-closed set 
+$ \{q_f'(0,0) \}$ is reachable
+from every element of $\post^*(s_0)$ 
+is again equivalent to asking whether $M$ terminate on every input.
+Hence {\sc Resilience} and {\sc State-resilience} are undecidable for Minsky machines.
+
+
+% \alain{écrire qqchose ici}
+Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset}. 
+% \alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
+%Reset-VASS extend the basic VASS model with special “reset
+%transitions” that set to $0$ some coordinates in the vector. 
+%			Let us recall their definition here.
+%      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
+The simulation operates by building a reset-VASS in which
+there exists
+ a sequence from 
+an initial state %$(s,x_1 \ldots x_n)$
+to
+a state $ q({\bf 0})$ if and only if
+there exists
+a sequence
+ in the Minsky machine
+ from a corresponding initial state
+ to
+ the state $q_f(0,0,0)$
+  (from Theorem~$5$ in \cite{araki1976PN}).
+Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
+{\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
+Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
+and  {\sc State-resilience} are undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
+$\omega^2$-WSTS with strong compatibility as well.\qed
+\end{proof}
+
+
+
+\iffalse
 \section{Structural halting in reset-VASS}
 
 We claim {\sc Structual existential halting} in reset-VASS is undecidable.  
@@ -2036,7 +2112,7 @@ since
  is equivalent to
  structural termination in the case of deterministic Minsky machines and is thus
  undecidable for Minsky machines in general.
-
+\fi
 
 \section{Decision procedure for VASS when $\Safe = \mathop{\downarrow} \Safe$}\label{appendix vass}
 
