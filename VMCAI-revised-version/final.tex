@@ -2053,15 +2053,21 @@ this weak simulation will be enough to obtain undecidability of both problems.
 
 
 \begin{proof}
-First, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $2$ counters.
-	This is due to the undecidability of $2$-counter Minsky machine termination.
+First, note that deciding whether from all inputs, all runs are terminating
+ is undecidable for Minsky machines with at least $2$ counters, and, in particular, for deterministic ones as well~\cite{Min61}. Hence 
+  deciding whether from all inputs, there exists at least one terminating run
+ is undecidable for Minsky machines with at least $2$ counters, since,
+ for deterministic Minsky machines, the two problems are one and the same.
+
+Now, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $2$ counters.
+%	This is due to the undecidability of $2$-counter Minsky machine structural termination.
 From a $2$-counter Minsky machine $M$ with final control-state $q_f \in Q_M$, one can construct a $2$-counter Minsky machine $M'$ with final control-state $q_f' \in Q_{M'}$
 such that there exists a terminating run in $M$ for all inputs iff machine $M'$ can reach $q_f'(0,0)$ from any input. 
 %			with at least $1$ on its third counter. 
 We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the two counters until they reach $0$, then, and only then, go in $q_f'$.
 Based on this construction, the problem of deciding whether the downward-closed set 
 $\{q_f'(0,0)\}$ is reachable in the $2$-counter Minsky machine $M'$
-from any input is equivalent to the asking whether there exists a terminating run from every input of machine $M$, that is undecidable~\cite{Min61}. 
+from any input is equivalent to the asking whether there exists a terminating run from every input of machine $M$, that is undecidable. 
 Note that by chosing $s_0 \in Q_{M'} \times \N^2 \setminus \{q_f'(0,0) \}$,
 deciding whether the downward-closed set 
 $ \{q_f'(0,0) \}$ is reachable
@@ -2070,17 +2076,20 @@ is again equivalent to asking whether $M$ terminate on every input.
 Hence {\sc Resilience} and {\sc State-resilience} are undecidable for Minsky machines.
 
 
-% \alain{écrire qqchose ici}
 Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset}. 
 % \alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
 %Reset-VASS extend the basic VASS model with special “reset
 %transitions” that set to $0$ some coordinates in the vector. 
 %			Let us recall their definition here.
 %      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
-The simulation operates by building a reset-VASS in which
+The simulation operates by building a reset-VASS 
+which mimick the behaviors of the Minsky machines' counters by using two mirror counters 
+for each of them,
+and in which
 there exists
  a sequence from 
 an initial state %$(s,x_1 \ldots x_n)$
+	with equal mirror counters
 to
 a state $ q({\bf 0})$ if and only if
 there exists
@@ -2090,6 +2099,7 @@ a sequence
  to
  the state $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
+  []
 Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
 {\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
