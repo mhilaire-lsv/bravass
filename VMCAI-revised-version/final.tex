@@ -453,12 +453,11 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
  \begin{center}
  	\begin{figure}
  	\hspace{-2.cm}
-\includegraphics[width=1.30\textwidth]{All_results}
-\caption{ Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue. Detailed notions of effectivity can be found on page~\pageref{on effectivity}. The different models are furthermore detailled in Section~2 and Section~3.}
+\includegraphics[width=1.40\textwidth]{All_results}
+\caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
 	\end{figure}
 \end{center}
 
-\vspace{-0.5cm}
 
 \iffalse
  \begin{center}
@@ -612,7 +611,7 @@ The class of $\omega^2$-wqo is robust because every datatype in the following li
 A WSTS  $\mathscr{S}=(S, \rightarrow, \leq)$
 is an $\omega^2$-WSTS if $(S, \leq)$ is an $\omega^2$-wqo.
 \end{definition}
-Since almost all usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, reset/transfer VASS are $\omega^2$-WSTS.\\
+Since almost of usual wqo are $\omega^2$-wqo, all naturally occurring WSTS are in fact $\omega^2$-WSTS: for example, reset/transfer VASS are $\omega^2$-WSTS.\\
 %%%%%%
 
 Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where $Ideals(S)$ is the set of ideals of $S$ and $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\mathop{\downarrow} \post_{\mathscr{S}}(I)$. The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
@@ -940,28 +939,34 @@ $\pred^*(\Safe) = \pred^{\leq k}(\Safe)$, hence {\sc Bounded-resilience} for $\o
 % \mathieu{Reviewer 1: the example at the bottom of \textbf{ page~\pageref{indec WSTS}}, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. => citer un autre résultat où les increasing recursive functions ont été utilisées ?}
 % \alain{ma réponse: termination and boundedness are decidable for increasing recursive (functional) WSTS \cite{FMP-ic04}; the decidability of coverability and place-boundedness depends on the effectivity hypothesis on recursive functions.}
 
-In the case of $\pred$-basis-effective (upward) compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.  This stems from the fact
-{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some control-state $q_f$ is equivalent to
-deciding structural %termination of reset-VASS, 
-			existential halting of reset-VASS, 
-which is undecidable.
+%In the case of $\pred$-basis-effective (upward) compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.  This stems from the fact
+%{\sc Resilience} when $\Safe= \{ q_f({\bf 0}) \}$ for some control-state $q_f$ is equivalent to
+%deciding structural %termination of reset-VASS, 
+%			existential halting of reset-VASS, 
+%which is undecidable.
 
-Indeed, the structural existential halting problem consists in deciding if 
-a system %terminates
-have %a \alain{un ou tous les run ?}
-at least one terminating (i.e. finite) run
- from every initial state. 
+We now prove that {\sc Resilience} is undecidable for reset-VASS when $\Safe = \mathop{\downarrow} \Safe$. We will use the undecidability of the structural existential halting problem.
+%
+%			hence it will be also undecidable for (upward) compatible WSTS when $\Safe = \mathop{\downarrow} \Safe$.
+%
+%Indeed, the structural existential halting problem consists in deciding if 
+%a system %terminates
+%have a terminating (i.e. finite) run
+% from every initial state. 
 
 % \problemx{Structural universal halting}
 % {A reset-VASS $V=(Q,T)$ of dimension $d$.}
 % { Do all runs for every initial state terminate ?\\}
 
 \problemx{Structural existential halting}
-{A reset-VASS $V=(Q,T)$ of dimension $d$.}
-{ For every initial state, does there exist a run that terminates ?\\}
+%			{A reset-VASS $V=(Q,T)$ of dimension $d$.}
+{A transition system $\mathscr{S}=(S,\rightarrow)$}
+{ For every initial state $s_0 \in S$, does there exist a run from $s_0$ that terminates ?\\}
 
 
-{\sc Structural existential halting} is undecidable which leads to the following proposition.
+{\sc Structural existential halting} is undecidable for reset-VASS since termination is undecidable for deterministic counter machines. 
+\alain{REFERENCE !!!!}
+%			which leads to the following proposition.
 
 % \mathieu{GOTO}
 
@@ -995,7 +1000,7 @@ and {\sc $k$-resilience} are decidable.
 %\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ? J'ai enlevé l'hypothèse omega2 car j'ai l'impression qu'elle n'est pas utile...à vérifier}
 
 \begin{proof}
-Let us first recall two results in \cite{BFM-ic17} that are stated for WSTS but are also true for WBTS since the proofs rely only on compatibility and not on the property of wqo. Proposition 30 establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. Proposition 29 establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+Let us first recall two results in \cite{BFM-ic17} that are stated for WSTS but are also true for WBTS since the proofs rely only on compatibility and not on the property of wqo. \cite[Proposition 30]{BFM-ic17} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. \cite[Proposition 29]{BFM-ic17} establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
 %
 
 Let  $\{s_1,s_2,...,s_m\}$ be the (unique) minimal basis of $\Safe$ and  $\{J_1, J_2,...,J_n\}$ be the ideal decomposition of $\Bad$.
@@ -1004,7 +1009,7 @@ The resilience problem can be reduced to the following infinite number of instan
 
 Let us prove that $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\mathop{\downarrow} s_j$ is coverable (for inclusion) from $\mathop{\downarrow} x$ in $\hat{\mathscr{S}}$.
 %
-Suppose that $s_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq s_j$. From Proposition~30, there exist an ideal $J$ and a run $\mathop{\downarrow} x \xrightarrow{k} J$ where $J \supseteq \mathop{\downarrow} y \supseteq \mathop{\downarrow} s_j$ in $\hat{\mathscr{S}}$, hence $\mathop{\downarrow} s_j$ is covered from $\mathop{\downarrow} x$.
+Suppose that $s_j$ is coverable from $x$ then there exists a run $x \xrightarrow{k} y \geq s_j$. From \cite[Proposition 30]{BFM-ic17}, there exist an ideal $J$ and a run $\mathop{\downarrow} x \xrightarrow{k} J$ where $J \supseteq \mathop{\downarrow} y \supseteq \mathop{\downarrow} s_j$ in $\hat{\mathscr{S}}$, hence $\mathop{\downarrow} s_j$ is covered from $\mathop{\downarrow} x$.
 Conversely, if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ with $\mathop{\downarrow} s_j \subseteq J$ then 
 %	for every $y \in J$, 
 there exists $x \in I$ and $y' \geq s_j$ such that $x \xrightarrow{k} y'  \geq s_j$ in $\mathscr{S}$ and then $s_j$ is coverable from $x$ in $\mathscr{S}$.
@@ -1018,7 +1023,7 @@ Let us denote by $k_{i,j}$ the length of a covering sequence that covers $\matho
 We now have $\mathscr{S}$ is resilient iff $K_{\mathscr{S}}(\Safe)$ is finite iff $\mathscr{S}$ is $K_{\mathscr{S}}(\Safe)$-resilient with $K_{\mathscr{S}}(\Safe)$ finite.
 
 This implies that resilience and bounded resilience can be reduced to coverability.
-Since coverability is decidable for $\post$-effective WSTS \cite{BFM-ic17}, we deduce that both the 
+Since coverability is decidable for $\post$-ideal-effective WBTS \cite[Theorem 44]{BFM-ic17}, we deduce that both the 
   resilience problem and the bounded resilience problem are decidable.
 
 
