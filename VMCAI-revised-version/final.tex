@@ -2092,7 +2092,9 @@ Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki197
 The simulation operates by building a reset-VASS 
 which mimick the behaviors of the Minsky machines' counters by using two mirror counters 
 for each of them,
-and in which
+and where instead of being tested for zero before a transition, one of the the counters in the pair is being reset; if the counters were zero before the transition then this was a faithful simulation, 
+otherwise, there is a gap between the two counters which cannot be undone otherwise than by letting the machine backtrack.
+The construction is such that
 there exists
  a sequence from 
 an initial state %$(s,x_1 \ldots x_n)$
