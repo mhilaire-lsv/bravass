@@ -945,11 +945,12 @@ $\pred^*(\Safe) = \pred^{\leq k}(\Safe)$, hence {\sc Bounded-resilience} for $\o
 %			existential halting of reset-VASS, 
 %which is undecidable.
 
-We now prove that {\sc Resilience} is undecidable for reset-VASS when $\Safe = \mathop{\downarrow} \Safe$. 
+We now prove that {\sc Resilience} is undecidable for reset-VASS when 
+$\Safe = \mathop{\downarrow} \Safe$. 
 
 
-\mathieu{J'ai remis une vielle version que j'avais écrit avant de basculer sur le structural existential halting, je pense guarder ça en main text et détailler davantage dans l'appendix dit moi ce que tu en pense}
-In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.
+% \mathieu{J'ai remis une vielle version que j'avais écrit avant de basculer sur le structural existential halting, je pense guarder ça en main text et détailler davantage dans l'appendix dit moi ce que tu en pense}
+% In the case of $\pred$-basis-effective upward compatible WSTS, {\sc Resilience} is undecidable when $\Safe = \mathop{\downarrow} \Safe$.
 
 
 \begin{proposition}\label{indec WSTS with dcs}
@@ -962,6 +963,7 @@ $\Safe=\mathop{\downarrow} \Safe$.
 First, note that {\sc Resilience} is undecidable for a Minsky machine $M$ with at least $2$ counters when
 $\Safe = \mathop{\downarrow} \Safe$,
 since it is possible to have $\Safe = \{q_f(0,0)\}$. 
+This stems from the fact that it is undecidable whether for a Minsky machine $M$ there exists a terminating run for every possible initial state.
 \alain{et alors ? d'où sais-tu que le pb est indécidable pour safe=q,0 ? Bien sûr il l'est mais pas immédiatement puisque ce n'est pas le reachability}
 Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset} in such a way that any sequence 
 % from  a state $p({\bf u})$
@@ -972,7 +974,10 @@ reaching
 $ q({\bf 0})$ corresponds to one that reaches 
 $q_f(0,0)$
  in the Minsky machine and vice versa.
-  By combining both constructions, which can be seen in more details in Appendix~\ref{minsk},
+ The construction rely on using pairs of counters to represent counters of the Minsky machine,
+where instead of being tested for zero before a transition, one of the the counters in the pair is being reset; if the counters were zero before the transition then this was a faithful simulation, 
+otherwise, there is a gap between the two counters which cannot be undone otherwise than by letting the machine backtrack.
+Using the construction, which can be seen in more details in Appendix~\ref{minsk},
  we obtain that 
  {\sc Resilience} is undecidable for reset-VASS when $\Safe = \downarrow \Safe$, and hence for  $\post$-effective, $\pred$-basis-effective, 
 $\omega^2$-WSTS with strong compatibility as well.\qed \end{proof}
