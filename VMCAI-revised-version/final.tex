@@ -1545,9 +1545,11 @@ Thus in case of $\post^*$-basis-effective WSTS (when the compatibility is not st
 
 We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
-Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \mathop{\downarrow} \Safe$, this stems from undeciability of the 
-{\sc Structural existential halting} of reset-VASS.
+Unfortunately {\sc State-resilience} is undecidable in this case. 
 %\mathieu{GOTO}
+Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \downarrow \Safe$, this stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
+Section~\ref{safe-down} and devellopped more in Appendix~\ref{minsk}.
+
 
 \begin{proposition}\label{srp down up}
 {\sc State-resilience} is undecidable for reset-VASS when
@@ -2099,7 +2101,7 @@ a sequence
  to
  the state $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
-  [...]
+  [... from initial states with unequal mirror counters ... -> go back to a state with equal mirror counters -> then ...]
 Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
 {\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
