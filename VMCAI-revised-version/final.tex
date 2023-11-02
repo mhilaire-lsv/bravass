@@ -960,6 +960,18 @@ $\Safe=\mathop{\downarrow} \Safe$.
 
 
 \begin{proof}
+Let $V$ be a reset-VASS and $q_0({\bf 0})$ an initial state of $V$,
+we build $V'$ from $V$ by additionnally allowing from any control-state to get back to 
+$q_0({\bf 0})$
+by a transition reseting every counter and
+changing the control-state to $q_0$.
+Then a state $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $N$
+iff $q_f({\bf 0})$ is reachable from every element in $V'$,
+which corresponds to {\sc Resilience}  for $\Safe =  \{ q_f({\bf 0}) \}$.
+\end{proof}
+
+	\iffalse
+\begin{proof}
 First, note that {\sc Resilience} is undecidable for a Minsky machine $M$ with at least $2$ counters when
 $\Safe = \mathop{\downarrow} \Safe$,
 since it is possible to have $\Safe = \{q_f(0,0)\}$. 
@@ -981,7 +993,7 @@ Using the construction, which can be seen in more details in Appendix~\ref{minsk
  we obtain that 
  {\sc Resilience} is undecidable for reset-VASS when $\Safe = \downarrow \Safe$, and hence for  $\post$-effective, $\pred$-basis-effective, 
 $\omega^2$-WSTS with strong compatibility as well.\qed \end{proof}
-
+	\fi
 
 	\iffalse
 
@@ -1570,7 +1582,7 @@ $q_0({\bf 0})$
 by a transition reseting every counter and
 changing the control-state to $q_0$.
 Then a state $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $N$
-iff $q_f({\bf 0})$ is reachable from every element of $\post^*(q_0({\bf 0}))$ in $N'$,
+iff $q_f({\bf 0})$ is reachable from every element of $\post^*(q_0({\bf 0}))$ in $V'$,
 which corresponds to {\sc State-resilience}  for $\Safe =  \{ q_f({\bf 0}) \}$
 and $s_0 = q_0({\bf 0})$.
 \end{proof}
@@ -2044,22 +2056,28 @@ and
 
 
 
-
+	\iffalse
 \section{Reset-VASS and Minsky-machines}\label{minsk}
 
 
 We now delve into more details into the undecidability results 
 upon which rely
-Proposition~\ref{indec WSTS with dcs}
-and
-Proposition~\ref{srp down up},
+Proposition~\ref{indec WSTS with dcs},
+% and
+% Proposition~\ref{srp down up},
 namely, that
-{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathop{\downarrow}~\Safe$
-are undecidable for Minsky machines
+{\sc Resilience} %and {\sc State-resilience} 
+when $\Safe = \mathop{\downarrow}~\Safe$
+%are
+is
+%
+ undecidable for Minsky machines
 and 
 for reset-VASS.
 
-The problems are undecidable for a Minsky machine with at least $2$ counters when
+The 
+% problems are
+problem is undecidable for a Minsky machine with at least $2$ counters when
 $\Safe$ is downward-closed, since it is possible to consider $\Safe = \{q_f(0,0)\}$. We then use Reset-VASS to simulate the Minsky machines~\cite{araki1976PN,dufourd1998reset}, albeit in a weak way. 
 % The simulation however is 
 Since by a particular choice of $\Safe$ and $\Bad$ we are only interested in the reachability of $q_f(0,0)$ in the Minsky machine, 
@@ -2121,6 +2139,7 @@ a sequence
  the state $q_f(0,0,0)$
   (from Theorem~$5$ in \cite{araki1976PN}).
   [... from initial states with unequal mirror counters ... -> go back to a state with equal mirror counters -> then ...]
+  [ initial states with unequal mirror counters should be allowed to have some kind of backtracking to them]
 Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
 {\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
 Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
@@ -2128,7 +2147,7 @@ and  {\sc State-resilience} are undecidable for reset-VASS and hence for  $\pred
 $\omega^2$-WSTS with strong compatibility as well.\qed
 \end{proof}
 
-
+	\fi
 
 
 
