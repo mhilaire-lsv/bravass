@@ -971,13 +971,13 @@ changing the control-state to $q_0$. Remark that the set of states
 reachable from $q_0({\bf 0})$ is the same in $V'$ and in $V$.
 Then $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $V$
 iff $q_f({\bf 0})$ is reachable from every state in $V'$,
-which corresponds to {\sc Resilience}  for $\Safe =  \{ q_f({\bf 0}) \}$.
+which corresponds to {\sc Resilience} in $V'$ for $\Safe =  \{ q_f({\bf 0}) \}$.
 Indeed, if $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $V$,
 then, since $q_0({\bf 0})$ is reachable from every state in $V'$,
 $q_f({\bf 0})$ is reachable from every state in $V'$.
 In the other direction, if $q_f({\bf 0})$ is reachable from every state in $V'$,
 then in particular $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $V'$,
-hence $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $V'$.
+hence $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $V$.
 \end{proof}
 
 
@@ -1492,7 +1492,7 @@ We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 Unfortunately {\sc State-resilience} is undecidable in this case. 
 %\mathieu{GOTO}
 This stems from undeciability of {\sc zero-reachability} in reset-VASS,
-as seen in the reduction proof of Proposition~\ref{indec WSTS with dcs}
+as seen in the reduction proof of Proposition~\ref{indec WSTS with dcs}.
 
 \begin{proposition}\label{srp down up}
 {\sc State-resilience} is undecidable for reset-VASS when
