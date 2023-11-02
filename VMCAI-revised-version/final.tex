@@ -1319,12 +1319,13 @@ Recall the
 
 
 \problemx{zero-reachability}
-{A reset-VASS $V=(Q,T)$ of dimension $d$, and $p(\textbf{u}) \in Q \times \N^d$.} 
-{  $\exists q \in Q, ~ p(\textbf{u}) \to^* q(\textbf{0})$ ?\\}
+{A reset-VASS $V=(Q,T)$ of dimension $d$, $q_f \in Q$, $p(\textbf{u}) \in Q \times \N^d$.} 
+{  $%\exists q \in Q, ~ 
+p(\textbf{u}) \to^* q_f(\textbf{0})$ ?\\}
 
 % 
 {\sc Resilience} (and {\sc $t$-liveness}) needs a set (resp. a transition) to always remains reachable (resp. fireable), while
-{\em zero-reachability} concerns itself only with the existence of at least one way to reach some state $q(\textbf{0})$,
+{\em zero-reachability} concerns itself only with the existence of at least one way to reach some state $q_f(\textbf{0})$,
 which could be unreachable from other reachable states. 
 %
 Despite this it is possible to reduce 
@@ -1337,7 +1338,7 @@ of~\cite[Theorem~5.5]{peterson1981petri} originally stated for Petri nets,
  whose proof can be seen in Appendix~\ref{appendix}%
 .
 \begin{proposition}\label{liveness reset}
-The  zero reachability problem can be reduced to {\sc $t$-liveness}.
+The  zero-reachability problem can be reduced to {\sc $t$-liveness}.
 \end{proposition}
 
 
@@ -1552,8 +1553,7 @@ We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
 Unfortunately {\sc State-resilience} is undecidable in this case. 
 %\mathieu{GOTO}
-Unfortunately {\sc State-resilience} is undecidable in this case. As for {\sc Resilience} in WSTS when $\Safe = \downarrow \Safe$, this stems from undeciability of the corresponding problem in Minsky machines, the executions of which can be simulated by reset-VASS, as seen in 
-Section~\ref{safe-down} and developped more in Appendix~\ref{minsk}.
+This stems from undeciability of zero-reachability in reset-VASS.
 
 
 \begin{proposition}\label{srp down up}
@@ -1563,6 +1563,17 @@ $\post$-effective,
  $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
  \end{proposition}
 
+\begin{proof}
+Let $V$ be a reset-VASS and $q_0({\bf 0})$ an initial state of $V$,
+we build $V'$ from $V$ by additionnally allowing from any control-state to get back to 
+$q_0({\bf 0})$
+by a transition reseting every counter and
+changing the control-state to $q_0$.
+Then a state $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $N$
+iff $q_f({\bf 0})$ is reachable from every element of $\post^*(q_0({\bf 0}))$ in $N'$,
+which corresponds to {\sc State-resilience}  for $\Safe =  \{ q_f({\bf 0}) \}$
+and $s_0 = q_0({\bf 0})$.
+\end{proof}
 
 
 Despite this, it is possible to yield positive results. Indeed, in many ways the case where $\Safe = \mathop{\downarrow} \Safe$
@@ -1907,8 +1918,9 @@ Let us recall the {\em zero-reachability} problem in (reset-)VASS.
 
 
 \problemx{zero-reachability}
-{A $d$-reset-VASS $V=(Q,T)$, and $p(\textbf{u}) \in Q \times \N^d$.} 
-{  $\exists q \in Q, ~ p(\textbf{u}) \to^* q(\textbf{0})$ ?\\}
+{A $d$-reset-VASS $V=(Q,T)$, $q_f \in Q$ and $p(\textbf{u}) \in Q \times \N^d$.} 
+{  $%\exists q \in Q, ~ 
+p(\textbf{u}) \to^* q_f(\textbf{0})$ ?\\}
 
 The zero-reachability problem is decidable in VASS and it is undecidable in reset-VASS \cite{araki1976PN}.
 For a better representation, we will use reset Petri nets \cite{dufourd1998reset} rather than reset-VASS. 
@@ -1924,13 +1936,13 @@ We will show that the {\em zero-reachability} problem can be reduced to {\sc $t$
 
 \noindent
 \textbf{Proposition~\ref{liveness reset}.}
-{\em In reset Petri nets, the zero reachability problem can be reduced to {\sc $t$-liveness}.}\\
+{\em In reset Petri nets, the zero-reachability problem can be reduced to {\sc $t$-liveness}.}\\
 
 We may then deduce that:\\
 
 \noindent
 \textbf{Corollary}
-{\em In reset-VASS, the zero reachability problem can be reduced to {\sc $t$-liveness}.}
+{\em In reset-VASS, the zero-reachability problem can be reduced to {\sc $t$-liveness}.}
 
 
 \begin{proof}
@@ -2061,7 +2073,7 @@ this weak simulation will be enough to obtain undecidability of both problems.
 
 \begin{proof}
 First, note that deciding whether from all inputs, all runs are terminating
- is undecidable for Minsky machines with at least $2$ counters, and, in particular, for deterministic ones as well~\cite{Min61}. Hence 
+ is undecidable for Minsky machines with at least $2$ counters, and, in particular, for deterministic ones as well. Hence 
   deciding whether from all inputs, there exists at least one terminating run
  is undecidable for Minsky machines with at least $2$ counters, since,
  for deterministic Minsky machines, the two problems are one and the same.
@@ -2118,21 +2130,7 @@ $\omega^2$-WSTS with strong compatibility as well.\qed
 
 
 
-\iffalse
-\section{Structural halting in reset-VASS}
 
-We claim {\sc Structual existential halting} in reset-VASS is undecidable.  
-This is based on the construction providng the undecidability of structural termination in Lossy counter machines and in reset-VASS~\cite{dufourd1998reset,mayr1998lossy}. Strictly speaking undecidability of
-{\sc Structual existential halting} is not considered in
-\cite{mayr1998lossy},
-but 
-the encoding of Minsky machines can be reused
-since 
- {\sc Structual existential halting}
- is equivalent to
- structural termination in the case of deterministic Minsky machines and is thus
- undecidable for Minsky machines in general.
-\fi
 
 \section{Decision procedure for VASS when $\Safe = \mathop{\downarrow} \Safe$}\label{appendix vass}
 
