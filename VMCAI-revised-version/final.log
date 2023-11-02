@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.18)  12 OCT 2023 23:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.18)  2 NOV 2023 16:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,56 +702,63 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
+(/usr/local/texlive/2022/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip59
+\multirow@cntb=\count339
+\multirow@dima=\skip60
+\bigstrutjot=\dimen310
+)
 (/usr/local/texlive/2022/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
 (/usr/local/texlive/2022/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen310
-\WF@size=\dimen311
-\c@WF@wrappedlines=\count339
+\wrapoverhang=\dimen311
+\WF@size=\dimen312
+\c@WF@wrappedlines=\count340
 \WF@box=\box112
 \WF@everypar=\toks41
 Package: wrapfig 2003/01/31  v 3.6
 )
-\c@claimcounter=\count340
-\c@subclaim=\count341
-\c@fact=\count342
+\c@claimcounter=\count341
+\c@subclaim=\count342
+\c@fact=\count343
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count343
+\l__color_backend_stack_int=\count344
 \l__pdf_internal_box=\box113
 )
 (./final.aux)
 \openout1 = `final.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
 
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count344
-\scratchdimen=\dimen312
+\scratchcounter=\count345
+\scratchdimen=\dimen313
 \scratchbox=\box114
-\nofMPsegments=\count345
-\nofMParguments=\count346
+\nofMPsegments=\count346
+\nofMParguments=\count347
 \everyMPshowfont=\toks42
-\MPscratchCnt=\count347
-\MPscratchDim=\dimen313
-\MPnumerator=\count348
-\makeMPintoPDFobject=\count349
+\MPscratchCnt=\count348
+\MPscratchDim=\dimen314
+\MPnumerator=\count349
+\makeMPintoPDFobject=\count350
 \everyMPtoPDFconversion=\toks43
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -765,18 +772,18 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 99.
-Package microtype Info: Applying patch `item' on input line 99.
-Package microtype Info: Applying patch `toc' on input line 99.
-Package microtype Info: Applying patch `eqnum' on input line 99.
-Package microtype Info: Applying patch `footnote' on input line 99.
+LaTeX Info: Redefining \microtypecontext on input line 100.
+Package microtype Info: Applying patch `item' on input line 100.
+Package microtype Info: Applying patch `toc' on input line 100.
+Package microtype Info: Applying patch `eqnum' on input line 100.
+Package microtype Info: Applying patch `footnote' on input line 100.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 99.
+LaTeX Info: Redefining \showhyphens on input line 100.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -786,19 +793,19 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
-19.
+20.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 119.
+(Font)              using `U/stmry/m/n' instead on input line 120.
 
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 11
-9.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 12
+0.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 119
+LaTeX Font Info:    Trying to load font information for U+msa on input line 120
 .
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -807,7 +814,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 119
+LaTeX Font Info:    Trying to load font information for U+msb on input line 120
 .
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -829,246 +836,335 @@ Package microtype Info: Loading generic protrusion settings for font family
  [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<FigureCD.png, id=36, 1908.12875pt x 753.81625pt>
-File: FigureCD.png Graphic file (type png)
-<use FigureCD.png>
-Package pdftex.def Info: FigureCD.png  used on input line 225.
-(pdftex.def)             Requested size: 260.34265pt x 102.84201pt.
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
-35.
+<All_results.png, id=30, 3146.75626pt x 2308.625pt>
+File: All_results.png Graphic file (type png)
+<use All_results.png>
+Package pdftex.def Info: All_results.png  used on input line 456.
+(pdftex.def)             Requested size: 485.97083pt x 356.52979pt.
+
+Overfull \hbox (83.99684pt too wide) in paragraph at lines 455--457
+[]  [] 
+ []
+
+[3 <./All_results.png>]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 5
+57.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/10'
-(microtype)             (new value: 10.0pt) on input line 235.
+(microtype)             (new value: 10.0pt) on input line 557.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/7'
-(microtype)             (new value: 7.0pt) on input line 235.
+(microtype)             (new value: 7.0pt) on input line 557.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/5'
-(microtype)             (new value: 5.0pt) on input line 235.
- [3 <./FigureCD.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 299--314
+(microtype)             (new value: 5.0pt) on input line 557.
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--564
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 343--346
+Underfull \hbox (badness 10000) in paragraph at lines 592--596
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--598
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 421--421
+Underfull \hbox (badness 10000) in paragraph at lines 614--616
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 427--427
+Underfull \hbox (badness 10000) in paragraph at lines 617--618
 
  []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 762--762
 
  []
 
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 476.
-
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 476.
-
-[7]
-Overfull \hbox (1.57864pt too wide) in paragraph at lines 491--493
-[]\T1/cmr/m/n/10 (-20) Let $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 b[]; b[]; :::; b
-[]\OMS/cmsy/m/n/10 g$ \T1/cmr/m/n/10 (-20) be the (unique) min-i-mal ba-sis of 
-$[]$ and $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 J[]; J[]; :::; J[]\OMS/cmsy/m/n/10
- g$
- []
-
-[8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 761--761
+<WSTS_taxonomy_large.png, id=55, 1650.165pt x 1003.75pt>
+File: WSTS_taxonomy_large.png Graphic file (type png)
+<use WSTS_taxonomy_large.png>
+Package pdftex.def Info: WSTS_taxonomy_large.png  used on input line 810.
+(pdftex.def)             Requested size: 277.69987pt x 168.90454pt.
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 889--889
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 765--765
+Underfull \hbox (badness 10000) in paragraph at lines 892--896
+
+ []
+
+[9 <./WSTS_taxonomy_large.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 952--952
+
+ []
+
+[10]
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 1003.
+
+
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 1003.
+
+
+[11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 1157--1171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 769--769
+Underfull \hbox (badness 10000) in paragraph at lines 1175--1179
 
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 801--801
+
+Underfull \hbox (badness 10000) in paragraph at lines 1223--1223
 
  []
 
-[12]
-Overfull \hbox (8.15295pt too wide) in paragraph at lines 896--904
-[][]\OT1/cmr/m/n/10 (-20) ([])$\T1/cmr/m/n/10 (-20) . We can com-pute the least
- $\OML/cmm/m/it/10 n[]$ \T1/cmr/m/n/10 (-20) by it-er-a-tively com-put-ing $[][
-]\OT1/cmr/m/n/10 (-20) ([])$
+[13]
+Overfull \hbox (0.8733pt too wide) in paragraph at lines 1233--1238
+\T1/cmr/m/n/10 (-20) We start with the case $[] \OT1/cmr/m/n/10 (-20) = [] []$\
+T1/cmr/m/n/10 (-20) . Un-for-tu-nately, in this case \T1/cmr/m/sc/10 (-20) Stat
+e-resilience
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 936--936
+Underfull \hbox (badness 10000) in paragraph at lines 1248--1248
 
  []
 
-[13] [14] [15] [16] [17]
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `cmss' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (4.774pt too wide) in paragraph at lines 1274--1301
+\T1/cmr/m/n/10 (-20) It now re-mains to ar-gue why $\OML/cmm/m/it/10 t$\T1/cmr/
+m/sc/10 (-20) -liveness \T1/cmr/m/n/10 (-20) is un-de-cid-able. Re-call \T1/cmr
+/m/sc/10 (-20) zero-reachability
+ []
 
- [18]
-(./final.bbl
-Underfull \hbox (badness 1264) in paragraph at lines 19--23
+[14]
+
+LaTeX Warning: Citation `mayr1998lossy' undefined on input line 1326.
+
+
+Overfull \hbox (12.33919pt too wide) in paragraph at lines 1336--1340
+[]\T1/cmr/bx/n/10 (-20) (Theorem 1, [21], The-o-rem 1,  [22]). []\T1/cmr/m/sc/1
+0 (-20) Bounded-state-resilience
+ []
+
+
+Overfull \hbox (0.58333pt too wide) in paragraph at lines 1336--1340
+\T1/cmr/m/it/10 (-20) and $\OML/cmm/m/it/10 k$\T1/cmr/m/sc/10 (-20) -state-resi
+lience \T1/cmr/m/it/10 (-20) are de-cid-able for $[]$-basis-effective, $[][]$-b
+asis-effective
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1394--1394
+
+ []
+
+[15]
+Overfull \hbox (0.10315pt too wide) in paragraph at lines 1438--1450
+[][]$\T1/cmr/m/n/10 (-20) -basis-effective, let $\OML/cmm/m/it/10 B[]$ \T1/cmr/
+m/n/10 (-20) be a fi-nite ba-sis of $[] [][]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/i
+t/10 s\OT1/cmr/m/n/10 (-20) )$\T1/cmr/m/n/10 (-20) , hence $[] [][]\OT1/cmr/m/n
+/10 (-20) (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 (-20) ) =
+ []
+
+[16]
+Overfull \hbox (3.53929pt too wide) in paragraph at lines 1548--1552
+[]\T1/cmr/m/sc/10 (-20) State-resilience \T1/cmr/m/it/10 (-20) is de-cid-able f
+or $[]$-effective, $[]$-ideal-effective
+ []
+
+
+Overfull \hbox (12.64175pt too wide) in paragraph at lines 1555--1556
+[]\T1/cmr/m/n/10 (-20) Since $\U/rsfs/m/n/10 S$ \T1/cmr/m/n/10 (-20) is $[][]$-
+basis-effective, $[] \OT1/cmr/m/n/10 (-20) = [] []$ \T1/cmr/m/n/10 (-20) and $[
+][]\OT1/cmr/m/n/10 (-20) ([]) = [] [][]([])$\T1/cmr/m/n/10 (-20) ,
+ []
+
+[17] [18] [19] (./final.bbl [20]
+Underfull \hbox (badness 1852) in paragraph at lines 14--17
+[]\T1/cmr/m/n/9 (+20) Abdulla, P.A., Jon-s-son, B.: Ver-i-fy-ing pro-grams with
+ un-re-li-able chan-nels.
+ []
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 24--28
 \T1/cmr/m/n/9 (+20) bolic model check-ing. For-mal Meth-ods Syst. Des. \T1/cmr/
 bx/n/9 (+20) 43\T1/cmr/m/n/9 (+20) (2), 233--267 (2013).
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 25--28
+Underfull \hbox (badness 1648) in paragraph at lines 30--33
 \T1/cmr/m/n/9 (+20) tin-u-ous petri nets. ACM Trans. Com-put. Log. \T1/cmr/bx/n
 /9 (+20) 18\T1/cmr/m/n/9 (+20) (3), 24:1--24:28 (2017).
  []
 
 
-Underfull \hbox (badness 4181) in paragraph at lines 40--43
+Underfull \hbox (badness 4181) in paragraph at lines 59--62
 \T1/cmr/m/n/9 (+20) put. \T1/cmr/bx/n/9 (+20) 89\T1/cmr/m/n/9 (+20) (2), 144--1
 79 (1990). https://doi.org/10.1016/0890-5401(90)90009-7,
  []
 
-[19]
-Underfull \hbox (badness 2653) in paragraph at lines 70--73
+[21]
+Underfull \hbox (badness 2653) in paragraph at lines 100--103
 []\T1/cmr/m/n/9 (+20) Jancar, P.: A note on well quasi-orderings for pow-er-set
 s. Inf. Pro-cess.
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 75--78
+Underfull \hbox (badness 1043) in paragraph at lines 105--108
 []\T1/cmr/m/n/9 (+20) Jancar, P., Ler-oux, J.: Semi-lin-ear home-space is de-ci
 d-able for petri nets.
  []
 
 
-Underfull \hbox (badness 3471) in paragraph at lines 75--78
+Underfull \hbox (badness 3471) in paragraph at lines 105--108
 \T1/cmr/m/n/9 (+20) CoRR \T1/cmr/bx/n/9 (+20) abs/2207.02697 \T1/cmr/m/n/9 (+20
 ) (2022). https://doi.org/10.48550/arXiv.2207.02697,
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 130--133
+Underfull \hbox (badness 1005) in paragraph at lines 157--160
 \T1/cmr/m/n/9 (+20) SIGLOG News \T1/cmr/bx/n/9 (+20) 3\T1/cmr/m/n/9 (+20) (1), 
 4--21 (2016). https://doi.org/10.1145/2893582.2893585,
  []
 
-[20])
-Underfull \hbox (badness 10000) in paragraph at lines 1353--1353
+
+Underfull \hbox (badness 1910) in paragraph at lines 174--177
+[]\T1/cmr/m/n/9 (+20) Valk, R., Jantzen, M.: The residue of vec-tor sets with a
+p-pli-ca-tions to
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 174--177
+\T1/cmr/m/n/9 (+20) de-cid-abil-ity prob-lems in petri nets. Acta In-for-mat-ic
+a \T1/cmr/bx/n/9 (+20) 21\T1/cmr/m/n/9 (+20) , 643--674 (1985).
+ []
+
+[22])
+Underfull \hbox (badness 10000) in paragraph at lines 1785--1789
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1362--1363
+Underfull \hbox (badness 10000) in paragraph at lines 1866--1866
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1875--1878
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1366--1369
+Underfull \hbox (badness 10000) in paragraph at lines 1880--1883
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1370--1371
+Underfull \hbox (badness 10000) in paragraph at lines 1884--1885
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1380--1385
+Underfull \hbox (badness 10000) in paragraph at lines 1894--1899
 
  []
 
-[21]
-<FigurePN.png, id=114, 1229.59375pt x 1380.15625pt>
+<FigurePN.png, id=118, 1229.59375pt x 1380.15625pt>
 File: FigurePN.png Graphic file (type png)
 <use FigurePN.png>
-Package pdftex.def Info: FigurePN.png  used on input line 1404.
+Package pdftex.def Info: FigurePN.png  used on input line 1918.
 (pdftex.def)             Requested size: 260.34265pt x 292.22108pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1409--1412
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1926
 
  []
 
-[22 <./FigurePN.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1416--1417
+[24] [25 <./FigurePN.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1930--1931
 
  []
 
-[23] (./final.aux)
+[26]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmss' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [27] [28] (./final.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 19718 strings out of 478268
- 378296 string characters out of 5846347
- 679810 words of memory out of 5000000
- 37084 multiletter control sequences out of 15000+600000
- 521676 words of font info for 337 fonts, out of 8000000 for 9000
+ 19904 strings out of 478268
+ 381584 string characters out of 5846347
+ 681477 words of memory out of 5000000
+ 37224 multiletter control sequences out of 15000+600000
+ 531691 words of font info for 376 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,94p,1014b,500s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,94p,1002b,500s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
+usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></u
+sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/l
+ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local
 /texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local
 /texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
 exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texl
 ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
-22/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2022/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2022/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2022/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2022/texmf-dist
-/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2022/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2022/texmf
--dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2022/texmf-dist/fo
-nts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
-/public/cm-super/sfbi1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
-ublic/cm-super/sfbx0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pub
-lic/cm-super/sfbx1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publi
-c/cm-super/sfbx1200.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/
-cm-super/sfbx1440.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm
--super/sfcc1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-s
-uper/sfrm0700.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-sup
-er/sfrm0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super
-/sfrm1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/s
-fsi1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfs
-s0700.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0
-900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss100
-0.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1000.
-pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfti1000.pf
-b>
-Output written on final.pdf (23 pages, 637017 bytes).
+22/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2022/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/tex
+mf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2022/texmf-
+dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2022/texmf-dist/font
+s/type1/public/cm-super/sfbi1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/
+type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/ty
+pe1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
+1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
+public/cm-super/sfbx1440.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pu
+blic/cm-super/sfcc1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publ
+ic/cm-super/sfrm0700.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public
+/cm-super/sfrm0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/c
+m-super/sfrm1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-
+super/sfsi1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-su
+per/sfss0700.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-supe
+r/sfss0900.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/
+sfss1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sf
+sx1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx
+1200.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfti10
+00.pfb>
+Output written on final.pdf (28 pages, 907339 bytes).
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
- 174 compressed objects within 2 object streams
+ 300 PDF objects out of 1000 (max. 8388607)
+ 185 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 88087 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 106524 words of extra memory for PDF output out of 106986 (max. 10000000)
 

@@ -10,6 +10,11 @@ Abdulla, P.A., Cerans, K., Jonsson, B., Tsay, Y.: Algorithmic analysis of
   109--127 (2000). \doi{10.1006/inco.1999.2843},
   \url{https://doi.org/10.1006/inco.1999.2843}
 
+\bibitem{DBLP:journals/iandc/AbdullaJ96}
+Abdulla, P.A., Jonsson, B.: Verifying programs with unreliable channels. Inf.
+  Comput.  \textbf{127}(2),  91--101 (1996). \doi{10.1006/inco.1996.0053},
+  \url{https://doi.org/10.1006/inco.1996.0053}
+
 \bibitem{araki1976PN}
 Araki, T., Kasami, T.: Some decision problems related to the reachability
   problem for petri nets. Theoretical Computer Science  \textbf{3}(1),  85--104
@@ -26,6 +31,12 @@ Blondin, M., Finkel, A., Haase, C., Haddad, S.: The logical view on continuous
   petri nets. {ACM} Trans. Comput. Log.  \textbf{18}(3),  24:1--24:28 (2017).
   \doi{10.1145/3105908}, \url{https://doi.org/10.1145/3105908}
 
+\bibitem{DBLP:journals/lmcs/BlondinFM17}
+Blondin, M., Finkel, A., McKenzie, P.: Well behaved transition systems. Log.
+  Methods Comput. Sci.  \textbf{13}(3) (2017).
+  \doi{10.23638/LMCS-13(3:24)2017},
+  \url{https://doi.org/10.23638/LMCS-13(3:24)2017}
+
 \bibitem{BFM-ic17}
 Blondin, M., Finkel, A., McKenzie, P.: Handling infinitely branching
   well-structured transition systems. Information and Computation
@@ -35,6 +46,14 @@ Blondin, M., Finkel, A., McKenzie, P.: Handling infinitely branching
 Dufourd, C., Finkel, A., Schnoebelen, P.: Reset nets between decidability and
   undecidability. In: International Colloquium on Automata, Languages, and
   Programming. pp. 103--115. Springer (1998)
+
+\bibitem{DBLP:conf/icalp/DufordJS99}
+Dufourd, C., Jancar, P., Schnoebelen, P.: Boundedness of reset {P/T} nets. In:
+  Wiedermann, J., van Emde~Boas, P., Nielsen, M. (eds.) Automata, Languages and
+  Programming, 26th International Colloquium, ICALP'99, Prague, Czech Republic,
+  July 11-15, 1999, Proceedings. Lecture Notes in Computer Science, vol.~1644,
+  pp. 301--310. Springer (1999). \doi{10.1007/3-540-48523-6\_27},
+  \url{https://doi.org/10.1007/3-540-48523-6\_27}
 
 \bibitem{DBLP:journals/iandc/Finkel90}
 Finkel, A.: Reduction and covering of infinite reachability trees. Inf. Comput.
@@ -58,6 +77,11 @@ Finkel, A., Schnoebelen, P.: Well-structured transition systems everywhere!
   \doi{10.1016/S0304-3975(00)00102-X},
   \url{https://doi.org/10.1016/S0304-3975(00)00102-X}
 
+\bibitem{de1989decidability}
+de~Frutos~Escrig, D., Johnen, C.: Decidability of home space property.
+  Universit{\'e} de Paris-Sud. Centre d'Orsay. Laboratoire de Recherche en
+  Informatique, Rapport de recherche n°503 (1989)
+
 \bibitem{DBLP:conf/rp/HaaseH14}
 Haase, C., Halfon, S.: Integer vector addition systems with states. In:
   Ouaknine, J., Potapov, I., Worrell, J. (eds.) Reachability Problems - 8th
@@ -65,6 +89,12 @@ Haase, C., Halfon, S.: Integer vector addition systems with states. In:
   Proceedings. Lecture Notes in Computer Science, vol.~8762, pp. 112--124.
   Springer (2014). \doi{10.1007/978-3-319-11439-2\_9},
   \url{https://doi.org/10.1007/978-3-319-11439-2\_9}
+
+\bibitem{DBLP:phd/hal/Halfon18}
+Halfon, S.: On Effective Representations of Well Quasi-Orderings.
+  (Repr{\'{e}}sentations Effectives des Beaux Pr{\'{e}}-Ordres). Ph.D. thesis,
+  University of Paris-Saclay, France (2018),
+  \url{https://tel.archives-ouvertes.fr/tel-01945232}
 
 \bibitem{DBLP:journals/ipl/Jancar99}
 Jancar, P.: A note on well quasi-orderings for powersets. Inf. Process. Lett.
@@ -76,6 +106,12 @@ Jancar, P., Leroux, J.: Semilinear home-space is decidable for petri nets. CoRR
    \textbf{abs/2207.02697} (2022). \doi{10.48550/arXiv.2207.02697},
   \url{https://doi.org/10.48550/arXiv.2207.02697}
 
+\bibitem{DBLP:journals/fuin/LazicNORW08}
+Lazic, R., Newcomb, T.C., Ouaknine, J., Roscoe, A.W., Worrell, J.: Nets with
+  tokens which carry data. Fundam. Informaticae  \textbf{88}(3),  251--274
+  (2008),
+  \url{http://content.iospress.com/articles/fundamenta-informaticae/fi88-3-03}
+
 \bibitem{DBLP:conf/ac/MemmiV86}
 Memmi, G., Vautherin, J.: Analysing nets by the invariant method. In: Brauer,
   W., Reisig, W., Rozenberg, G. (eds.) Petri Nets: Central Models and Their
@@ -83,15 +119,6 @@ Memmi, G., Vautherin, J.: Analysing nets by the invariant method. In: Brauer,
   Course, Bad Honnef, Germany, 8-19 September 1986. Lecture Notes in Computer
   Science, vol.~254, pp. 300--336. Springer (1986). \doi{10.1007/BFb0046843},
   \url{https://doi.org/10.1007/BFb0046843}
-
-\bibitem{Min67}
-Minsky, M.L.: Computation: Finite and Infinite Machines. Prentice-Hall
-  International, Englewood Cliffs (1967)
-
-\bibitem{Min61}
-Minsky, M.L.: Recursive unsolvability of {P}ost's problem of ``tag'' and other
-  topics in theory of {T}uring machines. Annals of Mathematics. Second Series
-  \textbf{74},  437--455 (1961)
 
 \bibitem{DBLP:conf/gg/Ozkan22}
 {\"{O}}zkan, O.: Decidability of resilience for well-structured graph
@@ -131,6 +158,10 @@ Schmitz, S.: The complexity of reachability in vector addition systems. {ACM}
   {SIGLOG} News  \textbf{3}(1),  4--21 (2016). \doi{10.1145/2893582.2893585},
   \url{https://doi.org/10.1145/2893582.2893585}
 
+\bibitem{schmitz:cel-00727025}
+Schmitz, S., Schnoebelen, P.: {Algorithmic Aspects of WQO Theory} (Aug 2012),
+  \url{https://cel.hal.science/cel-00727025}, lecture
+
 \bibitem{DBLP:conf/rp/Schnoebelen10}
 Schnoebelen, P.: Lossy counter machines decidability cheat sheet. In: Kucera,
   A., Potapov, I. (eds.) Reachability Problems, 4th International Workshop,
@@ -138,5 +169,10 @@ Schnoebelen, P.: Lossy counter machines decidability cheat sheet. In: Kucera,
   Notes in Computer Science, vol.~6227, pp. 51--75. Springer (2010).
   \doi{10.1007/978-3-642-15349-5\_4},
   \url{https://doi.org/10.1007/978-3-642-15349-5\_4}
+
+\bibitem{DBLP:journals/acta/ValkJ85}
+Valk, R., Jantzen, M.: The residue of vector sets with applications to
+  decidability problems in petri nets. Acta Informatica  \textbf{21},  643--674
+  (1985). \doi{10.1007/BF00289715}, \url{https://doi.org/10.1007/BF00289715}
 
 \end{thebibliography}

@@ -3,49 +3,58 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: final.aux
 The style file: splncs04.bst
 Database file #1: bib.bib
-Repeated entry---line 13822 of file bib.bib
+Repeated entry---line 13813 of file bib.bib
  : @inproceedings{DBLP:conf/rp/Schnoebelen10
  :                                          ,
 I'm skipping whatever remains of this entry
-You've used 23 entries,
+I was expecting a `,' or a `}'---line 13925 of file bib.bib
+ :   
+ :   MONTH = July,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 13928 of file bib.bib
+ : @article{DBLP:journals/acta/ValkJ85
+ :                                    ,
+I'm skipping whatever remains of this entry
+You've used 29 entries,
             2850 wiz_defined-function locations,
-            882 strings with 11935 characters,
-and the built_in function-call counts, 13693 in all, are:
-= -- 1172
-> -- 329
-< -- 38
-+ -- 135
-- -- 108
-* -- 932
-:= -- 1719
-add.period$ -- 52
-call.type$ -- 23
-change.case$ -- 128
+            929 strings with 13640 characters,
+and the built_in function-call counts, 17127 in all, are:
+= -- 1462
+> -- 441
+< -- 45
++ -- 181
+- -- 147
+* -- 1184
+:= -- 2169
+add.period$ -- 63
+call.type$ -- 29
+change.case$ -- 166
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 1247
-empty$ -- 1242
-format.name$ -- 129
-if$ -- 3011
+cite$ -- 29
+duplicate$ -- 1553
+empty$ -- 1528
+format.name$ -- 176
+if$ -- 3741
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 248
-newline$ -- 76
-num.names$ -- 58
-pop$ -- 379
+int.to.str$ -- 29
+missing$ -- 310
+newline$ -- 94
+num.names$ -- 72
+pop$ -- 477
 preamble$ -- 2
-purify$ -- 93
+purify$ -- 123
 quote$ -- 0
-skip$ -- 388
+skip$ -- 468
 stack$ -- 0
-substring$ -- 817
-swap$ -- 747
-text.length$ -- 38
+substring$ -- 999
+swap$ -- 925
+text.length$ -- 45
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 88
+type$ -- 112
 warning$ -- 0
-while$ -- 129
-width$ -- 25
-write$ -- 294
-(There was 1 error message)
+while$ -- 157
+width$ -- 31
+write$ -- 369
+(There were 3 error messages)
