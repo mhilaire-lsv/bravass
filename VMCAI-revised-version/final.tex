@@ -129,33 +129,13 @@ Institut Universitaire de France }
 Resilience of unperfect systems is a key property for improving safety by insuring that if a system could go into a bad state in $\Bad$ then it can also leave this bad state and reach a safe state in $\Safe$.
 We consider six types of resilience (one of them is the home-space property) defined by an upward-closed set or a downward-closed set $\Safe$, and by the existence of a bound on the length of minimal runs starting from a set $\Bad$ and reaching $\Safe$ ($\Bad$ is generally the complementary of $\Safe$). 
 
-%We study the decidability of each type of resilience for many infinite-state transitiuon systems: Well Behaved Transition Systems (WBTS), Well Structured Transition Systems (WSTS), VASS and other variations of counter machines. 
-%
 We first show that all resilience problems are undecidable for effective Well Structured Transition Systems (WSTS) with strong compatibility.
-%
-%and for upward-closed sets $\Safe$; resilience is also undecidable for reset-VASS (that are WSTS with effective $\pred$-basis) when $\Safe$ are downward-closed sets.
-%
 We then show that resilience is decidable for Well Behaved Transition Systems (WBTS) and for WSTS with adapted effectiveness hypotheses.
-%
-%with the computability of the finite basis of the downward-closure of the set of (immediate) successors of a downward-closed set ($\post$-basis-effective) 
-%
-%
-%			with the (well-known) $\pred$-basis-effective hypothesis.
-%
-%		most of all resilience problems are decidable for WSTS with the good effective hypothesis. R
-%
 Most of the resilience properties are shown decidable for other classes like WSTS with the downward compatibility, VASS, lossy counter machines, reset-VASS, integer VASS and continuous VASS.
-
-%Then we prove the decidability of resilience for WBTS and WSTS with strong compatibility, adapted effective hypothesis and for upward-closed sets $\Safe$. Moreover, some resilience properties are decidable for three other classes of WSTS : (1) WSTS with effective 
-%$\mathop{\uparrow}$ $\post^*$ basis and $\Safe=\mathop{\uparrow} \Safe$ ; (2) ideal-effective WSTS with downward and upward compatibilities ; and (3) ideal-effective downward-compatible WSTS with $\Safe=\mathop{\downarrow} \Safe$. 
-%Finally, we study the resilience for VASS with semi-linear subsets $\Bad$ and $\Safe$ and for variations of VASS (lossy counter machines,  $\mathbb{Z}-$VASS and continuous VASS)
 \end{abstract}
 
 \keywords{Verification, Resilience, Home-Space, Well-structured transition systems, Vector addition system with states}
 
-%\alain{j'ai ajouté les numéros et j'ai enlevé les noms dans les {theorem, proposition, definition} qu'on cite}
-
-%\alain{ok pour la notation $q(v)$, je vois qu'elle est déjà utilisée- peutx-tu changer pour review 3: $A = \mathop{\downarrow} B$ instead of $A = \mathop{\downarrow} B$: this dangling arrow is typographically horrific!}
 
 
 \newcommand{\LCM}{\mathsf{LCM}}
@@ -172,281 +152,64 @@ Most of the resilience properties are shown decidable for other classes like WST
 
 {\bf Context.} 
 Resilience is a key notion for improving safety of unperfect systems and resilience engineering is a paradigm for safety management that focuses on systems coping with complexity and balancing productivity with safety~\cite{challenges}. Some systems are subjects at frequent intervals to accidents, attacks or changes. 
-%				Think for instance of a supply chain, or an airport’s air trafic control. 
 In such cases, a question that arises is that of whether the system can return to its normal (safe) behavior after an accident or attack
 pushed it towards some kind of ‘error state’ and, if it can, whether it can perform the return in a satisfactory timeframe. 
 
 %%%%%
 \noindent
 {\bf Resiliences.}  
-%
-%			If the home-space contains a single element, this element is an {\em home-state}.
 Given a transition system whose set of states is $S$ and let $X,H \subseteq S$, we say that $(X,H)$ satisfies the \emph{home-space} property ~\cite{DBLP:conf/ac/MemmiV86} if the reachability set from $X$ is included in the set of predecessors of $H$.
 %
 In 1986, Memmi and Vautherin introduced the notion of home-space~\cite{DBLP:conf/ac/MemmiV86} in Petri nets for $X$ a singleton. In 1989, de Frutos Escrig and Johnen proved that the home-space problem (for $X$ a singleton and $H$ a finite union of linear sets with the same period) was decidable for VASS (\cite{de1989decidability}). In 2023, Jancar and Leroux proved the decidability of the (complete) semilinear home-space problem ($X$ and $H$ are both semilinear)  in VASS \cite{DBLP:journals/corr/abs-2207-02697}.
 %
-%				(i.e., $\post^*(X) \subseteq \pred^*(H)$).
+
 
 A transition system is {\em resilient for $(\Bad,\Safe)$} if $(\Bad,\Safe)$ satisfies the home-space property. A transition system is {\em resilient for $\Safe$} if it is resilient for $(\Bad,\Safe)$ with $\Bad$ is the complementary to $ \Safe$. It is {\em state-resilient} if it is resilient for $(\Bad,\Safe)$ where $\Bad$ contains an unique state.
-%
-%			(resp. $\post^*(s_0)$)
-%                  It  is state-resilient if
-%			from every state, there is a run that goes into $\Safe$.
-%
-%			$\mathscr{S}$ is {\em resilient for $\Safe$} if from every state, there is a run that goes into  $\Safe$.
-%			$S \subseteq \pred^*(\Safe)$. 
-%			this is the $(S,\Safe)$ home-space problem.
-%			($\post^*(S) \subseteq \pred^*(\Safe)$).
-%
-% 		for $S,\Safe$: $\mathscr{S}$ is $\Safe$-resilient if $\post^*(S) \subseteq \pred^*(\Safe)$.
-%		Similarly, $\mathscr{S}$ is $\Safe$-state-resilient for an initial state $s_0$ if  
-%		$\post^*(s_0) \subseteq \pred^*(\Safe)$.
-%		We will study three decidability questions for each type of set $\Safe$.
-%		The resilience problem is to decide whether a transition system $\mathscr{S} = (S,\rightarrow )$ is $\Safe$-resilient 			(for a given subset of states $\Safe \subseteq S$).
-%		The resilience problem could be easily generalized for two subsets $\Bad$ and $\Safe$ by asking
-%		whether $\Bad \subseteq \pred^*(\Safe)$.
 The {\em $k$-resilience} problem, for $k\geq0$, is to decide whether from any state is it always possible to reach $\Safe$ with a run of length smaller than $k$ 
-%
-%		(i.e., $S \subseteq \pred^{\leq k}(\Safe)$)
-%
  and 
 the {\em bounded resilience} problem is to decide whether there exists an $k$ such that the system is $k$-resilient.
 
 \noindent
 {\bf State of the art.}
-%
-%			{\bf Home-spaces.}
 
 In 2016, Prasad and Zuck introduced in \cite{DBLP:journals/corr/PrasadZ16} intuitions, definitions (without any connection to the concept of the home-space) and results (without detailed proofs) about resilience in the framework of process algebra. They show that resilience is decidable for effective Well Structured Transition Systems (WSTS) with both upward and reflexive downward compatibilities and some other technical conditions (that are defined in Section \ref{section definitions}).
 %
-%		reduces to coverability which is decidable on WSTS.
-%		They gave conditions that insure that a transition system is an effective WSTS with both upward and reflexive 		downward compatibilities (and some other technical conditions). 
-%              In this framework and under these hypotheses, 
-%			resilience reduces to coverability which is decidable on WSTS. 
-%%%%%%%%%
 %
 In 2021, \"Ozkan and Würdemann  \cite{DBLP:journals/corr/abs-2108-00889} and \"Ozkan \cite{DBLP:conf/gg/Ozkan22}, in 2022, proved the decidability of the bounded state-resilience problem and the $k$-state-resilience problem for WSTS  with strong compatibility (see Section \ref{section definitions}) and with the supplementary (strong) hypothesis that there exists an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$ 
 %
-%			(i.e., $\mathop{\uparrow} \post^*(s)$) 
-%
 when $\Safe$ is upward-closed.
 %
-%			(called effective 
-%			$\mathop{\uparrow}$ $\post^*$ basis) in the case $\Safe=\mathop{\uparrow} \Safe$ and $\Bad = \mathop{\downarrow} \Bad$.
-%%%%%%%%%
 
 \noindent
 {\bf Our main contributions.}
 \begin{itemize}
 \item Surprinsingly, the general undecidability statements about resilience were not known neither proved. We show that resilience and {state-resilience} (i.e. $X$ a singleton) problems are both undecidable for WSTS with strong compatibility and for $\Safe$ upward-closed or downward-closed.
-%Moreover, {state-resilience},
-%{bounded-state-resilience} and
-%{$k$-state-resilience}
-%are undecidable for reset-VASS (that are strongly compatible $\pred$-basis-effective WSTS) when
-%$\Safe$ is upward-closed. 
-%			We made a reduction of zero-reachability in reset-VASS to {state-resilience} in reset-VASS.
+
 %
 \item In the subsequent three figures, we present the majority of our results pertaining to various models and resilience categories. The figures depict the boundaries of decidability within the context of well-known VASS and reset-VASS models.
 %
 \item In particular, the three resilience problems are decidable for post-ideal-effective (Definition \ref{eff}) Well Behaved Transition Systems (a generalisation of WSTS where the quasi-ordering is not necessarly well founded) with strong (upward) compatibility and when $\Safe$ is upward-closed (Theorem \ref{down-up}). Resilience is also decidable, when 
 $\Safe$ is upward-closed, for effective pred-basis (Definition \ref{eff}) WSTS with strong (upward) compatibility (Theorem \ref{xxx}).
 %
-%
-%    and
-%the additional hypothesis that
-%for all downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
-%
-%				and for post-ideal-effective downward-WSTS ????
-%%%
-%
+
 \item We clarify the different effectiness conditions on WBTS and WSTS (Definition \ref{eff}) that allow the decidability of the six resilience.
 %
 \item We generalize with Theorem \ref{post srp} the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} and we show that relaxing some hypothesis leads to undecidability (Proposition \ref{srp up down}).
-%
-%			à utiliser dans le texte ???
-%
-%We first remark that the main theorem of \cite{DBLP:journals/corr/abs-2108-00889,DBLP:conf/gg/Ozkan22} can be generalized by relaxing the  strong compatibility hypothesis. We show that removing the effective 
-%$\mathop{\uparrow}$ $\post^*$-basis hypothesis leads to undecidability; however, this hypothesis seems very strong since, many WSTS (like reset-VASS) don't enjoy this property. 
 
 \item We show that the three state-resilience problems are decidable for post-ideal-effective WBTS with downward and upward compatibilities and $\Safe$ downward-closed (Theorem \ref{downward srp} extends \cite[Theorem 1]{DBLP:journals/corr/PrasadZ16}).
 The two other types of resilience, {$k$-state-resilience} and {bounded-state-resilience}, are decidable for post-ideal-effective WBTS with strong downward compatibility.
-%
-%			à utiliser dans le texte ???
-%
-%\item We remark that the reflexive downward compatibility (of an effective WSTS) hypothesis in  \cite{DBLP:journals/corr/PrasadZ16} implies the existence of an algorithm that computes a finite basis of the upward-closure of the reachability set from $s$,
-%%
-%%			$\mathop{\uparrow} \post^*(s)$ 
-%%
-%for all states $s$; this provides a way to use \cite{DBLP:journals/corr/abs-2108-00889} for proving the announced result by Prasad and Zuck.
-%However, neither Prasad \& Zuck nor \"Ozkan \& Würdemann established the strong relation between resilience and the home-space property.
-%
+
 \item We study the resilience problems for VASS and variations of VASS where most of the resilience problems are shown decidable.
 \end{itemize}
 
 
-%				detailed on page~\pageref{on effectivity}.
 
 
-\iffalse
- \begin{center}
-	\begin{figure}
-			\hspace{0.8cm}
-\includegraphics[width=0.75\textwidth]{FigureCD}
-	\caption{Two reset-VASS with three control-states and one counter.}
-					\label{r-V}
-	\end{figure}
-\end{center}
-
-\begin{example}\label{Example}
-{(\bf Reset-VASS example).}
-Consider the 
- reset-VASS $V_1$ from Figure~\ref{r-V}.
-Consider first $\Safe = \{q_0(n) \mid n \in \N\}$; In this case,  {resilience}, 
-{$k$-resilience} and {bounded resilience} are not satisfied: there is no  way back from $q_2$ or $q_1$ to $q_0$. Consider now $\Safe = \{q_1(0)\} $; then {resilience} hold: it is possible to reach $q_1(0)$ from any state of $V_1$. However, {bounded resilience} does not hold, since, for all $n\in \N$, from $q_1(n)$, there is no path of length less than $n$ towards $q_1(0)$. Consider now the 
- reset-VASS $V_2$, which is $V_1$ plus an $+1$ transition from $q_1$ back to $q_0$. In $V_2$, {bounded resilience} hold, since $6$-resilience hold. 
-Indeed, from any state with value of the counter bigger than $9$, it is possible to reach $q_2$ in two steps or less, then use the (unique) reset transition. From $q_1(n)$ or $q_0(n)$ with $n \in \{1, 2, 3, 4, 5, 6\}$ it is possible to reach $q_1(0)$ in $6$ steps or less. From 
-$q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $3$ steps or less, from which $q_1(0)$ is reachable in $2$ steps. 
-\end{example}
-%%%%%
-
-%%%%%
-% Hence we can see how adding transitions can 
-% turn a system that is not bounded resilient into one that is. 
-% \alain{à quoi sert cette remarque ?}
-\fi
-
-\iffalse
-\begin{center}
- \resizebox{\textwidth}{!}{
-\begin{tabular}{ | l | c | c | c | r |}
-\hline   \ 
-		& $\Safe = {\uparrow \Safe}$~ 
-		 & $\Safe = {\downarrow \Safe}$~ 
- \\ \hline
-   \multirow{3}{*}{RP} 
-  	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
-   		 & Downard-WSTS ($\pred^*$-basis-effective) Thm~\ref{up-down} \\ 
-~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
-		& VASS \\\cline{2-3}
-~	& WSTS ($\post$-effective) Prop~\ref{indec WSTS} & Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS with dcs}    \\ \hline
-   \multirow{3}{*}{BRP} 
-  	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
-   		 & VASS \\ 
-~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
-		&   \\\cline{2-3}
-~	&  WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS}  & ?    \\ \hline
-   \multirow{3}{*}{kRP} 
- 	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up} 
-   		 & VASS \\ 
-~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
-		& \\\cline{2-3}
-~	& ? & ?    \\ \hline
-
-   \multirow{2}{*}{sRP} 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) Thm~\ref{post srp} 
-   		 & WSTS (downward + upward) Thm~9 \\ \cline{2-3}
-~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{srp up down}    \\ \hline
-   \multirow{2}{*}{BsRP} 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
-   		 & WSTS (downward + upward) Cor~\ref{downward brp} \\ \cline{2-3}
-~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & ?    \\ \hline
-   \multirow{2}{*}{ksRP} 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}  
-   		 & WSTS (downward + upward) Cor~\ref{downward brp} \\ \cline{2-3}
-~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & ?    \\ \hline
-
- \end{tabular}
-  }
-\end{center}
-\fi
 
 
-\iffalse
-\begin{center}
- \resizebox{\textwidth}{!}{
-\begin{tabular}{ | l | c | c | c | r |}
-\hline   \
-		& {\bf WBTS model (with $\Safe = \mathop{\uparrow} \Safe$) }~ 
-		 & ~ {\bf Decidability}  ~ 
- \\ \hline
-   \multirow{3}{*}{ {\bf RP }} 
-  	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
-   		 &    \multirow{2}{*}{Decidable}  \\ 
-~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
-		&  \\\cline{2-3}
-~	& WSTS ($\post$-effective) Prop~\ref{indec WSTS}  & Undecidable    \\ \hline
-   \multirow{3}{*}{{\bf BRP }} 
-  	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up}
-   		 & \multirow{2}{*}{Decidable}  \\ 
-~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
-		&   \\\cline{2-3}
-~	&  WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS}  & Undecidable    \\ \hline
-   \multirow{3}{*}{ {\bf kRP } } 
- 	& WBTS ($\post$-ideal-effective) Thm~\ref{down-up} 
-   		 & \multirow{2}{*}{Decidable}  \\ 
-~	& WSTS ($\pred$-basis-effective) Thm~\ref{xxx}
-		& \\\cline{2-3}
-~	& ? & Undecidable   \\ \hline
-
-   \multirow{3}{*}{ {\bf sRP } } 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective)  
-   		 & \multirow{2}{*}{Decidable} \\
-   	& Thm~\ref{post srp} &	 \\ \cline{2-3}
-~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Undecidable   \\ \hline
-   \multirow{3}{*}{ {\bf BsRP } } 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective) 
-   		 & \multirow{2}{*}{Decidable} \\
-   	& Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
-   	& \\ 	  \cline{2-3}
-~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Undecidable    \\ \hline
-   \multirow{3}{*}{ {\bf ksRP } } 
-  	& WSTS ($\pred$-basis-effective + $\post^*$-basis-effective)
-   		 & \multirow{2}{*}{Decidable} \\
-   	&  Thm~\ref{ref ozkan} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}  		& \\	  \cline{2-3}
-~	& WSTS ($\pred$-basis-effective+$\post$-effective) Prop~\ref{srp up down} & Undecidable    \\ \hline
-
- \end{tabular}
-  }
-\end{center}
 
 
-\begin{center}
- \resizebox{\textwidth}{!}{
-\begin{tabular}{ | l | c | c | c | r |}
-\hline   \ 
-		& {\bf WBTS model (with $\Safe = \mathop{\downarrow} \Safe$)} ~ 
-		 & ~ {\bf Decidability}  ~ 
- \\ \hline
-   \multirow{3}{*}{ {\bf RP }} 
-   		 & Downard-WBTS ($\pred^*$-basis-effective) Thm~\ref{up-down}
-   		 	& \multirow{2}{*}{Decidable}  \\ 
 
-		& VASS & \\\cline{2-3}
-		& ~ Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{indec WSTS with dcs} 
-		& Undecidable   \\ \hline
-   \multirow{2}{*}{{\bf BRP }} 
-   		 & VASS 
-   		 & Decidable   \\\cline{2-3}
-~	&  ? & Undecidable    \\ \hline
-   \multirow{2}{*}{{\bf kRP }} 
-~	& VASS
-		& Decidable \\\cline{2-3}
-~	& ? & Undecidable    \\ \hline
-
-   \multirow{2}{*}{{\bf sRP ~ ~ }} 
-   		 & WBTS (downward + upward) Thm~9 & Decidable\\ \cline{2-3}
-~	& ~ Reset-VASS, WSTS ($\pred$-basis-effective) Prop~\ref{srp down up}  & Undecidable  \\ \hline
-   \multirow{2}{*}{{\bf BsRP }} 
-   		 & WBTS (downward + upward) Cor~\ref{downward brp} & Decidable \\ \cline{2-3}
-~	&  ? & Undecidable   \\ \hline
-   \multirow{2}{*}{{\bf ksRP }} 
-   		 & WBTS (downward + upward) Cor~\ref{downward brp} & Decidable\\ \cline{2-3}
-~	 & ? & Undecidable    \\ \hline
-
- \end{tabular}
-  }
-\end{center}
-\fi
 
 
 
@@ -459,34 +222,13 @@ $q_1(n)$ or $q_0(n)$ with $n \in \{7,8\}$ it is possible to reach $q_0(10)$ in $
 \end{center}
 \newpage
 
-\iffalse
- \begin{center}
-	\begin{figure}
-%	\hspace{1.2cm}
-\includegraphics[width=0.70\textwidth]{Safe_up_R}
-	\end{figure}
-\end{center}
-
- \begin{center}
-	\begin{figure}
-\includegraphics[width=0.70\textwidth]{Safe_up_State_R}
-	\end{figure}
-\end{center}
-
- \begin{center}
-	\begin{figure}
-\includegraphics[width=0.70\textwidth]{Safe_down_R}
-	\end{figure}
-\end{center}
-\fi
 
 
-% \alain{je pense qu'il faut faire deux tableaux pour que ce soit lisible. attention, la décidabilité n'est pas encore indiquée}
+
 
 \noindent
 {\bf Plan of the paper.} 
 
-% Section 2 introduit les notions, Section 3 et 4 les résultats de résilience et state résilience pour les WBTS, Section 5 sur les VASS et variantes
 Section~2 introduces the necessary definitions of WSTS and variations as well as the different notions of effectivity. Section~3 and 4 are concerned with the general framework of WSTS and contain our results on the three resilience problems
 and the three state-resilience problems respectively. Lastly, Section~5 concerns itself with the resilience problems for VASS and variations of VASS.
 
@@ -618,8 +360,6 @@ Let us recall that the \emph{completion}  \cite{BFM-ic17} of a WSTS $\mathscr{S}
 
 Another type of WSTS exists that enjoys downward compatibility.
 %
-%		Finkel and Schnoebelen, 
-%
 \begin{definition}
 A {\em downward (compatible) WBTS (short, downward-WBTS)} $\mathscr{S}=(S, \rightarrow, \leq)$
 is an ordered transition system $(S, \rightarrow, \leq)$ such that $\leq$ is without infinite antichains and
@@ -640,39 +380,7 @@ Let us reformulate the downward compatibility property.
 For an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ (not necessarly a WSTS), the two following properties are equivalent: (1) $\mathscr{S}=(S, \rightarrow, \leq)$ is downward compatible ; (2) for every downward-closed set $D \subseteq S$, the set $\pred^*(D)$ is downward-closed.
 \end{lemma}
 
-\iffalse\begin{proof}
-Let us prove $1 \implies 2$. 
-Let $D$ be a downward-closed subset of $S$
-and let $x \in \mathop{\downarrow} \pred^*(D)$.
-By downward closure, there exists
-$y \in \pred^*(D)$ 
-such that $x \leq y$.
-By definition of $\pred^*(D)$, there exists 
-$d \in D$ such that: (1) either $y=d$ and then $x \in D \subseteq \pred^*(D)$ or (2) there exist $m\geq 0$ and $(a_i)_{0 \leq i \leq m+1} \in S^{m+2}$ such that
-$y = a_0 \to a_1 \to a_2 \to \cdots \to a_m \to a_{m+1} = d$.
-%
-By downward compatibility $a_0 \to a_1$
-implies that there exists $a'_1 \in S$ such that $a'_1 \leq a_1$ and
-$x \to^* a'_1$.
-More generally $a_i \to a_{i+1}$ and
-$a'_i\leq a_i$ implies the existence of $a'_{i+1} \in S$ with $a'_{i+1} \leq a_{i+1}$ and
-$a'_i \to^* a'_{i+1}$,
-and, by induction,
- $x \to^* a'_1 \to^* \cdots \to^* a'_{m} \to^* a'_{m+1} = d'$
-with $d' \leq d$.
-Since
-$d'$ 
-belongs to $D$ by downward closure of $D$, $x \in \pred^*(D)$ and then $\mathop{\downarrow}\pred^*(D) \subseteq \pred^*(D)$. Since $\pred^*(D) \subseteq \mathop{\downarrow} \pred^*(D)$ always hold, we deduce that $\pred^*(D)=\mathop{\downarrow}\pred^*(D)$ is downward-closed.
 
-Let us prove $2 \implies 1$. Let $s_1, t_1 , s_2 \in S$ with $s_2 \leq s_1$  and $s_1 \rightarrow t_1$, Since $s_1 \rightarrow t_1$ we deduce that $s_1 \in \pred^*(\mathop{\downarrow} t_1)$, and since $s_2 \leq s_1$ and $\pred^*(\mathop{\downarrow} t_1)$ is downward-closed, we also have $s_2 \in \pred^*(\mathop{\downarrow} t_1)$. This means that there exists $t_2 \leq t_1$ such that 
-$s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compatible.
-\qed
-\end{proof}\fi
-
-%A WSTS $\mathscr{S}=(S,\rightarrow,\leq)$ is {\em completion-$\post$-effective} if
-%it is $\post$-effective, and there exists an algorithm $M_\downarrow$ that computes 
-% $\downarrow s$, on input $s \in S$, and some algorithm $M_{\mathop{\uparrow}^C}$ that computes the ideal decomposition of $S \setminus \mathop{\uparrow} \{ s_1, s_2, \ldots, s_m\}$, on input
-% $s_1, s_2, \ldots, s_m \in S$.
 
 
 To obtain decidability results, we must introduce some notions of \emph{effectiveness}. We use a mixture of the notions defined both by Blondin and al. in \cite{DBLP:journals/lmcs/BlondinFM17} and by Halfon in \cite{DBLP:phd/hal/Halfon18}.
@@ -748,12 +456,6 @@ By using the decidability of reachability and \cite[Theorem 3.11]{DBLP:journals/
 
 
 
-%Most of usual WSTS are $\post$-effective and ideally-effective.
-
-% \alain{le rappel ci-dessous est-il entièrement utile ? Je pense qu'on peut l'enlever, et toi ?}
-% Now, we may recall a simple condition that insures that a finite basis of $\pred^*(\mathop{\uparrow} s )$ is computable for every $s \in S$.
-% We will use the following property: if $\mathscr{S}$ is a WSTS with strong compatibility and $U \subseteq S$ is upward-closed, then $\pred(U )$, $\pred^k(U )$ with $k\geq0$, and $\pred^*(U )$ are all upward-closed \cite{DBLP:journals/tcs/FinkelS01}.
-% For a WSTS $\mathscr{S}=(S, \rightarrow, \leq)$ and an upward-closed set $U  \subseteq S$, let us study the convergence of the sequence defined by $U_0=U$ and $U_k= U_{k-1} \cup \pred(U_{k-1})$ for $k \geq 1$. When $\mathscr{S}$ has strong compatibility, the sets $U_k$ are upward-closed and $U_k \subseteq U_{k+1}$ so we know that the sequence $(U_k)_k$ converges. Let us define the \emph{index} of convergence of the sequence $U_k$ as the smallest $k_0$ s.t. $U_k = U_{k_0}$ for all $k \geq k_0$. We may compute $k_0$ and we then have:  $\pred^*(U) = U_{k_0}$. When $\mathscr{S}$ have upward-compatibility but not strong compatibility, we can similarly compute $\pred^*(U)$ by studying the sequence $(\mathop{\uparrow} U_k)_k$ instead.
 
 Recall the \emph{coverability problem} for ordered transition systems.
 
@@ -814,7 +516,6 @@ A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $
 
 	\vspace{-0.9cm}
 
-% \alain{il manque des refs dans la fig 1 qui sont déjà dans la biblio: WBTS, omega2,on peut mettre les front lossy avec les LCM et LCS}
 %
 
 VASS can be extended with resets.
@@ -828,8 +529,7 @@ is the set of {\em control-transitions}, and $Op = \{ add(\textbf{z}) \mid \text
 		\{ reset(i) \mid i \in \{1,\ldots,d\} \}$.
 \end{definition}
 
-%Again $Q \times \N^d$
-% is the set of states of $V$.
+
 For every states $p(\textbf{u}), q(\textbf{v}) \in Q \times \N^d$ and every control-transition $t$ we write
 $p(\textbf{u}) \xrightarrow{t} q(\textbf{v})$ when 
 \begin{samepage}\begin{itemize}
@@ -866,21 +566,7 @@ $\forall x \in S, \exists y \in \Safe$
 
 Let us formalize three resilience problems.
 
-\iffalse
-\problemx{Resilience (RP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and a set $\Safe \subseteq S$.}
-{$S \longrightarrow^{*} \Safe$ ?\newline}
 
-
-
-\problemx{$k$-resilience (kRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow), k \in \mathbb{N}$ and a set $\Safe \subseteq S$.}
-{$S \longrightarrow^{\leq k} \Safe$ ?\newline}
-
-\problemx{Bounded resilience (BRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$ and a set $\Safe \subseteq S$.}
-{$\exists k \geq 0$ such that {$S \longrightarrow^{\leq k} \Safe$ ?\newline}}
-\fi
 
 \problemx{Resilience problems}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$.}
@@ -897,11 +583,9 @@ the complement of $\Safe$ is in $\pred^*(\Safe)$. From now on, we use $\Bad$ to 
 Surprisingly, the general undecidability statement regarding resilience had neither been known nor proven (it is simply mentioned as a future work in the conclusion of \cite{DBLP:journals/corr/abs-2108-00889}).
 We show that the resilience problem is undecidable for $\omega^2$-WSTS with strong compatibility and natural effectiveness hypothesis. 
 %
-% \alain{pourquoi n'a-t-on pas prouvé la même chose pour la BR et la k-R ?: où est la difficulté ?}
 \begin{proposition}\label{indec WSTS}
 {\sc Resilience} and {\sc Bounded resilience} for $\post$-effective $\omega^2$-WSTS with strong compatibility, for upward closed sets $\Safe$ are undecidable.
 \end{proposition}
-% \alain{peut-on ajouter des hypothèses d'effectivity ? peut-on montrer que l'exemple n'est pas pred effectif ? l'exemple est-il  ideal-effective (oui pour les propriétes 1 et 2 mais pas 3 car ça permettrait de décider l'arrêt ?)? on voit que l'exemple n'est pas completion-$\post$-effective vu le theoreme qui suit}
 \begin{proof}
 Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
 increasing recursive functions from \cite{FMP-ic04} defined as
@@ -936,8 +620,6 @@ $\pred^*(\Safe) = \pred^{\leq k}(\Safe)$, hence {\sc Bounded-resilience} for $\o
 	nor $\pred$-basis-effective.
   Termination and boundedness are decidable for increasing recursive (functional) WSTS \cite{FMP-ic04}; the decidability of coverability and place-boundedness depends on the effectiveness hypothesis on recursive functions.
   
-% \mathieu{Reviewer 1: the example at the bottom of \textbf{ page~\pageref{indec WSTS}}, even if it is a WSTS, is a very particular case [...] wonder if classes containing such  systems are interesting per se. => citer un autre résultat où les increasing recursive functions ont été utilisées ?}
-% \alain{ma réponse: termination and boundedness are decidable for increasing recursive (functional) WSTS \cite{FMP-ic04}; the decidability of coverability and place-boundedness depends on the effectivity hypothesis on recursive functions.}
 
 
 We now prove that {\sc Resilience} is undecidable for reset-VASS when 
@@ -997,7 +679,6 @@ Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with s
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
 
-%\alain{a-t-on le même rsultat pour les WSTS avec pred* calculable ? J'ai enlevé l'hypothèse omega2 car j'ai l'impression qu'elle n'est pas utile...à vérifier}
 
 \begin{proof}
 Let us first recall two results in \cite{BFM-ic17} that are stated for WSTS but are also true for WBTS since the proofs rely only on compatibility and not on the property of wqo. \cite[Proposition 30]{BFM-ic17} establishes a strong relation between the runs of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ and the runs of its completion $\hat{\mathscr{S}}$. It states that if $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$. \cite[Proposition 29]{BFM-ic17} establishes that if $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
@@ -1051,7 +732,6 @@ and
 $S \setminus \pred^*(\Safe)$,
 which are both downward-closed, and test if this intersection is empty or not. Hence, the resilience problem is decidable. \qed\end{proof} 
 %%%%%%%
-%%\alain{prouver, si possible, les deux autres résilience}
 Strong compatibility implies furthermore the decidability
 of {\sc $k$-resilience} and {\sc bounded-resilience}.
 
@@ -1090,36 +770,6 @@ Remark furthermore that
 and {\sc $k$-resilience} in reset-VASS in the case $\Safe = \mathop{\uparrow} \Safe$.
 
 
-%				The completion-$\post$-effective hypothesis is needed to decide {\sc Resilience}.
-%%%
-%%%
-%Indeed, consider the family $\{ f_j: \N^2 \to \N^2\}$ of 
-%increasing recursive functions from \cite{FMP-ic04} defined as
-%
-%$ f_j(n,k) = \begin{dcases*} (n,0) & \text{ if } k=0 \text{ and } TM$_j$ \text{ runs for more than } n \text{ steps} \\
-%		(n,n+k) &\text{ otherwise,} \end{dcases*} $
-%		
-%	\noindent	
-%	where TM$_j$ is the $j$-th Turing machine (in a classical enumeration)
-%	which moreover begins
-%by writing the integer $j$ on its tape,	
-%	and consider additionnally the function $g : \N^2 \to \N^2$ defined by $g(n,k) = (n+1,k)$. 
-%	The
-%	transition system 
-%	$S_j = (\N^2, \{f_j, g\}, \leq)$ 
-%	is a WSTS
-%	and
-%	has the property that
-%	it is
-%	$\mathop{\uparrow} (1,1)$-resilient
-%	iff TM$_j$ halts on input $j$,
-%	since $(1,1)$ is coverable from $(0,0)$
-%	iff TM$_j$ halts on input $j$. 
-%	Hence there is no Turing machine which correctly determines 
-%	resilience and halts whenever its input is a
-%	WSTS.
-%Hence resilience for WSTS in general is undecidable.
-
 
 
 
@@ -1142,7 +792,6 @@ Let $\mathscr{S}$ be a $\pred^*$-basis-effective downward-WBTS with
 $\Safe=\mathop{\downarrow} \Safe$.
 By Lemma \ref{downward compatible}, $\pred^*(\Safe)$ is downward-closed; moreover, $\pred^*(\Safe)$ is computable because $\mathscr{S}$ is $\pred^*$-basis-effective.
 The resilience problem can be reformulated as $\Bad \cap (S \setminus \pred^*(\Safe)) = \emptyset$.
-%\alain{mais comment je calcule $\pred^*(\Safe)$ ?}
 Since $\leq$ is ideally-effective, we can compute complementaries and intersections of upward and downward-closed
  subsets.
 Hence we can compute $S \setminus \pred^*(\Safe)$ and then the intersection of
@@ -1200,21 +849,7 @@ Resilience is a strong property that implies that from every element
 The three previous problems become:
 
 
-\iffalse
 
-\problemx{State-resilience (SRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and $\Safe \subseteq S$.}
-{$\post^*(s)  \rightarrow^{*} \Safe $ ? \newline}
-
-\problemx{$k$-state-resilience (kSRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$, $k \geq 0$ and $\Safe \subseteq S$.}
-{ $\post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
-
-\problemx{bounded-state-resilience (BSRP)}
-{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$ and $\Safe \subseteq S$.}
-{$\exists k \geq 0$ such that $\post^*(s) \longrightarrow^{\leq k} \Safe$ ?  \newline}
-
-\fi
 
 \problemx{State resilience problems}
 {A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$, and a set $\Safe \subseteq S$.}
@@ -1275,25 +910,6 @@ where $\Safe = \pre(t)$.\qed
 It now remains to argue why {\sc $t$-liveness} is undecidable.
 Recall {\sc zero-reachability} in reset-VASS
 is undecidable~\cite{araki1976PN}.
-\iffalse
-
-\problemx{zero-reachability}
-{A reset-VASS $V=(Q,T)$ of dimension $d$, $q_f \in Q$, $p(\textbf{u}) \in Q \times \N^d$.} 
-{  $%\exists q \in Q, ~ 
-p(\textbf{u}) \to^* q_f(\textbf{0})$ ?\\}
-
-% 
-\fi
-\iffalse {\sc Resilience} (and {\sc $t$-liveness}) needs a set (resp. a transition) to always remains reachable (resp. fireable), while
-{\sc zero-reachability} concerns itself only with the existence of at least one way to reach some state $q_f(\textbf{0})$,
-which could be unreachable from other reachable states. 
-%
-Despite this it is possible to reduce 
- {\sc zero-reachability} 
-to
-{\sc $t$-liveness}.
-\fi
-% The following Proposition is a variation  to reset-VASS of Theorem~5.5 in \cite{peterson1981petri} originally stated for Petri nets,
 The following Proposition is a variation  to reset-VASS 
 of~\cite[Theorem~5.5]{peterson1981petri} originally stated for Petri nets,
  whose proof can be seen in Appendix~\ref{appendix}%
@@ -1303,12 +919,12 @@ of~\cite[Theorem~5.5]{peterson1981petri} originally stated for Petri nets,
 \end{proposition}
 
 
-% We may now prove the undecidability of the three state-resilience problems.
+
 Since {\sc zero-reachability} for reset-VASS is undecidable \cite{dufourd1998reset}, the reduction implies 
 {\sc $t$-liveness} is undecidable.
 We deduce undecidability by reduction to {\sc State-resilience}, and straightforward reductions to the other two state resilience problems, as detailed in Appendix~\ref{appendix}.
 
-%\alain{énoncer pour les reset-VASS c'est plus fort}
+
 \begin{proposition}\label{srp up down}
 {\sc State-resilience},
 {\sc Bounded-state-resilience} and
@@ -1331,40 +947,12 @@ comes more from the fact $\mathop{\uparrow} \post^*(s_0)$ is not constructible i
 
 On the positive side, let us recall a result about {\sc Bounded-state-resilience} (called resilience in \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889}).
 %
-%		(\"Ozkan,   \"Ozkan and W{\"{u}}rdemann,  
 %
 \begin{theorem}[Theorem 1,~\cite{DBLP:conf/gg/Ozkan22}, Theorem 1, ~\cite{DBLP:journals/corr/abs-2108-00889}]\label{ref ozkan}
 {\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
 when
 $\Safe=\mathop{\uparrow} \Safe$.
 \end{theorem}
-%
-%
-%\alain{ce qui suit est à supprimer car subsumé par Theo 8}
-%%
-%We may immediately  \emph{generalize} this last result by strengthening to \emph{unbounded} {\sc State-resilience}. The proof is essentially the same than the previous one.
-%
-%\begin{proposition}\label{postcomputable}
-%{\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
-%when
-%$\Safe=\mathop{\uparrow} \Safe$.
-%\end{proposition}
-%
-%\begin{proof}
-%\alain{où utilise-t-on la strong compatibility ? et si on ne l'utilise pas, c'est le theo 8...}
-%Since $\mathscr{S}$ is a WSTS there exists an $n_0 \in \N$ such that
-%$\pred^*(\Safe) =  \pred^{\leq n_0}(\Safe)$. We can compute the least $n_0$ by iteratively computing 
-%$\pred^{\leq n+1}(\Safe)$ from $\pred^{\leq n}(\Safe)$, checking 
-%$\pred^{\leq n+1}(\Safe) = \pred^{\leq n}(\Safe)$, 
-%returning $n$ if that is the case.
-%Then, because {\sc $n_0$-state-resilience} is decidable, 
-%checking $\mathop{\uparrow} \post^*(s) 
-% \subseteq \pred^{\leq n}(\Safe) = \pred^*(\Safe)$ is,
-%and {\sc State-resilience} is decidable. \qed
-%\end{proof}
-%%
-%\alain{ce qui précède est à supprimer car subsumé par Theo 8}
-%
 The proof of Theorem~\ref{ref ozkan} rely on the computability of $\mathop{\uparrow} \post^*(s)$ and on the following lemma.
 
 \begin{lemma}\label{Lemma intersection}
@@ -1373,17 +961,7 @@ Then $A \cap D \subseteq U$  iff $ (\mathop{\uparrow}  A) \cap D \subseteq U$.
 \end{lemma}
 
 
-\iffalse \begin{proof}
-Let us suppose that $A \cap D \subseteq U$. Then ${\mathop{\uparrow} (A \cap D)} \subseteq {\mathop{\uparrow} U} = U$.
-Let us show that $({\mathop{\uparrow} A}) \cap D \subseteq {\mathop{\uparrow} (A \cap D)}$.
-Let $x \in ({\mathop{\uparrow} A}) \cap D$, then there exists $a \in A$ such that $x \geq a$.
-Since $x \in D$ and $D$ is downward-closed, we also have $a \in D$.
-Hence $a \in A \cap D$ and then $x \in { \mathop{\uparrow} (A \cap D)}$.
-In the other direction,
-since $A \subseteq {\mathop{\uparrow} A}$, the inclusion
-$({\mathop{\uparrow}  A}) \cap D \subseteq U$ implies
-$A \cap D \subseteq ({\mathop{\uparrow}  A}) \cap D \subseteq U$. \qed
-\end{proof} \fi
+
 
 
 \"Ozkan \cite{DBLP:conf/gg/Ozkan22} argues that it is precisely the WSTS for which the following problem is decidable.
@@ -1405,7 +983,7 @@ $B_{\mathop{\uparrow} \post^*(s)} \cap D = \emptyset$,
 where $B_{\mathop{\uparrow} \post^*(s)}$ is a basis of $\mathop{\uparrow} \post^*(s)$,
  that is equivalent to $\post^*(s)\cap D = \emptyset$ by
 Lemma~\ref{Lemma intersection}. For the converse direction, one computes the sequence of upward-closed sets
-$U_n = \mathop{\uparrow} \post^{\leq n}(s)$ %\alain{il manque l'hypothèse $\post$-effective}
+$U_n = \mathop{\uparrow} \post^{\leq n}(s)$ 
 until it becomes stationnary. 
 Decidability of downward-reachability leads to the decidability of the following stop condition:
 asking whether $S \setminus U_n$ is reachable from $s$.
@@ -1426,7 +1004,7 @@ Moreover there exist classes of WSTSs with strong
 
 Keeping the $\mathop{\uparrow} \post^*$ effectiveness hypothesis but \emph{loosening} the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
 
-%\alain{Theo 8 est plus fort que prop 6}
+
 \begin{theorem}\label{post srp}
 {\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS
 when
@@ -1453,19 +1031,11 @@ we obtain that
 %
 %
 %
-%Recall that $\mathscr{S}$ is state-resilient iff  $\post^*(s) 
-% \subseteq \pred^*(\Safe)$ iff 
 Now the last inclusion is equivalent to:
 \[ \mathop{\uparrow} B_{\mathop{\uparrow} \post^*(s)} 
  \subseteq \mathop{\uparrow}  B_{\pred^*(\Safe)} \text{ iff } \forall b \in B_{\mathop{\uparrow} \post^*(s)}  \exists b' \in B_{\pred^*(\Safe)} \text{ such that } b' \leq b \]
 %
 Since both $B_{\mathop{\uparrow} \post^*(s)}$ and $B_{\pred^*(\Safe)}$ are finite, {\sc State-resilience} is decidable.\qed
-%
-%
-%			Since $B_{\mathop{\uparrow} \post^*(s)}$ is finite
-%\alain{comment calcule-t-on une telle base sans l'hypothèse $\pred$-basis-effective qui n'est pas dans les hypothèses du théorème ? Est-elle chez Ozkan ?} 
-%			we can check that $B_{\mathop{\uparrow} \post^*(s)} 
-%			 \setminus \pred^*(\Safe) = \emptyset$.  \qed
 \end{proof}
 
 
@@ -1494,7 +1064,6 @@ Thus in case of $\post^*$-basis-effective WSTS (when the compatibility is not st
 We now consider the case $\Safe = \mathop{\downarrow} \Safe$.
 %
 Unfortunately {\sc State-resilience} is undecidable in this case. 
-%\mathieu{GOTO}
 This stems from undeciability of {\sc zero-reachability} in reset-VASS,
 as seen in the reduction proof of Proposition~\ref{indec WSTS with dcs}.
 
@@ -1505,25 +1074,11 @@ $\post$-effective,
  $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
  \end{proposition}
 
-\iffalse
-\begin{proof}
-Let $V$ be a reset-VASS and $q_0({\bf 0})$ an initial state of $V$,
-we build $V'$ from $V$ by additionnally allowing from any control-state to get back to 
-$q_0({\bf 0})$
-by a transition reseting every counter and
-changing the control-state to $q_0$.
-Then a state $q_f({\bf 0})$ is reachable from $q_0({\bf 0})$ in $N$
-iff $q_f({\bf 0})$ is reachable from every element of $\post^*(q_0({\bf 0}))$ in $V'$,
-which corresponds to {\sc State-resilience}  for $\Safe =  \{ q_f({\bf 0}) \}$
-and $s_0 = q_0({\bf 0})$.
-\end{proof}
-\fi
+
 
 Despite this, it is possible to yield positive results. Indeed, in many ways the case where $\Safe = \mathop{\downarrow} \Safe$
 is symmetrical to the case $\Safe = \mathop{\uparrow} \Safe$.
 %
-% For instance one can write the following lemma:
-%  Page 14: "For instance one can write the following lemma" => Rewrite this: we will need the following lemma for this and that.
 We will need the following lemma in order to obtain symmetrical results.
 
 \begin{lemma}(Symmetrical from Lemma~\ref{Lemma intersection})\label{Lemma intersection 2}
@@ -1546,7 +1101,6 @@ $\post^*(s)
 
 \begin{theorem}\label{downward srp}
 {\sc State-resilience} is decidable for $\post$-effective, 
-%$\pred$-basis-effective, 
 $\post$-ideal-effective and $\pred^*$-basis-effective WBTS with downward and upward compatibilities
 and $\Safe = \mathop{\downarrow} \Safe$.
 \end{theorem}
@@ -1554,14 +1108,13 @@ and $\Safe = \mathop{\downarrow} \Safe$.
 \begin{proof}
 Since $\mathscr{S}$ is $\pred^*$-basis-effective, $\Safe = \mathop{\downarrow} \Safe$ and $\pred^*(\Safe)=\mathop{\downarrow} \pred^*(\Safe)$, we may compute the finite decomposition in ideals of $\pred^*(\Safe)$.
 
-In order to decide whether %$\post^{\leq n}(s)
+In order to decide whether 
 $\post^{ *}(s)  
  \subseteq \pred^*(\Safe)$, we execute two procedures in parallel,
 one looking for a resilience certificate and one looking for a non-resilience certificate.
 
 Procedure 1 enumerates every downward-closed subsets in some fixed order $D_1$ , $D_2$ , $\ldots$ by their ideal decomposition. The computability of the enumeration comes from the hypothesis that $\leq$ is ideally-effective (Lemma~4.3. from \cite{DBLP:journals/lmcs/BlondinFM17}).
 The procedure then checks for every downward-closed subset $D_i$ whether $\mathop{\downarrow} \post(D_i) \subseteq D_i$ (this inclusion is decidable because $\mathscr{S}$ is $\post$-ideal-effective). 
-%\alain{on ne peut pas tester $\downarrow \post^*(D_i) \subseteq D_i$ sans expliquer pourquoi. L'hypothèse "$\post$-ideal-effective" permet de calculer $\downarrow \post(D_i)$. Il manquait la $\post$-effective dans les hypothèses}
 Every subset $D_i$ such that $\mathop{\downarrow} \post(D_i) \subseteq D_i$ is an “over-approximation” of $\mathop{\downarrow} \post^*(s)$ if it contains $s$.
 Notice that, by 
 upward compatibility, $\mathop{\downarrow} \post^*(s)$ is such a subset and may eventually be found.
@@ -1570,7 +1123,6 @@ Procedure 1 stops when it finds a downward-closed subset $D$ such that
 $\mathop{\downarrow} \post(D) \subseteq D$,
 $s \in D$ and
 $D   \subseteq \pred^*(\Safe)$. 
-%\mathieu{ici $\pred^*(\Safe)$ est downward-closed. du coup pas sur que la $\pred$-basis-effectivité telle qu'elle est actuellement nous permette de trancher ... à moins que les hypothèses d'effectivté sur les idéaux nous permettent de guarantir qu'on puisse calculer le $\pred$ d'un idéal ?}
 
 Indeed
 $D \subseteq  \pred^*(\Safe)$ implies
@@ -1579,7 +1131,6 @@ since $ \mathop{\downarrow} \post^*(s)  \subseteq D$.
 
 The second procedure iteratively computes
 $\post^{\leq n}(s) $ (this is effective because $\mathscr{S}$ is $\post$-effective)
-%			\alain{ici on utilise $\post$-effective que j'ai rajoutée}
 until it finds an element
 not in $\pred^*(\Safe)$.
 
@@ -1607,14 +1158,10 @@ and there exists an algorithm accepting any ideal $I$ and returning a finite bas
  $\mathop{\downarrow} \pred(I)$.
 \end{corollary}
 
-% \mathieu{Donner des exemples dans cette classe.}
-% \alain{je pense aux LCM avec insertions, elle  devrait avoir toutes les propriétés mais faut vérifier}
 
-$\post$-effective, $\post$-ideal-effective WSTS, strong downward compatibility and upward compatibility include for instance
-Lossy Channel Systems with insertions~\cite{DBLP:journals/iandc/AbdullaJ96%,DBLP:journals/iandc/CeceFI96
-%
-%% GOTO bibliographic reference when doing the bibtex final.aux did not work
-}. 
+
+Note that $\post$-effective, $\post$-ideal-effective WSTS, strong downward compatibility and upward compatibility include for instance
+Lossy Channel Systems with insertions~\cite{DBLP:journals/iandc/AbdullaJ96}. 
 
 \section{Resilience for VASS and variations}\label{section VASS}
 
@@ -1742,10 +1289,6 @@ did not make use of the hypothesis that $\Bad$ is the complement of $\Safe$, sim
 semilinearity of the set (resp. its definability in the existential theory of the rationals with addition and order). Thus 
 the mentionned theorems still hold in the more general case where $\Bad$ and $\Safe$ are not complements of each others.
 
-% The above results concern only unbounded resilience. We consider now  {\sc Bounded resilience} and {\sc $k$-resilience}, and focus on the length of the path from $\Bad$ to $\Safe$ when $\Safe$ is downward-closed. 
-
-
-
 
 
 
@@ -1784,7 +1327,6 @@ One could also extend upon the classes of set $\Safe$
 
 We have omitted proofs for Lemma~\ref{downward compatible} and Lemma~\ref{Lemma intersection}
 up until now since these are fairly straightforward technical proofs.
-% \mathieu{mettre ici les preuves suivantes (?): lemme1, et lemme 2}
 We provide now both. \\
 
 \noindent
@@ -1822,7 +1364,7 @@ $s_2 \rightarrow^{*} t_2$. Hence, we proved that $\mathscr{S}$ is downward compa
 \end{proof}
 
 
-% Additionnally ...
+
 
 \noindent
 \textbf{Lemma~\ref{Lemma intersection}.}
@@ -1987,104 +1529,12 @@ and
 
 
 
-	\iffalse
-\section{Reset-VASS and Minsky-machines}\label{minsk}
-
-
-We now delve into more details into the undecidability results 
-upon which rely
-Proposition~\ref{indec WSTS with dcs},
-% and
-% Proposition~\ref{srp down up},
-namely, that
-{\sc Resilience} %and {\sc State-resilience} 
-when $\Safe = \mathop{\downarrow}~\Safe$
-%are
-is
-%
- undecidable for Minsky machines
-and 
-for reset-VASS.
-
-The 
-% problems are
-problem is undecidable for a Minsky machine with at least $2$ counters when
-$\Safe$ is downward-closed, since it is possible to consider $\Safe = \{q_f(0,0)\}$. We then use Reset-VASS to simulate the Minsky machines~\cite{araki1976PN,dufourd1998reset}, albeit in a weak way. 
-% The simulation however is 
-Since by a particular choice of $\Safe$ and $\Bad$ we are only interested in the reachability of $q_f(0,0)$ in the Minsky machine, 
-this weak simulation will be enough to obtain undecidability of both problems.
-
-
-\begin{proposition}\label{both minsk indec}
-{\sc Resilience} and {\sc State-resilience} when $\Safe = \mathop{\downarrow}~\Safe$ are undecidable for reset-VASS, hence also undecidable for $\post$-effective, $\pred$-basis-effective $\omega^2$-WSTS with strong compatibility.
-\end{proposition}
-
-
-\begin{proof}
-First, note that deciding whether from all inputs, all runs are terminating
- is undecidable for Minsky machines with at least $2$ counters, and, in particular, for deterministic ones as well. Hence 
-  deciding whether from all inputs, there exists at least one terminating run
- is undecidable for Minsky machines with at least $2$ counters, since,
- for deterministic Minsky machines, the two problems are one and the same.
-
-Now, let us show that {\sc Resilience} is undecidable for Minsky machine with at least $2$ counters.
-%	This is due to the undecidability of $2$-counter Minsky machine structural termination.
-From a $2$-counter Minsky machine $M$ with final control-state $q_f \in Q_M$, one can construct a $2$-counter Minsky machine $M'$ with final control-state $q_f' \in Q_{M'}$
-such that there exists a terminating run in $M$ for all inputs iff machine $M'$ can reach $q_f'(0,0)$ from any input. 
-%			with at least $1$ on its third counter. 
-We build $M'$ to simulate $M$ until it reaches $q_f$, then decrease the two counters until they reach $0$, then, and only then, go in $q_f'$.
-Based on this construction, the problem of deciding whether the downward-closed set 
-$\{q_f'(0,0)\}$ is reachable in the $2$-counter Minsky machine $M'$
-from any input is equivalent to the asking whether there exists a terminating run from every input of machine $M$, that is undecidable. 
-Note that by chosing $s_0 \in Q_{M'} \times \N^2 \setminus \{q_f'(0,0) \}$,
-deciding whether the downward-closed set 
-$ \{q_f'(0,0) \}$ is reachable
-from every element of $\post^*(s_0)$ 
-is again equivalent to asking whether $M$ terminate on every input.
-Hence {\sc Resilience} and {\sc State-resilience} are undecidable for Minsky machines.
-
-
-Now, executions of Minsky machines can be simulated by reset-VASS~\cite{araki1976PN,dufourd1998reset}. 
-% \alain{\cite{araki1976PN} simule-t-il les Minsky machines et comment ?}
-%Reset-VASS extend the basic VASS model with special “reset
-%transitions” that set to $0$ some coordinates in the vector. 
-%			Let us recall their definition here.
-%      	it is well known that reset-VASS are WSTS~\cite{dufourd1998reset}.
-The simulation operates by building a reset-VASS 
-which mimick the behaviors of the Minsky machines' counters by using two mirror counters 
-for each of them,
-and where instead of being tested for zero before a transition, one of the the counters in the pair is being reset; if the counters were zero before the transition then this was a faithful simulation, 
-otherwise, there is a gap between the two counters which cannot be undone otherwise than by letting the machine backtrack.
-The construction is such that
-there exists
- a sequence from 
-an initial state %$(s,x_1 \ldots x_n)$
-	with equal mirror counters
-to
-a state $ q({\bf 0})$ if and only if
-there exists
-a sequence
- in the Minsky machine
- from a corresponding initial state
- to
- the state $q_f(0,0,0)$
-  (from Theorem~$5$ in \cite{araki1976PN}).
-  [... from initial states with unequal mirror counters ... -> go back to a state with equal mirror counters -> then ...]
-  [ initial states with unequal mirror counters should be allowed to have some kind of backtracking to them]
-Hence {\sc Resilience} (resp. {\sc State resilience}) holds in the Minsky machine $M'$ iff 
-{\sc Resilience} (resp. {\sc State resilience}) holds in the reset-VASS simulating $M'$.
-Since reset-VASS can simulate executions of a Minsky machine, {\sc Resilience} 
-and  {\sc State-resilience} are undecidable for reset-VASS and hence for  $\pred$-basis-effective, 
-$\omega^2$-WSTS with strong compatibility as well.\qed
-\end{proof}
-
-	\fi
-
+	
 
 
 \section{Decision procedure for VASS when $\Safe = \mathop{\downarrow} \Safe$}\label{appendix vass}
 
-% \mathieu{mettre ici le détail du Theo 13}
+
 
 
 
@@ -2155,7 +1605,6 @@ From $k_0$ onwards,
 $\Bad \setminus (\pred^{\leq k}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))= 
 \Bad \setminus (\pred^{*}(\mathop{\uparrow} q_{j_1}(\textbf{0})) \cup \ldots \pred^{*}(\mathop{\uparrow} q_{j_\ell}(\textbf{0})) )$
 is stationnary. 
-%\mathieu{
 We check the finiteness of the set by comparing the elements from the finite basis of $\Bad$ and
 $(\pred^{\leq k_0}(\mathop{\uparrow} q_{j_1}(\textbf{0}))\cup \ldots \cup \pred^{\leq k_0}(\mathop{\uparrow} q_{j_\ell}(\textbf{0}))$.
 %
