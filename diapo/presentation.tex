@@ -6,6 +6,7 @@
 
 \documentclass{beamer}
 %  \usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
   \usetheme{Warsaw}
   \usepackage{dsfont}
   \usepackage{xcolor}
@@ -29,7 +30,7 @@
 \usepackage{pgf}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
 
 \bibliographystyle{alpha}% the recommnded bibstyle
 
@@ -41,6 +42,10 @@
 \colorlet{Mycolor3}{blue!20!magenta!90!}
 \definecolor{Mycolor2}{HTML}{00F9DE}
 
+
+
+\newcommand{\Bad}{\textsf{Bad}}
+\newcommand{\Safe}{\textsf{Safe}}
 
 
 \begin{document}
@@ -56,16 +61,104 @@
   \end{frame}
   \section{Introduction}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}
+  \begin{frame}{Motivation}
 
 TODO
+
+Exemple de motivation
+
+
+Fridge \quad	Bad state is when temperature is too high \\
+\phantom{Fridge}	\quad Good state is temperature low enough \\
+
+Speaking: We are usually focused on how to avoid bad states in general but you can see when your fridge the system stops providing refrigerating temperature it's not over yet
+If you leave your fridge off for a minute it's not going to have Terrible impact but if you leave it off for more than one hour you're gonna have to throw the things in it away
+
+And I've been talking like your frige at home but it apply to any type of cooling system it can be like refrigerating medical supplies or nuclear reactor.
+
+And this is interesting Bcz now the stuff is not necessarily avoid bad states completely
+
+This lead to concept of resilience
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}
+  \begin{frame}{Resilience(s)}
+  
+TODO
+
+Define the Six different problems we study/focus on.
+
+(Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
+  
+  
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{WSTS}
   
 TODO
   
+Resilience(s) "obviously"  undecidable in general so restriction
+
+restriction already to WSTS
+
+so we need to define WSTS properly
+
+This is what this slide could be about
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{... on effectivity}
+  
+TODO
+
+
+... and effectivity as well
+
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Results}
+  
+Now that everything is somewhat properly defined maybe the picture with all the results ?  
+    
+    
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result A}
+ 
+   Now we won't have time to detail all the result. 
+   Result blabla are consequences of the paper    by Okzan so let's not delve into it.\\
+   ( should still be quite precise about Okzan result)
+   
+    Let's delve into [This Result] in particular.
+   
+   Now recall the definitions ...
+   
+   \pause 
+   
+   And let's give an intuition behind the proof
+      
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Conclusion}
+  
+
+How to expand current results ?
+
+- detailed complexity analysis
+
+- controller/environment framework
+
+- other classes of $\Safe / \Bad$
+
+
+      
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
