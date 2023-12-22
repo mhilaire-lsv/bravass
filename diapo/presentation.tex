@@ -13,6 +13,28 @@
 %  \usepackage[dvipsnames]{xcolor}
   \usepackage{tabto}
 
+\usepackage{mathtools}
+\usepackage{todonotes}
+\usepackage{microtype}
+
+\usepackage{complexity}
+\usepackage{amsmath}
+
+\usepackage{stmaryrd}
+\usepackage{dsfont}
+
+
+
+\usepackage{mathrsfs}
+\usepackage{mathalpha}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multirow}
+
+\usepackage{ textcomp } 
+
+\usepackage{stmaryrd}
+\usepackage{wrapfig}
 
 
 \title[Resilience and Home-Space for WSTS]{Resilience and Home-Space for WSTS}
@@ -43,6 +65,10 @@
 \definecolor{Mycolor2}{HTML}{00F9DE}
 
 
+\newcommand{\pred}{\textsf{pred}}
+\newcommand{\post}{\textsf{post}}
+
+
 
 \newcommand{\Bad}{\textsf{Bad}}
 \newcommand{\Safe}{\textsf{Safe}}
@@ -63,15 +89,17 @@
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Motivation}
 
-TODO
+% TODO
 
-Exemple de motivation
+% Exemple de motivation
 
 
-Fridge \quad	Bad state is when temperature is too high \\
-\phantom{Fridge}	\quad Good state is temperature low enough \\
+Fridge.png \quad	{\sf Bad} state is when temperature is too high \\
+\phantom{Fridge.png}	\quad {\sf Good} state is temperature low enough \\
 
-Speaking: We are usually focused on how to avoid bad states in general but you can see when your fridge the system stops providing refrigerating temperature it's not over yet
+
+\todo[inline,color=blue!20]{ {\it À l'oral~} 
+\tiny We are usually focused on how to avoid bad states in general but you can see when your fridge the system stops providing refrigerating temperature it's not over yet
 If you leave your fridge off for a minute it's not going to have Terrible impact but if you leave it off for more than one hour you're gonna have to throw the things in it away
 
 And I've been talking like your frige at home but it apply to any type of cooling system it can be like refrigerating medical supplies or nuclear reactor.
@@ -79,34 +107,81 @@ And I've been talking like your frige at home but it apply to any type of coolin
 And this is interesting Bcz now the stuff is not necessarily avoid bad states completely
 
 This lead to concept of resilience
-
+}
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Resilience(s)}
   
-TODO
 
-Define the Six different problems we study/focus on.
+% TODO
 
-(Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
+% Define the Six different problems we study/focus on.
+
+% (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
+  
+ {\small
   
   
+{\sc Resilience problems}
+
+\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$.}
+
+\hspace{-0.5cm}  {\bf QUESTION:\ }{ ({\sc resilience problem (RP)}) $\Bad \rightarrow^{*} \Safe$ ?
+
+\hspace{-0.5cm}  ({\sc $k$-resilience problem (kRP)})		$\Bad \rightarrow^{\leq k} \Safe$ ?
+
+\hspace{-0.5cm}  ({\sc bounded resilience problem (BRP)})	$\exists k \in \N^+ ~ S \rightarrow^{\leq k} \Safe$ ?\newline}
+
+
+  \hspace{-0.2cm}
+{\sc State resilience problems}
+
+\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$, and a set $\Safe \subseteq S$.}
+
+\hspace{-0.5cm}  {\bf QUESTION:\ }
+
+\hspace{-0.5cm}{ ({\sc state-resilience problem (SRP)}) $\post^*(s) \rightarrow^{*} \Safe$ ?
+
+\hspace{-0.5cm}  ({\sc $k$-state-resilience problem (kSRP)})		$\post^*(s) \rightarrow^{\leq k} \Safe$ ?
+
+\hspace{-0.5cm} ({\sc bounded-state-resilience problem (BSRP)})	$\exists k ~ \post^*(s) \rightarrow^{\leq k} \Safe$?\newline}
+
+ }
+
+\todo[inline,color=blue!20]{{\bf 
+\tiny (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
+}} 
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	\section{Definitions}
   \begin{frame}{WSTS}
   
-TODO
+% TODO
   
+  \todo[inline,color=blue!20]{ {\it À l'oral~} 
 Resilience(s) "obviously"  undecidable in general so restriction
-
+$\to$
 restriction already to WSTS
-
+$\to$
 so we need to define WSTS properly
+}
 
-This is what this slide could be about
+\begin{definition}[Definition 3.10, \cite{DBLP:journals/iandc/Finkel90}]
+A {\em Well-Structured Transition System} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
+is a transition system $(S, \rightarrow)$
+equipped with a wqo ${\leq} \subseteq S \times S$ such that   
+the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
+\end{definition}
 
+  \todo[inline,color=blue!20]{ 
+  \tiny Definition right now is very formal for a slideshow, maybe make it less verbose? 
+}
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -123,8 +198,15 @@ TODO
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Results}
   
-Now that everything is somewhat properly defined maybe the picture with all the results ?  
-    
+% Now that everything is somewhat properly defined maybe the picture with all the results ?  
+  
+   \begin{center}
+ 	\begin{figure}
+ 	\hspace{-2.cm}
+\includegraphics[width=1.00\textwidth]{All_results}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
     
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
