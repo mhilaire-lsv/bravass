@@ -156,27 +156,33 @@ This lead to concept of resilience
 
 \hspace{-0.5cm}  ({\sc $k$-resilience problem (kRP)})		$\Bad \rightarrow^{\leq k} \Safe$ ?
 
-\hspace{-0.5cm}  ({\sc bounded resilience problem (BRP)})	$\exists k \in \N^+ ~ S \rightarrow^{\leq k} \Safe$ ?\newline}
+\hspace{-0.5cm}  ({\sc bounded resilience problem (BRP)})	$\exists k ~ S \rightarrow^{\leq k} \Safe$ ?\newline}
 
+}
 
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience(s)}
+  
+ {\small
+ 
   \hspace{-0.2cm}
-{\sc State resilience problems}
+{\sc \textcolor{red}{State} resilience problems}
 
-\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, $s \in S$, and a set $\Safe \subseteq S$.}
+\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, \textcolor{red}{$s \in S$}, and a set $\Safe \subseteq S$.}
 
 \hspace{-0.5cm}  {\bf QUESTION:\ }
 
-\hspace{-0.5cm}{ ({\sc state-resilience problem (SRP)}) $\post^*(s) \rightarrow^{*} \Safe$ ?
+\hspace{-0.5cm}{ ({\sc state-resilience problem (SRP)}) $\textcolor{red}{\post^*(s) } \rightarrow^{*} \Safe$ ?
 
-\hspace{-0.5cm}  ({\sc $k$-state-resilience problem (kSRP)})		$\post^*(s) \rightarrow^{\leq k} \Safe$ ?
+\hspace{-0.5cm}  ({\sc $k$-state-resilience problem (kSRP)})		$\textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$ ?
 
-\hspace{-0.5cm} ({\sc bounded-state-resilience problem (BSRP)})	$\exists k ~ \post^*(s) \rightarrow^{\leq k} \Safe$?\newline}
+\hspace{-0.5cm} ({\sc bounded-state-resilience problem (BSRP)})	$\exists k ~ \textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$?\newline}
 
  }
 
-\todo[inline,color=blue!20]{{\bf 
-\tiny (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
-}} 
+% \todo[inline,color=blue!20]{{\bf  \tiny (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)}} 
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -204,9 +210,15 @@ $s_1, t_1 , s_2 \in S$
 	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
 \end{definition}
 
-  \todo[inline,color=blue!20]{ 
-  \tiny Definition right now is very formal for a slideshow, maybe make it less verbose? 
+
+\todo[inline,color=blue!20]{    \tiny
+diapo 5: théorème: c'est indécidable dans le cas général des systèmes de transitions
+diapo 5: déjà pour les bien structurés c'est indécidable
+résilience indécidable pour les post effectif WSTS quelque soit safe clos par le haut ou par le bas
 }
+
+
+%  \todo[inline,color=blue!20]{    \tiny Definition right now is very formal for a slideshow, maybe make it less verbose? }
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -217,6 +229,18 @@ TODO
 
 ... and effectivity as well
 
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}
+  
+   \begin{center}
+ 	\begin{figure}
+% 	\hspace{-2.cm}
+\includegraphics[width=.50\textwidth]{WSTS_taxonomy_large}
+	\end{figure}
+\end{center}  
 
 
   \end{frame}
@@ -242,10 +266,30 @@ TODO
    Result blabla are consequences of the paper    by Okzan so let's not delve into it.
    }
    
+  
    
     \todo[inline,color=blue!20]{  ( should still be quite precise about Okzan result and references)}
 
-Result A
+Result A: Théorème 4 ou 5
+
+    
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result A}
+ 
+   \begin{center}
+ 	\begin{figure}
+ 	\hspace{-2.cm}
+\includegraphics[width=1.00\textwidth]{resultA}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
+
+    
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result A}
+ 
 
   \todo[inline,color=blue!20]{ {\it À l'oral~}   
     Let's delve into [This Result] in particular.
@@ -253,6 +297,34 @@ Result A
    And let's give an intuition behind the proof
       
 	...}
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result B}
+ 
+ résultat sur la deuxième figure ?
+ on signale juste le thm 8 en passant
+ 
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result C}
+ 
+
+On On parle des VASS quand Safe downward closed  
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result C}
+ 
+ 
+   \begin{center}
+ 	\begin{figure}
+ 	\hspace{-2.cm}
+\includegraphics[width=1.00\textwidth]{resultC}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
