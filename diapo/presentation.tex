@@ -89,15 +89,22 @@
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Motivation}
 
-% TODO
+\begin{columns}[T]
+ \column{0.35\textwidth}
+ \begin{figure}
+ 	\hspace{-0.5cm}
+\includegraphics[width=1.\textwidth]{fridge}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+\end{figure} 
 
-% Exemple de motivation
+ \column{0.65\textwidth}
+\phantom{Fridge.png} \\
+{\sf Bad} state is when temperature is too high \\
+ {\sf Good} state is temperature low enough \\
 
+\end{columns}
 
-Fridge.png \quad	{\sf Bad} state is when temperature is too high \\
-\phantom{Fridge.png}	\quad {\sf Good} state is temperature low enough \\
-
-
+\iffalse
   \todo[inline,color=blue!20]{ {\it À l'oral~}
 We are usually focused on how to avoid bad states in general but you can see when your fridge the system stops providing refrigerating temperature it's not over yet
 If you leave your fridge off for a minute it's not going to have Terrible impact but if you leave it off for more than one hour you're gonna have to throw the things in it away
@@ -108,7 +115,7 @@ And this is interesting Bcz now the stuff is not necessarily avoid bad states co
 
 This lead to concept of resilience
 }
-
+\fi
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -263,14 +270,27 @@ TODO
  
   \todo[inline,color=blue!20]{ {\it À l'oral~} 
    Now we won't have time to detail all the result. 
-   Result blabla are consequences of the paper    by Okzan so let's not delve into it.
-   }
+}
    
   
    
-    \todo[inline,color=blue!20]{  ( should still be quite precise about Okzan result and references)}
-
 Result A: Théorème 4 ou 5
+
+
+\setcounter{theorem}{3}
+
+\begin{theorem}\label{down-up}
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$.
+{\sc Resilience}, {\sc Bounded resilience} 
+and {\sc $k$-resilience} are decidable.
+\end{theorem}
+
+ou
+
+\begin{theorem}\label{xxx}
+Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS and a set $\Safe = \mathop{\uparrow} \Safe$.
+ {\sc Resilience} is decidable.
+\end{theorem}
 
     
   \end{frame}
@@ -304,7 +324,11 @@ Result A: Théorème 4 ou 5
   \begin{frame}{Result B}
  
  résultat sur la deuxième figure ?
- on signale juste le thm 8 en passant
+ on signale juste le thm 8 en passant ?
+ 
+     \todo[inline,color=blue!20]{    Result blabla are consequences of the paper    by Okzan so let's not delve into it.
+    ( should still be quite precise about Okzan result and references)}
+
  
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
