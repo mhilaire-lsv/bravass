@@ -240,25 +240,19 @@ résilience indécidable pour les post effectif WSTS quelque soit safe clos par 
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{... on effectivity}
   
-
+\hspace{-2cm}
 \begin{enumerate}\label{on effectivity}
-%\item {\em effective} if there exists a pair of algorithms
-%($M_\rightarrow$, $M_\leq$) operating on $\N \times \N$ such that
-%$ M_\rightarrow$ computes the transition relation “$\rightarrow$” and 
-%$M_\leq$ the ordering relation “$\leq$”.
-%
-\item {\em $\post$-effective} if $\mathscr{S}$ is effective, and if there
-exists an algorithm that computes $|\post(s)| \in \N \cup \{\infty\}$ 
-on input $s \in S$.
+\item {\em $\post$-effective}  = effective +
+  $ s \in S \to |\post(s)| \in \N \cup \{\infty\}$ computable
 %
 %\item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
 %to the encoding of the ideal $\downarrow s$ is computable.
 %
-\item {\em $\post$-ideal-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
-any ideal $I \in Ideals(S)$ and returning $\mathop{\downarrow} \post(I)$, expressed as a finite union of (maximal) ideals.
+\item {\em $\post$-ideal-effective} = effective +
+ $I \in Ideals(S) \to \mathop{\downarrow} \post(I)$, expressed as a finite union of (maximal) ideals.
 %\item {\em completion-$\post$-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is $\post$-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
-\item {\em $\pred$-basis-effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} if $\mathscr{S}$ is effective and there exists an algorithm accepting
+\item {\em $\pred$-basis-effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} = effective + there exists an algorithm accepting
 any state $s \in S$ and returning a finite basis of $\mathop{\uparrow} \pred(\mathop{\uparrow} s)$.
 %
 %and there exist an algorithm $M_\downarrow$ that computes 
