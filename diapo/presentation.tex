@@ -202,14 +202,9 @@ This lead to concept of resilience
   \begin{frame}{WSTS}
   
 % TODO
-  
-  \todo[inline,color=blue!20]{ {\it À l'oral~} 
-Resilience(s) "obviously"  undecidable in general so restriction
-$\to$
-restriction to WSTS
-$\to$
-so we need to define WSTS properly
-}
+%  \todo[inline,color=blue!20]{ {\it À l'oral~} 
+% Resilience(s) "obviously"  undecidable in general so restriction $\to$ restriction to WSTS
+% $\to$ so we need to define WSTS properly }
 
 \begin{definition}[Definition 3.10, \cite{DBLP:journals/iandc/Finkel90}]
 A {\em Well-Structured Transition System} (WSTS)  $\mathscr{S}=(S, \rightarrow, \leq)$
@@ -222,17 +217,17 @@ $s_1, t_1 , s_2 \in S$
 	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
 \end{definition}
 
+\pause
 
 \begin{theorem}
 {\sc Resilience} undecidable for WSTS
 \end{theorem}
 
-\todo[inline,color=blue!20]{    \tiny
-diapo 5: théorème: c'est indécidable dans le cas général des systèmes de transitions
-diapo 5: déjà pour les bien structurés c'est indécidable
-résilience indécidable pour les post effectif WSTS quelque soit safe clos par le haut ou par le bas
-}
-
+% \todo[inline,color=blue!20]{    \tiny
+% diapo 5: théorème: c'est indécidable dans le cas général des systèmes de transitions
+% diapo 5: déjà pour les bien structurés c'est indécidable
+% résilience indécidable pour les post effectif WSTS quelque soit safe clos par le haut ou par le bas
+% }
 
 %  \todo[inline,color=blue!20]{    \tiny Definition right now is very formal for a slideshow, maybe make it less verbose? }
 
@@ -293,23 +288,33 @@ Refaire les références dans l'image (pas les même défintions/ref)
   
    \begin{center}
  	\begin{figure}
- 	\hspace{-2.cm}
+ 	% \hspace{-2.cm}
+ 	\vspace{-0.25cm}
 \includegraphics[width=1.00\textwidth]{All_results}
 % \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
 	\end{figure}
 \end{center}  
     
+    
+        
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Results}
+ 
+   \begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+ 	\vspace{-0.25cm}
+\includegraphics[width=1.00\textwidth]{resultA}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
+
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Result A}
- 
-  \todo[inline,color=blue!20]{ {\it À l'oral~} 
-   Now we won't have time to detail all the result. 
-}
    
-  
-   
-Result A: Théorème 4 ou 5
+% Result A: Théorème 4 
 
 
 \setcounter{theorem}{3}
@@ -320,25 +325,6 @@ Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with s
 and {\sc $k$-resilience} are decidable.
 \end{theorem}
 
-ou
-
-\begin{theorem}\label{xxx}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\pred$-basis-effective WSTS and a set $\Safe = \mathop{\uparrow} \Safe$.
- {\sc Resilience} is decidable.
-\end{theorem}
-
-    
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Result A}
- 
-   \begin{center}
- 	\begin{figure}
- 	\hspace{-2.cm}
-\includegraphics[width=1.00\textwidth]{resultA}
-% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
-	\end{figure}
-\end{center}  
 
     
   \end{frame}
@@ -379,7 +365,8 @@ On On parle des VASS quand Safe downward closed
  
    \begin{center}
  	\begin{figure}
- 	\hspace{-2.cm}
+ 	% \hspace{-2.cm}
+ 	\vspace{-0.25cm}
 \includegraphics[width=1.00\textwidth]{resultC}
 % \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
 	\end{figure}
@@ -399,7 +386,15 @@ How to expand current results ?
 - other classes of $\Safe / \Bad$
 
 
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{References}
       
+      {\tiny
+\bibliography{bibliography}
+}
+
+
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
