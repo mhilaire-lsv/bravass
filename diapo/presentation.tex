@@ -243,7 +243,68 @@ $s_1, t_1 , s_2 \in S$
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{... on effectivity}
+  \begin{frame}{WSTS with strong compatibility}
+  
+% TODO
+%  \todo[inline,color=blue!20]{ {\it À l'oral~} 
+% Resilience(s) "obviously"  undecidable in general so restriction $\to$ restriction to WSTS
+% $\to$ so we need to define WSTS properly }
+
+\begin{definition}
+A  Well-Structured Transition System {\em with \textcolor{red}{strong} compatibility}  $\mathscr{S}=(S, \rightarrow, \leq)$
+is a transition system $(S, \rightarrow)$
+equipped with a wqo ${\leq} \subseteq S \times S$ such that   
+the transition relation $ \rightarrow$ is \textcolor{red}{strongly} (upward) compatible with $\leq$, i.e., for all 
+$s_1, t_1 , s_2 \in S$
+	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+	$t_2 \in S$ with 
+	$t_1 \leq t_2$ and $s_2 \textcolor{red}{\rightarrow} t_2$.
+\end{definition}
+
+\begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+\includegraphics[width=.25\textwidth]{WSTS_strong}
+	\end{figure}
+\end{center}  
+
+\phantom{fridge}\\
+\phantom{ undecidable for WSTS} \\
+\phantom{ undecidable for WSTS} \\
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{On effectivity}
+  
+
+Ideal =
+\begin{itemize}
+ \item downward-closed % is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+ \item directed % i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+\end{itemize} 
+
+  \todo[inline,color=blue!20]{ 
+Définir Ideals and ideals.
+}
+
+  
+\hspace{-2cm}
+
+ effective = 
+ \begin{itemize}
+\item s $\to$ t decidable 
+\item membership decidable 
+\item $\leq$ decidable 
+\item membership in $Ideals(S)$ decidable 
+\item inclusion of ideals decidable
+\end{itemize}
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{On effectivity}
+  
+
   
 \hspace{-2cm}
 \begin{enumerate}\label{on effectivity}
@@ -367,6 +428,17 @@ and {\sc $k$-resilience} are decidable.
  
 
 On On parle des VASS quand Safe downward closed  
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Result C}
+ 
+Définir rapidement les VASS 
+ 
+ \begin{definition} 
+A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+ \end{definition} 
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
