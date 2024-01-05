@@ -281,12 +281,12 @@ $s_1, t_1 , s_2 \in S$
   \begin{frame}{Definitions}
   
 
-Ideal =
+$I$ Ideal =
 \begin{itemize}
  \item Downward-closed % is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
- ($y \leq x  \wedge x \in D \to y \in D$) 
+ ($y \leq x  \wedge x \in I \to y \in I$) 
  \item Directed % i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
- ($D \neq \emptyset \wedge \forall a,b \in D, \exists c \in D, a \leq c \vee b \leq c$ )
+ ($I \neq \emptyset \wedge \forall a,b \in I, \exists c \in I, a \leq c \vee b \leq c$ )
 \end{itemize} 
 
 \pause
@@ -311,28 +311,41 @@ $S$ effective =
   
 \hspace{-2cm}
 \begin{enumerate}\label{on effectivity}
-\item {\em $\post$-effective}  = effective +
+\item {\em $\post$-effective}  = 
+
+effective +
   $ s \in S \to |\post(s)| \in \N \cup \{\infty\}$ computable
 %
 %\item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
 %to the encoding of the ideal $\downarrow s$ is computable.
 %
-\item {\em $\post$-ideal-effective} = effective +
- $I \in Ideals(S) \to \mathop{\downarrow} \post(I)$, expressed as a finite union of (maximal) ideals.
+\item {\em $\post$-ideal-effective} = 
+
+effective +
+ $I \in Ideals(S) \to \mathop{\downarrow} \post(I)$ % expressed as a finite union of (maximal) ideals.
+ computable
+ 
 %\item {\em completion-$\post$-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is $\post$-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
 %
-\item {\em $\pred$-basis-effective} \cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00} = effective + there exists an algorithm accepting
-any state $s \in S$ and returning a finite basis of $\mathop{\uparrow} \pred(\mathop{\uparrow} s)$.
+\item {\em $\pred$-basis-effective}  = 
+
+effective +  $s \in S \to$ a finite basis of $\mathop{\uparrow} \pred(\mathop{\uparrow} s)$ computable
+
+\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
 %
 %and there exist an algorithm $M_\downarrow$ that computes 
 % $\downarrow s$, on input $s \in S$, and some algorithm $M_{\mathop{\uparrow}^C}$ that computes the ideal decomposition of $S \setminus \mathop{\uparrow} \{ s_1, s_2, \ldots, s_m\}$, on input
 % $s_1, s_2, \ldots, s_m \in S$.
 %
-\item {\em $\post^*$-basis-effective} \cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} if $\mathscr{S}$ is effective and there exists an algorithm accepting
-any state $s \in S$ and returning a finite basis of $\mathop{\uparrow} \post^*(s)$.
+\item {\em $\post^*$-basis-effective} = 
+
+effective +  $s \in S \to$ a finite basis of $\mathop{\uparrow} \post^*(s)$ computable
 %
-\item {\em $\pred^*$-basis-effective} if $\mathscr{S}$ is effective and there exists an algorithm accepting
-any ideal $I \in Ideals(S)$ and returning a finite basis of $\mathop{\downarrow} \pred^*(I)$.
+
+\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
+\item {\em $\pred^*$-basis-effective} = 
+
+effective +  $I \in Ideals(S) \to$ a finite basis of $\mathop{\downarrow} \pred^*(I)$ computable
 \end{enumerate}
 
 
