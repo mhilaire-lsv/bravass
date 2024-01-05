@@ -491,17 +491,24 @@ The resilience problem can be reduced to the following infinite number of instan
      \todo[inline,color=blue!20]{    Result blabla are consequences of the paper    by Okzan so let's not delve into it.
     ( should still be quite precise about Okzan result and references)}
 
- 
+ \begin{theorem}[Theorem 1,~\cite{DBLP:conf/gg/Ozkan22}, Theorem 1, ~\cite{DBLP:journals/corr/abs-2108-00889}]\label{ref ozkan}
+{\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
+when
+$\Safe=\mathop{\uparrow} \Safe$.
+\end{theorem}
 
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience for VASS}
- 
-% Définir rapidement les VASS 
- 
- \begin{definition} 
-A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
- \end{definition} 
+\pause
+
+% Keeping the $\mathop{\uparrow} \post^*$ effectiveness hypothesis but \emph{loosening} the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
+
+
+\begin{theorem}\label{post srp}
+{\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS
+when
+$\Safe=\mathop{\uparrow} \Safe$. 
+\end{theorem}
+
+
 
 
   \end{frame}
@@ -517,6 +524,34 @@ A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d
 % \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
 	\end{figure}
 \end{center}  
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience for VASS}
+ 
+% Définir rapidement les VASS 
+ 
+ \begin{definition} 
+A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
+ \end{definition} 
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience for VASS}
+
+- Resilience $\to$ inclusion d'idéaux
+
+- Bounded resilience and $k$-resilience $\to$ more complex
+ 
+- Remaque sur les VAS : it does not hold
+
+- Remarque additionnelle du coup
+
+- 
+
+
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
