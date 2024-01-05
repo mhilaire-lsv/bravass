@@ -273,27 +273,30 @@ $s_1, t_1 , s_2 \in S$
 \phantom{ undecidable for WSTS} \\
 
 
+% Define WBSTS also ?
+
+
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{On effectivity}
+  \begin{frame}{Definitions}
   
 
 Ideal =
 \begin{itemize}
- \item downward-closed % is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
- \item directed % i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+ \item Downward-closed % is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+ ($y \leq x  \wedge x \in D \to y \in D$) 
+ \item Directed % i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+ ($D \neq \emptyset \wedge \forall a,b \in D, \exists c \in D, a \leq c \vee b \leq c$ )
 \end{itemize} 
 
-  \todo[inline,color=blue!20]{ 
-Définir Ideals and ideals.
-}
+\pause
 
   
 \hspace{-2cm}
 
- effective = 
+$S$ effective = 
  \begin{itemize}
-\item s $\to$ t decidable 
+\item $s \to t$ decidable 
 \item membership decidable 
 \item $\leq$ decidable 
 \item membership in $Ideals(S)$ decidable 
@@ -431,18 +434,12 @@ and {\sc $k$-resilience} are decidable.
     ( should still be quite precise about Okzan result and references)}
 
  
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Result C}
- 
-
-On On parle des VASS quand Safe downward closed  
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Result C}
+  \begin{frame}{Resilience for VASS}
  
-Définir rapidement les VASS 
+% Définir rapidement les VASS 
  
  \begin{definition} 
 A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
@@ -451,7 +448,7 @@ A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Result C}
+  \begin{frame}{Resilience for VASS}
  
  
    \begin{center}
