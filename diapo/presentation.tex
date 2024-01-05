@@ -404,9 +404,7 @@ Refaire les références dans l'image (pas les même défintions/ref)
 % Result A: Théorème 4 
 
 
-\setcounter{theorem}{3}
-
-\begin{theorem}\label{down-up}
+\begin{theorem}
 Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$.
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} are decidable.
@@ -416,7 +414,7 @@ and {\sc $k$-resilience} are decidable.
     
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Result A}
+  \begin{frame}{General Idea}
  
 
   \todo[inline,color=blue!20]{ {\it À l'oral~}   
@@ -435,6 +433,30 @@ and {\sc $k$-resilience} are decidable.
 	$\to$ coverability questions
 
 	$\to$  resilience(s) can be reduced to coverability
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Ingredient 1: the completion}
+ 
+ 
+ \begin{definition}[\cite{BFM-ic17}]
+The \emph{completion}   of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where 
+%$Ideals(S)$ is the set of ideals of $S$ and
+ $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\mathop{\downarrow} \post_{\mathscr{S}}(I)$. 
+% The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. 
+%It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
+\end{definition}
+
+\begin{exampleblock}{\cite[Proposition 30]{BFM-ic17}}
+If $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$.
+\end{exampleblock}
+
+\begin{exampleblock}{\cite[Proposition 29]{BFM-ic17}}
+If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+\end{exampleblock}
+
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
