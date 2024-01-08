@@ -273,8 +273,12 @@ $s_1, t_1 , s_2 \in S$
 \phantom{ undecidable for WSTS} \\
 
 
-% Define WBSTS also ?
-
+ \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{WBTS}
+  
+ Define WBSTS also ?
+And $\omega^2$-WSTS ?
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -397,30 +401,34 @@ effective +  $I \in Ideals(S) \to$ a finite basis of $\mathop{\downarrow} \pred^
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Result A}
+  \begin{frame}{Resilience when $\Safe = {\uparrow \Safe}$}
    
 % Result A: Théorème 4 
 
 
-\begin{theorem}
-Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$.
-{\sc Resilience}, {\sc Bounded resilience} 
-and {\sc $k$-resilience} are decidable.
-\end{theorem}
+% \begin{theorem}
+% Let $\mathscr{S}=(S,\rightarrow, \leq)$ be a $\post$-ideal-effective WBTS with strong compatibility and a set $\Safe = \mathop{\uparrow} \Safe$.
+% {\sc Resilience}, {\sc Bounded resilience} 
+% and {\sc $k$-resilience} are decidable.
+% \end{theorem}
 
+
+\begin{theorem}
+WBTS $\mathscr{S}=(S,\rightarrow, \leq)$ 
+\begin{itemize}
+\item $\post$-ideal-effective 
+\item strong compatibility
+\item $\Safe = \mathop{\uparrow} \Safe$
+\end{itemize}
+{\sc Resilience}, {\sc Bounded resilience} 
+and {\sc $k$-resilience} decidable.
+\end{theorem}
 
     
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{General Idea}
  
-
-  \todo[inline,color=blue!20]{ {\it À l'oral~}   
-    Let's delve into [This Result] in particular.
-      
-   And let's give an intuition behind the proof
-      
-	...}
 	
 	$\to$ link between runs and runs of the completion (must define completion)
 	
@@ -446,9 +454,13 @@ The \emph{completion}   of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the ass
 %It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
 \end{definition}
 
+\pause
+
 \begin{exampleblock}{\cite[Proposition 30]{BFM-ic17}}
 If $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$.
 \end{exampleblock}
+
+\pause
 
 \begin{exampleblock}{\cite[Proposition 29]{BFM-ic17}}
 If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
@@ -460,14 +472,20 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Ingredient 2: link with coverability}
   
-  \begin{block}{ }
+  \begin{block}{Proposition}
    $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\mathop{\downarrow} s_j$ is coverable (for inclusion) from $\mathop{\downarrow} x$ in $\hat{\mathscr{S}} $ 
  \end{block}
  
 \pause
 
   \begin{block}{ }
-The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $s_j$ is coverable from $x$. Let us show how this infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
+The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $s_j$ is coverable from $x$.  
+ \end{block}
+ 
+ \pause
+
+  \begin{block}{ }
+This infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
  \end{block}
  
     \end{frame}
