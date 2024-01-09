@@ -45,7 +45,7 @@
 
 \date{}
 
-
+\setbeamertemplate{page number in head/foot}[totalframenumber]
 
 
 
@@ -109,7 +109,7 @@
 \pause
 
 \phantom{Fridge.png} \\
-Other applications e.g. refrigerating medical supplies or nuclear reactor 
+Other applications e.g.  nuclear reactor 
 
 \iffalse
   \todo[inline,color=blue!20]{ {\it À l'oral~}
@@ -126,7 +126,7 @@ This lead to concept of resilience
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Example}
+  \begin{frame}{Example: Reset-VASS $V_1$}
   
   
    \begin{center}
@@ -138,7 +138,7 @@ This lead to concept of resilience
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Example}
+  \begin{frame}{Example: Reset-VASS $V_2$}
   
   
    \begin{center}
@@ -200,9 +200,32 @@ This lead to concept of resilience
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	\section{Definitions}
-  \begin{frame}{WSTS}
+	\section{WBTS, WSTS}
+  \begin{frame}{}
   
+  \begin{definition}[\cite{DBLP:journals/iandc/Finkel90}]
+A {\em Well-Behaved Transition System} (WBTS) 
+is a FAC\footnote{FAC = all anti-chains are finite}-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ such that   
+%the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
+%$s_1, t_1 , s_2 \in S$
+%	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+%	$t_2 \in S$ with 
+%	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
+\end{definition}
+
+
+   \begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+\includegraphics[width=.25\textwidth]{WSTS_def}
+	\end{figure}
+\end{center}  
+
+
+
+    \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}
 % TODO
 %  \todo[inline,color=blue!20]{ {\it À l'oral~} 
 % Resilience(s) "obviously"  undecidable in general so restriction $\to$ restriction to WSTS
@@ -240,116 +263,7 @@ is a well-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ such th
 
 %  \todo[inline,color=blue!20]{    \tiny Definition right now is very formal for a slideshow, maybe make it less verbose? }
 
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{WSTS with strong compatibility}
-  
-% TODO
-%  \todo[inline,color=blue!20]{ {\it À l'oral~} 
-% Resilience(s) "obviously"  undecidable in general so restriction $\to$ restriction to WSTS
-% $\to$ so we need to define WSTS properly }
 
-\begin{definition}
-A  Well-Structured Transition System {\em with \textcolor{red}{strong} compatibility}  $\mathscr{S}=(S, \rightarrow, \leq)$
-is a transition system $(S, \rightarrow)$
-equipped with a wqo ${\leq} \subseteq S \times S$ such that   
-the transition relation $ \rightarrow$ is \textcolor{red}{strongly} (upward) compatible with $\leq$, i.e., for all 
-$s_1, t_1 , s_2 \in S$
-	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
-	$t_2 \in S$ with 
-	$t_1 \leq t_2$ and $s_2 \textcolor{red}{\rightarrow} t_2$.
-\end{definition}
-
-\begin{center}
- 	\begin{figure}
- 	% \hspace{-2.cm}
-\includegraphics[width=.25\textwidth]{WSTS_strong}
-	\end{figure}
-\end{center}  
-
-\phantom{fridge}\\
-\phantom{ undecidable for WSTS} \\
-\phantom{ undecidable for WSTS} \\
-
-
- \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{WBTS}
-  
- Define WBSTS also ?
-And $\omega^2$-WSTS ?
-
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Definitions}
-  
-
-$I$ Ideal =
-\begin{itemize}
- \item Downward-closed % is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
- ($y \leq x  \wedge x \in I \to y \in I$) 
- \item Directed % i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
- ($I \neq \emptyset \wedge \forall a,b \in I, \exists c \in I, a \leq c \vee b \leq c$ )
-\end{itemize} 
-
-\pause
-
-  
-\hspace{-2cm}
-
-$S$ effective = 
- \begin{itemize}
-\item $s \to t$ decidable 
-\item membership decidable 
-\item $\leq$ decidable 
-\item membership in $Ideals(S)$ decidable 
-\item inclusion of ideals decidable
-\end{itemize}
-
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{On effectivity}
-  
-
-  
-\hspace{-2cm}
-\begin{enumerate}\label{on effectivity}
-\item {\em $\post$-effective}  = 
-
-effective +
-  $ s \in S \to |\post(s)| \in \N \cup \{\infty\}$ computable
-%
-%\item {\em ideally-effective} \cite{BFM-ic17} if the function mapping the encoding of a state $s$
-%to the encoding of the ideal $\downarrow s$ is computable.
-%
-\item {\em $\post$-ideal-effective} = 
-
-effective +
- $I \in Ideals(S) \to \mathop{\downarrow} \post(I)$ % expressed as a finite union of (maximal) ideals.
- computable
- 
-%\item {\em completion-$\post$-effective} if its completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ is $\post$-effective, i.e., that $\downarrow \post(I)$ is computable, expressed as a finite union of ideals, for all $I \in Ideals(S)$.
-%
-\item {\em $\pred$-basis-effective}  = 
-
-effective +  $s \in S \to$ a finite basis of $\mathop{\uparrow} \pred(\mathop{\uparrow} s)$ computable
-
-\cite{DBLP:journals/tcs/FinkelS01,DBLP:journals/iandc/AbdullaCJT00}
-%
-%and there exist an algorithm $M_\downarrow$ that computes 
-% $\downarrow s$, on input $s \in S$, and some algorithm $M_{\mathop{\uparrow}^C}$ that computes the ideal decomposition of $S \setminus \mathop{\uparrow} \{ s_1, s_2, \ldots, s_m\}$, on input
-% $s_1, s_2, \ldots, s_m \in S$.
-%
-\item {\em $\post^*$-basis-effective} = 
-
-effective +  $s \in S \to$ a finite basis of $\mathop{\uparrow} \post^*(s)$ computable
-%
-
-\cite{DBLP:conf/gg/Ozkan22,DBLP:journals/corr/abs-2108-00889} 
-\item {\em $\pred^*$-basis-effective} = 
-
-effective +  $I \in Ideals(S) \to$ a finite basis of $\mathop{\downarrow} \pred^*(I)$ computable
-\end{enumerate}
 
 
 
@@ -369,7 +283,7 @@ effective +  $I \in Ideals(S) \to$ a finite basis of $\mathop{\downarrow} \pred^
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	\section{Contributions}
+	\section{Resiliences}
   \begin{frame}{Results}
   
 % Now that everything is somewhat properly defined maybe the picture with all the results ?  
@@ -400,6 +314,33 @@ effective +  $I \in Ideals(S) \to$ a finite basis of $\mathop{\downarrow} \pred^
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Definitions}
+  
+
+$I$ Ideal =
+\begin{itemize}
+ \item Downward-closed % is any set $D \subseteq X$ such that if $y \leq x$ and $x \in D$ then $y \in D $. 
+ ($y \leq x  \wedge x \in I \to y \in I$) 
+ \item Directed % i.e. it is nonempty and for every $a,b \in D$, there exists $c \in D$ such that $a \leq c$ and $b \leq c$.
+ ($I \neq \emptyset \wedge \forall a,b \in I, \exists c \in I, a \leq c \vee b \leq c$ )
+\end{itemize} 
+
+  
+\hspace{-2cm}
+
+$S$ effective = 
+ \begin{itemize}
+\item $s \to t$ decidable 
+\item membership decidable 
+\item $\leq$ decidable 
+\item membership in $Ideals(S)$ decidable 
+\item inclusion of ideals decidable
+\end{itemize}
+
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Resilience when $\Safe = {\uparrow \Safe}$}
    
 % Result A: Théorème 4 
@@ -415,33 +356,47 @@ effective +  $I \in Ideals(S) \to$ a finite basis of $\mathop{\downarrow} \pred^
 \begin{theorem}
 WBTS $\mathscr{S}=(S,\rightarrow, \leq)$ 
 \begin{itemize}
-\item $\post$-ideal-effective 
-\item strong compatibility
+\item $\mathop{\downarrow} \post(I)$ computable %$\post$-ideal-effective 
+\item \textcolor{red}{strong} compatibility
 \item $\Safe = \mathop{\uparrow} \Safe$
 \end{itemize}
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} decidable.
 \end{theorem}
 
-    
+
+\begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+\includegraphics[width=.25\textwidth]{WSTS_strong}
+	\end{figure}
+\end{center}  
+
+       \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Ingredient 1: link with coverability}
+  
+  \begin{block}{Proposition}
+   $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\mathop{\downarrow} s_j$ is coverable (for inclusion) from $\mathop{\downarrow} x$ in $\hat{\mathscr{S}} $ 
+ \end{block}
+ 
+\pause
+
+  \begin{block}{ }
+The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $s_j$ is coverable from $x$.  
+ \end{block}
+ 
+ \pause
+
+  \begin{block}{ }
+This infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
+ \end{block}
+ 
+
+
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{General Idea}
- 	
-% 	$\to$ ideal decomposition of Bad
-	
-%	$\to$ basis of Safe
-	
- 	$\to$ resilience =$>$ infinite number of coverability questions
-
-	$\to$ introduce the completion
-	
-	$\to$  here resilience =$>$ finite number of coverability questions
-
-
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Ingredient 1: the completion}
+  \begin{frame}{Ingredient 2: the completion}
  
  
  \begin{definition}[\cite{BFM-ic17}]
@@ -466,40 +421,8 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 
 
 
-   \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Ingredient 2: link with coverability}
-  
-  \begin{block}{Proposition}
-   $s_j$ is coverable from $x$ in $\mathscr{S}$ if and only if $\mathop{\downarrow} s_j$ is coverable (for inclusion) from $\mathop{\downarrow} x$ in $\hat{\mathscr{S}} $ 
- \end{block}
- 
-\pause
 
-  \begin{block}{ }
-The resilience problem can be reduced to the following infinite number of instances of the coverability problem in $\mathscr{S}$: for all $x \in \Bad$ does there exist an $j$ such that $s_j$ is coverable from $x$.  
- \end{block}
  
- \pause
-
-  \begin{block}{ }
-This infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
- \end{block}
- 
-    \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Ingredient 3}
-  
-    \begin{block}{ }
-This infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
- \end{block}
- 
- $\to$ consider max length of such coverability questions
- 
-  $\to$ answers {\sc Bounded resilience} and {\sc $k$-resilience} as well
-     \todo[inline,color=blue!20]{ 
-  ... actually it is generally over now maybe we don't have to go into all the details here
-}
   
 
   \end{frame}
@@ -518,33 +441,19 @@ This infinite set of coverability questions can be reduced to a \emph{finite} se
 \end{center}  
     
     
-        
-  \end{frame}
+          \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{State Resilience when $\Safe = {\uparrow \Safe}$}
-   
- % résultat sur la deuxième figure ?
- % on signale juste le thm 8 en passant ?
+  \begin{frame}{State resilience}
  
- %    \todo[inline,color=blue!20]{    Result blabla are consequences of the paper    by Okzan so let's not delve into it.
- %   ( should still be quite precise about Okzan result and references)}
+   \begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+ 	\vspace{-0.25cm}
+\includegraphics[width=1.00\textwidth]{resultB}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
 
- \begin{theorem}[Theorem 1,~\cite{DBLP:conf/gg/Ozkan22}, Theorem 1, ~\cite{DBLP:journals/corr/abs-2108-00889}]\label{ref ozkan}
-{\sc Bounded-state-resilience} and {\sc $k$-state-resilience} are decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS with strong compatibility
-when
-$\Safe=\mathop{\uparrow} \Safe$.
-\end{theorem}
-
-\pause
-
-% Keeping the $\mathop{\uparrow} \post^*$ effectiveness hypothesis but \emph{loosening} the strong compatibility one still yields some decidability result for the general {\sc State-resilience}. Using the same proof structure as Theorem 1 from \cite{DBLP:journals/corr/abs-2108-00889} we obtain:
-
-
-\begin{theorem}\label{post srp}
-{\sc State-resilience} is decidable for $\pred$-basis-effective, $\post^*$-basis-effective WSTS
-when
-$\Safe=\mathop{\uparrow} \Safe$. 
-\end{theorem}
 
 
 
