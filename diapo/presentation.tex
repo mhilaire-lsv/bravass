@@ -582,7 +582,7 @@ $\Safe=\mathop{\uparrow} \Safe$.
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience for VASS}
+  \begin{frame}{Vector Addition System with States}
  
 % Définir rapidement les VASS 
  
@@ -590,20 +590,43 @@ $\Safe=\mathop{\uparrow} \Safe$.
 A {\em vector addition system with (control-)states (VASS)} in dimension $d$ ($d$-VASS for short) is a finite $\mathds{Z}^d$-labeled directed graph $V = (Q,T)$, where $Q$ is the set of {\em control-states}, and $T \subseteq Q \times \mathds{Z}^d \times Q$ is the set of {\em control-transitions}. 
  \end{definition} 
 
+ \begin{definition} 
+A {\em vector addition system (VAS)} in dimension $d$ ($d$-VAS for short) is a $d$-VASS where the set of control-states is a singleton.
+ \end{definition} 
+
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience for VASS}
+  \begin{frame}{Resilience(s) for VASS}
+
+\begin{theorem}\label{SL VASS}
+{\sc Resilience} is decidable for VASS, and $\mathbb{Z}-$VASS, when $\Safe$  is a semilinear set.
+\end{theorem}
 
 - Resilience $\to$ inclusion d'idéaux
 
 - Bounded resilience and $k$-resilience $\to$ more complex
  
+   \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience(s) for VASS}
+
+- Bounded resilience and $k$-resilience $\to$ more complex
+ 
 - Remaque sur les VAS : it does not hold
 
-- Remarque additionnelle du coup
+\begin{block}{Proposition}
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for $d$-VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Safe \neq \N^d$.
+\end{block}
 
-- 
 
+   \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience(s) for VASS}
+
+\begin{theorem}\label{vass down}
+{\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
+$\Safe = \mathop{\downarrow} \Safe$.
+\end{theorem}
 
 
 
