@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.18)  2 NOV 2023 23:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.18)  9 JAN 2024 16:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -839,114 +839,112 @@ Package microtype Info: Loading generic protrusion settings for font family
 <All_results.png, id=30, 3146.75626pt x 2308.625pt>
 File: All_results.png Graphic file (type png)
 <use All_results.png>
-Package pdftex.def Info: All_results.png  used on input line 456.
+Package pdftex.def Info: All_results.png  used on input line 219.
 (pdftex.def)             Requested size: 485.97083pt x 356.52979pt.
 
-Overfull \hbox (83.99684pt too wide) in paragraph at lines 455--457
+Overfull \hbox (83.99684pt too wide) in paragraph at lines 218--220
 []  [] 
  []
 
 [3 <./All_results.png>]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 5
-57.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
+99.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/10'
-(microtype)             (new value: 10.0pt) on input line 557.
+(microtype)             (new value: 10.0pt) on input line 299.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/7'
-(microtype)             (new value: 7.0pt) on input line 557.
+(microtype)             (new value: 7.0pt) on input line 299.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/5'
-(microtype)             (new value: 5.0pt) on input line 557.
+(microtype)             (new value: 5.0pt) on input line 299.
 
-Underfull \hbox (badness 10000) in paragraph at lines 549--564
+Underfull \hbox (badness 10000) in paragraph at lines 291--306
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 592--596
+Underfull \hbox (badness 10000) in paragraph at lines 334--338
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 597--598
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 614--616
+Underfull \hbox (badness 10000) in paragraph at lines 356--358
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 617--618
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
 
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 762--762
+Underfull \hbox (badness 10000) in paragraph at lines 464--464
 
  []
 
-<WSTS_taxonomy_large.png, id=55, 1650.165pt x 1003.75pt>
+<WSTS_taxonomy_large.png, id=55, 1309.89375pt x 795.97375pt>
 File: WSTS_taxonomy_large.png Graphic file (type png)
 <use WSTS_taxonomy_large.png>
-Package pdftex.def Info: WSTS_taxonomy_large.png  used on input line 810.
-(pdftex.def)             Requested size: 277.69987pt x 168.90454pt.
+Package pdftex.def Info: WSTS_taxonomy_large.png  used on input line 512.
+(pdftex.def)             Requested size: 277.69987pt x 168.73834pt.
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 889--889
+Underfull \hbox (badness 10000) in paragraph at lines 575--575
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 892--896
+Underfull \hbox (badness 10000) in paragraph at lines 578--582
 
  []
 
 [9 <./WSTS_taxonomy_large.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 952--952
+Underfull \hbox (badness 10000) in paragraph at lines 634--634
 
  []
 
 [10]
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 1003.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 684.
 
 
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 1003.
-
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 684.
 
 [11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 1157--1171
+Underfull \hbox (badness 10000) in paragraph at lines 806--820
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1175--1179
+Underfull \hbox (badness 10000) in paragraph at lines 824--828
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1223--1223
+Underfull \hbox (badness 10000) in paragraph at lines 858--858
 
  []
 
 [13]
-Overfull \hbox (0.8733pt too wide) in paragraph at lines 1233--1238
+Overfull \hbox (0.8733pt too wide) in paragraph at lines 868--873
 \T1/cmr/m/n/10 (-20) We start with the case $[] \OT1/cmr/m/n/10 (-20) = [] []$\
 T1/cmr/m/n/10 (-20) . Un-for-tu-nately, in this case \T1/cmr/m/sc/10 (-20) Stat
 e-resilience
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1248--1248
+Underfull \hbox (badness 10000) in paragraph at lines 883--883
 
  []
 
 
-Overfull \hbox (4.774pt too wide) in paragraph at lines 1274--1301
+Overfull \hbox (4.774pt too wide) in paragraph at lines 909--917
 \T1/cmr/m/n/10 (-20) It now re-mains to ar-gue why $\OML/cmm/m/it/10 t$\T1/cmr/
 m/sc/10 (-20) -liveness \T1/cmr/m/n/10 (-20) is un-de-cid-able. Re-call \T1/cmr
 /m/sc/10 (-20) zero-reachability
@@ -954,28 +952,28 @@ m/sc/10 (-20) -liveness \T1/cmr/m/n/10 (-20) is un-de-cid-able. Re-call \T1/cmr
 
 [14]
 
-LaTeX Warning: Citation `mayr1998lossy' undefined on input line 1326.
+LaTeX Warning: Citation `mayr1998lossy' undefined on input line 942.
 
 
-Overfull \hbox (12.33919pt too wide) in paragraph at lines 1336--1340
+Overfull \hbox (12.33919pt too wide) in paragraph at lines 951--955
 []\T1/cmr/bx/n/10 (-20) (Theorem 1, [21], The-o-rem 1,  [22]). []\T1/cmr/m/sc/1
 0 (-20) Bounded-state-resilience
  []
 
 
-Overfull \hbox (0.58333pt too wide) in paragraph at lines 1336--1340
+Overfull \hbox (0.58333pt too wide) in paragraph at lines 951--955
 \T1/cmr/m/it/10 (-20) and $\OML/cmm/m/it/10 k$\T1/cmr/m/sc/10 (-20) -state-resi
 lience \T1/cmr/m/it/10 (-20) are de-cid-able for $[]$-basis-effective, $[][]$-b
 asis-effective
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1394--1394
+Underfull \hbox (badness 10000) in paragraph at lines 972--972
 
  []
 
 [15]
-Overfull \hbox (0.10315pt too wide) in paragraph at lines 1438--1450
+Overfull \hbox (0.10315pt too wide) in paragraph at lines 1016--1028
 [][]$\T1/cmr/m/n/10 (-20) -basis-effective, let $\OML/cmm/m/it/10 B[]$ \T1/cmr/
 m/n/10 (-20) be a fi-nite ba-sis of $[] [][]\OT1/cmr/m/n/10 (-20) (\OML/cmm/m/i
 t/10 s\OT1/cmr/m/n/10 (-20) )$\T1/cmr/m/n/10 (-20) , hence $[] [][]\OT1/cmr/m/n
@@ -983,13 +981,13 @@ t/10 s\OT1/cmr/m/n/10 (-20) )$\T1/cmr/m/n/10 (-20) , hence $[] [][]\OT1/cmr/m/n
  []
 
 [16]
-Overfull \hbox (3.53929pt too wide) in paragraph at lines 1548--1552
+Overfull \hbox (3.53929pt too wide) in paragraph at lines 1103--1106
 []\T1/cmr/m/sc/10 (-20) State-resilience \T1/cmr/m/it/10 (-20) is de-cid-able f
 or $[]$-effective, $[]$-ideal-effective
  []
 
 
-Overfull \hbox (12.64175pt too wide) in paragraph at lines 1555--1556
+Overfull \hbox (12.64175pt too wide) in paragraph at lines 1109--1110
 []\T1/cmr/m/n/10 (-20) Since $\U/rsfs/m/n/10 S$ \T1/cmr/m/n/10 (-20) is $[][]$-
 basis-effective, $[] \OT1/cmr/m/n/10 (-20) = [] []$ \T1/cmr/m/n/10 (-20) and $[
 ][]\OT1/cmr/m/n/10 (-20) ([]) = [] [][]([])$\T1/cmr/m/n/10 (-20) ,
@@ -1056,47 +1054,47 @@ a \T1/cmr/bx/n/9 (+20) 21\T1/cmr/m/n/9 (+20) , 643--674 (1985).
  []
 
 [22])
-Underfull \hbox (badness 10000) in paragraph at lines 1785--1789
+Underfull \hbox (badness 10000) in paragraph at lines 1328--1331
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1866--1866
+Underfull \hbox (badness 10000) in paragraph at lines 1408--1408
 
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1875--1878
+Underfull \hbox (badness 10000) in paragraph at lines 1417--1420
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1880--1883
+Underfull \hbox (badness 10000) in paragraph at lines 1422--1425
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1884--1885
+Underfull \hbox (badness 10000) in paragraph at lines 1426--1427
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1894--1899
+Underfull \hbox (badness 10000) in paragraph at lines 1436--1441
 
  []
 
 <FigurePN.png, id=118, 1229.59375pt x 1380.15625pt>
 File: FigurePN.png Graphic file (type png)
 <use FigurePN.png>
-Package pdftex.def Info: FigurePN.png  used on input line 1918.
+Package pdftex.def Info: FigurePN.png  used on input line 1460.
 (pdftex.def)             Requested size: 260.34265pt x 292.22108pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1923--1926
+Underfull \hbox (badness 10000) in paragraph at lines 1465--1468
 
  []
 
 [24] [25 <./FigurePN.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1930--1931
+Underfull \hbox (badness 10000) in paragraph at lines 1472--1473
 
  []
 
@@ -1161,7 +1159,7 @@ sfss1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sf
 sx1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx
 1200.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfti10
 00.pfb>
-Output written on final.pdf (28 pages, 907352 bytes).
+Output written on final.pdf (28 pages, 892561 bytes).
 PDF statistics:
  300 PDF objects out of 1000 (max. 8388607)
  185 compressed objects within 2 object streams
