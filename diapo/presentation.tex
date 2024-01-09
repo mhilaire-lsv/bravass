@@ -428,17 +428,16 @@ and {\sc $k$-resilience} decidable.
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{General Idea}
- 
+ 	
+% 	$\to$ ideal decomposition of Bad
 	
-	$\to$ link between runs and runs of the completion (must define completion)
+%	$\to$ basis of Safe
 	
-	$\to$ ideal decomposition of Bad
-	
-	$\to$ basis of Safe
-	
-	$\to$ coverability questions
+ 	$\to$ resilience =$>$ infinite number of coverability questions
 
-	$\to$  resilience(s) can be reduced to coverability
+	$\to$ introduce the completion
+	
+	$\to$  here resilience =$>$ finite number of coverability questions
 
 
   \end{frame}
@@ -490,13 +489,37 @@ This infinite set of coverability questions can be reduced to a \emph{finite} se
  
     \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Ingredient 3 (only for $k$-resilience)}
+  \begin{frame}{Ingredient 3}
   
+    \begin{block}{ }
+This infinite set of coverability questions can be reduced to a \emph{finite} set of coverability questions in the completion $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ of $\mathscr{S}=(S,\rightarrow, \leq)$. 
+ \end{block}
+ 
+ $\to$ consider max length of such coverability questions
+ 
+  $\to$ answers {\sc Bounded resilience} and {\sc $k$-resilience} as well
      \todo[inline,color=blue!20]{ 
   ... actually it is generally over now maybe we don't have to go into all the details here
 }
   
 
+  \end{frame}
+  %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    \begin{frame}{Results}
+  
+% Now that everything is somewhat properly defined maybe the picture with all the results ?  
+  
+   \begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+ 	\vspace{-0.25cm}
+\includegraphics[width=1.00\textwidth]{All_results}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
+    
+    
+        
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{State Resilience when $\Safe = {\uparrow \Safe}$}
