@@ -132,7 +132,7 @@ This lead to concept of resilience
    \begin{center}
  	\begin{figure}
  	\vspace{.06cm}
-\includegraphics[width=.47\textwidth]{FigA}
+\includegraphics[width=.4\textwidth]{FigA}
 	\end{figure}
 \end{center}  
 
@@ -211,7 +211,7 @@ $\Safe_2 = \{q_1(0)\} $
    \begin{center}
  	\begin{figure}
  	\vspace{.06cm}
-\includegraphics[width=.47\textwidth]{FigA}
+\includegraphics[width=.4\textwidth]{FigA}
 	\end{figure}
 \end{center}  
 
@@ -230,8 +230,6 @@ $\Safe_1 = \{q_0(n) \mid n \in \N\}$
 \phantom{bla} $q_1(m) ~ \cancel{\to} ~ q_0(n)$
 
 \end{columns}
-
-
 
 }
 
@@ -263,7 +261,7 @@ $\Safe_2 = \{q_1(0)\} $
    \begin{center}
  	\begin{figure}
 % 	\hspace{-2.cm}
-\includegraphics[width=.47\textwidth]{FigB}
+\includegraphics[width=.4\textwidth]{FigB}
 	\end{figure}
 \end{center}  
 
@@ -350,26 +348,12 @@ A {\em Well-Behaved Transition System} (WBTS)
 is an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ such that   
 all antichains of $(S, \leq)$ are finite, and
 %the transition relation 
-$ \rightarrow$ is (upward) compatible with $\leq$. 
+$ \rightarrow$ is upward-compatible with $\leq$. 
 %$s_1, t_1 , s_2 \in S$
 %	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
 %	$t_2 \in S$ with 
 %	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
 \end{block}
-
-
-
-\begin{block}{Definition~\cite{DBLP:journals/iandc/Finkel90}}
-A {\em Well-Structured Transition System} (WSTS) 
-is a well-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ with 
- $ \rightarrow$ is (upward) compatible with $\leq$. 
-%the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
-%$s_1, t_1 , s_2 \in S$
-%	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
-%	$t_2 \in S$ with 
-%	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
-\end{block}
-
 
    \begin{center}
  	\begin{figure}
@@ -378,11 +362,24 @@ is a well-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ with
 	\end{figure}
 \end{center}  
 
+\begin{block}{Definition~\cite{DBLP:journals/iandc/Finkel90}}
+A {\em Well-Structured Transition System} (WSTS) 
+is a well-ordered WBTS.
+% ward) compatible with $\leq$, i.e., for all 
+%$s_1, t_1 , s_2 \in S$
+%	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
+%	$t_2 \in S$ with 
+%	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
+\end{block}
+
+
 \pause
+
 
 \begin{theorem}
 {\sc Resilience} undecidable for WSTS
 \end{theorem}
+
 
 % \todo[inline,color=blue!20]{    \tiny
 % diapo 5: théorème: c'est indécidable dans le cas général des systèmes de transitions
