@@ -447,18 +447,20 @@ The \emph{completion}   of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the ass
 %It is proved in  \cite{BFM-ic17} that $\hat{\mathscr{S}}$ is WSTS iff $\mathscr{S}=(S,\rightarrow, \leq)$ is $\omega^2$-WSTS. \\
 \end{definition}
 
+
+
 \pause
 
-\begin{exampleblock}{\cite[Proposition 30]{BFM-ic17}}
+\begin{exampleblock}{Relation with paths in the completion}
 If $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$.
 \end{exampleblock}
 
+
 \pause
 
-\begin{exampleblock}{\cite[Proposition 29]{BFM-ic17}}
-If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. Moreover, if $\mathscr{S}$ has transitive compatibility then $k’ \geq k$; if $\mathscr{S}$ has strong compatibility then $k’ = k$.
+\begin{exampleblock}{Relation with paths in the completion}
+If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. If $\mathscr{S}$ has strong compatibility then $k’ = k$.
 \end{exampleblock}
-
 
 
 
@@ -528,10 +530,15 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 \end{center}  
 
 
-
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Resilience(s) for VASS}
+  
+  Remettre un déssin pour un VASS
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience(s) for VASS and VAS}
 
 \begin{theorem}\label{SL VASS}
 {\sc Resilience} is decidable for VASS, and $\mathbb{Z}-$VASS, when $\Safe$  is a semilinear set.
@@ -541,22 +548,21 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 $\to$ it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
 $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}
 
+\pause 
+
+\begin{theorem}\label{vass down}
+{\sc Bounded resilience} and {\sc $k$-resilience } are decidable for VASS when 
+$\Safe = \mathop{\downarrow} \Safe$.
+\end{theorem}
+
  
 \pause
 
 \begin{block}{Proposition}
-{\sc Bounded resilience} and {\sc $k$-resilience} never hold for $d$-VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Safe \neq \N^d$.
+{\sc Bounded resilience} and {\sc $k$-resilience} never hold for $d$-VAS when $\Safe = \mathop{\downarrow} \Safe \neq \N^d$.
 \end{block}
 
 
-   \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience(s) for VASS}
-
-\begin{theorem}\label{vass down}
-{\sc $k$-resilience }  and {\sc Bounded resilience} are decidable for VASS when 
-$\Safe = \mathop{\downarrow} \Safe$.
-\end{theorem}
 
 
 
@@ -564,14 +570,20 @@ $\Safe = \mathop{\downarrow} \Safe$.
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Conclusion}
   
+   \begin{center}
+ 	\begin{figure}
+ 	% \hspace{-2.cm}
+ 	\vspace{-0.25cm}
+\includegraphics[width=1.00\textwidth]{All_results}
+% \caption{Hasse diagram of some classes of transition systems, together with the decidability (in green) or undecidability (in red) of the resilience problems. Decidability of bounded resilience and $k-$resilience variants are indicated in blue.}
+	\end{figure}
+\end{center}  
+    
+% How to expand current results ?
 
-How to expand current results ?
+% - detailed complexity analysis (in VASS \& variations)
 
-- detailed complexity analysis (in VASS \& variations)
-
-- controller/environment framework
-
-- other classes of $\Safe / \Bad$ (e.g. semilinear)
+% - other classes of $\Safe / \Bad$ (e.g. semilinear)
 
 
   \end{frame}
