@@ -136,18 +136,33 @@ This lead to concept of resilience
 	\end{figure}
 \end{center}  
 
+
+\begin{columns}[T]
+ \column{0.6\textwidth}
+
 $\Safe_1 = \{q_0(n) \mid n \in \N\}$
 
-\phantom{ {resilience},  {$k$-resilience} and {bounded resilience} are not satisfied }
+\vspace{0.1cm}
 
 $\Safe_2 = \{q_1(0)\} $
 
-\phantom{ {resilience} hold, {bounded resilience} does not hold }
+
+
+
+ \column{0.4\textwidth}
+ 
+\phantom{ {resilience} }
+
+\vspace{0.1cm}
+
+\phantom{ {resilience} }
+
+\end{columns}
 
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience(s)}
+  \begin{frame}{Resilience problems}
   
 
 % TODO
@@ -156,22 +171,37 @@ $\Safe_2 = \{q_1(0)\} $
 
 % (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
   
- {\small
-  
-  
-{\sc Resilience problems} 
 
-\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$.}
+\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$, \\ $\Bad$ complement of $\Safe$.}
 
 \hspace{-0.5cm}  {\bf QUESTION:\ } 
 
-\hspace{-0.5cm}  ({\sc resilience problem}) $\Bad \rightarrow^{*} \Safe$ ?
+\begin{columns}[T]
+ \column{0.3\textwidth}
 
-\hspace{-0.5cm}  ({\sc $k$-resilience problem})		$\Bad \rightarrow^{\leq k} \Safe$ ?
+  $\Bad \rightarrow^{*} \Safe$  ?
 
-\hspace{-0.5cm}  ({\sc bounded resilience problem})	$\exists k ~ S \rightarrow^{\leq k} \Safe$ ?\newline
+\vspace{0.15cm}
 
-}
+   $\Bad \rightarrow^{\leq k} \Safe$  ?
+
+\vspace{0.15cm}
+
+  $\exists k ~ \Bad \rightarrow^{\leq k} \Safe$   ?\newline
+
+ \column{0.7\textwidth}
+ 
+\hspace{0.6cm} {\sc  \phantom{bounded} resilience problem}
+
+\vspace{0.16cm}
+
+\hspace{0.6cm} {\sc \phantom{boundi} $k$-resilience problem}
+
+\vspace{0.175cm}
+
+\hspace{0.6cm} {\sc bounded resilience problem}
+
+\end{columns}
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -185,15 +215,45 @@ $\Safe_2 = \{q_1(0)\} $
 	\end{figure}
 \end{center}  
 
-$\Safe_1 = \{q_0(n) \mid n \in \N\}$
+\only<1>{
+\begin{columns}[T]
+ \column{0.6\textwidth}
 
-{resilience}, 
-{$k$-resilience} and {bounded resilience} are not satisfied
+$\Safe_1 = \{q_0(n) \mid n \in \N\}$ 	
 
+ \column{0.4\textwidth}
+ 
+ Resilience(s) not satisfied
+
+\vspace{0.1cm}
+
+\phantom{bla} $q_1(m) ~ \cancel{\to} ~ q_0(n)$
+
+\end{columns}
+
+
+
+}
+
+
+\only<2>{
+\begin{columns}[T]
+ \column{0.6\textwidth}
 
 $\Safe_2 = \{q_1(0)\} $
 
- {resilience} hold, {bounded resilience} does not hold
+ \column{0.4\textwidth}
+ 
+ Resilience hold, 
+ 
+ \vspace{0.1cm}
+ 
+ \hspace{-0.6cm} Bounded resilience does not
+
+\end{columns}
+
+}
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -207,27 +267,68 @@ $\Safe_2 = \{q_1(0)\} $
 	\end{figure}
 \end{center}  
 
-  $\Safe_2 = \{q_1(0)\} $
-   {bounded resilience} hold, $6$-resilience hold
+\begin{columns}[T]
+ \column{0.6\textwidth}
 
+$\Safe_2 = \{q_1(0)\} $
+
+ \column{0.4\textwidth}
+ 
+ Bounded resilience hold, 
+ 
+ \vspace{0.1cm}
+ 
+ \phantom{bla} $6$-resilience hold
+
+\end{columns}
+
+$q_1(9) \to q_0(10) \to q_2(0) \to q_1(0)$
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience(s)}
+  \begin{frame}{{State} resilience problems}
   
 
-  \hspace{-0.2cm}
-{\sc \textcolor{red}{State} resilience problems}
+% TODO
 
-\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, \textcolor{red}{$s \in S$}, and a set $\Safe \subseteq S$.}
+% Define the Six different problems we study/focus on.
 
-\hspace{-0.5cm}  {\bf QUESTION:\ }
+% (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)
+  
 
-\hspace{-0.5cm}{ ({\sc state-resilience problem}) $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{*} \Safe$ ?
+\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$, \\ $\Bad$ complement of $\Safe$, \textcolor{red}{$s \in S$}.}
 
-\hspace{-0.5cm}  ({\sc $k$-state-resilience problem})		$\cancel{\Bad}~ \textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$ ?
+\hspace{-0.5cm}  {\bf QUESTION:\ } 
 
-\hspace{-0.5cm} ({\sc bounded-state-resilience problem})	$\exists k ~ \cancel{\Bad}~\textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$?\newline}
+\begin{columns}[T]
+ \column{0.45\textwidth}
+
+  $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{*} \Safe$  ?
+
+\vspace{0.15cm}
+
+   $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{\leq k} \Safe$  ?
+
+\vspace{0.15cm}
+
+  $\exists k ~ \cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{\leq k} \Safe$   ?\newline
+
+ \column{0.7\textwidth}
+ 
+\hspace{0.6cm} {\sc  \phantom{bounded} state-resilience problem}
+
+\vspace{0.19cm}
+
+\hspace{0.6cm} {\sc \phantom{boundi} $k$-state-resilience problem}
+
+\vspace{0.20cm}
+
+\hspace{0.6cm} {\sc bounded-state-resilience problem}
+
+\end{columns}
+
+
+
 
  
 
@@ -240,45 +341,30 @@ $\Safe_2 = \{q_1(0)\} $
 	\section{WBTS, WSTS}
   \begin{frame}{}
   
-  \begin{definition}[\cite{DBLP:journals/lmcs/BlondinFM17}]
+  \begin{block}{Definition~\cite{DBLP:journals/lmcs/BlondinFM17}}
 A {\em Well-Behaved Transition System} (WBTS) 
-is a FAC$^1$-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ such that   
-%the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
+is an ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ such that   
+all antichains of $(S, \leq)$ are finite, and
+%the transition relation 
+$ \rightarrow$ is (upward) compatible with $\leq$. 
 %$s_1, t_1 , s_2 \in S$
 %	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
 %	$t_2 \in S$ with 
 %	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
-\end{definition}
+\end{block}
 
 
-   \begin{center}
- 	\begin{figure}
- 	% \hspace{-2.cm}
-\includegraphics[width=.25\textwidth]{WSTS_def}
-	\end{figure}
-\end{center}  
 
-\phantom{line}
-
-{\small $^1${FAC = all anti-chains are finite}}
-
-    \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}
-% TODO
-%  \todo[inline,color=blue!20]{ {\it À l'oral~} 
-% Resilience(s) "obviously"  undecidable in general so restriction $\to$ restriction to WSTS
-% $\to$ so we need to define WSTS properly }
-
-\begin{definition}[\cite{DBLP:journals/iandc/Finkel90}]
+\begin{block}{Definition~\cite{DBLP:journals/iandc/Finkel90}}
 A {\em Well-Structured Transition System} (WSTS) 
-is a well-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ such that   
+is a well-ordered transition system $\mathscr{S}=(S, \rightarrow, \leq)$ with 
+ $ \rightarrow$ is (upward) compatible with $\leq$. 
 %the transition relation $ \rightarrow$ is (upward) compatible with $\leq$, i.e., for all 
 %$s_1, t_1 , s_2 \in S$
 %	with $s_1 \leq s_2$  and $s_1 \rightarrow t_1$, there exists 
 %	$t_2 \in S$ with 
 %	$t_1 \leq t_2$ and $s_2 \rightarrow^{*} t_2$.
-\end{definition}
+\end{block}
 
 
    \begin{center}
@@ -395,7 +481,7 @@ $S$ effective =
 \begin{block}{Theorem~4}
 WBTS $\mathscr{S}=(S,\rightarrow, \leq)$ 
 \begin{itemize}
-\item $\post$-ideal-effective =effective + $\mathop{\downarrow} \post(I)$ computable %$\post$-ideal-effective 
+\item effective + $\mathop{\downarrow} \post(I)$ computable$^1$ %$\post$-ideal-effective 
 \item \textcolor{red}{strong} compatibility
 \item $\Safe = \mathop{\uparrow} \Safe$
 \end{itemize}
@@ -410,6 +496,10 @@ and {\sc $k$-resilience} decidable.
 \includegraphics[width=.25\textwidth]{WSTS_strong}
 	\end{figure}
 \end{center}  
+
+\phantom{Footnote}
+
+{\small $^1$called $\post$-ideal-effective }
 
        \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -440,7 +530,7 @@ This infinite set of coverability questions can be reduced to a \emph{finite} se
  
  
  \begin{definition}[\cite{BFM-ic17}]
-The \emph{completion}   of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where 
+The \emph{completion}   of a WBTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the associated ordered transition system $\hat{\mathscr{S}}=(Ideals(S),\rightarrow, \subseteq)$ where 
 %$Ideals(S)$ is the set of ideals of $S$ and
  $I \rightarrow J$ if $J$ belongs to the finite ideal decomposition of $\mathop{\downarrow} \post_{\mathscr{S}}(I)$. 
 % The completion is always \emph{finitely branching} but it is not necessarly a WSTS since $\subseteq$ is not necessarly a wqo. 
@@ -451,14 +541,14 @@ The \emph{completion}   of a WSTS $\mathscr{S}=(S,\rightarrow, \leq)$ is the ass
 
 \pause
 
-\begin{exampleblock}{Relation with paths in the completion}
+\begin{exampleblock}{From a WBTS to its completion}
 If $x \xrightarrow{k} y$ in $\mathscr{S}$ then for every ideal $I \supseteq \mathop{\downarrow} x$, there exists an ideal $J \supseteq \mathop{\downarrow} y$ such that $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$.
 \end{exampleblock}
 
 
 \pause
 
-\begin{exampleblock}{Relation with paths in the completion}
+\begin{exampleblock}{From the completion to the WBTS}
 If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there exists $x \in I$ and $y' \geq y$ such that $x \xrightarrow{k'} y'$ in $\mathscr{S}$. If $\mathscr{S}$ has strong compatibility then $k’ = k$.
 \end{exampleblock}
 
@@ -540,9 +630,9 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Resilience(s) for VASS and VAS}
 
-\begin{theorem}\label{SL VASS}
+\begin{block}{Theorem}
 {\sc Resilience} is decidable for VASS, and $\mathbb{Z}-$VASS, when $\Safe$  is a semilinear set.
-\end{theorem}
+\end{block}
 
 
 $\to$ it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
@@ -550,10 +640,10 @@ $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}
 
 \pause 
 
-\begin{theorem}\label{vass down}
+\begin{block}{Theorem}
 {\sc Bounded resilience} and {\sc $k$-resilience } are decidable for VASS when 
 $\Safe = \mathop{\downarrow} \Safe$.
-\end{theorem}
+\end{block}
 
  
 \pause
@@ -585,6 +675,13 @@ $\Safe = \mathop{\downarrow} \Safe$.
 
 % - other classes of $\Safe / \Bad$ (e.g. semilinear)
 
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{References}
+      
+      {\tiny
+\bibliography{bib}
+}
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -594,13 +691,6 @@ $\Safe = \mathop{\downarrow} \Safe$.
   Thanks for your attention
   \end{center}
   
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{References}
-      
-      {\tiny
-\bibliography{bib}
-}
 
 
   \end{frame}
