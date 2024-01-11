@@ -158,36 +158,13 @@ This lead to concept of resilience
 
 \hspace{-0.5cm}  {\bf QUESTION:\ } 
 
-\hspace{-0.5cm}  {({\sc resilience problem (RP)}) $\Bad \rightarrow^{*} \Safe$ ?
+\hspace{-0.5cm}  ({\sc resilience problem}) $\Bad \rightarrow^{*} \Safe$ ?
 
-\hspace{-0.5cm}  ({\sc $k$-resilience problem (kRP)})		$\Bad \rightarrow^{\leq k} \Safe$ ?
+\hspace{-0.5cm}  ({\sc $k$-resilience problem})		$\Bad \rightarrow^{\leq k} \Safe$ ?
 
-\hspace{-0.5cm}  ({\sc bounded resilience problem (BRP)})	$\exists k ~ S \rightarrow^{\leq k} \Safe$ ?\newline}
+\hspace{-0.5cm}  ({\sc bounded resilience problem})	$\exists k ~ S \rightarrow^{\leq k} \Safe$ ?\newline
 
 }
-
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience(s)}
-  
- {\small
- 
-  \hspace{-0.2cm}
-{\sc \textcolor{red}{State} resilience problems}
-
-\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, \textcolor{red}{$s \in S$}, and a set $\Safe \subseteq S$.}
-
-\hspace{-0.5cm}  {\bf QUESTION:\ }
-
-\hspace{-0.5cm}{ ({\sc state-resilience problem (SRP)}) $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{*} \Safe$ ?
-
-\hspace{-0.5cm}  ({\sc $k$-state-resilience problem (kSRP)})		$\cancel{\Bad}~ \textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$ ?
-
-\hspace{-0.5cm} ({\sc bounded-state-resilience problem (BSRP)})	$\exists k ~ \cancel{\Bad}~\textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$?\newline}
-
- }
-
-% \todo[inline,color=blue!20]{{\bf  \tiny (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)}} 
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -226,6 +203,31 @@ $\Safe = \{q_1(0)\} $
 
   $\Safe = \{q_1(0)\} $
    {bounded resilience} hold, $6$-resilience hold
+
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Resilience(s)}
+  
+ {\small
+ 
+  \hspace{-0.2cm}
+{\sc \textcolor{red}{State} resilience problems}
+
+\hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, \textcolor{red}{$s \in S$}, and a set $\Safe \subseteq S$.}
+
+\hspace{-0.5cm}  {\bf QUESTION:\ }
+
+\hspace{-0.5cm}{ ({\sc state-resilience problem}) $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{*} \Safe$ ?
+
+\hspace{-0.5cm}  ({\sc $k$-state-resilience problem})		$\cancel{\Bad}~ \textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$ ?
+
+\hspace{-0.5cm} ({\sc bounded-state-resilience problem})	$\exists k ~ \cancel{\Bad}~\textcolor{red}{\post^*(s)} \rightarrow^{\leq k} \Safe$?\newline}
+
+ }
+
+% \todo[inline,color=blue!20]{{\bf  \tiny (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)}} 
+
 
 
   \end{frame}
@@ -533,13 +535,7 @@ $\to$ it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when
 $\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}
 
  
-   \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Resilience(s) for VASS}
-
-- Bounded resilience and $k$-resilience $\to$ more complex
- 
-- Remaque sur les VAS : it does not hold
+\pause
 
 \begin{block}{Proposition}
 {\sc Bounded resilience} and {\sc $k$-resilience} never hold for $d$-VAS when $\Safe = \mathop{\downarrow} \Safe$ and $\Safe \neq \N^d$.
