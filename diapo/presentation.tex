@@ -136,6 +136,10 @@ This lead to concept of resilience
 	\end{figure}
 \end{center}  
 
+
+  
+  
+
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   \begin{frame}{Example: Reset-VASS $V_2$}
@@ -147,6 +151,7 @@ This lead to concept of resilience
 \includegraphics[width=.50\textwidth]{FigB}
 	\end{figure}
 \end{center}  
+
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -198,6 +203,44 @@ This lead to concept of resilience
  }
 
 % \todo[inline,color=blue!20]{{\bf  \tiny (Takes some room but I think mb having the six on the same page could be better than having three then three state-* on two separate pages ?)}} 
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Example: Reset-VASS $V_1$}
+  
+  
+   \begin{center}
+ 	\begin{figure}
+ 	\vspace{.06cm}
+\includegraphics[width=.50\textwidth]{FigA}
+	\end{figure}
+\end{center}  
+
+$\Safe = \{q_0(n) \mid n \in \N\}$
+
+{resilience}, 
+{$k$-resilience} and {bounded resilience} are not satisfied
+
+
+$\Safe = \{q_1(0)\} $
+
+ {resilience}
+  However, {bounded resilience} does not hold
+
+  \end{frame}
+%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  \begin{frame}{Example: Reset-VASS $V_2$}
+  
+  
+   \begin{center}
+ 	\begin{figure}
+% 	\hspace{-2.cm}
+\includegraphics[width=.50\textwidth]{FigB}
+	\end{figure}
+\end{center}  
+
+  $\Safe = \{q_1(0)\} $
+   {bounded resilience} hold, $6$-resilience hold
 
 
   \end{frame}
@@ -355,7 +398,7 @@ $S$ effective =
 % \end{theorem}
 
 
-\begin{theorem}
+\begin{block}{Theorem~4}
 WBTS $\mathscr{S}=(S,\rightarrow, \leq)$ 
 \begin{itemize}
 \item $\mathop{\downarrow} \post(I)$ computable %$\post$-ideal-effective 
@@ -364,7 +407,7 @@ WBTS $\mathscr{S}=(S,\rightarrow, \leq)$
 \end{itemize}
 {\sc Resilience}, {\sc Bounded resilience} 
 and {\sc $k$-resilience} decidable.
-\end{theorem}
+\end{block}
 
 
 \begin{center}
