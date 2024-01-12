@@ -100,9 +100,9 @@
  \column{0.65\textwidth}
 \phantom{Fridge.png} \\
 \phantom{Fridge.png} \\
-{\sf Bad} state = temperature $\geq 6^\circ C$ \newline
+$\Bad$ states = temperature $> 6^\circ C$ \newline
 
- {\sf Good} state = temperature $\leq 6^\circ C$ \\
+ $\Safe$ states = temperature $\leq 6^\circ C$ \\
 
 \end{columns}
 
@@ -124,40 +124,6 @@ This lead to concept of resilience
 }
 \fi
 
-  \end{frame}
-%vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  \begin{frame}{Example: Reset-VASS $V_1$}
-  
-  
-   \begin{center}
- 	\begin{figure}
- 	\vspace{.06cm}
-\includegraphics[width=.4\textwidth]{FigA}
-	\end{figure}
-\end{center}  
-
-
-\begin{columns}[T]
- \column{0.6\textwidth}
-
-$\Safe_1 = \{q_0(n) \mid n \in \N\}$
-
-\vspace{0.1cm}
-
-$\Safe_2 = \{q_1(0)\} $
-
-
-
-
- \column{0.4\textwidth}
- 
-\phantom{ {resilience} }
-
-\vspace{0.1cm}
-
-\phantom{ {resilience} }
-
-\end{columns}
 
 
   \end{frame}
@@ -174,6 +140,8 @@ $\Safe_2 = \{q_1(0)\} $
 
 \hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$, \\ $\Bad$ complement of $\Safe$.}
 
+\phantom{Espacer}
+
 \hspace{-0.5cm}  {\bf QUESTION:\ } 
 
 \begin{columns}[T]
@@ -181,11 +149,11 @@ $\Safe_2 = \{q_1(0)\} $
 
   $\Bad \rightarrow^{*} \Safe$  ?
 
-\vspace{0.15cm}
+\vspace{0.20cm}
 
    $\Bad \rightarrow^{\leq k} \Safe$  ?
 
-\vspace{0.15cm}
+\vspace{0.20cm}
 
   $\exists k ~ \Bad \rightarrow^{\leq k} \Safe$   ?\newline
 
@@ -193,11 +161,11 @@ $\Safe_2 = \{q_1(0)\} $
  
 \hspace{0.6cm} {\sc  \phantom{bounded} resilience problem}
 
-\vspace{0.16cm}
+\vspace{0.22cm}
 
 \hspace{0.6cm} {\sc \phantom{boundi} $k$-resilience problem}
 
-\vspace{0.175cm}
+\vspace{0.24cm}
 
 \hspace{0.6cm} {\sc bounded resilience problem}
 
@@ -252,6 +220,11 @@ $\Safe_2 = \{q_1(0)\} $
 
 }
 
+ \vspace{0.25cm}
+ 
+  \only<2>{
+$q_0(n) \to q_1(n-1) \to^* q_1(0) $ \phantom{$q_0(9) q_0(10)$} $ q_1(k+1) \cancel{\to^{\leq k}} q_1(0)$
+}
 
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -283,7 +256,7 @@ $\Safe_2 = \{q_1(0)\} $
  \vspace{0.25cm}
  
  \only<2>{
-$q_1(7) \to q_0(8) \to q_0(9) \to q_0(10) \to q_2(0) \to q_1(0)$
+$q_1(9) \to q_0(10) \to q_2(0) \to q_1(0)$
 }
 
 \only<1>{
@@ -304,6 +277,8 @@ $q_1(6) \to q_1(5) \to q_1(4) \to q_1(3) \to q_1(2) \to q_1(1) \to q_1(0)$
 
 \hspace{-0.5cm}  {\bf INPUT:\ }{A transition system $\mathscr{S}=(S,\rightarrow)$, and a set $\Safe \subseteq S$, \\ $\Bad$ complement of $\Safe$, \textcolor{red}{$s \in S$}.}
 
+\phantom{Espacer}
+
 \hspace{-0.5cm}  {\bf QUESTION:\ } 
 
 \begin{columns}[T]
@@ -311,11 +286,11 @@ $q_1(6) \to q_1(5) \to q_1(4) \to q_1(3) \to q_1(2) \to q_1(1) \to q_1(0)$
 
   $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{*} \Safe$  ?
 
-\vspace{0.15cm}
+\vspace{0.20cm}
 
    $\cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{\leq k} \Safe$  ?
 
-\vspace{0.15cm}
+\vspace{0.20cm}
 
   $\exists k ~ \cancel{\Bad}~\textcolor{red}{\post^*(s) } \rightarrow^{\leq k} \Safe$   ?\newline
 
@@ -323,11 +298,11 @@ $q_1(6) \to q_1(5) \to q_1(4) \to q_1(3) \to q_1(2) \to q_1(1) \to q_1(0)$
  
 \hspace{0.6cm} {\sc  \phantom{bounded} state-resilience problem}
 
-\vspace{0.19cm}
+\vspace{0.24cm}
 
 \hspace{0.6cm} {\sc \phantom{boundi} $k$-state-resilience problem}
 
-\vspace{0.20cm}
+\vspace{0.24cm}
 
 \hspace{0.6cm} {\sc bounded-state-resilience problem}
 
@@ -593,7 +568,8 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 
 
 
-\nocite{DBLP:conf/gg/Ozkan22}
+% \nocite{DBLP:conf/gg/Ozkan22}
+ \nocite{DBLP:journals/corr/abs-2108-00889}
  
   \end{frame}
 %vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -647,7 +623,7 @@ If $I \xrightarrow{k} J$ in $\hat{\mathscr{S}}$ then for every $y \in J$, there 
 
 
 $\to$ it is decidable whether $\post^*(\Bad) \subseteq \pred^*(\Safe)$ when 
-$\Bad$ and $\Safe$ are both semilinear~\cite{DBLP:journals/corr/abs-2207-02697}
+$\Bad$ and $\Safe$ are both semilinear~\cite{janvcar2023semilinear}
 
 \pause 
 
